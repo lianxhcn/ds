@@ -1,0 +1,80 @@
+# 关于我们 {.untitled}
+
+> [主页](https://www.lianxh.cn) \|\| [课程](https://www.lianxh.cn/details/17.html) \|\| [视频](https://lianxh-class.cn/) \|\| [推文](https://www.lianxh.cn/blogs/all.html) \|\| \| [资料](https://www.lianxh.cn/share.html)
+
+ 
+
+[**连享会**](https://www.lianxh.cn) 由中山大学连玉君老师团队创办，定期分享各类实证分析经验，主要栏目如下：
+
+-   [连享会 · 主页](https://www.lianxh.cn) → [分类推文](https://www.lianxh.cn/blogs/all.html)。在主页搜索框中填入关键词即可，复制地址栏中的网址可以永久保留查询结果。亦可在 Stata 命令窗口输入 `lianxh 关键词`查询数据、论文重现代码和相关推文。
+-   [连享会 · 公众号](https://mp.weixin.qq.com/s/PmSX1UvhAA_rffSCkxHAlQ)，**连享会** ( ID：`lianxh_cn` )，每日必读。
+-   [连享会 · 知乎](https://www.zhihu.com/people/arlionn/)，各类常见问题解答和新消息。\
+-   [连享会 · 在线课堂](https://www.lianxh.cn/Class.html)，各类录播课和公开课视频
+-   [连享会 · b 站](https://space.bilibili.com/546535876)，放置了连享会团队分享的 100 多个视频。
+
+ 
+
+## 连享会小课堂：在线视频课程
+
+> ${\color{red}{NEW}}$ 连享会在线课堂：[lianxh-class.cn](https://lianxh-class.cn/)
+
+-   连玉君，[Stata 33 讲](https://lianxh-class.cn/view/1527932289698443345)，观看量超过 100 万人次的 Stata 入门课
+-   连玉君，[直击面板数据模型](https://lianxh-class.cn/view/1527932289698443344)，2 小时，公开课
+-   [Stata 软件及计量基础](https://lianxh-class.cn/view/1527932289698443315), 五次课，Stata 入门必备
+-   [因果推断：控制变量如何选？](https://lianxh-class.cn/view/1527932289698443328)，2 小时, 9.9 元
+-   [因果推断：反事实架构及主流计量方法](https://lianxh-class.cn/view/1527932289698443329), 2 小时, 9.9 元
+-   [我的特斯拉-实证研究设计](https://lianxh-class.cn/view/1527932289698443313)，2.4 小时
+-   连玉君，[我的甲壳虫-论文精讲与重现](https://lianxh-class.cn/view/1527932289698443314)，两次课，共 6 小时
+-   连玉君，[动态面板数据模型](https://lianxh-class.cn/view/1527932289698443312)，2.2 小时，理论+实操 [……](https://lianxh-class.cn/)
+
+ 
+
+## 资源分享
+
+> 详情：[主页 - 资料分享](https://www.lianxh.cn/share.html)
+
+### Data
+
+-   [CSMAR-国泰安](http://www.gtarsc.com/#/datacenter/singletable) \| [Wind-万德](https://www.wind.com.cn/Default.html) \| [Resset-锐思](http://www.resset.cn/databases)
+-   [常用数据库](https://www.lianxh.cn/news/0b65fd5165c2c.html) \| [人文社科数据库](https://www.lianxh.cn/news/6f06c914acde8.html)
+
+### 论文复现
+
+> [论文重现网站大全](https://www.lianxh.cn/details/232.html)
+
+-   [Discover Mendeley Data](https://data.mendeley.com/)
+-   [ICPSR Data](https://www.icpsr.umich.edu/icpsrweb/)
+-   [Harvard Dataverse](https://dataverse.harvard.edu/)
+-   [Find Economic Articles with Data](https://ejd.econ.mathematik.uni-ulm.de/)
+    -   包含 9000 多篇经济金融论文，可检索软件类型、期刊名称等。
+-   [Replication in the social sciences](http://replication.uni-goettingen.de/wiki/index.php/Main_Page)
+
+### 推文
+
+-   [Stata 教程](https://www.lianxh.cn/blogs/17.html) \| [资料](https://www.lianxh.cn/blogs/35.html) \| [新命令](https://www.lianxh.cn/blogs/43.html) \| [结果输出](https://www.lianxh.cn/blogs/22.html) \| [绘图](https://www.lianxh.cn/blogs/24.html) \| [数据处理](https://www.lianxh.cn/blogs/25.html) \| [程序](https://www.lianxh.cn/blogs/26.html)
+-   [回归分析](https://www.lianxh.cn/blogs/32.html) \| [面板数据](https://www.lianxh.cn/blogs/20.html) \| [交乘项-调节](https://www.lianxh.cn/blogs/21.html) \| [IV-GMM](https://www.lianxh.cn/blogs/38.html) \| [Logit](https://www.lianxh.cn/blogs/27.html) \| [空间计量](https://www.lianxh.cn/blogs/29.html)
+-   [因果推断](https://www.lianxh.cn/blogs/19.html) \| [DID](https://www.lianxh.cn/blogs/39.html) \| [RDD](https://www.lianxh.cn/blogs/40.html) \| [PSM](https://www.lianxh.cn/blogs/41.html) \| [合成控制](https://www.lianxh.cn/blogs/42.html) \| [文本分析](https://www.lianxh.cn/blogs/36.html)
+-   [Markdown](https://www.lianxh.cn/blogs/30.html) \| [工具软件](https://www.lianxh.cn/blogs/23.html) \| [机器学习](https://www.lianxh.cn/blogs/47.html) \| [其它](https://www.lianxh.cn/blogs/33.html)
+-   [PDF 合集](https://file.lianxh.cn/KC/lianxh_Blogs.pdf)
+
+------------------------------------------------------------------------
+
+## 联系我们
+
+-   **E-mail：** StataChina\@163.com
+-   **微信公众号：** `lianxh_cn` (连享会)
+
+### 数字连享会
+
+截至 2024.12.18，[连享会](https://www.lianxh.cn) 共发布推文 1351 篇，累积阅读量 13,043,554 次。篇均阅读次数为 9654。连享会 [知乎账号](https://www.zhihu.com/people/arlionn) 回答了 1360 个经济、管理领域的问题，发布推文 1036 篇，累积阅读量为 58,564,198 次。
+
+### 欢迎赐稿
+
+-   推文风格：参见 [分类推文](https://www.lianxh.cn/blogs/all.html)。
+-   录用 **2 篇** 以上，即可 **免费** 获得一期 Stata 现场培训资格
+-   投稿信箱: StataChina\@163.com / arlionn\@163.com 。
+-   邮件标题：**推文投稿-姓名：推文标题**。
+
+ 
+
+<img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/%E8%BF%9E%E4%BA%AB%E4%BC%9A-%E8%8D%89%E6%96%99%E4%B8%BB%E9%A1%B5-%E4%B8%80%E7%A0%81%E5%B9%B3%E5%B7%9D600.png" style="width: 450px"/>

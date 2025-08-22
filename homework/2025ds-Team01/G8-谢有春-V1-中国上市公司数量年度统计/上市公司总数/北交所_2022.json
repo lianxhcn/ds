@@ -1,0 +1,92 @@
+[
+    {
+        "hqcjje": 0,
+        "hqcjsl": 0,
+        "xxzrlx": "XJX",
+        "rq": "20220523"
+    },
+    {
+        "hqcjje": 65918297.79,
+        "hqcjsl": 33992005,
+        "xxzrlx": "X",
+        "rq": "20220523"
+    },
+    {
+        "gpgsjs": 400,
+        "hqcjje": 137572167.4,
+        "xxzgb": 55028267649,
+        "hqcjzs": 215,
+        "hqcjsl": 22533764,
+        "drxzjs": 0,
+        "xxfxsgb": 34584568891,
+        "xxzrlx": "M",
+        "rq": "20220523",
+        "hqcjbs": 0
+    },
+    {
+        "gpgsjs": 6319,
+        "hqcjje": 101361367.25,
+        "xxzgb": 393913520027,
+        "hqcjzs": 578,
+        "hqcjsl": 41842020,
+        "drxzjs": 0,
+        "xxfxsgb": 241483008540,
+        "xxzrlx": "C",
+        "rq": "20220523",
+        "hqcjbs": 0
+    },
+    {
+        "gpgsjs": 91,
+        "hqcjje": 306557726.55,
+        "xxzgb": 13081437517,
+        "hqcjzs": 89,
+        "hqcjsl": 30260695,
+        "drxzjs": 0,
+        "xxfxsgb": 7512133959,
+        "xxzrlx": "B",
+        "rq": "20220523",
+        "hqcjbs": 0
+    },
+    {
+        "zsz": 189362039781.34,
+        "gpgsjs": 91,
+        "xxzgb": 13081437517,
+        "hqcjje": 306557726.55,
+        "hqcjzs": 89,
+        "hqcjsl": 30260695,
+        "drxzjs": 0,
+        "xxfxsgb": 7512133959,
+        "xxzrlx": "2",
+        "ltsz": 117672247967.36,
+        "rq": "20220523",
+        "hqcjbs": 0
+    },
+    {
+        "zsz": 946492614772.26,
+        "gpgsjs": 1558,
+        "xxzgb": 151703885550,
+        "hqcjje": 172390778.37,
+        "hqcjzs": 538,
+        "hqcjsl": 39407300,
+        "drxzjs": 321,
+        "xxfxsgb": 90018080243,
+        "xxzrlx": "1",
+        "ltsz": 529453006138.48,
+        "rq": "20220523",
+        "hqcjbs": 0
+    },
+    {
+        "zsz": 906710058023.03,
+        "gpgsjs": 5161,
+        "xxzgb": 297237902126,
+        "hqcjje": 66542756.28,
+        "hqcjzs": 255,
+        "hqcjsl": 24968484,
+        "drxzjs": -321,
+        "xxfxsgb": 186049497188,
+        "xxzrlx": "0",
+        "ltsz": 538697104332.39,
+        "rq": "20220523",
+        "hqcjbs": 0
+    }
+]

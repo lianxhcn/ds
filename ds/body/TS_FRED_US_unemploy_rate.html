@@ -1,0 +1,2047 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>32&nbsp; 案例：美国失业率和通胀率关系分析 – 数据分析</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../homework/pre/Dangdang_G7_01_data_clean.html" rel="next">
+<link href="../body/regress_03_binscatter.html" rel="prev">
+<link href="../images/ds-book-logo-40.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e8fb9d25728d58bfeac61b497e4a6629.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-8434d2026ae8291579158df2ad8dfa64.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/TS_FRED_US_unemploy_rate.html"><strong>时间序列分析</strong></a></li><li class="breadcrumb-item"><a href="../body/TS_FRED_US_unemploy_rate.html"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../"></a><a href="../index.html">DS</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
+    <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
+    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">数据分析</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/_home.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">关于我们</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/00_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">前言</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Python 基础</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/00_py_with_AI_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">借助 AI 写代码</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/00_py_with_AI_pic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ansome Python + AI</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_1_install-Python-Anocanda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python：安装和环境配置</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_2_install_FAQs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Python 安装常见问题</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_3_markdown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Python 入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_01_grammer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Python 代码风格</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_02_QuickReference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python 常用命令速查表</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_03_Packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Python 常用扩展包</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_04_import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Python：import 使用详解</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_05_OOP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Python：语法解析-面向对象编程</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_06_filepath.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Python 路径设置</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_02_numpy_scipy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_02_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">pandas 快速入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_03_matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Matplotlib简介</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_04_func_and_module.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">函数</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_05_class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">类和对象</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>数据分析</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_02_data_type.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">数据分析是什么？</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_02_get_data_GMD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">获取数据：GMD</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_SZ_index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">上证指数的时序特征</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>可视化</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Python 可视化：简介</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_box_violin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">箱型图和小提琴图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_histogram.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">直方图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_kdensity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">核密度函数图</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>回归分析</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/test_AB_test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_01_OLS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">线性回归模型</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_02_wage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">线性回归分析</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_03_binscatter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">分仓散点图</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>时间序列分析</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_FRED_US_unemploy_rate.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>作业展示</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Dangdang_G7_01_data_clean.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">当当网-G7-01</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Dangdang_G7_02_data_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">当当网-G7-02</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/G8_China_stock_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">G8-中国上市公司</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_01_data_crawler.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">G4-01</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_02_data_cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">G4-02</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_03_data_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">G4-03</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_万诗晴.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">ex02_万诗晴</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_吴倩茵.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">ex02_吴倩茵</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_朱少荣.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">ex02_朱少荣</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_黄伊姿.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">ex02_黄伊姿</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#下载美国失业率数据" id="toc-下载美国失业率数据" class="nav-link active" data-scroll-target="#下载美国失业率数据"><span class="header-section-number">32.1</span> 下载美国失业率数据</a></li>
+  <li><a href="#美国失业率的时序特征" id="toc-美国失业率的时序特征" class="nav-link" data-scroll-target="#美国失业率的时序特征"><span class="header-section-number">32.2</span> 美国失业率的时序特征</a>
+  <ul class="collapse">
+  <li><a href="#问题如何分析失业率的时序特征" id="toc-问题如何分析失业率的时序特征" class="nav-link" data-scroll-target="#问题如何分析失业率的时序特征"><span class="header-section-number">32.2.1</span> 问题：如何分析失业率的时序特征？</a></li>
+  <li><a href="#年移动平均" id="toc-年移动平均" class="nav-link" data-scroll-target="#年移动平均"><span class="header-section-number">32.2.2</span> 10 年移动平均</a></li>
+  </ul></li>
+  <li><a href="#消费者物价指数cpi" id="toc-消费者物价指数cpi" class="nav-link" data-scroll-target="#消费者物价指数cpi"><span class="header-section-number">32.3</span> 消费者物价指数（CPI）</a>
+  <ul class="collapse">
+  <li><a href="#美国消费者物价指数cpi趋势图解读" id="toc-美国消费者物价指数cpi趋势图解读" class="nav-link" data-scroll-target="#美国消费者物价指数cpi趋势图解读"><span class="header-section-number">32.3.1</span> 美国消费者物价指数（CPI）趋势图解读</a></li>
+  </ul></li>
+  <li><a href="#失业率和通货膨胀率的关系" id="toc-失业率和通货膨胀率的关系" class="nav-link" data-scroll-target="#失业率和通货膨胀率的关系"><span class="header-section-number">32.4</span> 失业率和通货膨胀率的关系</a>
+  <ul class="collapse">
+  <li><a href="#建模思路" id="toc-建模思路" class="nav-link" data-scroll-target="#建模思路"><span class="header-section-number">32.4.1</span> 建模思路</a></li>
+  </ul></li>
+  <li><a href="#线性回归模型" id="toc-线性回归模型" class="nav-link" data-scroll-target="#线性回归模型"><span class="header-section-number">32.5</span> 线性回归模型</a></li>
+  <li><a href="#单变量分析" id="toc-单变量分析" class="nav-link" data-scroll-target="#单变量分析"><span class="header-section-number">32.6</span> 单变量分析</a>
+  <ul class="collapse">
+  <li><a href="#arma11-模型" id="toc-arma11-模型" class="nav-link" data-scroll-target="#arma11-模型"><span class="header-section-number">32.6.1</span> ARMA(1,1) 模型</a></li>
+  <li><a href="#单位根检验" id="toc-单位根检验" class="nav-link" data-scroll-target="#单位根检验"><span class="header-section-number">32.6.2</span> 单位根检验</a></li>
+  </ul></li>
+  <li><a href="#var-模型" id="toc-var-模型" class="nav-link" data-scroll-target="#var-模型"><span class="header-section-number">32.7</span> VAR 模型</a>
+  <ul class="collapse">
+  <li><a href="#var2-模型的形式" id="toc-var2-模型的形式" class="nav-link" data-scroll-target="#var2-模型的形式"><span class="header-section-number">32.7.1</span> VAR(2) 模型的形式</a></li>
+  <li><a href="#varp-模型的扩展" id="toc-varp-模型的扩展" class="nav-link" data-scroll-target="#varp-模型的扩展"><span class="header-section-number">32.7.2</span> VAR(P) 模型的扩展</a></li>
+  <li><a href="#var-模型的估计" id="toc-var-模型的估计" class="nav-link" data-scroll-target="#var-模型的估计"><span class="header-section-number">32.7.3</span> VAR 模型的估计</a></li>
+  <li><a href="#granger-因果检验" id="toc-granger-因果检验" class="nav-link" data-scroll-target="#granger-因果检验"><span class="header-section-number">32.7.4</span> Granger 因果检验</a></li>
+  </ul></li>
+  <li><a href="#脉冲响应分析" id="toc-脉冲响应分析" class="nav-link" data-scroll-target="#脉冲响应分析"><span class="header-section-number">32.8</span> 脉冲响应分析</a>
+  <ul class="collapse">
+  <li><a href="#什么是脉冲响应分析" id="toc-什么是脉冲响应分析" class="nav-link" data-scroll-target="#什么是脉冲响应分析"><span class="header-section-number">32.8.1</span> 什么是脉冲响应分析？</a></li>
+  <li><a href="#数学定义" id="toc-数学定义" class="nav-link" data-scroll-target="#数学定义"><span class="header-section-number">32.8.2</span> 数学定义</a></li>
+  <li><a href="#分析步骤" id="toc-分析步骤" class="nav-link" data-scroll-target="#分析步骤"><span class="header-section-number">32.8.3</span> 分析步骤</a></li>
+  <li><a href="#示例失业率与通胀率的脉冲响应分析" id="toc-示例失业率与通胀率的脉冲响应分析" class="nav-link" data-scroll-target="#示例失业率与通胀率的脉冲响应分析"><span class="header-section-number">32.8.4</span> 示例：失业率与通胀率的脉冲响应分析</a></li>
+  <li><a href="#总结" id="toc-总结" class="nav-link" data-scroll-target="#总结"><span class="header-section-number">32.8.5</span> 总结</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/TS_FRED_US_unemploy_rate.html"><strong>时间序列分析</strong></a></li><li class="breadcrumb-item"><a href="../body/TS_FRED_US_unemploy_rate.html"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>本讲以 <code>pandas_datareader</code> 为例，介绍如何获取宏观数据，以及时间序列的基本特征和分析流程。</p>
+<p>FRED 是美国联邦储备银行提供的宏观经济数据，包含了大量的经济指标。 FRED 提供了一个 API 接口，可以通过 <code>pandas_datareader</code> 来获取数据。</p>
+<p>本文写作过程中借助了 AI，包括 ChatGPT (<a href="https://chatgpt.com/share/6818e458-538c-8005-9af1-1a8c31ee50f1">提示词</a>) 和 Github Coplilot。</p>
+<section id="下载美国失业率数据" class="level2" data-number="32.1">
+<h2 data-number="32.1" class="anchored" data-anchor-id="下载美国失业率数据"><span class="header-section-number">32.1</span> 下载美国失业率数据</h2>
+<blockquote class="blockquote">
+<p>Source: U.S. Bureau of Labor Statistics, Unemployment Rate [UNRATE], retrieved from FRED, Federal Reserve Bank of St.&nbsp;Louis; <a href="https://fred.stlouisfed.org/series/UNRATE" class="uri">https://fred.stlouisfed.org/series/UNRATE</a>, May 5, 2025.</p>
+</blockquote>
+<div id="c27155a7" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a href="#cb1-2"></a>os.chdir(<span class="vs">r"D:\github\dslian\body"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="4da0fa84" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># 基本设定</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="im">from</span> pandas_datareader.data <span class="im">import</span> DataReader</span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="im">import</span> datetime</span>
+<span id="cb2-7"><a href="#cb2-7"></a></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="im">import</span> warnings</span>
+<span id="cb2-9"><a href="#cb2-9"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)  <span class="co"># 屏蔽警告信息</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co"># 设置起止日期 (后续其他宏观变量也采用这个设置)</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>start_date <span class="op">=</span> datetime.datetime(<span class="dv">1960</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb2-13"><a href="#cb2-13"></a>end_date <span class="op">=</span> datetime.datetime.today()</span>
+<span id="cb2-14"><a href="#cb2-14"></a>start_year <span class="op">=</span> start_date.year</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="13e2b947" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># 失业率</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co"># 从 FRED 获取“Unemployment Rate”数据（代码为 UNRATE）</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>df_unemp <span class="op">=</span> DataReader(<span class="st">"UNRATE"</span>, <span class="st">"fred"</span>, start_date, end_date)</span>
+<span id="cb3-5"><a href="#cb3-5"></a></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co"># 绘图</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb3-8"><a href="#cb3-8"></a>plt.plot(df_unemp.index, df_unemp[<span class="st">"UNRATE"</span>], </span>
+<span id="cb3-9"><a href="#cb3-9"></a>         color<span class="op">=</span><span class="st">'blue'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Unemployment Rate'</span>)</span>
+<span id="cb3-10"><a href="#cb3-10"></a></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="co"># 图形美化</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a>plt.title(<span class="ss">f"Unemployment Rate in the U.S. (</span><span class="sc">{</span>start_year<span class="sc">}</span><span class="ss"> - Present)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb3-13"><a href="#cb3-13"></a>plt.xlabel(<span class="st">"Date"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb3-14"><a href="#cb3-14"></a>plt.ylabel(<span class="st">"Percent"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb3-15"><a href="#cb3-15"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb3-16"><a href="#cb3-16"></a>plt.legend()</span>
+<span id="cb3-17"><a href="#cb3-17"></a>plt.tight_layout()</span>
+<span id="cb3-18"><a href="#cb3-18"></a></span>
+<span id="cb3-19"><a href="#cb3-19"></a><span class="co"># 显示图形</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_FRED_US_unemploy_rate_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="美国失业率的时序特征" class="level2" data-number="32.2">
+<h2 data-number="32.2" class="anchored" data-anchor-id="美国失业率的时序特征"><span class="header-section-number">32.2</span> 美国失业率的时序特征</h2>
+<p>上图展示了自 1960 年以来美国的月度失业率变化趋势。总体来看，美国失业率呈现出显著的<strong>周期性波动</strong>，其高峰通常与经济衰退期相吻合，低谷则出现在经济扩张阶段。</p>
+<ul>
+<li><strong>周期波动明显</strong>：失业率大致每 8-10 年出现一次较大波动，与美国历次经济衰退（如 1974、1982、1991、2008 和 2020 年）高度对应。</li>
+<li><strong>历史极值</strong>：2020 年新冠疫情爆发初期，失业率迅速飙升至超过 14%，为图中最高点，反映出突发公共卫生事件对劳动市场的巨大冲击。</li>
+<li><strong>长期下行趋势</strong>：尽管存在周期性波动，但在部分阶段（如 1982-2000 年间、2010-2019 年间）可观察到失业率逐步下降的趋势，显示出结构性改善可能性。</li>
+</ul>
+<section id="问题如何分析失业率的时序特征" class="level3" data-number="32.2.1">
+<h3 data-number="32.2.1" class="anchored" data-anchor-id="问题如何分析失业率的时序特征"><span class="header-section-number">32.2.1</span> 问题：如何分析失业率的时序特征？</h3>
+<p>从图中失业率的走势出发，我们可以从以下几个角度提出计量建模中需要关注的核心问题：</p>
+<ul>
+<li><p><strong>平稳性与周期性：</strong> 失业率呈现一定的均值回复特征 (在上图中，均值约为 6Z%)，但是否真正平稳？如何通过单位根检验（如 ADF 检验）判断？如果该序列非平稳，我们是否应进行差分处理以便后续建模？</p></li>
+<li><p><strong>结构性突变：</strong> 例如 2020 年的断崖式上升显然并非常态波动，这提示我们应考虑模型中可能存在的<strong>结构突变（structural break）</strong>。在传统 ARIMA 模型之外，我们可能需要引入 regime-switching 或 dummy 变量来捕捉这类异质性。</p></li>
+<li><p><strong>滞后依赖结构：</strong> 当前失业率是否受到过去若干期值的影响？其滞后项在建模中如何体现？这正是 AR(p) 或 ARMA(p, q) 模型关注的核心。</p></li>
+<li><p><strong>长期关系与协整：</strong> 若将失业率与其他宏观变量（如通货膨胀率、GDP 增长率）联合考虑，它们之间是否存在协整关系？若存在，应如何建立误差修正模型（ECM）？</p></li>
+<li><p><strong>波动性建模：</strong> 某些阶段的波动显著大于其他时期，例如 1970s 或 2008 危机期间。如何刻画这种<strong>条件异方差</strong>特征？这将引出 ARCH/GARCH 及其扩展模型的讨论。</p></li>
+</ul>
+<div id="faa6c928" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># 失业率的基本统计特征</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>umemp <span class="op">=</span> df_unemp[<span class="st">"UNRATE"</span>]</span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="bu">print</span>(<span class="st">"失业率的基本统计特征："</span>)</span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="bu">print</span>(umemp.describe().<span class="bu">round</span>(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>失业率的基本统计特征：
+count    784.00
+mean       5.88
+std        1.70
+min        3.40
+25%        4.60
+50%        5.60
+75%        7.00
+max       14.80
+Name: UNRATE, dtype: float64</code></pre>
+</div>
+</div>
+<div id="f5a95468" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># 分时段统计 (表格版)</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>periods <span class="op">=</span> {</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="st">"1960-1980年"</span>: (<span class="st">"1960-01-01"</span>, <span class="st">"1980-12-31"</span>),</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="st">"1980-2000年"</span>: (<span class="st">"1980-01-01"</span>, <span class="st">"2000-12-31"</span>),</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="st">"2000-2010年"</span>: (<span class="st">"2000-01-01"</span>, <span class="st">"2010-12-31"</span>),</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="st">"2010-2020年"</span>: (<span class="st">"2010-01-01"</span>, <span class="st">"2020-12-31"</span>),</span>
+<span id="cb6-7"><a href="#cb6-7"></a>    <span class="st">"2020-2025年"</span>: (<span class="st">"2020-01-01"</span>, <span class="st">"2025-12-31"</span>),</span>
+<span id="cb6-8"><a href="#cb6-8"></a>}</span>
+<span id="cb6-9"><a href="#cb6-9"></a></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="co"># 创建一个列表来存储结果</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>stats_list <span class="op">=</span> []</span>
+<span id="cb6-12"><a href="#cb6-12"></a></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="cf">for</span> period, (start, end) <span class="kw">in</span> periods.items():</span>
+<span id="cb6-14"><a href="#cb6-14"></a>    stats <span class="op">=</span> umemp[start:end].agg([<span class="st">'mean'</span>, <span class="st">'std'</span>, <span class="st">'min'</span>, <span class="st">'max'</span>]).<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb6-15"><a href="#cb6-15"></a>    stats_list.append({</span>
+<span id="cb6-16"><a href="#cb6-16"></a>        <span class="st">"Period"</span>: period,</span>
+<span id="cb6-17"><a href="#cb6-17"></a>        <span class="st">"Mean"</span>: stats[<span class="st">"mean"</span>],</span>
+<span id="cb6-18"><a href="#cb6-18"></a>         <span class="st">"Std"</span>: stats[<span class="st">"std"</span>],</span>
+<span id="cb6-19"><a href="#cb6-19"></a>         <span class="st">"Min"</span>: stats[<span class="st">"min"</span>],</span>
+<span id="cb6-20"><a href="#cb6-20"></a>         <span class="st">"Max"</span>: stats[<span class="st">"max"</span>]</span>
+<span id="cb6-21"><a href="#cb6-21"></a>    })</span>
+<span id="cb6-22"><a href="#cb6-22"></a></span>
+<span id="cb6-23"><a href="#cb6-23"></a><span class="co"># 将结果转换为 DataFrame</span></span>
+<span id="cb6-24"><a href="#cb6-24"></a>stats_table <span class="op">=</span> pd.DataFrame(stats_list)</span>
+<span id="cb6-25"><a href="#cb6-25"></a></span>
+<span id="cb6-26"><a href="#cb6-26"></a><span class="co"># 显示结果表格</span></span>
+<span id="cb6-27"><a href="#cb6-27"></a><span class="bu">print</span>(stats_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Period  Mean   Std  Min   Max
+0  1960-1980年  5.58  1.35  3.4   9.0
+1  1980-2000年  6.40  1.55  3.8  10.8
+2  2000-2010年  5.91  1.81  3.8  10.0
+3  2010-2020年  6.39  2.29  3.5  14.8
+4  2020-2025年  4.90  2.28  3.4  14.8</code></pre>
+</div>
+</div>
+</section>
+<section id="年移动平均" class="level3" data-number="32.2.2">
+<h3 data-number="32.2.2" class="anchored" data-anchor-id="年移动平均"><span class="header-section-number">32.2.2</span> 10 年移动平均</h3>
+<p>我们可以使用 <code>rolling</code> 函数来计算 10 年移动平均，以便从更长时间尺度上观察失业率的变化趋势。</p>
+<div id="987f5137" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># 10 年和 5 年滚动平均</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>rolling_mean_umemp_10yr <span class="op">=</span> umemp.rolling(window<span class="op">=</span><span class="dv">120</span>).mean()  <span class="co"># 120 个月 = 10 年</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># 绘图</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb8-6"><a href="#cb8-6"></a>plt.plot(df_unemp.index, umemp, </span>
+<span id="cb8-7"><a href="#cb8-7"></a>         color<span class="op">=</span><span class="st">'blue'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Unemployment Rate'</span>)</span>
+<span id="cb8-8"><a href="#cb8-8"></a>plt.plot(df_unemp.index, rolling_mean_umemp_10yr, </span>
+<span id="cb8-9"><a href="#cb8-9"></a>         color<span class="op">=</span><span class="st">'red'</span>, linewidth<span class="op">=</span><span class="dv">4</span>, label<span class="op">=</span><span class="st">'10-Year Rolling Mean'</span>)</span>
+<span id="cb8-10"><a href="#cb8-10"></a>plt.legend() <span class="co"># 添加图例</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>) <span class="co"># 添加网格线</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_FRED_US_unemploy_rate_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="消费者物价指数cpi" class="level2" data-number="32.3">
+<h2 data-number="32.3" class="anchored" data-anchor-id="消费者物价指数cpi"><span class="header-section-number">32.3</span> 消费者物价指数（CPI）</h2>
+<blockquote class="blockquote">
+<p>Source: U.S. Bureau of Labor Statistics, Consumer Price Index for All Urban Consumers: All Items in U.S. City Average, Not Seasonally Adjusted [CPIAUCNS], retrieved from FRED, Federal Reserve Bank of St.&nbsp;Louis; <a href="https://fred.stlouisfed.org/series/CPIAUCNS" class="uri">https://fred.stlouisfed.org/series/CPIAUCNS</a>, May 5, 2025.</p>
+</blockquote>
+<div id="2f5a5bcb" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># CPI（消费者物价指数）</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="co"># 从 FRED 获取 CPI 数据（代码为 CPIAUCNS）</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>df_CPI <span class="op">=</span> DataReader(<span class="st">"CPIAUCNS"</span>, <span class="st">"fred"</span>, start_date, end_date)</span>
+<span id="cb9-5"><a href="#cb9-5"></a></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="co"># 绘图</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb9-8"><a href="#cb9-8"></a>plt.plot(df_CPI.index, df_CPI[<span class="st">"CPIAUCNS"</span>], </span>
+<span id="cb9-9"><a href="#cb9-9"></a>         color<span class="op">=</span><span class="st">'darkred'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'CPI: All Urban Consumers'</span>)</span>
+<span id="cb9-10"><a href="#cb9-10"></a></span>
+<span id="cb9-11"><a href="#cb9-11"></a><span class="co"># 图形美化</span></span>
+<span id="cb9-12"><a href="#cb9-12"></a>plt.title(<span class="ss">f"Consumer Price Index (CPI-U): All Items in U.S. City Average (</span><span class="sc">{</span>start_year<span class="sc">}</span><span class="ss"> - Present)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb9-13"><a href="#cb9-13"></a>plt.xlabel(<span class="st">"Date"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb9-14"><a href="#cb9-14"></a>plt.ylabel(<span class="st">"Index (1982-1984 = 100)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb9-15"><a href="#cb9-15"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb9-16"><a href="#cb9-16"></a>plt.legend()</span>
+<span id="cb9-17"><a href="#cb9-17"></a>plt.tight_layout()</span>
+<span id="cb9-18"><a href="#cb9-18"></a></span>
+<span id="cb9-19"><a href="#cb9-19"></a><span class="co"># 显示图形</span></span>
+<span id="cb9-20"><a href="#cb9-20"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_FRED_US_unemploy_rate_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="美国消费者物价指数cpi趋势图解读" class="level3" data-number="32.3.1">
+<h3 data-number="32.3.1" class="anchored" data-anchor-id="美国消费者物价指数cpi趋势图解读"><span class="header-section-number">32.3.1</span> 美国消费者物价指数（CPI）趋势图解读</h3>
+<p>上图展示了自 1960 年以来美国城市居民的消费者物价指数（CPI-U）的长期变化趋势，数据来自 FRED 数据库，基期设为 1982-1984 年的平均水平（指数 = 100）。</p>
+<p>从图中可以观察到以下几个重要特征：</p>
+<ul>
+<li><strong>总体呈上升趋势</strong>：说明过去几十年美国总体价格水平持续上升，具有显著的通货膨胀特征。</li>
+<li><strong>1970s 的急剧上升</strong>：受石油危机影响，1970 年代出现了显著的高通胀，CPI 增速明显加快。</li>
+<li><strong>1980s 以后趋于稳定增长</strong>：随着货币政策收紧（如沃尔克加息），通胀得到控制，CPI 增长变得更加平缓。</li>
+<li><strong>2020 年以后的陡峭上升</strong>：反映出疫情后期以及地缘政治冲击下，美国面临新一轮较高通胀压力，物价上涨速度明显加快。</li>
+</ul>
+<p>接下来，我们可以看看最近 10-20 年的 CPI 变化趋势。</p>
+<div id="b90a193e" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># 2005 以来的 CPI 变化</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>start_year <span class="op">=</span> <span class="dv">2005</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>end_year <span class="op">=</span> <span class="dv">2025</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a></span>
+<span id="cb10-5"><a href="#cb10-5"></a>df_CPI_period <span class="op">=</span> df_CPI[<span class="st">"CPIAUCNS"</span>][<span class="ss">f"</span><span class="sc">{</span>start_year<span class="sc">}</span><span class="ss">-01-01"</span>:<span class="ss">f"</span><span class="sc">{</span>end_year<span class="sc">}</span><span class="ss">-12-31"</span>]</span>
+<span id="cb10-6"><a href="#cb10-6"></a></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="co"># 绘图</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb10-9"><a href="#cb10-9"></a>plt.plot(df_CPI_period.index, df_CPI_period, </span>
+<span id="cb10-10"><a href="#cb10-10"></a>         color<span class="op">=</span><span class="st">'darkred'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f'CPI: </span><span class="sc">{</span>start_year<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>end_year<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb10-11"><a href="#cb10-11"></a></span>
+<span id="cb10-12"><a href="#cb10-12"></a><span class="co"># 图形美化</span></span>
+<span id="cb10-13"><a href="#cb10-13"></a>plt.title(<span class="ss">f"CPI Changes (</span><span class="sc">{</span>start_year<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>end_year<span class="sc">}</span><span class="ss">)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb10-14"><a href="#cb10-14"></a>plt.xlabel(<span class="st">"Date"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb10-15"><a href="#cb10-15"></a>plt.ylabel(<span class="st">"Index (1982-1984 = 100)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb10-16"><a href="#cb10-16"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb10-17"><a href="#cb10-17"></a>plt.legend()</span>
+<span id="cb10-18"><a href="#cb10-18"></a>plt.tight_layout()</span>
+<span id="cb10-19"><a href="#cb10-19"></a></span>
+<span id="cb10-20"><a href="#cb10-20"></a><span class="co"># 显示图形</span></span>
+<span id="cb10-21"><a href="#cb10-21"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_FRED_US_unemploy_rate_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="980e37f9" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># 基于 CPI 计算通货膨胀率</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="co"># 计算通货膨胀率（基于 CPI 的同比变化率）</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>df_CPI[<span class="st">'Inflation Rate'</span>] <span class="op">=</span> df_CPI[<span class="st">'CPIAUCNS'</span>].pct_change(periods<span class="op">=</span><span class="dv">12</span>) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="co"># 绘图</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb11-8"><a href="#cb11-8"></a>plt.plot(df_CPI.index, df_CPI[<span class="st">'Inflation Rate'</span>], </span>
+<span id="cb11-9"><a href="#cb11-9"></a>         color<span class="op">=</span><span class="st">'green'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Inflation Rate'</span>)</span>
+<span id="cb11-10"><a href="#cb11-10"></a></span>
+<span id="cb11-11"><a href="#cb11-11"></a><span class="co"># 图形美化</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a>plt.title(<span class="ss">f"Inflation Rate in the U.S. (</span><span class="sc">{</span>start_year<span class="sc">}</span><span class="ss"> - Present)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb11-13"><a href="#cb11-13"></a>plt.xlabel(<span class="st">"Date"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb11-14"><a href="#cb11-14"></a>plt.ylabel(<span class="st">"Inflation Rate (%)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb11-15"><a href="#cb11-15"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb11-16"><a href="#cb11-16"></a>plt.legend()</span>
+<span id="cb11-17"><a href="#cb11-17"></a>plt.tight_layout()</span>
+<span id="cb11-18"><a href="#cb11-18"></a></span>
+<span id="cb11-19"><a href="#cb11-19"></a><span class="co"># 显示图形</span></span>
+<span id="cb11-20"><a href="#cb11-20"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_FRED_US_unemploy_rate_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="失业率和通货膨胀率的关系" class="level2" data-number="32.4">
+<h2 data-number="32.4" class="anchored" data-anchor-id="失业率和通货膨胀率的关系"><span class="header-section-number">32.4</span> 失业率和通货膨胀率的关系</h2>
+<p>接下来，我们将失业率和通货膨胀率结合起来，分析它们之间的关系。我们可以使用 <code>pandas</code> 和 <code>matplotlib</code> 来绘制散点图和线性回归线，以便更好地理解它们之间的关系。</p>
+<div id="a696a082" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># 绘图：失业率 + 通货膨胀率</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb12-3"><a href="#cb12-3"></a></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="co"># 绘制失业率</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>plt.plot(df_unemp.index, df_unemp[<span class="st">"UNRATE"</span>], </span>
+<span id="cb12-6"><a href="#cb12-6"></a>         color<span class="op">=</span><span class="st">'blue'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Unemployment Rate'</span>)</span>
+<span id="cb12-7"><a href="#cb12-7"></a></span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="co"># 绘制通货膨胀率</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a>plt.plot(df_CPI.index, df_CPI[<span class="st">'Inflation Rate'</span>], </span>
+<span id="cb12-10"><a href="#cb12-10"></a>         color<span class="op">=</span><span class="st">'green'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Inflation Rate'</span>)</span>
+<span id="cb12-11"><a href="#cb12-11"></a></span>
+<span id="cb12-12"><a href="#cb12-12"></a><span class="co"># 添加图例</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a>plt.legend(loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb12-14"><a href="#cb12-14"></a></span>
+<span id="cb12-15"><a href="#cb12-15"></a><span class="co"># 添加数据来源说明</span></span>
+<span id="cb12-16"><a href="#cb12-16"></a>plt.figtext(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.05</span>, <span class="st">"Source: U.S. Bureau of Labor Statistics, FRED (https://fred.stlouisfed.org/)"</span>, </span>
+<span id="cb12-17"><a href="#cb12-17"></a>            wrap<span class="op">=</span><span class="va">True</span>, horizontalalignment<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>Text(0.5, -0.05, 'Source: U.S. Bureau of Labor Statistics, FRED (https://fred.stlouisfed.org/)')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_FRED_US_unemploy_rate_files/figure-html/cell-11-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>这幅图展示了 1960 年至今美国 <strong>失业率（Unemployment Rate）</strong> 与 <strong>通胀率（Inflation Rate）</strong> 的时间序列走势。可以从以下几个方面进行解读：</p>
+<ul>
+<li><p><strong>趋势与波动性差异</strong>：</p>
+<ul>
+<li>失业率（蓝线）表现出相对平稳的周期性波动，具有一定的周期长度；</li>
+<li>通胀率（绿线）波动幅度更大，尤其在 1970s 至 1980s 初期，有显著的尖峰。</li>
+</ul></li>
+<li><p><strong>结构性事件的影响</strong>：</p>
+<ul>
+<li>1970s：石油危机期间，通胀迅速上升至 13% 以上（即“滞涨”现象），而失业率也居高不下；</li>
+<li>2008 金融危机：失业率大幅上升，而通胀保持较低水平；</li>
+<li>2020 疫情冲击：失业率暴涨，通胀短暂回落，随后于 2021-2022 再次激增。</li>
+</ul></li>
+<li><p><strong>负相关性阶段</strong>：</p>
+<ul>
+<li>在部分阶段（例如 1980s 中后期、1990s、2010s），通胀与失业呈现出某种程度的负相关，符合传统的菲利普斯曲线（Phillips Curve）设定。</li>
+</ul></li>
+</ul>
+<section id="建模思路" class="level3" data-number="32.4.1">
+<h3 data-number="32.4.1" class="anchored" data-anchor-id="建模思路"><span class="header-section-number">32.4.1</span> 建模思路</h3>
+<p>如果我们想建立一个模型来刻画失业率与通胀率之间的关系，有哪些可行的建模思路呢？</p>
+<ul>
+<li>线性回归</li>
+<li>ARMA 模型</li>
+<li>VAR 模型</li>
+<li>VECM 模型</li>
+</ul>
+</section>
+</section>
+<section id="线性回归模型" class="level2" data-number="32.5">
+<h2 data-number="32.5" class="anchored" data-anchor-id="线性回归模型"><span class="header-section-number">32.5</span> 线性回归模型</h2>
+<div id="b4121bc0" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># UNRATE 和 Inflation Rate 的关系</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="co">## 相关系数</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>correlation <span class="op">=</span> df_unemp[<span class="st">"UNRATE"</span>].corr(df_CPI[<span class="st">'Inflation Rate'</span>])</span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="bu">print</span>(<span class="ss">f"Correlation between Unemployment Rate and Inflation Rate: </span><span class="sc">{</span>correlation<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6"></a></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="co">## OLS 回归分析</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="co"># Align the indices of X and Y</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a>X <span class="op">=</span> df_CPI[<span class="st">'Inflation Rate'</span>].dropna()   <span class="co"># 自变量</span></span>
+<span id="cb14-11"><a href="#cb14-11"></a>Y <span class="op">=</span> df_unemp[<span class="st">"UNRATE"</span>]                  <span class="co"># 因变量</span></span>
+<span id="cb14-12"><a href="#cb14-12"></a>X, Y <span class="op">=</span> X.align(Y, join<span class="op">=</span><span class="st">'inner'</span>)         <span class="co"># Align indices</span></span>
+<span id="cb14-13"><a href="#cb14-13"></a>X <span class="op">=</span> sm.add_constant(X)                  <span class="co"># 添加常数项</span></span>
+<span id="cb14-14"><a href="#cb14-14"></a>model <span class="op">=</span> sm.OLS(Y, X).fit()              <span class="co"># OLS 回归</span></span>
+<span id="cb14-15"><a href="#cb14-15"></a>model_summary <span class="op">=</span> model.summary()       <span class="co"># 回归结果</span></span>
+<span id="cb14-16"><a href="#cb14-16"></a><span class="bu">print</span>(model_summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Correlation between Unemployment Rate and Inflation Rate: 0.06
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 UNRATE   R-squared:                       0.004
+Model:                            OLS   Adj. R-squared:                  0.003
+Method:                 Least Squares   F-statistic:                     3.016
+Date:                Mon, 12 May 2025   Prob (F-statistic):             0.0829
+Time:                        15:47:57   Log-Likelihood:                -1505.1
+No. Observations:                 771   AIC:                             3014.
+Df Residuals:                     769   BIC:                             3024.
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==================================================================================
+                     coef    std err          t      P&gt;|t|      [0.025      0.975]
+----------------------------------------------------------------------------------
+const              5.7423      0.103     55.657      0.000       5.540       5.945
+Inflation Rate     0.0380      0.022      1.737      0.083      -0.005       0.081
+==============================================================================
+Omnibus:                      104.203   Durbin-Watson:                   0.065
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              155.789
+Skew:                           0.926   Prob(JB):                     1.48e-34
+Kurtosis:                       4.190   Cond. No.                         8.16
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+</div>
+</div>
+</section>
+<section id="单变量分析" class="level2" data-number="32.6">
+<h2 data-number="32.6" class="anchored" data-anchor-id="单变量分析"><span class="header-section-number">32.6</span> 单变量分析</h2>
+<p>我们先采用 ARMA 模型来分析失业率和通货膨胀率的单变量特征。进而使用单位根检验（如 ADF 检验）来判断序列的平稳性。 在下一小节中，将采用 VAR 模型来分析失业率和通货膨胀率的关系。</p>
+<section id="arma11-模型" class="level3" data-number="32.6.1">
+<h3 data-number="32.6.1" class="anchored" data-anchor-id="arma11-模型"><span class="header-section-number">32.6.1</span> ARMA(1,1) 模型</h3>
+<p><span class="math display">\[y_t = \alpha + \beta y_{t-1} + \epsilon_t + \theta \epsilon_{t-1}\]</span></p>
+<p>其中，<span class="math inline">\(\epsilon_t \sim N(0, \sigma^2)\)</span>。</p>
+<p>我们可以使用 <code>statsmodels</code> 库，分别针对失业率序列和通货膨胀序列来拟合 ARMA 模型。</p>
+<div id="a16f07ee" class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="co">'''ARMA(1,1) 模型：失业率'''</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="im">from</span> statsmodels.tsa.arima.model <span class="im">import</span> ARIMA</span>
+<span id="cb16-4"><a href="#cb16-4"></a></span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="co"># 确保索引有频率信息</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a><span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(df_unemp.index, pd.PeriodIndex):</span>
+<span id="cb16-7"><a href="#cb16-7"></a>    df_unemp.index <span class="op">=</span> df_unemp.index.to_period(<span class="st">'M'</span>)  <span class="co"># 将索引设置为月度频率</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a></span>
+<span id="cb16-9"><a href="#cb16-9"></a><span class="co"># 然后重新运行 ARIMA 模型</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a>model_unemp <span class="op">=</span> ARIMA(df_unemp[<span class="st">'UNRATE'</span>], order<span class="op">=</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb16-11"><a href="#cb16-11"></a>model_unemp_fit <span class="op">=</span> model_unemp.fit()</span>
+<span id="cb16-12"><a href="#cb16-12"></a><span class="bu">print</span>(model_unemp_fit.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                               SARIMAX Results                                
+==============================================================================
+Dep. Variable:                 UNRATE   No. Observations:                  784
+Model:                 ARIMA(1, 0, 1)   Log Likelihood                -446.406
+Date:                Mon, 12 May 2025   AIC                            900.812
+Time:                        15:49:15   BIC                            919.469
+Sample:                    01-31-1960   HQIC                           907.986
+                         - 04-30-2025                                         
+Covariance Type:                  opg                                         
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          5.8040      1.075      5.397      0.000       3.696       7.912
+ar.L1          0.9640      0.012     82.124      0.000       0.941       0.987
+ma.L1          0.0508      0.012      4.417      0.000       0.028       0.073
+sigma2         0.1822      0.002     94.889      0.000       0.178       0.186
+===================================================================================
+Ljung-Box (L1) (Q):                   0.00   Jarque-Bera (JB):           6130464.69
+Prob(Q):                              0.96   Prob(JB):                         0.00
+Heteroskedasticity (H):              11.77   Skew:                            17.73
+Prob(H) (two-sided):                  0.00   Kurtosis:                       434.75
+===================================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).</code></pre>
+</div>
+</div>
+<div id="0ffa4996" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="co">'''ARMA(1,1) 模型：通胀率'''</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a></span>
+<span id="cb18-3"><a href="#cb18-3"></a>model <span class="op">=</span> ARIMA(df_CPI[<span class="st">'Inflation Rate'</span>].dropna(), order<span class="op">=</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb18-4"><a href="#cb18-4"></a>model_fit <span class="op">=</span> model.fit()     <span class="co"># Fit the ARIMA model</span></span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="bu">print</span>(model_fit.summary())  <span class="co"># Print the model summary</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                               SARIMAX Results                                
+==============================================================================
+Dep. Variable:         Inflation Rate   No. Observations:                  771
+Model:                 ARIMA(1, 0, 1)   Log Likelihood                -327.515
+Date:                Mon, 12 May 2025   AIC                            663.030
+Time:                        15:54:35   BIC                            681.621
+Sample:                    01-31-1961   HQIC                           670.185
+                         - 03-31-2025                                         
+Covariance Type:                  opg                                         
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          3.5391      1.139      3.108      0.002       1.307       5.771
+ar.L1          0.9847      0.005    197.487      0.000       0.975       0.995
+ma.L1          0.2964      0.026     11.248      0.000       0.245       0.348
+sigma2         0.1362      0.004     31.231      0.000       0.128       0.145
+===================================================================================
+Ljung-Box (L1) (Q):                   2.49   Jarque-Bera (JB):               406.03
+Prob(Q):                              0.11   Prob(JB):                         0.00
+Heteroskedasticity (H):               1.14   Skew:                            -0.16
+Prob(H) (two-sided):                  0.28   Kurtosis:                         6.54
+===================================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).</code></pre>
+</div>
+</div>
+</section>
+<section id="单位根检验" class="level3" data-number="32.6.2">
+<h3 data-number="32.6.2" class="anchored" data-anchor-id="单位根检验"><span class="header-section-number">32.6.2</span> 单位根检验</h3>
+<p>从上面的 <span class="math inline">\(ARMA(1,1)\)</span> 模型的结果来看，<span class="math inline">\(AR(1)\)</span> 系数的估计值为 <span class="math inline">\(0.9847\)</span>，接近于 <span class="math inline">\(1\)</span>，这表明该序列可能是一个单位根序列。</p>
+<p>我们可以使用 <code>statsmodels</code> 库中的 <code>adfuller</code> 函数来进行单位根检验。</p>
+<section id="adf-检验" class="level4" data-number="32.6.2.1">
+<h4 data-number="32.6.2.1" class="anchored" data-anchor-id="adf-检验"><span class="header-section-number">32.6.2.1</span> ADF 检验</h4>
+<p>给定一个时间序列 <span class="math inline">\(X_t\)</span>，我们可以使用以下的 ADF 检验来检验 <span class="math inline">\(X_t\)</span> 是否是平稳的：</p>
+<p><span class="math display">\[
+X_t = \phi_0 + \phi_1 X_{t-1} + \phi_2 X_{t-2} + ... + \phi_p X_{t-p} + \epsilon_t\]</span></p>
+<p>其中，<span class="math inline">\(\epsilon_t\)</span> 是一个白噪声序列。</p>
+<p>ADF 检验的原假设是：<span class="math inline">\(X_t\)</span> 是一个单位根序列，即 <span class="math inline">\(H_0: \phi_1 = 1\)</span>。 如果 <span class="math inline">\(H_0\)</span> 被拒绝，则说明 <span class="math inline">\(X_t\)</span> 是平稳的。</p>
+<p>ADF 检验包含几种典型的数据生成机制：</p>
+<ul>
+<li>纯随机游走：<span class="math inline">\(X_t = X_{t-1} + \epsilon_t\)</span>，其中 <span class="math inline">\(\epsilon_t\)</span> 是一个白噪声序列。</li>
+<li>随机游走加趋势：<span class="math inline">\(X_t = \phi_0 + \phi_1 X_{t-1} + \phi_2 t + \epsilon_t\)</span>，其中 <span class="math inline">\(\epsilon_t\)</span> 是一个白噪声序列，<span class="math inline">\(t\)</span> 是时间趋势项。</li>
+<li>随机游走加季节性：<span class="math inline">\(X_t = \phi_0 + \phi_1 X_{t-1} + S_t + \epsilon_t\)</span>，其中 <span class="math inline">\(\epsilon_t\)</span> 是一个白噪声序列，<span class="math inline">\(S_t\)</span> 是季节性项。</li>
+<li>随机游走加趋势和季节性：<span class="math inline">\(X_t = \phi_0 + \phi_1 X_{t-1} + \phi_2 t + S_t + \epsilon_t\)</span>，其中 <span class="math inline">\(\epsilon_t\)</span> 是一个白噪声序列，<span class="math inline">\(t\)</span> 是时间趋势项，<span class="math inline">\(S_t\)</span> 是季节性项。</li>
+</ul>
+</section>
+<section id="kpss-检验" class="level4" data-number="32.6.2.2">
+<h4 data-number="32.6.2.2" class="anchored" data-anchor-id="kpss-检验"><span class="header-section-number">32.6.2.2</span> KPSS 检验</h4>
+<p>KPSS 检验的原假设是：<span class="math inline">\(X_t\)</span> 是平稳的，即 <span class="math inline">\(H_0: \phi_1 &lt; 1\)</span>。 如果 <span class="math inline">\(H_0\)</span> 被拒绝，则说明 <span class="math inline">\(X_t\)</span> 是一个单位根序列。</p>
+</section>
+<section id="pp-检验" class="level4" data-number="32.6.2.3">
+<h4 data-number="32.6.2.3" class="anchored" data-anchor-id="pp-检验"><span class="header-section-number">32.6.2.3</span> PP 检验</h4>
+<p>PP 检验的原假设是：<span class="math inline">\(X_t\)</span> 是一个单位根序列，即 <span class="math inline">\(H_0: \phi_1 = 1\)</span>。 如果 <span class="math inline">\(H_0\)</span> 被拒绝，则说明 <span class="math inline">\(X_t\)</span> 是平稳的。</p>
+<div id="778b8e4a" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="im">from</span> statsmodels.tsa.stattools <span class="im">import</span> adfuller, kpss</span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="im">import</span> warnings</span>
+<span id="cb20-3"><a href="#cb20-3"></a></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="co"># 忽略特定警告（如 InterpolationWarning）</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a>warnings.filterwarnings(<span class="st">"always"</span>, category<span class="op">=</span><span class="pp">UserWarning</span>)</span>
+<span id="cb20-6"><a href="#cb20-6"></a></span>
+<span id="cb20-7"><a href="#cb20-7"></a><span class="kw">def</span> unit_root_tests(series, series_name, regression_type<span class="op">=</span><span class="st">'c'</span>):</span>
+<span id="cb20-8"><a href="#cb20-8"></a>    <span class="co">"""</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a><span class="co">    对单个序列执行 ADF 和 KPSS 单位根检验，支持多种趋势设定。</span></span>
+<span id="cb20-10"><a href="#cb20-10"></a><span class="co">    """</span></span>
+<span id="cb20-11"><a href="#cb20-11"></a>    <span class="bu">print</span>(<span class="ss">f"单位根检验结果 (</span><span class="sc">{</span>regression_type<span class="sc">}</span><span class="ss">): </span><span class="sc">{</span>series_name<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb20-12"><a href="#cb20-12"></a>    <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb20-13"><a href="#cb20-13"></a></span>
+<span id="cb20-14"><a href="#cb20-14"></a>    <span class="co"># ===== ADF 检验 =====</span></span>
+<span id="cb20-15"><a href="#cb20-15"></a>    <span class="cf">try</span>:</span>
+<span id="cb20-16"><a href="#cb20-16"></a>        adf_result <span class="op">=</span> adfuller(series.dropna(), regression<span class="op">=</span>regression_type, autolag<span class="op">=</span><span class="st">'AIC'</span>)</span>
+<span id="cb20-17"><a href="#cb20-17"></a>        <span class="bu">print</span>(<span class="st">"ADF 检验:"</span>)</span>
+<span id="cb20-18"><a href="#cb20-18"></a>        <span class="bu">print</span>(<span class="ss">f"ADF Statistic: </span><span class="sc">{</span>adf_result[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb20-19"><a href="#cb20-19"></a>        <span class="bu">print</span>(<span class="ss">f"p-value: </span><span class="sc">{</span>adf_result[<span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb20-20"><a href="#cb20-20"></a>        <span class="bu">print</span>(<span class="ss">f"Critical Values: </span><span class="sc">{</span>adf_result[<span class="dv">4</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb20-21"><a href="#cb20-21"></a>        <span class="bu">print</span>(<span class="ss">f"Conclusion: </span><span class="sc">{</span><span class="st">'Reject H0 (Stationary)'</span> <span class="cf">if</span> adf_result[<span class="dv">1</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'Fail to Reject H0 (Non-Stationary)'</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb20-22"><a href="#cb20-22"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb20-23"><a href="#cb20-23"></a>        <span class="bu">print</span>(<span class="st">"ADF 检验无法执行:"</span>, e)</span>
+<span id="cb20-24"><a href="#cb20-24"></a></span>
+<span id="cb20-25"><a href="#cb20-25"></a>    <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb20-26"><a href="#cb20-26"></a></span>
+<span id="cb20-27"><a href="#cb20-27"></a>    <span class="co"># ===== KPSS 检验 =====</span></span>
+<span id="cb20-28"><a href="#cb20-28"></a>    <span class="co"># KPSS 仅接受 'c' 或 'ct'</span></span>
+<span id="cb20-29"><a href="#cb20-29"></a>    <span class="cf">if</span> regression_type <span class="kw">not</span> <span class="kw">in</span> [<span class="st">'c'</span>, <span class="st">'ct'</span>]:</span>
+<span id="cb20-30"><a href="#cb20-30"></a>        <span class="bu">print</span>(<span class="st">"KPSS 检验跳过（只支持 regression='c' 或 'ct'）"</span>)</span>
+<span id="cb20-31"><a href="#cb20-31"></a>    <span class="cf">else</span>:</span>
+<span id="cb20-32"><a href="#cb20-32"></a>        <span class="cf">try</span>:</span>
+<span id="cb20-33"><a href="#cb20-33"></a>            <span class="cf">with</span> warnings.catch_warnings(record<span class="op">=</span><span class="va">True</span>) <span class="im">as</span> w:</span>
+<span id="cb20-34"><a href="#cb20-34"></a>                warnings.simplefilter(<span class="st">"always"</span>)</span>
+<span id="cb20-35"><a href="#cb20-35"></a>                kpss_result <span class="op">=</span> kpss(series.dropna(), regression<span class="op">=</span>regression_type, nlags<span class="op">=</span><span class="st">"auto"</span>)</span>
+<span id="cb20-36"><a href="#cb20-36"></a></span>
+<span id="cb20-37"><a href="#cb20-37"></a>                <span class="bu">print</span>(<span class="st">"KPSS 检验:"</span>)</span>
+<span id="cb20-38"><a href="#cb20-38"></a>                <span class="bu">print</span>(<span class="ss">f"KPSS Statistic: </span><span class="sc">{</span>kpss_result[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb20-39"><a href="#cb20-39"></a>                <span class="bu">print</span>(<span class="ss">f"p-value: </span><span class="sc">{</span>kpss_result[<span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb20-40"><a href="#cb20-40"></a>                <span class="bu">print</span>(<span class="ss">f"Critical Values: </span><span class="sc">{</span>kpss_result[<span class="dv">3</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb20-41"><a href="#cb20-41"></a>                <span class="bu">print</span>(<span class="ss">f"Conclusion: </span><span class="sc">{</span><span class="st">'Reject H0 (Non-Stationary)'</span> <span class="cf">if</span> kpss_result[<span class="dv">1</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'Fail to Reject H0 (Stationary)'</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb20-42"><a href="#cb20-42"></a></span>
+<span id="cb20-43"><a href="#cb20-43"></a>                <span class="cf">if</span> w:</span>
+<span id="cb20-44"><a href="#cb20-44"></a>                    <span class="bu">print</span>(<span class="st">"⚠️ 警告：KPSS 统计量超出临界值范围，p-value 可能不准确。"</span>)</span>
+<span id="cb20-45"><a href="#cb20-45"></a>        <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb20-46"><a href="#cb20-46"></a>            <span class="bu">print</span>(<span class="st">"KPSS 检验无法执行:"</span>, e)</span>
+<span id="cb20-47"><a href="#cb20-47"></a></span>
+<span id="cb20-48"><a href="#cb20-48"></a>    <span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb20-49"><a href="#cb20-49"></a></span>
+<span id="cb20-50"><a href="#cb20-50"></a><span class="co"># 示例调用</span></span>
+<span id="cb20-51"><a href="#cb20-51"></a>unit_root_tests(df_unemp[<span class="st">'UNRATE'</span>], <span class="st">"Unemployment Rate"</span>, regression_type<span class="op">=</span><span class="st">'c'</span>)</span>
+<span id="cb20-52"><a href="#cb20-52"></a>unit_root_tests(df_unemp[<span class="st">'UNRATE'</span>], <span class="st">"Unemployment Rate"</span>, regression_type<span class="op">=</span><span class="st">'ct'</span>)</span>
+<span id="cb20-53"><a href="#cb20-53"></a></span>
+<span id="cb20-54"><a href="#cb20-54"></a>unit_root_tests(df_CPI[<span class="st">'Inflation Rate'</span>], <span class="st">"Inflation Rate"</span>, regression_type<span class="op">=</span><span class="st">'c'</span>)</span>
+<span id="cb20-55"><a href="#cb20-55"></a>unit_root_tests(df_CPI[<span class="st">'Inflation Rate'</span>], <span class="st">"Inflation Rate"</span>, regression_type<span class="op">=</span><span class="st">'ct'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>单位根检验结果 (c): Unemployment Rate
+--------------------------------------------------
+ADF 检验:
+ADF Statistic: -3.3770
+p-value: 0.0118
+Critical Values: {'1%': -3.438750669890019, '5%': -2.8652477937238703, '10%': -2.56874438754281}
+Conclusion: Reject H0 (Stationary)
+--------------------------------------------------
+KPSS 检验:
+KPSS Statistic: 0.2311
+p-value: 0.1000
+Critical Values: {'10%': 0.347, '5%': 0.463, '2.5%': 0.574, '1%': 0.739}
+Conclusion: Fail to Reject H0 (Stationary)
+⚠️ 警告：KPSS 统计量超出临界值范围，p-value 可能不准确。
+==================================================
+单位根检验结果 (ct): Unemployment Rate
+--------------------------------------------------
+ADF 检验:
+ADF Statistic: -3.3937
+p-value: 0.0522
+Critical Values: {'1%': -3.97040856520887, '5%': -3.416126420192948, '10%': -3.130367109217753}
+Conclusion: Fail to Reject H0 (Non-Stationary)
+--------------------------------------------------
+KPSS 检验:
+KPSS Statistic: 0.2188
+p-value: 0.0100
+Critical Values: {'10%': 0.119, '5%': 0.146, '2.5%': 0.176, '1%': 0.216}
+Conclusion: Reject H0 (Non-Stationary)
+⚠️ 警告：KPSS 统计量超出临界值范围，p-value 可能不准确。
+==================================================
+单位根检验结果 (c): Inflation Rate
+--------------------------------------------------
+ADF 检验:
+ADF Statistic: -3.2255
+p-value: 0.0186
+Critical Values: {'1%': -3.4390409569041207, '5%': -2.865375732701395, '10%': -2.568812543748081}
+Conclusion: Reject H0 (Stationary)
+--------------------------------------------------
+KPSS 检验:
+KPSS Statistic: 0.8623
+p-value: 0.0100
+Critical Values: {'10%': 0.347, '5%': 0.463, '2.5%': 0.574, '1%': 0.739}
+Conclusion: Reject H0 (Non-Stationary)
+⚠️ 警告：KPSS 统计量超出临界值范围，p-value 可能不准确。
+==================================================
+单位根检验结果 (ct): Inflation Rate
+--------------------------------------------------
+ADF 检验:
+ADF Statistic: -3.6011
+p-value: 0.0298
+Critical Values: {'1%': -3.970811044144979, '5%': -3.4163210567045534, '10%': -3.130481573426401}
+Conclusion: Reject H0 (Stationary)
+--------------------------------------------------
+KPSS 检验:
+KPSS Statistic: 0.2876
+p-value: 0.0100
+Critical Values: {'10%': 0.119, '5%': 0.146, '2.5%': 0.176, '1%': 0.216}
+Conclusion: Reject H0 (Non-Stationary)
+⚠️ 警告：KPSS 统计量超出临界值范围，p-value 可能不准确。
+==================================================</code></pre>
+</div>
+</div>
+<div id="940f01e7" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># 绘制 ACF 和 PACF 图</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="im">from</span> statsmodels.graphics.tsaplots <span class="im">import</span> plot_acf, plot_pacf</span>
+<span id="cb22-3"><a href="#cb22-3"></a></span>
+<span id="cb22-4"><a href="#cb22-4"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb22-5"><a href="#cb22-5"></a></span>
+<span id="cb22-6"><a href="#cb22-6"></a><span class="co"># 通胀率的 ACF 和 PACF</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb22-8"><a href="#cb22-8"></a>plot_acf(df_CPI[<span class="st">'Inflation Rate'</span>].dropna(), lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb22-9"><a href="#cb22-9"></a>plt.title(<span class="st">'ACF of Inflation Rate'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb22-10"><a href="#cb22-10"></a></span>
+<span id="cb22-11"><a href="#cb22-11"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb22-12"><a href="#cb22-12"></a>plot_pacf(df_CPI[<span class="st">'Inflation Rate'</span>].dropna(), lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb22-13"><a href="#cb22-13"></a>plt.title(<span class="st">'PACF of Inflation Rate'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb22-14"><a href="#cb22-14"></a></span>
+<span id="cb22-15"><a href="#cb22-15"></a><span class="co"># 失业率的 ACF 和 PACF</span></span>
+<span id="cb22-16"><a href="#cb22-16"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb22-17"><a href="#cb22-17"></a>plot_acf(df_unemp[<span class="st">'UNRATE'</span>].dropna(), lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb22-18"><a href="#cb22-18"></a>plt.title(<span class="st">'ACF of Unemployment Rate'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb22-19"><a href="#cb22-19"></a></span>
+<span id="cb22-20"><a href="#cb22-20"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">4</span>)</span>
+<span id="cb22-21"><a href="#cb22-21"></a>plot_pacf(df_unemp[<span class="st">'UNRATE'</span>].dropna(), lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb22-22"><a href="#cb22-22"></a>plt.title(<span class="st">'PACF of Unemployment Rate'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb22-23"><a href="#cb22-23"></a></span>
+<span id="cb22-24"><a href="#cb22-24"></a>plt.tight_layout()</span>
+<span id="cb22-25"><a href="#cb22-25"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_FRED_US_unemploy_rate_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>解读： 上面的图形展示了美国失业率和通货膨胀率的时间序列变化趋势。可以观察到，失业率和通货膨胀率在不同时间段内呈现出一定的波动性。失业率在经济衰退期间通常会显著上升，而通货膨胀率则可能受到多种因素的影响，包括货币政策、供需变化等。通过对比两条曲线，可以进一步分析它们之间的关系，例如是否存在菲利普斯曲线的特征。此外，结合回归分析和相关系数的计算结果，可以定量评估失业率与通货膨胀率之间的相关性。</p>
+</section>
+</section>
+</section>
+<section id="var-模型" class="level2" data-number="32.7">
+<h2 data-number="32.7" class="anchored" data-anchor-id="var-模型"><span class="header-section-number">32.7</span> VAR 模型</h2>
+<p>向量自回归模型（Vector Autoregression, VAR）是一种多元时间序列模型，用于捕捉多个变量之间的动态关系。它假设每个变量不仅受自身滞后值的影响，还受到其他变量滞后值的影响。</p>
+<section id="var2-模型的形式" class="level3" data-number="32.7.1">
+<h3 data-number="32.7.1" class="anchored" data-anchor-id="var2-模型的形式"><span class="header-section-number">32.7.1</span> VAR(2) 模型的形式</h3>
+<p>以两个变量 <span class="math inline">\(y_t\)</span> 和 <span class="math inline">\(x_t\)</span> 为例，VAR(2) 模型的形式如下：</p>
+<p><span class="math display">\[
+\begin{aligned}
+y_t &amp;= a_{10} + a_{11} y_{t-1} + a_{12} x_{t-1} + a_{13} y_{t-2} + a_{14} x_{t-2} + \epsilon_{y,t}, \\
+x_t &amp;= a_{20} + a_{21} y_{t-1} + a_{22} x_{t-1} + a_{23} y_{t-2} + a_{24} x_{t-2} + \epsilon_{x,t},
+\end{aligned}
+\]</span></p>
+<p>其中：</p>
+<ul>
+<li><span class="math inline">\(y_t\)</span> 和 <span class="math inline">\(x_t\)</span> 是两个时间序列变量；</li>
+<li><span class="math inline">\(a_{ij}\)</span> 是模型系数；</li>
+<li><span class="math inline">\(\epsilon_{y,t}\)</span> 和 <span class="math inline">\(\epsilon_{x,t}\)</span> 是误差项，通常假设为白噪声。</li>
+</ul>
+</section>
+<section id="varp-模型的扩展" class="level3" data-number="32.7.2">
+<h3 data-number="32.7.2" class="anchored" data-anchor-id="varp-模型的扩展"><span class="header-section-number">32.7.2</span> VAR(P) 模型的扩展</h3>
+<p>VAR(P) 模型是 VAR(2) 模型的推广形式，表示包含 <span class="math inline">\(P\)</span> 阶滞后项的向量自回归模型。其一般形式为：</p>
+<p><span class="math display">\[
+Y_t = A_1 Y_{t-1} + A_2 Y_{t-2} + \dots + A_P Y_{t-P} + \epsilon_t,
+\]</span></p>
+<p>其中：</p>
+<ul>
+<li><span class="math inline">\(Y_t\)</span> 是包含多个变量的向量（如 <span class="math inline">\([y_t, x_t]^\top\)</span>）；</li>
+<li><span class="math inline">\(A_1, A_2, \dots, A_P\)</span> 是系数矩阵；</li>
+<li><span class="math inline">\(\epsilon_t\)</span> 是误差项。</li>
+</ul>
+<p>通过增加滞后阶数 <span class="math inline">\(P\)</span>，VAR 模型可以捕捉更复杂的动态关系，但也可能导致参数过多的问题。因此，选择合适的滞后阶数是建模中的关键步骤。</p>
+</section>
+<section id="var-模型的估计" class="level3" data-number="32.7.3">
+<h3 data-number="32.7.3" class="anchored" data-anchor-id="var-模型的估计"><span class="header-section-number">32.7.3</span> VAR 模型的估计</h3>
+<p>在 VAR 模型中，估计的核心任务是确定模型的滞后阶数，并对模型参数进行估计。以下是 VAR 模型估计的主要步骤：</p>
+<ol type="1">
+<li>数据准备：确保时间序列数据是平稳的。如果数据非平稳，可以通过差分或其他变换使其平稳。</li>
+<li>滞后阶数选择：通过信息准则（如 AIC、BIC、HQIC）选择合适的滞后阶数，避免过拟合。</li>
+<li>模型估计：使用最小二乘法（OLS）对 VAR 模型的参数进行估计，逐个方程独立估计。</li>
+<li>模型诊断：检查残差是否存在自相关、异方差等问题，必要时调整模型或采用其他方法改进。</li>
+</ol>
+<p>接下来，我们用 <code>statsmodels</code> 库来估计 VAR 模型，分析失业率和通货膨胀率之间的动态关系。</p>
+<p>首先，需要进行模型，最核心的问题是确定滞后阶数。</p>
+<div id="3ac4014a" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="im">from</span> statsmodels.tsa.api <span class="im">import</span> VAR</span>
+<span id="cb23-2"><a href="#cb23-2"></a></span>
+<span id="cb23-3"><a href="#cb23-3"></a><span class="co"># 准备数据：将失业率和通胀率合并为一个 DataFrame</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a>data <span class="op">=</span> pd.concat([df_unemp[<span class="st">'UNRATE'</span>], df_CPI[<span class="st">'Inflation Rate'</span>]], axis<span class="op">=</span><span class="dv">1</span>).dropna()</span>
+<span id="cb23-5"><a href="#cb23-5"></a>data.columns <span class="op">=</span> [<span class="st">'Unemployment Rate'</span>, <span class="st">'Inflation Rate'</span>]</span>
+<span id="cb23-6"><a href="#cb23-6"></a></span>
+<span id="cb23-7"><a href="#cb23-7"></a><span class="co"># 创建 VAR 模型</span></span>
+<span id="cb23-8"><a href="#cb23-8"></a>model <span class="op">=</span> VAR(data)</span>
+<span id="cb23-9"><a href="#cb23-9"></a></span>
+<span id="cb23-10"><a href="#cb23-10"></a><span class="co"># 选择滞后阶数（使用 AIC 或 BIC）</span></span>
+<span id="cb23-11"><a href="#cb23-11"></a>lag_order <span class="op">=</span> model.select_order(maxlags<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb23-12"><a href="#cb23-12"></a><span class="bu">print</span>(<span class="st">"Lag Order Selection:"</span>)</span>
+<span id="cb23-13"><a href="#cb23-13"></a><span class="bu">print</span>(lag_order.summary())</span>
+<span id="cb23-14"><a href="#cb23-14"></a></span>
+<span id="cb23-15"><a href="#cb23-15"></a><span class="co"># 根据选择的滞后阶数拟合 VAR 模型</span></span>
+<span id="cb23-16"><a href="#cb23-16"></a>optimal_lag <span class="op">=</span> lag_order.aic  <span class="co"># 使用 AIC 选择的滞后阶数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Lag Order Selection:
+ VAR Order Selection (* highlights the minimums)  
+==================================================
+       AIC         BIC         FPE         HQIC   
+--------------------------------------------------
+0        3.154       3.167       23.44       3.159
+1       -3.583      -3.546     0.02779      -3.569
+2       -3.721     -3.659*     0.02422      -3.697
+3       -3.718      -3.632     0.02429      -3.685
+4       -3.710      -3.600     0.02448      -3.667
+5       -3.711      -3.577     0.02444      -3.659
+6       -3.703      -3.543     0.02466      -3.641
+7       -3.698      -3.514     0.02478      -3.627
+8       -3.703      -3.495     0.02465      -3.623
+9       -3.693      -3.461     0.02489      -3.604
+10      -3.700      -3.443     0.02473      -3.601
+11      -3.693      -3.411     0.02490      -3.585
+12      -3.685      -3.379     0.02510      -3.567
+13      -3.916      -3.585     0.01992      -3.789
+14     -3.934*      -3.579    0.01957*     -3.797*
+15      -3.928      -3.548     0.01968      -3.782
+--------------------------------------------------</code></pre>
+</div>
+</div>
+<p>由此可以看出，我们设定一个 VAR(2) 模型即可。</p>
+<div id="eec2eab1" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># 拟合 VAR(2) 模型</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>var_model_2 <span class="op">=</span> model.fit(<span class="dv">2</span>)</span>
+<span id="cb25-3"><a href="#cb25-3"></a></span>
+<span id="cb25-4"><a href="#cb25-4"></a><span class="co"># 输出模型结果</span></span>
+<span id="cb25-5"><a href="#cb25-5"></a><span class="bu">print</span>(var_model_2.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Summary of Regression Results   
+==================================
+Model:                         VAR
+Method:                        OLS
+Date:           Wed, 07, May, 2025
+Time:                     18:30:39
+--------------------------------------------------------------------
+No. of Equations:         2.00000    BIC:                   -3.66800
+Nobs:                     769.000    HQIC:                  -3.70515
+Log likelihood:          -738.758    FPE:                  0.0240313
+AIC:                     -3.72840    Det(Omega_mle):       0.0237218
+--------------------------------------------------------------------
+Results for equation Unemployment Rate
+=======================================================================================
+                          coefficient       std. error           t-stat            prob
+---------------------------------------------------------------------------------------
+const                        0.164239         0.058576            2.804           0.005
+L1.Unemployment Rate         0.988192         0.036480           27.089           0.000
+L1.Inflation Rate           -0.103951         0.040127           -2.591           0.010
+L2.Unemployment Rate        -0.025692         0.036293           -0.708           0.479
+L2.Inflation Rate            0.117987         0.040215            2.934           0.003
+=======================================================================================
+
+Results for equation Inflation Rate
+=======================================================================================
+                          coefficient       std. error           t-stat            prob
+---------------------------------------------------------------------------------------
+const                        0.094596         0.050132            1.887           0.059
+L1.Unemployment Rate        -0.022818         0.031221           -0.731           0.465
+L1.Inflation Rate            1.342114         0.034342           39.080           0.000
+L2.Unemployment Rate         0.015220         0.031061            0.490           0.624
+L2.Inflation Rate           -0.355045         0.034418          -10.316           0.000
+=======================================================================================
+
+Correlation matrix of residuals
+                     Unemployment Rate  Inflation Rate
+Unemployment Rate             1.000000       -0.142756
+Inflation Rate               -0.142756        1.000000
+
+
+</code></pre>
+</div>
+</div>
+<p>根据 VAR（向量自回归）模型的估计结果，可以对失业率与通货膨胀率之间的动态相关关系进行如下简要解释：</p>
+<ol type="1">
+<li><p>模型设定与解释：本模型包含两个内生变量：<strong>Unemployment Rate（失业率）</strong> 与 <strong>Inflation Rate（通货膨胀率）</strong>，并引入了两个滞后期，用以捕捉二者的动态交互关系。</p></li>
+<li><p>失业率方程</p>
+<ul>
+<li><strong>L1.Inflation Rate 的系数为 -0.104，且在 1% 显著水平下显著</strong>（p = 0.010），表明通货膨胀率上期上升，会导致当期失业率下降，呈现出负相关关系。这种现象与传统的菲利普斯曲线一致，即短期内存在“以通胀换就业”的机制。</li>
+<li><strong>L2.Inflation Rate 的系数为 +0.118，同样显著（p = 0.003）</strong>，意味着这种负向冲击在第二期发生一定反转，提示通胀与失业的关系可能并非单调，而具有一定的动态调整路径。</li>
+<li><strong>失业率自身具有较强的惯性</strong>（L1 系数为 0.988，p &lt; 0.001），说明其变化趋于缓慢，当前水平很大程度由前一期决定。</li>
+</ul></li>
+<li><p>通货膨胀率方程</p>
+<ul>
+<li><strong>Inflation Rate 的自回归项 L1 系数高达 1.342，显著性极强</strong>（p &lt; 0.001），说明通胀率具有高度的自我延续性，是一个强持久性的变量。</li>
+<li><strong>Unemployment Rate 的滞后项（L1 与 L2）在该方程中均不显著</strong>（p 值远大于 0.1），表明失业率对通胀率的短期预测贡献较小。</li>
+</ul></li>
+<li><p>残差相关矩阵：两个方程残差间的相关系数为 <strong>-0.143</strong>，为中等程度的负相关，意味着在控制了自身滞后影响后，<strong>通胀与失业之间仍存在一定的即时负相关关系</strong>。</p></li>
+</ol>
+<p>综上，<strong>通胀率的变化对失业率存在短期的显著负向影响</strong>，但 <strong>失业率对通胀率的影响不明显</strong>，两者关系具有方向性和滞后性，表现出一定的不对称特征。这一结果对政策制定者具有重要意义：在制定货币或财政政策以影响就业时，应特别关注通胀路径对失业的动态传导。</p>
+</section>
+<section id="granger-因果检验" class="level3" data-number="32.7.4">
+<h3 data-number="32.7.4" class="anchored" data-anchor-id="granger-因果检验"><span class="header-section-number">32.7.4</span> Granger 因果检验</h3>
+<p>Granger 因果检验的核心思想是通过回归分析判断一个变量的滞后值是否能够显著提高对另一个变量的预测能力。以下是 Granger 因果检验的数学公式及其在失业率 <span class="math inline">\(u\)</span> 和通胀率 <span class="math inline">\(e\)</span> 上的应用。</p>
+<section id="单变量回归模型" class="level4" data-number="32.7.4.1">
+<h4 data-number="32.7.4.1" class="anchored" data-anchor-id="单变量回归模型"><span class="header-section-number">32.7.4.1</span> 1. 单变量回归模型</h4>
+<p>首先，构建仅包含因变量自身滞后项的回归模型： <span class="math display">\[
+u_t = \alpha_0 + \sum_{i=1}^p \alpha_i u_{t-i} + \epsilon_t
+\]</span> 其中：<span class="math inline">\(u_t\)</span> 表示当前的失业率；<span class="math inline">\(u_{t-i}\)</span> 表示失业率的第 <span class="math inline">\(i\)</span> 阶滞后值；<span class="math inline">\(\epsilon_t\)</span> 是误差项。</p>
+</section>
+<section id="多变量回归模型" class="level4" data-number="32.7.4.2">
+<h4 data-number="32.7.4.2" class="anchored" data-anchor-id="多变量回归模型"><span class="header-section-number">32.7.4.2</span> 2. 多变量回归模型</h4>
+<p>然后，构建同时包含因变量和另一个变量滞后项的回归模型：</p>
+<p><span class="math display">\[
+u_t = \beta_0 + \sum_{i=1}^p \beta_i u_{t-i} + \sum_{j=1}^q \gamma_j e_{t-j} + \eta_t
+\]</span></p>
+<p>其中：<span class="math inline">\(e_{t-j}\)</span> 表示通胀率的第 <span class="math inline">\(j\)</span> 阶滞后值；<span class="math inline">\(\eta_t\)</span> 是误差项。</p>
+</section>
+<section id="检验假设" class="level4" data-number="32.7.4.3">
+<h4 data-number="32.7.4.3" class="anchored" data-anchor-id="检验假设"><span class="header-section-number">32.7.4.3</span> 3. 检验假设</h4>
+<p>通过 F 检验比较上述两个模型的拟合优度，检验以下假设：</p>
+<ul>
+<li>原假设 <span class="math inline">\(H_0\)</span>：<span class="math inline">\(e_{t-j}\)</span> 的系数 <span class="math inline">\(\gamma_j = 0\)</span>，即通胀率的滞后值对失业率没有显著影响；</li>
+<li>备择假设 <span class="math inline">\(H_1\)</span>：<span class="math inline">\(e_{t-j}\)</span> 的系数 <span class="math inline">\(\gamma_j \neq 0\)</span>，即通胀率的滞后值对失业率有显著影响。</li>
+</ul>
+<p>以下是基于失业率 <span class="math inline">\(u\)</span> 和通胀率 <span class="math inline">\(e\)</span> 的 Granger 因果检验代码示例：</p>
+<div id="9611585f" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="im">from</span> statsmodels.tsa.stattools <span class="im">import</span> grangercausalitytests</span>
+<span id="cb27-2"><a href="#cb27-2"></a></span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="co"># Granger 因果检验</span></span>
+<span id="cb27-4"><a href="#cb27-4"></a><span class="co"># 检验失业率 (u) 是否是通胀率 (e) 的 Granger 因，以及反向关系</span></span>
+<span id="cb27-5"><a href="#cb27-5"></a>max_lag <span class="op">=</span> <span class="dv">14</span>  <span class="co"># 最大滞后阶数</span></span>
+<span id="cb27-6"><a href="#cb27-6"></a>granger_test_result_u_to_e <span class="op">=</span> grangercausalitytests(data[[<span class="st">'Inflation Rate'</span>, <span class="st">'Unemployment Rate'</span>]], max_lag, verbose<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb27-7"><a href="#cb27-7"></a>granger_test_result_e_to_u <span class="op">=</span> grangercausalitytests(data[[<span class="st">'Unemployment Rate'</span>, <span class="st">'Inflation Rate'</span>]], max_lag, verbose<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb27-8"><a href="#cb27-8"></a></span>
+<span id="cb27-9"><a href="#cb27-9"></a><span class="co"># 提取 Granger 因果检验结果并汇总成表格</span></span>
+<span id="cb27-10"><a href="#cb27-10"></a><span class="kw">def</span> extract_granger_results(granger_test_result):</span>
+<span id="cb27-11"><a href="#cb27-11"></a>    granger_summary <span class="op">=</span> []</span>
+<span id="cb27-12"><a href="#cb27-12"></a>    <span class="cf">for</span> lag, result <span class="kw">in</span> granger_test_result.items():</span>
+<span id="cb27-13"><a href="#cb27-13"></a>        f_stat <span class="op">=</span> result[<span class="dv">0</span>][<span class="st">'ssr_ftest'</span>][<span class="dv">0</span>]</span>
+<span id="cb27-14"><a href="#cb27-14"></a>        p_value <span class="op">=</span> result[<span class="dv">0</span>][<span class="st">'ssr_ftest'</span>][<span class="dv">1</span>]</span>
+<span id="cb27-15"><a href="#cb27-15"></a>        granger_summary.append({<span class="st">'Lag'</span>: lag, <span class="st">'F-statistic'</span>: f_stat, <span class="st">'p-value'</span>: p_value})</span>
+<span id="cb27-16"><a href="#cb27-16"></a>    <span class="cf">return</span> pd.DataFrame(granger_summary)</span>
+<span id="cb27-17"><a href="#cb27-17"></a></span>
+<span id="cb27-18"><a href="#cb27-18"></a><span class="co"># 汇总结果</span></span>
+<span id="cb27-19"><a href="#cb27-19"></a>granger_summary_u_to_e <span class="op">=</span> extract_granger_results(granger_test_result_u_to_e)</span>
+<span id="cb27-20"><a href="#cb27-20"></a>granger_summary_e_to_u <span class="op">=</span> extract_granger_results(granger_test_result_e_to_u)</span>
+<span id="cb27-21"><a href="#cb27-21"></a></span>
+<span id="cb27-22"><a href="#cb27-22"></a><span class="co"># 显示结果表格</span></span>
+<span id="cb27-23"><a href="#cb27-23"></a><span class="bu">print</span>(<span class="st">"Granger Causality Test Summary (u -&gt; e):"</span>)</span>
+<span id="cb27-24"><a href="#cb27-24"></a><span class="bu">print</span>(granger_summary_u_to_e)</span>
+<span id="cb27-25"><a href="#cb27-25"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Granger Causality Test Summary (e -&gt; u):"</span>)</span>
+<span id="cb27-26"><a href="#cb27-26"></a><span class="bu">print</span>(granger_summary_e_to_u)</span>
+<span id="cb27-27"><a href="#cb27-27"></a></span>
+<span id="cb27-28"><a href="#cb27-28"></a><span class="co"># 给出最终结论</span></span>
+<span id="cb27-29"><a href="#cb27-29"></a>significant_lags_u_to_e <span class="op">=</span> granger_summary_u_to_e[granger_summary_u_to_e[<span class="st">'p-value'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span>]</span>
+<span id="cb27-30"><a href="#cb27-30"></a>significant_lags_e_to_u <span class="op">=</span> granger_summary_e_to_u[granger_summary_e_to_u[<span class="st">'p-value'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span>]</span>
+<span id="cb27-31"><a href="#cb27-31"></a></span>
+<span id="cb27-32"><a href="#cb27-32"></a><span class="cf">if</span> <span class="kw">not</span> significant_lags_u_to_e.empty:</span>
+<span id="cb27-33"><a href="#cb27-33"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">结论：失业率 (u) 是通胀率 (e) 的 Granger 因，显著滞后阶数如下："</span>)</span>
+<span id="cb27-34"><a href="#cb27-34"></a>    <span class="bu">print</span>(significant_lags_u_to_e)</span>
+<span id="cb27-35"><a href="#cb27-35"></a><span class="cf">else</span>:</span>
+<span id="cb27-36"><a href="#cb27-36"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">结论：失业率 (u) 不是通胀率 (e) 的 Granger 因。"</span>)</span>
+<span id="cb27-37"><a href="#cb27-37"></a></span>
+<span id="cb27-38"><a href="#cb27-38"></a><span class="cf">if</span> <span class="kw">not</span> significant_lags_e_to_u.empty:</span>
+<span id="cb27-39"><a href="#cb27-39"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">结论：通胀率 (e) 是失业率 (u) 的 Granger 因，显著滞后阶数如下："</span>)</span>
+<span id="cb27-40"><a href="#cb27-40"></a>    <span class="bu">print</span>(significant_lags_e_to_u)</span>
+<span id="cb27-41"><a href="#cb27-41"></a><span class="cf">else</span>:</span>
+<span id="cb27-42"><a href="#cb27-42"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">结论：通胀率 (e) 不是失业率 (u) 的 Granger 因。"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Granger Causality Test Summary (u -&gt; e):
+    Lag  F-statistic   p-value
+0     1     5.471488  0.019585
+1     2     0.647864  0.523449
+2     3     0.436910  0.726650
+3     4     0.610716  0.655024
+4     5     0.375923  0.865353
+5     6     0.495935  0.811649
+6     7     0.557345  0.790737
+7     8     0.514758  0.845838
+8     9     0.506870  0.870126
+9    10     0.705498  0.719822
+10   11     0.685244  0.753382
+11   12     0.614399  0.831097
+12   13     0.822097  0.636812
+13   14     0.747766  0.726348
+
+Granger Causality Test Summary (e -&gt; u):
+    Lag  F-statistic   p-value
+0     1     5.450546  0.019819
+1     2     6.978787  0.000992
+2     3     5.220735  0.001427
+3     4     3.865455  0.004070
+4     5     3.254972  0.006472
+5     6     2.676468  0.014124
+6     7     2.425017  0.018447
+7     8     2.141302  0.030061
+8     9     1.867208  0.053700
+9    10     1.654286  0.087485
+10   11     1.511173  0.122295
+11   12     1.386544  0.166729
+12   13     1.357478  0.174610
+13   14     1.389306  0.151910
+
+结论：失业率 (u) 是通胀率 (e) 的 Granger 因，显著滞后阶数如下：
+   Lag  F-statistic   p-value
+0    1     5.471488  0.019585
+
+结论：通胀率 (e) 是失业率 (u) 的 Granger 因，显著滞后阶数如下：
+   Lag  F-statistic   p-value
+0    1     5.450546  0.019819
+1    2     6.978787  0.000992
+2    3     5.220735  0.001427
+3    4     3.865455  0.004070
+4    5     3.254972  0.006472
+5    6     2.676468  0.014124
+6    7     2.425017  0.018447
+7    8     2.141302  0.030061</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="脉冲响应分析" class="level2" data-number="32.8">
+<h2 data-number="32.8" class="anchored" data-anchor-id="脉冲响应分析"><span class="header-section-number">32.8</span> 脉冲响应分析</h2>
+<section id="什么是脉冲响应分析" class="level3" data-number="32.8.1">
+<h3 data-number="32.8.1" class="anchored" data-anchor-id="什么是脉冲响应分析"><span class="header-section-number">32.8.1</span> 什么是脉冲响应分析？</h3>
+<p>脉冲响应分析（Impulse Response Analysis）是时间序列分析中的一种重要工具，用于研究系统对外部冲击的动态反应。具体来说，在向量自回归模型（VAR）中，脉冲响应分析可以帮助我们回答以下问题：</p>
+<ul>
+<li>当某个变量受到一个单位冲击时，其他变量会如何反应？</li>
+<li>这种反应会持续多长时间？</li>
+<li>反应的方向和强度如何？</li>
+</ul>
+</section>
+<section id="数学定义" class="level3" data-number="32.8.2">
+<h3 data-number="32.8.2" class="anchored" data-anchor-id="数学定义"><span class="header-section-number">32.8.2</span> 数学定义</h3>
+<p>假设我们有一个 <span class="math inline">\(\text{VAR}(p)\)</span> 模型：</p>
+<p><span class="math display">\[
+Y_t = A_1 Y_{t-1} + A_2 Y_{t-2} + \dots + A_p Y_{t-p} + \epsilon_t
+\]</span></p>
+<p>其中：</p>
+<ul>
+<li><span class="math inline">\(Y_t\)</span> 是包含多个变量的向量；</li>
+<li><span class="math inline">\(A_i\)</span> 是系数矩阵；</li>
+<li><span class="math inline">\(\epsilon_t\)</span> 是误差项。</li>
+</ul>
+<p>脉冲响应函数（Impulse Response Function, IRF）描述了 <span class="math inline">\(Y_t\)</span> 中某个变量对 <span class="math inline">\(\epsilon_t\)</span> 中某个分量的单位冲击的动态反应。</p>
+</section>
+<section id="分析步骤" class="level3" data-number="32.8.3">
+<h3 data-number="32.8.3" class="anchored" data-anchor-id="分析步骤"><span class="header-section-number">32.8.3</span> 分析步骤</h3>
+<ol type="1">
+<li><strong>拟合 VAR 模型</strong>：首先需要对时间序列数据拟合一个 VAR 模型。</li>
+<li><strong>计算脉冲响应函数</strong>：基于拟合的 VAR 模型，计算各变量对冲击的响应。</li>
+<li><strong>绘制脉冲响应图</strong>：将响应结果可视化，便于直观理解。</li>
+</ol>
+</section>
+<section id="示例失业率与通胀率的脉冲响应分析" class="level3" data-number="32.8.4">
+<h3 data-number="32.8.4" class="anchored" data-anchor-id="示例失业率与通胀率的脉冲响应分析"><span class="header-section-number">32.8.4</span> 示例：失业率与通胀率的脉冲响应分析</h3>
+<p>以下是基于失业率和通胀率的脉冲响应分析步骤：</p>
+<ol type="1">
+<li><strong>拟合 VAR 模型</strong>：我们已经拟合了一个 VAR(2) 模型。</li>
+<li><strong>计算脉冲响应函数</strong>：使用 <code>statsmodels</code> 提供的工具计算脉冲响应。</li>
+<li><strong>绘制脉冲响应图</strong>：展示失业率和通胀率对冲击的动态反应。</li>
+</ol>
+<p>以下是脉冲响应分析的代码示例：</p>
+<div id="5fa3c7b3" class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a><span class="im">from</span> statsmodels.tsa.api <span class="im">import</span> VAR</span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb29-4"><a href="#cb29-4"></a></span>
+<span id="cb29-5"><a href="#cb29-5"></a><span class="co"># 准备数据</span></span>
+<span id="cb29-6"><a href="#cb29-6"></a>data <span class="op">=</span> pd.concat([df_unemp[<span class="st">'UNRATE'</span>], df_CPI[<span class="st">'Inflation Rate'</span>]], axis<span class="op">=</span><span class="dv">1</span>).dropna()</span>
+<span id="cb29-7"><a href="#cb29-7"></a>data.columns <span class="op">=</span> [<span class="st">'U'</span>, <span class="st">'E'</span>]</span>
+<span id="cb29-8"><a href="#cb29-8"></a></span>
+<span id="cb29-9"><a href="#cb29-9"></a><span class="co"># 拟合 VAR(2) 模型</span></span>
+<span id="cb29-10"><a href="#cb29-10"></a>model <span class="op">=</span> VAR(data)</span>
+<span id="cb29-11"><a href="#cb29-11"></a>var_model_2 <span class="op">=</span> model.fit(<span class="dv">2</span>)</span>
+<span id="cb29-12"><a href="#cb29-12"></a></span>
+<span id="cb29-13"><a href="#cb29-13"></a><span class="co"># 计算正交化脉冲响应</span></span>
+<span id="cb29-14"><a href="#cb29-14"></a>irf <span class="op">=</span> var_model_2.irf(<span class="dv">10</span>)</span>
+<span id="cb29-15"><a href="#cb29-15"></a></span>
+<span id="cb29-16"><a href="#cb29-16"></a><span class="co"># 绘图（缩小图形尺寸）</span></span>
+<span id="cb29-17"><a href="#cb29-17"></a>irf.plot(orth<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb29-18"><a href="#cb29-18"></a>plt.tight_layout()</span>
+<span id="cb29-19"><a href="#cb29-19"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_FRED_US_unemploy_rate_files/figure-html/cell-20-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>上面的图形展示了失业率和通货膨胀率的脉冲响应分析结果，具体解读如下：</p>
+<ol type="1">
+<li><strong>失业率对自身冲击的响应</strong>：
+<ul>
+<li>失业率在受到自身冲击后，短期内会出现显著的正向反应，随后逐渐回归到长期均衡水平。</li>
+<li>这种现象表明失业率具有一定的惯性效应，即当前的失业率水平会受到过去水平的显著影响。</li>
+</ul></li>
+<li><strong>通货膨胀率对自身冲击的响应</strong>：
+<ul>
+<li>通货膨胀率在受到自身冲击后，也会出现短期的正向反应，但其回归速度较快。</li>
+<li>这表明通货膨胀率的波动性较高，但其长期趋势相对稳定。</li>
+</ul></li>
+<li><strong>失业率对通货膨胀率冲击的响应</strong>：
+<ul>
+<li>失业率在受到通货膨胀率冲击后，可能会出现短暂的负向反应，随后逐渐回归均衡。</li>
+<li>这种负相关性可能与菲利普斯曲线的理论一致，即在短期内失业率和通货膨胀率之间存在一定的替代关系。</li>
+</ul></li>
+<li><strong>通货膨胀率对失业率冲击的响应</strong>：
+<ul>
+<li>通货膨胀率在受到失业率冲击后，反应较为温和，且回归速度较快。</li>
+<li>这表明失业率的变化对通货膨胀率的长期影响较小，但可能会在短期内引发一定的波动。</li>
+</ul></li>
+</ol>
+</section>
+<section id="总结" class="level3" data-number="32.8.5">
+<h3 data-number="32.8.5" class="anchored" data-anchor-id="总结"><span class="header-section-number">32.8.5</span> 总结</h3>
+<p>通过脉冲响应分析可以看出，失业率和通货膨胀率之间存在一定的动态关系，但这种关系在短期内更为显著，长期影响则趋于平稳。这为进一步的经济建模和政策分析提供了重要的参考依据。</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../body/regress_03_binscatter.html" class="pagination-link" aria-label="分仓散点图">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">分仓散点图</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../homework/pre/Dangdang_G7_01_data_clean.html" class="pagination-link" aria-label="当当网-G7-01">
+        <span class="nav-page-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">当当网-G7-01</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><a href="https://www.lianxh.cn">www.lianxh.cn</a></p>
+</div>
+    <div class="nav-footer-right">
+<p>Support: <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

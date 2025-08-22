@@ -1,0 +1,355 @@
+[
+    {
+        "metadata": {
+            "catalogid": "1803",
+            "name": "深圳市场",
+            "excel": "xlsx",
+            "pagetype": "tabs",
+            "subname": "",
+            "tabkey": "tab1",
+            "pagesize": -1,
+            "pageno": 0,
+            "pagecount": 0,
+            "recordcount": 0,
+            "showrecordcount": false,
+            "header": "",
+            "footer": "<table>\n\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td class=\"link1\"><font color='black'>深圳市场、主板、创业板数据统计范围包含存托凭证。</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t</table>",
+            "reporttype": null,
+            "tabcss": null,
+            "conditions": [
+                {
+                    "label": "查询日期",
+                    "name": "txtQueryDate",
+                    "hidden": "0",
+                    "defaultValue": "2009-04-01",
+                    "labelstyle": "1",
+                    "required": "true",
+                    "inputType": "date",
+                    "typeAhead": "",
+                    "options": null,
+                    "property": null,
+                    "maxlength": null,
+                    "otherProperties": null,
+                    "clientvalidate": ""
+                }
+            ],
+            "colStyle": {
+                "zbmc": {
+                    "width": "20",
+                    "align": "left",
+                    "group": "false",
+                    "hidden": "0"
+                },
+                "brsz": {
+                    "width": "17",
+                    "align": "right",
+                    "group": "false",
+                    "hidden": "0"
+                },
+                "bsrzj": {
+                    "width": "17",
+                    "align": "right",
+                    "group": "false",
+                    "hidden": "0"
+                },
+                "fd": {
+                    "width": "12",
+                    "align": "right",
+                    "group": "false",
+                    "hidden": "0"
+                }
+            },
+            "cols": {
+                "zbmc": "指标名称",
+                "brsz": "本日数值",
+                "bsrzj": "比上日增减",
+                "fd": "幅度%"
+            },
+            "colspan": 0,
+            "notes": null,
+            "topHeader": "",
+            "hidden": "0",
+            "tablestyle": "",
+            "refreshCondition": false
+        },
+        "data": [],
+        "error": null
+    },
+    {
+        "metadata": {
+            "catalogid": "1803",
+            "name": "主板",
+            "excel": "xlsx",
+            "pagetype": "tabs",
+            "subname": "2009-04-01",
+            "tabkey": "tab2",
+            "pagesize": -1,
+            "pageno": 0,
+            "pagecount": 0,
+            "recordcount": 0,
+            "showrecordcount": false,
+            "header": "",
+            "footer": "<table>\n\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td class=\"link1\"><font color='black'>深圳市场、主板、创业板数据统计范围包含存托凭证。</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t</table>",
+            "reporttype": null,
+            "tabcss": null,
+            "conditions": [
+                {
+                    "label": "查询日期",
+                    "name": "txtQueryDate",
+                    "hidden": "0",
+                    "defaultValue": "2009-04-01",
+                    "labelstyle": "1",
+                    "required": "true",
+                    "inputType": "date",
+                    "typeAhead": "",
+                    "options": null,
+                    "property": null,
+                    "maxlength": null,
+                    "otherProperties": null,
+                    "clientvalidate": ""
+                }
+            ],
+            "colStyle": {
+                "indicator": {
+                    "align": "left",
+                    "group": "false",
+                    "hidden": "0"
+                },
+                "today": {
+                    "align": "right",
+                    "group": "false",
+                    "hidden": "0"
+                },
+                "increase": {
+                    "align": "right",
+                    "group": "false",
+                    "hidden": "0"
+                },
+                "fd": {
+                    "align": "right",
+                    "group": "false",
+                    "hidden": "0"
+                }
+            },
+            "cols": {
+                "indicator": "指标名称",
+                "today": "本日数值",
+                "increase": "比上日增减",
+                "fd": "幅度%"
+            },
+            "colspan": 0,
+            "notes": null,
+            "topHeader": "",
+            "hidden": "0",
+            "tablestyle": "",
+            "refreshCondition": false
+        },
+        "data": [
+            {
+                "indicator": "新上市公司数",
+                "today": "0",
+                "increase": "",
+                "fd": ""
+            },
+            {
+                "indicator": "上市公司数",
+                "today": "465",
+                "increase": "0",
+                "fd": "0.00"
+            },
+            {
+                "indicator": "总股本(亿)",
+                "today": "2,850.94",
+                "increase": "0.00",
+                "fd": "0.00"
+            },
+            {
+                "indicator": "流通股本(亿)",
+                "today": "1,870.78",
+                "increase": "-0.06",
+                "fd": "0.00"
+            },
+            {
+                "indicator": "总市值(亿元)",
+                "today": "26,121.73",
+                "increase": "473.08",
+                "fd": "1.84"
+            },
+            {
+                "indicator": "流通市值(亿元)",
+                "today": "16,208.30",
+                "increase": "278.71",
+                "fd": "1.74"
+            },
+            {
+                "indicator": "成交金额(亿元)",
+                "today": "637.68",
+                "increase": "177.73",
+                "fd": "38.64"
+            },
+            {
+                "indicator": "成交量(亿)",
+                "today": "73.06",
+                "increase": "17.86",
+                "fd": "32.36"
+            },
+            {
+                "indicator": "成交笔数(万笔)",
+                "today": "456.68",
+                "increase": "102.14",
+                "fd": "28.81"
+            },
+            {
+                "indicator": "平均市盈率(倍)",
+                "today": "24.28",
+                "increase": "0.45",
+                "fd": "1.88"
+            }
+        ],
+        "error": null
+    },
+    {
+        "metadata": {
+            "catalogid": "1803",
+            "name": "中小企业板",
+            "excel": "xlsx",
+            "pagetype": "tabs",
+            "subname": "",
+            "tabkey": "tab3",
+            "pagesize": -1,
+            "pageno": 0,
+            "pagecount": 0,
+            "recordcount": 0,
+            "showrecordcount": false,
+            "header": "",
+            "footer": "",
+            "reporttype": null,
+            "tabcss": null,
+            "conditions": [
+                {
+                    "label": "查询日期",
+                    "name": "txtQueryDate",
+                    "hidden": "0",
+                    "defaultValue": "2009-04-01",
+                    "labelstyle": "1",
+                    "required": "true",
+                    "inputType": "date",
+                    "typeAhead": "",
+                    "options": null,
+                    "property": null,
+                    "maxlength": null,
+                    "otherProperties": null,
+                    "clientvalidate": ""
+                }
+            ],
+            "colStyle": {
+                "indicator": {
+                    "align": "left",
+                    "group": "false",
+                    "hidden": "0"
+                },
+                "today": {
+                    "align": "right",
+                    "group": "false",
+                    "hidden": "0"
+                },
+                "increase": {
+                    "align": "right",
+                    "group": "false",
+                    "hidden": "0"
+                },
+                "fd": {
+                    "align": "right",
+                    "group": "false",
+                    "hidden": "0"
+                }
+            },
+            "cols": {
+                "indicator": "指标名称",
+                "today": "本日数值",
+                "increase": "比上日增减",
+                "fd": "幅度%"
+            },
+            "colspan": 0,
+            "notes": null,
+            "topHeader": "",
+            "hidden": "0",
+            "tablestyle": "",
+            "refreshCondition": false
+        },
+        "data": [],
+        "error": null
+    },
+    {
+        "metadata": {
+            "catalogid": "1803",
+            "name": "创业板",
+            "excel": "xlsx",
+            "pagetype": "tabs",
+            "subname": "",
+            "tabkey": "tab4",
+            "pagesize": -1,
+            "pageno": 0,
+            "pagecount": 0,
+            "recordcount": 0,
+            "showrecordcount": false,
+            "header": "",
+            "footer": "<table>\n\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td class=\"link1\"><font color='black'>深圳市场、主板、创业板数据统计范围包含存托凭证。</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t</table>",
+            "reporttype": null,
+            "tabcss": null,
+            "conditions": [
+                {
+                    "label": "查询日期",
+                    "name": "txtQueryDate",
+                    "hidden": "0",
+                    "defaultValue": "2009-04-01",
+                    "labelstyle": "1",
+                    "required": "true",
+                    "inputType": "date",
+                    "typeAhead": "",
+                    "options": null,
+                    "property": null,
+                    "maxlength": null,
+                    "otherProperties": null,
+                    "clientvalidate": ""
+                }
+            ],
+            "colStyle": {
+                "indicator": {
+                    "align": "left",
+                    "group": "false",
+                    "hidden": "0"
+                },
+                "today": {
+                    "align": "right",
+                    "group": "false",
+                    "hidden": "0"
+                },
+                "increase": {
+                    "align": "right",
+                    "group": "false",
+                    "hidden": "0"
+                },
+                "fd": {
+                    "align": "right",
+                    "group": "false",
+                    "hidden": "0"
+                }
+            },
+            "cols": {
+                "indicator": "指标名称",
+                "today": "本日数值",
+                "increase": "比上日增减",
+                "fd": "幅度%"
+            },
+            "colspan": 0,
+            "notes": null,
+            "topHeader": "",
+            "hidden": "0",
+            "tablestyle": "",
+            "refreshCondition": false
+        },
+        "data": [],
+        "error": null
+    }
+]

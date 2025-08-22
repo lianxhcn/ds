@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>27&nbsp; 核密度函数图 – 数据分析</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../body/test_AB_test.html" rel="next">
+<link href="../body/graph_dis_histogram.html" rel="prev">
+<link href="../images/ds-book-logo-40.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e8fb9d25728d58bfeac61b497e4a6629.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-8434d2026ae8291579158df2ad8dfa64.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/graph_01_intro.html"><strong>可视化</strong></a></li><li class="breadcrumb-item"><a href="../body/graph_dis_kdensity.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">核密度函数图</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../"></a><a href="../index.html">DS</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
+    <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
+    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">数据分析</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/_home.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">关于我们</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/00_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">前言</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Python 基础</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/00_py_with_AI_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">借助 AI 写代码</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/00_py_with_AI_pic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ansome Python + AI</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_1_install-Python-Anocanda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python：安装和环境配置</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_2_install_FAQs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Python 安装常见问题</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_3_markdown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Python 入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_01_grammer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Python 代码风格</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_02_QuickReference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python 常用命令速查表</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_03_Packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Python 常用扩展包</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_04_import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Python：import 使用详解</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_05_OOP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Python：语法解析-面向对象编程</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_06_filepath.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Python 路径设置</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_02_numpy_scipy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_02_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">pandas 快速入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_03_matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Matplotlib简介</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_04_func_and_module.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">函数</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_05_class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">类和对象</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>数据分析</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_02_data_type.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">数据分析是什么？</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_02_get_data_GMD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">获取数据：GMD</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_SZ_index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">上证指数的时序特征</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>可视化</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Python 可视化：简介</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_box_violin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">箱型图和小提琴图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_histogram.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">直方图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_kdensity.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">核密度函数图</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>回归分析</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/test_AB_test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_01_OLS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">线性回归模型</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_02_wage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">线性回归分析</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_03_binscatter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">分仓散点图</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>时间序列分析</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_FRED_US_unemploy_rate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>作业展示</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Dangdang_G7_01_data_clean.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">当当网-G7-01</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Dangdang_G7_02_data_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">当当网-G7-02</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/G8_China_stock_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">G8-中国上市公司</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_01_data_crawler.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">G4-01</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_02_data_cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">G4-02</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_03_data_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">G4-03</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_万诗晴.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">ex02_万诗晴</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_吴倩茵.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">ex02_吴倩茵</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_朱少荣.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">ex02_朱少荣</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_黄伊姿.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">ex02_黄伊姿</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#核密度估计" id="toc-核密度估计" class="nav-link active" data-scroll-target="#核密度估计"><span class="header-section-number">27.1</span> 核密度估计</a>
+  <ul class="collapse">
+  <li><a href="#核函数" id="toc-核函数" class="nav-link" data-scroll-target="#核函数"><span class="header-section-number">27.1.1</span> 核函数</a></li>
+  <li><a href="#核函数的性质" id="toc-核函数的性质" class="nav-link" data-scroll-target="#核函数的性质"><span class="header-section-number">27.1.2</span> 核函数的性质</a></li>
+  </ul></li>
+  <li><a href="#单变量核密度函数图" id="toc-单变量核密度函数图" class="nav-link" data-scroll-target="#单变量核密度函数图"><span class="header-section-number">27.2</span> 单变量核密度函数图</a></li>
+  <li><a href="#多变量核密度函数图" id="toc-多变量核密度函数图" class="nav-link" data-scroll-target="#多变量核密度函数图"><span class="header-section-number">27.3</span> 多变量核密度函数图</a>
+  <ul class="collapse">
+  <li><a href="#多变量核密度函数图山脊图" id="toc-多变量核密度函数图山脊图" class="nav-link" data-scroll-target="#多变量核密度函数图山脊图"><span class="header-section-number">27.3.1</span> 多变量核密度函数图：山脊图</a></li>
+  </ul></li>
+  <li><a href="#进阶用法" id="toc-进阶用法" class="nav-link" data-scroll-target="#进阶用法"><span class="header-section-number">27.4</span> 进阶用法</a>
+  <ul class="collapse">
+  <li><a href="#散点图-核密度函数图" id="toc-散点图-核密度函数图" class="nav-link" data-scroll-target="#散点图-核密度函数图"><span class="header-section-number">27.4.1</span> 散点图 + 核密度函数图</a></li>
+  <li><a href="#多个变量的情形pairplot" id="toc-多个变量的情形pairplot" class="nav-link" data-scroll-target="#多个变量的情形pairplot"><span class="header-section-number">27.4.2</span> 多个变量的情形：pairplot</a></li>
+  <li><a href="#联合分布图" id="toc-联合分布图" class="nav-link" data-scroll-target="#联合分布图"><span class="header-section-number">27.4.3</span> 联合分布图</a></li>
+  <li><a href="#d-核密度函数图" id="toc-d-核密度函数图" class="nav-link" data-scroll-target="#d-核密度函数图"><span class="header-section-number">27.4.4</span> 3D 核密度函数图</a></li>
+  <li><a href="#密度函数图条形码" id="toc-密度函数图条形码" class="nav-link" data-scroll-target="#密度函数图条形码"><span class="header-section-number">27.4.5</span> 密度函数图+条形码</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/graph_01_intro.html"><strong>可视化</strong></a></li><li class="breadcrumb-item"><a href="../body/graph_dis_kdensity.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">核密度函数图</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">核密度函数图</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="核密度估计" class="level2" data-number="27.1">
+<h2 data-number="27.1" class="anchored" data-anchor-id="核密度估计"><span class="header-section-number">27.1</span> 核密度估计</h2>
+<p>核密度估计 (Kernel Density Estimation, KDE) 是一种用于估计未知概率密度函数的非参数方法，适用于连续型数据且不依赖于事先指定的分布形式。其基本思想是：在密度函数的每一个估计点上，根据样本点到该点的距离，使用核函数分配权重并加权平均，从而构建平滑的密度曲线。</p>
+<p>设样本为 <span class="math inline">\(x_1, x_2, \dots, x_n\)</span>，其密度函数在任意点 <span class="math inline">\(x\)</span> 上的估计形式为：</p>
+<p><span class="math display">\[
+\hat{f}_h(x) = \frac{1}{n h} \sum_{i=1}^{n} K\left( \frac{x - x_i}{h} \right)
+\]</span></p>
+<p>其中：</p>
+<ul>
+<li><span class="math inline">\(K(\cdot)\)</span> 是核函数（kernel function），通常是一个对称的概率密度函数；</li>
+<li><span class="math inline">\(h &gt; 0\)</span> 是带宽参数（bandwidth），控制核函数的缩放程度和平滑水平；</li>
+<li><span class="math inline">\(\hat{f}_h(x)\)</span> 是点 <span class="math inline">\(x\)</span> 处的密度估计值。</li>
+</ul>
+<section id="核函数" class="level3" data-number="27.1.1">
+<h3 data-number="27.1.1" class="anchored" data-anchor-id="核函数"><span class="header-section-number">27.1.1</span> 核函数</h3>
+<p>在实际应用中，核函数的选择对估计结果的影响相对较小，而带宽的设置对估计曲线的光滑程度影响较大。</p>
+<p>核函数的作用可以理解为：在估计点 <span class="math inline">\(x\)</span> 处，根据样本点 <span class="math inline">\(x_i\)</span> 与 <span class="math inline">\(x\)</span> 之间的距离，赋予不同的权重。距离 <span class="math inline">\(x\)</span> 越近的样本点，其权重越大；距离越远，权重越小。通过对所有样本点的加权平均，得到该点的密度估计。将所有位置的估计值拼接起来，即可得到整体的密度函数曲线。</p>
+<p>为了更清楚地理解核函数的加权机制，我们可以对距离进行标准化处理，设：</p>
+<p><span class="math display">\[
+u_i = \frac{X_i - c}{h}
+\]</span></p>
+<p>则以下两式等价：</p>
+<p><span class="math display">\[
+|u_i| \leq 1 \Longleftrightarrow |X_i - c| \leq h
+\]</span></p>
+<p>记 <span class="math inline">\(D_i = |X_i - c|\)</span>，表示第 <span class="math inline">\(i\)</span> 个观察值与估计点 <span class="math inline">\(c\)</span> 的距离。核函数的任务就是为每个 <span class="math inline">\(D_i\)</span> 分配权重。</p>
+<p>如下图所示，三种典型核函数的权重分配机制具有显著差异：</p>
+<p><img style="width: 600px" src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/Fig-NP-kernel-fn01.png"></p>
+<ul>
+<li>Uniform 核：在 <span class="math inline">\(|u| \leq 1\)</span> 范围内赋予所有观察值相同的权重，超出范围的样本点权重为 0 (相当于弃之不用)。对应的密度估计不具有平滑性，常用于教学演示。</li>
+<li>Triangle 核：采用线性下降的加权方式，距离估计点越近权重越大，边界处权重为 0，估计结果具有一定的连续性。</li>
+<li>Epanechnikov 核：采用抛物线型权重函数，在 <span class="math inline">\(u=0\)</span> 处取得最大值，具有最小均方误差（MSE）性质，估计曲线光滑、效率较高。</li>
+<li>Gaussian 核：采用正态分布函数，所有样本点均有非零权重，平滑程度高，适用于大多数实际应用场景。</li>
+</ul>
+</section>
+<section id="核函数的性质" class="level3" data-number="27.1.2">
+<h3 data-number="27.1.2" class="anchored" data-anchor-id="核函数的性质"><span class="header-section-number">27.1.2</span> 核函数的性质</h3>
+<p><strong>常见核函数及其表达式：</strong></p>
+<ul>
+<li><p><strong>Uniform 核函数</strong> <span class="math inline">\(K(u) = \frac{1}{2} \cdot \mathbf{1}\{\left|u\right| \leq 1\}\)</span> （也称为 Rectangular 核函数）</p></li>
+<li><p><strong>Triangle 核函数</strong> <span class="math inline">\(K(u) = (1 - \left|u\right|) \cdot \mathbf{1}\{\left|u\right| \leq 1\}\)</span></p></li>
+<li><p><strong>Epanechnikov 核函数</strong> <span class="math inline">\(K(u) = \frac{3}{4}(1 - u^2) \cdot \mathbf{1}\{\left|u\right| \leq 1\}\)</span></p></li>
+<li><p><strong>Quartic 核函数</strong> <span class="math inline">\(K(u) = \frac{15}{16}(1 - u^2)^2 \cdot \mathbf{1}\{\left|u\right| \leq 1\}\)</span></p></li>
+<li><p><strong>Triweight 核函数</strong> <span class="math inline">\(K(u) = \frac{35}{32}(1 - u^2)^3 \cdot \mathbf{1}\{\left|u\right| \leq 1\}\)</span></p></li>
+<li><p><strong>Gaussian 核函数</strong> <span class="math inline">\(K(u) = \frac{1}{\sqrt{2\pi}} \exp\left(-\frac{u^2}{2}\right)\)</span></p></li>
+<li><p><strong>Cosinus 核函数</strong> <span class="math inline">\(K(u) = \frac{\pi}{4} \cos\left(\frac{\pi}{2} u\right) \cdot \mathbf{1}\{\left|u\right| \leq 1\}\)</span></p></li>
+</ul>
+<p><img style="width: 600px" src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/Fig-NP-kernel-fn02.png"></p>
+<p>核函数通常需要满足以下数学性质：</p>
+<ol type="1">
+<li>非负性：<span class="math inline">\(K(u) \geq 0\)</span></li>
+<li>单位积分：<span class="math inline">\(\int_{-\infty}^{\infty} K(u) \, du = 1\)</span></li>
+<li>对称性：<span class="math inline">\(K(u) = K(-u)\)</span></li>
+<li>有限的二阶矩：<span class="math inline">\(\int u^2 K(u) \, du &lt; \infty\)</span></li>
+</ol>
+<p>实际使用中，还有一些细节需要注意。例如，部分文献或软件将 <span class="math inline">\(\mathbf{1}\{|u| \leq 1\}\)</span> 写为 <span class="math inline">\(\mathbf{1}\{|u| &lt; 1\}\)</span>。对于连续变量，两者几乎没有区别；但若数据是离散型的（如整数型变量），则可能影响边界值是否被纳入计算。</p>
+<p>核密度估计的构造可以理解为：以每一个样本点为中心放置一个缩放后的核函数，然后在每一个估计位置 <span class="math inline">\(x\)</span> 上，取所有样本点的核值加权平均。因此，它是一种基于样本加权“局部贡献”的整体平滑过程。</p>
+<p>总结而言：</p>
+<ul>
+<li>核函数定义了如何根据样本点与估计点之间的距离分配权重；</li>
+<li>带宽参数决定了每个样本点的影响范围；</li>
+<li>合理选择核函数和带宽参数是核密度估计中最关键的步骤；</li>
+<li>核密度估计为我们提供了一种平滑、灵活且无需模型假设的分布估计方法，广泛应用于经济学、金融学、机器学习等领域的探索性数据分析任务中。</li>
+</ul>
+</section>
+</section>
+<section id="单变量核密度函数图" class="level2" data-number="27.2">
+<h2 data-number="27.2" class="anchored" data-anchor-id="单变量核密度函数图"><span class="header-section-number">27.2</span> 单变量核密度函数图</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+提示词
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>目的：生成模拟数据，绘制核密度函数图 - 语言：Python - N = 1000, x ~ N(10, 3), lnx = ln(x) - 绘制 x 和 lnx 的核密度函数图 - 布局：1 行 2 列</p>
+</div>
+</div>
+<div id="2022d981" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co"># 生成模拟数据</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>N <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>np.random.seed(<span class="dv">142</span>)  <span class="co"># For reproducibility</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>x <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">10</span>, scale<span class="op">=</span><span class="dv">3</span>, size<span class="op">=</span>N)</span>
+<span id="cb1-9"><a href="#cb1-9"></a>lnx <span class="op">=</span> np.log(x)</span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb1-12"><a href="#cb1-12"></a></span>
+<span id="cb1-13"><a href="#cb1-13"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb1-14"><a href="#cb1-14"></a>sns.kdeplot(x, label<span class="op">=</span><span class="st">'x ~ N(10, 3)'</span>)</span>
+<span id="cb1-15"><a href="#cb1-15"></a>plt.title(<span class="st">'KDE of x'</span>)</span>
+<span id="cb1-16"><a href="#cb1-16"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb1-17"><a href="#cb1-17"></a>plt.ylabel(<span class="st">'Density'</span>)</span>
+<span id="cb1-18"><a href="#cb1-18"></a>plt.legend()</span>
+<span id="cb1-19"><a href="#cb1-19"></a></span>
+<span id="cb1-20"><a href="#cb1-20"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb1-21"><a href="#cb1-21"></a>sns.kdeplot(lnx, label<span class="op">=</span><span class="st">'ln(x)'</span>, color<span class="op">=</span><span class="st">'orange'</span>)</span>
+<span id="cb1-22"><a href="#cb1-22"></a>plt.title(<span class="st">'KDE of ln(x)'</span>)</span>
+<span id="cb1-23"><a href="#cb1-23"></a>plt.xlabel(<span class="st">'ln(x)'</span>)</span>
+<span id="cb1-24"><a href="#cb1-24"></a>plt.ylabel(<span class="st">'Density'</span>)</span>
+<span id="cb1-25"><a href="#cb1-25"></a>plt.legend()</span>
+<span id="cb1-26"><a href="#cb1-26"></a></span>
+<span id="cb1-27"><a href="#cb1-27"></a>plt.tight_layout()</span>
+<span id="cb1-28"><a href="#cb1-28"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="graph_dis_kdensity_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="多变量核密度函数图" class="level2" data-number="27.3">
+<h2 data-number="27.3" class="anchored" data-anchor-id="多变量核密度函数图"><span class="header-section-number">27.3</span> 多变量核密度函数图</h2>
+<ul>
+<li>不同时期的收入分布 - 时序</li>
+<li>不同种族的收入分布 - 截面</li>
+<li>联合分布</li>
+</ul>
+<div id="0d6d5901" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> requests</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="im">import</span> pyreadstat</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># 设置 User-Agent 模拟浏览器访问</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>url <span class="op">=</span> <span class="st">"https://www.stata-press.com/data/r17/nlsw88.dta"</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>headers <span class="op">=</span> {</span>
+<span id="cb2-7"><a href="#cb2-7"></a>    <span class="st">"User-Agent"</span>: <span class="st">"Mozilla/5.0"</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>}</span>
+<span id="cb2-9"><a href="#cb2-9"></a></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="co"># 下载文件并保存到本地</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>r <span class="op">=</span> requests.get(url, headers<span class="op">=</span>headers)</span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data/nlsw88.dta"</span>, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb2-13"><a href="#cb2-13"></a>    f.write(r.content)</span>
+<span id="cb2-14"><a href="#cb2-14"></a></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="co"># 用 pyreadstat 读取本地文件</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>df, meta <span class="op">=</span> pyreadstat.read_dta(<span class="st">"data/nlsw88.dta"</span>)</span>
+<span id="cb2-17"><a href="#cb2-17"></a></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="co"># 显示前几行</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="bu">print</span>(df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   idcode  age  race  married  never_married grade  collgrad  south  smsa  \
+0       1   37     2        0              0    12         0      0     1   
+1       2   37     2        0              0    12         0      0     1   
+2       3   42     2        0              1    12         0      0     1   
+3       4   43     1        1              0    17         1      0     1   
+4       6   42     1        1              0    12         0      0     1   
+
+   c_city industry occupation union       wage hours    ttl_exp     tenure  
+0       0        5          6     1  11.739125    48  10.333334   5.333333  
+1       1        4          5     1   6.400963    40  13.621795   5.250000  
+2       1        4          3   NaN   5.016723    40  17.730770   1.250000  
+3       0       11         13     1   9.033813    42  13.211537   1.750000  
+4       0        4          6     0   8.083731    48  17.820513  17.750000  </code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+提示词
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>绘制 White (race==1) 和 Black (race==2) 的 wage 变量的核密度函数图</li>
+<li>尺寸：5 x 3</li>
+<li>布局：1 行 1 列，将两个核密度函数图叠加</li>
+<li>颜色：White = blue, Black = red (lpattern: dash)</li>
+<li>透明度：0.8</li>
+<li>标题字号: 12, 图例字号: 10, 横轴和纵轴字号: 10</li>
+</ul>
+</div>
+</div>
+<div id="a6d02a9e" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">3</span>))</span>
+<span id="cb4-2"><a href="#cb4-2"></a>sns.kdeplot(df.loc[df[<span class="st">'race'</span>] <span class="op">==</span> <span class="dv">1</span>, <span class="st">'wage'</span>], </span>
+<span id="cb4-3"><a href="#cb4-3"></a>            label<span class="op">=</span><span class="st">'White'</span>, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb4-4"><a href="#cb4-4"></a>sns.kdeplot(df.loc[df[<span class="st">'race'</span>] <span class="op">==</span> <span class="dv">2</span>, <span class="st">'wage'</span>], </span>
+<span id="cb4-5"><a href="#cb4-5"></a>            label<span class="op">=</span><span class="st">'Black'</span>, color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb4-6"><a href="#cb4-6"></a>plt.title(<span class="st">'KDE of Wage: White vs Black'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb4-7"><a href="#cb4-7"></a>plt.xlabel(<span class="st">'Wage'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb4-8"><a href="#cb4-8"></a>plt.ylabel(<span class="st">'Density'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb4-9"><a href="#cb4-9"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb4-10"><a href="#cb4-10"></a>plt.xticks(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb4-11"><a href="#cb4-11"></a>plt.yticks(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb4-12"><a href="#cb4-12"></a>plt.tight_layout()</span>
+<span id="cb4-13"><a href="#cb4-13"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="graph_dis_kdensity_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>练习：</strong> 绘制 White 和 Black 两个种族的妇女的 ln(wage) 的核密度函数图</p>
+<section id="多变量核密度函数图山脊图" class="level3" data-number="27.3.1">
+<h3 data-number="27.3.1" class="anchored" data-anchor-id="多变量核密度函数图山脊图"><span class="header-section-number">27.3.1</span> 多变量核密度函数图：山脊图</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+提示词
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>目的：绘制多只股票 xxx 年日收益率的山脊图</li>
+<li>数据来源：你选择合适的 package，适合中国大陆用户，自动在线下载</li>
+<li>股票：中国移动，贵州茅台，万科A，比亚迪, 宁德时代, 南方航空, 格力电器</li>
+<li>年份：2015 年 或 2024 年 或 2025 年 (可以指定一个 year 变量，我随后根据需要填写)</li>
+</ul>
+</div>
+</div>
+<div id="b4518478" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> akshare <span class="im">as</span> ak</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="im">import</span> joypy</span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co"># 设置 matplotlib 字体</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'Arial Unicode MS'</span>]</span>
+<span id="cb5-9"><a href="#cb5-9"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>plt.rcParams[<span class="st">'font.size'</span>] <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co"># 股票代码字典</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a>stock_dict <span class="op">=</span> {</span>
+<span id="cb5-14"><a href="#cb5-14"></a>    <span class="st">'中国移动'</span>: <span class="st">'sh600941'</span>,</span>
+<span id="cb5-15"><a href="#cb5-15"></a>    <span class="st">'贵州茅台'</span>: <span class="st">'sh600519'</span>,</span>
+<span id="cb5-16"><a href="#cb5-16"></a>    <span class="st">'万科A'</span>: <span class="st">'sz000002'</span>,</span>
+<span id="cb5-17"><a href="#cb5-17"></a>    <span class="st">'比亚迪'</span>: <span class="st">'sz002594'</span>,</span>
+<span id="cb5-18"><a href="#cb5-18"></a>    <span class="st">'宁德时代'</span>: <span class="st">'sz300750'</span>,</span>
+<span id="cb5-19"><a href="#cb5-19"></a>    <span class="st">'南方航空'</span>: <span class="st">'sh600029'</span>,</span>
+<span id="cb5-20"><a href="#cb5-20"></a>    <span class="st">'格力电器'</span>: <span class="st">'sz000651'</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a>}</span>
+<span id="cb5-22"><a href="#cb5-22"></a></span>
+<span id="cb5-23"><a href="#cb5-23"></a>year <span class="op">=</span> <span class="dv">2024</span>  <span class="co"># 指定年份</span></span>
+<span id="cb5-24"><a href="#cb5-24"></a>start_date <span class="op">=</span> <span class="ss">f'</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">0101'</span></span>
+<span id="cb5-25"><a href="#cb5-25"></a>end_date <span class="op">=</span> <span class="ss">f'</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">1231'</span></span>
+<span id="cb5-26"><a href="#cb5-26"></a></span>
+<span id="cb5-27"><a href="#cb5-27"></a>returns_list <span class="op">=</span> []</span>
+<span id="cb5-28"><a href="#cb5-28"></a></span>
+<span id="cb5-29"><a href="#cb5-29"></a><span class="cf">for</span> name, code <span class="kw">in</span> stock_dict.items():</span>
+<span id="cb5-30"><a href="#cb5-30"></a>    <span class="cf">try</span>:</span>
+<span id="cb5-31"><a href="#cb5-31"></a>        df <span class="op">=</span> ak.stock_zh_a_daily(symbol<span class="op">=</span>code, start_date<span class="op">=</span>start_date, end_date<span class="op">=</span>end_date)</span>
+<span id="cb5-32"><a href="#cb5-32"></a>        <span class="cf">if</span> df.empty:</span>
+<span id="cb5-33"><a href="#cb5-33"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">（</span><span class="sc">{</span>code<span class="sc">}</span><span class="ss">）在 </span><span class="sc">{</span>year<span class="sc">}</span><span class="ss"> 年无数据，跳过。"</span>)</span>
+<span id="cb5-34"><a href="#cb5-34"></a>            <span class="cf">continue</span></span>
+<span id="cb5-35"><a href="#cb5-35"></a>        df <span class="op">=</span> df[[<span class="st">'date'</span>, <span class="st">'close'</span>]]</span>
+<span id="cb5-36"><a href="#cb5-36"></a>        df[<span class="st">'date'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'date'</span>])</span>
+<span id="cb5-37"><a href="#cb5-37"></a>        df.sort_values(<span class="st">'date'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-38"><a href="#cb5-38"></a>        df[<span class="st">'close'</span>] <span class="op">=</span> df[<span class="st">'close'</span>].astype(<span class="bu">float</span>)</span>
+<span id="cb5-39"><a href="#cb5-39"></a>        <span class="co"># 计算对数收益率</span></span>
+<span id="cb5-40"><a href="#cb5-40"></a>        df[<span class="st">'log_ret'</span>] <span class="op">=</span> np.log(df[<span class="st">'close'</span>]).diff()</span>
+<span id="cb5-41"><a href="#cb5-41"></a>        df[<span class="st">'stock'</span>] <span class="op">=</span> name</span>
+<span id="cb5-42"><a href="#cb5-42"></a>        returns_list.append(df[[<span class="st">'date'</span>, <span class="st">'log_ret'</span>, <span class="st">'stock'</span>]])</span>
+<span id="cb5-43"><a href="#cb5-43"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb5-44"><a href="#cb5-44"></a>        <span class="bu">print</span>(<span class="ss">f"下载 </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">（</span><span class="sc">{</span>code<span class="sc">}</span><span class="ss">）时出错：</span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-45"><a href="#cb5-45"></a></span>
+<span id="cb5-46"><a href="#cb5-46"></a><span class="cf">if</span> <span class="bu">len</span>(returns_list) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb5-47"><a href="#cb5-47"></a>    returns_df <span class="op">=</span> pd.concat(returns_list, axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb5-48"><a href="#cb5-48"></a>    returns_df <span class="op">=</span> returns_df.dropna(subset<span class="op">=</span>[<span class="st">'log_ret'</span>])</span>
+<span id="cb5-49"><a href="#cb5-49"></a>    data_long <span class="op">=</span> returns_df[[<span class="st">'stock'</span>, <span class="st">'log_ret'</span>]]</span>
+<span id="cb5-50"><a href="#cb5-50"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb5-51"><a href="#cb5-51"></a>    joypy.joyplot(data_long, by<span class="op">=</span><span class="st">"stock"</span>, column<span class="op">=</span><span class="st">"log_ret"</span>, </span>
+<span id="cb5-52"><a href="#cb5-52"></a>                  figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>), </span>
+<span id="cb5-53"><a href="#cb5-53"></a>                  bins<span class="op">=</span><span class="dv">50</span>,</span>
+<span id="cb5-54"><a href="#cb5-54"></a>                  range_style<span class="op">=</span><span class="st">'own'</span>,</span>
+<span id="cb5-55"><a href="#cb5-55"></a>                  legend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb5-56"><a href="#cb5-56"></a>                  overlap<span class="op">=</span><span class="dv">1</span>, </span>
+<span id="cb5-57"><a href="#cb5-57"></a>                  linewidth<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb5-58"><a href="#cb5-58"></a>                  fade<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-59"><a href="#cb5-59"></a>    plt.title(<span class="ss">f"</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss"> 年多只股票日收益率分布山脊图"</span>, fontsize<span class="op">=</span><span class="dv">18</span>)</span>
+<span id="cb5-60"><a href="#cb5-60"></a>    plt.xlabel(<span class="st">"日对数收益率"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb5-61"><a href="#cb5-61"></a>    plt.ylabel(<span class="st">"股票名称"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb5-62"><a href="#cb5-62"></a>    plt.tight_layout()</span>
+<span id="cb5-63"><a href="#cb5-63"></a>    plt.show()</span>
+<span id="cb5-64"><a href="#cb5-64"></a><span class="cf">else</span>:</span>
+<span id="cb5-65"><a href="#cb5-65"></a>    <span class="bu">print</span>(<span class="st">"未能获得任何股票数据，无法绘图。"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;Figure size 800x600 with 0 Axes&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="graph_dis_kdensity_files/figure-html/cell-5-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="进阶用法" class="level2" data-number="27.4">
+<h2 data-number="27.4" class="anchored" data-anchor-id="进阶用法"><span class="header-section-number">27.4</span> 进阶用法</h2>
+<section id="散点图-核密度函数图" class="level3" data-number="27.4.1">
+<h3 data-number="27.4.1" class="anchored" data-anchor-id="散点图-核密度函数图"><span class="header-section-number">27.4.1</span> 散点图 + 核密度函数图</h3>
+<p><strong>penguins</strong> 数据集是一个经典的数据集，包含了三种企鹅物种（Adelie、Chinstrap 和 Gentoo）的生物测量数据。该数据集常用于统计分析和机器学习建模的教学和研究。本例中，我们抽取了三个变量：</p>
+<ul>
+<li><code>species</code>：企鹅的物种（Adelie、Chinstrap 或 Gentoo）。</li>
+<li><code>flipper_length_mm</code>：鳍的长度（单位：毫米）。</li>
+<li><code>bill_length_mm</code>：喙的长度（单位：毫米）。</li>
+<li><code>body_mass_g</code>：体重（单位：克）。</li>
+</ul>
+<p>下图中，我们使用 <strong>seaborn</strong> 中的 <code>jionplot</code> 函数绘制了散点图和核密度函数图。散点图展示了每个物种的鳍长和喙长的分布情况，而核密度函数图则呈现了横轴变量 (<code>flipper_length_mm</code>) 和纵轴变量 (<code>bill_length_mm</code>) 的分布情况。</p>
+<p>散点图反映了企鹅的喙长 (<span class="math inline">\(y\)</span>) 与鳍长 (<span class="math inline">\(x\)</span>) 之间的关系。可以看出，虽然三种企鹅的 <span class="math inline">\(y \sim x\)</span> 之间都是正相关的，但 Chinstrap 类和 Gentoo 类企鹅的喙长和鳍长之间的正相关关系更强一些，而 Adelie 类企鹅的喙长和鳍长之间的正相关关系相对较弱。</p>
+<p>密度函数图则揭示了单变量的分布特征。可以看出，平均而言，Adelie 类企鹅的喙长和鳍长都较小，而 Gentoo 类企鹅的喙长和鳍长都较大。Chinstrap 类企鹅的喙长 (<span class="math inline">\(y\)</span>) 与 Gentoo 类企鹅的长度范围差不多，但平均而言，前者的喙更长一些；有趣的是，Chinstrap 类企鹅的鳍长 (<span class="math inline">\(x\)</span>) 与 Adelie 类企鹅的长度范围差不多，但平均而言，前者的鳍更长一些。</p>
+<p>虽然尚未看到三种企鹅的真实照片，但我们已经能够大致判断它们的体型特征了。</p>
+<ul>
+<li>Adelie：体型较小，喙长和鳍长都较小。</li>
+<li>Chinstrap：体型中等，喙长与 Gentoo 差不多；而鳍长则与 Adelie 相近。</li>
+<li>Gentoo：体型较大，喙长和鳍长都较大。</li>
+</ul>
+<p>简言之，Adelie 是「短嘴短翅」，Chinstrap 是「长嘴短翅」，Gentoo 是「长嘴长翅」。若进一步结合散点图来看，则可以推断出：Gentoo 类企鹅群体身材较为均匀，而 Adelie 类企鹅个体之间的身材差异较大。</p>
+<div id="0d1a80b5" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Source: https://seaborn.pydata.org/tutorial/introduction.html</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb7-3"><a href="#cb7-3"></a>sns.jointplot(data<span class="op">=</span>penguins, </span>
+<span id="cb7-4"><a href="#cb7-4"></a>              x<span class="op">=</span><span class="st">"flipper_length_mm"</span>, </span>
+<span id="cb7-5"><a href="#cb7-5"></a>              y<span class="op">=</span><span class="st">"bill_length_mm"</span>, </span>
+<span id="cb7-6"><a href="#cb7-6"></a>              hue<span class="op">=</span><span class="st">"species"</span>, </span>
+<span id="cb7-7"><a href="#cb7-7"></a>              height<span class="op">=</span><span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="graph_dis_kdensity_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>它们到底长啥样？</p>
+</blockquote>
+<p>你可以在 <a href="https://www.animalspot.net/penguin">这里</a> 找到它们的详细介绍。有位热心的<a href="https://www.deviantart.com/bluegio/art/Adelie-Chinstrap-and-Gentoo-867439280">网友</a>特意绘制了它们的合影 (从左到右依次为 Adelie、Chinstrap 和 Gentoo)，如下图所示：</p>
+<p><img src="figs/graph-Adelie-Chinstrap-and-Gentoo-867439280.jpg" width="500pt"></p>
+</section>
+<section id="多个变量的情形pairplot" class="level3" data-number="27.4.2">
+<h3 data-number="27.4.2" class="anchored" data-anchor-id="多个变量的情形pairplot"><span class="header-section-number">27.4.2</span> 多个变量的情形：pairplot</h3>
+<p>在上面的例子中，我们只考虑了两个变量之间的关系。实际上，数据集中可能有多个变量，此时可以使用 <strong>seaborn</strong> 中的 <code>pairplot</code> 函数来绘制多个变量之间的关系图。</p>
+<p>下面的例子中，我们同时呈现了三个变量 (<code>flipper_length_mm</code>、<code>bill_length_mm</code> 和 <code>body_mass_g</code>) 之间的两两配对散点图，以及单个变量的核密度函数图。与此同时，我们还使用了不同的颜色来区分不同的物种。</p>
+<div id="91b38bfe" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Source：https://seaborn.pydata.org/tutorial/introduction.html</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>vlist <span class="op">=</span> [<span class="st">"flipper_length_mm"</span>, <span class="st">"bill_length_mm"</span>, <span class="st">"body_mass_g"</span>]</span>
+<span id="cb8-3"><a href="#cb8-3"></a>sns.pairplot(data<span class="op">=</span>penguins, <span class="bu">vars</span><span class="op">=</span>vlist, </span>
+<span id="cb8-4"><a href="#cb8-4"></a>             hue<span class="op">=</span><span class="st">"species"</span>, </span>
+<span id="cb8-5"><a href="#cb8-5"></a>             corner<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="graph_dis_kdensity_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="联合分布图" class="level3" data-number="27.4.3">
+<h3 data-number="27.4.3" class="anchored" data-anchor-id="联合分布图"><span class="header-section-number">27.4.3</span> 联合分布图</h3>
+<p>https://seaborn.pydata.org/generated/seaborn.kdeplot.html</p>
+</section>
+<section id="d-核密度函数图" class="level3" data-number="27.4.4">
+<h3 data-number="27.4.4" class="anchored" data-anchor-id="d-核密度函数图"><span class="header-section-number">27.4.4</span> 3D 核密度函数图</h3>
+<p><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20250511164056.png" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p>Source: <a href="https://matplotlib.org/stable/gallery/mplot3d/fillunder3d.html#sphx-glr-gallery-mplot3d-fillunder3d-py">matplotlib - Fill under 3D line graphs</a></p>
+</blockquote>
+</section>
+<section id="密度函数图条形码" class="level3" data-number="27.4.5">
+<h3 data-number="27.4.5" class="anchored" data-anchor-id="密度函数图条形码"><span class="header-section-number">27.4.5</span> 密度函数图+条形码</h3>
+<p><a href="https://seaborn.pydata.org/generated/seaborn.rugplot.html">seaborn.rugplot</a></p>
+<div id="44ed3430" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns<span class="op">;</span> sns.set_theme()</span>
+<span id="cb9-2"><a href="#cb9-2"></a>tips <span class="op">=</span> sns.load_dataset(<span class="st">"tips"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3"></a>sns.kdeplot(data<span class="op">=</span>tips, x<span class="op">=</span><span class="st">"total_bill"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4"></a>sns.rugplot(data<span class="op">=</span>tips, x<span class="op">=</span><span class="st">"total_bill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="graph_dis_kdensity_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../body/graph_dis_histogram.html" class="pagination-link" aria-label="直方图">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">直方图</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../body/test_AB_test.html" class="pagination-link" aria-label="A/B test-分组对照试验">
+        <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><a href="https://www.lianxh.cn">www.lianxh.cn</a></p>
+</div>
+    <div class="nav-footer-right">
+<p>Support: <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

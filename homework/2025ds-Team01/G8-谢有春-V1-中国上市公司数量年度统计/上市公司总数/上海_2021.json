@@ -1,0 +1,66 @@
+{
+    "actionErrors": [],
+    "actionMessages": [],
+    "fieldErrors": {},
+    "isPagination": "false",
+    "jsonCallBack": "jsonpCallback91781235",
+    "locale": "zh_CN",
+    "pageHelp": {
+        "beginPage": 1,
+        "cacheSize": 5,
+        "data": null,
+        "endDate": null,
+        "endPage": null,
+        "objectResult": null,
+        "pageCount": null,
+        "pageNo": 1,
+        "pageSize": 10,
+        "pageSizeWithOutLimit": 10,
+        "searchDate": null,
+        "sort": null,
+        "startDate": null,
+        "total": 0
+    },
+    "pageNo": null,
+    "pageSize": null,
+    "queryDate": "",
+    "result": [
+        {
+            "TOTAL_VALUE": "457192.32",
+            "SECURITY_NUM": "1896",
+            "NEGO_VALUE": "387717.78",
+            "TRADE_DATE": "20210401",
+            "TOTAL_TRADE_AMT": "2933.32",
+            "PRODUCT_NAME": "股票"
+        },
+        {
+            "TOTAL_VALUE": "423964.43",
+            "SECURITY_NUM": "1595",
+            "NEGO_VALUE": "376292.4",
+            "TRADE_DATE": "20210401",
+            "TOTAL_TRADE_AMT": "2718.46",
+            "PRODUCT_NAME": "主板A"
+        },
+        {
+            "TOTAL_VALUE": "773.59",
+            "SECURITY_NUM": "48",
+            "NEGO_VALUE": "686.39",
+            "TRADE_DATE": "20210401",
+            "TOTAL_TRADE_AMT": "0.73",
+            "PRODUCT_NAME": "主板B"
+        },
+        {
+            "TOTAL_VALUE": "32454.3",
+            "SECURITY_NUM": "253",
+            "NEGO_VALUE": "10738.99",
+            "TRADE_DATE": "20210401",
+            "TOTAL_TRADE_AMT": "214.13",
+            "PRODUCT_NAME": "科创板"
+        }
+    ],
+    "securityCode": "",
+    "sqlId": "COMMON_SSE_SJ_SCGM_C",
+    "texts": null,
+    "type": "",
+    "validateCode": ""
+}

@@ -1,0 +1,2194 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>31&nbsp; 分仓散点图 – 数据分析</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../body/TS_FRED_US_unemploy_rate.html" rel="next">
+<link href="../body/regress_02_wage.html" rel="prev">
+<link href="../images/ds-book-logo-40.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e8fb9d25728d58bfeac61b497e4a6629.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-8434d2026ae8291579158df2ad8dfa64.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/test_AB_test.html"><strong>回归分析</strong></a></li><li class="breadcrumb-item"><a href="../body/regress_03_binscatter.html"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">分仓散点图</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../"></a><a href="../index.html">DS</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
+    <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
+    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">数据分析</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/_home.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">关于我们</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/00_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">前言</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Python 基础</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/00_py_with_AI_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">借助 AI 写代码</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/00_py_with_AI_pic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ansome Python + AI</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_1_install-Python-Anocanda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python：安装和环境配置</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_2_install_FAQs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Python 安装常见问题</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_3_markdown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Python 入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_01_grammer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Python 代码风格</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_02_QuickReference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python 常用命令速查表</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_03_Packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Python 常用扩展包</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_04_import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Python：import 使用详解</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_05_OOP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Python：语法解析-面向对象编程</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_06_filepath.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Python 路径设置</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_02_numpy_scipy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_02_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">pandas 快速入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_03_matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Matplotlib简介</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_04_func_and_module.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">函数</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_05_class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">类和对象</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>数据分析</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_02_data_type.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">数据分析是什么？</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_02_get_data_GMD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">获取数据：GMD</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_SZ_index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">上证指数的时序特征</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>可视化</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Python 可视化：简介</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_box_violin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">箱型图和小提琴图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_histogram.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">直方图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_kdensity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">核密度函数图</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>回归分析</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/test_AB_test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_01_OLS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">线性回归模型</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_02_wage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">线性回归分析</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_03_binscatter.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">分仓散点图</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>时间序列分析</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_FRED_US_unemploy_rate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>作业展示</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Dangdang_G7_01_data_clean.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">当当网-G7-01</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Dangdang_G7_02_data_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">当当网-G7-02</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/G8_China_stock_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">G8-中国上市公司</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_01_data_crawler.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">G4-01</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_02_data_cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">G4-02</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_03_data_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">G4-03</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_万诗晴.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">ex02_万诗晴</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_吴倩茵.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">ex02_吴倩茵</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_朱少荣.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">ex02_朱少荣</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_黄伊姿.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">ex02_黄伊姿</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#何谓分仓散点图" id="toc-何谓分仓散点图" class="nav-link active" data-scroll-target="#何谓分仓散点图"><span class="header-section-number">31.1</span> 何谓分仓散点图</a></li>
+  <li><a href="#binscatter-的绘制具体步骤" id="toc-binscatter-的绘制具体步骤" class="nav-link" data-scroll-target="#binscatter-的绘制具体步骤"><span class="header-section-number">31.2</span> binscatter 的绘制具体步骤</a>
+  <ul class="collapse">
+  <li><a href="#回归结果对比" id="toc-回归结果对比" class="nav-link" data-scroll-target="#回归结果对比"><span class="header-section-number">31.2.1</span> 回归结果对比</a></li>
+  <li><a href="#例-2实际数据-教育回报率" id="toc-例-2实际数据-教育回报率" class="nav-link" data-scroll-target="#例-2实际数据-教育回报率"><span class="header-section-number">31.2.2</span> 例 2：实际数据-教育回报率</a></li>
+  </ul></li>
+  <li><a href="#理论基础" id="toc-理论基础" class="nav-link" data-scroll-target="#理论基础"><span class="header-section-number">31.3</span> 理论基础</a>
+  <ul class="collapse">
+  <li><a href="#条件期望角度的解释" id="toc-条件期望角度的解释" class="nav-link" data-scroll-target="#条件期望角度的解释"><span class="header-section-number">31.3.1</span> 条件期望角度的解释</a></li>
+  <li><a href="#图示" id="toc-图示" class="nav-link" data-scroll-target="#图示"><span class="header-section-number">31.3.2</span> 图示</a></li>
+  <li><a href="#条件期望的扩展考虑控制变量" id="toc-条件期望的扩展考虑控制变量" class="nav-link" data-scroll-target="#条件期望的扩展考虑控制变量"><span class="header-section-number">31.3.3</span> 条件期望的扩展（考虑控制变量）</a></li>
+  </ul></li>
+  <li><a href="#几个问题" id="toc-几个问题" class="nav-link" data-scroll-target="#几个问题"><span class="header-section-number">31.4</span> 几个问题</a>
+  <ul class="collapse">
+  <li><a href="#为何要采用等分组" id="toc-为何要采用等分组" class="nav-link" data-scroll-target="#为何要采用等分组"><span class="header-section-number">31.4.1</span> 为何要采用等分组？</a></li>
+  <li><a href="#如何选择-bins-的数量" id="toc-如何选择-bins-的数量" class="nav-link" data-scroll-target="#如何选择-bins-的数量"><span class="header-section-number">31.4.2</span> 如何选择 bins 的数量？</a></li>
+  </ul></li>
+  <li><a href="#python-实例" id="toc-python-实例" class="nav-link" data-scroll-target="#python-实例"><span class="header-section-number">31.5</span> Python 实例</a>
+  <ul class="collapse">
+  <li><a href="#数据说明" id="toc-数据说明" class="nav-link" data-scroll-target="#数据说明"><span class="header-section-number">31.5.1</span> 数据说明</a></li>
+  <li><a href="#初步分析" id="toc-初步分析" class="nav-link" data-scroll-target="#初步分析"><span class="header-section-number">31.5.2</span> 初步分析</a></li>
+  <li><a href="#分仓散点图" id="toc-分仓散点图" class="nav-link" data-scroll-target="#分仓散点图"><span class="header-section-number">31.5.3</span> 分仓散点图</a></li>
+  <li><a href="#分仓非线性拟合线" id="toc-分仓非线性拟合线" class="nav-link" data-scroll-target="#分仓非线性拟合线"><span class="header-section-number">31.5.4</span> 分仓非线性拟合线</a></li>
+  <li><a href="#去除控制变量的影响" id="toc-去除控制变量的影响" class="nav-link" data-scroll-target="#去除控制变量的影响"><span class="header-section-number">31.5.5</span> 去除控制变量的影响</a></li>
+  </ul></li>
+  <li><a href="#小结" id="toc-小结" class="nav-link" data-scroll-target="#小结"><span class="header-section-number">31.6</span> 小结</a></li>
+  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="header-section-number">31.7</span> 参考文献</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/test_AB_test.html"><strong>回归分析</strong></a></li><li class="breadcrumb-item"><a href="../body/regress_03_binscatter.html"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">分仓散点图</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">分仓散点图</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="何谓分仓散点图" class="level2" data-number="31.1">
+<h2 data-number="31.1" class="anchored" data-anchor-id="何谓分仓散点图"><span class="header-section-number">31.1</span> 何谓分仓散点图</h2>
+<p>分仓散点图（也称为分组均值图、Binned Scatterplot、Grouped Scatterplot），是将连续自变量 <span class="math inline">\(x\)</span> 按照某种规则分为若干组（bin/decile/quantile），每组内取 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(y\)</span> 的均值，进而绘制 <span class="math inline">\((\bar{x}_g, \bar{y}_g)\)</span> 散点。</p>
+<p>这种方法可以有效缓解单个观测值的随机波动与噪音影响，更直观地展示 <span class="math inline">\(x\)</span> 与 <span class="math inline">\(y\)</span> 的整体关系和非线性结构。分仓散点图常用于大样本、点密集的数据集，是经济学、社会科学等领域中描述性和机制检验的重要可视化工具。</p>
+</section>
+<section id="binscatter-的绘制具体步骤" class="level2" data-number="31.2">
+<h2 data-number="31.2" class="anchored" data-anchor-id="binscatter-的绘制具体步骤"><span class="header-section-number">31.2</span> binscatter 的绘制具体步骤</h2>
+<ol type="1">
+<li><strong>选择分组变量</strong>：通常为 <span class="math inline">\(x\)</span>。</li>
+<li><strong>确定分组方式与分组数 <span class="math inline">\(G\)</span></strong>：
+<ul>
+<li>通常用分位数（如十分位）、也可等宽分组 (每组的样本数相同)；</li>
+<li><span class="math inline">\(G\)</span> 一般取 10-20，样本量大时可适当增加。</li>
+</ul></li>
+<li><strong>组内计算均值</strong>：每组算出 <span class="math inline">\(\bar{x}_g, \bar{y}_g\)</span> 或 <span class="math inline">\(\bar{\tilde{x}}_g, \bar{\tilde{y}}_g\)</span>。其中，<span class="math inline">\(g = 1, 2, \cdots G\)</span></li>
+<li><strong>绘图</strong>：以 <span class="math inline">\((\bar{x}_g, \bar{y}_g)\)</span> 绘制散点；可叠加拟合线 (基于原始数据而非生成的散点)、置信区间等。</li>
+</ol>
+<p>模拟如下过程： 1. y = 10 + 0.5x + e 2. e ~ N(0, 1) 3. x ~ N(5, 2) 4. 样本量为 500 5. 绘制分仓散点图，bins = 10，每组的样本数相同；添加分仓线 (虚线，灰色) 6. 添加：原始数据的拟合线 (实线，蓝色)，置信区间 (阴影区域，蓝色，透明度=0.3)。 7. 添加：分仓散点图的拟合线 (实线，红色)，置信区间 (阴影区域，红色，透明度=0.3)。</p>
+<div id="0fcb6ca6" class="cell" data-execution_count="93">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># 1. 生成模拟数据</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb1-9"><a href="#cb1-9"></a>n <span class="op">=</span> <span class="dv">500</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>x <span class="op">=</span> np.random.normal(<span class="dv">5</span>, <span class="dv">2</span>, n)</span>
+<span id="cb1-11"><a href="#cb1-11"></a>e <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, n)</span>
+<span id="cb1-12"><a href="#cb1-12"></a>y <span class="op">=</span> <span class="dv">10</span> <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> x <span class="op">+</span> e</span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a>df_sim <span class="op">=</span> pd.DataFrame({<span class="st">'x'</span>: x, <span class="st">'y'</span>: y})</span>
+<span id="cb1-15"><a href="#cb1-15"></a></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="co"># 2. 分为10组（十分位分组）</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a>df_sim[<span class="st">'bin'</span>], bin_edges <span class="op">=</span> pd.qcut(df_sim[<span class="st">'x'</span>], <span class="dv">10</span>, labels<span class="op">=</span><span class="va">False</span>, retbins<span class="op">=</span><span class="va">True</span>, duplicates<span class="op">=</span><span class="st">'drop'</span>)</span>
+<span id="cb1-18"><a href="#cb1-18"></a></span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="co"># 3. 计算每组均值</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a>grouped <span class="op">=</span> df_sim.groupby(<span class="st">'bin'</span>).agg(</span>
+<span id="cb1-21"><a href="#cb1-21"></a>    mean_x<span class="op">=</span>(<span class="st">'x'</span>, <span class="st">'mean'</span>),</span>
+<span id="cb1-22"><a href="#cb1-22"></a>    mean_y<span class="op">=</span>(<span class="st">'y'</span>, <span class="st">'mean'</span>)</span>
+<span id="cb1-23"><a href="#cb1-23"></a>).reset_index()</span>
+<span id="cb1-24"><a href="#cb1-24"></a></span>
+<span id="cb1-25"><a href="#cb1-25"></a><span class="co"># 4. 原始数据的拟合线与置信区间</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>slope, intercept, r_value, p_value, std_err <span class="op">=</span> stats.linregress(df_sim[<span class="st">'x'</span>], df_sim[<span class="st">'y'</span>])</span>
+<span id="cb1-27"><a href="#cb1-27"></a>x_line <span class="op">=</span> np.linspace(df_sim[<span class="st">'x'</span>].<span class="bu">min</span>(), df_sim[<span class="st">'x'</span>].<span class="bu">max</span>(), <span class="dv">200</span>)</span>
+<span id="cb1-28"><a href="#cb1-28"></a>y_line <span class="op">=</span> intercept <span class="op">+</span> slope <span class="op">*</span> x_line</span>
+<span id="cb1-29"><a href="#cb1-29"></a></span>
+<span id="cb1-30"><a href="#cb1-30"></a><span class="co"># 置信区间</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a>y_pred <span class="op">=</span> intercept <span class="op">+</span> slope <span class="op">*</span> df_sim[<span class="st">'x'</span>]</span>
+<span id="cb1-32"><a href="#cb1-32"></a>resid <span class="op">=</span> df_sim[<span class="st">'y'</span>] <span class="op">-</span> y_pred</span>
+<span id="cb1-33"><a href="#cb1-33"></a>se <span class="op">=</span> np.sqrt(np.<span class="bu">sum</span>(resid<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (n <span class="op">-</span> <span class="dv">2</span>)) <span class="op">/</span> np.sqrt(np.<span class="bu">sum</span>((df_sim[<span class="st">'x'</span>] <span class="op">-</span> df_sim[<span class="st">'x'</span>].mean())<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb1-34"><a href="#cb1-34"></a>ci <span class="op">=</span> <span class="fl">1.96</span> <span class="op">*</span> se</span>
+<span id="cb1-35"><a href="#cb1-35"></a>y_upper <span class="op">=</span> y_line <span class="op">+</span> ci</span>
+<span id="cb1-36"><a href="#cb1-36"></a>y_lower <span class="op">=</span> y_line <span class="op">-</span> ci</span>
+<span id="cb1-37"><a href="#cb1-37"></a></span>
+<span id="cb1-38"><a href="#cb1-38"></a><span class="co"># 5. 分仓均值的拟合线与置信区间</span></span>
+<span id="cb1-39"><a href="#cb1-39"></a>slope_bin, intercept_bin, _, _, std_err_bin <span class="op">=</span> stats.linregress(grouped[<span class="st">'mean_x'</span>], grouped[<span class="st">'mean_y'</span>])</span>
+<span id="cb1-40"><a href="#cb1-40"></a>y_line_bin <span class="op">=</span> intercept_bin <span class="op">+</span> slope_bin <span class="op">*</span> x_line</span>
+<span id="cb1-41"><a href="#cb1-41"></a><span class="co"># 置信区间（近似，使用分组均值的标准误）</span></span>
+<span id="cb1-42"><a href="#cb1-42"></a>y_pred_bin <span class="op">=</span> intercept_bin <span class="op">+</span> slope_bin <span class="op">*</span> grouped[<span class="st">'mean_x'</span>]</span>
+<span id="cb1-43"><a href="#cb1-43"></a>resid_bin <span class="op">=</span> grouped[<span class="st">'mean_y'</span>] <span class="op">-</span> y_pred_bin</span>
+<span id="cb1-44"><a href="#cb1-44"></a>se_bin <span class="op">=</span> np.sqrt(np.<span class="bu">sum</span>(resid_bin<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (<span class="bu">len</span>(grouped) <span class="op">-</span> <span class="dv">2</span>)) <span class="op">/</span> np.sqrt(np.<span class="bu">sum</span>((grouped[<span class="st">'mean_x'</span>] <span class="op">-</span> grouped[<span class="st">'mean_x'</span>].mean())<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb1-45"><a href="#cb1-45"></a>ci_bin <span class="op">=</span> <span class="fl">1.96</span> <span class="op">*</span> se_bin</span>
+<span id="cb1-46"><a href="#cb1-46"></a>y_upper_bin <span class="op">=</span> y_line_bin <span class="op">+</span> ci_bin</span>
+<span id="cb1-47"><a href="#cb1-47"></a>y_lower_bin <span class="op">=</span> y_line_bin <span class="op">-</span> ci_bin</span>
+<span id="cb1-48"><a href="#cb1-48"></a></span>
+<span id="cb1-49"><a href="#cb1-49"></a><span class="co"># 6. 绘图</span></span>
+<span id="cb1-50"><a href="#cb1-50"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">6</span>))</span>
+<span id="cb1-51"><a href="#cb1-51"></a>plt.scatter(df_sim[<span class="st">'x'</span>], df_sim[<span class="st">'y'</span>], color<span class="op">=</span><span class="st">'darkblue'</span>, alpha<span class="op">=</span><span class="fl">0.2</span>, s<span class="op">=</span><span class="dv">15</span>, label<span class="op">=</span><span class="st">'Raw data'</span>)</span>
+<span id="cb1-52"><a href="#cb1-52"></a>plt.scatter(grouped[<span class="st">'mean_x'</span>], grouped[<span class="st">'mean_y'</span>], color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>, s<span class="op">=</span><span class="dv">80</span>, label<span class="op">=</span><span class="st">'Binned means'</span>)</span>
+<span id="cb1-53"><a href="#cb1-53"></a></span>
+<span id="cb1-54"><a href="#cb1-54"></a><span class="co"># 分仓线</span></span>
+<span id="cb1-55"><a href="#cb1-55"></a><span class="cf">for</span> edge <span class="kw">in</span> bin_edges[<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>]:</span>
+<span id="cb1-56"><a href="#cb1-56"></a>    plt.axvline(edge, color<span class="op">=</span><span class="st">'grey'</span>, linestyle<span class="op">=</span><span class="st">'dashed'</span>, linewidth<span class="op">=</span><span class="dv">1</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb1-57"><a href="#cb1-57"></a></span>
+<span id="cb1-58"><a href="#cb1-58"></a><span class="co"># 原始数据拟合线和置信区间</span></span>
+<span id="cb1-59"><a href="#cb1-59"></a>plt.plot(x_line, y_line, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Fit line (raw)'</span>)</span>
+<span id="cb1-60"><a href="#cb1-60"></a>plt.fill_between(x_line, y_lower, y_upper, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, label<span class="op">=</span><span class="st">'95% CI (raw)'</span>)</span>
+<span id="cb1-61"><a href="#cb1-61"></a></span>
+<span id="cb1-62"><a href="#cb1-62"></a><span class="co"># 分仓均值拟合线和置信区间</span></span>
+<span id="cb1-63"><a href="#cb1-63"></a>plt.plot(x_line, y_line_bin, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Fit line (binned)'</span>)</span>
+<span id="cb1-64"><a href="#cb1-64"></a>plt.fill_between(x_line, y_lower_bin, y_upper_bin, color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, label<span class="op">=</span><span class="st">'95% CI (binned)'</span>)</span>
+<span id="cb1-65"><a href="#cb1-65"></a></span>
+<span id="cb1-66"><a href="#cb1-66"></a>plt.xlabel(<span class="st">'x'</span>, fontsize<span class="op">=</span><span class="dv">13</span>)</span>
+<span id="cb1-67"><a href="#cb1-67"></a>plt.ylabel(<span class="st">'y'</span>, fontsize<span class="op">=</span><span class="dv">13</span>)</span>
+<span id="cb1-68"><a href="#cb1-68"></a>plt.title(<span class="st">'Binned Scatterplot with Fit Lines and Confidence Intervals'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb1-69"><a href="#cb1-69"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb1-70"><a href="#cb1-70"></a>plt.grid(alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb1-71"><a href="#cb1-71"></a>plt.tight_layout()</span>
+<span id="cb1-72"><a href="#cb1-72"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regress_03_binscatter_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="回归结果对比" class="level3" data-number="31.2.1">
+<h3 data-number="31.2.1" class="anchored" data-anchor-id="回归结果对比"><span class="header-section-number">31.2.1</span> 回归结果对比</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+提示词
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>做两个回归，列表呈现回归结果：</p>
+<ol type="1">
+<li>data = df_sim</li>
+<li>原始数据回归：<span class="math inline">\(y = \beta_0 + \beta_1 x + e\)</span></li>
+<li>分仓散点图回归：<span class="math inline">\(\bar{y}_g = \theta_0 + \theta_1 \bar{x}_g + u\)</span></li>
+<li>回归结果表格中包含：b、se、t、p值、N, R2。</li>
+</ol>
+</div>
+</div>
+<div id="a53d71c2" class="cell" data-execution_count="94">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co"># 原始数据回归</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>X_raw <span class="op">=</span> sm.add_constant(df_sim[<span class="st">'x'</span>])</span>
+<span id="cb2-7"><a href="#cb2-7"></a>model_raw <span class="op">=</span> sm.OLS(df_sim[<span class="st">'y'</span>], X_raw).fit()</span>
+<span id="cb2-8"><a href="#cb2-8"></a></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co"># 分仓均值回归</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>X_bin <span class="op">=</span> sm.add_constant(grouped[<span class="st">'mean_x'</span>])</span>
+<span id="cb2-11"><a href="#cb2-11"></a>model_bin <span class="op">=</span> sm.OLS(grouped[<span class="st">'mean_y'</span>], X_bin).fit()</span>
+<span id="cb2-12"><a href="#cb2-12"></a></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="co"># 整理结果</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="kw">def</span> summary_to_dict(model, N):</span>
+<span id="cb2-15"><a href="#cb2-15"></a>    params <span class="op">=</span> model.params</span>
+<span id="cb2-16"><a href="#cb2-16"></a>    bse <span class="op">=</span> model.bse</span>
+<span id="cb2-17"><a href="#cb2-17"></a>    tvalues <span class="op">=</span> model.tvalues</span>
+<span id="cb2-18"><a href="#cb2-18"></a>    pvalues <span class="op">=</span> model.pvalues</span>
+<span id="cb2-19"><a href="#cb2-19"></a>    rsq <span class="op">=</span> model.rsquared</span>
+<span id="cb2-20"><a href="#cb2-20"></a>    <span class="cf">return</span> {</span>
+<span id="cb2-21"><a href="#cb2-21"></a>        <span class="st">'b'</span>: params.values,</span>
+<span id="cb2-22"><a href="#cb2-22"></a>        <span class="st">'se'</span>: bse.values,</span>
+<span id="cb2-23"><a href="#cb2-23"></a>        <span class="st">'t'</span>: tvalues.values,</span>
+<span id="cb2-24"><a href="#cb2-24"></a>        <span class="st">'P&gt;|t|'</span>: pvalues.values,</span>
+<span id="cb2-25"><a href="#cb2-25"></a>        <span class="st">'N'</span>: [N, <span class="st">''</span>],</span>
+<span id="cb2-26"><a href="#cb2-26"></a>        <span class="st">'R2'</span>: [rsq, <span class="st">''</span>]</span>
+<span id="cb2-27"><a href="#cb2-27"></a>    }</span>
+<span id="cb2-28"><a href="#cb2-28"></a></span>
+<span id="cb2-29"><a href="#cb2-29"></a>res_raw <span class="op">=</span> summary_to_dict(model_raw, <span class="bu">len</span>(df_sim))</span>
+<span id="cb2-30"><a href="#cb2-30"></a>res_bin <span class="op">=</span> summary_to_dict(model_bin, <span class="bu">len</span>(grouped))</span>
+<span id="cb2-31"><a href="#cb2-31"></a></span>
+<span id="cb2-32"><a href="#cb2-32"></a><span class="co"># 合并为表格</span></span>
+<span id="cb2-33"><a href="#cb2-33"></a>index <span class="op">=</span> [<span class="st">'Intercept'</span>, <span class="st">'x'</span>]</span>
+<span id="cb2-34"><a href="#cb2-34"></a>results_df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb2-35"><a href="#cb2-35"></a>    (<span class="st">'Raw'</span>, col): res_raw[col] <span class="cf">for</span> col <span class="kw">in</span> res_raw</span>
+<span id="cb2-36"><a href="#cb2-36"></a>}, index<span class="op">=</span>index)</span>
+<span id="cb2-37"><a href="#cb2-37"></a><span class="cf">for</span> col <span class="kw">in</span> res_bin:</span>
+<span id="cb2-38"><a href="#cb2-38"></a>    results_df[(<span class="st">'Binned'</span>, col)] <span class="op">=</span> res_bin[col]</span>
+<span id="cb2-39"><a href="#cb2-39"></a></span>
+<span id="cb2-40"><a href="#cb2-40"></a><span class="co"># 展示结果</span></span>
+<span id="cb2-41"><a href="#cb2-41"></a><span class="bu">print</span>(results_df.<span class="bu">round</span>(<span class="dv">3</span>).T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Intercept       x
+Raw    b        10.221   0.462
+       se         0.12   0.022
+       t        85.265  20.761
+       P&gt;|t|       0.0     0.0
+       N           500        
+       R2     0.463953        
+Binned b        10.215   0.463
+       se        0.107    0.02
+       t        95.734  23.307
+       P&gt;|t|       0.0     0.0
+       N            10        
+       R2     0.985486        </code></pre>
+</div>
+</div>
+<p>可以看出：</p>
+<ol type="1">
+<li>原始数据回归与分仓散点图回归的斜率估计非常接近，说明分组均值并不会改变 <span class="math inline">\(x\)</span> 对 <span class="math inline">\(y\)</span> 的主效应估计。</li>
+<li>分仓散点图回归的标准误略大于原始回归，这是因为分组后有效观测数大幅减少，估计的不确定性相对提高（尽管分组均值降低了部分噪音）。</li>
+<li>分仓散点图回归的 <span class="math inline">\(R^2\)</span> 显著高于原始回归，反映出分组均值有效去除了大量噪声，突出了 <span class="math inline">\(x\)</span> 与 <span class="math inline">\(y\)</span> 的主干趋势。</li>
+</ol>
+</section>
+<section id="例-2实际数据-教育回报率" class="level3" data-number="31.2.2">
+<h3 data-number="31.2.2" class="anchored" data-anchor-id="例-2实际数据-教育回报率"><span class="header-section-number">31.2.2</span> 例 2：实际数据-教育回报率</h3>
+<p>此处，我们使用实际数据集（如教育回报率）来演示分仓散点图的应用。</p>
+<div id="384b1c16" class="cell" data-execution_count="95">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co"># 在线读取数据</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>url <span class="op">=</span> <span class="st">"https://vincentarelbundock.github.io/Rdatasets/csv/wooldridge/mroz.csv"</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>df_edu <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb4-7"><a href="#cb4-7"></a></span>
+<span id="cb4-8"><a href="#cb4-8"></a>x <span class="op">=</span> <span class="st">"educ"</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>y <span class="op">=</span> <span class="st">"lwage"</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a></span>
+<span id="cb4-11"><a href="#cb4-11"></a>df_edu <span class="op">=</span> df_edu[[x, y]].dropna().copy()</span>
+<span id="cb4-12"><a href="#cb4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="co"># 分组</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a>df_edu[<span class="st">'bin'</span>], bin_edges <span class="op">=</span> pd.qcut(df_edu[x], <span class="dv">10</span>, labels<span class="op">=</span><span class="va">False</span>, </span>
+<span id="cb4-15"><a href="#cb4-15"></a>                                   retbins<span class="op">=</span><span class="va">True</span>, duplicates<span class="op">=</span><span class="st">'drop'</span>)</span>
+<span id="cb4-16"><a href="#cb4-16"></a></span>
+<span id="cb4-17"><a href="#cb4-17"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb4-18"><a href="#cb4-18"></a>plt.scatter(df_edu[x], df_edu[y], marker<span class="op">=</span><span class="st">'o'</span>, facecolors<span class="op">=</span><span class="st">'none'</span>, </span>
+<span id="cb4-19"><a href="#cb4-19"></a>            edgecolors<span class="op">=</span><span class="st">'darkblue'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>, label<span class="op">=</span><span class="st">'Raw data'</span>)</span>
+<span id="cb4-20"><a href="#cb4-20"></a></span>
+<span id="cb4-21"><a href="#cb4-21"></a>bin_means <span class="op">=</span> df_edu.groupby(<span class="st">'bin'</span>).agg(</span>
+<span id="cb4-22"><a href="#cb4-22"></a>    mean_x<span class="op">=</span>(x, <span class="st">'mean'</span>),</span>
+<span id="cb4-23"><a href="#cb4-23"></a>    mean_y<span class="op">=</span>(y, <span class="st">'mean'</span>)</span>
+<span id="cb4-24"><a href="#cb4-24"></a>).reset_index()</span>
+<span id="cb4-25"><a href="#cb4-25"></a></span>
+<span id="cb4-26"><a href="#cb4-26"></a>plt.scatter(bin_means[<span class="st">'mean_x'</span>], bin_means[<span class="st">'mean_y'</span>], </span>
+<span id="cb4-27"><a href="#cb4-27"></a>            color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>, s<span class="op">=</span><span class="dv">80</span>, label<span class="op">=</span><span class="st">'Binned means'</span>)</span>
+<span id="cb4-28"><a href="#cb4-28"></a></span>
+<span id="cb4-29"><a href="#cb4-29"></a><span class="cf">for</span> edge <span class="kw">in</span> bin_edges[<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>]:</span>
+<span id="cb4-30"><a href="#cb4-30"></a>    plt.axvline(edge, color<span class="op">=</span><span class="st">'black'</span>, linestyle<span class="op">=</span><span class="st">'dashed'</span>, </span>
+<span id="cb4-31"><a href="#cb4-31"></a>                linewidth<span class="op">=</span><span class="dv">1</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb4-32"><a href="#cb4-32"></a></span>
+<span id="cb4-33"><a href="#cb4-33"></a>plt.xlabel(<span class="st">'Years of education'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb4-34"><a href="#cb4-34"></a>plt.ylabel(<span class="st">'Log wage'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb4-35"><a href="#cb4-35"></a>plt.title(<span class="st">'Binned Scatterplot: Education and log(wage)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb4-36"><a href="#cb4-36"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb4-37"><a href="#cb4-37"></a>plt.grid(alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb4-38"><a href="#cb4-38"></a>plt.tight_layout()</span>
+<span id="cb4-39"><a href="#cb4-39"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regress_03_binscatter_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>分别用原始数据 (df_edu) 和分仓散点数据 (bin_means) 进行 OLS 回归，列表对比结果。</p>
+<div id="785b3738" class="cell" data-execution_count="96">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co"># 原始数据回归</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>X_raw <span class="op">=</span> sm.add_constant(df_edu[<span class="st">'educ'</span>])</span>
+<span id="cb5-5"><a href="#cb5-5"></a>model_raw <span class="op">=</span> sm.OLS(df_edu[<span class="st">'lwage'</span>], X_raw).fit()</span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co"># 分仓均值回归</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>X_bin <span class="op">=</span> sm.add_constant(bin_means[<span class="st">'mean_x'</span>])</span>
+<span id="cb5-9"><a href="#cb5-9"></a>model_bin <span class="op">=</span> sm.OLS(bin_means[<span class="st">'mean_y'</span>], X_bin).fit()</span>
+<span id="cb5-10"><a href="#cb5-10"></a></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="co"># 整理结果</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="kw">def</span> summary_to_dict(model, N):</span>
+<span id="cb5-13"><a href="#cb5-13"></a>    params <span class="op">=</span> model.params</span>
+<span id="cb5-14"><a href="#cb5-14"></a>    bse <span class="op">=</span> model.bse</span>
+<span id="cb5-15"><a href="#cb5-15"></a>    tvalues <span class="op">=</span> model.tvalues</span>
+<span id="cb5-16"><a href="#cb5-16"></a>    pvalues <span class="op">=</span> model.pvalues</span>
+<span id="cb5-17"><a href="#cb5-17"></a>    rsq <span class="op">=</span> model.rsquared</span>
+<span id="cb5-18"><a href="#cb5-18"></a>    <span class="cf">return</span> {</span>
+<span id="cb5-19"><a href="#cb5-19"></a>        <span class="st">'b'</span>: params.values,</span>
+<span id="cb5-20"><a href="#cb5-20"></a>        <span class="st">'se'</span>: bse.values,</span>
+<span id="cb5-21"><a href="#cb5-21"></a>        <span class="st">'t'</span>: tvalues.values,</span>
+<span id="cb5-22"><a href="#cb5-22"></a>        <span class="st">'P&gt;|t|'</span>: pvalues.values,</span>
+<span id="cb5-23"><a href="#cb5-23"></a>        <span class="st">'N'</span>: [N, <span class="st">''</span>],</span>
+<span id="cb5-24"><a href="#cb5-24"></a>        <span class="st">'R2'</span>: [rsq, <span class="st">''</span>]</span>
+<span id="cb5-25"><a href="#cb5-25"></a>    }</span>
+<span id="cb5-26"><a href="#cb5-26"></a></span>
+<span id="cb5-27"><a href="#cb5-27"></a>res_raw <span class="op">=</span> summary_to_dict(model_raw, <span class="bu">len</span>(df_edu))</span>
+<span id="cb5-28"><a href="#cb5-28"></a>res_bin <span class="op">=</span> summary_to_dict(model_bin, <span class="bu">len</span>(bin_means))</span>
+<span id="cb5-29"><a href="#cb5-29"></a></span>
+<span id="cb5-30"><a href="#cb5-30"></a><span class="co"># 合并为表格</span></span>
+<span id="cb5-31"><a href="#cb5-31"></a>index <span class="op">=</span> [<span class="st">'Intercept'</span>, <span class="st">'educ'</span>]</span>
+<span id="cb5-32"><a href="#cb5-32"></a>results_df_edu <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb5-33"><a href="#cb5-33"></a>    (<span class="st">'Raw'</span>, col): res_raw[col] <span class="cf">for</span> col <span class="kw">in</span> res_raw</span>
+<span id="cb5-34"><a href="#cb5-34"></a>}, index<span class="op">=</span>index)</span>
+<span id="cb5-35"><a href="#cb5-35"></a><span class="cf">for</span> col <span class="kw">in</span> res_bin:</span>
+<span id="cb5-36"><a href="#cb5-36"></a>    results_df_edu[(<span class="st">'Binned'</span>, col)] <span class="op">=</span> res_bin[col]</span>
+<span id="cb5-37"><a href="#cb5-37"></a></span>
+<span id="cb5-38"><a href="#cb5-38"></a><span class="co"># 展示结果</span></span>
+<span id="cb5-39"><a href="#cb5-39"></a><span class="bu">print</span>(results_df_edu.<span class="bu">round</span>(<span class="dv">3</span>).T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Intercept   educ
+Raw    b        -0.185  0.109
+       se        0.185  0.014
+       t          -1.0  7.545
+       P&gt;|t|     0.318    0.0
+       N           428       
+       R2     0.117883       
+Binned b        -0.234  0.112
+       se         0.36  0.026
+       t         -0.65  4.247
+       P&gt;|t|     0.551  0.013
+       N             6       
+       R2     0.818467       </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="理论基础" class="level2" data-number="31.3">
+<h2 data-number="31.3" class="anchored" data-anchor-id="理论基础"><span class="header-section-number">31.3</span> 理论基础</h2>
+<section id="条件期望角度的解释" class="level3" data-number="31.3.1">
+<h3 data-number="31.3.1" class="anchored" data-anchor-id="条件期望角度的解释"><span class="header-section-number">31.3.1</span> 条件期望角度的解释</h3>
+<p>在概率与统计中，<strong>条件期望</strong> <span class="math inline">\(E(y|x)\)</span> 指的是在给定 <span class="math inline">\(x\)</span> 取某一值或落入某一区间时，<span class="math inline">\(y\)</span> 的平均值。具体来说：</p>
+<ul>
+<li>理论上，<span class="math inline">\(E(y|x)\)</span> 能完整反映 <span class="math inline">\(y\)</span> 随 <span class="math inline">\(x\)</span> 变化的均值趋势。这是理解 <span class="math inline">\(x\)</span> 如何影响 <span class="math inline">\(y\)</span> 的基础，也是回归、因果推断等分析的理论起点。</li>
+<li>实际数据有限且带有噪音，无法对每一个 <span class="math inline">\(x\)</span> 逐点估计 <span class="math inline">\(E(y|x)\)</span>。</li>
+</ul>
+<p>分仓散点图的思想是：</p>
+<ul>
+<li>将 <span class="math inline">\(x\)</span> 按分位点或等宽区间划分为 <span class="math inline">\(G\)</span> 个组，每组编号 <span class="math inline">\(g=1,2,\ldots,G\)</span>；</li>
+<li>在每组内，计算 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(y\)</span> 的均值 <span class="math inline">\(\bar{x}_g, \bar{y}_g\)</span>，以 <span class="math inline">\((\bar{x}_g, \bar{y}_g)\)</span> 作为代表；</li>
+<li>这些分组均值点就是 <span class="math inline">\(E(y|x \in g)\)</span> 的经验近似。</li>
+</ul>
+<p>数学表达如下：</p>
+<p><span class="math display">\[
+\bar{y}_g = \frac{1}{n_g} \sum_{i \in g} y_i \approx E(y|x \in g)
+\]</span></p>
+<p>其中 <span class="math inline">\(n_g\)</span> 是第 <span class="math inline">\(g\)</span> 组的观测数，<span class="math inline">\(i \in g\)</span> 表示第 <span class="math inline">\(i\)</span> 个观测属于该组。</p>
+<p>那么，为什么分组均值可以近似条件期望？</p>
+<ul>
+<li>在每个小区间 <span class="math inline">\(x \in g\)</span> 内，<span class="math inline">\(x\)</span> 的变化较小，<span class="math inline">\(\bar{y}_g\)</span> 就是 <span class="math inline">\(y\)</span> 在 <span class="math inline">\(x\)</span> 落入该区间时的平均水平；</li>
+<li>分组数量足够多时，<span class="math inline">\((\bar{x}_g, \bar{y}_g)\)</span> 可以密集覆盖 <span class="math inline">\(E(y|x)\)</span> 曲线；</li>
+<li>分组数过多或过少都会影响估计精度，需要结合样本量和研究目标设定。</li>
+</ul>
+<p><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/Stata：binscatter和binscatter2命令简介_Fig4_条件期望函数_钟声.png" class="img-fluid"></p>
+<blockquote class="blockquote">
+<p>Source: Stepner M. Binscatter: Binned scatterplots in stata[J]. StataConference, 2014. <a href="https://michaelstepner.com/binscatter/binscatter-StataConference2014.pdf">-PDF-</a></p>
+</blockquote>
+</section>
+<section id="图示" class="level3" data-number="31.3.2">
+<h3 data-number="31.3.2" class="anchored" data-anchor-id="图示"><span class="header-section-number">31.3.2</span> 图示</h3>
+<p>以 bin 为分组变量，绘制 wage 的如下图形： - 各组的小提琴图，但不用显示中位数和胡虚线。 - 各组的散点图 (marker = ‘o’, alpha = 0.5, 蓝色)。 - 各组的均值点 (实心圆点，红色) + 均值点连接线 (实线，红色)。</p>
+<div id="cb13cf99" class="cell" data-execution_count="97">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb7-4"><a href="#cb7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-6"><a href="#cb7-6"></a></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co"># 1. 生成模拟数据</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb7-9"><a href="#cb7-9"></a>n <span class="op">=</span> <span class="dv">500</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>x <span class="op">=</span> np.random.normal(<span class="dv">5</span>, <span class="dv">2</span>, n)</span>
+<span id="cb7-11"><a href="#cb7-11"></a>e <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, n)</span>
+<span id="cb7-12"><a href="#cb7-12"></a>y <span class="op">=</span> <span class="dv">10</span> <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> x <span class="op">+</span> e</span>
+<span id="cb7-13"><a href="#cb7-13"></a></span>
+<span id="cb7-14"><a href="#cb7-14"></a>df_sim <span class="op">=</span> pd.DataFrame({<span class="st">'x'</span>: x, <span class="st">'y'</span>: y})</span>
+<span id="cb7-15"><a href="#cb7-15"></a></span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="co"># 2. 分为10组（十分位分组）</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a>df_sim[<span class="st">'bin'</span>], bin_edges <span class="op">=</span> pd.qcut(df_sim[<span class="st">'x'</span>], <span class="dv">10</span>, labels<span class="op">=</span><span class="va">False</span>, retbins<span class="op">=</span><span class="va">True</span>, duplicates<span class="op">=</span><span class="st">'drop'</span>)</span>
+<span id="cb7-18"><a href="#cb7-18"></a></span>
+<span id="cb7-19"><a href="#cb7-19"></a><span class="co"># 3. 绘图</span></span>
+<span id="cb7-20"><a href="#cb7-20"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb7-21"><a href="#cb7-21"></a></span>
+<span id="cb7-22"><a href="#cb7-22"></a><span class="co"># 小提琴图（不显示中位数和胡须线）</span></span>
+<span id="cb7-23"><a href="#cb7-23"></a>sns.violinplot(</span>
+<span id="cb7-24"><a href="#cb7-24"></a>    x<span class="op">=</span><span class="st">'bin'</span>, y<span class="op">=</span><span class="st">'y'</span>, data<span class="op">=</span>df_sim, inner<span class="op">=</span><span class="va">None</span>, color<span class="op">=</span><span class="st">'lightgray'</span></span>
+<span id="cb7-25"><a href="#cb7-25"></a>)</span>
+<span id="cb7-26"><a href="#cb7-26"></a></span>
+<span id="cb7-27"><a href="#cb7-27"></a><span class="co"># 各组散点图</span></span>
+<span id="cb7-28"><a href="#cb7-28"></a>plt.scatter(df_sim[<span class="st">'bin'</span>], df_sim[<span class="st">'y'</span>], marker<span class="op">=</span><span class="st">'o'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Scatter'</span>)</span>
+<span id="cb7-29"><a href="#cb7-29"></a></span>
+<span id="cb7-30"><a href="#cb7-30"></a><span class="co"># 各组均值点和连接线</span></span>
+<span id="cb7-31"><a href="#cb7-31"></a>group_mean <span class="op">=</span> df_sim.groupby(<span class="st">'bin'</span>)[<span class="st">'y'</span>].mean()</span>
+<span id="cb7-32"><a href="#cb7-32"></a>plt.plot(group_mean.index, group_mean.values, color<span class="op">=</span><span class="st">'red'</span>, marker<span class="op">=</span><span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">8</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Mean'</span>)</span>
+<span id="cb7-33"><a href="#cb7-33"></a></span>
+<span id="cb7-34"><a href="#cb7-34"></a>plt.xlabel(<span class="st">'bin'</span>)</span>
+<span id="cb7-35"><a href="#cb7-35"></a>plt.ylabel(<span class="st">'wage'</span>)</span>
+<span id="cb7-36"><a href="#cb7-36"></a>plt.title(<span class="st">'Wage by Bin: Violin, Scatter, and Mean'</span>)</span>
+<span id="cb7-37"><a href="#cb7-37"></a>plt.tight_layout()</span>
+<span id="cb7-38"><a href="#cb7-38"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regress_03_binscatter_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="条件期望的扩展考虑控制变量" class="level3" data-number="31.3.3">
+<h3 data-number="31.3.3" class="anchored" data-anchor-id="条件期望的扩展考虑控制变量"><span class="header-section-number">31.3.3</span> 条件期望的扩展（考虑控制变量）</h3>
+<p>在多元分析中，我们关心 <span class="math inline">\(x\)</span> 与 <span class="math inline">\(y\)</span> 的关系时，往往需要控制其他变量 <span class="math inline">\(z\)</span>，即关注 <span class="math inline">\(E(y|x, z)\)</span>。对应的多元回归模型通常设定为：</p>
+<p><span class="math display">\[
+y_i = \alpha + \beta x_i + \gamma z_i + e_i \tag{1}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(E(y|x, z)\)</span> 描述的是在 <span class="math inline">\(z\)</span> 固定时，给定 <span class="math inline">\(x\)</span> 对应的 <span class="math inline">\(y\)</span> 的期望值。</li>
+<li>多数情况下，<span class="math inline">\(corr(x, z) \neq 0\)</span>，即 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(z\)</span> 之间存在相关性。这意味着 <span class="math inline">\(E(y|x, z) \neq E(y|x)\)</span>。因此，直接绘制 <span class="math inline">\(E(y|x)\)</span> 的分仓散点图无法反应 <span class="math inline">\(E(y|x, z)\)</span> 的真实关系。</li>
+</ul>
+<p>那么，如何在控制 变量 <span class="math inline">\(z\)</span> 的情况下估计 <span class="math inline">\(E(y|x, z)\)</span> 呢？</p>
+<section id="fwl-定理残差法" class="level4" data-number="31.3.3.1">
+<h4 data-number="31.3.3.1" class="anchored" data-anchor-id="fwl-定理残差法"><span class="header-section-number">31.3.3.1</span> FWL 定理（残差法）</h4>
+<ol type="1">
+<li>用 <span class="math inline">\(y\)</span> 对 <span class="math inline">\(z\)</span> 回归，得到残差 <span class="math inline">\(\tilde{y}\)</span>，即去除了 <span class="math inline">\(y\)</span> 中受 <span class="math inline">\(z\)</span> 影响的部分；</li>
+<li>用 <span class="math inline">\(x\)</span> 对 <span class="math inline">\(z\)</span> 回归，得到残差 <span class="math inline">\(\tilde{x}\)</span>，即去除了 <span class="math inline">\(x\)</span> 中受 <span class="math inline">\(z\)</span> 影响的部分；</li>
+<li>对 <span class="math inline">\(\tilde{x}\)</span> 分组，计算每组 <span class="math inline">\(\tilde{y}\)</span> 的均值 <span class="math inline">\((\bar{\tilde{x}}_g, \bar{\tilde{y}}_g)\)</span>；</li>
+<li>以 <span class="math inline">\((\bar{\tilde{x}}_g, \bar{\tilde{y}}_g)\)</span> 作图，可以近似 <span class="math inline">\(E(y|x, z)\)</span>。</li>
+</ol>
+<p>表达式如下：</p>
+<p><span class="math display">\[
+\tilde{y}_i = y_i - E(y|z_i)
+\]</span></p>
+<p><span class="math display">\[
+\tilde{x}_i = x_i - E(x|z_i)
+\]</span></p>
+<p>每组均值 <span class="math inline">\(\bar{\tilde{y}}_g\)</span> 就近似于 <span class="math inline">\(E(y|x, z)\)</span> 在该分组下的条件期望。</p>
+<p>有关 FWL 定理的详细介绍，请参见：</p>
+<ul>
+<li>胡雨霄, 2020, <a href="https://www.lianxh.cn/details/113.html">图示线性回归系数：Frisch-Waugh-Lovell定理与部分回归图</a>, 连享会 No.113.</li>
+<li>胡雨霄, 2020, <a href="https://www.lianxh.cn/details/52.html">R2分解：相对重要性分析 (Dominance Analysis)</a>, 连享会 No.52.</li>
+</ul>
+<p><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/OLS-FWL-venn.png" class="img-fluid"></p>
+</section>
+</section>
+</section>
+<section id="几个问题" class="level2" data-number="31.4">
+<h2 data-number="31.4" class="anchored" data-anchor-id="几个问题"><span class="header-section-number">31.4</span> 几个问题</h2>
+<section id="为何要采用等分组" class="level3" data-number="31.4.1">
+<h3 data-number="31.4.1" class="anchored" data-anchor-id="为何要采用等分组"><span class="header-section-number">31.4.1</span> 为何要采用等分组？</h3>
+<p>细心的读者可能已经注意到，在上述例子中，我们都采用了等分组的方式。即将 <span class="math inline">\(x\)</span> 的取值范围分为 <span class="math inline">\(G\)</span> 个相等的区间，每个区间内的样本数尽可能相同。这种方法有几个优点：</p>
+<ol type="1">
+<li><strong>均衡样本量</strong>：每组的样本数相近，避免某些组过于稀疏导致估计不稳定。</li>
+<li><strong>简化计算</strong>：由于每个组的样本数相同，当我们基于组均值进行回归时，无需调整权重或考虑样本量差异。如果以 <span class="math inline">\(x\)</span> 的取值范围进行分组，会导致每个组中的样本数都不同，那么用 <span class="math inline">\(\bar{y}_g\)</span> 与 <span class="math inline">\(\bar{x}_g\)</span> 进行回归时，就需要对每个组的样本量进行加权，计算复杂度会增加。</li>
+</ol>
+</section>
+<section id="如何选择-bins-的数量" class="level3" data-number="31.4.2">
+<h3 data-number="31.4.2" class="anchored" data-anchor-id="如何选择-bins-的数量"><span class="header-section-number">31.4.2</span> 如何选择 bins 的数量？</h3>
+<p>构建分仓散点图时，分仓数量（<span class="math inline">\(G\)</span>）的选择至关重要。分仓数较多时，可以更细致地揭示 <span class="math inline">\(x\)</span> 与 <span class="math inline">\(y\)</span> 之间的非线性关系，但每个分组内的数据点变少，导致估计的方差增大，结果更易受偶然波动影响。反之，分仓数较少时，每组包含的数据点更多，估计更稳定，但可能掩盖了变量之间的复杂结构和非线性趋势。这实际上是“方差-偏差权衡”（variance-bias tradeoff）问题：<span class="math inline">\(G\)</span> 越大，偏差越小但方差越大；<span class="math inline">\(G\)</span> 越小，方差减小但偏差可能增大。因此，分仓数量的选择应结合样本量、变量分布和分析目标进行权衡与调整。</p>
+<p>在 Stepner (2014) 编写的 Stata 命令 <code>binscatter</code> 中，<span class="math inline">\(G\)</span> 的默认值为 20。Stepner 称，根据他的个人经验，这一数值的表现较好。</p>
+<p><a href="https://doi.org/10.1257/aer.20221576">Cattaneo</a> et al.&nbsp;(<a href="https://nppackages.github.io/references/Cattaneo-Crump-Farrell-Feng_2024_AER.pdf">2024</a>, AER) 的理论分析表明，使综合均方误差最小化的分仓数 <span class="math inline">\(G\)</span> 与 <span class="math inline">\(n^{1 /3}\)</span> 成正比 (<span class="math inline">\(n\)</span> 为样本数)。因此，观测值越大，<span class="math inline">\(G\)</span> 的取值越大。不过，其他因素也很重要。例如，保持 <span class="math inline">\(x\)</span> 的分布不变，<span class="math inline">\(x\)</span> 和 <span class="math inline">\(y\)</span> 之间的关系曲线越复杂，<span class="math inline">\(G\)</span> 的取值也应该越大 (否则均方误差会增加)。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;"><span class="math inline">\(n\)</span></th>
+<th><span class="math inline">\(n^{1/3}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1,000</td>
+<td>10.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5,000</td>
+<td>17.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">10,000</td>
+<td>21.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">100,000</td>
+<td>46.4</td>
+</tr>
+</tbody>
+</table>
+<p>根据上表，多数情况下，取 <span class="math inline">\(G\)</span> 为 10-20 是合适的。对于大样本（如 <span class="math inline">\(n &gt; 10,000\)</span>），可以考虑增加到 30-50，但需要注意避免过拟合和噪音干扰。</p>
+</section>
+</section>
+<section id="python-实例" class="level2" data-number="31.5">
+<h2 data-number="31.5" class="anchored" data-anchor-id="python-实例"><span class="header-section-number">31.5</span> Python 实例</h2>
+<p>在劳动经济学中，一个核心问题是：工人的工资 <span class="math inline">\(Y\)</span> 由什么因素决定？虽然这是一个因果推断问题，但我们可以先从预测的角度进行分析。</p>
+<p>在下面的工资案例中，<span class="math inline">\(Y\)</span> 表示工人的（对数）小时工资，<span class="math inline">\(X\)</span> 是工人的特征向量，例如教育、工作经验、性别等。这里我们关注两个主要问题：</p>
+<ul>
+<li>如何利用与工作相关的特征（如教育和经验）更好地预测工资 <span class="math inline">\(Y\)</span>？</li>
+<li>在其他工作相关特征 <span class="math inline">\(X\)</span> 相同的情况下，男性和女性工人的预测工资有何不同？</li>
+</ul>
+<p>本实验首先聚焦于预测问题。</p>
+<section id="数据说明" class="level3" data-number="31.5.1">
+<h3 data-number="31.5.1" class="anchored" data-anchor-id="数据说明"><span class="header-section-number">31.5.1</span> 数据说明</h3>
+<p>本次分析的数据来源于 2015 年美国现行人口调查（CPS）三月补充调查。我们筛选了 25 至 64 岁的白人非西班牙裔个体，要求每年工作超过 50 周且每周工作时间超过 35 小时。排除了自雇人员、居住在集体宿舍的个体、军人、农业或私人家庭部门的个体，以及在收入和就业状态报告上存在不一致、变量有缺失或分配信息的观测，同时剔除了小时工资低于 3 的样本。</p>
+<p>我们关注的核心变量 <span class="math inline">\(Y\)</span>，即（对数）小时工资率，是由年收入除以总工作小时数得到的。其中，总工作小时数等于每年工作周数乘以每周通常工作小时数。在分析中，我们还聚焦于未婚（从未结婚）工人。最终样本量为 <span class="math inline">\(n=5150\)</span>。</p>
+<blockquote class="blockquote">
+<p><strong>Source</strong>: Chernozhukov, V. &amp; Hansen, C. &amp; Kallus, N. &amp; Spindler, M. &amp; Syrgkanis, V. (<strong>2024</strong>): Applied Causal Inference Powered by ML and AI. <a href="https://causalml-book.org/">CausalML-book.org</a>; arXiv:2403.02467. <a href="https://arxiv.org/pdf/2403.02467">-PDF-</a>，<a href="https://causalml-book.org/">Website</a>, <a href="https://github.com/CausalAIBook/MetricsMLNotebooks">github</a> → <a href="https://github.com/CausalAIBook/MetricsMLNotebooks/blob/main/PM1/python-ols-and-lasso-for-wage-prediction.ipynb">This Note</a></p>
+</blockquote>
+<section id="变量标签与变量解释" class="level4" data-number="31.5.1.1">
+<h4 data-number="31.5.1.1" class="anchored" data-anchor-id="变量标签与变量解释"><span class="header-section-number">31.5.1.1</span> 变量标签与变量解释</h4>
+<p>下面列示了该数据集中每个变量的常用英文标签及中文解释说明。部分变量根据 CPS 典型设定和相关代码本推断并补充。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 20%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>变量名</th>
+<th>英文标签</th>
+<th>中文解释</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>wage</td>
+<td>Hourly wage</td>
+<td>小时工资（美元）</td>
+</tr>
+<tr class="even">
+<td>lwage</td>
+<td>Log hourly wage</td>
+<td>小时工资的对数</td>
+</tr>
+<tr class="odd">
+<td>sex</td>
+<td>Female (1=Female)</td>
+<td>性别（女性=1，男性=0）</td>
+</tr>
+<tr class="even">
+<td>shs</td>
+<td>&lt;12 years of schooling</td>
+<td>教育年限未满 12 年（未完成高中）</td>
+</tr>
+<tr class="odd">
+<td>hsg</td>
+<td>High school graduate</td>
+<td>高中毕业</td>
+</tr>
+<tr class="even">
+<td>scl</td>
+<td>Some college</td>
+<td>大学肄业（上过大学但未获得学位）</td>
+</tr>
+<tr class="odd">
+<td>clg</td>
+<td>College graduate</td>
+<td>大学毕业（获得学士学位）</td>
+</tr>
+<tr class="even">
+<td>ad</td>
+<td>Advanced degree</td>
+<td>研究生学历（硕士或博士）</td>
+</tr>
+<tr class="odd">
+<td>mw</td>
+<td>Midwest region</td>
+<td>美国中西部地区（居住地）</td>
+</tr>
+<tr class="even">
+<td>so</td>
+<td>South region</td>
+<td>美国南部地区（居住地）</td>
+</tr>
+<tr class="odd">
+<td>we</td>
+<td>West region</td>
+<td>美国西部地区（居住地）</td>
+</tr>
+<tr class="even">
+<td>ne</td>
+<td>Northeast region</td>
+<td>美国东北地区（居住地）</td>
+</tr>
+<tr class="odd">
+<td>exp1</td>
+<td>Potential experience</td>
+<td>潜在工作经验年数（age - education - 6）</td>
+</tr>
+<tr class="even">
+<td>exp2</td>
+<td>Potential experience squared</td>
+<td>潜在工作经验年数的平方</td>
+</tr>
+<tr class="odd">
+<td>exp3</td>
+<td>Potential experience cubed</td>
+<td>潜在工作经验年数的三次方</td>
+</tr>
+<tr class="even">
+<td>exp4</td>
+<td>Potential experience^4</td>
+<td>潜在工作经验年数的四次方</td>
+</tr>
+<tr class="odd">
+<td>occ</td>
+<td>Occupation code</td>
+<td>职业代码（细分，通常为 3-5 位数）</td>
+</tr>
+<tr class="even">
+<td>occ2</td>
+<td>Major occupation group</td>
+<td>职业大类代码（22 类）</td>
+</tr>
+<tr class="odd">
+<td>ind</td>
+<td>Industry code</td>
+<td>行业代码（细分，通常为 3-5 位数）</td>
+</tr>
+<tr class="even">
+<td>ind2</td>
+<td>Major industry group</td>
+<td>行业大类代码（22 类）</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="变量进一步解释和常见分组" class="level4" data-number="31.5.1.2">
+<h4 data-number="31.5.1.2" class="anchored" data-anchor-id="变量进一步解释和常见分组"><span class="header-section-number">31.5.1.2</span> 变量进一步解释和常见分组</h4>
+<ul>
+<li><p><strong>学历变量（shs, hsg, scl, clg, ad）</strong> 这些是<strong>互斥</strong>的 dummy 变量，每个人只能属于其中一个。常见定义如下：</p>
+<ul>
+<li><code>shs</code>: 小于高中毕业（未完成高中学业）</li>
+<li><code>hsg</code>: 高中毕业但没有上过大学</li>
+<li><code>scl</code>: 上过大学但未毕业（包括两年制大学、部分大学课程等，未获得学位）</li>
+<li><code>clg</code>: 获得学士学位（本科毕业）</li>
+<li><code>ad</code>: 获得更高学位（硕士及以上）</li>
+</ul></li>
+<li><p><strong>地区变量（mw, so, we, ne）</strong> 根据居住地划分的美国四大区域，具体可以参考美国人口调查标准地区定义。</p></li>
+<li><p><strong>经验变量（exp1, exp2, exp3, exp4）</strong> 经验变量通常由公式 <span class="math inline">\(exp1 = \text{age} - \text{years of schooling} - 6\)</span> 计算，近似代表进入劳动力市场的年数，其高次项常用于工资方程中的经验-工资非线性关系建模。</p></li>
+<li><p><strong>职业/行业变量（occ, occ2, ind, ind2）</strong></p>
+<ul>
+<li><code>occ</code>/<code>ind</code> 为细分的职业/行业代码，通常来自于 CPS 的详细分类。</li>
+<li><code>occ2</code>/<code>ind2</code> 则为大类分组，便于建模和控制大类异质性。</li>
+</ul></li>
+</ul>
+</section>
+<section id="参考说明与代码本依据" class="level4" data-number="31.5.1.3">
+<h4 data-number="31.5.1.3" class="anchored" data-anchor-id="参考说明与代码本依据"><span class="header-section-number">31.5.1.3</span> 参考说明与代码本依据</h4>
+<p>这些变量的定义可参考 CPS（Current Population Survey）文档和相关学术论文，例如：</p>
+<ul>
+<li>Angrist, J. D., &amp; Pischke, J.-S. (2009). <em>Mostly Harmless Econometrics: An Empiricist’s Companion</em>. Princeton University Press. <a href="https://press.princeton.edu/books/paperback/9780691120355/mostly-harmless-econometrics">Link</a>, <a href="https://scholar.google.com/scholar?q=Mostly+Harmless+Econometrics">Google</a>.</li>
+<li>Card, D., &amp; Krueger, A. B. (1992). School Quality and Black-White Relative Earnings: A Direct Assessment. <em>Quarterly Journal of Economics</em>, 107(1), 151–200. <a href="https://doi.org/10.2307/2118323">Link</a>, <a href="http://sci-hub.ren/10.2307/2118323">PDF</a>, <a href="https://scholar.google.com/scholar?q=School+Quality+and+Black-White+Relative+Earnings">Google</a>.</li>
+</ul>
+</section>
+</section>
+<section id="初步分析" class="level3" data-number="31.5.2">
+<h3 data-number="31.5.2" class="anchored" data-anchor-id="初步分析"><span class="header-section-number">31.5.2</span> 初步分析</h3>
+<div id="03277a21" class="cell" data-execution_count="98">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="im">import</span> sklearn.linear_model <span class="im">as</span> lm</span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="im">import</span> warnings</span>
+<span id="cb8-10"><a href="#cb8-10"></a><span class="co"># ignore potential convergence warnings; for some small penalty levels,</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="co"># tried out, optimization might not converge</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a>warnings.simplefilter(<span class="st">'ignore'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="26c0ab8b" class="cell" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/CausalAIBook/MetricsMLNotebooks/main/data/wage2015_subsample_inference.csv"</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>df <span class="op">=</span> pd.read_csv(<span class="bu">file</span>)</span>
+<span id="cb9-3"><a href="#cb9-3"></a></span>
+<span id="cb9-4"><a href="#cb9-4"></a>df.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="70">
+<pre><code>Index(['wage', 'lwage', 'sex', 'shs', 'hsg', 'scl', 'clg', 'ad', 'mw', 'so',
+       'we', 'ne', 'exp1', 'exp2', 'exp3', 'exp4', 'occ', 'occ2', 'ind',
+       'ind2'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<section id="变量生成及变量标签" class="level4" data-number="31.5.2.1">
+<h4 data-number="31.5.2.1" class="anchored" data-anchor-id="变量生成及变量标签"><span class="header-section-number">31.5.2.1</span> 变量生成及变量标签</h4>
+<p>在本节中，我们将对数据集进行变量生成和标签定义，以便后续分析和建模。</p>
+<ul>
+<li>基于 sex 生成新变量：带标签的变量 sex_label
+<ul>
+<li><code>sex_label</code>：{0: Male; 1: Female}，表示性别。我们将其转换为字符串标签。</li>
+</ul></li>
+<li>教育水平和地区
+<ul>
+<li>定义一个新变量：edu_group，表示教育水平的分组，取值为 <code>{'shs': '&lt;HS', 'hsg': 'HS', 'scl': 'Some College', 'clg': 'College', 'ad': 'Advanced'}</code>。后续分析中采用这个变量更便于分组绘图和统计分析。</li>
+<li>定义一个新变量：regeion，表示居住地区的分组，取值为 <code>{'mw': 'Midwest', 'so': 'South', 'we': 'West', 'ne': 'Northeast'}</code>。后续分析中采用这个变量更便于分组绘图和统计分析。</li>
+</ul></li>
+</ul>
+<div id="39538140" class="cell" data-execution_count="100">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># 基于 sex 生成 sex_label 变量（0: Male, 1: Female），并转换为字符串标签</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>df[<span class="st">'sex_label'</span>] <span class="op">=</span> df[<span class="st">'sex'</span>].<span class="bu">map</span>({<span class="dv">0</span>: <span class="st">'Male'</span>, <span class="dv">1</span>: <span class="st">'Female'</span>})</span>
+<span id="cb11-3"><a href="#cb11-3"></a></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="co"># 定义 edu_group 变量</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>edu_map <span class="op">=</span> {<span class="st">'shs'</span>: <span class="st">'&lt;HS'</span>, <span class="st">'hsg'</span>: <span class="st">'HS'</span>, <span class="st">'scl'</span>: <span class="st">'Some College'</span>, <span class="st">'clg'</span>: <span class="st">'College'</span>, <span class="st">'ad'</span>: <span class="st">'Advanced'</span>}</span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="kw">def</span> get_edu_group(row):</span>
+<span id="cb11-7"><a href="#cb11-7"></a>    <span class="cf">for</span> k <span class="kw">in</span> edu_map:</span>
+<span id="cb11-8"><a href="#cb11-8"></a>        <span class="cf">if</span> row[k] <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb11-9"><a href="#cb11-9"></a>            <span class="cf">return</span> edu_map[k]</span>
+<span id="cb11-10"><a href="#cb11-10"></a>    <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a>df[<span class="st">'edu_group'</span>] <span class="op">=</span> df.<span class="bu">apply</span>(get_edu_group, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb11-12"><a href="#cb11-12"></a></span>
+<span id="cb11-13"><a href="#cb11-13"></a><span class="co"># 定义 region 变量</span></span>
+<span id="cb11-14"><a href="#cb11-14"></a>region_map <span class="op">=</span> {<span class="st">'mw'</span>: <span class="st">'Midwest'</span>, <span class="st">'so'</span>: <span class="st">'South'</span>, <span class="st">'we'</span>: <span class="st">'West'</span>, <span class="st">'ne'</span>: <span class="st">'Northeast'</span>}</span>
+<span id="cb11-15"><a href="#cb11-15"></a><span class="kw">def</span> get_region(row):</span>
+<span id="cb11-16"><a href="#cb11-16"></a>    <span class="cf">for</span> k <span class="kw">in</span> region_map:</span>
+<span id="cb11-17"><a href="#cb11-17"></a>        <span class="cf">if</span> row[k] <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb11-18"><a href="#cb11-18"></a>            <span class="cf">return</span> region_map[k]</span>
+<span id="cb11-19"><a href="#cb11-19"></a>    <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb11-20"><a href="#cb11-20"></a>df[<span class="st">'region'</span>] <span class="op">=</span> df.<span class="bu">apply</span>(get_region, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb11-21"><a href="#cb11-21"></a></span>
+<span id="cb11-22"><a href="#cb11-22"></a><span class="co"># 变量清单</span></span>
+<span id="cb11-23"><a href="#cb11-23"></a>df.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="100">
+<pre><code>Index(['wage', 'lwage', 'sex', 'shs', 'hsg', 'scl', 'clg', 'ad', 'mw', 'so',
+       'we', 'ne', 'exp1', 'exp2', 'exp3', 'exp4', 'occ', 'occ2', 'ind',
+       'ind2', 'sex_label', 'edu_group', 'region'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<div id="e1275191" class="cell" data-execution_count="73">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># 描述性统计量</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>cols_to_exclude <span class="op">=</span> [<span class="st">'exp2'</span>, <span class="st">'exp3'</span>, <span class="st">'exp4'</span>, <span class="st">'occ'</span>, <span class="st">'ind'</span>]</span>
+<span id="cb13-3"><a href="#cb13-3"></a>desc <span class="op">=</span> df.drop(columns<span class="op">=</span>cols_to_exclude).describe().T[[<span class="st">'count'</span>, <span class="st">'mean'</span>, <span class="st">'std'</span>, <span class="st">'min'</span>, <span class="st">'max'</span>]]</span>
+<span id="cb13-4"><a href="#cb13-4"></a>desc <span class="op">=</span> desc.rename(columns<span class="op">=</span>{<span class="st">'count'</span>: <span class="st">'N'</span>, <span class="st">'std'</span>: <span class="st">'sd'</span>})</span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="bu">print</span>(desc.<span class="bu">round</span>(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            N   mean     sd   min     max
+wage   5150.0  23.41  21.00  3.02  528.85
+lwage  5150.0   2.97   0.57  1.11    6.27
+sex    5150.0   0.44   0.50  0.00    1.00
+shs    5150.0   0.02   0.15  0.00    1.00
+hsg    5150.0   0.24   0.43  0.00    1.00
+scl    5150.0   0.28   0.45  0.00    1.00
+clg    5150.0   0.32   0.47  0.00    1.00
+ad     5150.0   0.14   0.34  0.00    1.00
+mw     5150.0   0.26   0.44  0.00    1.00
+so     5150.0   0.30   0.46  0.00    1.00
+we     5150.0   0.22   0.41  0.00    1.00
+ne     5150.0   0.23   0.42  0.00    1.00
+exp1   5150.0  13.76  10.61  0.00   47.00
+occ2   5150.0  11.67   6.97  1.00   22.00
+ind2   5150.0  13.32   5.70  2.00   22.00</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="分仓散点图" class="level3" data-number="31.5.3">
+<h3 data-number="31.5.3" class="anchored" data-anchor-id="分仓散点图"><span class="header-section-number">31.5.3</span> 分仓散点图</h3>
+<section id="原始数据散点图wage-与-experience-的关系" class="level4" data-number="31.5.3.1">
+<h4 data-number="31.5.3.1" class="anchored" data-anchor-id="原始数据散点图wage-与-experience-的关系"><span class="header-section-number">31.5.3.1</span> 原始数据散点图：wage 与 experience 的关系</h4>
+<ul>
+<li>绘制 wage 和 experience 的 ‘散点图+线性回归线 (+ 95% CI)’ 图。</li>
+<li>绘制 wage 和 experience 的 ‘散点图+二次曲线拟合线 (+ 95% CI)’ 图。(省略了)</li>
+</ul>
+<div id="c8684743" class="cell" data-execution_count="101">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># 绘制 wage 和 experience 的 '散点图+线性回归线 (+ 95% CI)' 图。</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb15-5"><a href="#cb15-5"></a></span>
+<span id="cb15-6"><a href="#cb15-6"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb15-7"><a href="#cb15-7"></a></span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="co"># 只用 wage &lt; 100 的样本</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a>df_plot <span class="op">=</span> df[df[<span class="st">'wage'</span>] <span class="op">&lt;</span> <span class="dv">100</span>].copy()</span>
+<span id="cb15-10"><a href="#cb15-10"></a></span>
+<span id="cb15-11"><a href="#cb15-11"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb15-12"><a href="#cb15-12"></a>sns.regplot(</span>
+<span id="cb15-13"><a href="#cb15-13"></a>    data<span class="op">=</span>df_plot,</span>
+<span id="cb15-14"><a href="#cb15-14"></a>    x<span class="op">=</span><span class="st">'exp1'</span>, y<span class="op">=</span><span class="st">'wage'</span>,</span>
+<span id="cb15-15"><a href="#cb15-15"></a>    scatter_kws<span class="op">=</span>{<span class="st">'alpha'</span>: <span class="fl">0.18</span>, <span class="st">'color'</span>: <span class="st">'#1f77b4'</span>},</span>
+<span id="cb15-16"><a href="#cb15-16"></a>    line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'#ff7f0e'</span>},</span>
+<span id="cb15-17"><a href="#cb15-17"></a>    ci<span class="op">=</span><span class="dv">95</span></span>
+<span id="cb15-18"><a href="#cb15-18"></a>)</span>
+<span id="cb15-19"><a href="#cb15-19"></a>plt.xlabel(<span class="st">'Experience (years)'</span>)</span>
+<span id="cb15-20"><a href="#cb15-20"></a>plt.ylabel(<span class="st">'Wage'</span>)</span>
+<span id="cb15-21"><a href="#cb15-21"></a>plt.title(<span class="st">'Wage vs. Experience (Linear Fit with 95% CI)'</span>)</span>
+<span id="cb15-22"><a href="#cb15-22"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, color<span class="op">=</span><span class="st">'lightgray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.7</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb15-23"><a href="#cb15-23"></a>plt.yticks(np.arange(<span class="dv">0</span>, <span class="dv">105</span>, <span class="dv">10</span>))</span>
+<span id="cb15-24"><a href="#cb15-24"></a>plt.tight_layout()</span>
+<span id="cb15-25"><a href="#cb15-25"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regress_03_binscatter_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="分仓散点图-1" class="level4" data-number="31.5.3.2">
+<h4 data-number="31.5.3.2" class="anchored" data-anchor-id="分仓散点图-1"><span class="header-section-number">31.5.3.2</span> 分仓散点图</h4>
+<ul>
+<li>绘制 wage 和 experience 的 ‘分仓散点图 (binscatter)+线性回归线 (+ 95% CI)’ 图。</li>
+</ul>
+<div id="203d8e6a" class="cell" data-execution_count="75">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="im">from</span> scipy.stats <span class="im">import</span> binned_statistic</span>
+<span id="cb16-4"><a href="#cb16-4"></a></span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb16-6"><a href="#cb16-6"></a></span>
+<span id="cb16-7"><a href="#cb16-7"></a><span class="co"># 只用 wage &lt; 100 的样本</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a>df_plot <span class="op">=</span> df[df[<span class="st">'wage'</span>] <span class="op">&lt;</span> <span class="dv">100</span>].copy()</span>
+<span id="cb16-9"><a href="#cb16-9"></a></span>
+<span id="cb16-10"><a href="#cb16-10"></a><span class="co"># 设置分箱数量</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a>n_bins <span class="op">=</span> <span class="dv">40</span></span>
+<span id="cb16-12"><a href="#cb16-12"></a>bin_means, bin_edges, binnumber <span class="op">=</span> binned_statistic(</span>
+<span id="cb16-13"><a href="#cb16-13"></a>    df_plot[<span class="st">'exp1'</span>], df_plot[<span class="st">'wage'</span>], statistic<span class="op">=</span><span class="st">'mean'</span>, bins<span class="op">=</span>n_bins</span>
+<span id="cb16-14"><a href="#cb16-14"></a>)</span>
+<span id="cb16-15"><a href="#cb16-15"></a>bin_centers <span class="op">=</span> (bin_edges[:<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> bin_edges[<span class="dv">1</span>:]) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb16-16"><a href="#cb16-16"></a></span>
+<span id="cb16-17"><a href="#cb16-17"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb16-18"><a href="#cb16-18"></a><span class="co"># 绘制分仓均值散点</span></span>
+<span id="cb16-19"><a href="#cb16-19"></a>plt.scatter(bin_centers, bin_means, color<span class="op">=</span><span class="st">'#1f77b4'</span>, s<span class="op">=</span><span class="dv">60</span>, label<span class="op">=</span><span class="st">'Binned Means'</span>)</span>
+<span id="cb16-20"><a href="#cb16-20"></a></span>
+<span id="cb16-21"><a href="#cb16-21"></a><span class="co"># 拟合线性回归线和置信区间</span></span>
+<span id="cb16-22"><a href="#cb16-22"></a>sns.regplot(</span>
+<span id="cb16-23"><a href="#cb16-23"></a>    data<span class="op">=</span>df_plot,</span>
+<span id="cb16-24"><a href="#cb16-24"></a>    x<span class="op">=</span><span class="st">'exp1'</span>, y<span class="op">=</span><span class="st">'wage'</span>,</span>
+<span id="cb16-25"><a href="#cb16-25"></a>    scatter<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb16-26"><a href="#cb16-26"></a>    line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'#ff7f0e'</span>},</span>
+<span id="cb16-27"><a href="#cb16-27"></a>    ci<span class="op">=</span><span class="dv">95</span>,</span>
+<span id="cb16-28"><a href="#cb16-28"></a>    label<span class="op">=</span><span class="st">'Linear Fit (95% CI)'</span></span>
+<span id="cb16-29"><a href="#cb16-29"></a>)</span>
+<span id="cb16-30"><a href="#cb16-30"></a></span>
+<span id="cb16-31"><a href="#cb16-31"></a>plt.xlabel(<span class="st">'Experience (years)'</span>)</span>
+<span id="cb16-32"><a href="#cb16-32"></a>plt.ylabel(<span class="st">'Wage'</span>)</span>
+<span id="cb16-33"><a href="#cb16-33"></a>plt.title(<span class="st">'Binscatter: Wage vs. Experience (+ Linear Fit &amp; 95% CI)'</span>)</span>
+<span id="cb16-34"><a href="#cb16-34"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, color<span class="op">=</span><span class="st">'lightgray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.7</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb16-35"><a href="#cb16-35"></a>plt.yticks(np.arange(<span class="dv">5</span>, <span class="dv">40</span>, <span class="dv">5</span>))</span>
+<span id="cb16-36"><a href="#cb16-36"></a>plt.legend()</span>
+<span id="cb16-37"><a href="#cb16-37"></a>plt.tight_layout()</span>
+<span id="cb16-38"><a href="#cb16-38"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regress_03_binscatter_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="分仓非线性拟合线" class="level3" data-number="31.5.4">
+<h3 data-number="31.5.4" class="anchored" data-anchor-id="分仓非线性拟合线"><span class="header-section-number">31.5.4</span> 分仓非线性拟合线</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+提示词
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>绘制 wage 和 experience 的 ‘分仓散点图 (binscatter)’ 图：</p>
+<ul>
+<li>bins = 20</li>
+<li>添加非线性拟合线和 95% CI，多项式阶数 p 选择最优值</li>
+<li>y 轴刻度：5(5)40</li>
+</ul>
+</div>
+</div>
+<div id="8bc06a37" class="cell" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="im">from</span> scipy.stats <span class="im">import</span> binned_statistic</span>
+<span id="cb17-4"><a href="#cb17-4"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> PolynomialFeatures</span>
+<span id="cb17-5"><a href="#cb17-5"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb17-6"><a href="#cb17-6"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
+<span id="cb17-7"><a href="#cb17-7"></a><span class="im">from</span> statsmodels.stats.outliers_influence <span class="im">import</span> summary_table</span>
+<span id="cb17-8"><a href="#cb17-8"></a></span>
+<span id="cb17-9"><a href="#cb17-9"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb17-10"><a href="#cb17-10"></a></span>
+<span id="cb17-11"><a href="#cb17-11"></a><span class="co"># 只用 wage &lt; 100 的样本</span></span>
+<span id="cb17-12"><a href="#cb17-12"></a>df_plot <span class="op">=</span> df[df[<span class="st">'wage'</span>] <span class="op">&lt;</span> <span class="dv">100</span>].copy()</span>
+<span id="cb17-13"><a href="#cb17-13"></a></span>
+<span id="cb17-14"><a href="#cb17-14"></a><span class="co"># 分箱参数</span></span>
+<span id="cb17-15"><a href="#cb17-15"></a>n_bins <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb17-16"><a href="#cb17-16"></a>bin_means, bin_edges, binnumber <span class="op">=</span> binned_statistic(</span>
+<span id="cb17-17"><a href="#cb17-17"></a>    df_plot[<span class="st">'exp1'</span>], df_plot[<span class="st">'wage'</span>], statistic<span class="op">=</span><span class="st">'mean'</span>, bins<span class="op">=</span>n_bins</span>
+<span id="cb17-18"><a href="#cb17-18"></a>)</span>
+<span id="cb17-19"><a href="#cb17-19"></a>bin_centers <span class="op">=</span> (bin_edges[:<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> bin_edges[<span class="dv">1</span>:]) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb17-20"><a href="#cb17-20"></a></span>
+<span id="cb17-21"><a href="#cb17-21"></a><span class="co"># 选择最优多项式阶数（交叉验证，最大到5阶）</span></span>
+<span id="cb17-22"><a href="#cb17-22"></a>X <span class="op">=</span> df_plot[[<span class="st">'exp1'</span>]].values</span>
+<span id="cb17-23"><a href="#cb17-23"></a>y <span class="op">=</span> df_plot[<span class="st">'wage'</span>].values</span>
+<span id="cb17-24"><a href="#cb17-24"></a>cv_scores <span class="op">=</span> []</span>
+<span id="cb17-25"><a href="#cb17-25"></a>degrees <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>)</span>
+<span id="cb17-26"><a href="#cb17-26"></a><span class="cf">for</span> d <span class="kw">in</span> degrees:</span>
+<span id="cb17-27"><a href="#cb17-27"></a>    poly <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span>d)</span>
+<span id="cb17-28"><a href="#cb17-28"></a>    X_poly <span class="op">=</span> poly.fit_transform(X)</span>
+<span id="cb17-29"><a href="#cb17-29"></a>    model <span class="op">=</span> LinearRegression()</span>
+<span id="cb17-30"><a href="#cb17-30"></a>    <span class="co"># 负MSE，取均值</span></span>
+<span id="cb17-31"><a href="#cb17-31"></a>    score <span class="op">=</span> cross_val_score(model, X_poly, y, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">'neg_mean_squared_error'</span>).mean()</span>
+<span id="cb17-32"><a href="#cb17-32"></a>    cv_scores.append(score)</span>
+<span id="cb17-33"><a href="#cb17-33"></a>best_degree <span class="op">=</span> degrees[np.argmax(cv_scores)]</span>
+<span id="cb17-34"><a href="#cb17-34"></a></span>
+<span id="cb17-35"><a href="#cb17-35"></a><span class="co"># 用最优阶数拟合</span></span>
+<span id="cb17-36"><a href="#cb17-36"></a>poly <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span>best_degree)</span>
+<span id="cb17-37"><a href="#cb17-37"></a>X_poly <span class="op">=</span> poly.fit_transform(X)</span>
+<span id="cb17-38"><a href="#cb17-38"></a>model <span class="op">=</span> LinearRegression().fit(X_poly, y)</span>
+<span id="cb17-39"><a href="#cb17-39"></a>y_pred <span class="op">=</span> model.predict(X_poly)</span>
+<span id="cb17-40"><a href="#cb17-40"></a></span>
+<span id="cb17-41"><a href="#cb17-41"></a><span class="co"># 计算置信区间</span></span>
+<span id="cb17-42"><a href="#cb17-42"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb17-43"><a href="#cb17-43"></a>X_poly_sm <span class="op">=</span> sm.add_constant(X_poly)</span>
+<span id="cb17-44"><a href="#cb17-44"></a>ols <span class="op">=</span> sm.OLS(y, X_poly_sm).fit()</span>
+<span id="cb17-45"><a href="#cb17-45"></a>st, data, ss2 <span class="op">=</span> summary_table(ols, alpha<span class="op">=</span><span class="fl">0.05</span>)</span>
+<span id="cb17-46"><a href="#cb17-46"></a>ci_low, ci_upp <span class="op">=</span> data[:, <span class="dv">4</span>], data[:, <span class="dv">5</span>]</span>
+<span id="cb17-47"><a href="#cb17-47"></a></span>
+<span id="cb17-48"><a href="#cb17-48"></a><span class="co"># 绘图</span></span>
+<span id="cb17-49"><a href="#cb17-49"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb17-50"><a href="#cb17-50"></a>plt.scatter(bin_centers, bin_means, color<span class="op">=</span><span class="st">'#1f77b4'</span>, s<span class="op">=</span><span class="dv">60</span>, label<span class="op">=</span><span class="st">'Binned Means'</span>)</span>
+<span id="cb17-51"><a href="#cb17-51"></a><span class="co"># 拟合曲线</span></span>
+<span id="cb17-52"><a href="#cb17-52"></a>order <span class="op">=</span> np.argsort(X[:, <span class="dv">0</span>])</span>
+<span id="cb17-53"><a href="#cb17-53"></a>plt.plot(X[order, <span class="dv">0</span>], y_pred[order], color<span class="op">=</span><span class="st">'#ff7f0e'</span>, label<span class="op">=</span><span class="ss">f'Poly Fit (degree=</span><span class="sc">{</span>best_degree<span class="sc">}</span><span class="ss">)'</span>)</span>
+<span id="cb17-54"><a href="#cb17-54"></a>plt.fill_between(X[order, <span class="dv">0</span>], ci_low[order], ci_upp[order], color<span class="op">=</span><span class="st">'#ff7f0e'</span>, alpha<span class="op">=</span><span class="fl">0.18</span>, label<span class="op">=</span><span class="st">'95% CI'</span>)</span>
+<span id="cb17-55"><a href="#cb17-55"></a>plt.xlabel(<span class="st">'Experience (years)'</span>)</span>
+<span id="cb17-56"><a href="#cb17-56"></a>plt.ylabel(<span class="st">'Wage'</span>)</span>
+<span id="cb17-57"><a href="#cb17-57"></a>plt.title(<span class="st">'Binscatter: Wage vs. Experience (+ Nonlinear Fit &amp; 95% CI)'</span>)</span>
+<span id="cb17-58"><a href="#cb17-58"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, color<span class="op">=</span><span class="st">'lightgray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.7</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb17-59"><a href="#cb17-59"></a>plt.yticks(np.arange(<span class="dv">5</span>, <span class="dv">40</span>, <span class="dv">5</span>))</span>
+<span id="cb17-60"><a href="#cb17-60"></a>plt.legend()</span>
+<span id="cb17-61"><a href="#cb17-61"></a>plt.tight_layout()</span>
+<span id="cb17-62"><a href="#cb17-62"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regress_03_binscatter_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>从图中似乎可以看到如下结果：</p>
+<ol type="1">
+<li>工资与经验之间存在非线性关系，甚至出现了波浪形的变化关系。</li>
+<li>在数据分析中，我们应该将注意力放在「多数样本」上，因此，如果不考虑左侧的三个样本点 (工龄不足 5 年的样本) 和右侧的三个样本点 (工龄超过 40 年的样本)，工资与经验之间的关系大体上呈现出「倒 U 型关系」。这与我们的常识基本相符：工龄较短时，工资随着经验的增加而增加；工龄达到一定程度后，工资增长速度减缓甚至可能下降。</li>
+<li>更为重要的是，上述关系并未考虑其他变量的影响，因此我们需要进一步控制其他变量（如教育水平、性别等）来更准确地分析工资与经验之间的关系。</li>
+</ol>
+<section id="性别差异" class="level4" data-number="31.5.4.1">
+<h4 data-number="31.5.4.1" class="anchored" data-anchor-id="性别差异"><span class="header-section-number">31.5.4.1</span> 性别差异</h4>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+提示词
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>定义一个函数，<code>plot_binscatter_by()</code>：</p>
+<ul>
+<li>df, xvar, yvar</li>
+<li>groupvar=‘group variable name’</li>
+<li>绘制 y ~ x 分仓非线性拟合线，p = 4 (default)</li>
+<li>针对 groupvar 变量的每个取值，绘制分仓散点图和拟合线</li>
+<li>图例：使用 groupvar 的标签；仅呈现 binned 的标签，不用显示 bins fit 的标签，否则图例会占据太大面积</li>
+</ul>
+</div>
+</div>
+<div id="45d919e1" class="cell" data-execution_count="92">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="im">from</span> scipy.stats <span class="im">import</span> binned_statistic</span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> PolynomialFeatures</span>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="im">from</span> statsmodels.sandbox.regression.predstd <span class="im">import</span> wls_prediction_std</span>
+<span id="cb18-6"><a href="#cb18-6"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb18-7"><a href="#cb18-7"></a></span>
+<span id="cb18-8"><a href="#cb18-8"></a><span class="kw">def</span> plot_binscatter_by(df, xvar, yvar, groupvar, n_bins<span class="op">=</span><span class="dv">20</span>, degree<span class="op">=</span><span class="dv">4</span>, palette<span class="op">=</span><span class="va">None</span>, scatter_alpha<span class="op">=</span><span class="fl">0.18</span>, scatter_size<span class="op">=</span><span class="dv">50</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>)):</span>
+<span id="cb18-9"><a href="#cb18-9"></a>    <span class="co">"""</span></span>
+<span id="cb18-10"><a href="#cb18-10"></a><span class="co">    分组分仓散点图 + 多项式拟合线（默认4阶），每个分组单独绘制。</span></span>
+<span id="cb18-11"><a href="#cb18-11"></a><span class="co">    """</span></span>
+<span id="cb18-12"><a href="#cb18-12"></a>    <span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb18-13"><a href="#cb18-13"></a>    <span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb18-14"><a href="#cb18-14"></a></span>
+<span id="cb18-15"><a href="#cb18-15"></a>    groups <span class="op">=</span> df[groupvar].dropna().unique()</span>
+<span id="cb18-16"><a href="#cb18-16"></a>    <span class="cf">if</span> palette <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb18-17"><a href="#cb18-17"></a>        colors <span class="op">=</span> sns.color_palette(<span class="st">"tab10"</span>, <span class="bu">len</span>(groups))</span>
+<span id="cb18-18"><a href="#cb18-18"></a>        palette <span class="op">=</span> {g: c <span class="cf">for</span> g, c <span class="kw">in</span> <span class="bu">zip</span>(groups, colors)}</span>
+<span id="cb18-19"><a href="#cb18-19"></a></span>
+<span id="cb18-20"><a href="#cb18-20"></a>    plt.figure(figsize<span class="op">=</span>figsize)</span>
+<span id="cb18-21"><a href="#cb18-21"></a>    <span class="cf">for</span> group <span class="kw">in</span> groups:</span>
+<span id="cb18-22"><a href="#cb18-22"></a>        sub <span class="op">=</span> df[df[groupvar] <span class="op">==</span> group]</span>
+<span id="cb18-23"><a href="#cb18-23"></a>        x <span class="op">=</span> sub[xvar].values</span>
+<span id="cb18-24"><a href="#cb18-24"></a>        y <span class="op">=</span> sub[yvar].values</span>
+<span id="cb18-25"><a href="#cb18-25"></a></span>
+<span id="cb18-26"><a href="#cb18-26"></a>        <span class="co"># 分箱均值</span></span>
+<span id="cb18-27"><a href="#cb18-27"></a>        bin_means, bin_edges, _ <span class="op">=</span> binned_statistic(x, y, statistic<span class="op">=</span><span class="st">'mean'</span>, bins<span class="op">=</span>n_bins)</span>
+<span id="cb18-28"><a href="#cb18-28"></a>        bin_centers <span class="op">=</span> (bin_edges[:<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> bin_edges[<span class="dv">1</span>:]) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb18-29"><a href="#cb18-29"></a>        plt.scatter(bin_centers, bin_means, color<span class="op">=</span>palette[group], s<span class="op">=</span>scatter_size, alpha<span class="op">=</span><span class="fl">0.8</span>, label<span class="op">=</span><span class="ss">f'</span><span class="sc">{</span>group<span class="sc">}</span><span class="ss"> (binned)'</span>)</span>
+<span id="cb18-30"><a href="#cb18-30"></a></span>
+<span id="cb18-31"><a href="#cb18-31"></a>        <span class="co"># 多项式拟合</span></span>
+<span id="cb18-32"><a href="#cb18-32"></a>        poly <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span>degree)</span>
+<span id="cb18-33"><a href="#cb18-33"></a>        X_poly <span class="op">=</span> poly.fit_transform(x.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb18-34"><a href="#cb18-34"></a>        model <span class="op">=</span> LinearRegression().fit(X_poly, y)</span>
+<span id="cb18-35"><a href="#cb18-35"></a>        x_fit <span class="op">=</span> np.linspace(x.<span class="bu">min</span>(), x.<span class="bu">max</span>(), <span class="dv">200</span>)</span>
+<span id="cb18-36"><a href="#cb18-36"></a>        X_fit_poly <span class="op">=</span> poly.transform(x_fit.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb18-37"><a href="#cb18-37"></a>        y_fit <span class="op">=</span> model.predict(X_fit_poly)</span>
+<span id="cb18-38"><a href="#cb18-38"></a></span>
+<span id="cb18-39"><a href="#cb18-39"></a>        <span class="co"># 置信区间</span></span>
+<span id="cb18-40"><a href="#cb18-40"></a>        X_poly_sm <span class="op">=</span> sm.add_constant(X_poly)</span>
+<span id="cb18-41"><a href="#cb18-41"></a>        ols <span class="op">=</span> sm.OLS(y, X_poly_sm).fit()</span>
+<span id="cb18-42"><a href="#cb18-42"></a>        X_fit_poly_sm <span class="op">=</span> sm.add_constant(X_fit_poly)</span>
+<span id="cb18-43"><a href="#cb18-43"></a>        prstd, ci_low, ci_upp <span class="op">=</span> wls_prediction_std(ols, exog<span class="op">=</span>X_fit_poly_sm, alpha<span class="op">=</span><span class="fl">0.05</span>)</span>
+<span id="cb18-44"><a href="#cb18-44"></a>        plt.plot(x_fit, y_fit, color<span class="op">=</span>palette[group], label<span class="op">=</span><span class="ss">f'</span><span class="sc">{</span>group<span class="sc">}</span><span class="ss"> (poly fit)'</span>)</span>
+<span id="cb18-45"><a href="#cb18-45"></a>        plt.fill_between(x_fit, ci_low, ci_upp, color<span class="op">=</span>palette[group], alpha<span class="op">=</span><span class="fl">0.15</span>)</span>
+<span id="cb18-46"><a href="#cb18-46"></a></span>
+<span id="cb18-47"><a href="#cb18-47"></a>    plt.xlabel(xvar)</span>
+<span id="cb18-48"><a href="#cb18-48"></a>    plt.ylabel(yvar)</span>
+<span id="cb18-49"><a href="#cb18-49"></a>    plt.title(<span class="ss">f'Binscatter: </span><span class="sc">{</span>yvar<span class="sc">}</span><span class="ss"> vs. </span><span class="sc">{</span>xvar<span class="sc">}</span><span class="ss"> by </span><span class="sc">{</span>groupvar<span class="sc">}</span><span class="ss"> (Poly p=</span><span class="sc">{</span>degree<span class="sc">}</span><span class="ss">)'</span>)</span>
+<span id="cb18-50"><a href="#cb18-50"></a>    plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, color<span class="op">=</span><span class="st">'lightgray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.7</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb18-51"><a href="#cb18-51"></a>    plt.legend()</span>
+<span id="cb18-52"><a href="#cb18-52"></a>    plt.tight_layout()</span>
+<span id="cb18-53"><a href="#cb18-53"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+提示词
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>使用上述 <code>plot_binscatter_by</code> 函数绘图：在同一幅图中，绘制 Male 和 Female 的分仓散点图和拟合线。</p>
+</div>
+</div>
+<div id="0588d805" class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># 定义 df_wage_less_100，确保只包含 wage &lt; 100 的样本，并包含 Gender 列</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>df_wage_less_100 <span class="op">=</span> df[df[<span class="st">'wage'</span>] <span class="op">&lt;</span> <span class="dv">100</span>].copy()</span>
+<span id="cb19-3"><a href="#cb19-3"></a>df_wage_less_100[<span class="st">'sex_label'</span>] <span class="op">=</span> df_wage_less_100[<span class="st">'sex'</span>].<span class="bu">map</span>({<span class="dv">0</span>: <span class="st">'Male'</span>, <span class="dv">1</span>: <span class="st">'Female'</span>})</span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="co"># 调用已定义的 plot_binscatter_by_gender 函数</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a>plot_binscatter_by(df_wage_less_100, </span>
+<span id="cb19-6"><a href="#cb19-6"></a>                   xvar<span class="op">=</span><span class="st">'exp1'</span>, yvar<span class="op">=</span><span class="st">'wage'</span>, </span>
+<span id="cb19-7"><a href="#cb19-7"></a>                   groupvar<span class="op">=</span><span class="st">'sex_label'</span>, n_bins<span class="op">=</span><span class="dv">20</span>, degree<span class="op">=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regress_03_binscatter_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="去除控制变量的影响" class="level3" data-number="31.5.5">
+<h3 data-number="31.5.5" class="anchored" data-anchor-id="去除控制变量的影响"><span class="header-section-number">31.5.5</span> 去除控制变量的影响</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+提示词
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>绘制 ln(wage) 和 experience 的 ‘分仓散点图 (binscatter)’ 图：</p>
+<ul>
+<li>bins = 20</li>
+<li>添加非线性拟合线和 95% CI，多项式阶数 p 选择最优值</li>
+<li>y 轴刻度：5(5)40</li>
+<li>控制变量：edu_group, region, sex
+<ul>
+<li>采用 FWL 定理去掉上述控制变量的影响</li>
+</ul></li>
+<li>绘图时：横轴和纵轴的变量都加上各自的原始值的样本均值，以提高可读性</li>
+</ul>
+</div>
+</div>
+<div id="4fd5a8c1" class="cell" data-execution_count="107">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="im">from</span> scipy.stats <span class="im">import</span> binned_statistic</span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> PolynomialFeatures</span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb20-6"><a href="#cb20-6"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
+<span id="cb20-7"><a href="#cb20-7"></a><span class="im">from</span> statsmodels.stats.outliers_influence <span class="im">import</span> summary_table</span>
+<span id="cb20-8"><a href="#cb20-8"></a></span>
+<span id="cb20-9"><a href="#cb20-9"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb20-10"><a href="#cb20-10"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb20-11"><a href="#cb20-11"></a></span>
+<span id="cb20-12"><a href="#cb20-12"></a><span class="co"># 只用 wage &lt; 100 的样本</span></span>
+<span id="cb20-13"><a href="#cb20-13"></a>df_plot <span class="op">=</span> df_wage_less_100.copy()</span>
+<span id="cb20-14"><a href="#cb20-14"></a></span>
+<span id="cb20-15"><a href="#cb20-15"></a><span class="co"># 1. FWL（Frisch-Waugh-Lovell）残差化处理</span></span>
+<span id="cb20-16"><a href="#cb20-16"></a><span class="co"># 控制变量：edu_group, region, sex</span></span>
+<span id="cb20-17"><a href="#cb20-17"></a>fwl_controls <span class="op">=</span> [<span class="st">'edu_group'</span>, <span class="st">'region'</span>, <span class="st">'sex'</span>]</span>
+<span id="cb20-18"><a href="#cb20-18"></a><span class="co"># 对 ln(wage) 残差化</span></span>
+<span id="cb20-19"><a href="#cb20-19"></a>y <span class="op">=</span> df_plot[<span class="st">'lwage'</span>]</span>
+<span id="cb20-20"><a href="#cb20-20"></a>X_controls <span class="op">=</span> pd.get_dummies(df_plot[fwl_controls], drop_first<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb20-21"><a href="#cb20-21"></a>X_controls <span class="op">=</span> sm.add_constant(X_controls)</span>
+<span id="cb20-22"><a href="#cb20-22"></a>X_controls <span class="op">=</span> X_controls.astype(<span class="bu">float</span>)</span>
+<span id="cb20-23"><a href="#cb20-23"></a>ols_y <span class="op">=</span> sm.OLS(y, X_controls).fit()</span>
+<span id="cb20-24"><a href="#cb20-24"></a>y_resid <span class="op">=</span> ols_y.resid</span>
+<span id="cb20-25"><a href="#cb20-25"></a></span>
+<span id="cb20-26"><a href="#cb20-26"></a><span class="co"># 对 exp1 残差化</span></span>
+<span id="cb20-27"><a href="#cb20-27"></a>x <span class="op">=</span> df_plot[<span class="st">'exp1'</span>]</span>
+<span id="cb20-28"><a href="#cb20-28"></a>ols_x <span class="op">=</span> sm.OLS(x, X_controls).fit()</span>
+<span id="cb20-29"><a href="#cb20-29"></a>x_resid <span class="op">=</span> ols_x.resid</span>
+<span id="cb20-30"><a href="#cb20-30"></a></span>
+<span id="cb20-31"><a href="#cb20-31"></a><span class="co"># 均值中心化</span></span>
+<span id="cb20-32"><a href="#cb20-32"></a>x_resid_centered <span class="op">=</span> x_resid <span class="op">-</span> x_resid.mean()</span>
+<span id="cb20-33"><a href="#cb20-33"></a>y_resid_centered <span class="op">=</span> y_resid <span class="op">-</span> y_resid.mean()</span>
+<span id="cb20-34"><a href="#cb20-34"></a></span>
+<span id="cb20-35"><a href="#cb20-35"></a><span class="co"># 2. 分箱散点</span></span>
+<span id="cb20-36"><a href="#cb20-36"></a>n_bins <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb20-37"><a href="#cb20-37"></a>bin_means, bin_edges, binnumber <span class="op">=</span> binned_statistic(</span>
+<span id="cb20-38"><a href="#cb20-38"></a>    x_resid_centered, y_resid_centered, statistic<span class="op">=</span><span class="st">'mean'</span>, bins<span class="op">=</span>n_bins</span>
+<span id="cb20-39"><a href="#cb20-39"></a>)</span>
+<span id="cb20-40"><a href="#cb20-40"></a>bin_centers <span class="op">=</span> (bin_edges[:<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> bin_edges[<span class="dv">1</span>:]) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb20-41"><a href="#cb20-41"></a></span>
+<span id="cb20-42"><a href="#cb20-42"></a><span class="co"># 3. 多项式阶数选择（交叉验证，最大到5阶）</span></span>
+<span id="cb20-43"><a href="#cb20-43"></a>X_poly <span class="op">=</span> x_resid_centered.values.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb20-44"><a href="#cb20-44"></a>degrees <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>)</span>
+<span id="cb20-45"><a href="#cb20-45"></a>cv_scores <span class="op">=</span> []</span>
+<span id="cb20-46"><a href="#cb20-46"></a><span class="cf">for</span> d <span class="kw">in</span> degrees:</span>
+<span id="cb20-47"><a href="#cb20-47"></a>    poly <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span>d)</span>
+<span id="cb20-48"><a href="#cb20-48"></a>    X_poly_d <span class="op">=</span> poly.fit_transform(X_poly)</span>
+<span id="cb20-49"><a href="#cb20-49"></a>    model <span class="op">=</span> LinearRegression()</span>
+<span id="cb20-50"><a href="#cb20-50"></a>    score <span class="op">=</span> cross_val_score(model, </span>
+<span id="cb20-51"><a href="#cb20-51"></a>                            X_poly_d, y_resid_centered, </span>
+<span id="cb20-52"><a href="#cb20-52"></a>                            cv<span class="op">=</span><span class="dv">5</span>, </span>
+<span id="cb20-53"><a href="#cb20-53"></a>                            scoring<span class="op">=</span><span class="st">'neg_mean_squared_error'</span>).mean()</span>
+<span id="cb20-54"><a href="#cb20-54"></a>    cv_scores.append(score)</span>
+<span id="cb20-55"><a href="#cb20-55"></a>best_degree <span class="op">=</span> degrees[np.argmax(cv_scores)]</span>
+<span id="cb20-56"><a href="#cb20-56"></a></span>
+<span id="cb20-57"><a href="#cb20-57"></a><span class="co"># 4. 用最优阶数拟合</span></span>
+<span id="cb20-58"><a href="#cb20-58"></a>poly <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span>best_degree)</span>
+<span id="cb20-59"><a href="#cb20-59"></a>X_poly_best <span class="op">=</span> poly.fit_transform(X_poly)</span>
+<span id="cb20-60"><a href="#cb20-60"></a>model <span class="op">=</span> LinearRegression().fit(X_poly_best, y_resid_centered)</span>
+<span id="cb20-61"><a href="#cb20-61"></a>y_pred <span class="op">=</span> model.predict(X_poly_best)</span>
+<span id="cb20-62"><a href="#cb20-62"></a></span>
+<span id="cb20-63"><a href="#cb20-63"></a><span class="co"># 5. 置信区间</span></span>
+<span id="cb20-64"><a href="#cb20-64"></a>X_poly_sm <span class="op">=</span> sm.add_constant(X_poly_best)</span>
+<span id="cb20-65"><a href="#cb20-65"></a>ols <span class="op">=</span> sm.OLS(y_resid_centered, X_poly_sm).fit()</span>
+<span id="cb20-66"><a href="#cb20-66"></a>st, data, ss2 <span class="op">=</span> summary_table(ols, alpha<span class="op">=</span><span class="fl">0.05</span>)</span>
+<span id="cb20-67"><a href="#cb20-67"></a>ci_low, ci_upp <span class="op">=</span> data[:, <span class="dv">4</span>], data[:, <span class="dv">5</span>]</span>
+<span id="cb20-68"><a href="#cb20-68"></a></span>
+<span id="cb20-69"><a href="#cb20-69"></a><span class="co"># 6. 绘图</span></span>
+<span id="cb20-70"><a href="#cb20-70"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb20-71"><a href="#cb20-71"></a>plt.scatter(bin_centers, bin_means, color<span class="op">=</span><span class="st">'#1f77b4'</span>, </span>
+<span id="cb20-72"><a href="#cb20-72"></a>            s<span class="op">=</span><span class="dv">60</span>, label<span class="op">=</span><span class="st">'Binned Means'</span>)</span>
+<span id="cb20-73"><a href="#cb20-73"></a>order <span class="op">=</span> np.argsort(X_poly[:, <span class="dv">0</span>])</span>
+<span id="cb20-74"><a href="#cb20-74"></a>plt.plot(X_poly[order, <span class="dv">0</span>], y_pred[order], </span>
+<span id="cb20-75"><a href="#cb20-75"></a>         color<span class="op">=</span><span class="st">'#ff7f0e'</span>, </span>
+<span id="cb20-76"><a href="#cb20-76"></a>         label<span class="op">=</span><span class="ss">f'Poly Fit (degree=</span><span class="sc">{</span>best_degree<span class="sc">}</span><span class="ss">)'</span>)</span>
+<span id="cb20-77"><a href="#cb20-77"></a>plt.fill_between(X_poly[order, <span class="dv">0</span>], </span>
+<span id="cb20-78"><a href="#cb20-78"></a>                 ci_low[order], ci_upp[order], </span>
+<span id="cb20-79"><a href="#cb20-79"></a>                 color<span class="op">=</span><span class="st">'#ff7f0e'</span>, </span>
+<span id="cb20-80"><a href="#cb20-80"></a>                 alpha<span class="op">=</span><span class="fl">0.18</span>, label<span class="op">=</span><span class="st">'95% CI'</span>)</span>
+<span id="cb20-81"><a href="#cb20-81"></a>plt.xlabel(<span class="st">'Residualized Experience (centered)'</span>)</span>
+<span id="cb20-82"><a href="#cb20-82"></a>plt.ylabel(<span class="st">'Residualized ln(wage) (centered)'</span>)</span>
+<span id="cb20-83"><a href="#cb20-83"></a>plt.title(<span class="st">'Binscatter: ln(wage) vs. Experience (FWL Residualized, Nonlinear Fit, Centered)'</span>)</span>
+<span id="cb20-84"><a href="#cb20-84"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, color<span class="op">=</span><span class="st">'lightgray'</span>, </span>
+<span id="cb20-85"><a href="#cb20-85"></a>         linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.7</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb20-86"><a href="#cb20-86"></a>plt.yticks(np.arange(<span class="op">-</span><span class="fl">0.6</span>, <span class="fl">0.8</span>, <span class="fl">0.2</span>))</span>
+<span id="cb20-87"><a href="#cb20-87"></a>plt.tight_layout()</span>
+<span id="cb20-88"><a href="#cb20-88"></a>plt.legend()</span>
+<span id="cb20-89"><a href="#cb20-89"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regress_03_binscatter_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="小结" class="level2" data-number="31.6">
+<h2 data-number="31.6" class="anchored" data-anchor-id="小结"><span class="header-section-number">31.6</span> 小结</h2>
+<p>本章介绍了分仓散点图的基本原理与绘制方法，并结合工资决定因素的例子，演示了其在 Python 中的实际应用。</p>
+<p>事实上，分仓散点图不仅是描述变量关系的直观工具，更在应用经济学和社会科学实证研究中具有重要意义。</p>
+<p>首先，分仓散点图可作为多元回归结果的可视化手段。我们可以利用 Frisch-Waugh-Lovell（FWL）定理，在控制协变量影响的前提下，直观呈现核心自变量与因变量之间的净关系，这对于理解回归系数背后的经济含义和展示部分效应尤为有用。</p>
+<p>其次，分仓散点图还是模型设定的重要工具。通过观察分仓均值的变化趋势，我们可以初步判断变量之间的非线性关系或结构性断点，为进一步采用多项式回归、分段回归等方法提供依据。</p>
+<p>再次，在数据分析和预处理阶段，分仓散点图有助于快速发现异常值、极端点以及样本结构变化，从而提高数据分析的准确性和稳健性。</p>
+<p>此外，该方法还常用于断点回归设计（RDD）、政策评估、因果推断等前沿实证领域，是展示数据特征和检验研究假设的有力工具。</p>
+<p>总体来看，分仓散点图作为连接理论分析、数据探索与实证模型设定的桥梁，已经成为现代数据分析和应用计量经济学研究中不可或缺的基础工具。</p>
+</section>
+<section id="参考文献" class="level2" data-number="31.7">
+<h2 data-number="31.7" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">31.7</span> 参考文献</h2>
+<ul>
+<li>Cattaneo, M. D., Jansson, M., &amp; Ma, X. (2022). binsreg: Estimating and validating binscatter estimators. The Stata Journal, 22(1), 65–99. <a href="https://doi.org/10.1177/1536867X221082097">Link</a>, <a href="http://sci-hub.ren/10.1177/1536867X221082097">PDF</a>, <a href="https://scholar.google.com/scholar?q=binsreg">Google</a>.</li>
+<li>Cattaneo, M. D., Crump, R. K., Farrell, M. H., &amp; Feng, Y. (2024). On Binscatter. American Economic Review, 114(5), 1488–1514.&nbsp;<a href="https://doi.org/10.1257/aer.20221576">Link</a>&nbsp;(rep),&nbsp;<a href="https://nppackages.github.io/references/Cattaneo-Crump-Farrell-Feng_2024_AER.pdf">PDF</a>,&nbsp;<a href="https://www.aeaweb.org/doi/10.1257/aer.20221576.appx">Appendix</a>,&nbsp;<a href="https://scholar.google.com/scholar?q=On%20Binscatter">Google</a>,&nbsp;<a href="https://www.openicpsr.org/openicpsr/project/195103/version/V1/view">-Replication-</a>.</li>
+<li>Frisch, R., &amp; Waugh, F. V. (1933). Partial Time Regressions as Compared with Individual Trends. Econometrica, 1(4), 387–401. <a href="https://doi.org/10.2307/1907330">Link</a>, <a href="http://sci-hub.ren/10.2307/1907330">PDF</a>, <a href="https://scholar.google.com/scholar?q=Partial+Time+Regressions+as+Compared+with+Individual+Trends">Google</a>.</li>
+<li>Lovell, M. C. (1963). Seasonal Adjustment of Economic Time Series and Multiple Regression Analysis. Journal of the American Statistical Association, 58(304), 993–1010. <a href="https://doi.org/10.1080/01621459.1963.10480673">Link</a>, <a href="http://sci-hub.ren/10.1080/01621459.1963.10480673">PDF</a>, <a href="https://scholar.google.com/scholar?q=Seasonal+Adjustment+of+Economic+Time+Series+and+Multiple+Regression+Analysis">Google</a>.</li>
+<li>Stepner M. Binscatter: Binned scatterplots in stata[J]. StataConference, 2014. <a href="https://michaelstepner.com/binscatter/binscatter-StataConference2014.pdf">-PDF-</a></li>
+<li>朱志英, 2022, <a href="https://www.lianxh.cn/details/1139.html">Stata：分仓散点图应用-binscatter</a>, 连享会 No.1139.</li>
+<li>钟声, 2022, <a href="https://www.lianxh.cn/details/870.html">Stata：分仓散点图绘制-binscatter-binscatter2</a>, 连享会 No.870.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../body/regress_02_wage.html" class="pagination-link" aria-label="线性回归分析">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">线性回归分析</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../body/TS_FRED_US_unemploy_rate.html" class="pagination-link" aria-label="案例：美国失业率和通胀率关系分析">
+        <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><a href="https://www.lianxh.cn">www.lianxh.cn</a></p>
+</div>
+    <div class="nav-footer-right">
+<p>Support: <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

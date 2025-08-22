@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>24&nbsp; 上证指数的时序特征 – 数据分析</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../body/graph_01_intro.html" rel="next">
+<link href="../body/data_02_get_data_GMD.html" rel="prev">
+<link href="../images/ds-book-logo-40.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e8fb9d25728d58bfeac61b497e4a6629.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-8434d2026ae8291579158df2ad8dfa64.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/data_02_data_type.html"><strong>数据分析</strong></a></li><li class="breadcrumb-item"><a href="../body/TS_SZ_index.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">上证指数的时序特征</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../"></a><a href="../index.html">DS</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
+    <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
+    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">数据分析</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/_home.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">关于我们</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/00_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">前言</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Python 基础</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/00_py_with_AI_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">借助 AI 写代码</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/00_py_with_AI_pic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ansome Python + AI</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_1_1_install-Anaconda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python：安装和环境配置</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_1_2_use_Junpyter_Notebook.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Jupyter Notebook 的使用</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_2_install_FAQs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Python 安装常见问题</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_3_markdown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Python 入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_01_grammer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python 代码风格</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_02_QuickReference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Python 常用命令速查表</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_03_Packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Python 常用扩展包</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_04_import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Python：import 使用详解</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_05_OOP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Python：语法解析-面向对象编程</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_01_basic_06_filepath.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Python 路径设置</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_02_numpy_scipy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_02_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">pandas 快速入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_03_matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Matplotlib简介</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_04_func_and_module.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">函数</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_py_05_class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">类和对象</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>数据分析</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_02_data_type.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">数据分析是什么？</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_02_get_data_GMD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">获取数据：GMD</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_SZ_index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">上证指数的时序特征</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>可视化</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Python 可视化：简介</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_box_violin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">箱型图和小提琴图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_histogram.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">直方图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_kdensity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">核密度函数图</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>回归分析</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/test_AB_test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_01_OLS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">线性回归模型</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_02_wage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">线性回归分析</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_03_binscatter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">分仓散点图</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>时间序列分析</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_FRED_US_unemploy_rate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>作业展示</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Dangdang_G7_01_data_clean.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">当当网-G7-01</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Dangdang_G7_02_data_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">当当网-G7-02</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/G8_China_stock_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">G8-中国上市公司</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_01_data_crawler.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">G4-01</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_02_data_cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">G4-02</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_03_data_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">G4-03</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_万诗晴.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">ex02_万诗晴</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_吴倩茵.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">ex02_吴倩茵</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_朱少荣.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">ex02_朱少荣</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_黄伊姿.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">ex02_黄伊姿</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#获取数据" id="toc-获取数据" class="nav-link active" data-scroll-target="#获取数据"><span class="header-section-number">24.1</span> 获取数据</a></li>
+  <li><a href="#收盘价走势图" id="toc-收盘价走势图" class="nav-link" data-scroll-target="#收盘价走势图"><span class="header-section-number">24.2</span> 收盘价走势图</a>
+  <ul class="collapse">
+  <li><a href="#静态图形" id="toc-静态图形" class="nav-link" data-scroll-target="#静态图形"><span class="header-section-number">24.2.1</span> 静态图形</a></li>
+  <li><a href="#交互图" id="toc-交互图" class="nav-link" data-scroll-target="#交互图"><span class="header-section-number">24.2.2</span> 交互图</a></li>
+  <li><a href="#钉形图" id="toc-钉形图" class="nav-link" data-scroll-target="#钉形图"><span class="header-section-number">24.2.3</span> 钉形图</a></li>
+  </ul></li>
+  <li><a href="#收益率" id="toc-收益率" class="nav-link" data-scroll-target="#收益率"><span class="header-section-number">24.3</span> 收益率</a>
+  <ul class="collapse">
+  <li><a href="#日收益率时序图" id="toc-日收益率时序图" class="nav-link" data-scroll-target="#日收益率时序图"><span class="header-section-number">24.3.1</span> 日收益率时序图</a></li>
+  <li><a href="#箱线图boxplot" id="toc-箱线图boxplot" class="nav-link" data-scroll-target="#箱线图boxplot"><span class="header-section-number">24.3.2</span> 箱线图（Boxplot）</a></li>
+  <li><a href="#同时呈现多个箱线图" id="toc-同时呈现多个箱线图" class="nav-link" data-scroll-target="#同时呈现多个箱线图"><span class="header-section-number">24.3.3</span> 同时呈现多个箱线图</a></li>
+  </ul></li>
+  <li><a href="#直方图" id="toc-直方图" class="nav-link" data-scroll-target="#直方图"><span class="header-section-number">24.4</span> 直方图</a>
+  <ul class="collapse">
+  <li><a href="#何谓直方图" id="toc-何谓直方图" class="nav-link" data-scroll-target="#何谓直方图"><span class="header-section-number">24.4.1</span> 何谓直方图？</a></li>
+  <li><a href="#核心代码说明" id="toc-核心代码说明" class="nav-link" data-scroll-target="#核心代码说明"><span class="header-section-number">24.4.2</span> 核心代码说明</a></li>
+  <li><a href="#常用参数汇总" id="toc-常用参数汇总" class="nav-link" data-scroll-target="#常用参数汇总"><span class="header-section-number">24.4.3</span> 常用参数汇总</a></li>
+  <li><a href="#实用建议" id="toc-实用建议" class="nav-link" data-scroll-target="#实用建议"><span class="header-section-number">24.4.4</span> 实用建议</a></li>
+  </ul></li>
+  <li><a href="#核密度函数" id="toc-核密度函数" class="nav-link" data-scroll-target="#核密度函数"><span class="header-section-number">24.5</span> 核密度函数</a>
+  <ul class="collapse">
+  <li><a href="#核函数" id="toc-核函数" class="nav-link" data-scroll-target="#核函数"><span class="header-section-number">24.5.1</span> 核函数</a></li>
+  <li><a href="#核函数的性质" id="toc-核函数的性质" class="nav-link" data-scroll-target="#核函数的性质"><span class="header-section-number">24.5.2</span> 核函数的性质</a></li>
+  </ul></li>
+  <li><a href="#周收益率和月收益率" id="toc-周收益率和月收益率" class="nav-link" data-scroll-target="#周收益率和月收益率"><span class="header-section-number">24.6</span> 周收益率和月收益率</a></li>
+  <li><a href="#年化收益率和标准差" id="toc-年化收益率和标准差" class="nav-link" data-scroll-target="#年化收益率和标准差"><span class="header-section-number">24.7</span> 年化收益率和标准差</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/data_02_data_type.html"><strong>数据分析</strong></a></li><li class="breadcrumb-item"><a href="../body/TS_SZ_index.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">上证指数的时序特征</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">上证指数的时序特征</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p> </p>
+<p>本讲使用 <code>akshare</code> 库获取上证指数的历史数据，并使用 <code>statsmodels</code> 库进行时间序列分析。主要包括： - 在线获取上证指数的历史数据，包括：收盘价、开盘价、最高价、最低价、成交量等。 - 计算日收益率、周收益率和年化收益率，并采用 <code>matplotlib</code> 库进行可视化。 - 图示收益率的分布特征 - 收益率的直方图、密度函数图等 - 收益率的自相关图、偏自相关图等 - 收益率的波动性分析 - 收益率标准差、方差等</p>
+<div id="02d26a47" class="cell" data-execution_count="79">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># -*- coding: utf-8 -*-</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># 导入必要的库</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># pip install akshare</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="im">import</span> akshare <span class="im">as</span> ak</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># 屏蔽提示信息</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="im">import</span> warnings</span>
+<span id="cb1-13"><a href="#cb1-13"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14"></a></span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="co"># 设置中文字体支持（如已设置可省略）</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'SimHei'</span>] </span>
+<span id="cb1-17"><a href="#cb1-17"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="获取数据" class="level2" data-number="24.1">
+<h2 data-number="24.1" class="anchored" data-anchor-id="获取数据"><span class="header-section-number">24.1</span> 获取数据</h2>
+<div id="66077a2e" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># 设置起始时间和结束时间</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>start_date <span class="op">=</span> <span class="st">'1991-01-01'</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>end_date <span class="op">=</span> datetime.now().strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">'</span>)  <span class="co"># 设置为当前日期</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co"># 获取上证指数的历史数据</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>sz_index <span class="op">=</span> ak.stock_zh_index_daily(symbol<span class="op">=</span><span class="st">"sh000001"</span>)  <span class="co"># 上证指数代码为 "sh000001"</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co"># 重命名列名以便后续处理</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>sz_index.rename(columns<span class="op">=</span>{<span class="st">'date'</span>: <span class="st">'day'</span>, <span class="st">'close'</span>: <span class="st">'close'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-11"><a href="#cb2-11"></a></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co"># 筛选指定起止时间的数据</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>sz_index[<span class="st">'day'</span>] <span class="op">=</span> pd.to_datetime(sz_index[<span class="st">'day'</span>])  <span class="co"># 确保日期列为 datetime 类型</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>sz_index <span class="op">=</span> sz_index[(sz_index[<span class="st">'day'</span>] <span class="op">&gt;=</span> pd.to_datetime(start_date)) <span class="op">&amp;</span> (sz_index[<span class="st">'day'</span>] <span class="op">&lt;=</span> pd.to_datetime(end_date))]</span>
+<span id="cb2-15"><a href="#cb2-15"></a></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span> <span class="op">+</span> <span class="st">'='</span><span class="op">*</span><span class="dv">10</span> <span class="op">+</span> <span class="st">' Head'</span> <span class="op">+</span> <span class="st">'='</span><span class="op">*</span><span class="dv">10</span>)</span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="bu">print</span>(sz_index.head())  <span class="co"># 显示前几行数据</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a></span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span> <span class="op">+</span> <span class="st">'='</span><span class="op">*</span><span class="dv">10</span> <span class="op">+</span> <span class="st">' Tail'</span> <span class="op">+</span> <span class="st">'='</span><span class="op">*</span><span class="dv">10</span>)</span>
+<span id="cb2-20"><a href="#cb2-20"></a><span class="bu">print</span>(sz_index.tail())  <span class="co"># 显示后几行数据</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+========== Head==========
+          day    open    high     low   close  volume
+9  1991-01-02  127.61  128.84  127.61  128.84    9100
+10 1991-01-03  128.84  130.14  128.84  130.14   14100
+11 1991-01-04  131.27  131.44  130.14  131.44   42000
+12 1991-01-07  131.99  132.06  131.45  132.06   21700
+13 1991-01-08  132.62  132.68  132.06  132.68  292600
+
+========== Tail==========
+            day      open      high       low     close       volume
+8387 2025-04-28  3292.056  3296.932  3279.877  3288.415  41066586300
+8388 2025-04-29  3281.445  3294.982  3277.627  3286.655  38896167200
+8389 2025-04-30  3284.081  3292.200  3277.550  3279.031  43579433500
+8390 2025-05-06  3295.250  3316.448  3286.989  3316.114  47436961700
+8391 2025-05-07  3354.974  3356.688  3324.809  3342.665  51115960600</code></pre>
+</div>
+</div>
+</section>
+<section id="收盘价走势图" class="level2" data-number="24.2">
+<h2 data-number="24.2" class="anchored" data-anchor-id="收盘价走势图"><span class="header-section-number">24.2</span> 收盘价走势图</h2>
+<section id="静态图形" class="level3" data-number="24.2.1">
+<h3 data-number="24.2.1" class="anchored" data-anchor-id="静态图形"><span class="header-section-number">24.2.1</span> 静态图形</h3>
+<div id="e8d50382" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># 绘制收盘价走势图</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">7</span>))</span>
+<span id="cb4-3"><a href="#cb4-3"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb4-4"><a href="#cb4-4"></a>plt.plot(sz_index[<span class="st">'day'</span>], sz_index[<span class="st">'close'</span>], label<span class="op">=</span><span class="st">'Close Price'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb4-5"><a href="#cb4-5"></a>plt.title(<span class="st">'Shanghai Composite Index Daily Close Price'</span>) </span>
+<span id="cb4-6"><a href="#cb4-6"></a>plt.legend()</span>
+<span id="cb4-7"><a href="#cb4-7"></a>plt.grid()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_SZ_index_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="交互图" class="level3" data-number="24.2.2">
+<h3 data-number="24.2.2" class="anchored" data-anchor-id="交互图"><span class="header-section-number">24.2.2</span> 交互图</h3>
+<p>接下来，我们使用 <code>plotly</code> 扩展包创建一个交互式折线图。顾名思义，这类图形可以在在鼠标悬停时，显示该时点的日期、收益率等信息。要点如下：</p>
+<ol type="1">
+<li><p>数据准备</p>
+<ul>
+<li><strong>时间筛选</strong>：通过 <code>start_date</code> 和 <code>end_date</code> 设置起始时间和结束时间，结合 <code>pandas.to_datetime()</code> 函数将日期列转换为标准时间格式，并筛选出指定时间区间内的数据。</li>
+<li><strong>数据合并</strong>：使用 <code>merge()</code> 函数将包含日收益率的 DataFrame 与主数据表按照日期列进行合并，使得每一日的收盘价配套显示对应的日收益率。</li>
+</ul></li>
+<li><p>图形绘制</p>
+<ul>
+<li><strong>图层添加</strong>：调用 <code>go.Scatter()</code> 添加一条收盘价的折线图（<code>mode='lines'</code> 表示仅显示折线，不显示节点）。</li>
+<li><strong>交互信息</strong>：利用 <code>hovertemplate</code> 参数自定义鼠标悬停时显示的内容，包括：日期（格式化为 <code>年-月-日</code>）、收盘价（保留两位小数）、日收益率（百分号格式，保留两位小数）等。</li>
+</ul></li>
+<li><p>图表布局设置</p>
+<ul>
+<li>通过 <code>fig.update_layout()</code> 设置图表标题、坐标轴标题、交互模式等：
+<ul>
+<li><code>hovermode='x unified'</code>：使得交互提示在同一垂直线上统一显示</li>
+<li><code>template='plotly_white'</code>：采用白色背景模板</li>
+</ul></li>
+<li>设置 <code>margin</code> 确保图形四周留有足够的空间，避免遮挡</li>
+</ul></li>
+</ol>
+<p>该图表可嵌入网页或 Jupyter Notebook 中动态展示，是教学、报告与展示金融时间序列数据的有力工具。</p>
+<div id="20e8a81b" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># 安装必要的库（如未安装）</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="co"># !pip install plotly akshare pandas</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="im">import</span> akshare <span class="im">as</span> ak</span>
+<span id="cb5-8"><a href="#cb5-8"></a></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co"># 设置起始时间和结束时间</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>start_date <span class="op">=</span> <span class="st">'2005-01-01'</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a>end_date <span class="op">=</span> datetime.now().strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">'</span>)  <span class="co"># 设置为当前日期</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="co"># 获取上证指数的历史数据</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a>sz_index <span class="op">=</span> ak.stock_zh_index_daily(symbol<span class="op">=</span><span class="st">"sh000001"</span>)  <span class="co"># 上证指数代码为 "sh000001"</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="co"># 重命名列名以便后续处理</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a>sz_index.rename(columns<span class="op">=</span>{<span class="st">'date'</span>: <span class="st">'day'</span>, <span class="st">'close'</span>: <span class="st">'close'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-18"><a href="#cb5-18"></a></span>
+<span id="cb5-19"><a href="#cb5-19"></a><span class="co"># 将日期列转换为 datetime 类型</span></span>
+<span id="cb5-20"><a href="#cb5-20"></a>sz_index[<span class="st">'day'</span>] <span class="op">=</span> pd.to_datetime(sz_index[<span class="st">'day'</span>])</span>
+<span id="cb5-21"><a href="#cb5-21"></a></span>
+<span id="cb5-22"><a href="#cb5-22"></a><span class="co"># 计算日收益率</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a>sz_index[<span class="st">'daily_return'</span>] <span class="op">=</span> sz_index[<span class="st">'close'</span>].pct_change()</span>
+<span id="cb5-24"><a href="#cb5-24"></a></span>
+<span id="cb5-25"><a href="#cb5-25"></a><span class="co"># 筛选指定时间区间内的数据</span></span>
+<span id="cb5-26"><a href="#cb5-26"></a>filtered_data <span class="op">=</span> sz_index.query(<span class="st">" @start_date &lt;= day &lt;= @end_date "</span>)</span>
+<span id="cb5-27"><a href="#cb5-27"></a></span>
+<span id="cb5-28"><a href="#cb5-28"></a><span class="co"># 创建交互式图形对象</span></span>
+<span id="cb5-29"><a href="#cb5-29"></a>fig <span class="op">=</span> go.Figure()</span>
+<span id="cb5-30"><a href="#cb5-30"></a></span>
+<span id="cb5-31"><a href="#cb5-31"></a><span class="co"># 添加收盘价的折线图</span></span>
+<span id="cb5-32"><a href="#cb5-32"></a>fig.add_trace(go.Scatter(</span>
+<span id="cb5-33"><a href="#cb5-33"></a>    x<span class="op">=</span>filtered_data[<span class="st">'day'</span>],</span>
+<span id="cb5-34"><a href="#cb5-34"></a>    y<span class="op">=</span>filtered_data[<span class="st">'close'</span>],</span>
+<span id="cb5-35"><a href="#cb5-35"></a>    mode<span class="op">=</span><span class="st">'lines'</span>,  <span class="co"># 只显示线条</span></span>
+<span id="cb5-36"><a href="#cb5-36"></a>    name<span class="op">=</span><span class="st">'收盘价'</span>,</span>
+<span id="cb5-37"><a href="#cb5-37"></a>    line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'blue'</span>),</span>
+<span id="cb5-38"><a href="#cb5-38"></a>    customdata<span class="op">=</span>filtered_data[[<span class="st">'daily_return'</span>]].values,</span>
+<span id="cb5-39"><a href="#cb5-39"></a>    hovertemplate<span class="op">=</span>(</span>
+<span id="cb5-40"><a href="#cb5-40"></a>        <span class="st">'&lt;b&gt;日期：&lt;/b&gt; %{x|%Y-%m-</span><span class="sc">%d</span><span class="st">}&lt;br&gt;'</span></span>
+<span id="cb5-41"><a href="#cb5-41"></a>        <span class="st">'&lt;b&gt;收盘价：&lt;/b&gt; %</span><span class="sc">{y:.2f}</span><span class="st">&lt;br&gt;'</span></span>
+<span id="cb5-42"><a href="#cb5-42"></a>        <span class="st">'&lt;b&gt;日收益率：&lt;/b&gt; %</span><span class="sc">{customdata[0]:.2%}</span><span class="st">&lt;extra&gt;&lt;/extra&gt;'</span></span>
+<span id="cb5-43"><a href="#cb5-43"></a>    )</span>
+<span id="cb5-44"><a href="#cb5-44"></a>))</span>
+<span id="cb5-45"><a href="#cb5-45"></a></span>
+<span id="cb5-46"><a href="#cb5-46"></a><span class="co"># 设置图表整体布局</span></span>
+<span id="cb5-47"><a href="#cb5-47"></a>fig.update_layout(</span>
+<span id="cb5-48"><a href="#cb5-48"></a>    title<span class="op">=</span><span class="st">'上证指数交互图'</span>,</span>
+<span id="cb5-49"><a href="#cb5-49"></a>    xaxis_title<span class="op">=</span><span class="st">'日期'</span>,</span>
+<span id="cb5-50"><a href="#cb5-50"></a>    yaxis_title<span class="op">=</span><span class="st">'收盘价'</span>,</span>
+<span id="cb5-51"><a href="#cb5-51"></a>    hovermode<span class="op">=</span><span class="st">'x unified'</span>,</span>
+<span id="cb5-52"><a href="#cb5-52"></a>    template<span class="op">=</span><span class="st">'plotly_white'</span>,</span>
+<span id="cb5-53"><a href="#cb5-53"></a>    margin<span class="op">=</span><span class="bu">dict</span>(l<span class="op">=</span><span class="dv">60</span>, r<span class="op">=</span><span class="dv">40</span>, t<span class="op">=</span><span class="dv">60</span>, b<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb5-54"><a href="#cb5-54"></a>)</span>
+<span id="cb5-55"><a href="#cb5-55"></a></span>
+<span id="cb5-56"><a href="#cb5-56"></a><span class="co"># 显示图表</span></span>
+<span id="cb5-57"><a href="#cb5-57"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>Unable to display output for mime type(s): application/vnd.plotly.v1+json</code></pre>
+</div>
+</div>
+</section>
+<section id="钉形图" class="level3" data-number="24.2.3">
+<h3 data-number="24.2.3" class="anchored" data-anchor-id="钉形图"><span class="header-section-number">24.2.3</span> 钉形图</h3>
+<p>钉形图（<code>candlestick chart</code>）是一种常用的金融图表，用于显示某一时间段内的价格波动情况。它通过“钉子”形状的图形来表示开盘价、收盘价、最高价和最低价。钉形图的主要优点在于能够直观地展示价格走势和波动范围，便于分析市场情绪和趋势。</p>
+<blockquote class="blockquote">
+<p>有关钉形图的详细解释，参见 <a href="https://www.kaggle.com/code/thebrownviking20/everything-you-can-do-with-a-time-series">Everything you can do with a time series</a></p>
+</blockquote>
+<p>钉形图的构建主要包括以下几个步骤： 1. <strong>数据准备</strong>：从 <code>akshare</code> 获取上证指数的历史数据，包括开盘价、收盘价、最高价和最低价等。将数据转换为 <code>pandas</code> DataFrame 格式，并设置日期为索引。 2. <strong>图形绘制</strong>：使用 <code>plotly.graph_objects</code> 中的 <code>go.Candlestick()</code> 函数创建钉形图。该函数需要传入开盘价、收盘价、最高价和最低价等数据，并设置相应的颜色（上涨为绿色，下跌为红色）。 3. <strong>图表布局设置</strong>：通过 <code>fig.update_layout()</code> 设置图表的标题、坐标轴标签、背景颜色等属性。可以使用 <code>plotly</code> 提供的多种模板来美化图表。 4. <strong>交互功能</strong>：钉形图支持鼠标悬停时显示详细信息，包括日期、开盘价、收盘价、最高价和最低价等。可以通过设置 <code>hovertemplate</code> 来定制显示内容。</p>
+<div id="789c4f15" class="cell" data-execution_count="74">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="co"># 设置起始时间和结束时间</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>start_date <span class="op">=</span> <span class="st">'2025-01-01'</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>end_date <span class="op">=</span> <span class="st">'2025-03-30'</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co"># 筛选绘图所需的列</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>candlestick_data <span class="op">=</span> sz_index.query(<span class="st">" @start_date &lt;= day &lt;= @end_date "</span>)[[<span class="st">'day'</span>, <span class="st">'open'</span>, <span class="st">'high'</span>, <span class="st">'low'</span>, <span class="st">'close'</span>]]</span>
+<span id="cb7-9"><a href="#cb7-9"></a></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co"># 创建钉形图</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a>fig <span class="op">=</span> go.Figure(data<span class="op">=</span>[go.Candlestick(</span>
+<span id="cb7-12"><a href="#cb7-12"></a>    x<span class="op">=</span>candlestick_data[<span class="st">'day'</span>],       <span class="co"># 日期</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>    <span class="bu">open</span><span class="op">=</span>candlestick_data[<span class="st">'open'</span>],   <span class="co"># 开盘价</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a>    high<span class="op">=</span>candlestick_data[<span class="st">'high'</span>],   <span class="co"># 最高价</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a>    low<span class="op">=</span>candlestick_data[<span class="st">'low'</span>],     <span class="co"># 最低价</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a>    close<span class="op">=</span>candlestick_data[<span class="st">'close'</span>], <span class="co"># 收盘价</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a>    increasing_line_color<span class="op">=</span><span class="st">'green'</span>,   <span class="co"># 上涨颜色</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a>    decreasing_line_color<span class="op">=</span><span class="st">'red'</span>      <span class="co"># 下跌颜色</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a>)])</span>
+<span id="cb7-20"><a href="#cb7-20"></a></span>
+<span id="cb7-21"><a href="#cb7-21"></a><span class="co"># 设置图表标题和布局</span></span>
+<span id="cb7-22"><a href="#cb7-22"></a>fig.update_layout(</span>
+<span id="cb7-23"><a href="#cb7-23"></a>    title<span class="op">=</span><span class="st">'上证指数钉形图'</span>,</span>
+<span id="cb7-24"><a href="#cb7-24"></a>    template<span class="op">=</span><span class="st">'plotly_white'</span>,</span>
+<span id="cb7-25"><a href="#cb7-25"></a>    xaxis_rangeslider_visible<span class="op">=</span><span class="va">False</span>,  <span class="co"># 隐藏范围滑块</span></span>
+<span id="cb7-26"><a href="#cb7-26"></a>    xaxis_tickformat<span class="op">=</span><span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">'</span>,  <span class="co"># 设置横轴刻度格式</span></span>
+<span id="cb7-27"><a href="#cb7-27"></a>    xaxis_tickangle<span class="op">=-</span><span class="dv">30</span>,  <span class="co"># 旋转横轴刻度 -30 度</span></span>
+<span id="cb7-28"><a href="#cb7-28"></a>)</span>
+<span id="cb7-29"><a href="#cb7-29"></a></span>
+<span id="cb7-30"><a href="#cb7-30"></a><span class="co"># 设置横轴刻度间隔</span></span>
+<span id="cb7-31"><a href="#cb7-31"></a>fig.update_xaxes(</span>
+<span id="cb7-32"><a href="#cb7-32"></a>    tickmode<span class="op">=</span><span class="st">'array'</span>,</span>
+<span id="cb7-33"><a href="#cb7-33"></a>    tickvals<span class="op">=</span>candlestick_data[<span class="st">'day'</span>][::<span class="dv">5</span>],  <span class="co"># 每隔 5 天显示一个刻度</span></span>
+<span id="cb7-34"><a href="#cb7-34"></a>    ticktext<span class="op">=</span>candlestick_data[<span class="st">'day'</span>][::<span class="dv">5</span>].dt.strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">'</span>)  <span class="co"># 格式化日期</span></span>
+<span id="cb7-35"><a href="#cb7-35"></a>)</span>
+<span id="cb7-36"><a href="#cb7-36"></a></span>
+<span id="cb7-37"><a href="#cb7-37"></a><span class="co"># 显示图表</span></span>
+<span id="cb7-38"><a href="#cb7-38"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>Unable to display output for mime type(s): application/vnd.plotly.v1+json</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="收益率" class="level2" data-number="24.3">
+<h2 data-number="24.3" class="anchored" data-anchor-id="收益率"><span class="header-section-number">24.3</span> 收益率</h2>
+<p>收益率是金融时间序列分析中的重要指标，通常用于衡量资产价格变动的幅度和速度。我们将计算上证指数的日收益率、周收益率和年化收益率，并进行可视化展示。 - <strong>日收益率</strong>：表示某一天的收盘价与前一天收盘价的比值变化，通常用百分比表示。 - <strong>周收益率</strong>：表示某一周的收盘价与前一周收盘价的比值变化，通常用百分比表示。 - <strong>年化收益率</strong>：表示某一年内的收益率，通常用百分比表示。年化收益率可以通过将日收益率乘以交易天数来计算。</p>
+<section id="日收益率时序图" class="level3" data-number="24.3.1">
+<h3 data-number="24.3.1" class="anchored" data-anchor-id="日收益率时序图"><span class="header-section-number">24.3.1</span> 日收益率时序图</h3>
+<ul>
+<li><strong>计算方法</strong>：日收益率 = (今日收盘价 - 昨日收盘价) / 昨日收盘价</li>
+<li><strong>可视化</strong>：
+<ul>
+<li>使用 <code>plt.plot(x, y)</code> 绘制日收益率的折线图，观察其波动趋势。</li>
+<li>使用 <code>matplotlib</code> 绘制日收益率的直方图和密度函数图，观察其分布特征。</li>
+</ul></li>
+</ul>
+<div id="ce75d72c" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># 计算日收益率</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>daily_return <span class="op">=</span> sz_index[<span class="st">'close'</span>].pct_change()  <span class="co"># 计算日收益率</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co"># 绘制日收益率走势图</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="co">#-- 控制绘图的时间范围</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="co">#start_plot_date = '1991-01-01'</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>start_plot_date <span class="op">=</span> <span class="st">'2019-01-01'</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>end_plot_date   <span class="op">=</span> <span class="st">'2025-05-01'</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a>sz_index_plot <span class="op">=</span> sz_index.query(<span class="st">" @start_date &lt;= day &lt;= @end_date "</span>)</span>
+<span id="cb9-10"><a href="#cb9-10"></a></span>
+<span id="cb9-11"><a href="#cb9-11"></a><span class="co"># 绘制日收益率走势图</span></span>
+<span id="cb9-12"><a href="#cb9-12"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">8</span>))  <span class="co"># 调整图形尺寸</span></span>
+<span id="cb9-13"><a href="#cb9-13"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb9-14"><a href="#cb9-14"></a>plt.plot(sz_index_plot[<span class="st">'day'</span>], </span>
+<span id="cb9-15"><a href="#cb9-15"></a>         sz_index_plot[<span class="st">'daily_return'</span>], </span>
+<span id="cb9-16"><a href="#cb9-16"></a>         label<span class="op">=</span><span class="st">'Daily Return'</span>, </span>
+<span id="cb9-17"><a href="#cb9-17"></a>         color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb9-18"><a href="#cb9-18"></a>plt.title(<span class="st">'Shanghai Composite Index Daily Return'</span>)</span>
+<span id="cb9-19"><a href="#cb9-19"></a>plt.xlabel(<span class="st">'Date'</span>)</span>
+<span id="cb9-20"><a href="#cb9-20"></a>plt.ylabel(<span class="st">'Daily Return'</span>)</span>
+<span id="cb9-21"><a href="#cb9-21"></a>plt.legend()</span>
+<span id="cb9-22"><a href="#cb9-22"></a>plt.grid()</span>
+<span id="cb9-23"><a href="#cb9-23"></a>plt.tight_layout()  <span class="co"># 调整子图间距</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_SZ_index_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="箱线图boxplot" class="level3" data-number="24.3.2">
+<h3 data-number="24.3.2" class="anchored" data-anchor-id="箱线图boxplot"><span class="header-section-number">24.3.2</span> 箱线图（Boxplot）</h3>
+<p>箱线图用于展示数据的分布特征，常用于识别数据的集中趋势、离散程度以及可能存在的异常值（outliers）。它特别适合金融数据的分布分析，比如收益率、资产波动率等。</p>
+<p>详情参见：<a href=""></a></p>
+<p>箱线图由以下几个核心部分组成：</p>
+<ul>
+<li><strong>中位数（Median）</strong>：箱体中间的横线，表示数据的第 50 个百分位数。</li>
+<li><strong>第一四分位数（Q1）</strong>：箱体下缘，表示数据的第 25 个百分位数。</li>
+<li><strong>第三四分位数（Q3）</strong>：箱体上缘，表示数据的第 75 个百分位数。</li>
+<li><strong>四分位距（IQR）</strong>：<span class="math inline">\(IQR = Q3 - Q1\)</span>，表示数据的中间 50% 的范围。</li>
+<li><strong>上胡须</strong>：延伸至 <span class="math inline">\(Q1 - 1.5 \times IQR\)</span> 的位置，用于捕捉非异常值的最大范围。</li>
+<li><strong>下胡须</strong>：延伸至 <span class="math inline">\(Q3 + 1.5 \times IQR\)</span> 的位置，用于捕捉非异常值的最小范围。</li>
+<li><strong>异常值（Outliers）</strong>：胡须之外的黑点，表示极端收益波动的观察值。</li>
+</ul>
+<p><img style="width: 550px" src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/box_plots_01.png"></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource raw number-lines code-with-copy"><code class="sourceCode"><span id="cb10-1"><a href="#cb10-1"></a>     Q1-1.5IQR   Q1   median  Q3   Q3+1.5IQR</span>
+<span id="cb10-2"><a href="#cb10-2"></a>                  |-----:-----|</span>
+<span id="cb10-3"><a href="#cb10-3"></a>  o      |--------|     :     |--------|    o  o</span>
+<span id="cb10-4"><a href="#cb10-4"></a>                  |-----:-----|</span>
+<span id="cb10-5"><a href="#cb10-5"></a>flier             &lt;-----------&gt;            fliers</span>
+<span id="cb10-6"><a href="#cb10-6"></a>                       IQR</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e706be16" class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># 筛选 20XX 年的数据</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>box_year <span class="op">=</span> <span class="dv">2024</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>df_box_year <span class="op">=</span> sz_index[sz_index[<span class="st">'year'</span>] <span class="op">==</span> box_year][<span class="st">'daily_return'</span>].dropna()</span>
+<span id="cb11-4"><a href="#cb11-4"></a></span>
+<span id="cb11-5"><a href="#cb11-5"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">3</span>))</span>
+<span id="cb11-6"><a href="#cb11-6"></a>plt.boxplot(df_box_year)</span>
+<span id="cb11-7"><a href="#cb11-7"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb11-8"><a href="#cb11-8"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_SZ_index_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="同时呈现多个箱线图" class="level3" data-number="24.3.3">
+<h3 data-number="24.3.3" class="anchored" data-anchor-id="同时呈现多个箱线图"><span class="header-section-number">24.3.3</span> 同时呈现多个箱线图</h3>
+<p>在实际应用中，可以同时呈现多个箱线图，以便比较不同时间段或不同资产的收益率分布特征。可以使用 <code>matplotlib</code> 的 <code>subplots()</code> 函数创建多个子图，并在每个子图上绘制箱线图。</p>
+<div id="7da0875f" class="cell" data-execution_count="77">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb12-3"><a href="#cb12-3"></a></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="co"># 提取年份列</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>sz_index[<span class="st">'year'</span>] <span class="op">=</span> sz_index[<span class="st">'day'</span>].dt.year</span>
+<span id="cb12-6"><a href="#cb12-6"></a></span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="co"># 筛选指定年份的数据</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a>selected_years <span class="op">=</span> [<span class="dv">2000</span>, <span class="dv">2005</span>, <span class="dv">2010</span>, <span class="dv">2015</span>, <span class="dv">2020</span>, <span class="dv">2024</span>]</span>
+<span id="cb12-9"><a href="#cb12-9"></a>filtered_data <span class="op">=</span> sz_index[sz_index[<span class="st">'year'</span>].isin(selected_years)]</span>
+<span id="cb12-10"><a href="#cb12-10"></a></span>
+<span id="cb12-11"><a href="#cb12-11"></a><span class="co"># 绘制多个年度的箱型图</span></span>
+<span id="cb12-12"><a href="#cb12-12"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">3</span>))</span>
+<span id="cb12-13"><a href="#cb12-13"></a>sns.boxplot(x<span class="op">=</span><span class="st">'year'</span>, y<span class="op">=</span><span class="st">'daily_return'</span>, data<span class="op">=</span>filtered_data, palette<span class="op">=</span><span class="st">'Set3'</span>)</span>
+<span id="cb12-14"><a href="#cb12-14"></a></span>
+<span id="cb12-15"><a href="#cb12-15"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb12-16"><a href="#cb12-16"></a></span>
+<span id="cb12-17"><a href="#cb12-17"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_SZ_index_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="直方图" class="level2" data-number="24.4">
+<h2 data-number="24.4" class="anchored" data-anchor-id="直方图"><span class="header-section-number">24.4</span> 直方图</h2>
+<section id="何谓直方图" class="level3" data-number="24.4.1">
+<h3 data-number="24.4.1" class="anchored" data-anchor-id="何谓直方图"><span class="header-section-number">24.4.1</span> 何谓直方图？</h3>
+<p>直方图（Histogram）是一种用于展示<strong>数值型变量分布情况</strong>的图形工具。其原理是将数据划分为若干<strong>连续、不重叠的区间</strong>（称为“bin”或“箱子”），统计每个区间内数据点的数量，并以矩形的高度表示频数或频率。</p>
+<p>设有一组日收益率数据 <span class="math inline">\(\{r_1, r_2, \ldots, r_n\}\)</span>，我们将其划分为 <span class="math inline">\(K\)</span> 个等宽的区间，每个区间的宽度为：</p>
+<p><span class="math display">\[
+h = \frac{\max(r) - \min(r)}{K}
+\]</span></p>
+<p>第 <span class="math inline">\(k\)</span> 个区间为 <span class="math inline">\([a_k, a_{k+1})\)</span>，其频数记为 <span class="math inline">\(f_k\)</span>，那么对应的矩形高度就是 <span class="math inline">\(f_k\)</span>（或标准化后的频率）。绘图过程中，横轴表示收益率区间，纵轴表示该区间的频数或频率。</p>
+</section>
+<section id="核心代码说明" class="level3" data-number="24.4.2">
+<h3 data-number="24.4.2" class="anchored" data-anchor-id="核心代码说明"><span class="header-section-number">24.4.2</span> 核心代码说明</h3>
+<p>以下代码用于绘制上证指数的日收益率直方图：</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>sz_index_plot[<span class="st">'daily_return'</span>].dropna().hist(bins<span class="op">=</span><span class="dv">200</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>说明如下：</p>
+<ul>
+<li><code>daily_return</code>：表示日收益率列。</li>
+<li><code>dropna()</code>：删除缺失值，避免影响绘图。</li>
+<li><code>hist()</code>：调用 <code>pandas.DataFrame.hist()</code> 方法，底层封装了 <code>matplotlib.pyplot.hist()</code>。</li>
+<li><code>bins=200</code>：将数据划分为 200 个等宽区间，越大越平滑，但过大可能导致过度拟合。</li>
+</ul>
+</section>
+<section id="常用参数汇总" class="level3" data-number="24.4.3">
+<h3 data-number="24.4.3" class="anchored" data-anchor-id="常用参数汇总"><span class="header-section-number">24.4.3</span> 常用参数汇总</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 23%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>参数名</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>bins</code></td>
+<td>设置箱子的数量或箱边界</td>
+<td><code>bins=50</code>，或 <code>bins=[-0.1, -0.05, 0, 0.05, 0.1]</code></td>
+</tr>
+<tr class="even">
+<td><code>density</code></td>
+<td>是否标准化为概率密度（面积为 1）</td>
+<td><code>density=True</code></td>
+</tr>
+<tr class="odd">
+<td><code>figsize</code></td>
+<td>图形大小（宽, 高）</td>
+<td><code>figsize=(10, 6)</code></td>
+</tr>
+<tr class="even">
+<td><code>color</code></td>
+<td>设置柱体颜色</td>
+<td><code>color='skyblue'</code></td>
+</tr>
+<tr class="odd">
+<td><code>alpha</code></td>
+<td>设置透明度（0~1）</td>
+<td><code>alpha=0.7</code></td>
+</tr>
+<tr class="even">
+<td><code>grid</code></td>
+<td>是否显示网格</td>
+<td><code>grid=True</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="实用建议" class="level3" data-number="24.4.4">
+<h3 data-number="24.4.4" class="anchored" data-anchor-id="实用建议"><span class="header-section-number">24.4.4</span> 实用建议</h3>
+<ul>
+<li>若要观察收益率的<strong>分布是否对称</strong>，建议加上垂直参考线，例如均值或中位数。</li>
+<li>若需与正态分布对比，可叠加核密度曲线（使用 <code>seaborn.histplot</code> 或 <code>sns.kdeplot</code>）。</li>
+<li>若数据包含极端值，可调整 <code>xlim</code> 参数限制横轴范围，聚焦主要密度区域。</li>
+</ul>
+<p>直方图有助于识别收益率分布的偏态、厚尾特征，是金融时间序列分析中不可或缺的工具之一。</p>
+<div id="9308223c" class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># 绘制日收益率的基本直方图</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>sz_index_daily_return <span class="op">=</span> sz_index_plot[<span class="st">'daily_return'</span>].dropna()</span>
+<span id="cb14-3"><a href="#cb14-3"></a>sz_index_daily_return.hist(bins<span class="op">=</span><span class="dv">100</span>,  <span class="co"># 设置直方图的柱子数量</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>                           color<span class="op">=</span><span class="st">'green'</span>, </span>
+<span id="cb14-5"><a href="#cb14-5"></a>                           alpha<span class="op">=</span><span class="fl">0.7</span>, <span class="co"># 设置透明度</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a>                           figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_SZ_index_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="核密度函数" class="level2" data-number="24.5">
+<h2 data-number="24.5" class="anchored" data-anchor-id="核密度函数"><span class="header-section-number">24.5</span> 核密度函数</h2>
+<p>核密度函数 (Kernel Density Estimation, KDE) 是一种用于估计未知概率密度函数的非参数方法，适用于连续型数据且不依赖于事先指定的分布形式。其基本思想是：在密度函数的每一个估计点上，根据样本点到该点的距离，使用核函数分配权重并加权平均，从而构建平滑的密度曲线。</p>
+<p>设样本为 <span class="math inline">\(x_1, x_2, \dots, x_n\)</span>，其密度函数在任意点 <span class="math inline">\(x\)</span> 上的估计形式为：</p>
+<p><span class="math display">\[
+\hat{f}_h(x) = \frac{1}{n h} \sum_{i=1}^{n} K\left( \frac{x - x_i}{h} \right)
+\]</span></p>
+<p>其中：</p>
+<ul>
+<li><span class="math inline">\(K(\cdot)\)</span> 是核函数（kernel function），通常是一个对称的概率密度函数；</li>
+<li><span class="math inline">\(h &gt; 0\)</span> 是带宽参数（bandwidth），控制核函数的缩放程度和平滑水平；</li>
+<li><span class="math inline">\(\hat{f}_h(x)\)</span> 是点 <span class="math inline">\(x\)</span> 处的密度估计值。</li>
+</ul>
+<section id="核函数" class="level3" data-number="24.5.1">
+<h3 data-number="24.5.1" class="anchored" data-anchor-id="核函数"><span class="header-section-number">24.5.1</span> 核函数</h3>
+<p>在实际应用中，核函数的选择对估计结果的影响相对较小，而带宽的设置对估计曲线的光滑程度影响较大。</p>
+<p>核函数的作用可以理解为：在估计点 <span class="math inline">\(x\)</span> 处，根据样本点 <span class="math inline">\(x_i\)</span> 与 <span class="math inline">\(x\)</span> 之间的距离，赋予不同的权重。距离 <span class="math inline">\(x\)</span> 越近的样本点，其权重越大；距离越远，权重越小。通过对所有样本点的加权平均，得到该点的密度估计。将所有位置的估计值拼接起来，即可得到整体的密度函数曲线。</p>
+<p>为了更清楚地理解核函数的加权机制，我们可以对距离进行标准化处理，设：</p>
+<p><span class="math display">\[
+u_i = \frac{X_i - c}{h}
+\]</span></p>
+<p>则以下两式等价：</p>
+<p><span class="math display">\[
+|u_i| \leq 1 \Longleftrightarrow |X_i - c| \leq h
+\]</span></p>
+<p>记 <span class="math inline">\(D_i = |X_i - c|\)</span>，表示第 <span class="math inline">\(i\)</span> 个观察值与估计点 <span class="math inline">\(c\)</span> 的距离。核函数的任务就是为每个 <span class="math inline">\(D_i\)</span> 分配权重。</p>
+<p>如下图所示，三种典型核函数的权重分配机制具有显著差异：</p>
+<p><img style="width: 600px" src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/Fig-NP-kernel-fn01.png"></p>
+<ul>
+<li>Uniform 核：在 <span class="math inline">\(|u| \leq 1\)</span> 范围内赋予所有观察值相同的权重，超出范围的样本点权重为 0 (相当于弃之不用)。对应的密度估计不具有平滑性，常用于教学演示。</li>
+<li>Triangle 核：采用线性下降的加权方式，距离估计点越近权重越大，边界处权重为 0，估计结果具有一定的连续性。</li>
+<li>Epanechnikov 核：采用抛物线型权重函数，在 <span class="math inline">\(u=0\)</span> 处取得最大值，具有最小均方误差（MSE）性质，估计曲线光滑、效率较高。</li>
+<li>Gaussian 核：采用正态分布函数，所有样本点均有非零权重，平滑程度高，适用于大多数实际应用场景。</li>
+</ul>
+</section>
+<section id="核函数的性质" class="level3" data-number="24.5.2">
+<h3 data-number="24.5.2" class="anchored" data-anchor-id="核函数的性质"><span class="header-section-number">24.5.2</span> 核函数的性质</h3>
+<p><strong>常见核函数及其表达式：</strong></p>
+<ul>
+<li><p><strong>Uniform 核函数</strong> <span class="math inline">\(K(u) = \frac{1}{2} \cdot \mathbf{1}\{\left|u\right| \leq 1\}\)</span> （也称为 Rectangular 核函数）</p></li>
+<li><p><strong>Triangle 核函数</strong> <span class="math inline">\(K(u) = (1 - \left|u\right|) \cdot \mathbf{1}\{\left|u\right| \leq 1\}\)</span></p></li>
+<li><p><strong>Epanechnikov 核函数</strong> <span class="math inline">\(K(u) = \frac{3}{4}(1 - u^2) \cdot \mathbf{1}\{\left|u\right| \leq 1\}\)</span></p></li>
+<li><p><strong>Quartic 核函数</strong> <span class="math inline">\(K(u) = \frac{15}{16}(1 - u^2)^2 \cdot \mathbf{1}\{\left|u\right| \leq 1\}\)</span></p></li>
+<li><p><strong>Triweight 核函数</strong> <span class="math inline">\(K(u) = \frac{35}{32}(1 - u^2)^3 \cdot \mathbf{1}\{\left|u\right| \leq 1\}\)</span></p></li>
+<li><p><strong>Gaussian 核函数</strong> <span class="math inline">\(K(u) = \frac{1}{\sqrt{2\pi}} \exp\left(-\frac{u^2}{2}\right)\)</span></p></li>
+<li><p><strong>Cosinus 核函数</strong> <span class="math inline">\(K(u) = \frac{\pi}{4} \cos\left(\frac{\pi}{2} u\right) \cdot \mathbf{1}\{\left|u\right| \leq 1\}\)</span></p></li>
+</ul>
+<p><img style="width: 600px" src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/Fig-NP-kernel-fn02.png"></p>
+<p>核函数通常需要满足以下数学性质：</p>
+<ol type="1">
+<li>非负性：<span class="math inline">\(K(u) \geq 0\)</span></li>
+<li>单位积分：<span class="math inline">\(\int_{-\infty}^{\infty} K(u) \, du = 1\)</span></li>
+<li>对称性：<span class="math inline">\(K(u) = K(-u)\)</span></li>
+<li>有限的二阶矩：<span class="math inline">\(\int u^2 K(u) \, du &lt; \infty\)</span></li>
+</ol>
+<p>实际使用中，还有一些细节需要注意。例如，部分文献或软件将 <span class="math inline">\(\mathbf{1}\{|u| \leq 1\}\)</span> 写为 <span class="math inline">\(\mathbf{1}\{|u| &lt; 1\}\)</span>。对于连续变量，两者几乎没有区别；但若数据是离散型的（如整数型变量），则可能影响边界值是否被纳入计算。</p>
+<p>核密度估计的构造可以理解为：以每一个样本点为中心放置一个缩放后的核函数，然后在每一个估计位置 <span class="math inline">\(x\)</span> 上，取所有样本点的核值加权平均。因此，它是一种基于样本加权“局部贡献”的整体平滑过程。</p>
+<p>总结而言：</p>
+<ul>
+<li>核函数定义了如何根据样本点与估计点之间的距离分配权重；</li>
+<li>带宽参数决定了每个样本点的影响范围；</li>
+<li>合理选择核函数和带宽参数是核密度估计中最关键的步骤；</li>
+<li>核密度估计为我们提供了一种平滑、灵活且无需模型假设的分布估计方法，广泛应用于经济学、金融学、机器学习等领域的探索性数据分析任务中。</li>
+</ul>
+<div id="ff6382cc" class="cell" data-execution_count="97">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb15-2"><a href="#cb15-2"></a></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="co"># 日收益率的核密度函数图</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>sz_index_plot[<span class="st">'daily_return'</span>].plot(kind<span class="op">=</span><span class="st">'kde'</span>)  <span class="co">#内置函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_SZ_index_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="1e30b47a" class="cell" data-execution_count="81">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="co">'''提示词</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="co">用最简单的命令同时呈现 2005, 2010, 2015, 2020 和 2024 年的收益率密度函数图</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="co">'''</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a></span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb16-6"><a href="#cb16-6"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb16-7"><a href="#cb16-7"></a></span>
+<span id="cb16-8"><a href="#cb16-8"></a><span class="co"># 筛选指定年份的数据</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a><span class="co">#selected_years = [2005, 2010, 2015, 2020, 2024]</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a>selected_years <span class="op">=</span> [<span class="dv">2005</span>, <span class="dv">2015</span>, <span class="dv">2024</span>]</span>
+<span id="cb16-11"><a href="#cb16-11"></a>filtered_data <span class="op">=</span> sz_index[sz_index[<span class="st">'day'</span>].dt.year.isin(selected_years)]</span>
+<span id="cb16-12"><a href="#cb16-12"></a></span>
+<span id="cb16-13"><a href="#cb16-13"></a><span class="co"># 创建图形对象</span></span>
+<span id="cb16-14"><a href="#cb16-14"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">3</span>))</span>
+<span id="cb16-15"><a href="#cb16-15"></a></span>
+<span id="cb16-16"><a href="#cb16-16"></a><span class="co"># 绘制每个年份的核密度估计图</span></span>
+<span id="cb16-17"><a href="#cb16-17"></a><span class="cf">for</span> year <span class="kw">in</span> selected_years:</span>
+<span id="cb16-18"><a href="#cb16-18"></a>    sns.kdeplot(</span>
+<span id="cb16-19"><a href="#cb16-19"></a>        data<span class="op">=</span>filtered_data[filtered_data[<span class="st">'day'</span>].dt.year <span class="op">==</span> year][<span class="st">'daily_return'</span>].dropna(),</span>
+<span id="cb16-20"><a href="#cb16-20"></a>        label<span class="op">=</span><span class="ss">f'</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">'</span></span>
+<span id="cb16-21"><a href="#cb16-21"></a>    )</span>
+<span id="cb16-22"><a href="#cb16-22"></a></span>
+<span id="cb16-23"><a href="#cb16-23"></a><span class="co"># 添加标题和图例</span></span>
+<span id="cb16-24"><a href="#cb16-24"></a>plt.title(<span class="ss">f'各年度收益率密度函数图)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb16-25"><a href="#cb16-25"></a>plt.xlabel(<span class="st">'日收益率'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb16-26"><a href="#cb16-26"></a>plt.ylabel(<span class="st">'密度'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb16-27"><a href="#cb16-27"></a>plt.legend(title<span class="op">=</span><span class="st">'年份'</span>)</span>
+<span id="cb16-28"><a href="#cb16-28"></a>plt.grid()</span>
+<span id="cb16-29"><a href="#cb16-29"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_SZ_index_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="周收益率和月收益率" class="level2" data-number="24.6">
+<h2 data-number="24.6" class="anchored" data-anchor-id="周收益率和月收益率"><span class="header-section-number">24.6</span> 周收益率和月收益率</h2>
+<ul>
+<li>周收益率：<code>(本周收盘价 - 上周收盘价) / 上周收盘价</code></li>
+<li>月收益率：<code>(本月收盘价 - 上月收盘价) / 上月收盘价</code></li>
+</ul>
+<div id="69f5c01f" class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># 计算每周的收益率</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>sz_index[<span class="st">'week'</span>] <span class="op">=</span> sz_index[<span class="st">'day'</span>].dt.isocalendar().week  <span class="co"># 提取周数</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>sz_index[<span class="st">'year_week'</span>] <span class="op">=</span> sz_index[<span class="st">'day'</span>].dt.year.astype(<span class="bu">str</span>) <span class="op">\</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a>                        <span class="op">+</span> <span class="st">'-w'</span> \</span>
+<span id="cb17-5"><a href="#cb17-5"></a>                        <span class="op">+</span> sz_index[<span class="st">'week'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">2</span>)  <span class="co"># 组合年份和周数，周数补零</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a></span>
+<span id="cb17-7"><a href="#cb17-7"></a><span class="co"># 计算每周的收益率</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a>weekly_return <span class="op">=</span> sz_index.groupby(<span class="st">'year_week'</span>)[<span class="st">'close'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: (x.iloc[<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> x.iloc[<span class="dv">0</span>]) <span class="op">/</span> x.iloc[<span class="dv">0</span>])</span>
+<span id="cb17-9"><a href="#cb17-9"></a>weekly_return <span class="op">=</span> weekly_return.reset_index()  <span class="co"># 重置索引</span></span>
+<span id="cb17-10"><a href="#cb17-10"></a>weekly_return.columns <span class="op">=</span> [<span class="st">'Year_Week'</span>, <span class="st">'Weekly_Return'</span>]  <span class="co"># 重命名列</span></span>
+<span id="cb17-11"><a href="#cb17-11"></a></span>
+<span id="cb17-12"><a href="#cb17-12"></a><span class="co"># 打印结果</span></span>
+<span id="cb17-13"><a href="#cb17-13"></a><span class="bu">print</span>(weekly_return.sort_values(by<span class="op">=</span><span class="st">'Year_Week'</span>).tail(<span class="dv">10</span>))  <span class="co"># 按时间顺序显示最后20周的收益率</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Year_Week  Weekly_Return
+1729  2025-w09      -0.015455
+1730  2025-w10       0.016769
+1731  2025-w11       0.015863
+1732  2025-w12      -0.017891
+1733  2025-w13      -0.005555
+1734  2025-w14       0.001877
+1735  2025-w15       0.045744
+1736  2025-w16       0.004267
+1737  2025-w17       0.001102
+1738  2025-w18      -0.002854</code></pre>
+</div>
+</div>
+<div id="c7f2ae0d" class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># 设置起始时间和结束时间</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>start_week <span class="op">=</span> <span class="st">'2005-w01'</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>end_week <span class="op">=</span> <span class="st">'2028-w16'</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a></span>
+<span id="cb19-5"><a href="#cb19-5"></a><span class="co"># 筛选指定时间范围内的数据</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a>filtered_weekly_return <span class="op">=</span> weekly_return[(weekly_return[<span class="st">'Year_Week'</span>] <span class="op">&gt;=</span> start_week) <span class="op">&amp;</span> </span>
+<span id="cb19-7"><a href="#cb19-7"></a>                                       (weekly_return[<span class="st">'Year_Week'</span>] <span class="op">&lt;=</span> end_week)]</span>
+<span id="cb19-8"><a href="#cb19-8"></a></span>
+<span id="cb19-9"><a href="#cb19-9"></a><span class="co"># 绘制每周收益率走势图</span></span>
+<span id="cb19-10"><a href="#cb19-10"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">7</span>))</span>
+<span id="cb19-11"><a href="#cb19-11"></a>plt.plot(filtered_weekly_return[<span class="st">'Year_Week'</span>], filtered_weekly_return[<span class="st">'Weekly_Return'</span>], label<span class="op">=</span><span class="st">'Weekly Return'</span>, color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb19-12"><a href="#cb19-12"></a>plt.title(<span class="st">'Shanghai Composite Index Weekly Return'</span>)</span>
+<span id="cb19-13"><a href="#cb19-13"></a>plt.xlabel(<span class="st">'Year'</span>)</span>
+<span id="cb19-14"><a href="#cb19-14"></a>plt.ylabel(<span class="st">'Weekly Return'</span>)</span>
+<span id="cb19-15"><a href="#cb19-15"></a></span>
+<span id="cb19-16"><a href="#cb19-16"></a><span class="co"># 修改 x 轴标签，仅显示年份</span></span>
+<span id="cb19-17"><a href="#cb19-17"></a>year_labels <span class="op">=</span> [label.split(<span class="st">'-'</span>)[<span class="dv">0</span>] <span class="cf">if</span> label.endswith(<span class="st">'-w01'</span>) <span class="cf">else</span> <span class="st">''</span> <span class="cf">for</span> label <span class="kw">in</span> filtered_weekly_return[<span class="st">'Year_Week'</span>]]</span>
+<span id="cb19-18"><a href="#cb19-18"></a>plt.xticks(ticks<span class="op">=</span><span class="bu">range</span>(<span class="bu">len</span>(year_labels)), labels<span class="op">=</span>year_labels, rotation<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb19-19"><a href="#cb19-19"></a></span>
+<span id="cb19-20"><a href="#cb19-20"></a><span class="co"># 添加 y=0 的水平线</span></span>
+<span id="cb19-21"><a href="#cb19-21"></a>plt.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb19-22"><a href="#cb19-22"></a></span>
+<span id="cb19-23"><a href="#cb19-23"></a><span class="co"># 设置 grid，仅显示主要的 grid</span></span>
+<span id="cb19-24"><a href="#cb19-24"></a>plt.grid(visible<span class="op">=</span><span class="va">True</span>, which<span class="op">=</span><span class="st">'major'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb19-25"><a href="#cb19-25"></a></span>
+<span id="cb19-26"><a href="#cb19-26"></a>plt.legend()</span>
+<span id="cb19-27"><a href="#cb19-27"></a>plt.tight_layout()  <span class="co"># 调整子图间距</span></span>
+<span id="cb19-28"><a href="#cb19-28"></a>plt.show()  <span class="co"># 显示图形</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_SZ_index_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="核心代码解读" class="level4" data-number="24.6.0.1">
+<h4 data-number="24.6.0.1" class="anchored" data-anchor-id="核心代码解读"><span class="header-section-number">24.6.0.1</span> 核心代码解读：</h4>
+<ul>
+<li><code>sz_index['day'].dt.isocalendar().week</code>：获取日期的周数。具体而言，<code>dt.isocalendar()</code> 返回一个 DataFrame，其中包含 ISO 日历的年、周和星期几。我们只需要周数，因此使用 <code>.week</code> 来提取它。类似的，可以使用 <code>.dt.isocalendar().month</code> 来获取月份；用 <code>.dt.isocalendar().year</code> 来获取年份。
+<ul>
+<li><code>sz_index['day'].dt.isocalendar().year</code>：获取日期的年份。类似地，使用 <code>.year</code> 来提取年份。</li>
+</ul></li>
+<li><code>weekly_return = sz_index.groupby('year_week')['close'].apply(lambda x: (x.iloc[-1] - x.iloc[0]) / x.iloc[0])</code>：对每个周进行分组，计算该周的收益率。具体而言，<code>groupby('year_week')</code> 将数据按年和周进行分组，然后使用 <code>apply()</code> 函数对每个组应用一个 lambda 函数。这个 lambda 函数计算该组的最后一个收盘价和第一个收盘价之间的收益率。
+<ul>
+<li><code>apply()</code> 函数的用法：<code>apply()</code> 函数可以对 DataFrame 或 Series 的每一行或每一列应用一个函数。它可以用于数据转换、聚合和其他操作。在这里，我们使用 <code>apply()</code> 函数来计算每个组的收益率。<code>apply()</code> 函数的语法格式为： <code>python       DataFrame.apply(func, axis=0, raw=False, result_type=None, args=(), **kwds)</code>
+<ul>
+<li><code>func</code>：要应用的函数，可以是 Python 内置函数或自定义函数。</li>
+<li><code>axis</code>：指定应用函数的轴，0 表示按列应用，1 表示按行应用。默认值为 0。</li>
+<li><code>raw</code>：如果为 True，则传递原始数据而不是 Series 对象。默认值为 False。</li>
+</ul></li>
+<li><code>lambda x: (x.iloc[-1] - x.iloc[0]) / x.iloc[0]</code>：这是一个匿名函数，用于计算每个组的收益率。<code>x</code> 是传递给 lambda 函数的参数，表示当前组的数据。<code>x.iloc[-1]</code> 表示该组的最后一个收盘价，<code>x.iloc[0]</code> 表示该组的第一个收盘价。通过计算这两个值之间的差值并除以第一个收盘价，我们得到了该组的收益率。</li>
+</ul></li>
+</ul>
+<div id="a8426a60" class="cell" data-execution_count="66">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># 列出周收益率绝对值大于 0.2 的周</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>high_weekly_return <span class="op">=</span> weekly_return[weekly_return[<span class="st">'Weekly_Return'</span>].<span class="bu">abs</span>() <span class="op">&gt;</span> <span class="fl">0.2</span>]</span>
+<span id="cb20-3"><a href="#cb20-3"></a></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="co"># 按收益率排序</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a>high_weekly_return <span class="op">=</span> high_weekly_return.sort_values(by<span class="op">=</span><span class="st">'Weekly_Return'</span>, ascending<span class="op">=</span><span class="va">False</span>)  </span>
+<span id="cb20-6"><a href="#cb20-6"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span> <span class="op">+</span> <span class="st">'---'</span><span class="op">*</span><span class="dv">5</span> <span class="op">+</span> <span class="st">'high weekly return'</span> <span class="op">+</span> <span class="st">'---'</span><span class="op">*</span><span class="dv">5</span>)</span>
+<span id="cb20-7"><a href="#cb20-7"></a><span class="bu">print</span>(high_weekly_return)  <span class="co"># 打印结果</span></span>
+<span id="cb20-8"><a href="#cb20-8"></a></span>
+<span id="cb20-9"><a href="#cb20-9"></a><span class="co"># 按时间排序</span></span>
+<span id="cb20-10"><a href="#cb20-10"></a>high_weekly_return <span class="op">=</span> high_weekly_return.sort_values(by<span class="op">=</span><span class="st">'Year_Week'</span>)  <span class="co"># 按时间排序</span></span>
+<span id="cb20-11"><a href="#cb20-11"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span> <span class="op">+</span> <span class="st">'---'</span><span class="op">*</span><span class="dv">5</span> <span class="op">+</span> <span class="st">'sorted by Year_Week'</span> <span class="op">+</span> <span class="st">'---'</span><span class="op">*</span><span class="dv">5</span>)</span>
+<span id="cb20-12"><a href="#cb20-12"></a><span class="bu">print</span>(high_weekly_return)  <span class="co"># 打印结果</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+---------------high weekly return---------------
+     Year_Week  Weekly_Return
+72    1992-w21       1.343377
+0     1991-w01       1.272198
+259   1996-w01       0.704906
+99    1992-w48       0.553815
+1159  2014-w01       0.533468
+186   1994-w31       0.532717
+226   1995-w20       0.470363
+118   1993-w14       0.311382
+309   1997-w01       0.298735
+1415  2019-w01       0.237227
+507   2001-w01      -0.217497
+854   2008-w01      -0.654681
+
+---------------sorted by Year_Week---------------
+     Year_Week  Weekly_Return
+0     1991-w01       1.272198
+72    1992-w21       1.343377
+99    1992-w48       0.553815
+118   1993-w14       0.311382
+186   1994-w31       0.532717
+226   1995-w20       0.470363
+259   1996-w01       0.704906
+309   1997-w01       0.298735
+507   2001-w01      -0.217497
+854   2008-w01      -0.654681
+1159  2014-w01       0.533468
+1415  2019-w01       0.237227</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="年化收益率和标准差" class="level2" data-number="24.7">
+<h2 data-number="24.7" class="anchored" data-anchor-id="年化收益率和标准差"><span class="header-section-number">24.7</span> 年化收益率和标准差</h2>
+<div id="9300e107" class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="co"># 各个年度的收益率和标准差</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a>sz_index[<span class="st">'year'</span>] <span class="op">=</span> sz_index[<span class="st">'day'</span>].dt.year  <span class="co"># 提取年份</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a>annual_stats <span class="op">=</span> sz_index.groupby(<span class="st">'year'</span>).agg({<span class="st">'daily_return'</span>: [<span class="st">'mean'</span>, <span class="st">'std'</span>]}).reset_index()</span>
+<span id="cb22-5"><a href="#cb22-5"></a></span>
+<span id="cb22-6"><a href="#cb22-6"></a><span class="co"># 重命名列名</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a>annual_stats.columns <span class="op">=</span> [<span class="st">'Year'</span>, <span class="st">'Mean Daily Return'</span>, <span class="st">'Std Daily Return'</span>]</span>
+<span id="cb22-8"><a href="#cb22-8"></a><span class="co"># 将收益率和标准差转换为百分比，并计算年化收益率和年化标准差</span></span>
+<span id="cb22-9"><a href="#cb22-9"></a>annual_stats[<span class="st">'Mean Daily Return'</span>] <span class="op">=</span> annual_stats[<span class="st">'Mean Daily Return'</span>] <span class="op">*</span> <span class="dv">100</span>  <span class="co"># 转换为百分比</span></span>
+<span id="cb22-10"><a href="#cb22-10"></a>annual_stats[<span class="st">'Std Daily Return'</span>] <span class="op">=</span> annual_stats[<span class="st">'Std Daily Return'</span>] <span class="op">*</span> <span class="dv">100</span>  <span class="co"># 转换为百分比</span></span>
+<span id="cb22-11"><a href="#cb22-11"></a>annual_stats[<span class="st">'Annualized Return'</span>] <span class="op">=</span> annual_stats[<span class="st">'Mean Daily Return'</span>] <span class="op">*</span> <span class="dv">252</span> <span class="op">/</span> <span class="dv">100</span>  <span class="co"># 年化收益率</span></span>
+<span id="cb22-12"><a href="#cb22-12"></a>annual_stats[<span class="st">'Annualized Std'</span>] <span class="op">=</span> annual_stats[<span class="st">'Std Daily Return'</span>] <span class="op">*</span> (<span class="dv">252</span> <span class="op">**</span> <span class="fl">0.5</span>) <span class="op">/</span> <span class="dv">100</span>  <span class="co"># 年化标准差</span></span>
+<span id="cb22-13"><a href="#cb22-13"></a><span class="co"># 打印单数年份的收益率和标准差，小数点后保留三位，四列在同一行呈现</span></span>
+<span id="cb22-14"><a href="#cb22-14"></a><span class="bu">print</span>(annual_stats[annual_stats[<span class="st">'Year'</span>] <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">1</span>][[<span class="st">'Year'</span>, <span class="st">'Mean Daily Return'</span>, <span class="st">'Std Daily Return'</span>, <span class="st">'Annualized Return'</span>, <span class="st">'Annualized Std'</span>]].<span class="bu">round</span>(<span class="dv">3</span>).to_string(index<span class="op">=</span><span class="va">False</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Year  Mean Daily Return  Std Daily Return  Annualized Return  Annualized Std
+ 1991              0.326             0.662              0.821           0.105
+ 1993              0.096             3.781              0.243           0.600
+ 1995             -0.016             3.103             -0.041           0.493
+ 1997              0.133             2.194              0.335           0.348
+ 1999              0.089             1.773              0.224           0.281
+ 2001             -0.087             1.387             -0.218           0.220
+ 2003              0.047             1.143              0.118           0.181
+ 2005             -0.027             1.378             -0.067           0.219
+ 2007              0.305             2.216              0.768           0.352
+ 2009              0.259             1.901              0.653           0.302
+ 2011             -0.093             1.156             -0.235           0.183
+ 2013             -0.023             1.159             -0.057           0.184
+ 2015              0.067             2.447              0.169           0.388
+ 2017              0.028             0.547              0.069           0.087
+ 2019              0.089             1.140              0.224           0.181
+ 2021              0.023             0.881              0.058           0.140
+ 2023             -0.013             0.729             -0.033           0.116
+ 2025             -0.021             1.152             -0.054           0.183</code></pre>
+</div>
+</div>
+<div id="7e009ed1" class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># 图示各个年度收益率和标准差</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">7</span>))</span>
+<span id="cb24-3"><a href="#cb24-3"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb24-4"><a href="#cb24-4"></a>plt.bar(annual_stats[<span class="st">'Year'</span>], annual_stats[<span class="st">'Mean Daily Return'</span>], color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Mean Daily Return'</span>)</span>
+<span id="cb24-5"><a href="#cb24-5"></a>plt.title(<span class="st">'Annual Mean Daily Return of Shanghai Composite Index'</span>)</span>
+<span id="cb24-6"><a href="#cb24-6"></a>plt.xlabel(<span class="st">'Year'</span>)</span>
+<span id="cb24-7"><a href="#cb24-7"></a>plt.ylabel(<span class="st">'Mean Daily Return'</span>)</span>
+<span id="cb24-8"><a href="#cb24-8"></a>plt.legend()</span>
+<span id="cb24-9"><a href="#cb24-9"></a>plt.grid()</span>
+<span id="cb24-10"><a href="#cb24-10"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb24-11"><a href="#cb24-11"></a>plt.bar(annual_stats[<span class="st">'Year'</span>], annual_stats[<span class="st">'Std Daily Return'</span>], color<span class="op">=</span><span class="st">'orange'</span>, label<span class="op">=</span><span class="st">'Std Daily Return'</span>)</span>
+<span id="cb24-12"><a href="#cb24-12"></a>plt.title(<span class="st">'Annual Std Daily Return of Shanghai Composite Index'</span>)</span>
+<span id="cb24-13"><a href="#cb24-13"></a>plt.xlabel(<span class="st">'Year'</span>)</span>
+<span id="cb24-14"><a href="#cb24-14"></a>plt.ylabel(<span class="st">'Std Daily Return'</span>)</span>
+<span id="cb24-15"><a href="#cb24-15"></a>plt.legend()</span>
+<span id="cb24-16"><a href="#cb24-16"></a>plt.grid()</span>
+<span id="cb24-17"><a href="#cb24-17"></a>plt.tight_layout()  <span class="co"># 调整子图间距</span></span>
+<span id="cb24-18"><a href="#cb24-18"></a>plt.show()  <span class="co"># 显示图形</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_SZ_index_files/figure-html/cell-17-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="68a6a6c7" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="co"># 图示波动率</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">7</span>))</span>
+<span id="cb25-4"><a href="#cb25-4"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb25-5"><a href="#cb25-5"></a>plt.plot(sz_index[<span class="st">'day'</span>], </span>
+<span id="cb25-6"><a href="#cb25-6"></a>         sz_index[<span class="st">'daily_return'</span>].rolling(window<span class="op">=</span><span class="dv">30</span>).std(), </span>
+<span id="cb25-7"><a href="#cb25-7"></a>         label<span class="op">=</span><span class="st">'30-Day Rolling Volatility'</span>, </span>
+<span id="cb25-8"><a href="#cb25-8"></a>         color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb25-9"><a href="#cb25-9"></a>plt.title(<span class="st">'SZ Index Daily Return Volatility'</span>)</span>
+<span id="cb25-10"><a href="#cb25-10"></a>plt.xlabel(<span class="st">'Date'</span>)</span>
+<span id="cb25-11"><a href="#cb25-11"></a>plt.ylabel(<span class="st">'Volatility'</span>)</span>
+<span id="cb25-12"><a href="#cb25-12"></a>plt.legend()</span>
+<span id="cb25-13"><a href="#cb25-13"></a>plt.grid()</span>
+<span id="cb25-14"><a href="#cb25-14"></a>plt.show()  <span class="co"># 显示图形</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_SZ_index_files/figure-html/cell-18-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="717b0ed6" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a></span>
+<span id="cb26-2"><a href="#cb26-2"></a><span class="co"># 将日期列转换为 datetime 类型</span></span>
+<span id="cb26-3"><a href="#cb26-3"></a>sz_index[<span class="st">'day'</span>] <span class="op">=</span> pd.to_datetime(sz_index[<span class="st">'day'</span>])</span>
+<span id="cb26-4"><a href="#cb26-4"></a></span>
+<span id="cb26-5"><a href="#cb26-5"></a><span class="co"># 将收盘价列转换为浮点数类型</span></span>
+<span id="cb26-6"><a href="#cb26-6"></a>sz_index[<span class="st">'close'</span>] <span class="op">=</span> sz_index[<span class="st">'close'</span>].astype(<span class="st">'float'</span>)</span>
+<span id="cb26-7"><a href="#cb26-7"></a></span>
+<span id="cb26-8"><a href="#cb26-8"></a><span class="co"># 创建一个示例 DataFrame，用于合并</span></span>
+<span id="cb26-9"><a href="#cb26-9"></a>data <span class="op">=</span> pd.DataFrame({<span class="st">'time'</span>: sz_index[<span class="st">'day'</span>], <span class="st">'pos_p'</span>: [<span class="dv">0</span>] <span class="op">*</span> <span class="bu">len</span>(sz_index)})</span>
+<span id="cb26-10"><a href="#cb26-10"></a></span>
+<span id="cb26-11"><a href="#cb26-11"></a><span class="co"># 合并两个 DataFrame，基于时间列进行内连接</span></span>
+<span id="cb26-12"><a href="#cb26-12"></a>data <span class="op">=</span> data.merge(sz_index, left_on<span class="op">=</span><span class="st">'time'</span>, right_on<span class="op">=</span><span class="st">'day'</span>, how<span class="op">=</span><span class="st">'inner'</span>)</span>
+<span id="cb26-13"><a href="#cb26-13"></a></span>
+<span id="cb26-14"><a href="#cb26-14"></a><span class="co"># 绘制图表</span></span>
+<span id="cb26-15"><a href="#cb26-15"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">3</span>))  <span class="co"># 设置图表大小</span></span>
+<span id="cb26-16"><a href="#cb26-16"></a>data.index <span class="op">=</span> data[<span class="st">'time'</span>]  <span class="co"># 将时间列设置为索引</span></span>
+<span id="cb26-17"><a href="#cb26-17"></a>data[[<span class="st">'pos_p'</span>, <span class="st">'close'</span>]].plot(secondary_y<span class="op">=</span>[<span class="st">'close'</span>])  <span class="co"># 绘制双 Y 轴图表</span></span>
+<span id="cb26-18"><a href="#cb26-18"></a>plt.title(<span class="st">'SH000001 15min K-line'</span>)  <span class="co"># 设置图表标题</span></span>
+<span id="cb26-19"><a href="#cb26-19"></a>plt.show()  <span class="co"># 显示图表</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;Figure size 400x300 with 0 Axes&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_SZ_index_files/figure-html/cell-19-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../body/data_02_get_data_GMD.html" class="pagination-link" aria-label="获取数据：GMD">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">获取数据：GMD</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../body/graph_01_intro.html" class="pagination-link" aria-label="Python 可视化：简介">
+        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Python 可视化：简介</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><a href="https://www.lianxh.cn">www.lianxh.cn</a></p>
+</div>
+    <div class="nav-footer-right">
+<p>Support: <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

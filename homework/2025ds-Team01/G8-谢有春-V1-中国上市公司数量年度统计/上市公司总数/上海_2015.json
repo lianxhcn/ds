@@ -1,0 +1,33 @@
+{
+    "actionErrors": [],
+    "actionMessages": [],
+    "fieldErrors": {},
+    "isPagination": "false",
+    "jsonCallBack": "jsonpCallback91781236",
+    "locale": "zh_CN",
+    "pageHelp": {
+        "beginPage": 1,
+        "cacheSize": 5,
+        "data": null,
+        "endDate": null,
+        "endPage": null,
+        "objectResult": null,
+        "pageCount": null,
+        "pageNo": 1,
+        "pageSize": 10,
+        "pageSizeWithOutLimit": 10,
+        "searchDate": null,
+        "sort": null,
+        "startDate": null,
+        "total": 0
+    },
+    "pageNo": null,
+    "pageSize": null,
+    "queryDate": "",
+    "result": [],
+    "securityCode": "",
+    "sqlId": "COMMON_SSE_SJ_SCGM_C",
+    "texts": null,
+    "type": "",
+    "validateCode": ""
+}

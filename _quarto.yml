@@ -1,0 +1,123 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "数据分析"
+  reader-mode: true 
+  author: "连玉君"
+#  date: "`r format(Sys.time(), '%d %B, %Y')`"
+  date: today
+  date-format: iso  # https://quarto.org/docs/reference/dates.html
+#  lang: zh  # 不要设置这个，会导致很多问题
+  
+  sidebar: 
+    title: "<a href='/index.html'>DS</a>"  # !important, 否则主页链返回链接会出错
+    logo: images/ds-book-logo-40.png
+    logo-href: https://book.lianxh.cn/ds/index.html
+    style: floating  #docked
+    search: true
+    tools:
+      - icon: house-fill
+        href: https://www.lianxh.cn
+      - icon: camera-video-fill
+        href: https://lianxh-class.cn/
+      - icon: github
+        href: https://github.com/arlionn/ds
+
+  page-footer:
+    center: |
+      [www.lianxh.cn](https://www.lianxh.cn)
+    right: |
+      Support: <a href="https://quarto.org/">Quarto</a>
+  favicon: images/ds-book-logo-40.png   # URL logo
+  site-url: https://book.lianxh.cn/ds/index.html # 主页地址, 否则点击右上角链接会乱码
+  editor: source    # 始终采用源代码模式编辑
+
+#----------------------- Chapters ---------------
+  chapters:
+
+    - index.qmd
+    - body/_home.qmd
+    - body/00_intro.ipynb
+    - part: "**Python 基础**"
+      chapters: 
+        - body/00_py_with_AI_intro.ipynb
+        - body/00_py_with_AI_pic.ipynb
+        - body/01_1_1_install-Anaconda.ipynb
+        - body/01_1_2_use_Junpyter_Notebook.ipynb
+        - body/01_2_install_FAQs.ipynb
+        - body/01_3_markdown.md
+        - body/01_py_01_basic.ipynb
+        - body/01_py_01_basic_01_grammer.ipynb
+        - body/01_py_01_basic_02_QuickReference.md
+        - body/01_py_01_basic_03_Packages.md
+        - body/01_py_01_basic_04_import.md
+        - body/01_py_01_basic_05_OOP.ipynb
+        - body/01_py_01_basic_06_filepath.ipynb
+        - body/01_py_02_numpy_scipy.ipynb
+        - body/01_py_02_pandas.ipynb
+        - body/01_py_03_matplotlib.ipynb
+        - body/01_py_04_func_and_module.ipynb
+        - body/01_py_05_class.ipynb
+    - part: "**数据分析**"
+      chapters: 
+#        - body/data_01_intro.ipynb
+        - body/data_02_data_type.ipynb
+        - body/data_02_get_data_GMD.ipynb
+        - body/TS_SZ_index.ipynb        
+    - part: "**可视化**"
+      chapters: 
+        - body/graph_01_intro.ipynb
+        - body/graph_dis_box_violin.ipynb
+        - body/graph_dis_histogram.ipynb
+        - body/graph_dis_kdensity.ipynb
+    - part: "**回归分析**"
+      chapters: 
+        - body/test_AB_test.ipynb
+        - body/regress_01_OLS.ipynb
+        - body/regress_02_wage.ipynb
+        - body/regress_03_binscatter.ipynb
+    - part: "**时间序列分析**"
+      chapters: 
+        - body/TS_FRED_US_unemploy_rate.ipynb
+    - part: "**作业展示**"
+      chapters: 
+        - homework/pre/Dangdang_G7_01_data_clean.ipynb
+        - homework/pre/Dangdang_G7_02_data_analysis.ipynb
+        - homework/pre/G8_China_stock_analysis.ipynb
+        - homework/pre/Stock_G4_01_data_crawler.ipynb
+        - homework/pre/Stock_G4_02_data_cleaning.ipynb
+        - homework/pre/Stock_G4_03_data_analysis.ipynb
+        - homework/pre/_ex02_万诗晴.ipynb
+        - homework/pre/_ex02_吴倩茵.ipynb
+        - homework/pre/_ex02_朱少荣.ipynb
+        - homework/pre/_ex02_黄伊姿.ipynb
+
+format:
+  html:
+    toc: true
+    toc-depth: 3  # 三级以上 sections 才伸缩
+    theme: cosmo         # 可选：cosmo, flatly, litera, litera, yeti 等  主题模版
+    linestretch: 1.6          # 行间距   1.7   
+    fontsize: 11.5pt          # 字号
+    number-sections: true     # 自动章节编号
+    link-external-newwindow: true
+    highlight: true         # 代码高亮
+    highlight-style: atom-one  # 语法高亮, atom-one, breezy, github, tango, solarized-light
+    code-fold: false              # （可选）代码默认不折叠
+    code-line-numbers: true      # （可选）关闭行号
+    code-overflow: wrap        # 控制长代码的换行
+#    html-table-processing: none    
+    css: styles.css
+#    include-after-body: footer.html    # https://github.com/oscarbaruffa/BigBookofR
+    callout-appearance: default        # 启用 callout 默认渲染样式
+    md-extensions:
+      - callout                       # 确保 markdown 支持 callout 块语法
+    includes:
+      after-body: _includes/counter.html   # 不蒜子网站总访问量计数器
+editor: visual
+
+# _quarto_yml refs
+# https://github.com/hadley/r4ds/blob/main/_quarto.yml
+# https://github.com/appliedepi/epiRhandbook_eng/

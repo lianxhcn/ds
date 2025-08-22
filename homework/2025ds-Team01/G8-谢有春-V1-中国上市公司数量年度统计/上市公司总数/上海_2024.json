@@ -1,0 +1,154 @@
+{
+    "actionErrors": [],
+    "actionMessages": [],
+    "fieldErrors": {},
+    "isPagination": "false",
+    "jsonCallBack": "jsonpCallback91781233",
+    "locale": "zh_CN",
+    "pageHelp": {
+        "beginPage": 1,
+        "cacheSize": 5,
+        "data": null,
+        "endDate": null,
+        "endPage": null,
+        "objectResult": null,
+        "pageCount": null,
+        "pageNo": 1,
+        "pageSize": 10,
+        "pageSizeWithOutLimit": 10,
+        "searchDate": null,
+        "sort": null,
+        "startDate": null,
+        "total": 0
+    },
+    "pageNo": null,
+    "pageSize": null,
+    "queryDate": "",
+    "result": [
+        {
+            "TOTAL_VALUE": "478902.6",
+            "SECURITY_NUM": "2311",
+            "NEGO_VALUE": "439363.22",
+            "TRADE_DATE": "20240401",
+            "TOTAL_TRADE_AMT": "4220.09",
+            "PRODUCT_NAME": "股票"
+        },
+        {
+            "TOTAL_VALUE": "423865.57",
+            "SECURITY_NUM": "1697",
+            "NEGO_VALUE": "402280.56",
+            "TRADE_DATE": "20240401",
+            "TOTAL_TRADE_AMT": "3648.32",
+            "PRODUCT_NAME": "主板A"
+        },
+        {
+            "TOTAL_VALUE": "920.97",
+            "SECURITY_NUM": "44",
+            "NEGO_VALUE": "684.45",
+            "TRADE_DATE": "20240401",
+            "TOTAL_TRADE_AMT": "1.63",
+            "PRODUCT_NAME": "主板B"
+        },
+        {
+            "TOTAL_VALUE": "54116.06",
+            "SECURITY_NUM": "570",
+            "NEGO_VALUE": "36398.21",
+            "TRADE_DATE": "20240401",
+            "TOTAL_TRADE_AMT": "570.14",
+            "PRODUCT_NAME": "科创板"
+        },
+        {
+            "TOTAL_VALUE": "7593.35",
+            "SECURITY_NUM": "31",
+            "NEGO_VALUE": "7593.35",
+            "TRADE_DATE": "20240401",
+            "TOTAL_TRADE_AMT": "7.93",
+            "PRODUCT_NAME": "优先股"
+        },
+        {
+            "TOTAL_VALUE": "170999.94",
+            "SECURITY_NUM": "30385",
+            "NEGO_VALUE": "170992.35",
+            "TRADE_DATE": "20240401",
+            "TOTAL_TRADE_AMT": "1274.63",
+            "PRODUCT_NAME": "债券"
+        },
+        {
+            "TOTAL_VALUE": "22889.5",
+            "SECURITY_NUM": "10412",
+            "NEGO_VALUE": "22889.5",
+            "TRADE_DATE": "20240401",
+            "TOTAL_TRADE_AMT": "285.2",
+            "PRODUCT_NAME": "政府债"
+        },
+        {
+            "TOTAL_VALUE": "148110.45",
+            "SECURITY_NUM": "19973",
+            "NEGO_VALUE": "148102.85",
+            "TRADE_DATE": "20240401",
+            "TOTAL_TRADE_AMT": "989.43",
+            "PRODUCT_NAME": "信用债"
+        },
+        {
+            "TOTAL_VALUE": "19217.3",
+            "SECURITY_NUM": "699",
+            "NEGO_VALUE": "18859.13",
+            "TRADE_DATE": "20240401",
+            "TOTAL_TRADE_AMT": "964.21",
+            "PRODUCT_NAME": "基金"
+        },
+        {
+            "TOTAL_VALUE": "18399.61",
+            "SECURITY_NUM": "551",
+            "NEGO_VALUE": "18399.61",
+            "TRADE_DATE": "20240401",
+            "TOTAL_TRADE_AMT": "953.16",
+            "PRODUCT_NAME": "ETF"
+        },
+        {
+            "TOTAL_VALUE": "95.73",
+            "SECURITY_NUM": "123",
+            "NEGO_VALUE": "95.73",
+            "TRADE_DATE": "20240401",
+            "TOTAL_TRADE_AMT": "0.87",
+            "PRODUCT_NAME": "LOF"
+        },
+        {
+            "TOTAL_VALUE": "721.96",
+            "SECURITY_NUM": "25",
+            "NEGO_VALUE": "363.79",
+            "TRADE_DATE": "20240401",
+            "TOTAL_TRADE_AMT": "10.18",
+            "PRODUCT_NAME": "基础设施公募REITs"
+        },
+        {
+            "TOTAL_VALUE": "-",
+            "SECURITY_NUM": "5",
+            "NEGO_VALUE": "-",
+            "TRADE_DATE": "20240401",
+            "TOTAL_TRADE_AMT": "21.8",
+            "PRODUCT_NAME": "期权"
+        },
+        {
+            "TOTAL_VALUE": "-",
+            "SECURITY_NUM": "45",
+            "NEGO_VALUE": "-",
+            "TRADE_DATE": "20240401",
+            "TOTAL_TRADE_AMT": "19189.21",
+            "PRODUCT_NAME": "回购"
+        },
+        {
+            "TOTAL_VALUE": "-",
+            "SECURITY_NUM": "72",
+            "NEGO_VALUE": "-",
+            "TRADE_DATE": "20240401",
+            "TOTAL_TRADE_AMT": "5",
+            "PRODUCT_NAME": "其他"
+        }
+    ],
+    "securityCode": "",
+    "sqlId": "COMMON_SSE_SJ_SCGM_C",
+    "texts": null,
+    "type": "",
+    "validateCode": ""
+}

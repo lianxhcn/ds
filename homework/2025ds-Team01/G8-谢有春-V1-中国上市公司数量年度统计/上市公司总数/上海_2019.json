@@ -1,0 +1,58 @@
+{
+    "actionErrors": [],
+    "actionMessages": [],
+    "fieldErrors": {},
+    "isPagination": "false",
+    "jsonCallBack": "jsonpCallback91781234",
+    "locale": "zh_CN",
+    "pageHelp": {
+        "beginPage": 1,
+        "cacheSize": 5,
+        "data": null,
+        "endDate": null,
+        "endPage": null,
+        "objectResult": null,
+        "pageCount": null,
+        "pageNo": 1,
+        "pageSize": 10,
+        "pageSizeWithOutLimit": 10,
+        "searchDate": null,
+        "sort": null,
+        "startDate": null,
+        "total": 0
+    },
+    "pageNo": null,
+    "pageSize": null,
+    "queryDate": "",
+    "result": [
+        {
+            "TOTAL_VALUE": "345916.87",
+            "SECURITY_NUM": "1508",
+            "NEGO_VALUE": "294572.88",
+            "TRADE_DATE": "20190401",
+            "TOTAL_TRADE_AMT": "4809.79",
+            "PRODUCT_NAME": "股票"
+        },
+        {
+            "TOTAL_VALUE": "344984.92",
+            "SECURITY_NUM": "1457",
+            "NEGO_VALUE": "293640.93",
+            "TRADE_DATE": "20190401",
+            "TOTAL_TRADE_AMT": "4804.05",
+            "PRODUCT_NAME": "主板A"
+        },
+        {
+            "TOTAL_VALUE": "931.95",
+            "SECURITY_NUM": "51",
+            "NEGO_VALUE": "931.95",
+            "TRADE_DATE": "20190401",
+            "TOTAL_TRADE_AMT": "5.74",
+            "PRODUCT_NAME": "主板B"
+        }
+    ],
+    "securityCode": "",
+    "sqlId": "COMMON_SSE_SJ_SCGM_C",
+    "texts": null,
+    "type": "",
+    "validateCode": ""
+}

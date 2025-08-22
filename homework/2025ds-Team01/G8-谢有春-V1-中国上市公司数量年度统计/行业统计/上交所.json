@@ -1,0 +1,824 @@
+{
+    "actionErrors": [],
+    "actionMessages": [],
+    "fieldErrors": {},
+    "isPagination": "false",
+    "jsonCallBack": "jsonpCallback17930199",
+    "locale": "zh_CN",
+    "pageHelp": {
+        "beginPage": 1,
+        "cacheSize": 5,
+        "data": null,
+        "endDate": null,
+        "endPage": null,
+        "objectResult": null,
+        "pageCount": null,
+        "pageNo": 1,
+        "pageSize": 10,
+        "pageSizeWithOutLimit": 10,
+        "searchDate": null,
+        "sort": null,
+        "startDate": null,
+        "total": 0
+    },
+    "pageNo": null,
+    "pageSize": null,
+    "queryDate": "",
+    "result": [
+        {
+            "CSRC_CODE": "A01",
+            "TOTAL_VALUE": "55820216450",
+            "CSRC_NAME": "农业",
+            "AVG_PE_RATE": "40.29",
+            "AVG_PRICE": "7.09",
+            "TRADE_NUM": "5",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "5"
+        },
+        {
+            "CSRC_CODE": "A03",
+            "TOTAL_VALUE": "33533941096",
+            "CSRC_NAME": "畜牧业",
+            "AVG_PE_RATE": "25.33",
+            "AVG_PRICE": "13.01",
+            "TRADE_NUM": "4",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "4"
+        },
+        {
+            "CSRC_CODE": "A04",
+            "TOTAL_VALUE": "7987420101",
+            "CSRC_NAME": "渔业",
+            "AVG_PE_RATE": "54.27",
+            "AVG_PRICE": "3.59",
+            "TRADE_NUM": "3",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "3"
+        },
+        {
+            "CSRC_CODE": "A05",
+            "TOTAL_VALUE": "5826978123",
+            "CSRC_NAME": "农、林、牧、渔专业及辅助性活动",
+            "AVG_PE_RATE": "56.85",
+            "AVG_PRICE": "7.26",
+            "TRADE_NUM": "2",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "2"
+        },
+        {
+            "CSRC_CODE": "B06",
+            "TOTAL_VALUE": "1349106007465",
+            "CSRC_NAME": "煤炭开采和洗选业",
+            "AVG_PE_RATE": "10.89",
+            "AVG_PRICE": "10.3",
+            "TRADE_NUM": "21",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "21"
+        },
+        {
+            "CSRC_CODE": "B07",
+            "TOTAL_VALUE": "2031297553784",
+            "CSRC_NAME": "石油和天然气开采业",
+            "AVG_PE_RATE": "10.1",
+            "AVG_PRICE": "7.02",
+            "TRADE_NUM": "6",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "7"
+        },
+        {
+            "CSRC_CODE": "B08",
+            "TOTAL_VALUE": "21910254001",
+            "CSRC_NAME": "黑色金属矿采选业",
+            "AVG_PE_RATE": "25.77",
+            "AVG_PRICE": "5.87",
+            "TRADE_NUM": "3",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "3"
+        },
+        {
+            "CSRC_CODE": "B09",
+            "TOTAL_VALUE": "912624405685",
+            "CSRC_NAME": "有色金属矿采选业",
+            "AVG_PE_RATE": "16.74",
+            "AVG_PRICE": "17.09",
+            "TRADE_NUM": "14",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "15"
+        },
+        {
+            "CSRC_CODE": "B10",
+            "TOTAL_VALUE": "18004728961",
+            "CSRC_NAME": "非金属矿采选业",
+            "AVG_PE_RATE": "46.77",
+            "AVG_PRICE": "23.43",
+            "TRADE_NUM": "2",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "2"
+        },
+        {
+            "CSRC_CODE": "B11",
+            "TOTAL_VALUE": "172737040113",
+            "CSRC_NAME": "开采专业及辅助性活动",
+            "AVG_PE_RATE": "16.4",
+            "AVG_PRICE": "5.46",
+            "TRADE_NUM": "7",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "7"
+        },
+        {
+            "CSRC_CODE": "C13",
+            "TOTAL_VALUE": "150786425777",
+            "CSRC_NAME": "农副食品加工业",
+            "AVG_PE_RATE": "22.6",
+            "AVG_PRICE": "10.17",
+            "TRADE_NUM": "22",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "22"
+        },
+        {
+            "CSRC_CODE": "C14",
+            "TOTAL_VALUE": "758395399211",
+            "CSRC_NAME": "食品制造业",
+            "AVG_PE_RATE": "26.12",
+            "AVG_PRICE": "13.63",
+            "TRADE_NUM": "38",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "38"
+        },
+        {
+            "CSRC_CODE": "C15",
+            "TOTAL_VALUE": "2740459945300",
+            "CSRC_NAME": "酒、饮料和精制茶制造业",
+            "AVG_PE_RATE": "22.82",
+            "AVG_PRICE": "24.77",
+            "TRADE_NUM": "31",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "31"
+        },
+        {
+            "CSRC_CODE": "C17",
+            "TOTAL_VALUE": "84013517584",
+            "CSRC_NAME": "纺织业",
+            "AVG_PE_RATE": "18.64",
+            "AVG_PRICE": "6.89",
+            "TRADE_NUM": "23",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "23"
+        },
+        {
+            "CSRC_CODE": "C18",
+            "TOTAL_VALUE": "137567803584",
+            "CSRC_NAME": "纺织服装、服饰业",
+            "AVG_PE_RATE": "16.77",
+            "AVG_PRICE": "8.03",
+            "TRADE_NUM": "17",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "17"
+        },
+        {
+            "CSRC_CODE": "C19",
+            "TOTAL_VALUE": "20631011438",
+            "CSRC_NAME": "皮革、毛皮、羽毛及其制品和制鞋业",
+            "AVG_PE_RATE": "0.0",
+            "AVG_PRICE": "5.78",
+            "TRADE_NUM": "7",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "7"
+        },
+        {
+            "CSRC_CODE": "C20",
+            "TOTAL_VALUE": "17503967991",
+            "CSRC_NAME": "木材加工和木、竹、藤、棕、草制品业",
+            "AVG_PE_RATE": "32.69",
+            "AVG_PRICE": "4.89",
+            "TRADE_NUM": "7",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "7"
+        },
+        {
+            "CSRC_CODE": "C21",
+            "TOTAL_VALUE": "102320386461",
+            "CSRC_NAME": "家具制造业",
+            "AVG_PE_RATE": "15.6",
+            "AVG_PRICE": "9.43",
+            "TRADE_NUM": "14",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "14"
+        },
+        {
+            "CSRC_CODE": "C22",
+            "TOTAL_VALUE": "106799872079",
+            "CSRC_NAME": "造纸和纸制品业",
+            "AVG_PE_RATE": "21.76",
+            "AVG_PRICE": "11.87",
+            "TRADE_NUM": "19",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "19"
+        },
+        {
+            "CSRC_CODE": "C23",
+            "TOTAL_VALUE": "19822967035",
+            "CSRC_NAME": "印刷和记录媒介复制业",
+            "AVG_PE_RATE": "36.53",
+            "AVG_PRICE": "6.85",
+            "TRADE_NUM": "4",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "4"
+        },
+        {
+            "CSRC_CODE": "C24",
+            "TOTAL_VALUE": "51619807118",
+            "CSRC_NAME": "文教、工美、体育和娱乐用品制造业",
+            "AVG_PE_RATE": "14.97",
+            "AVG_PRICE": "19.16",
+            "TRADE_NUM": "5",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "5"
+        },
+        {
+            "CSRC_CODE": "C25",
+            "TOTAL_VALUE": "67397068859",
+            "CSRC_NAME": "石油、煤炭及其他燃料加工业",
+            "AVG_PE_RATE": "32.11",
+            "AVG_PRICE": "6.04",
+            "TRADE_NUM": "10",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "10"
+        },
+        {
+            "CSRC_CODE": "C26",
+            "TOTAL_VALUE": "1692794800955",
+            "CSRC_NAME": "化学原料和化学制品制造业",
+            "AVG_PE_RATE": "21.63",
+            "AVG_PRICE": "12.53",
+            "TRADE_NUM": "147",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "147"
+        },
+        {
+            "CSRC_CODE": "C27",
+            "TOTAL_VALUE": "2101291279472",
+            "CSRC_NAME": "医药制造业",
+            "AVG_PE_RATE": "30.54",
+            "AVG_PRICE": "15.63",
+            "TRADE_NUM": "146",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "146"
+        },
+        {
+            "CSRC_CODE": "C28",
+            "TOTAL_VALUE": "124096791609",
+            "CSRC_NAME": "化学纤维制造业",
+            "AVG_PE_RATE": "32.46",
+            "AVG_PRICE": "10.64",
+            "TRADE_NUM": "10",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "10"
+        },
+        {
+            "CSRC_CODE": "C29",
+            "TOTAL_VALUE": "284956776318",
+            "CSRC_NAME": "橡胶和塑料制品业",
+            "AVG_PE_RATE": "17.34",
+            "AVG_PRICE": "13.73",
+            "TRADE_NUM": "37",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "37"
+        },
+        {
+            "CSRC_CODE": "C30",
+            "TOTAL_VALUE": "569018373266",
+            "CSRC_NAME": "非金属矿物制品业",
+            "AVG_PE_RATE": "22.21",
+            "AVG_PRICE": "8.85",
+            "TRADE_NUM": "45",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "45"
+        },
+        {
+            "CSRC_CODE": "C31",
+            "TOTAL_VALUE": "450943434670",
+            "CSRC_NAME": "黑色金属冶炼和压延加工业",
+            "AVG_PE_RATE": "24.72",
+            "AVG_PRICE": "3.98",
+            "TRADE_NUM": "22",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "22"
+        },
+        {
+            "CSRC_CODE": "C32",
+            "TOTAL_VALUE": "667821387302",
+            "CSRC_NAME": "有色金属冶炼和压延加工业",
+            "AVG_PE_RATE": "16.9",
+            "AVG_PRICE": "10.39",
+            "TRADE_NUM": "35",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "35"
+        },
+        {
+            "CSRC_CODE": "C33",
+            "TOTAL_VALUE": "164848406765",
+            "CSRC_NAME": "金属制品业",
+            "AVG_PE_RATE": "28.71",
+            "AVG_PRICE": "10.31",
+            "TRADE_NUM": "32",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "32"
+        },
+        {
+            "CSRC_CODE": "C34",
+            "TOTAL_VALUE": "846405980151",
+            "CSRC_NAME": "通用设备制造业",
+            "AVG_PE_RATE": "30.94",
+            "AVG_PRICE": "12.97",
+            "TRADE_NUM": "90",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "90"
+        },
+        {
+            "CSRC_CODE": "C35",
+            "TOTAL_VALUE": "1640687041454",
+            "CSRC_NAME": "专用设备制造业",
+            "AVG_PE_RATE": "31.31",
+            "AVG_PRICE": "16.46",
+            "TRADE_NUM": "167",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "167"
+        },
+        {
+            "CSRC_CODE": "C36",
+            "TOTAL_VALUE": "1638102681969",
+            "CSRC_NAME": "汽车制造业",
+            "AVG_PE_RATE": "29.72",
+            "AVG_PRICE": "21.07",
+            "TRADE_NUM": "83",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "84"
+        },
+        {
+            "CSRC_CODE": "C37",
+            "TOTAL_VALUE": "1284765965157",
+            "CSRC_NAME": "铁路、船舶、航空航天和其他运输设备制造业",
+            "AVG_PE_RATE": "31.55",
+            "AVG_PRICE": "12.86",
+            "TRADE_NUM": "52",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "52"
+        },
+        {
+            "CSRC_CODE": "C38",
+            "TOTAL_VALUE": "1810380828947",
+            "CSRC_NAME": "电气机械和器材制造业",
+            "AVG_PE_RATE": "21.68",
+            "AVG_PRICE": "11.86",
+            "TRADE_NUM": "130",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "130"
+        },
+        {
+            "CSRC_CODE": "C39",
+            "TOTAL_VALUE": "4471137289604",
+            "CSRC_NAME": "计算机、通信和其他电子设备制造业",
+            "AVG_PE_RATE": "42.27",
+            "AVG_PRICE": "24.74",
+            "TRADE_NUM": "248",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "248"
+        },
+        {
+            "CSRC_CODE": "C40",
+            "TOTAL_VALUE": "224552131948",
+            "CSRC_NAME": "仪器仪表制造业",
+            "AVG_PE_RATE": "30.11",
+            "AVG_PRICE": "26.82",
+            "TRADE_NUM": "33",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "33"
+        },
+        {
+            "CSRC_CODE": "C41",
+            "TOTAL_VALUE": "50330300835",
+            "CSRC_NAME": "其他制造业",
+            "AVG_PE_RATE": "42.82",
+            "AVG_PRICE": "11.75",
+            "TRADE_NUM": "6",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "6"
+        },
+        {
+            "CSRC_CODE": "C42",
+            "TOTAL_VALUE": "21542950895",
+            "CSRC_NAME": "废弃资源综合利用业",
+            "AVG_PE_RATE": "43.31",
+            "AVG_PRICE": "4.52",
+            "TRADE_NUM": "4",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "4"
+        },
+        {
+            "CSRC_CODE": "D44",
+            "TOTAL_VALUE": "2336280529982",
+            "CSRC_NAME": "电力、热力生产和供应业",
+            "AVG_PE_RATE": "18.09",
+            "AVG_PRICE": "7.01",
+            "TRADE_NUM": "54",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "54"
+        },
+        {
+            "CSRC_CODE": "D45",
+            "TOTAL_VALUE": "203002753319",
+            "CSRC_NAME": "燃气生产和供应业",
+            "AVG_PE_RATE": "15.24",
+            "AVG_PRICE": "8.27",
+            "TRADE_NUM": "20",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "20"
+        },
+        {
+            "CSRC_CODE": "D46",
+            "TOTAL_VALUE": "111008599315",
+            "CSRC_NAME": "水的生产和供应业",
+            "AVG_PE_RATE": "14.25",
+            "AVG_PRICE": "5.07",
+            "TRADE_NUM": "14",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "14"
+        },
+        {
+            "CSRC_CODE": "E47",
+            "TOTAL_VALUE": "5534250775",
+            "CSRC_NAME": "房屋建筑业",
+            "AVG_PE_RATE": "0.0",
+            "AVG_PRICE": "2.97",
+            "TRADE_NUM": "1",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "1"
+        },
+        {
+            "CSRC_CODE": "E48",
+            "TOTAL_VALUE": "1137511401056",
+            "CSRC_NAME": "土木工程建筑业",
+            "AVG_PE_RATE": "6.79",
+            "AVG_PRICE": "5.51",
+            "TRADE_NUM": "39",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "39"
+        },
+        {
+            "CSRC_CODE": "E49",
+            "TOTAL_VALUE": "14709872323",
+            "CSRC_NAME": "建筑安装业",
+            "AVG_PE_RATE": "15.28",
+            "AVG_PRICE": "23.74",
+            "TRADE_NUM": "3",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "3"
+        },
+        {
+            "CSRC_CODE": "E50",
+            "TOTAL_VALUE": "30512662248",
+            "CSRC_NAME": "建筑装饰、装修和其他建筑业",
+            "AVG_PE_RATE": "21.93",
+            "AVG_PRICE": "6.31",
+            "TRADE_NUM": "10",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "10"
+        },
+        {
+            "CSRC_CODE": "F51",
+            "TOTAL_VALUE": "314528338431",
+            "CSRC_NAME": "批发业",
+            "AVG_PE_RATE": "17.08",
+            "AVG_PRICE": "8.1",
+            "TRADE_NUM": "42",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "44"
+        },
+        {
+            "CSRC_CODE": "F52",
+            "TOTAL_VALUE": "418457408931",
+            "CSRC_NAME": "零售业",
+            "AVG_PE_RATE": "23.03",
+            "AVG_PRICE": "8.28",
+            "TRADE_NUM": "52",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "52"
+        },
+        {
+            "CSRC_CODE": "G53",
+            "TOTAL_VALUE": "454703440563",
+            "CSRC_NAME": "铁路运输业",
+            "AVG_PE_RATE": "19.31",
+            "AVG_PRICE": "5.37",
+            "TRADE_NUM": "5",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "5"
+        },
+        {
+            "CSRC_CODE": "G54",
+            "TOTAL_VALUE": "274958818518",
+            "CSRC_NAME": "道路运输业",
+            "AVG_PE_RATE": "16.52",
+            "AVG_PRICE": "6.37",
+            "TRADE_NUM": "24",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "24"
+        },
+        {
+            "CSRC_CODE": "G55",
+            "TOTAL_VALUE": "819795586406",
+            "CSRC_NAME": "水上运输业",
+            "AVG_PE_RATE": "9.12",
+            "AVG_PRICE": "5.93",
+            "TRADE_NUM": "28",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "28"
+        },
+        {
+            "CSRC_CODE": "G56",
+            "TOTAL_VALUE": "518379500619",
+            "CSRC_NAME": "航空运输业",
+            "AVG_PE_RATE": "23.44",
+            "AVG_PRICE": "4.58",
+            "TRADE_NUM": "11",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "11"
+        },
+        {
+            "CSRC_CODE": "G57",
+            "TOTAL_VALUE": "4651364606",
+            "CSRC_NAME": "管道运输业",
+            "AVG_PE_RATE": "0.0",
+            "AVG_PRICE": "4.35",
+            "TRADE_NUM": "1",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "1"
+        },
+        {
+            "CSRC_CODE": "G58",
+            "TOTAL_VALUE": "78274056409",
+            "CSRC_NAME": "多式联运和运输代理业",
+            "AVG_PE_RATE": "12.26",
+            "AVG_PRICE": "6.97",
+            "TRADE_NUM": "7",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "7"
+        },
+        {
+            "CSRC_CODE": "G59",
+            "TOTAL_VALUE": "25124540393",
+            "CSRC_NAME": "装卸搬运和仓储业",
+            "AVG_PE_RATE": "28.96",
+            "AVG_PRICE": "5.18",
+            "TRADE_NUM": "4",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "4"
+        },
+        {
+            "CSRC_CODE": "G60",
+            "TOTAL_VALUE": "57533920375",
+            "CSRC_NAME": "邮政业",
+            "AVG_PE_RATE": "11.81",
+            "AVG_PRICE": "13.01",
+            "TRADE_NUM": "2",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "2"
+        },
+        {
+            "CSRC_CODE": "H61",
+            "TOTAL_VALUE": "41964784549",
+            "CSRC_NAME": "住宿业",
+            "AVG_PE_RATE": "23.97",
+            "AVG_PRICE": "13.69",
+            "TRADE_NUM": "4",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "4"
+        },
+        {
+            "CSRC_CODE": "H62",
+            "TOTAL_VALUE": "5740800000",
+            "CSRC_NAME": "餐饮业",
+            "AVG_PE_RATE": "57.36",
+            "AVG_PRICE": "22.39",
+            "TRADE_NUM": "1",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "1"
+        },
+        {
+            "CSRC_CODE": "I63",
+            "TOTAL_VALUE": "1045472972584",
+            "CSRC_NAME": "电信、广播电视和卫星传输服务",
+            "AVG_PE_RATE": "22.73",
+            "AVG_PRICE": "6.36",
+            "TRADE_NUM": "12",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "12"
+        },
+        {
+            "CSRC_CODE": "I64",
+            "TOTAL_VALUE": "229723994493",
+            "CSRC_NAME": "互联网和相关服务",
+            "AVG_PE_RATE": "38.16",
+            "AVG_PRICE": "11.99",
+            "TRADE_NUM": "16",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "17"
+        },
+        {
+            "CSRC_CODE": "I65",
+            "TOTAL_VALUE": "1900176257920",
+            "CSRC_NAME": "软件和信息技术服务业",
+            "AVG_PE_RATE": "49.19",
+            "AVG_PRICE": "22.25",
+            "TRADE_NUM": "133",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "133"
+        },
+        {
+            "CSRC_CODE": "J66",
+            "TOTAL_VALUE": "9486407300612",
+            "CSRC_NAME": "货币金融服务",
+            "AVG_PE_RATE": "6.65",
+            "AVG_PRICE": "7.71",
+            "TRADE_NUM": "35",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "36"
+        },
+        {
+            "CSRC_CODE": "J67",
+            "TOTAL_VALUE": "2173117502724",
+            "CSRC_NAME": "资本市场服务",
+            "AVG_PE_RATE": "21.36",
+            "AVG_PRICE": "10.11",
+            "TRADE_NUM": "38",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "38"
+        },
+        {
+            "CSRC_CODE": "J68",
+            "TOTAL_VALUE": "1990987407067",
+            "CSRC_NAME": "保险业",
+            "AVG_PE_RATE": "8.38",
+            "AVG_PRICE": "26.01",
+            "TRADE_NUM": "5",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "5"
+        },
+        {
+            "CSRC_CODE": "J69",
+            "TOTAL_VALUE": "125845923963",
+            "CSRC_NAME": "其他金融业",
+            "AVG_PE_RATE": "32.2",
+            "AVG_PRICE": "5.64",
+            "TRADE_NUM": "7",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "7"
+        },
+        {
+            "CSRC_CODE": "K70",
+            "TOTAL_VALUE": "590756213493",
+            "CSRC_NAME": "房地产业",
+            "AVG_PE_RATE": "25.02",
+            "AVG_PRICE": "4.46",
+            "TRADE_NUM": "55",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "55"
+        },
+        {
+            "CSRC_CODE": "L71",
+            "TOTAL_VALUE": "23966478513",
+            "CSRC_NAME": "租赁业",
+            "AVG_PE_RATE": "32.81",
+            "AVG_PRICE": "9.66",
+            "TRADE_NUM": "2",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "2"
+        },
+        {
+            "CSRC_CODE": "L72",
+            "TOTAL_VALUE": "372535633982",
+            "CSRC_NAME": "商务服务业",
+            "AVG_PE_RATE": "22.98",
+            "AVG_PRICE": "10.83",
+            "TRADE_NUM": "23",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "25"
+        },
+        {
+            "CSRC_CODE": "M73",
+            "TOTAL_VALUE": "241829868569",
+            "CSRC_NAME": "研究和试验发展",
+            "AVG_PE_RATE": "23.62",
+            "AVG_PRICE": "28.08",
+            "TRADE_NUM": "18",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "18"
+        },
+        {
+            "CSRC_CODE": "M74",
+            "TOTAL_VALUE": "119672748829",
+            "CSRC_NAME": "专业技术服务业",
+            "AVG_PE_RATE": "27.46",
+            "AVG_PRICE": "10.7",
+            "TRADE_NUM": "20",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "20"
+        },
+        {
+            "CSRC_CODE": "N77",
+            "TOTAL_VALUE": "170987549024",
+            "CSRC_NAME": "生态保护和环境治理业",
+            "AVG_PE_RATE": "16.54",
+            "AVG_PRICE": "10.59",
+            "TRADE_NUM": "27",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "27"
+        },
+        {
+            "CSRC_CODE": "N78",
+            "TOTAL_VALUE": "47700805409",
+            "CSRC_NAME": "公共设施管理业",
+            "AVG_PE_RATE": "39.31",
+            "AVG_PRICE": "15.61",
+            "TRADE_NUM": "10",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "10"
+        },
+        {
+            "CSRC_CODE": "P83",
+            "TOTAL_VALUE": "14269937477",
+            "CSRC_NAME": "教育",
+            "AVG_PE_RATE": "26.8",
+            "AVG_PRICE": "9.68",
+            "TRADE_NUM": "5",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "5"
+        },
+        {
+            "CSRC_CODE": "Q84",
+            "TOTAL_VALUE": "38901681317",
+            "CSRC_NAME": "卫生",
+            "AVG_PE_RATE": "41.45",
+            "AVG_PRICE": "17.56",
+            "TRADE_NUM": "4",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "4"
+        },
+        {
+            "CSRC_CODE": "R86",
+            "TOTAL_VALUE": "226465130394",
+            "CSRC_NAME": "新闻和出版业",
+            "AVG_PE_RATE": "18.92",
+            "AVG_PRICE": "8.86",
+            "TRADE_NUM": "20",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "20"
+        },
+        {
+            "CSRC_CODE": "R87",
+            "TOTAL_VALUE": "67950094470",
+            "CSRC_NAME": "广播、电视、电影和录音制作业",
+            "AVG_PE_RATE": "142.02",
+            "AVG_PRICE": "7.45",
+            "TRADE_NUM": "8",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "8"
+        },
+        {
+            "CSRC_CODE": "R88",
+            "TOTAL_VALUE": "5906223500",
+            "CSRC_NAME": "文化艺术业",
+            "AVG_PE_RATE": "0.0",
+            "AVG_PRICE": "10.07",
+            "TRADE_NUM": "1",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "1"
+        },
+        {
+            "CSRC_CODE": "R89",
+            "TOTAL_VALUE": "7618533752",
+            "CSRC_NAME": "体育",
+            "AVG_PE_RATE": "121.34",
+            "AVG_PRICE": "7.99",
+            "TRADE_NUM": "1",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "1"
+        },
+        {
+            "CSRC_CODE": "S91",
+            "TOTAL_VALUE": "37457856113",
+            "CSRC_NAME": "综合",
+            "AVG_PE_RATE": "86.25",
+            "AVG_PRICE": "6.5",
+            "TRADE_NUM": "3",
+            "TRADE_DATE": "20250523",
+            "LIST_NUM": "3"
+        }
+    ],
+    "securityCode": "",
+    "sqlId": "COMMON_SSE_CP_GPJCTPZ_DQHYFL_HYFL_L",
+    "texts": null,
+    "type": "",
+    "validateCode": ""
+}

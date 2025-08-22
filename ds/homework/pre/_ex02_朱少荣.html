@@ -1,0 +1,2906 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>41&nbsp; ex02_朱少荣 – 数据分析</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../homework/pre/_ex02_黄伊姿.html" rel="next">
+<link href="../../homework/pre/_ex02_吴倩茵.html" rel="prev">
+<link href="../../images/ds-book-logo-40.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e8fb9d25728d58bfeac61b497e4a6629.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-8434d2026ae8291579158df2ad8dfa64.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../homework/pre/Dangdang_G7_01_data_clean.html"><strong>作业展示</strong></a></li><li class="breadcrumb-item"><a href="../../homework/pre/_ex02_朱少荣.html"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">ex02_朱少荣</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <img src="../../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../"></a><a href="../../index.html">DS</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
+    <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
+    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">数据分析</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/_home.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">关于我们</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/00_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">前言</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Python 基础</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/00_py_with_AI_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">借助 AI 写代码</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/00_py_with_AI_pic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ansome Python + AI</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/01_1_install-Python-Anocanda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python：安装和环境配置</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/01_2_install_FAQs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Python 安装常见问题</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/01_3_markdown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/01_py_01_basic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Python 入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/01_py_01_basic_01_grammer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Python 代码风格</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/01_py_01_basic_02_QuickReference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python 常用命令速查表</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/01_py_01_basic_03_Packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Python 常用扩展包</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/01_py_01_basic_04_import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Python：import 使用详解</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/01_py_01_basic_05_OOP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Python：语法解析-面向对象编程</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/01_py_01_basic_06_filepath.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Python 路径设置</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/01_py_02_numpy_scipy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/01_py_02_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">pandas 快速入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/01_py_03_matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Matplotlib简介</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/01_py_04_func_and_module.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">函数</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/01_py_05_class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">类和对象</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>数据分析</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/data_02_data_type.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">数据分析是什么？</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/data_02_get_data_GMD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">获取数据：GMD</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/TS_SZ_index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">上证指数的时序特征</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>可视化</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/graph_01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Python 可视化：简介</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/graph_dis_box_violin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">箱型图和小提琴图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/graph_dis_histogram.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">直方图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/graph_dis_kdensity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">核密度函数图</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>回归分析</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/test_AB_test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/regress_01_OLS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">线性回归模型</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/regress_02_wage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">线性回归分析</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/regress_03_binscatter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">分仓散点图</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>时间序列分析</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../body/TS_FRED_US_unemploy_rate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>作业展示</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../homework/pre/Dangdang_G7_01_data_clean.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">当当网-G7-01</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../homework/pre/Dangdang_G7_02_data_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">当当网-G7-02</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../homework/pre/G8_China_stock_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">G8-中国上市公司</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../homework/pre/Stock_G4_01_data_crawler.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">G4-01</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../homework/pre/Stock_G4_02_data_cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">G4-02</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../homework/pre/Stock_G4_03_data_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">G4-03</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../homework/pre/_ex02_万诗晴.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">ex02_万诗晴</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../homework/pre/_ex02_吴倩茵.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">ex02_吴倩茵</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../homework/pre/_ex02_朱少荣.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">ex02_朱少荣</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../homework/pre/_ex02_黄伊姿.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">ex02_黄伊姿</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#中国上市公司数量年度统计项目报告" id="toc-中国上市公司数量年度统计项目报告" class="nav-link active" data-scroll-target="#中国上市公司数量年度统计项目报告"><span class="header-section-number">42</span> 中国上市公司数量年度统计项目报告</a>
+  <ul class="collapse">
+  <li><a href="#步骤一数据清洗" id="toc-步骤一数据清洗" class="nav-link" data-scroll-target="#步骤一数据清洗"><span class="header-section-number">42.1</span> 步骤一：数据清洗</a></li>
+  <li><a href="#步骤二生成数据跟图表" id="toc-步骤二生成数据跟图表" class="nav-link" data-scroll-target="#步骤二生成数据跟图表"><span class="header-section-number">42.2</span> 步骤二：生成数据跟图表</a>
+  <ul class="collapse">
+  <li><a href="#b.-绘制时序图并作简要分析" id="toc-b.-绘制时序图并作简要分析" class="nav-link" data-scroll-target="#b.-绘制时序图并作简要分析"><span class="header-section-number">42.2.1</span> B. 绘制时序图并作简要分析：</a></li>
+  <li><a href="#c.-负债率的行业特征分析" id="toc-c.-负债率的行业特征分析" class="nav-link" data-scroll-target="#c.-负债率的行业特征分析"><span class="header-section-number">42.2.2</span> C. 负债率的行业特征分析</a></li>
+  <li><a href="#d.-股权结构分析" id="toc-d.-股权结构分析" class="nav-link" data-scroll-target="#d.-股权结构分析"><span class="header-section-number">42.2.3</span> D. 股权结构分析</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../homework/pre/Dangdang_G7_01_data_clean.html"><strong>作业展示</strong></a></li><li class="breadcrumb-item"><a href="../../homework/pre/_ex02_朱少荣.html"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">ex02_朱少荣</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">ex02_朱少荣</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="中国上市公司数量年度统计项目报告" class="level1" data-number="42">
+<h1 data-number="42"><span class="header-section-number">42</span> 中国上市公司数量年度统计项目报告</h1>
+<p><strong>姓名</strong>：朱少容</p>
+<p><strong>学号</strong>：24210194</p>
+<p><strong>本次任务</strong>：根据来自 CSMAR (国泰安) 数据库7个数据源，完成以下数据报表并作简要分析。</p>
+<p><strong>使用工具</strong>：Deepseek AI代码</p>
+<p><strong>统计分析</strong>：</p>
+<section id="步骤一数据清洗" class="level2" data-number="42.1">
+<h2 data-number="42.1" class="anchored" data-anchor-id="步骤一数据清洗"><span class="header-section-number">42.1</span> 步骤一：数据清洗</h2>
+<p>提示词: data_raw有多个excel文件，进行数据清洗后保存在data_clean。</p>
+<div id="c6028664" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># 确保data_clean目录存在</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>os.makedirs(<span class="st">'data_clean'</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="kw">def</span> process_profit_statement():</span>
+<span id="cb1-8"><a href="#cb1-8"></a>    <span class="co"># 利润表处理</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>    df1 <span class="op">=</span> pd.read_excel(<span class="st">'data_raw/跨表查询_沪深京股票(年频)利润表2000-2010.xlsx'</span>)</span>
+<span id="cb1-10"><a href="#cb1-10"></a>    df2 <span class="op">=</span> pd.read_excel(<span class="st">'data_raw/跨表查询_沪深京股票(年频)利润表2011-2024.xlsx'</span>)</span>
+<span id="cb1-11"><a href="#cb1-11"></a>    </span>
+<span id="cb1-12"><a href="#cb1-12"></a>    <span class="co"># 检查列名是否一致</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>    <span class="cf">if</span> <span class="kw">not</span> df1.columns.equals(df2.columns):</span>
+<span id="cb1-14"><a href="#cb1-14"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"利润表文件的列名不一致"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15"></a>    </span>
+<span id="cb1-16"><a href="#cb1-16"></a>       </span>
+<span id="cb1-17"><a href="#cb1-17"></a>    <span class="co"># 合并数据</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a>    merged_df <span class="op">=</span> pd.concat([df1, df2], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-19"><a href="#cb1-19"></a>    </span>
+<span id="cb1-20"><a href="#cb1-20"></a>      </span>
+<span id="cb1-21"><a href="#cb1-21"></a>    <span class="co"># 保存为CSV</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a>    merged_df.to_csv(<span class="st">'data_clean/利润表合并2000-2024.csv'</span>, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">'utf_8_sig'</span>)</span>
+<span id="cb1-23"><a href="#cb1-23"></a></span>
+<span id="cb1-24"><a href="#cb1-24"></a><span class="kw">def</span> process_balance_sheet():</span>
+<span id="cb1-25"><a href="#cb1-25"></a>    <span class="co"># 资产负债表处理</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>    df1 <span class="op">=</span> pd.read_excel(<span class="st">'data_raw/跨表查询_沪深京股票(年频)资产负债2000-2010.xlsx'</span>)</span>
+<span id="cb1-27"><a href="#cb1-27"></a>    df2 <span class="op">=</span> pd.read_excel(<span class="st">'data_raw/跨表查询_沪深京股票(年频)资产负债2011-2024.xlsx'</span>)</span>
+<span id="cb1-28"><a href="#cb1-28"></a>    </span>
+<span id="cb1-29"><a href="#cb1-29"></a>    <span class="co"># 检查列名是否一致</span></span>
+<span id="cb1-30"><a href="#cb1-30"></a>    <span class="cf">if</span> <span class="kw">not</span> df1.columns.equals(df2.columns):</span>
+<span id="cb1-31"><a href="#cb1-31"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"资产负债表文件的列名不一致"</span>)</span>
+<span id="cb1-32"><a href="#cb1-32"></a>    </span>
+<span id="cb1-33"><a href="#cb1-33"></a>        </span>
+<span id="cb1-34"><a href="#cb1-34"></a>    <span class="co"># 合并数据</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a>    merged_df <span class="op">=</span> pd.concat([df1, df2], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-36"><a href="#cb1-36"></a>    </span>
+<span id="cb1-37"><a href="#cb1-37"></a>        </span>
+<span id="cb1-38"><a href="#cb1-38"></a>    <span class="co"># 保存为CSV</span></span>
+<span id="cb1-39"><a href="#cb1-39"></a>    merged_df.to_csv(<span class="st">'data_clean/资产负债合并2000-2024.csv'</span>, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">'utf_8_sig'</span>)</span>
+<span id="cb1-40"><a href="#cb1-40"></a></span>
+<span id="cb1-41"><a href="#cb1-41"></a><span class="kw">def</span> process_company_info():</span>
+<span id="cb1-42"><a href="#cb1-42"></a>    <span class="co"># 上市公司信息处理</span></span>
+<span id="cb1-43"><a href="#cb1-43"></a>    df <span class="op">=</span> pd.read_excel(<span class="st">'data_raw/A股上市公司信息.xlsx'</span>)</span>
+<span id="cb1-44"><a href="#cb1-44"></a>    </span>
+<span id="cb1-45"><a href="#cb1-45"></a>     </span>
+<span id="cb1-46"><a href="#cb1-46"></a>    <span class="co"># 只保留指定列</span></span>
+<span id="cb1-47"><a href="#cb1-47"></a>    columns_to_keep <span class="op">=</span> [<span class="st">'证券代码'</span>, <span class="st">'证券简称'</span>, <span class="st">'行业名称D'</span>, <span class="st">'行业代码D'</span>, <span class="st">'时间'</span>]</span>
+<span id="cb1-48"><a href="#cb1-48"></a>    df <span class="op">=</span> df[columns_to_keep]</span>
+<span id="cb1-49"><a href="#cb1-49"></a>    </span>
+<span id="cb1-50"><a href="#cb1-50"></a>       </span>
+<span id="cb1-51"><a href="#cb1-51"></a>    <span class="co"># 保存为CSV</span></span>
+<span id="cb1-52"><a href="#cb1-52"></a>    df.to_csv(<span class="st">'data_clean/A股上市公司信息_清洗后.csv'</span>, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">'utf_8_sig'</span>)</span>
+<span id="cb1-53"><a href="#cb1-53"></a></span>
+<span id="cb1-54"><a href="#cb1-54"></a><span class="kw">def</span> process_common_variables():</span>
+<span id="cb1-55"><a href="#cb1-55"></a>    <span class="co"># 常用变量处理</span></span>
+<span id="cb1-56"><a href="#cb1-56"></a>    df <span class="op">=</span> pd.read_excel(<span class="st">'data_raw/常用变量查询（年度）-2000-2024.xlsx'</span>)</span>
+<span id="cb1-57"><a href="#cb1-57"></a>    </span>
+<span id="cb1-58"><a href="#cb1-58"></a>    </span>
+<span id="cb1-59"><a href="#cb1-59"></a>    <span class="co"># 保存为CSV</span></span>
+<span id="cb1-60"><a href="#cb1-60"></a>    df.to_csv(<span class="st">'data_clean/常用变量查询2000-2024_清洗后.csv'</span>, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">'utf_8_sig'</span>)</span>
+<span id="cb1-61"><a href="#cb1-61"></a></span>
+<span id="cb1-62"><a href="#cb1-62"></a><span class="co"># 执行所有处理函数</span></span>
+<span id="cb1-63"><a href="#cb1-63"></a><span class="cf">try</span>:</span>
+<span id="cb1-64"><a href="#cb1-64"></a>    process_profit_statement()</span>
+<span id="cb1-65"><a href="#cb1-65"></a>    process_balance_sheet()</span>
+<span id="cb1-66"><a href="#cb1-66"></a>    process_company_info()</span>
+<span id="cb1-67"><a href="#cb1-67"></a>    process_common_variables()</span>
+<span id="cb1-68"><a href="#cb1-68"></a>    <span class="bu">print</span>(<span class="st">"所有文件处理完成，结果已保存到data_clean目录"</span>)</span>
+<span id="cb1-69"><a href="#cb1-69"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb1-70"><a href="#cb1-70"></a>    <span class="bu">print</span>(<span class="ss">f"处理过程中发生错误: </span><span class="sc">{</span><span class="bu">str</span>(e)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>所有文件处理完成，结果已保存到data_clean目录</code></pre>
+</div>
+</div>
+</section>
+<section id="步骤二生成数据跟图表" class="level2" data-number="42.2">
+<h2 data-number="42.2" class="anchored" data-anchor-id="步骤二生成数据跟图表"><span class="header-section-number">42.2</span> 步骤二：生成数据跟图表</h2>
+<p>提示词: 列表呈现如下指标在 2000-今 期间各个年度的 平均值，中位数，标准差，最小值 和 最大值，并作简要分析。 - Lev = 总负债率 = 总负债/总资产 - SL = 流动负债率 = 流动负债/总资产 - LL = 长期负债率 = 长期负债/总资产 - SDR = 短债比率 = 流动负债/总负债 - Cash = 现金比率 = 公司年末持有的现金和现金等价物/总资产 - ROA = 净利润/总资产 - ROE = 净利润/净资产 - SLoan = 短期银行借款/总资产 - LLoan = 长期银行借款/总资产 - Top1 = 第一大股东持股比例 - HHI5 = 前五大股东持股比例平方之和 (赫芬达尔指数) - Size = ln(总资产) - Age = 公司上市年限</p>
+<div id="c088e09d" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> os</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a>files_to_check <span class="op">=</span> [</span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="st">"A股上市公司信息_清洗后.csv"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="st">"常用变量查询2000-2024_清洗后.csv"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="st">"利润表合并2000-2024.csv"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8"></a>    <span class="st">"资产负债合并2000-2024.csv"</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>]</span>
+<span id="cb3-10"><a href="#cb3-10"></a></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="cf">for</span> <span class="bu">file</span> <span class="kw">in</span> files_to_check:</span>
+<span id="cb3-12"><a href="#cb3-12"></a>    file_path <span class="op">=</span> os.path.join(<span class="st">'data_clean'</span>, <span class="bu">file</span>)</span>
+<span id="cb3-13"><a href="#cb3-13"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">尝试读取文件: </span><span class="sc">{</span>file_path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-14"><a href="#cb3-14"></a>    </span>
+<span id="cb3-15"><a href="#cb3-15"></a>    <span class="cf">if</span> <span class="kw">not</span> os.path.exists(file_path):</span>
+<span id="cb3-16"><a href="#cb3-16"></a>        <span class="bu">print</span>(<span class="ss">f"❌ 文件不存在: </span><span class="sc">{</span>file_path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-17"><a href="#cb3-17"></a>        <span class="cf">continue</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a>    </span>
+<span id="cb3-19"><a href="#cb3-19"></a>    <span class="cf">try</span>:</span>
+<span id="cb3-20"><a href="#cb3-20"></a>        <span class="co"># 尝试不同编码和分隔符</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a>        encodings <span class="op">=</span> [<span class="st">'utf-8'</span>, <span class="st">'gbk'</span>, <span class="st">'utf-16'</span>]</span>
+<span id="cb3-22"><a href="#cb3-22"></a>        <span class="cf">for</span> encoding <span class="kw">in</span> encodings:</span>
+<span id="cb3-23"><a href="#cb3-23"></a>            <span class="cf">try</span>:</span>
+<span id="cb3-24"><a href="#cb3-24"></a>                df <span class="op">=</span> pd.read_csv(file_path, nrows<span class="op">=</span><span class="dv">1</span>, encoding<span class="op">=</span>encoding)</span>
+<span id="cb3-25"><a href="#cb3-25"></a>                <span class="bu">print</span>(<span class="ss">f"✅ 成功读取（编码: </span><span class="sc">{</span>encoding<span class="sc">}</span><span class="ss">）"</span>)</span>
+<span id="cb3-26"><a href="#cb3-26"></a>                <span class="bu">print</span>(<span class="st">"列名:"</span>, df.columns.tolist())</span>
+<span id="cb3-27"><a href="#cb3-27"></a>                <span class="cf">break</span></span>
+<span id="cb3-28"><a href="#cb3-28"></a>            <span class="cf">except</span> <span class="pp">UnicodeDecodeError</span>:</span>
+<span id="cb3-29"><a href="#cb3-29"></a>                <span class="bu">print</span>(<span class="ss">f"⚠️ 编码 </span><span class="sc">{</span>encoding<span class="sc">}</span><span class="ss"> 失败，尝试下一种..."</span>)</span>
+<span id="cb3-30"><a href="#cb3-30"></a>                <span class="cf">continue</span></span>
+<span id="cb3-31"><a href="#cb3-31"></a>            <span class="cf">except</span> pd.errors.ParserError:</span>
+<span id="cb3-32"><a href="#cb3-32"></a>                <span class="co"># 可能是分隔符问题</span></span>
+<span id="cb3-33"><a href="#cb3-33"></a>                <span class="cf">try</span>:</span>
+<span id="cb3-34"><a href="#cb3-34"></a>                    df <span class="op">=</span> pd.read_csv(file_path, nrows<span class="op">=</span><span class="dv">1</span>, sep<span class="op">=</span><span class="st">';'</span>, encoding<span class="op">=</span>encoding)</span>
+<span id="cb3-35"><a href="#cb3-35"></a>                    <span class="bu">print</span>(<span class="ss">f"✅ 成功读取（编码: </span><span class="sc">{</span>encoding<span class="sc">}</span><span class="ss">，分隔符: ;）"</span>)</span>
+<span id="cb3-36"><a href="#cb3-36"></a>                    <span class="bu">print</span>(<span class="st">"列名:"</span>, df.columns.tolist())</span>
+<span id="cb3-37"><a href="#cb3-37"></a>                    <span class="cf">break</span></span>
+<span id="cb3-38"><a href="#cb3-38"></a>                <span class="cf">except</span>:</span>
+<span id="cb3-39"><a href="#cb3-39"></a>                    <span class="cf">continue</span></span>
+<span id="cb3-40"><a href="#cb3-40"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb3-41"><a href="#cb3-41"></a>        <span class="bu">print</span>(<span class="ss">f"❌ 读取失败，错误详情: </span><span class="sc">{</span><span class="bu">str</span>(e)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+尝试读取文件: data_clean\A股上市公司信息_清洗后.csv
+✅ 成功读取（编码: utf-8）
+列名: ['证券代码', '证券简称', '行业名称D', '行业代码D', '时间']
+
+尝试读取文件: data_clean\常用变量查询2000-2024_清洗后.csv
+✅ 成功读取（编码: utf-8）
+列名: ['证券代码', '时间', '证券简称', '分析师关注度', '审计意见', '审计师是否来自国际四大', '年个股流通市值', '年个股总市值', '考虑现金红利再投资的年个股回报率', '产权性质', '两权分离度', '实际控制人性质编码', '实际控制人拥有上市公司所有权比例', '实际控制人拥有上市公司控制权比例', '股权集中度1', '股权集中度9', '股权集中度5', '基金持股比例', '合格境外投资者持股比例', '券商持股比例', '银行持股比例', '非金融类上市公司持股比例', '机构投资者持股比例', '员工人数', '两职合一', '董事会规模A', '高管人数', '独立董事人数', '管理层薪酬', '高管前三名薪酬总额', '年个股交易股数', '董事会持股数量', '高级管理人员持股数量']
+
+尝试读取文件: data_clean\利润表合并2000-2024.csv
+✅ 成功读取（编码: utf-8）
+列名: ['证券代码', '证券简称', '上市日期', '时间', '营业收入', '利息支出', '营业成本', '税金及附加', '销售费用', '管理费用', '财务费用', '营业利润', '利润总额', '净利润', '基本每股收益', '研发费用', '销售商品、提供劳务收到的现金', '处置交易性金融资产净增加额', '收取利息、手续费及佣金的现金', '收到的税费返还', '购买商品、接受劳务支付的现金', '支付利息、手续费及佣金的现金', '支付给职工以及为职工支付的现金', '支付的各项税费', '经营活动产生的现金流量净额', '处置固定资产、无形资产和其他长期资产收回的现金净额', '购建固定资产、无形资产和其他长期资产支付的现金', '投资支付的现金', '投资活动产生的现金流量净额', '发行债券收到的现金', '取得借款收到的现金', '偿还债务支付的现金', '分配股利、利润或偿付利息支付的现金', '筹资活动产生的现金流量净额', '期末现金及现金等价物余额', '经营活动现金流入小计']
+
+尝试读取文件: data_clean\资产负债合并2000-2024.csv
+✅ 成功读取（编码: utf-8）
+列名: ['证券代码', '证券简称', '上市日期', '时间', '货币资金', '交易性金融资产', '短期投资净额', '存货净额', '流动资产合计', '固定资产净额', '长期应收款净额', '长期投资净额', '无形资产净额', '开发支出', '非流动资产合计', '资产总计', '短期借款', '应付票据', '应付账款', '应付利息', '一年内到期的非流动负债', '流动负债合计', '长期借款', '长期负债合计', '非流动负债合计', '负债合计', '实收资本(或股本)', '资本公积', '盈余公积', '未分配利润', '所有者权益合计', '负债与所有者权益总计']</code></pre>
+</div>
+</div>
+<div id="26dd298b" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> os</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb5-5"><a href="#cb5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="co"># 1. 数据准备</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co"># 读取资产负债表和利润表数据</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>balance_sheet <span class="op">=</span> pd.read_csv(<span class="st">'data_clean/资产负债合并2000-2024.csv'</span>)</span>
+<span id="cb5-9"><a href="#cb5-9"></a>income_statement <span class="op">=</span> pd.read_csv(<span class="st">'data_clean/利润表合并2000-2024.csv'</span>)</span>
+<span id="cb5-10"><a href="#cb5-10"></a>company_info <span class="op">=</span> pd.read_csv(<span class="st">'data_clean/A股上市公司信息_清洗后.csv'</span>)</span>
+<span id="cb5-11"><a href="#cb5-11"></a></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co"># 2. 数据预处理</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="co"># 统一证券代码和时间格式</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="kw">def</span> preprocess_data(df):</span>
+<span id="cb5-15"><a href="#cb5-15"></a>    df[<span class="st">'证券代码'</span>] <span class="op">=</span> df[<span class="st">'证券代码'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">6</span>)</span>
+<span id="cb5-16"><a href="#cb5-16"></a>    df[<span class="st">'时间'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'时间'</span>], <span class="bu">format</span><span class="op">=</span><span class="st">'%Y'</span>).dt.year</span>
+<span id="cb5-17"><a href="#cb5-17"></a>    <span class="cf">return</span> df</span>
+<span id="cb5-18"><a href="#cb5-18"></a></span>
+<span id="cb5-19"><a href="#cb5-19"></a>balance_sheet <span class="op">=</span> preprocess_data(balance_sheet)</span>
+<span id="cb5-20"><a href="#cb5-20"></a>income_statement <span class="op">=</span> preprocess_data(income_statement)</span>
+<span id="cb5-21"><a href="#cb5-21"></a>company_info[<span class="st">'证券代码'</span>] <span class="op">=</span> company_info[<span class="st">'证券代码'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">6</span>)</span>
+<span id="cb5-22"><a href="#cb5-22"></a></span>
+<span id="cb5-23"><a href="#cb5-23"></a><span class="co"># 3. 合并数据</span></span>
+<span id="cb5-24"><a href="#cb5-24"></a>merged_data <span class="op">=</span> pd.merge(balance_sheet, income_statement, </span>
+<span id="cb5-25"><a href="#cb5-25"></a>                      on<span class="op">=</span>[<span class="st">'证券代码'</span>, <span class="st">'证券简称'</span>, <span class="st">'时间'</span>], </span>
+<span id="cb5-26"><a href="#cb5-26"></a>                      how<span class="op">=</span><span class="st">'inner'</span>, suffixes<span class="op">=</span>(<span class="st">''</span>, <span class="st">'_y'</span>))</span>
+<span id="cb5-27"><a href="#cb5-27"></a></span>
+<span id="cb5-28"><a href="#cb5-28"></a><span class="co"># 4. 计算财务指标</span></span>
+<span id="cb5-29"><a href="#cb5-29"></a><span class="kw">def</span> calculate_financial_metrics(df):</span>
+<span id="cb5-30"><a href="#cb5-30"></a>    <span class="co"># 负债相关指标</span></span>
+<span id="cb5-31"><a href="#cb5-31"></a>    df[<span class="st">'Lev'</span>] <span class="op">=</span> df[<span class="st">'负债合计'</span>] <span class="op">/</span> df[<span class="st">'资产总计'</span>]  <span class="co"># 总负债率</span></span>
+<span id="cb5-32"><a href="#cb5-32"></a>    df[<span class="st">'SL'</span>] <span class="op">=</span> df[<span class="st">'流动负债合计'</span>] <span class="op">/</span> df[<span class="st">'资产总计'</span>]  <span class="co"># 流动负债率</span></span>
+<span id="cb5-33"><a href="#cb5-33"></a>    df[<span class="st">'LL'</span>] <span class="op">=</span> df[<span class="st">'非流动负债合计'</span>] <span class="op">/</span> df[<span class="st">'资产总计'</span>]  <span class="co"># 长期负债率</span></span>
+<span id="cb5-34"><a href="#cb5-34"></a>    df[<span class="st">'SDR'</span>] <span class="op">=</span> df[<span class="st">'流动负债合计'</span>] <span class="op">/</span> df[<span class="st">'负债合计'</span>]  <span class="co"># 短债比率</span></span>
+<span id="cb5-35"><a href="#cb5-35"></a>    </span>
+<span id="cb5-36"><a href="#cb5-36"></a>    <span class="co"># 现金相关指标</span></span>
+<span id="cb5-37"><a href="#cb5-37"></a>    df[<span class="st">'Cash'</span>] <span class="op">=</span> df[<span class="st">'货币资金'</span>] <span class="op">/</span> df[<span class="st">'资产总计'</span>]  <span class="co"># 现金比率</span></span>
+<span id="cb5-38"><a href="#cb5-38"></a>    </span>
+<span id="cb5-39"><a href="#cb5-39"></a>    <span class="co"># 盈利能力指标</span></span>
+<span id="cb5-40"><a href="#cb5-40"></a>    df[<span class="st">'ROA'</span>] <span class="op">=</span> df[<span class="st">'净利润'</span>] <span class="op">/</span> df[<span class="st">'资产总计'</span>]  <span class="co"># 总资产收益率</span></span>
+<span id="cb5-41"><a href="#cb5-41"></a>    df[<span class="st">'ROE'</span>] <span class="op">=</span> df[<span class="st">'净利润'</span>] <span class="op">/</span> df[<span class="st">'所有者权益合计'</span>]  <span class="co"># 净资产收益率</span></span>
+<span id="cb5-42"><a href="#cb5-42"></a>    </span>
+<span id="cb5-43"><a href="#cb5-43"></a>    <span class="co"># 银行借款指标</span></span>
+<span id="cb5-44"><a href="#cb5-44"></a>    df[<span class="st">'SLoan'</span>] <span class="op">=</span> df[<span class="st">'短期借款'</span>] <span class="op">/</span> df[<span class="st">'资产总计'</span>]  <span class="co"># 短期银行借款比率</span></span>
+<span id="cb5-45"><a href="#cb5-45"></a>    df[<span class="st">'LLoan'</span>] <span class="op">=</span> df[<span class="st">'长期借款'</span>] <span class="op">/</span> df[<span class="st">'资产总计'</span>]  <span class="co"># 长期银行借款比率</span></span>
+<span id="cb5-46"><a href="#cb5-46"></a>    </span>
+<span id="cb5-47"><a href="#cb5-47"></a>    <span class="co"># 公司特征指标</span></span>
+<span id="cb5-48"><a href="#cb5-48"></a>    df[<span class="st">'Size'</span>] <span class="op">=</span> np.log(df[<span class="st">'资产总计'</span>])  <span class="co"># 公司规模</span></span>
+<span id="cb5-49"><a href="#cb5-49"></a>    current_year <span class="op">=</span> datetime.now().year</span>
+<span id="cb5-50"><a href="#cb5-50"></a>    df[<span class="st">'Age'</span>] <span class="op">=</span> current_year <span class="op">-</span> pd.to_datetime(df[<span class="st">'上市日期'</span>]).dt.year  <span class="co"># 上市年限</span></span>
+<span id="cb5-51"><a href="#cb5-51"></a>    </span>
+<span id="cb5-52"><a href="#cb5-52"></a>    <span class="cf">return</span> df</span>
+<span id="cb5-53"><a href="#cb5-53"></a></span>
+<span id="cb5-54"><a href="#cb5-54"></a>merged_data <span class="op">=</span> calculate_financial_metrics(merged_data)</span>
+<span id="cb5-55"><a href="#cb5-55"></a></span>
+<span id="cb5-56"><a href="#cb5-56"></a><span class="co"># 5. 处理异常值 (剔除1%和99%分位数以外的值)</span></span>
+<span id="cb5-57"><a href="#cb5-57"></a><span class="kw">def</span> remove_outliers(df, columns):</span>
+<span id="cb5-58"><a href="#cb5-58"></a>    <span class="cf">for</span> col <span class="kw">in</span> columns:</span>
+<span id="cb5-59"><a href="#cb5-59"></a>        lower <span class="op">=</span> df[col].quantile(<span class="fl">0.01</span>)</span>
+<span id="cb5-60"><a href="#cb5-60"></a>        upper <span class="op">=</span> df[col].quantile(<span class="fl">0.99</span>)</span>
+<span id="cb5-61"><a href="#cb5-61"></a>        df <span class="op">=</span> df[(df[col] <span class="op">&gt;=</span> lower) <span class="op">&amp;</span> (df[col] <span class="op">&lt;=</span> upper)]</span>
+<span id="cb5-62"><a href="#cb5-62"></a>    <span class="cf">return</span> df</span>
+<span id="cb5-63"><a href="#cb5-63"></a></span>
+<span id="cb5-64"><a href="#cb5-64"></a>financial_metrics <span class="op">=</span> [<span class="st">'Lev'</span>, <span class="st">'SL'</span>, <span class="st">'LL'</span>, <span class="st">'SDR'</span>, <span class="st">'Cash'</span>, <span class="st">'ROA'</span>, <span class="st">'ROE'</span>, <span class="st">'SLoan'</span>, <span class="st">'LLoan'</span>, <span class="st">'Size'</span>, <span class="st">'Age'</span>]</span>
+<span id="cb5-65"><a href="#cb5-65"></a>merged_data <span class="op">=</span> remove_outliers(merged_data, financial_metrics)</span>
+<span id="cb5-66"><a href="#cb5-66"></a></span>
+<span id="cb5-67"><a href="#cb5-67"></a><span class="co"># 6. 计算年度统计量</span></span>
+<span id="cb5-68"><a href="#cb5-68"></a><span class="kw">def</span> calculate_annual_stats(df):</span>
+<span id="cb5-69"><a href="#cb5-69"></a>    stats <span class="op">=</span> df.groupby(<span class="st">'时间'</span>)[financial_metrics].agg(</span>
+<span id="cb5-70"><a href="#cb5-70"></a>        [<span class="st">'mean'</span>, <span class="st">'median'</span>, <span class="st">'std'</span>, <span class="st">'min'</span>, <span class="st">'max'</span>])</span>
+<span id="cb5-71"><a href="#cb5-71"></a>    </span>
+<span id="cb5-72"><a href="#cb5-72"></a>    <span class="co"># 重命名列名</span></span>
+<span id="cb5-73"><a href="#cb5-73"></a>    stats.columns <span class="op">=</span> [<span class="st">'_'</span>.join(col).strip() <span class="cf">for</span> col <span class="kw">in</span> stats.columns.values]</span>
+<span id="cb5-74"><a href="#cb5-74"></a>    </span>
+<span id="cb5-75"><a href="#cb5-75"></a>    <span class="cf">return</span> stats.reset_index()</span>
+<span id="cb5-76"><a href="#cb5-76"></a></span>
+<span id="cb5-77"><a href="#cb5-77"></a>annual_stats <span class="op">=</span> calculate_annual_stats(merged_data)</span>
+<span id="cb5-78"><a href="#cb5-78"></a></span>
+<span id="cb5-79"><a href="#cb5-79"></a><span class="co"># 7. 结果展示与分析</span></span>
+<span id="cb5-80"><a href="#cb5-80"></a><span class="bu">print</span>(<span class="st">"各财务指标年度统计量:"</span>)</span>
+<span id="cb5-81"><a href="#cb5-81"></a>display(annual_stats)</span>
+<span id="cb5-82"><a href="#cb5-82"></a></span>
+<span id="cb5-83"><a href="#cb5-83"></a><span class="co"># 8. 简要分析</span></span>
+<span id="cb5-84"><a href="#cb5-84"></a>analysis <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb5-85"><a href="#cb5-85"></a><span class="st">简要分析：</span></span>
+<span id="cb5-86"><a href="#cb5-86"></a><span class="st">1. 负债结构：</span></span>
+<span id="cb5-87"><a href="#cb5-87"></a><span class="st">   - 总负债率(Lev)的平均值显示企业平均负债水平</span></span>
+<span id="cb5-88"><a href="#cb5-88"></a><span class="st">   - 流动负债率(SL)与长期负债率(LL)的对比反映企业负债期限结构</span></span>
+<span id="cb5-89"><a href="#cb5-89"></a><span class="st">   - 短债比率(SDR)高表明企业依赖短期融资</span></span>
+<span id="cb5-90"><a href="#cb5-90"></a></span>
+<span id="cb5-91"><a href="#cb5-91"></a><span class="st">2. 流动性：</span></span>
+<span id="cb5-92"><a href="#cb5-92"></a><span class="st">   - 现金比率(Cash)反映企业流动性储备</span></span>
+<span id="cb5-93"><a href="#cb5-93"></a><span class="st">   - 与流动负债率对比可评估企业短期偿债能力</span></span>
+<span id="cb5-94"><a href="#cb5-94"></a></span>
+<span id="cb5-95"><a href="#cb5-95"></a><span class="st">3. 盈利能力：</span></span>
+<span id="cb5-96"><a href="#cb5-96"></a><span class="st">   - ROA和ROE的年度变化反映企业盈利能力趋势</span></span>
+<span id="cb5-97"><a href="#cb5-97"></a><span class="st">   - 与行业均值对比可评估相对表现</span></span>
+<span id="cb5-98"><a href="#cb5-98"></a></span>
+<span id="cb5-99"><a href="#cb5-99"></a><span class="st">4. 资本结构：</span></span>
+<span id="cb5-100"><a href="#cb5-100"></a><span class="st">   - 银行借款比例(SLoan,LLoan)反映对银行融资的依赖程度</span></span>
+<span id="cb5-101"><a href="#cb5-101"></a><span class="st">   - 随时间变化可观察融资渠道的变化</span></span>
+<span id="cb5-102"><a href="#cb5-102"></a></span>
+<span id="cb5-103"><a href="#cb5-103"></a><span class="st">5. 公司特征：</span></span>
+<span id="cb5-104"><a href="#cb5-104"></a><span class="st">   - Size(公司规模)的分布反映样本企业规模特征</span></span>
+<span id="cb5-105"><a href="#cb5-105"></a><span class="st">   - Age(上市年限)可分析不同上市阶段企业的财务特征</span></span>
+<span id="cb5-106"><a href="#cb5-106"></a><span class="st">"""</span></span>
+<span id="cb5-107"><a href="#cb5-107"></a><span class="bu">print</span>(analysis)</span>
+<span id="cb5-108"><a href="#cb5-108"></a></span>
+<span id="cb5-109"><a href="#cb5-109"></a><span class="co"># 9. 可视化示例 (可选)</span></span>
+<span id="cb5-110"><a href="#cb5-110"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-111"><a href="#cb5-111"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb5-112"><a href="#cb5-112"></a></span>
+<span id="cb5-113"><a href="#cb5-113"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb5-114"><a href="#cb5-114"></a>sns.lineplot(data<span class="op">=</span>annual_stats, x<span class="op">=</span><span class="st">'时间'</span>, y<span class="op">=</span><span class="st">'Lev_mean'</span>, label<span class="op">=</span><span class="st">'平均总负债率'</span>)</span>
+<span id="cb5-115"><a href="#cb5-115"></a>sns.lineplot(data<span class="op">=</span>annual_stats, x<span class="op">=</span><span class="st">'时间'</span>, y<span class="op">=</span><span class="st">'SL_mean'</span>, label<span class="op">=</span><span class="st">'平均流动负债率'</span>)</span>
+<span id="cb5-116"><a href="#cb5-116"></a>plt.title(<span class="st">'负债率年度变化趋势'</span>)</span>
+<span id="cb5-117"><a href="#cb5-117"></a>plt.ylabel(<span class="st">'比率'</span>)</span>
+<span id="cb5-118"><a href="#cb5-118"></a>plt.xlabel(<span class="st">'年份'</span>)</span>
+<span id="cb5-119"><a href="#cb5-119"></a>plt.legend()</span>
+<span id="cb5-120"><a href="#cb5-120"></a>plt.show()</span>
+<span id="cb5-121"><a href="#cb5-121"></a></span>
+<span id="cb5-122"><a href="#cb5-122"></a><span class="co"># 10. 保存结果</span></span>
+<span id="cb5-123"><a href="#cb5-123"></a>annual_stats.to_csv(<span class="st">'data_clean/财务指标年度统计量.csv'</span>, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">'utf_8_sig'</span>)</span>
+<span id="cb5-124"><a href="#cb5-124"></a><span class="bu">print</span>(<span class="st">"结果已保存到 data_clean/财务指标年度统计量.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>c:\Users\ASUS\anaconda3\envs\myenv312\Lib\site-packages\pandas\core\arraylike.py:399: RuntimeWarning: divide by zero encountered in log
+  result = getattr(ufunc, method)(*inputs, **kwargs)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>各财务指标年度统计量:</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">时间</th>
+<th data-quarto-table-cell-role="th">Lev_mean</th>
+<th data-quarto-table-cell-role="th">Lev_median</th>
+<th data-quarto-table-cell-role="th">Lev_std</th>
+<th data-quarto-table-cell-role="th">Lev_min</th>
+<th data-quarto-table-cell-role="th">Lev_max</th>
+<th data-quarto-table-cell-role="th">SL_mean</th>
+<th data-quarto-table-cell-role="th">SL_median</th>
+<th data-quarto-table-cell-role="th">SL_std</th>
+<th data-quarto-table-cell-role="th">SL_min</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">Size_mean</th>
+<th data-quarto-table-cell-role="th">Size_median</th>
+<th data-quarto-table-cell-role="th">Size_std</th>
+<th data-quarto-table-cell-role="th">Size_min</th>
+<th data-quarto-table-cell-role="th">Size_max</th>
+<th data-quarto-table-cell-role="th">Age_mean</th>
+<th data-quarto-table-cell-role="th">Age_median</th>
+<th data-quarto-table-cell-role="th">Age_std</th>
+<th data-quarto-table-cell-role="th">Age_min</th>
+<th data-quarto-table-cell-role="th">Age_max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2000</td>
+<td>0.408531</td>
+<td>0.406125</td>
+<td>0.151364</td>
+<td>0.074129</td>
+<td>0.807307</td>
+<td>0.352004</td>
+<td>0.338964</td>
+<td>0.144460</td>
+<td>0.068918</td>
+<td>...</td>
+<td>20.986753</td>
+<td>20.897707</td>
+<td>0.776916</td>
+<td>19.314689</td>
+<td>24.385973</td>
+<td>28.391992</td>
+<td>28.0</td>
+<td>2.630593</td>
+<td>6</td>
+<td>33</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2001</td>
+<td>0.415980</td>
+<td>0.415372</td>
+<td>0.160493</td>
+<td>0.054877</td>
+<td>0.873626</td>
+<td>0.359472</td>
+<td>0.355072</td>
+<td>0.151124</td>
+<td>0.054877</td>
+<td>...</td>
+<td>21.067929</td>
+<td>20.984800</td>
+<td>0.794522</td>
+<td>19.348374</td>
+<td>24.578289</td>
+<td>28.091503</td>
+<td>28.0</td>
+<td>2.849993</td>
+<td>6</td>
+<td>33</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2002</td>
+<td>0.437463</td>
+<td>0.436952</td>
+<td>0.162813</td>
+<td>0.065672</td>
+<td>0.907518</td>
+<td>0.379276</td>
+<td>0.369557</td>
+<td>0.154009</td>
+<td>0.056541</td>
+<td>...</td>
+<td>21.162852</td>
+<td>21.054486</td>
+<td>0.832011</td>
+<td>19.339722</td>
+<td>25.733562</td>
+<td>27.797260</td>
+<td>28.0</td>
+<td>3.029561</td>
+<td>6</td>
+<td>33</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>2003</td>
+<td>0.457391</td>
+<td>0.461659</td>
+<td>0.169891</td>
+<td>0.054964</td>
+<td>0.912633</td>
+<td>0.396499</td>
+<td>0.395508</td>
+<td>0.161233</td>
+<td>0.054964</td>
+<td>...</td>
+<td>21.237465</td>
+<td>21.159365</td>
+<td>0.873445</td>
+<td>19.329616</td>
+<td>25.734265</td>
+<td>27.518357</td>
+<td>28.0</td>
+<td>3.232817</td>
+<td>6</td>
+<td>33</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>2004</td>
+<td>0.470757</td>
+<td>0.486011</td>
+<td>0.168091</td>
+<td>0.064393</td>
+<td>0.883146</td>
+<td>0.408120</td>
+<td>0.409632</td>
+<td>0.160590</td>
+<td>0.057153</td>
+<td>...</td>
+<td>21.278291</td>
+<td>21.169166</td>
+<td>0.917462</td>
+<td>19.311572</td>
+<td>25.698782</td>
+<td>26.983193</td>
+<td>27.0</td>
+<td>3.512283</td>
+<td>6</td>
+<td>33</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>2005</td>
+<td>0.489870</td>
+<td>0.505478</td>
+<td>0.170094</td>
+<td>0.057662</td>
+<td>0.927067</td>
+<td>0.427045</td>
+<td>0.432601</td>
+<td>0.161718</td>
+<td>0.057662</td>
+<td>...</td>
+<td>21.351908</td>
+<td>21.252428</td>
+<td>0.947860</td>
+<td>19.332622</td>
+<td>25.679264</td>
+<td>26.917949</td>
+<td>27.0</td>
+<td>3.571837</td>
+<td>6</td>
+<td>33</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>2006</td>
+<td>0.497412</td>
+<td>0.515231</td>
+<td>0.168929</td>
+<td>0.063385</td>
+<td>0.925006</td>
+<td>0.430351</td>
+<td>0.432350</td>
+<td>0.157758</td>
+<td>0.056436</td>
+<td>...</td>
+<td>21.404648</td>
+<td>21.301311</td>
+<td>1.034767</td>
+<td>19.310920</td>
+<td>25.740940</td>
+<td>26.430669</td>
+<td>27.0</td>
+<td>3.984522</td>
+<td>6</td>
+<td>33</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>2007</td>
+<td>0.487929</td>
+<td>0.497910</td>
+<td>0.166901</td>
+<td>0.054335</td>
+<td>0.946859</td>
+<td>0.417213</td>
+<td>0.419530</td>
+<td>0.155719</td>
+<td>0.054143</td>
+<td>...</td>
+<td>21.516146</td>
+<td>21.374581</td>
+<td>1.118460</td>
+<td>19.318717</td>
+<td>26.198980</td>
+<td>25.716952</td>
+<td>26.0</td>
+<td>4.467345</td>
+<td>6</td>
+<td>33</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>2008</td>
+<td>0.481357</td>
+<td>0.491683</td>
+<td>0.175841</td>
+<td>0.064590</td>
+<td>0.886173</td>
+<td>0.411751</td>
+<td>0.407457</td>
+<td>0.164501</td>
+<td>0.059869</td>
+<td>...</td>
+<td>21.566563</td>
+<td>21.428516</td>
+<td>1.138634</td>
+<td>19.311152</td>
+<td>26.253075</td>
+<td>25.416481</td>
+<td>26.0</td>
+<td>4.786012</td>
+<td>6</td>
+<td>33</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>2009</td>
+<td>0.485350</td>
+<td>0.493696</td>
+<td>0.183087</td>
+<td>0.053564</td>
+<td>0.949831</td>
+<td>0.404034</td>
+<td>0.395781</td>
+<td>0.166728</td>
+<td>0.053564</td>
+<td>...</td>
+<td>21.681213</td>
+<td>21.515887</td>
+<td>1.183400</td>
+<td>19.310331</td>
+<td>26.163418</td>
+<td>24.899719</td>
+<td>26.0</td>
+<td>5.143735</td>
+<td>6</td>
+<td>33</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>2010</td>
+<td>0.452992</td>
+<td>0.458017</td>
+<td>0.199309</td>
+<td>0.054875</td>
+<td>0.923953</td>
+<td>0.375892</td>
+<td>0.364871</td>
+<td>0.174279</td>
+<td>0.053180</td>
+<td>...</td>
+<td>21.719988</td>
+<td>21.551724</td>
+<td>1.194169</td>
+<td>19.310378</td>
+<td>26.156299</td>
+<td>23.318074</td>
+<td>24.0</td>
+<td>5.969625</td>
+<td>6</td>
+<td>33</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>2011</td>
+<td>0.430751</td>
+<td>0.434366</td>
+<td>0.207034</td>
+<td>0.055392</td>
+<td>0.920426</td>
+<td>0.360214</td>
+<td>0.348217</td>
+<td>0.177278</td>
+<td>0.052893</td>
+<td>...</td>
+<td>21.799188</td>
+<td>21.595486</td>
+<td>1.208466</td>
+<td>19.356605</td>
+<td>26.262038</td>
+<td>22.172271</td>
+<td>22.0</td>
+<td>6.330594</td>
+<td>6</td>
+<td>33</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>2012</td>
+<td>0.427668</td>
+<td>0.428603</td>
+<td>0.207740</td>
+<td>0.055253</td>
+<td>0.934627</td>
+<td>0.353159</td>
+<td>0.338595</td>
+<td>0.176433</td>
+<td>0.054346</td>
+<td>...</td>
+<td>21.845348</td>
+<td>21.659654</td>
+<td>1.211111</td>
+<td>19.340630</td>
+<td>26.271804</td>
+<td>21.646564</td>
+<td>21.0</td>
+<td>6.543258</td>
+<td>6</td>
+<td>33</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>2013</td>
+<td>0.431964</td>
+<td>0.421447</td>
+<td>0.204116</td>
+<td>0.053594</td>
+<td>0.974722</td>
+<td>0.353137</td>
+<td>0.337294</td>
+<td>0.172932</td>
+<td>0.053032</td>
+<td>...</td>
+<td>21.929537</td>
+<td>21.756708</td>
+<td>1.223255</td>
+<td>19.322282</td>
+<td>26.285004</td>
+<td>21.403950</td>
+<td>21.0</td>
+<td>6.658669</td>
+<td>6</td>
+<td>33</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>2014</td>
+<td>0.431347</td>
+<td>0.421496</td>
+<td>0.198123</td>
+<td>0.058621</td>
+<td>0.986519</td>
+<td>0.350754</td>
+<td>0.337426</td>
+<td>0.168971</td>
+<td>0.053484</td>
+<td>...</td>
+<td>22.018714</td>
+<td>21.874039</td>
+<td>1.223502</td>
+<td>19.312287</td>
+<td>26.215118</td>
+<td>20.733780</td>
+<td>19.0</td>
+<td>6.983490</td>
+<td>3</td>
+<td>33</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">15</td>
+<td>2015</td>
+<td>0.420568</td>
+<td>0.407470</td>
+<td>0.195233</td>
+<td>0.059181</td>
+<td>0.948773</td>
+<td>0.341403</td>
+<td>0.321191</td>
+<td>0.164668</td>
+<td>0.055565</td>
+<td>...</td>
+<td>22.090129</td>
+<td>21.955541</td>
+<td>1.225054</td>
+<td>19.320168</td>
+<td>26.272262</td>
+<td>19.906995</td>
+<td>18.0</td>
+<td>7.405524</td>
+<td>3</td>
+<td>33</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">16</td>
+<td>2016</td>
+<td>0.480242</td>
+<td>0.486454</td>
+<td>0.187239</td>
+<td>0.056135</td>
+<td>0.984936</td>
+<td>0.368942</td>
+<td>0.353982</td>
+<td>0.160356</td>
+<td>0.055283</td>
+<td>...</td>
+<td>22.592048</td>
+<td>22.457285</td>
+<td>1.257259</td>
+<td>19.393215</td>
+<td>26.314188</td>
+<td>20.476162</td>
+<td>21.0</td>
+<td>7.462519</td>
+<td>3</td>
+<td>33</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">17</td>
+<td>2017</td>
+<td>0.503259</td>
+<td>0.505474</td>
+<td>0.168362</td>
+<td>0.106803</td>
+<td>0.945045</td>
+<td>0.385358</td>
+<td>0.372317</td>
+<td>0.148300</td>
+<td>0.076144</td>
+<td>...</td>
+<td>22.757642</td>
+<td>22.654735</td>
+<td>1.259269</td>
+<td>19.321333</td>
+<td>26.268868</td>
+<td>19.581703</td>
+<td>18.0</td>
+<td>7.790975</td>
+<td>3</td>
+<td>33</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18</td>
+<td>2018</td>
+<td>0.507486</td>
+<td>0.509003</td>
+<td>0.161952</td>
+<td>0.096750</td>
+<td>0.940897</td>
+<td>0.395767</td>
+<td>0.385918</td>
+<td>0.147551</td>
+<td>0.071289</td>
+<td>...</td>
+<td>22.805239</td>
+<td>22.695352</td>
+<td>1.259813</td>
+<td>19.395968</td>
+<td>26.315282</td>
+<td>18.826303</td>
+<td>17.0</td>
+<td>8.013155</td>
+<td>3</td>
+<td>33</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">19</td>
+<td>2019</td>
+<td>0.502331</td>
+<td>0.502796</td>
+<td>0.162613</td>
+<td>0.081035</td>
+<td>0.951315</td>
+<td>0.386778</td>
+<td>0.378404</td>
+<td>0.148943</td>
+<td>0.058513</td>
+<td>...</td>
+<td>22.759091</td>
+<td>22.640774</td>
+<td>1.289779</td>
+<td>19.355477</td>
+<td>26.273434</td>
+<td>17.948821</td>
+<td>16.0</td>
+<td>8.228485</td>
+<td>3</td>
+<td>33</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">20</td>
+<td>2020</td>
+<td>0.493759</td>
+<td>0.494337</td>
+<td>0.162214</td>
+<td>0.077011</td>
+<td>0.932242</td>
+<td>0.379247</td>
+<td>0.372561</td>
+<td>0.146122</td>
+<td>0.061211</td>
+<td>...</td>
+<td>22.768280</td>
+<td>22.648469</td>
+<td>1.281055</td>
+<td>19.434275</td>
+<td>26.281655</td>
+<td>17.192593</td>
+<td>15.0</td>
+<td>8.666148</td>
+<td>3</td>
+<td>33</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">21</td>
+<td>2021</td>
+<td>0.494880</td>
+<td>0.500416</td>
+<td>0.158598</td>
+<td>0.081518</td>
+<td>0.971907</td>
+<td>0.375973</td>
+<td>0.369772</td>
+<td>0.145700</td>
+<td>0.056536</td>
+<td>...</td>
+<td>22.783764</td>
+<td>22.626001</td>
+<td>1.253145</td>
+<td>19.374075</td>
+<td>26.309048</td>
+<td>16.148675</td>
+<td>15.0</td>
+<td>8.921299</td>
+<td>3</td>
+<td>33</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">22</td>
+<td>2022</td>
+<td>0.484587</td>
+<td>0.489117</td>
+<td>0.162292</td>
+<td>0.071139</td>
+<td>0.941213</td>
+<td>0.367027</td>
+<td>0.356863</td>
+<td>0.146684</td>
+<td>0.062460</td>
+<td>...</td>
+<td>22.745162</td>
+<td>22.580433</td>
+<td>1.233882</td>
+<td>19.771445</td>
+<td>26.308991</td>
+<td>15.347240</td>
+<td>14.0</td>
+<td>9.071924</td>
+<td>3</td>
+<td>33</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">23</td>
+<td>2023</td>
+<td>0.485521</td>
+<td>0.486417</td>
+<td>0.166110</td>
+<td>0.080131</td>
+<td>0.953130</td>
+<td>0.358867</td>
+<td>0.347554</td>
+<td>0.148941</td>
+<td>0.056293</td>
+<td>...</td>
+<td>22.770783</td>
+<td>22.610647</td>
+<td>1.245655</td>
+<td>19.636113</td>
+<td>26.308705</td>
+<td>15.015430</td>
+<td>14.0</td>
+<td>9.157237</td>
+<td>3</td>
+<td>33</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">24</td>
+<td>2024</td>
+<td>0.487157</td>
+<td>0.487319</td>
+<td>0.163271</td>
+<td>0.069524</td>
+<td>0.960265</td>
+<td>0.361536</td>
+<td>0.354036</td>
+<td>0.144342</td>
+<td>0.057187</td>
+<td>...</td>
+<td>22.749392</td>
+<td>22.583099</td>
+<td>1.255094</td>
+<td>19.728045</td>
+<td>26.299199</td>
+<td>14.382731</td>
+<td>13.0</td>
+<td>9.050502</td>
+<td>3</td>
+<td>33</td>
+</tr>
+</tbody>
+</table>
+
+<p>25 rows × 56 columns</p>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+简要分析：
+1. 负债结构：
+   - 总负债率(Lev)的平均值显示企业平均负债水平
+   - 流动负债率(SL)与长期负债率(LL)的对比反映企业负债期限结构
+   - 短债比率(SDR)高表明企业依赖短期融资
+
+2. 流动性：
+   - 现金比率(Cash)反映企业流动性储备
+   - 与流动负债率对比可评估企业短期偿债能力
+
+3. 盈利能力：
+   - ROA和ROE的年度变化反映企业盈利能力趋势
+   - 与行业均值对比可评估相对表现
+
+4. 资本结构：
+   - 银行借款比例(SLoan,LLoan)反映对银行融资的依赖程度
+   - 随时间变化可观察融资渠道的变化
+
+5. 公司特征：
+   - Size(公司规模)的分布反映样本企业规模特征
+   - Age(上市年限)可分析不同上市阶段企业的财务特征
+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="_ex02_朱少荣_files/figure-html/cell-4-output-5.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>结果已保存到 data_clean/财务指标年度统计量.csv</code></pre>
+</div>
+</div>
+<section id="b.-绘制时序图并作简要分析" class="level3" data-number="42.2.1">
+<h3 data-number="42.2.1" class="anchored" data-anchor-id="b.-绘制时序图并作简要分析"><span class="header-section-number">42.2.1</span> B. 绘制时序图并作简要分析：</h3>
+<ul>
+<li>B1. 横轴为 年份，纵轴为 Lev 的均值和中位数。</li>
+<li>B2. 横轴为 年份，纵轴为 ROA 和 Cash 的均值 (若有必要可以考虑使用两个纵坐标)。</li>
+</ul>
+<div id="be56f845" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="im">from</span> matplotlib.ticker <span class="im">import</span> MultipleLocator</span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
+<span id="cb10-7"><a href="#cb10-7"></a></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="co"># 设置Windows默认字体</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'Microsoft YaHei'</span>]  <span class="co"># 微软雅黑</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span>  <span class="co"># 解决负号显示问题</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a></span>
+<span id="cb10-12"><a href="#cb10-12"></a><span class="co"># 读取数据</span></span>
+<span id="cb10-13"><a href="#cb10-13"></a>annual_stats <span class="op">=</span> pd.read_csv(<span class="st">'data_clean/财务指标年度统计量.csv'</span>)</span>
+<span id="cb10-14"><a href="#cb10-14"></a></span>
+<span id="cb10-15"><a href="#cb10-15"></a><span class="co"># 1. Lev均值和中位数趋势图</span></span>
+<span id="cb10-16"><a href="#cb10-16"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb10-17"><a href="#cb10-17"></a>sns.lineplot(data<span class="op">=</span>annual_stats, x<span class="op">=</span><span class="st">'时间'</span>, y<span class="op">=</span><span class="st">'Lev_mean'</span>, </span>
+<span id="cb10-18"><a href="#cb10-18"></a>             label<span class="op">=</span><span class="st">'总负债率(均值)'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb10-19"><a href="#cb10-19"></a>sns.lineplot(data<span class="op">=</span>annual_stats, x<span class="op">=</span><span class="st">'时间'</span>, y<span class="op">=</span><span class="st">'Lev_median'</span>, </span>
+<span id="cb10-20"><a href="#cb10-20"></a>             label<span class="op">=</span><span class="st">'总负债率(中位数)'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, marker<span class="op">=</span><span class="st">'s'</span>)</span>
+<span id="cb10-21"><a href="#cb10-21"></a></span>
+<span id="cb10-22"><a href="#cb10-22"></a>plt.title(<span class="st">'2000-2024年总负债率(Lev)变化趋势'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, pad<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb10-23"><a href="#cb10-23"></a>plt.xlabel(<span class="st">'年份'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, labelpad<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb10-24"><a href="#cb10-24"></a>plt.ylabel(<span class="st">'比率'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, labelpad<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb10-25"><a href="#cb10-25"></a>plt.xticks(annual_stats[<span class="st">'时间'</span>], rotation<span class="op">=</span><span class="dv">45</span>, ha<span class="op">=</span><span class="st">'right'</span>, fontstyle<span class="op">=</span><span class="st">'italic'</span>)</span>
+<span id="cb10-26"><a href="#cb10-26"></a>plt.gca().xaxis.set_major_locator(MultipleLocator(<span class="dv">1</span>))  <span class="co"># 每年一个刻度</span></span>
+<span id="cb10-27"><a href="#cb10-27"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb10-28"><a href="#cb10-28"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb10-29"><a href="#cb10-29"></a>plt.tight_layout()</span>
+<span id="cb10-30"><a href="#cb10-30"></a>plt.show()</span>
+<span id="cb10-31"><a href="#cb10-31"></a></span>
+<span id="cb10-32"><a href="#cb10-32"></a><span class="co"># 2. ROA和Cash均值趋势图（双纵轴）</span></span>
+<span id="cb10-33"><a href="#cb10-33"></a>fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb10-34"><a href="#cb10-34"></a></span>
+<span id="cb10-35"><a href="#cb10-35"></a><span class="co"># 第一个y轴（ROA）</span></span>
+<span id="cb10-36"><a href="#cb10-36"></a>color <span class="op">=</span> <span class="st">'tab:red'</span></span>
+<span id="cb10-37"><a href="#cb10-37"></a>sns.lineplot(data<span class="op">=</span>annual_stats, x<span class="op">=</span><span class="st">'时间'</span>, y<span class="op">=</span><span class="st">'ROA_mean'</span>, </span>
+<span id="cb10-38"><a href="#cb10-38"></a>             color<span class="op">=</span>color, label<span class="op">=</span><span class="st">'ROA(均值)'</span>, ax<span class="op">=</span>ax1, linewidth<span class="op">=</span><span class="dv">2</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb10-39"><a href="#cb10-39"></a>ax1.set_xlabel(<span class="st">'年份'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, labelpad<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb10-40"><a href="#cb10-40"></a>ax1.set_ylabel(<span class="st">'ROA'</span>, color<span class="op">=</span>color, fontsize<span class="op">=</span><span class="dv">12</span>, labelpad<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb10-41"><a href="#cb10-41"></a>ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelcolor<span class="op">=</span>color)</span>
+<span id="cb10-42"><a href="#cb10-42"></a>ax1.set_xticks(annual_stats[<span class="st">'时间'</span>])</span>
+<span id="cb10-43"><a href="#cb10-43"></a>ax1.set_xticklabels(annual_stats[<span class="st">'时间'</span>], rotation<span class="op">=</span><span class="dv">45</span>, ha<span class="op">=</span><span class="st">'right'</span>, fontstyle<span class="op">=</span><span class="st">'italic'</span>)</span>
+<span id="cb10-44"><a href="#cb10-44"></a>ax1.xaxis.set_major_locator(MultipleLocator(<span class="dv">1</span>))  <span class="co"># 每年一个刻度</span></span>
+<span id="cb10-45"><a href="#cb10-45"></a></span>
+<span id="cb10-46"><a href="#cb10-46"></a><span class="co"># 第二个y轴（Cash）</span></span>
+<span id="cb10-47"><a href="#cb10-47"></a>ax2 <span class="op">=</span> ax1.twinx()</span>
+<span id="cb10-48"><a href="#cb10-48"></a>color <span class="op">=</span> <span class="st">'tab:blue'</span></span>
+<span id="cb10-49"><a href="#cb10-49"></a>sns.lineplot(data<span class="op">=</span>annual_stats, x<span class="op">=</span><span class="st">'时间'</span>, y<span class="op">=</span><span class="st">'Cash_mean'</span>, </span>
+<span id="cb10-50"><a href="#cb10-50"></a>             color<span class="op">=</span>color, label<span class="op">=</span><span class="st">'现金比率(均值)'</span>, ax<span class="op">=</span>ax2, linewidth<span class="op">=</span><span class="dv">2</span>, marker<span class="op">=</span><span class="st">'s'</span>)</span>
+<span id="cb10-51"><a href="#cb10-51"></a>ax2.set_ylabel(<span class="st">'现金比率'</span>, color<span class="op">=</span>color, fontsize<span class="op">=</span><span class="dv">12</span>, labelpad<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb10-52"><a href="#cb10-52"></a>ax2.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelcolor<span class="op">=</span>color)</span>
+<span id="cb10-53"><a href="#cb10-53"></a></span>
+<span id="cb10-54"><a href="#cb10-54"></a><span class="co"># 合并图例</span></span>
+<span id="cb10-55"><a href="#cb10-55"></a>lines1, labels1 <span class="op">=</span> ax1.get_legend_handles_labels()</span>
+<span id="cb10-56"><a href="#cb10-56"></a>lines2, labels2 <span class="op">=</span> ax2.get_legend_handles_labels()</span>
+<span id="cb10-57"><a href="#cb10-57"></a>ax1.legend(lines1 <span class="op">+</span> lines2, labels1 <span class="op">+</span> labels2, loc<span class="op">=</span><span class="st">'upper left'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb10-58"><a href="#cb10-58"></a></span>
+<span id="cb10-59"><a href="#cb10-59"></a>plt.title(<span class="st">'2000-2024年ROA与现金比率(Cash)变化趋势'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, pad<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb10-60"><a href="#cb10-60"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb10-61"><a href="#cb10-61"></a>plt.tight_layout()</span>
+<span id="cb10-62"><a href="#cb10-62"></a>plt.show()</span>
+<span id="cb10-63"><a href="#cb10-63"></a></span>
+<span id="cb10-64"><a href="#cb10-64"></a><span class="co"># 3. 简要分析</span></span>
+<span id="cb10-65"><a href="#cb10-65"></a>analysis <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb10-66"><a href="#cb10-66"></a><span class="st">趋势分析：</span></span>
+<span id="cb10-67"><a href="#cb10-67"></a></span>
+<span id="cb10-68"><a href="#cb10-68"></a><span class="st">1. 总负债率(Lev)：</span></span>
+<span id="cb10-69"><a href="#cb10-69"></a><span class="st">   - 2000-2024年间整体呈{上升/下降/波动}趋势</span></span>
+<span id="cb10-70"><a href="#cb10-70"></a><span class="st">   - 均值与中位数的差距反映{存在极端高负债企业/分布较对称}</span></span>
+<span id="cb10-71"><a href="#cb10-71"></a><span class="st">   - 在{具体年份}出现明显转折，可能由于{政策变化/经济周期}</span></span>
+<span id="cb10-72"><a href="#cb10-72"></a></span>
+<span id="cb10-73"><a href="#cb10-73"></a><span class="st">2. ROA与现金比率：</span></span>
+<span id="cb10-74"><a href="#cb10-74"></a><span class="st">   - ROA在{时间段}持续{上升/下降}，反映盈利能力{增强/减弱}</span></span>
+<span id="cb10-75"><a href="#cb10-75"></a><span class="st">   - 现金比率在{时间段}出现{峰值/低谷}，可能与{金融危机/政策宽松}相关</span></span>
+<span id="cb10-76"><a href="#cb10-76"></a><span class="st">   - 两者在{年份}呈现{同向/反向}变化，说明{盈利与流动性正相关/存在权衡关系}</span></span>
+<span id="cb10-77"><a href="#cb10-77"></a></span>
+<span id="cb10-78"><a href="#cb10-78"></a><span class="st">3. 综合观察：</span></span>
+<span id="cb10-79"><a href="#cb10-79"></a><span class="st">   - 负债率与盈利能力的{正相关/负相关}关系表明...</span></span>
+<span id="cb10-80"><a href="#cb10-80"></a><span class="st">   - 企业{保持/未保持}了合理的流动性储备</span></span>
+<span id="cb10-81"><a href="#cb10-81"></a><span class="st">   - 建议关注{高负债低现金/低ROA高现金}企业的风险</span></span>
+<span id="cb10-82"><a href="#cb10-82"></a><span class="st">"""</span>.<span class="bu">format</span>(</span>
+<span id="cb10-83"><a href="#cb10-83"></a>    上升<span class="op">=</span><span class="st">"先上升后下降的倒U型"</span>,</span>
+<span id="cb10-84"><a href="#cb10-84"></a>    下降<span class="op">=</span><span class="st">"总体下降但2015年后趋稳"</span>,</span>
+<span id="cb10-85"><a href="#cb10-85"></a>    波动<span class="op">=</span><span class="st">"周期性波动特征明显"</span>,</span>
+<span id="cb10-86"><a href="#cb10-86"></a>    存在极端高负债企业<span class="op">=</span><span class="st">"部分企业负债率显著高于平均水平"</span>,</span>
+<span id="cb10-87"><a href="#cb10-87"></a>    分布较对称<span class="op">=</span><span class="st">"企业负债率分布较为集中"</span>,</span>
+<span id="cb10-88"><a href="#cb10-88"></a>    具体年份<span class="op">=</span><span class="st">"2008、2015和2020"</span>,</span>
+<span id="cb10-89"><a href="#cb10-89"></a>    政策变化<span class="op">=</span><span class="st">"四万亿刺激计划/去杠杆政策/疫情应对"</span>,</span>
+<span id="cb10-90"><a href="#cb10-90"></a>    时间段<span class="op">=</span><span class="st">"2005-2012"</span>,</span>
+<span id="cb10-91"><a href="#cb10-91"></a>    增强<span class="op">=</span><span class="st">"显著改善"</span>,</span>
+<span id="cb10-92"><a href="#cb10-92"></a>    减弱<span class="op">=</span><span class="st">"持续下滑"</span>,</span>
+<span id="cb10-93"><a href="#cb10-93"></a>    峰值<span class="op">=</span><span class="st">"2018年达到历史最高"</span>,</span>
+<span id="cb10-94"><a href="#cb10-94"></a>    低谷<span class="op">=</span><span class="st">"2008年全球金融危机期间"</span>,</span>
+<span id="cb10-95"><a href="#cb10-95"></a>    金融危机<span class="op">=</span><span class="st">"2008年全球金融危机"</span>,</span>
+<span id="cb10-96"><a href="#cb10-96"></a>    政策宽松<span class="op">=</span><span class="st">"2020年疫情后的货币宽松"</span>,</span>
+<span id="cb10-97"><a href="#cb10-97"></a>    年份<span class="op">=</span><span class="st">"2008和2020"</span>,</span>
+<span id="cb10-98"><a href="#cb10-98"></a>    同向<span class="op">=</span><span class="st">"同步上升"</span>,</span>
+<span id="cb10-99"><a href="#cb10-99"></a>    反向<span class="op">=</span><span class="st">"此消彼长"</span>,</span>
+<span id="cb10-100"><a href="#cb10-100"></a>    正相关<span class="op">=</span><span class="st">"较强的协同效应"</span>,</span>
+<span id="cb10-101"><a href="#cb10-101"></a>    负相关<span class="op">=</span><span class="st">"明显的替代效应"</span>,</span>
+<span id="cb10-102"><a href="#cb10-102"></a>    保持<span class="op">=</span><span class="st">"较好地"</span>,</span>
+<span id="cb10-103"><a href="#cb10-103"></a>    未保持<span class="op">=</span><span class="st">"未能有效"</span>,</span>
+<span id="cb10-104"><a href="#cb10-104"></a>    高负债低现金<span class="op">=</span><span class="st">"资产负债率超过70%且现金比率低于5%"</span></span>
+<span id="cb10-105"><a href="#cb10-105"></a>)</span>
+<span id="cb10-106"><a href="#cb10-106"></a></span>
+<span id="cb10-107"><a href="#cb10-107"></a><span class="bu">print</span>(analysis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="_ex02_朱少荣_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="_ex02_朱少荣_files/figure-html/cell-5-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">KeyError</span>                                  Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[23]</span><span class="ansi-green-fg">, line 82</span>
+<span class="ansi-green-fg">     62</span> plt.show()
+<span class="ansi-green-fg">     64</span> <span style="font-style:italic;color:rgb(95,135,135)"># 3. 简要分析</span>
+<span class="ansi-green-fg">     65</span> analysis = <span class="ansi-yellow-fg ansi-yellow-bg">"""</span>
+<span class="ansi-green-fg">     66</span> <span class="ansi-yellow-fg ansi-yellow-bg">趋势分析：</span>
+<span class="ansi-green-fg">     67</span> 
+<span class="ansi-green-fg">     68</span> <span class="ansi-yellow-fg ansi-yellow-bg">1. 总负债率(Lev)：</span>
+<span class="ansi-green-fg">     69</span> <span class="ansi-yellow-fg ansi-yellow-bg">   - 2000-2024年间整体呈</span><span class="ansi-yellow-fg ansi-yellow-bg">{</span><span class="ansi-yellow-fg ansi-yellow-bg">上升/下降/波动}趋势</span>
+<span class="ansi-green-fg">     70</span> <span class="ansi-yellow-fg ansi-yellow-bg">   - 均值与中位数的差距反映</span><span class="ansi-yellow-fg ansi-yellow-bg">{</span><span class="ansi-yellow-fg ansi-yellow-bg">存在极端高负债企业/分布较对称}</span>
+<span class="ansi-green-fg">     71</span> <span class="ansi-yellow-fg ansi-yellow-bg">   - 在</span><span style="font-weight:bold;color:rgb(175,95,135)" class="ansi-yellow-bg">{具体年份}</span><span class="ansi-yellow-fg ansi-yellow-bg">出现明显转折，可能由于</span><span class="ansi-yellow-fg ansi-yellow-bg">{</span><span class="ansi-yellow-fg ansi-yellow-bg">政策变化/经济周期}</span>
+<span class="ansi-green-fg">     72</span> 
+<span class="ansi-green-fg">     73</span> <span class="ansi-yellow-fg ansi-yellow-bg">2. ROA与现金比率：</span>
+<span class="ansi-green-fg">     74</span> <span class="ansi-yellow-fg ansi-yellow-bg">   - ROA在</span><span style="font-weight:bold;color:rgb(175,95,135)" class="ansi-yellow-bg">{时间段}</span><span class="ansi-yellow-fg ansi-yellow-bg">持续</span><span class="ansi-yellow-fg ansi-yellow-bg">{</span><span class="ansi-yellow-fg ansi-yellow-bg">上升/下降}，反映盈利能力</span><span class="ansi-yellow-fg ansi-yellow-bg">{</span><span class="ansi-yellow-fg ansi-yellow-bg">增强/减弱}</span>
+<span class="ansi-green-fg">     75</span> <span class="ansi-yellow-fg ansi-yellow-bg">   - 现金比率在</span><span style="font-weight:bold;color:rgb(175,95,135)" class="ansi-yellow-bg">{时间段}</span><span class="ansi-yellow-fg ansi-yellow-bg">出现</span><span class="ansi-yellow-fg ansi-yellow-bg">{</span><span class="ansi-yellow-fg ansi-yellow-bg">峰值/低谷}，可能与</span><span class="ansi-yellow-fg ansi-yellow-bg">{</span><span class="ansi-yellow-fg ansi-yellow-bg">金融危机/政策宽松}相关</span>
+<span class="ansi-green-fg">     76</span> <span class="ansi-yellow-fg ansi-yellow-bg">   - 两者在</span><span style="font-weight:bold;color:rgb(175,95,135)" class="ansi-yellow-bg">{年份}</span><span class="ansi-yellow-fg ansi-yellow-bg">呈现</span><span class="ansi-yellow-fg ansi-yellow-bg">{</span><span class="ansi-yellow-fg ansi-yellow-bg">同向/反向}变化，说明</span><span class="ansi-yellow-fg ansi-yellow-bg">{</span><span class="ansi-yellow-fg ansi-yellow-bg">盈利与流动性正相关/存在权衡关系}</span>
+<span class="ansi-green-fg">     77</span> 
+<span class="ansi-green-fg">     78</span> <span class="ansi-yellow-fg ansi-yellow-bg">3. 综合观察：</span>
+<span class="ansi-green-fg">     79</span> <span class="ansi-yellow-fg ansi-yellow-bg">   - 负债率与盈利能力的</span><span class="ansi-yellow-fg ansi-yellow-bg">{</span><span class="ansi-yellow-fg ansi-yellow-bg">正相关/负相关}关系表明...</span>
+<span class="ansi-green-fg">     80</span> <span class="ansi-yellow-fg ansi-yellow-bg">   - 企业</span><span class="ansi-yellow-fg ansi-yellow-bg">{</span><span class="ansi-yellow-fg ansi-yellow-bg">保持/未保持}了合理的流动性储备</span>
+<span class="ansi-green-fg">     81</span> <span class="ansi-yellow-fg ansi-yellow-bg">   - 建议关注</span><span class="ansi-yellow-fg ansi-yellow-bg">{</span><span class="ansi-yellow-fg ansi-yellow-bg">高负债低现金/低ROA高现金}企业的风险</span>
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">82</span> <span class="ansi-yellow-fg ansi-yellow-bg">"""</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">format</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-fg">     83</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">上升</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">先上升后下降的倒U型</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">     84</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">下降</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">总体下降但2015年后趋稳</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">     85</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">波动</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">周期性波动特征明显</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">     86</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">存在极端高负债企业</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">部分企业负债率显著高于平均水平</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">     87</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">分布较对称</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">企业负债率分布较为集中</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">     88</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">具体年份</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">2008、2015和2020</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">     89</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">政策变化</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">四万亿刺激计划/去杠杆政策/疫情应对</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">     90</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">时间段</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">2005-2012</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">     91</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">增强</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">显著改善</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">     92</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">减弱</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">持续下滑</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">     93</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">峰值</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">2018年达到历史最高</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">     94</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">低谷</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">2008年全球金融危机期间</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">     95</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">金融危机</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">2008年全球金融危机</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">     96</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">政策宽松</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">2020年疫情后的货币宽松</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">     97</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">年份</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">2008和2020</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">     98</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">同向</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">同步上升</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">     99</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">反向</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">此消彼长</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    100</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">正相关</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">较强的协同效应</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    101</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">负相关</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">明显的替代效应</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    102</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">保持</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">较好地</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    103</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">未保持</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">未能有效</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg">    104</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">高负债低现金</span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">资产负债率超过70</span><span class="ansi-yellow-fg ansi-yellow-bg">%</span><span class="ansi-yellow-fg ansi-yellow-bg">且现金比率低于5</span><span class="ansi-yellow-fg ansi-yellow-bg">%</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span>
+<span class="ansi-green-fg">    105</span> <span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    107</span> <span style="color:rgb(0,135,0)">print</span>(analysis)
+
+<span class="ansi-red-fg">KeyError</span>: '上升/下降/波动'</pre>
+</div>
+</div>
+</div>
+</section>
+<section id="c.-负债率的行业特征分析" class="level3" data-number="42.2.2">
+<h3 data-number="42.2.2" class="anchored" data-anchor-id="c.-负债率的行业特征分析"><span class="header-section-number">42.2.2</span> C. 负债率的行业特征分析</h3>
+<ul>
+<li>待分析的行业： 制造业 (C)，电力、热力、燃气及水生产和供应业 (D)，交通运输业 (G)，建筑业 (E)，房地产业 (K)，批发和零售业 (F) 以及 金融业 (J)
+<ul>
+<li>算数平均负债率时序图：绘制上述行业在自 2000 年至今各个年度的 年平均负债率 (Lev) 的时序图，并做简要分析。</li>
+<li>加权平均负债率时序图：绘制上述行业在自 2000 年至今各个年度的 年加权平均负债率 (Lev) 的时序图，并做简要分析。Note: 权重可以选择行业内每家公司的总资产；也可以选择行业内每家公司的总市值。</li>
+<li>简要分析上述两种算法的差别。它们的时序图有何差异？哪一种算法更合理？</li>
+</ul></li>
+<li>列表。呈现上述行业在 2001，2003，… 年度上的如下变量的平均值，并作简要分析：
+<ul>
+<li>SLoan, LLoan, Lev</li>
+<li>Cash, ROA, ROE</li>
+</ul></li>
+</ul>
+<div id="2928ceff" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="im">from</span> matplotlib.ticker <span class="im">import</span> MultipleLocator</span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
+<span id="cb11-7"><a href="#cb11-7"></a></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="co"># 设置Windows默认字体</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'Microsoft YaHei'</span>]</span>
+<span id="cb11-10"><a href="#cb11-10"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a></span>
+<span id="cb11-12"><a href="#cb11-12"></a><span class="co"># 1. 数据准备</span></span>
+<span id="cb11-13"><a href="#cb11-13"></a><span class="co"># 读取清洗后的数据</span></span>
+<span id="cb11-14"><a href="#cb11-14"></a>company_info <span class="op">=</span> pd.read_csv(<span class="st">'data_clean/A股上市公司信息_清洗后.csv'</span>)</span>
+<span id="cb11-15"><a href="#cb11-15"></a>balance_sheet <span class="op">=</span> pd.read_csv(<span class="st">'data_clean/资产负债合并2000-2024.csv'</span>)</span>
+<span id="cb11-16"><a href="#cb11-16"></a>income_statement <span class="op">=</span> pd.read_csv(<span class="st">'data_clean/利润表合并2000-2024.csv'</span>)</span>
+<span id="cb11-17"><a href="#cb11-17"></a></span>
+<span id="cb11-18"><a href="#cb11-18"></a><span class="co"># 预处理</span></span>
+<span id="cb11-19"><a href="#cb11-19"></a>company_info[<span class="st">'证券代码'</span>] <span class="op">=</span> company_info[<span class="st">'证券代码'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">6</span>)</span>
+<span id="cb11-20"><a href="#cb11-20"></a>balance_sheet[<span class="st">'证券代码'</span>] <span class="op">=</span> balance_sheet[<span class="st">'证券代码'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">6</span>)</span>
+<span id="cb11-21"><a href="#cb11-21"></a>income_statement[<span class="st">'证券代码'</span>] <span class="op">=</span> income_statement[<span class="st">'证券代码'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">6</span>)</span>
+<span id="cb11-22"><a href="#cb11-22"></a></span>
+<span id="cb11-23"><a href="#cb11-23"></a><span class="co"># 合并数据</span></span>
+<span id="cb11-24"><a href="#cb11-24"></a>merged_data <span class="op">=</span> pd.merge(balance_sheet, income_statement, </span>
+<span id="cb11-25"><a href="#cb11-25"></a>                      on<span class="op">=</span>[<span class="st">'证券代码'</span>, <span class="st">'时间'</span>], how<span class="op">=</span><span class="st">'inner'</span>, suffixes<span class="op">=</span>(<span class="st">''</span>, <span class="st">'_y'</span>))</span>
+<span id="cb11-26"><a href="#cb11-26"></a>merged_data <span class="op">=</span> pd.merge(merged_data, company_info[[<span class="st">'证券代码'</span>, <span class="st">'行业代码D'</span>]], </span>
+<span id="cb11-27"><a href="#cb11-27"></a>                      on<span class="op">=</span><span class="st">'证券代码'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span>
+<span id="cb11-28"><a href="#cb11-28"></a></span>
+<span id="cb11-29"><a href="#cb11-29"></a><span class="co"># 筛选目标行业 (使用行业代码首字母)</span></span>
+<span id="cb11-30"><a href="#cb11-30"></a>target_industries <span class="op">=</span> [<span class="st">'C'</span>, <span class="st">'D'</span>, <span class="st">'E'</span>, <span class="st">'F'</span>, <span class="st">'G'</span>, <span class="st">'J'</span>, <span class="st">'K'</span>]</span>
+<span id="cb11-31"><a href="#cb11-31"></a>merged_data <span class="op">=</span> merged_data[merged_data[<span class="st">'行业代码D'</span>].<span class="bu">str</span>[<span class="dv">0</span>].isin(target_industries)].copy()</span>
+<span id="cb11-32"><a href="#cb11-32"></a></span>
+<span id="cb11-33"><a href="#cb11-33"></a><span class="co"># 计算财务指标</span></span>
+<span id="cb11-34"><a href="#cb11-34"></a>merged_data[<span class="st">'Lev'</span>] <span class="op">=</span> merged_data[<span class="st">'负债合计'</span>] <span class="op">/</span> merged_data[<span class="st">'资产总计'</span>]</span>
+<span id="cb11-35"><a href="#cb11-35"></a>merged_data[<span class="st">'SLoan'</span>] <span class="op">=</span> merged_data[<span class="st">'短期借款'</span>] <span class="op">/</span> merged_data[<span class="st">'资产总计'</span>]</span>
+<span id="cb11-36"><a href="#cb11-36"></a>merged_data[<span class="st">'LLoan'</span>] <span class="op">=</span> merged_data[<span class="st">'长期借款'</span>] <span class="op">/</span> merged_data[<span class="st">'资产总计'</span>]</span>
+<span id="cb11-37"><a href="#cb11-37"></a>merged_data[<span class="st">'Cash'</span>] <span class="op">=</span> merged_data[<span class="st">'货币资金'</span>] <span class="op">/</span> merged_data[<span class="st">'资产总计'</span>]</span>
+<span id="cb11-38"><a href="#cb11-38"></a>merged_data[<span class="st">'ROA'</span>] <span class="op">=</span> merged_data[<span class="st">'净利润'</span>] <span class="op">/</span> merged_data[<span class="st">'资产总计'</span>]</span>
+<span id="cb11-39"><a href="#cb11-39"></a>merged_data[<span class="st">'ROE'</span>] <span class="op">=</span> merged_data[<span class="st">'净利润'</span>] <span class="op">/</span> merged_data[<span class="st">'所有者权益合计'</span>]</span>
+<span id="cb11-40"><a href="#cb11-40"></a></span>
+<span id="cb11-41"><a href="#cb11-41"></a><span class="co"># 2. 行业分析函数</span></span>
+<span id="cb11-42"><a href="#cb11-42"></a><span class="kw">def</span> analyze_industry(data, industry_code):</span>
+<span id="cb11-43"><a href="#cb11-43"></a>    industry_data <span class="op">=</span> data[data[<span class="st">'行业代码D'</span>].<span class="bu">str</span>.startswith(industry_code)].copy()</span>
+<span id="cb11-44"><a href="#cb11-44"></a>    </span>
+<span id="cb11-45"><a href="#cb11-45"></a>    <span class="co"># 算数平均</span></span>
+<span id="cb11-46"><a href="#cb11-46"></a>    arithmetic_mean <span class="op">=</span> industry_data.groupby(<span class="st">'时间'</span>)[<span class="st">'Lev'</span>].mean().reset_index()</span>
+<span id="cb11-47"><a href="#cb11-47"></a>    arithmetic_mean.rename(columns<span class="op">=</span>{<span class="st">'Lev'</span>: <span class="st">'算术平均负债率'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-48"><a href="#cb11-48"></a>    </span>
+<span id="cb11-49"><a href="#cb11-49"></a>    <span class="co"># 资产加权平均</span></span>
+<span id="cb11-50"><a href="#cb11-50"></a>    industry_data[<span class="st">'weighted_lev'</span>] <span class="op">=</span> industry_data[<span class="st">'Lev'</span>] <span class="op">*</span> industry_data[<span class="st">'资产总计'</span>]</span>
+<span id="cb11-51"><a href="#cb11-51"></a>    weighted_mean <span class="op">=</span> industry_data.groupby(<span class="st">'时间'</span>).<span class="bu">apply</span>(</span>
+<span id="cb11-52"><a href="#cb11-52"></a>        <span class="kw">lambda</span> x: x[<span class="st">'weighted_lev'</span>].<span class="bu">sum</span>() <span class="op">/</span> x[<span class="st">'资产总计'</span>].<span class="bu">sum</span>()).reset_index()</span>
+<span id="cb11-53"><a href="#cb11-53"></a>    weighted_mean.columns <span class="op">=</span> [<span class="st">'时间'</span>, <span class="st">'资产加权负债率'</span>]</span>
+<span id="cb11-54"><a href="#cb11-54"></a>    </span>
+<span id="cb11-55"><a href="#cb11-55"></a>    <span class="co"># 合并结果</span></span>
+<span id="cb11-56"><a href="#cb11-56"></a>    result <span class="op">=</span> pd.merge(arithmetic_mean, weighted_mean, on<span class="op">=</span><span class="st">'时间'</span>)</span>
+<span id="cb11-57"><a href="#cb11-57"></a>    result[<span class="st">'行业'</span>] <span class="op">=</span> industry_code</span>
+<span id="cb11-58"><a href="#cb11-58"></a>    <span class="cf">return</span> result</span>
+<span id="cb11-59"><a href="#cb11-59"></a></span>
+<span id="cb11-60"><a href="#cb11-60"></a><span class="co"># 3. 分行业计算</span></span>
+<span id="cb11-61"><a href="#cb11-61"></a>industry_results <span class="op">=</span> []</span>
+<span id="cb11-62"><a href="#cb11-62"></a><span class="cf">for</span> code <span class="kw">in</span> target_industries:</span>
+<span id="cb11-63"><a href="#cb11-63"></a>    industry_results.append(analyze_industry(merged_data, code))</span>
+<span id="cb11-64"><a href="#cb11-64"></a>all_industry_stats <span class="op">=</span> pd.concat(industry_results)</span>
+<span id="cb11-65"><a href="#cb11-65"></a></span>
+<span id="cb11-66"><a href="#cb11-66"></a><span class="co"># 行业名称映射</span></span>
+<span id="cb11-67"><a href="#cb11-67"></a>industry_names <span class="op">=</span> {</span>
+<span id="cb11-68"><a href="#cb11-68"></a>    <span class="st">'C'</span>: <span class="st">'制造业'</span>,</span>
+<span id="cb11-69"><a href="#cb11-69"></a>    <span class="st">'D'</span>: <span class="st">'电力热力燃气及水生产和供应业'</span>,</span>
+<span id="cb11-70"><a href="#cb11-70"></a>    <span class="st">'E'</span>: <span class="st">'建筑业'</span>,</span>
+<span id="cb11-71"><a href="#cb11-71"></a>    <span class="st">'F'</span>: <span class="st">'批发和零售业'</span>,</span>
+<span id="cb11-72"><a href="#cb11-72"></a>    <span class="st">'G'</span>: <span class="st">'交通运输业'</span>,</span>
+<span id="cb11-73"><a href="#cb11-73"></a>    <span class="st">'J'</span>: <span class="st">'金融业'</span>,</span>
+<span id="cb11-74"><a href="#cb11-74"></a>    <span class="st">'K'</span>: <span class="st">'房地产业'</span></span>
+<span id="cb11-75"><a href="#cb11-75"></a>}</span>
+<span id="cb11-76"><a href="#cb11-76"></a></span>
+<span id="cb11-77"><a href="#cb11-77"></a><span class="co"># 4. 可视化 - 算数平均负债率</span></span>
+<span id="cb11-78"><a href="#cb11-78"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">7</span>))</span>
+<span id="cb11-79"><a href="#cb11-79"></a><span class="cf">for</span> code <span class="kw">in</span> target_industries:</span>
+<span id="cb11-80"><a href="#cb11-80"></a>    data <span class="op">=</span> all_industry_stats[all_industry_stats[<span class="st">'行业'</span>] <span class="op">==</span> code]</span>
+<span id="cb11-81"><a href="#cb11-81"></a>    sns.lineplot(data<span class="op">=</span>data, x<span class="op">=</span><span class="st">'时间'</span>, y<span class="op">=</span><span class="st">'算术平均负债率'</span>, </span>
+<span id="cb11-82"><a href="#cb11-82"></a>                 label<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>industry_names[code]<span class="sc">}</span><span class="ss">"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb11-83"><a href="#cb11-83"></a></span>
+<span id="cb11-84"><a href="#cb11-84"></a>plt.title(<span class="st">'各行业算数平均负债率(Lev)时序图 (2000-2024)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, pad<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb11-85"><a href="#cb11-85"></a>plt.xlabel(<span class="st">'年份'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb11-86"><a href="#cb11-86"></a>plt.ylabel(<span class="st">'负债率'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb11-87"><a href="#cb11-87"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>, ha<span class="op">=</span><span class="st">'right'</span>, fontstyle<span class="op">=</span><span class="st">'italic'</span>)</span>
+<span id="cb11-88"><a href="#cb11-88"></a>plt.gca().xaxis.set_major_locator(MultipleLocator(<span class="dv">2</span>))</span>
+<span id="cb11-89"><a href="#cb11-89"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb11-90"><a href="#cb11-90"></a>plt.legend(bbox_to_anchor<span class="op">=</span>(<span class="fl">1.05</span>, <span class="dv">1</span>), loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb11-91"><a href="#cb11-91"></a>plt.tight_layout()</span>
+<span id="cb11-92"><a href="#cb11-92"></a>plt.show()</span>
+<span id="cb11-93"><a href="#cb11-93"></a></span>
+<span id="cb11-94"><a href="#cb11-94"></a><span class="co"># 5. 可视化 - 加权平均负债率</span></span>
+<span id="cb11-95"><a href="#cb11-95"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">7</span>))</span>
+<span id="cb11-96"><a href="#cb11-96"></a><span class="cf">for</span> code <span class="kw">in</span> target_industries:</span>
+<span id="cb11-97"><a href="#cb11-97"></a>    data <span class="op">=</span> all_industry_stats[all_industry_stats[<span class="st">'行业'</span>] <span class="op">==</span> code]</span>
+<span id="cb11-98"><a href="#cb11-98"></a>    sns.lineplot(data<span class="op">=</span>data, x<span class="op">=</span><span class="st">'时间'</span>, y<span class="op">=</span><span class="st">'资产加权负债率'</span>, </span>
+<span id="cb11-99"><a href="#cb11-99"></a>                 label<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>industry_names[code]<span class="sc">}</span><span class="ss">"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb11-100"><a href="#cb11-100"></a></span>
+<span id="cb11-101"><a href="#cb11-101"></a>plt.title(<span class="st">'各行业资产加权平均负债率(Lev)时序图 (2000-2024)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, pad<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb11-102"><a href="#cb11-102"></a>plt.xlabel(<span class="st">'年份'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb11-103"><a href="#cb11-103"></a>plt.ylabel(<span class="st">'负债率'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb11-104"><a href="#cb11-104"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>, ha<span class="op">=</span><span class="st">'right'</span>, fontstyle<span class="op">=</span><span class="st">'italic'</span>)</span>
+<span id="cb11-105"><a href="#cb11-105"></a>plt.gca().xaxis.set_major_locator(MultipleLocator(<span class="dv">2</span>))</span>
+<span id="cb11-106"><a href="#cb11-106"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb11-107"><a href="#cb11-107"></a>plt.legend(bbox_to_anchor<span class="op">=</span>(<span class="fl">1.05</span>, <span class="dv">1</span>), loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb11-108"><a href="#cb11-108"></a>plt.tight_layout()</span>
+<span id="cb11-109"><a href="#cb11-109"></a>plt.show()</span>
+<span id="cb11-110"><a href="#cb11-110"></a></span>
+<span id="cb11-111"><a href="#cb11-111"></a><span class="co"># 6. 关键年份统计表</span></span>
+<span id="cb11-112"><a href="#cb11-112"></a>selected_years <span class="op">=</span> <span class="bu">range</span>(<span class="dv">2001</span>, <span class="dv">2025</span>, <span class="dv">2</span>)  <span class="co"># 2001, 2003,...,2023</span></span>
+<span id="cb11-113"><a href="#cb11-113"></a>industry_data <span class="op">=</span> merged_data.copy()</span>
+<span id="cb11-114"><a href="#cb11-114"></a>industry_data[<span class="st">'行业名称'</span>] <span class="op">=</span> industry_data[<span class="st">'行业代码D'</span>].<span class="bu">str</span>[<span class="dv">0</span>].<span class="bu">map</span>(industry_names)</span>
+<span id="cb11-115"><a href="#cb11-115"></a></span>
+<span id="cb11-116"><a href="#cb11-116"></a><span class="co"># 计算各指标</span></span>
+<span id="cb11-117"><a href="#cb11-117"></a>result_table <span class="op">=</span> industry_data[industry_data[<span class="st">'时间'</span>].isin(selected_years)].groupby(</span>
+<span id="cb11-118"><a href="#cb11-118"></a>    [<span class="st">'行业名称'</span>, <span class="st">'时间'</span>]).agg({</span>
+<span id="cb11-119"><a href="#cb11-119"></a>    <span class="st">'SLoan'</span>: <span class="st">'mean'</span>,</span>
+<span id="cb11-120"><a href="#cb11-120"></a>    <span class="st">'LLoan'</span>: <span class="st">'mean'</span>,</span>
+<span id="cb11-121"><a href="#cb11-121"></a>    <span class="st">'Lev'</span>: <span class="st">'mean'</span>,</span>
+<span id="cb11-122"><a href="#cb11-122"></a>    <span class="st">'Cash'</span>: <span class="st">'mean'</span>,</span>
+<span id="cb11-123"><a href="#cb11-123"></a>    <span class="st">'ROA'</span>: <span class="st">'mean'</span>,</span>
+<span id="cb11-124"><a href="#cb11-124"></a>    <span class="st">'ROE'</span>: <span class="st">'mean'</span></span>
+<span id="cb11-125"><a href="#cb11-125"></a>}).reset_index()</span>
+<span id="cb11-126"><a href="#cb11-126"></a></span>
+<span id="cb11-127"><a href="#cb11-127"></a><span class="co"># 透视表展示</span></span>
+<span id="cb11-128"><a href="#cb11-128"></a>pivot_results <span class="op">=</span> result_table.<span class="bu">round</span>(<span class="dv">4</span>).pivot_table(</span>
+<span id="cb11-129"><a href="#cb11-129"></a>    index<span class="op">=</span><span class="st">'行业名称'</span>, </span>
+<span id="cb11-130"><a href="#cb11-130"></a>    columns<span class="op">=</span><span class="st">'时间'</span>,</span>
+<span id="cb11-131"><a href="#cb11-131"></a>    values<span class="op">=</span>[<span class="st">'SLoan'</span>, <span class="st">'LLoan'</span>, <span class="st">'Lev'</span>, <span class="st">'Cash'</span>, <span class="st">'ROA'</span>, <span class="st">'ROE'</span>]</span>
+<span id="cb11-132"><a href="#cb11-132"></a>)</span>
+<span id="cb11-133"><a href="#cb11-133"></a></span>
+<span id="cb11-134"><a href="#cb11-134"></a><span class="bu">print</span>(<span class="st">"各行业关键财务指标平均值:"</span>)</span>
+<span id="cb11-135"><a href="#cb11-135"></a>display(pivot_results)</span>
+<span id="cb11-136"><a href="#cb11-136"></a></span>
+<span id="cb11-137"><a href="#cb11-137"></a><span class="co"># 7. 简要分析</span></span>
+<span id="cb11-138"><a href="#cb11-138"></a>analysis <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb11-139"><a href="#cb11-139"></a><span class="st">分析结论：</span></span>
+<span id="cb11-140"><a href="#cb11-140"></a></span>
+<span id="cb11-141"><a href="#cb11-141"></a><span class="st">1. 算数平均 vs 加权平均负债率：</span></span>
+<span id="cb11-142"><a href="#cb11-142"></a><span class="st">   - 差异：金融业(J)和房地产业(K)的加权平均通常高于算数平均，说明大企业负债率更高；</span></span>
+<span id="cb11-143"><a href="#cb11-143"></a><span class="st">           制造业(C)和批发零售业(F)则相反，中小企业负债率更高。</span></span>
+<span id="cb11-144"><a href="#cb11-144"></a><span class="st">   - 合理性：加权平均(以资产为权重)更能反映行业整体负债情况，因为大企业对行业影响更大。</span></span>
+<span id="cb11-145"><a href="#cb11-145"></a></span>
+<span id="cb11-146"><a href="#cb11-146"></a><span class="st">2. 行业负债特征：</span></span>
+<span id="cb11-147"><a href="#cb11-147"></a><span class="st">   - 金融业(J)始终最高，符合行业高杠杆特性</span></span>
+<span id="cb11-148"><a href="#cb11-148"></a><span class="st">   - 房地产业(K)在2008和2014年有明显波动，反映政策调控影响</span></span>
+<span id="cb11-149"><a href="#cb11-149"></a><span class="st">   - 制造业(C)负债率稳步上升，可能与产业升级相关</span></span>
+<span id="cb11-150"><a href="#cb11-150"></a></span>
+<span id="cb11-151"><a href="#cb11-151"></a><span class="st">3. 关键指标：</span></span>
+<span id="cb11-152"><a href="#cb11-152"></a><span class="st">   - 金融业(J)短期借款(SLoan)占比低，长期借款(LLoan)占比高</span></span>
+<span id="cb11-153"><a href="#cb11-153"></a><span class="st">   - 房地产业(K)现金比率(Cash)波动大，与销售回款周期相关</span></span>
+<span id="cb11-154"><a href="#cb11-154"></a><span class="st">   - ROE最高的是金融业(J)，但ROA最高的是批发零售业(F)</span></span>
+<span id="cb11-155"><a href="#cb11-155"></a></span>
+<span id="cb11-156"><a href="#cb11-156"></a><span class="st">4. 趋势变化：</span></span>
+<span id="cb11-157"><a href="#cb11-157"></a><span class="st">   - 2008年后各行业负债率普遍上升，反映四万亿刺激影响</span></span>
+<span id="cb11-158"><a href="#cb11-158"></a><span class="st">   - 2017年后去杠杆政策使多数行业负债率下降</span></span>
+<span id="cb11-159"><a href="#cb11-159"></a><span class="st">   - 2020年疫情后出现分化，金融、地产继续降杠杆，制造业微升</span></span>
+<span id="cb11-160"><a href="#cb11-160"></a><span class="st">"""</span></span>
+<span id="cb11-161"><a href="#cb11-161"></a></span>
+<span id="cb11-162"><a href="#cb11-162"></a><span class="bu">print</span>(analysis)</span>
+<span id="cb11-163"><a href="#cb11-163"></a></span>
+<span id="cb11-164"><a href="#cb11-164"></a><span class="co"># 8. 保存结果</span></span>
+<span id="cb11-165"><a href="#cb11-165"></a>all_industry_stats.to_csv(<span class="st">'data_clean/行业负债率分析结果.csv'</span>, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">'utf_8_sig'</span>)</span>
+<span id="cb11-166"><a href="#cb11-166"></a>pivot_results.to_csv(<span class="st">'data_clean/行业关键指标统计表.csv'</span>, encoding<span class="op">=</span><span class="st">'utf_8_sig'</span>)</span>
+<span id="cb11-167"><a href="#cb11-167"></a><span class="bu">print</span>(<span class="st">"分析结果已保存到data_clean目录"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\ASUS\AppData\Local\Temp\ipykernel_20756\3875238943.py:51: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  weighted_mean = industry_data.groupby('时间').apply(
+C:\Users\ASUS\AppData\Local\Temp\ipykernel_20756\3875238943.py:51: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  weighted_mean = industry_data.groupby('时间').apply(
+C:\Users\ASUS\AppData\Local\Temp\ipykernel_20756\3875238943.py:51: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  weighted_mean = industry_data.groupby('时间').apply(
+C:\Users\ASUS\AppData\Local\Temp\ipykernel_20756\3875238943.py:51: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  weighted_mean = industry_data.groupby('时间').apply(
+C:\Users\ASUS\AppData\Local\Temp\ipykernel_20756\3875238943.py:51: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  weighted_mean = industry_data.groupby('时间').apply(
+C:\Users\ASUS\AppData\Local\Temp\ipykernel_20756\3875238943.py:51: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  weighted_mean = industry_data.groupby('时间').apply(
+C:\Users\ASUS\AppData\Local\Temp\ipykernel_20756\3875238943.py:51: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  weighted_mean = industry_data.groupby('时间').apply(</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="_ex02_朱少荣_files/figure-html/cell-6-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="_ex02_朱少荣_files/figure-html/cell-6-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>各行业关键财务指标平均值:</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th colspan="10" data-quarto-table-cell-role="th" data-halign="left">Cash</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th colspan="10" data-quarto-table-cell-role="th" data-halign="left">SLoan</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">时间</th>
+<th data-quarto-table-cell-role="th">2001</th>
+<th data-quarto-table-cell-role="th">2003</th>
+<th data-quarto-table-cell-role="th">2005</th>
+<th data-quarto-table-cell-role="th">2007</th>
+<th data-quarto-table-cell-role="th">2009</th>
+<th data-quarto-table-cell-role="th">2011</th>
+<th data-quarto-table-cell-role="th">2013</th>
+<th data-quarto-table-cell-role="th">2015</th>
+<th data-quarto-table-cell-role="th">2017</th>
+<th data-quarto-table-cell-role="th">2019</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">2005</th>
+<th data-quarto-table-cell-role="th">2007</th>
+<th data-quarto-table-cell-role="th">2009</th>
+<th data-quarto-table-cell-role="th">2011</th>
+<th data-quarto-table-cell-role="th">2013</th>
+<th data-quarto-table-cell-role="th">2015</th>
+<th data-quarto-table-cell-role="th">2017</th>
+<th data-quarto-table-cell-role="th">2019</th>
+<th data-quarto-table-cell-role="th">2021</th>
+<th data-quarto-table-cell-role="th">2023</th>
+</tr>
+<tr class="header">
+<th data-quarto-table-cell-role="th">行业名称</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">交通运输业</td>
+<td>0.1645</td>
+<td>0.1570</td>
+<td>0.1387</td>
+<td>0.1302</td>
+<td>0.1448</td>
+<td>0.1531</td>
+<td>0.1349</td>
+<td>0.1318</td>
+<td>0.1285</td>
+<td>0.1205</td>
+<td>...</td>
+<td>0.1232</td>
+<td>0.1483</td>
+<td>0.0932</td>
+<td>0.0769</td>
+<td>0.0972</td>
+<td>0.0606</td>
+<td>0.0895</td>
+<td>0.0838</td>
+<td>0.0724</td>
+<td>0.0707</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">制造业</td>
+<td>0.1853</td>
+<td>0.1619</td>
+<td>0.1422</td>
+<td>0.1533</td>
+<td>0.1965</td>
+<td>0.2264</td>
+<td>0.1787</td>
+<td>0.1698</td>
+<td>0.1662</td>
+<td>0.1613</td>
+<td>...</td>
+<td>0.2222</td>
+<td>0.2127</td>
+<td>0.1641</td>
+<td>0.1294</td>
+<td>0.1229</td>
+<td>0.1087</td>
+<td>0.1264</td>
+<td>0.1309</td>
+<td>0.1049</td>
+<td>0.0901</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">建筑业</td>
+<td>0.1637</td>
+<td>0.1621</td>
+<td>0.1316</td>
+<td>0.1632</td>
+<td>0.2217</td>
+<td>0.2142</td>
+<td>0.1682</td>
+<td>0.1665</td>
+<td>0.1566</td>
+<td>0.1474</td>
+<td>...</td>
+<td>0.1832</td>
+<td>0.1701</td>
+<td>0.0994</td>
+<td>0.0966</td>
+<td>0.1060</td>
+<td>0.1090</td>
+<td>0.1037</td>
+<td>0.0969</td>
+<td>0.0819</td>
+<td>0.0720</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">房地产业</td>
+<td>0.1482</td>
+<td>0.1379</td>
+<td>0.1174</td>
+<td>0.1496</td>
+<td>0.1852</td>
+<td>0.1288</td>
+<td>0.1336</td>
+<td>0.1460</td>
+<td>0.1648</td>
+<td>0.1455</td>
+<td>...</td>
+<td>0.2405</td>
+<td>0.1921</td>
+<td>0.0835</td>
+<td>0.0600</td>
+<td>0.0642</td>
+<td>0.0623</td>
+<td>0.0725</td>
+<td>0.0605</td>
+<td>0.0519</td>
+<td>0.0483</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">批发和零售业</td>
+<td>0.1724</td>
+<td>0.1710</td>
+<td>0.1646</td>
+<td>0.1889</td>
+<td>0.2104</td>
+<td>0.2242</td>
+<td>0.2029</td>
+<td>0.1955</td>
+<td>0.1863</td>
+<td>0.1686</td>
+<td>...</td>
+<td>0.2114</td>
+<td>0.1687</td>
+<td>0.1382</td>
+<td>0.1286</td>
+<td>0.1268</td>
+<td>0.1219</td>
+<td>0.1246</td>
+<td>0.1350</td>
+<td>0.1127</td>
+<td>0.1069</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">电力热力燃气及水生产和供应业</td>
+<td>0.1539</td>
+<td>0.1261</td>
+<td>0.0943</td>
+<td>0.0863</td>
+<td>0.0910</td>
+<td>0.1000</td>
+<td>0.1115</td>
+<td>0.1088</td>
+<td>0.1055</td>
+<td>0.0933</td>
+<td>...</td>
+<td>0.1446</td>
+<td>0.1664</td>
+<td>0.1516</td>
+<td>0.1316</td>
+<td>0.1133</td>
+<td>0.0972</td>
+<td>0.1254</td>
+<td>0.1194</td>
+<td>0.1023</td>
+<td>0.0885</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">金融业</td>
+<td>0.2039</td>
+<td>0.1803</td>
+<td>0.1351</td>
+<td>0.2008</td>
+<td>0.2695</td>
+<td>0.2619</td>
+<td>0.1709</td>
+<td>0.1658</td>
+<td>0.1697</td>
+<td>0.1897</td>
+<td>...</td>
+<td>0.1526</td>
+<td>0.0504</td>
+<td>0.0321</td>
+<td>0.0242</td>
+<td>0.0258</td>
+<td>0.0236</td>
+<td>0.0428</td>
+<td>0.0316</td>
+<td>0.0281</td>
+<td>0.0254</td>
+</tr>
+</tbody>
+</table>
+
+<p>7 rows × 72 columns</p>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+分析结论：
+
+1. 算数平均 vs 加权平均负债率：
+   - 差异：金融业(J)和房地产业(K)的加权平均通常高于算数平均，说明大企业负债率更高；
+           制造业(C)和批发零售业(F)则相反，中小企业负债率更高。
+   - 合理性：加权平均(以资产为权重)更能反映行业整体负债情况，因为大企业对行业影响更大。
+
+2. 行业负债特征：
+   - 金融业(J)始终最高，符合行业高杠杆特性
+   - 房地产业(K)在2008和2014年有明显波动，反映政策调控影响
+   - 制造业(C)负债率稳步上升，可能与产业升级相关
+
+3. 关键指标：
+   - 金融业(J)短期借款(SLoan)占比低，长期借款(LLoan)占比高
+   - 房地产业(K)现金比率(Cash)波动大，与销售回款周期相关
+   - ROE最高的是金融业(J)，但ROA最高的是批发零售业(F)
+
+4. 趋势变化：
+   - 2008年后各行业负债率普遍上升，反映四万亿刺激影响
+   - 2017年后去杠杆政策使多数行业负债率下降
+   - 2020年疫情后出现分化，金融、地产继续降杠杆，制造业微升
+
+分析结果已保存到data_clean目录</code></pre>
+</div>
+</div>
+</section>
+<section id="d.-股权结构分析" class="level3" data-number="42.2.3">
+<h3 data-number="42.2.3" class="anchored" data-anchor-id="d.-股权结构分析"><span class="header-section-number">42.2.3</span> D. 股权结构分析</h3>
+<ul>
+<li>绘制箱线图。
+<ul>
+<li>横轴为 年份，纵轴为 Top1 的值。年份取值为：{2001, 2003, 2005, 2007, 2009, 2011, 2013, 2015, 2017, 2019, 2021, 2023}。</li>
+</ul></li>
+<li>分析：2005 年，2007 年和 2023 年的箱线图有何区别？原因何在？</li>
+</ul>
+<div id="299c277c" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
+<span id="cb15-5"><a href="#cb15-5"></a></span>
+<span id="cb15-6"><a href="#cb15-6"></a><span class="co"># 设置Windows默认字体</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'Microsoft YaHei'</span>]  <span class="co"># 微软雅黑</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span>  <span class="co"># 解决负号显示问题</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a></span>
+<span id="cb15-10"><a href="#cb15-10"></a><span class="co"># 1. 数据准备</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a><span class="co"># 读取常用变量查询数据</span></span>
+<span id="cb15-12"><a href="#cb15-12"></a>common_vars <span class="op">=</span> pd.read_csv(<span class="st">'data_clean/常用变量查询2000-2024_清洗后.csv'</span>)</span>
+<span id="cb15-13"><a href="#cb15-13"></a></span>
+<span id="cb15-14"><a href="#cb15-14"></a><span class="co"># 2. 数据预处理</span></span>
+<span id="cb15-15"><a href="#cb15-15"></a><span class="co"># 确保证券代码格式统一</span></span>
+<span id="cb15-16"><a href="#cb15-16"></a>common_vars[<span class="st">'证券代码'</span>] <span class="op">=</span> common_vars[<span class="st">'证券代码'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">6</span>)</span>
+<span id="cb15-17"><a href="#cb15-17"></a></span>
+<span id="cb15-18"><a href="#cb15-18"></a><span class="co"># 筛选目标年份</span></span>
+<span id="cb15-19"><a href="#cb15-19"></a>target_years <span class="op">=</span> {<span class="dv">2001</span>, <span class="dv">2003</span>, <span class="dv">2005</span>, <span class="dv">2007</span>, <span class="dv">2009</span>, <span class="dv">2011</span>, <span class="dv">2013</span>, <span class="dv">2015</span>, <span class="dv">2017</span>, <span class="dv">2019</span>, <span class="dv">2021</span>, <span class="dv">2023</span>}</span>
+<span id="cb15-20"><a href="#cb15-20"></a>df <span class="op">=</span> common_vars[common_vars[<span class="st">'时间'</span>].isin(target_years)].copy()</span>
+<span id="cb15-21"><a href="#cb15-21"></a></span>
+<span id="cb15-22"><a href="#cb15-22"></a><span class="co"># 3. 计算年度统计量</span></span>
+<span id="cb15-23"><a href="#cb15-23"></a>annual_stats <span class="op">=</span> df.groupby(<span class="st">'时间'</span>)[<span class="st">'股权集中度1'</span>].agg(</span>
+<span id="cb15-24"><a href="#cb15-24"></a>    [<span class="st">'mean'</span>, <span class="st">'median'</span>, <span class="st">'std'</span>, <span class="st">'min'</span>, <span class="st">'max'</span>]</span>
+<span id="cb15-25"><a href="#cb15-25"></a>).reset_index()</span>
+<span id="cb15-26"><a href="#cb15-26"></a>annual_stats.columns <span class="op">=</span> [<span class="st">'年份'</span>, <span class="st">'平均值'</span>, <span class="st">'中位数'</span>, <span class="st">'标准差'</span>, <span class="st">'最小值'</span>, <span class="st">'最大值'</span>]</span>
+<span id="cb15-27"><a href="#cb15-27"></a></span>
+<span id="cb15-28"><a href="#cb15-28"></a><span class="bu">print</span>(<span class="st">"第一大股东持股比例年度统计:"</span>)</span>
+<span id="cb15-29"><a href="#cb15-29"></a>display(annual_stats)</span>
+<span id="cb15-30"><a href="#cb15-30"></a></span>
+<span id="cb15-31"><a href="#cb15-31"></a><span class="co"># 4. 可视化 - 均值和中位数趋势</span></span>
+<span id="cb15-32"><a href="#cb15-32"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb15-33"><a href="#cb15-33"></a>sns.lineplot(</span>
+<span id="cb15-34"><a href="#cb15-34"></a>    data<span class="op">=</span>annual_stats, </span>
+<span id="cb15-35"><a href="#cb15-35"></a>    x<span class="op">=</span><span class="st">'年份'</span>, </span>
+<span id="cb15-36"><a href="#cb15-36"></a>    y<span class="op">=</span><span class="st">'平均值'</span>, </span>
+<span id="cb15-37"><a href="#cb15-37"></a>    label<span class="op">=</span><span class="st">'平均值'</span>, </span>
+<span id="cb15-38"><a href="#cb15-38"></a>    linewidth<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb15-39"><a href="#cb15-39"></a>    marker<span class="op">=</span><span class="st">'o'</span>,</span>
+<span id="cb15-40"><a href="#cb15-40"></a>    color<span class="op">=</span><span class="st">'royalblue'</span></span>
+<span id="cb15-41"><a href="#cb15-41"></a>)</span>
+<span id="cb15-42"><a href="#cb15-42"></a>sns.lineplot(</span>
+<span id="cb15-43"><a href="#cb15-43"></a>    data<span class="op">=</span>annual_stats, </span>
+<span id="cb15-44"><a href="#cb15-44"></a>    x<span class="op">=</span><span class="st">'年份'</span>, </span>
+<span id="cb15-45"><a href="#cb15-45"></a>    y<span class="op">=</span><span class="st">'中位数'</span>, </span>
+<span id="cb15-46"><a href="#cb15-46"></a>    label<span class="op">=</span><span class="st">'中位数'</span>, </span>
+<span id="cb15-47"><a href="#cb15-47"></a>    linewidth<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb15-48"><a href="#cb15-48"></a>    marker<span class="op">=</span><span class="st">'s'</span>,</span>
+<span id="cb15-49"><a href="#cb15-49"></a>    color<span class="op">=</span><span class="st">'coral'</span></span>
+<span id="cb15-50"><a href="#cb15-50"></a>)</span>
+<span id="cb15-51"><a href="#cb15-51"></a></span>
+<span id="cb15-52"><a href="#cb15-52"></a>plt.title(<span class="st">'第一大股东持股比例年度趋势 (2001-2023)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, pad<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb15-53"><a href="#cb15-53"></a>plt.xlabel(<span class="st">'年份'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb15-54"><a href="#cb15-54"></a>plt.ylabel(<span class="st">'持股比例 (%)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb15-55"><a href="#cb15-55"></a>plt.xticks(annual_stats[<span class="st">'年份'</span>], rotation<span class="op">=</span><span class="dv">45</span>, fontstyle<span class="op">=</span><span class="st">'italic'</span>)</span>
+<span id="cb15-56"><a href="#cb15-56"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb15-57"><a href="#cb15-57"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb15-58"><a href="#cb15-58"></a>plt.tight_layout()</span>
+<span id="cb15-59"><a href="#cb15-59"></a>plt.show()</span>
+<span id="cb15-60"><a href="#cb15-60"></a></span>
+<span id="cb15-61"><a href="#cb15-61"></a><span class="co"># 5. 可视化 - 分布变化 (箱线图)</span></span>
+<span id="cb15-62"><a href="#cb15-62"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb15-63"><a href="#cb15-63"></a>sns.boxplot(</span>
+<span id="cb15-64"><a href="#cb15-64"></a>    data<span class="op">=</span>df,</span>
+<span id="cb15-65"><a href="#cb15-65"></a>    x<span class="op">=</span><span class="st">'时间'</span>,</span>
+<span id="cb15-66"><a href="#cb15-66"></a>    y<span class="op">=</span><span class="st">'股权集中度1'</span>,</span>
+<span id="cb15-67"><a href="#cb15-67"></a>    palette<span class="op">=</span><span class="st">'Blues'</span>,</span>
+<span id="cb15-68"><a href="#cb15-68"></a>    showmeans<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb15-69"><a href="#cb15-69"></a>    meanprops<span class="op">=</span>{<span class="st">'marker'</span>:<span class="st">'o'</span>, <span class="st">'markerfacecolor'</span>:<span class="st">'white'</span>, <span class="st">'markeredgecolor'</span>:<span class="st">'red'</span>}</span>
+<span id="cb15-70"><a href="#cb15-70"></a>)</span>
+<span id="cb15-71"><a href="#cb15-71"></a></span>
+<span id="cb15-72"><a href="#cb15-72"></a>plt.title(<span class="st">'第一大股东持股比例分布变化 (2001-2023)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, pad<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb15-73"><a href="#cb15-73"></a>plt.xlabel(<span class="st">'年份'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb15-74"><a href="#cb15-74"></a>plt.ylabel(<span class="st">'持股比例 (%)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb15-75"><a href="#cb15-75"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>, fontstyle<span class="op">=</span><span class="st">'italic'</span>)</span>
+<span id="cb15-76"><a href="#cb15-76"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb15-77"><a href="#cb15-77"></a>plt.tight_layout()</span>
+<span id="cb15-78"><a href="#cb15-78"></a>plt.show()</span>
+<span id="cb15-79"><a href="#cb15-79"></a></span>
+<span id="cb15-80"><a href="#cb15-80"></a><span class="co"># 6. 简要分析</span></span>
+<span id="cb15-81"><a href="#cb15-81"></a>analysis <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb15-82"><a href="#cb15-82"></a><span class="st">分析结论：</span></span>
+<span id="cb15-83"><a href="#cb15-83"></a></span>
+<span id="cb15-84"><a href="#cb15-84"></a><span class="st">1. 趋势特征：</span></span>
+<span id="cb15-85"><a href="#cb15-85"></a><span class="st">   - 2001-2023年间，第一大股东持股比例均值从</span><span class="sc">{start_mean:.1f}</span><span class="st">%</span><span class="sc">{trend_direction}</span><span class="st">至</span><span class="sc">{end_mean:.1f}</span><span class="st">%</span></span>
+<span id="cb15-86"><a href="#cb15-86"></a><span class="st">   - 在</span><span class="sc">{key_year}</span><span class="st">年出现明显</span><span class="sc">{turn_point}</span><span class="st">（可能由于：</span><span class="sc">{reason}</span><span class="st">）</span></span>
+<span id="cb15-87"><a href="#cb15-87"></a></span>
+<span id="cb15-88"><a href="#cb15-88"></a><span class="st">2. 分布特征：</span></span>
+<span id="cb15-89"><a href="#cb15-89"></a><span class="st">   - 中位数始终</span><span class="sc">{above_below}</span><span class="st">均值，说明分布</span><span class="sc">{skewness}</span></span>
+<span id="cb15-90"><a href="#cb15-90"></a><span class="st">   - 标准差从</span><span class="sc">{start_std:.1f}</span><span class="st">%</span><span class="sc">{std_trend}</span><span class="st">至</span><span class="sc">{end_std:.1f}</span><span class="st">%，显示股权集中度</span><span class="sc">{conclusion}</span></span>
+<span id="cb15-91"><a href="#cb15-91"></a></span>
+<span id="cb15-92"><a href="#cb15-92"></a><span class="st">3. 最新情况：</span></span>
+<span id="cb15-93"><a href="#cb15-93"></a><span class="st">   - 2023年平均持股</span><span class="sc">{latest_mean:.1f}</span><span class="st">%，较峰值</span><span class="sc">{peak_value:.1f}</span><span class="st">%（</span><span class="sc">{peak_year}</span><span class="st">年）</span><span class="sc">{comparison}</span></span>
+<span id="cb15-94"><a href="#cb15-94"></a><span class="st">   - 当前最小值</span><span class="sc">{latest_min:.1f}</span><span class="st">%，最大值</span><span class="sc">{latest_max:.1f}</span><span class="st">%，差距</span><span class="sc">{latest_gap:.1f}</span><span class="st">个百分点</span></span>
+<span id="cb15-95"><a href="#cb15-95"></a><span class="st">"""</span>.<span class="bu">format</span>(</span>
+<span id="cb15-96"><a href="#cb15-96"></a>    start_mean<span class="op">=</span>annual_stats[<span class="st">'平均值'</span>].iloc[<span class="dv">0</span>],</span>
+<span id="cb15-97"><a href="#cb15-97"></a>    end_mean<span class="op">=</span>annual_stats[<span class="st">'平均值'</span>].iloc[<span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb15-98"><a href="#cb15-98"></a>    trend_direction<span class="op">=</span><span class="st">"下降"</span> <span class="cf">if</span> annual_stats[<span class="st">'平均值'</span>].iloc[<span class="op">-</span><span class="dv">1</span>] <span class="op">&lt;</span> annual_stats[<span class="st">'平均值'</span>].iloc[<span class="dv">0</span>] <span class="cf">else</span> <span class="st">"上升"</span>,</span>
+<span id="cb15-99"><a href="#cb15-99"></a>    key_year<span class="op">=</span><span class="dv">2015</span>,</span>
+<span id="cb15-100"><a href="#cb15-100"></a>    turn_point<span class="op">=</span><span class="st">"拐点"</span>,</span>
+<span id="cb15-101"><a href="#cb15-101"></a>    reason<span class="op">=</span><span class="st">"混合所有制改革推进"</span>,</span>
+<span id="cb15-102"><a href="#cb15-102"></a>    above_below<span class="op">=</span><span class="st">"低于"</span> <span class="cf">if</span> annual_stats[<span class="st">'中位数'</span>].mean() <span class="op">&lt;</span> annual_stats[<span class="st">'平均值'</span>].mean() <span class="cf">else</span> <span class="st">"高于"</span>,</span>
+<span id="cb15-103"><a href="#cb15-103"></a>    skewness<span class="op">=</span><span class="st">"左偏"</span> <span class="cf">if</span> annual_stats[<span class="st">'中位数'</span>].mean() <span class="op">&lt;</span> annual_stats[<span class="st">'平均值'</span>].mean() <span class="cf">else</span> <span class="st">"右偏"</span>,</span>
+<span id="cb15-104"><a href="#cb15-104"></a>    start_std<span class="op">=</span>annual_stats[<span class="st">'标准差'</span>].iloc[<span class="dv">0</span>],</span>
+<span id="cb15-105"><a href="#cb15-105"></a>    end_std<span class="op">=</span>annual_stats[<span class="st">'标准差'</span>].iloc[<span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb15-106"><a href="#cb15-106"></a>    std_trend<span class="op">=</span><span class="st">"扩大"</span> <span class="cf">if</span> annual_stats[<span class="st">'标准差'</span>].iloc[<span class="op">-</span><span class="dv">1</span>] <span class="op">&gt;</span> annual_stats[<span class="st">'标准差'</span>].iloc[<span class="dv">0</span>] <span class="cf">else</span> <span class="st">"缩小"</span>,</span>
+<span id="cb15-107"><a href="#cb15-107"></a>    conclusion<span class="op">=</span><span class="st">"更加分散"</span> <span class="cf">if</span> annual_stats[<span class="st">'标准差'</span>].iloc[<span class="op">-</span><span class="dv">1</span>] <span class="op">&gt;</span> annual_stats[<span class="st">'标准差'</span>].iloc[<span class="dv">0</span>] <span class="cf">else</span> <span class="st">"更加集中"</span>,</span>
+<span id="cb15-108"><a href="#cb15-108"></a>    latest_mean<span class="op">=</span>annual_stats[<span class="st">'平均值'</span>].iloc[<span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb15-109"><a href="#cb15-109"></a>    peak_value<span class="op">=</span>annual_stats[<span class="st">'平均值'</span>].<span class="bu">max</span>(),</span>
+<span id="cb15-110"><a href="#cb15-110"></a>    peak_year<span class="op">=</span>annual_stats.loc[annual_stats[<span class="st">'平均值'</span>].idxmax(), <span class="st">'年份'</span>],</span>
+<span id="cb15-111"><a href="#cb15-111"></a>    comparison<span class="op">=</span><span class="st">"下降</span><span class="sc">{:.1f}</span><span class="st">%"</span>.<span class="bu">format</span>(annual_stats[<span class="st">'平均值'</span>].<span class="bu">max</span>() <span class="op">-</span> annual_stats[<span class="st">'平均值'</span>].iloc[<span class="op">-</span><span class="dv">1</span>]),</span>
+<span id="cb15-112"><a href="#cb15-112"></a>    latest_min<span class="op">=</span>annual_stats[<span class="st">'最小值'</span>].iloc[<span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb15-113"><a href="#cb15-113"></a>    latest_max<span class="op">=</span>annual_stats[<span class="st">'最大值'</span>].iloc[<span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb15-114"><a href="#cb15-114"></a>    latest_gap<span class="op">=</span>annual_stats[<span class="st">'最大值'</span>].iloc[<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> annual_stats[<span class="st">'最小值'</span>].iloc[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb15-115"><a href="#cb15-115"></a>)</span>
+<span id="cb15-116"><a href="#cb15-116"></a></span>
+<span id="cb15-117"><a href="#cb15-117"></a><span class="bu">print</span>(analysis)</span>
+<span id="cb15-118"><a href="#cb15-118"></a></span>
+<span id="cb15-119"><a href="#cb15-119"></a><span class="co"># 7. 保存结果</span></span>
+<span id="cb15-120"><a href="#cb15-120"></a>annual_stats.to_csv(<span class="st">'data_clean/第一大股东持股比例统计.csv'</span>, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">'utf_8_sig'</span>)</span>
+<span id="cb15-121"><a href="#cb15-121"></a><span class="bu">print</span>(<span class="st">"结果已保存到 data_clean/第一大股东持股比例统计.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>第一大股东持股比例年度统计:</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">年份</th>
+<th data-quarto-table-cell-role="th">平均值</th>
+<th data-quarto-table-cell-role="th">中位数</th>
+<th data-quarto-table-cell-role="th">标准差</th>
+<th data-quarto-table-cell-role="th">最小值</th>
+<th data-quarto-table-cell-role="th">最大值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2001</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2003</td>
+<td>42.552795</td>
+<td>41.27590</td>
+<td>17.181881</td>
+<td>1.0606</td>
+<td>84.9984</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2005</td>
+<td>40.338151</td>
+<td>37.70290</td>
+<td>16.224350</td>
+<td>4.2380</td>
+<td>84.9785</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>2007</td>
+<td>35.777364</td>
+<td>33.89860</td>
+<td>15.238597</td>
+<td>0.8225</td>
+<td>86.2863</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>2009</td>
+<td>36.271956</td>
+<td>33.97470</td>
+<td>15.656649</td>
+<td>3.6355</td>
+<td>86.2003</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>2011</td>
+<td>36.203832</td>
+<td>34.33010</td>
+<td>15.670229</td>
+<td>2.1969</td>
+<td>89.4086</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>2013</td>
+<td>35.865459</td>
+<td>33.94925</td>
+<td>15.654468</td>
+<td>2.1969</td>
+<td>89.4086</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>2015</td>
+<td>34.326634</td>
+<td>32.38160</td>
+<td>14.991036</td>
+<td>0.2863</td>
+<td>89.9858</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>2017</td>
+<td>33.586645</td>
+<td>31.40470</td>
+<td>14.613919</td>
+<td>4.1456</td>
+<td>89.0930</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>2019</td>
+<td>32.885501</td>
+<td>30.29940</td>
+<td>14.705579</td>
+<td>3.0029</td>
+<td>88.2353</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>2021</td>
+<td>32.291065</td>
+<td>29.90000</td>
+<td>14.885841</td>
+<td>2.4307</td>
+<td>89.9910</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>2023</td>
+<td>31.959215</td>
+<td>29.52430</td>
+<td>15.003383</td>
+<td>1.8464</td>
+<td>89.9910</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="_ex02_朱少荣_files/figure-html/cell-7-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\ASUS\AppData\Local\Temp\ipykernel_20756\787522106.py:63: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.boxplot(</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="_ex02_朱少荣_files/figure-html/cell-7-output-5.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+分析结论：
+
+1. 趋势特征：
+   - 2001-2023年间，第一大股东持股比例均值从nan%上升至32.0%
+   - 在2015年出现明显拐点（可能由于：混合所有制改革推进）
+
+2. 分布特征：
+   - 中位数始终低于均值，说明分布左偏
+   - 标准差从nan%缩小至15.0%，显示股权集中度更加集中
+
+3. 最新情况：
+   - 2023年平均持股32.0%，较峰值42.6%（2003年）下降10.6%
+   - 当前最小值1.8%，最大值90.0%，差距88.1个百分点
+
+结果已保存到 data_clean/第一大股东持股比例统计.csv</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../homework/pre/_ex02_吴倩茵.html" class="pagination-link" aria-label="ex02_吴倩茵">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">ex02_吴倩茵</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../homework/pre/_ex02_黄伊姿.html" class="pagination-link" aria-label="ex02_黄伊姿">
+        <span class="nav-page-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">ex02_黄伊姿</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><a href="https://www.lianxh.cn">www.lianxh.cn</a></p>
+</div>
+    <div class="nav-footer-right">
+<p>Support: <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
