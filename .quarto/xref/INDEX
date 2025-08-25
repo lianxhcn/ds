@@ -184,5 +184,86 @@
   },
   "body/01_1_2_use_Junpyter_Notebook.ipynb": {
     "01_1_2_use_Junpyter_Notebook.html": "42fdacfc"
+  },
+  "body/01_00_coding_with_AI.ipynb": {
+    "01_00_coding_with_AI.html": "09b7f0ce"
+  },
+  "body/01_01_install_anaconda.ipynb": {
+    "01_01_install_anaconda.html": "da803061"
+  },
+  "body/01_02_jupyter_notebook.ipynb": {
+    "01_02_jupyter_notebook.html": "967fa71e"
+  },
+  "body/01_03_install_FAQs.ipynb": {
+    "01_03_install_FAQs.html": "3ff16986"
+  },
+  "body/01_04_markdown.md": {
+    "01_04_markdown.html": "3cd644a1"
+  },
+  "body/02_py_00_intro.ipynb": {
+    "02_py_00_intro.html": "4d8406b9"
+  },
+  "body/02_py_01_grammer.ipynb": {
+    "02_py_01_grammer.html": "7e046b75"
+  },
+  "body/02_py_02_QuickReference.md": {
+    "02_py_02_QuickReference.html": "8deb47c4"
+  },
+  "body/02_py_03_packages.md": {
+    "02_py_03_packages.html": "7cac56e5"
+  },
+  "body/02_py_04_import.md": {
+    "02_py_04_import.html": "364d5182"
+  },
+  "body/02_py_05_OOP.ipynb": {
+    "02_py_05_OOP.html": "5aeccc72"
+  },
+  "body/02_py_06_filepath.ipynb": {
+    "02_py_06_filepath.html": "c992a5b2"
+  },
+  "body/03_py_01_numpy.ipynb": {
+    "03_py_01_numpy.html": "4a6297e4"
+  },
+  "body/03_py_02_pandas.ipynb": {
+    "03_py_02_pandas.html": "b82a7050"
+  },
+  "body/03_py_03_matplotlib.ipynb": {
+    "03_py_03_matplotlib.html": "27ba0e6e"
+  },
+  "body/03_py_04_function.ipynb": {
+    "03_py_04_function.html": "d81b8454"
+  },
+  "body/03_py_05_class.ipynb": {
+    "03_py_05_class.html": "39561e5a"
+  },
+  "body/data_01_get_data.ipynb": {
+    "data_01_get_data.html": "792897ef"
+  },
+  "body/data_01_readdata.ipynb": {
+    "data_01_readdata.html": "d86bbe34"
+  },
+  "body/web_01_intro.md": {
+    "web_01_intro.html": "72aed553"
+  },
+  "body/regress_04_wage_prediction.ipynb": {
+    "regress_04_wage_prediction.html": "dc7f4908"
+  },
+  "body/ML-Naive-Bayes.ipynb": {
+    "ML-Naive-Bayes.html": "55fd8680"
+  },
+  "body/ML-Random-Forests.ipynb": {
+    "ML-Random-Forests.html": "d373780c"
+  },
+  "body/ML-baggboost-lab.ipynb": {
+    "ML-baggboost-lab.html": "0e6f3a33"
+  },
+  "body/ML-Support-Vector-Machines.ipynb": {
+    "ML-Support-Vector-Machines.html": "31123b11"
+  },
+  "body/ML-svm-lab.ipynb": {
+    "ML-svm-lab.html": "3485c76f"
+  },
+  "body/06.00-Figure-Code.ipynb": {
+    "06.00-Figure-Code.html": "cd77b9f0"
   }
 }

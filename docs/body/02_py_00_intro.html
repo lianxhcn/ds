@@ -1,0 +1,2531 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>8&nbsp; Python 入门 – 数据分析</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../body/02_py_01_grammer.html" rel="next">
+<link href="../body/01_04_markdown.html" rel="prev">
+<link href="../images/ds-book-logo-40.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e8fb9d25728d58bfeac61b497e4a6629.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-8434d2026ae8291579158df2ad8dfa64.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/02_py_00_intro.html"><strong>Python 基础</strong></a></li><li class="breadcrumb-item"><a href="../body/02_py_00_intro.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Python 入门</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../"></a><a href="../index.html">DS</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
+    <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
+    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">数据分析</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/00_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">课程简介和资源</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>基础配置</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_00_coding_with_AI.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">借助 AI 写代码</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_01_install_anaconda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">软件安装和环境配置</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_02_jupyter_notebook.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Jupyter Notebook 的使用</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_03_install_FAQs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python 安装常见问题</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_04_markdown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">何谓 Markdown？</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Python 基础</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_00_intro.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Python 入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_01_grammer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Python 代码风格</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_02_QuickReference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Python 常用命令速查表</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_03_packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python 常用扩展包</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_04_import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Python：import 使用详解</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_05_OOP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Python：语法解析-面向对象编程</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_06_filepath.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Python 路径设置</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_01_numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_02_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">pandas 快速入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_03_matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Matplotlib简介</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_04_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">函数</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_05_class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">类和对象</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>数据分析</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_01_get_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">数据获取和读入</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_01_readdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">读取数据</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_02_data_type.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">数据分析是什么？</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_02_get_data_GMD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">获取数据：GMD</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_SZ_index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">上证指数的时序特征</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/web_01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">数据爬虫入门</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>可视化</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Python 可视化：简介</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_box_violin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">箱型图和小提琴图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_histogram.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">直方图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_kdensity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">核密度函数图</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>线性回归</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_01_OLS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">线性回归模型</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_02_wage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">线性回归分析</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_03_binscatter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">分仓散点图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_04_wage_prediction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">线性回归分析</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>时间序列</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_asset_return.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">资产收益率（Asset Returns）</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_man_weight.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">时序建模思路：模拟体重变化</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_ARMA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">ARMA 模型</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_FRED_US_unemploy_rate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_GARCH_BYD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">GARCH 模型</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>机器学习</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/test_AB_test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-Naive-Bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">In Depth: Naive Bayes Classification</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-Random-Forests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">深入理解：决策树与随机森林</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-baggboost-lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Tree-Based Methods</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-Support-Vector-Machines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">支持向量机 (Support Vector Machines)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-svm-lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Support Vector Machines</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/06.00-Figure-Code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">Appendix: Figure Code</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>作业展示</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Dangdang_G7_01_data_clean.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">当当网-G7-01</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Dangdang_G7_02_data_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">当当网-G7-02</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/G8_China_stock_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">G8-中国上市公司</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_01_data_crawler.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">G4-01</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_02_data_cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">G4-02</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_03_data_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">G4-03</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_万诗晴.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">ex02_万诗晴</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_吴倩茵.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">ex02_吴倩茵</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_朱少荣.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">ex02_朱少荣</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_黄伊姿.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">ex02_黄伊姿</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#python-语言简介" id="toc-python-语言简介" class="nav-link active" data-scroll-target="#python-语言简介"><span class="header-section-number">8.1</span> Python 语言简介</a>
+  <ul class="collapse">
+  <li><a href="#python-的主要特点" id="toc-python-的主要特点" class="nav-link" data-scroll-target="#python-的主要特点"><span class="header-section-number">8.1.1</span> Python 的主要特点</a></li>
+  <li><a href="#使用场景与优势" id="toc-使用场景与优势" class="nav-link" data-scroll-target="#使用场景与优势"><span class="header-section-number">8.1.2</span> 使用场景与优势</a></li>
+  <li><a href="#python-之禅the-zen-of-python" id="toc-python-之禅the-zen-of-python" class="nav-link" data-scroll-target="#python-之禅the-zen-of-python"><span class="header-section-number">8.1.3</span> Python 之禅（The Zen of Python）</a></li>
+  </ul></li>
+  <li><a href="#数值类型和计算" id="toc-数值类型和计算" class="nav-link" data-scroll-target="#数值类型和计算"><span class="header-section-number">8.2</span> 数值类型和计算</a>
+  <ul class="collapse">
+  <li><a href="#变量类型" id="toc-变量类型" class="nav-link" data-scroll-target="#变量类型"><span class="header-section-number">8.2.1</span> 变量类型</a></li>
+  </ul></li>
+  <li><a href="#逻辑运算与比较" id="toc-逻辑运算与比较" class="nav-link" data-scroll-target="#逻辑运算与比较"><span class="header-section-number">8.3</span> 逻辑运算与比较</a></li>
+  <li><a href="#运算优先级" id="toc-运算优先级" class="nav-link" data-scroll-target="#运算优先级"><span class="header-section-number">8.4</span> 运算优先级</a></li>
+  <li><a href="#变量" id="toc-变量" class="nav-link" data-scroll-target="#变量"><span class="header-section-number">8.5</span> 变量</a></li>
+  <li><a href="#字符串" id="toc-字符串" class="nav-link" data-scroll-target="#字符串"><span class="header-section-number">8.6</span> 字符串</a></li>
+  <li><a href="#列表和元组" id="toc-列表和元组" class="nav-link" data-scroll-target="#列表和元组"><span class="header-section-number">8.7</span> 列表和元组</a>
+  <ul class="collapse">
+  <li><a href="#元组" id="toc-元组" class="nav-link" data-scroll-target="#元组"><span class="header-section-number">8.7.1</span> 元组</a></li>
+  <li><a href="#列表" id="toc-列表" class="nav-link" data-scroll-target="#列表"><span class="header-section-number">8.7.2</span> 列表</a></li>
+  </ul></li>
+  <li><a href="#集合" id="toc-集合" class="nav-link" data-scroll-target="#集合"><span class="header-section-number">8.8</span> 集合</a></li>
+  <li><a href="#控制语句循环" id="toc-控制语句循环" class="nav-link" data-scroll-target="#控制语句循环"><span class="header-section-number">8.9</span> 控制语句：循环</a></li>
+  <li><a href="#控制语句条件" id="toc-控制语句条件" class="nav-link" data-scroll-target="#控制语句条件"><span class="header-section-number">8.10</span> 控制语句：条件</a></li>
+  <li><a href="#实例" id="toc-实例" class="nav-link" data-scroll-target="#实例"><span class="header-section-number">8.11</span> 实例</a></li>
+  <li><a href="#控制语句异常" id="toc-控制语句异常" class="nav-link" data-scroll-target="#控制语句异常"><span class="header-section-number">8.12</span> 控制语句：异常</a></li>
+  <li><a href="#列表推导" id="toc-列表推导" class="nav-link" data-scroll-target="#列表推导"><span class="header-section-number">8.13</span> 列表推导</a></li>
+  <li><a href="#字典" id="toc-字典" class="nav-link" data-scroll-target="#字典"><span class="header-section-number">8.14</span> 字典</a></li>
+  <li><a href="#python中的none" id="toc-python中的none" class="nav-link" data-scroll-target="#python中的none"><span class="header-section-number">8.15</span> Python中的None</a></li>
+  <li><a href="#小结" id="toc-小结" class="nav-link" data-scroll-target="#小结"><span class="header-section-number">8.16</span> 小结</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/02_py_00_intro.html"><strong>Python 基础</strong></a></li><li class="breadcrumb-item"><a href="../body/02_py_00_intro.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Python 入门</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Python 入门</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<blockquote class="blockquote">
+<p>参考资料</p>
+</blockquote>
+<ul>
+<li><a href="https://docs.python.org/zh-cn/3.13/tutorial/index.html">Python 官网：Python 教程</a></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>本章内容源自上海对外经贸大学司继春老师的讲义，略有改动。</p>
+</div>
+</div>
+<p>参考教程：</p>
+<ul>
+<li><a href="https://docs.python.org/3.12/">Python 3.12.10 documentation</a>
+<ul>
+<li><a href="https://docs.python.org/3.12/tutorial/index.html">Tutorial</a></li>
+<li><a href="https://docs.python.org/3.12/py-modindex.html">Python 模块索引</a>
+<ul>
+<li>这个非常好用，可以很方便地查询常用模块的方法和属性，例如 <a href="https://docs.python.org/3.12/library/os.html#module-os">os 模块</a></li>
+</ul></li>
+<li><a href="https://peps.python.org/pep-0008/#indentation">PEP 8 – Style Guide for Python Code</a></li>
+</ul></li>
+<li><a href="https://developers.google.com/edu/python?hl=zh-cn">Google 的 Python 课程</a>
+<ul>
+<li>简洁、重点突出</li>
+<li>内容：Python 设置，Python 简介，字符串，列表，排序，记录和文件，正则表达式</li>
+</ul></li>
+<li>Python 包大集合
+<ul>
+<li><a href="https://krzjoa.github.io/awesome-python-data-science/#/?id=machine-learning">Awesome Python Data Science</a></li>
+</ul></li>
+</ul>
+<section id="python-语言简介" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="python-语言简介"><span class="header-section-number">8.1</span> Python 语言简介</h2>
+<p>Python 由 Guido van Rossum 于 1991 年创建，至今已有三十多年历史。起初只是作为一种脚本语言，用于自动化简单任务。由于其语法简洁、易于扩展，并能与 C/C++ 等语言良好集成，Python 很快成为著名的「胶水语言」（glue language），广泛应用于数据分析、Web 开发、机器学习等领域。</p>
+<p>近年来，随着数据科学和人工智能的发展，Python 凭借其丰富的生态系统和社区支持，已成为最受欢迎的编程语言之一。根据 <a href="https://survey.stackoverflow.co/2023/#technology-most-popular-technologies">Stack Overflow Developer Survey</a> 和 <a href="https://www.tiobe.com/tiobe-index/">TIOBE 指数</a>，Python 多年位居榜首。</p>
+<section id="python-的主要特点" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="python-的主要特点"><span class="header-section-number">8.1.1</span> Python 的主要特点</h3>
+<ul>
+<li><p><strong>解释型语言</strong>：不需要预编译，Python 解释器（interpreter）逐行执行代码。</p></li>
+<li><p><strong>动态类型</strong>：变量类型在运行时确定，无需显式声明。</p></li>
+<li><p><strong>多范式支持</strong>：</p>
+<ul>
+<li>面向对象编程（OOP）：支持类和对象。</li>
+<li>过程式编程（Procedural）：支持传统函数调用结构。</li>
+<li>函数式编程（Functional）：支持部分函数式特性（如 map、lambda、生成器等）。</li>
+</ul></li>
+<li><p><strong>跨平台</strong>：Python 程序在不同操作系统中运行一致。</p></li>
+<li><p><strong>GIL（Global Interpreter Lock）</strong>：标准 CPython 实现中采用全局解释器锁，限制了多线程的并行性，适合 IO 密集型任务，不适合重度 CPU 密集型并行任务。</p></li>
+</ul>
+</section>
+<section id="使用场景与优势" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="使用场景与优势"><span class="header-section-number">8.1.2</span> 使用场景与优势</h3>
+<p>Python 的语法简洁、学习曲线平缓，特别适合以下场景：</p>
+<ul>
+<li>数据分析与探索性编程（如：Jupyter Notebook）</li>
+<li>自动化脚本与任务调度</li>
+<li>爬虫、文本处理、API 调用等 IO 密集型任务</li>
+<li>快速原型开发与教学演示</li>
+<li>与 C/C++/Java 等语言的接口开发，作为胶水语言集成系统</li>
+</ul>
+<p>虽然 Python 的执行效率不如 C/C++，但<strong>开发效率高</strong>、<strong>社区包丰富</strong>，能大幅减少开发时间。在多数实际应用中，<em>程序员时间往往比机器运行时间更宝贵</em>。若需要兼顾性能，可使用 Python 编写框架，重计算部分可用 C/C++ 或 Julia 编写，并通过 Python 调用。</p>
+</section>
+<section id="python-之禅the-zen-of-python" class="level3" data-number="8.1.3">
+<h3 data-number="8.1.3" class="anchored" data-anchor-id="python-之禅the-zen-of-python"><span class="header-section-number">8.1.3</span> Python 之禅（The Zen of Python）</h3>
+<p>Python 的设计哲学追求：</p>
+<blockquote class="blockquote">
+<p><em>Beautiful is better than ugly.</em> <em>Explicit is better than implicit.</em> <em>Simple is better than complex.</em> ——《<a href="https://peps.python.org/pep-0020/">The Zen of Python</a>》</p>
+</blockquote>
+<p>可以在交互式终端中输入 <code>import this</code> 亲自体验。</p>
+<p>这些哲学使得 Python 鼓励「一种最好且明确的方法来完成一件事情」，避免花哨、歧义性强的语法，从而提高代码的可读性和可维护性。</p>
+<p>如需进一步了解 Python，推荐阅读：</p>
+<ul>
+<li>官方文档：<a href="https://docs.python.org/3/">https://docs.python.org/3/</a></li>
+<li>中文教程：<a href="https://www.liaoxuefeng.com/wiki/1016959663602400">廖雪峰的 Python 教程</a></li>
+<li>快速参考手册：<a href="https://gto76.github.io/python-cheatsheet/">Python Cheatsheet</a></li>
+</ul>
+</section>
+</section>
+<section id="数值类型和计算" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="数值类型和计算"><span class="header-section-number">8.2</span> 数值类型和计算</h2>
+<p>Python 语言简单易懂，多数语句都非常符合人类语言的直觉。比如，计算两个数字相加：</p>
+<div id="cell-5" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="dv">3</span><span class="op">+</span><span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>7</code></pre>
+</div>
+</div>
+<p>我们也可以把它赋值给一个变量，然后再调用 (比如，打印出来)：</p>
+<div id="cell-7" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>a <span class="op">=</span> <span class="dv">3</span> <span class="op">+</span> <span class="dv">4</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="bu">print</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>7</code></pre>
+</div>
+</div>
+<p>此处的 <code>print()</code> 是一个函数，表示打印出括号内的内容。Python 中的多数运算和操作都是通过函数来实现的。这里，我们采用 <code>print()</code> 函数来打印一些常用的数学运算的结果：</p>
+<div id="cell-9" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="bu">print</span>(<span class="dv">2</span><span class="op">*</span><span class="dv">5</span>)     <span class="co"># 乘法</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="bu">print</span>(<span class="dv">2</span><span class="op">**</span><span class="dv">5</span>)    <span class="co"># 乘方</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="bu">print</span>(<span class="dv">2</span><span class="op">**</span><span class="fl">0.5</span>)  <span class="co"># 平方根</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="bu">print</span>(<span class="dv">30</span><span class="op">/</span><span class="dv">4</span>)    <span class="co"># 除法</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="bu">print</span>(<span class="dv">30</span><span class="op">//</span><span class="dv">4</span>)   <span class="co"># 整数除法, 两个斜杠</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="bu">print</span>(<span class="dv">30</span><span class="op">%</span><span class="dv">4</span>)    <span class="co"># 取余</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>10
+32
+1.4142135623730951
+7.5
+7
+2</code></pre>
+</div>
+</div>
+<p>不同于 C 和 Java 等语言，Python 不需要预先声明变量的类型，它会根据赋值的内容自动推断变量的类型：</p>
+<div id="cell-11" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>a <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>b <span class="op">=</span> <span class="st">'BMW'</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="bu">print</span>(a<span class="op">*</span><span class="dv">10</span>)   <span class="co"># 整数乘法</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="bu">print</span>(b<span class="op">*</span><span class="dv">10</span>)   <span class="co"># 字符串重复</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>20
+BMWBMWBMWBMWBMWBMWBMWBMWBMWBMW</code></pre>
+</div>
+</div>
+<section id="变量类型" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="变量类型"><span class="header-section-number">8.2.1</span> 变量类型</h3>
+<p>Python 支持整数和浮点数两种数值类型。整数是没有小数点的数字，比如 <code>1</code>、<code>2</code>、<code>3</code> 等；而浮点数是带有小数点的数字，比如 <code>1.0</code>、<code>2.5</code>、<code>3.14</code> 等。 我们可以使用 <code>type()</code> 函数来查看一个变量的类型：</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="bu">type</span>(<span class="dv">10</span>)   <span class="co"># int</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="bu">type</span>(<span class="fl">10.0</span>) <span class="co"># float</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>很多时候我们也会用到字符型变量：</p>
+<div id="cell-13" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="bu">print</span>(<span class="st">"Hello, World!"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2"></a>str1 <span class="op">=</span> <span class="st">'Python'</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>str2 <span class="op">=</span> <span class="st">"is amazing"</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>str3 <span class="op">=</span> str1 <span class="op">+</span> str2</span>
+<span id="cb10-5"><a href="#cb10-5"></a></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="bu">print</span>(str3)                   <span class="co"># 字符串拼接，不会添加空格</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="bu">print</span>(str1, str2, <span class="st">'='</span>, str3)  <span class="co"># 字符串拼接, 自动添加空格</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hello, World!
+Pythonis amazing
+Python is amazing = Pythonis amazing</code></pre>
+</div>
+</div>
+<p>说明：字符串需要用单引号或双引号括起来，Python 会自动识别。比如，<code>'hello'</code> 和 <code>"hello"</code> 是等价的。如果你在字符串中需要使用单引号，可以用双引号括起来，反之亦然。比如，<code>"I'm a student"</code> 和 <code>'I\'m a student'</code> 是等价的。</p>
+</section>
+</section>
+<section id="逻辑运算与比较" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="逻辑运算与比较"><span class="header-section-number">8.3</span> 逻辑运算与比较</h2>
+<p>在数据清洗阶段，经常需要根据特定的条件删除或筛选变量和观察值，这就需要使用 <code>&gt;</code>、<code>&lt;</code>、<code>&gt;=</code>、<code>&lt;=</code>、<code>==</code> 和 <code>!=</code> 等比较运算符来进行逻辑判断。</p>
+<div id="cell-16" class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="dv">1</span> <span class="op">&gt;</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>False</code></pre>
+</div>
+</div>
+<div id="cell-17" class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="dv">2</span> <span class="op">&gt;=</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>True</code></pre>
+</div>
+</div>
+<p>注意以上程序的结果返回的是 <strong>True</strong> 和 <strong>False</strong>，这两个值在 Python 中分别代表 ‘逻辑真’ 和 ‘逻辑假’。逻辑真、假之间可以有与、或、非的运算：</p>
+<div id="cell-19" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="va">True</span> <span class="kw">and</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>True</code></pre>
+</div>
+</div>
+<div id="cell-20" class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>(<span class="dv">5</span><span class="op">==</span><span class="dv">5</span>) <span class="kw">and</span> (<span class="dv">3</span><span class="op">&gt;</span><span class="dv">4</span>)   <span class="co"># True and False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="48">
+<pre><code>False</code></pre>
+</div>
+</div>
+<p>有兴趣的读者可以测试一下如下表达式的返回值：</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>(<span class="dv">5</span><span class="op">&lt;</span><span class="dv">5</span>) <span class="kw">and</span> (<span class="dv">3</span><span class="op">&gt;</span><span class="dv">4</span>)            <span class="co"># False and False</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>(<span class="dv">5</span><span class="op">==</span><span class="dv">5</span>) <span class="kw">or</span> (<span class="st">'Cat'</span><span class="op">==</span><span class="st">'Dog'</span>)   <span class="co"># True or False</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="kw">not</span> (<span class="st">'Cat'</span><span class="op">!=</span><span class="st">'Dog'</span>)         <span class="co"># not True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>注意： - Python 中的逻辑运算符是 <code>and</code>、<code>or</code> 和 <code>not</code>，而不是 <code>&amp;&amp;</code>、<code>||</code> 和 <code>!</code>。这与 C 和 Java 等语言不同。 - 判断是否相等需要用双等号 <code>==</code>，判断不相等要使用 <code>!=</code>，否则会报错：</p>
+<div id="cell-22" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="bu">print</span>(<span class="st">'真的！'</span>) <span class="cf">if</span> (<span class="st">'Cat'</span> <span class="op">!=</span> <span class="st">'cat'</span>) <span class="cf">else</span> <span class="bu">print</span>(<span class="st">'假的!'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>真的！</code></pre>
+</div>
+</div>
+</section>
+<section id="运算优先级" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="运算优先级"><span class="header-section-number">8.4</span> 运算优先级</h2>
+<p>以上我们介绍了几种常见的运算，包括：</p>
+<ul>
+<li>算数运算
+<ul>
+<li><code>+</code></li>
+<li><code>-</code></li>
+<li><code>\*</code></li>
+<li><code>/</code></li>
+<li><code>//</code></li>
+<li><code>%</code></li>
+<li><code>\*\*</code></li>
+</ul></li>
+<li>比较运算
+<ul>
+<li><code>==</code></li>
+<li><code>!=</code></li>
+<li><code>&lt;</code></li>
+<li><code>&lt;=</code></li>
+<li><code>&gt;</code></li>
+<li><code>&gt;=</code></li>
+</ul></li>
+<li>逻辑运算
+<ul>
+<li><code>and</code></li>
+<li><code>or</code></li>
+<li><code>not</code></li>
+</ul></li>
+</ul>
+<p>这些运算符号并不是从左到右依次执行的，而是具有优先级顺序，比如：</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="dv">3</span> <span class="op">+</span> <span class="dv">5</span><span class="op">*</span><span class="dv">7</span> <span class="op">-</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>运算时，会先进行乘法运算，再执行加减运算：</p>
+<p>Python 中运算符的优先级从高到低依次为：</p>
+<ol type="1">
+<li><code>**</code><br>
+</li>
+<li><code>+</code>、<code>-</code>: 正负号<br>
+</li>
+<li><code>*</code>、<code>/</code>、<code>%</code></li>
+<li><code>+</code>、<code>-</code>：加减运算<br>
+</li>
+<li><code>==</code>、<code>!=</code>、<code>&lt;</code>、<code>&gt;</code>、<code>&lt;=</code>、<code>&gt;=</code><br>
+</li>
+<li><code>not</code><br>
+</li>
+<li><code>and</code><br>
+</li>
+<li><code>or</code></li>
+</ol>
+<p>请问，按照以上规则，如下表达式的运算顺序是什么？会得到什么结果？</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="dv">1</span><span class="op">&gt;</span><span class="dv">2</span> <span class="kw">and</span> <span class="dv">3</span><span class="op">&gt;</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>此外，需要注意幂运算的等级比正负号要高，所以如下两个表达式的结果是不同的：</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="op">-</span><span class="dv">2</span><span class="op">**</span><span class="dv">2</span>      <span class="co"># -4</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>(<span class="op">-</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span>    <span class="co">#  4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>对于 <code>-2**2</code>，其计算顺序是：先计算 <span class="math inline">\(2^2\)</span>，再取负，得到了 <span class="math inline">\(-4\)</span>。因此，在编写代码时，如果不确定变量 x 的值是正数还是负数，且需要进行类似 <code>x**2</code> 这样的运算，更稳妥的写法上 <code>(x)**2</code>。</p>
+</section>
+<section id="变量" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="变量"><span class="header-section-number">8.5</span> 变量</h2>
+<p><strong>变量</strong>（variable）是几乎所有编程语言都具有的特性。变量实质上是内存中的一个区域，其中存储着某一些值。在 Python 中，由于不用像 C、Java 一样显示地指明变量类型，因而用起来非常简单，直接使用等号 “=” 赋值即可。比如，我们可以使用以下语句将 3 这个值保存在变量 x 中，并在后面引用这个变量：</p>
+<div id="cell-27" class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>x <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a><span class="bu">print</span>(x)</span>
+<span id="cb26-3"><a href="#cb26-3"></a>x <span class="op">=</span> <span class="st">'Python is great'</span> <span class="co"># 变量可以重新赋值</span></span>
+<span id="cb26-4"><a href="#cb26-4"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3
+Python is great</code></pre>
+</div>
+</div>
+<p>变量命名的基本规则如下：</p>
+<ul>
+<li>变量名不能以数字开头<br>
+</li>
+<li>变量名不能是 Python 的保留字符，比如 <code>is</code>、<code>in</code> 等<br>
+</li>
+<li>不能含有 <code>+</code>、<code>-</code>、<code>*</code>、空格等特殊字符，但可以包含下划线 <code>_</code><br>
+</li>
+<li>变量名区分大小写</li>
+</ul>
+<p>虽然 Python 的变量名要求相对比较宽松，但是还是有一些良好的习惯需要注意：</p>
+<ul>
+<li>尽量不要使用中文做变量名<br>
+</li>
+<li>变量名要有意义，方便阅读<br>
+</li>
+<li>尽量不要使用下划线开头，因为下划线开头的变量在 Python 中可能有特殊含义<br>
+</li>
+<li>如果变量名包含几个单词，可以用下划线区分，或使用驼峰规则，如：<code>cat_weight</code>，或者 <code>CatWeight</code></li>
+</ul>
+<p>除了简单的使用等号赋值之外，Python 还有其他几个比较方便的赋值语句，比如：</p>
+<ul>
+<li><code>a += b</code> 等价于 <code>a = a + b</code><br>
+</li>
+<li><code>a -= b</code> 等价于 <code>a = a - b</code><br>
+</li>
+<li><code>a *= b</code> 等价于 <code>a = a * b</code><br>
+</li>
+<li><code>a /= b</code> 等价于 <code>a = a / b</code><br>
+</li>
+<li><code>a **= b</code> 等价于 <code>a = a ** b</code><br>
+</li>
+<li><code>a //= b</code> 等价于 <code>a = a // b</code><br>
+</li>
+<li><code>a %= b</code> 等价于 <code>a = a % b</code></li>
+</ul>
+<div id="cell-30" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>a <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a></span>
+<span id="cb28-3"><a href="#cb28-3"></a>a <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb28-4"><a href="#cb28-4"></a><span class="bu">print</span>(a)</span>
+<span id="cb28-5"><a href="#cb28-5"></a></span>
+<span id="cb28-6"><a href="#cb28-6"></a>a <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb28-7"><a href="#cb28-7"></a><span class="bu">print</span>(a)</span>
+<span id="cb28-8"><a href="#cb28-8"></a></span>
+<span id="cb28-9"><a href="#cb28-9"></a>a <span class="op">*=</span> <span class="dv">2</span></span>
+<span id="cb28-10"><a href="#cb28-10"></a><span class="bu">print</span>(a)</span>
+<span id="cb28-11"><a href="#cb28-11"></a></span>
+<span id="cb28-12"><a href="#cb28-12"></a>a <span class="op">/=</span> <span class="dv">2</span></span>
+<span id="cb28-13"><a href="#cb28-13"></a><span class="bu">print</span>(a)</span>
+<span id="cb28-14"><a href="#cb28-14"></a></span>
+<span id="cb28-15"><a href="#cb28-15"></a>a <span class="op">**=</span> <span class="dv">2</span></span>
+<span id="cb28-16"><a href="#cb28-16"></a><span class="bu">print</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3
+2
+4
+2.0
+4.0</code></pre>
+</div>
+</div>
+</section>
+<section id="字符串" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="字符串"><span class="header-section-number">8.6</span> 字符串</h2>
+<p>除了数值类型，字符串也是一种常用的数据类型。在 Python 中，即可以用单引号 <code>''</code>，也可以用双引号 <code>""</code> 来标记字符串，二者等价：</p>
+<div id="cell-32" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>a <span class="op">=</span> <span class="st">"Hello,"</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a>b <span class="op">=</span> <span class="st">'Python!'</span></span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="bu">print</span>(a, b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hello, Python!</code></pre>
+</div>
+</div>
+<p>采用两种标记符，有助于处理一些特殊情形，比如</p>
+<div id="cell-34" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>a <span class="op">=</span> <span class="st">"Tom's viewpoint: "</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>b <span class="op">=</span> <span class="st">'"Python" is amazing!'</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a><span class="bu">print</span>(a)</span>
+<span id="cb32-4"><a href="#cb32-4"></a><span class="bu">print</span>(b)</span>
+<span id="cb32-5"><a href="#cb32-5"></a><span class="bu">print</span>(a <span class="op">+</span> b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Tom's viewpoint: 
+"Python" is amazing!
+Tom's viewpoint: "Python" is amazing!</code></pre>
+</div>
+</div>
+<p>也就是说，字符串内包含 <code>'</code> 时，我们可以用双引号括起来，反之亦然。当然，有时候字符串内会同时包含单引号和双引号，此时我们可以使用转义字符 <code>\</code> 来解决这个问题，比如：</p>
+<div id="cell-36" class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>c <span class="op">=</span> <span class="st">"Tom's idea: </span><span class="ch">\"</span><span class="st">Python</span><span class="ch">\"</span><span class="st"> is amazing, let's learn it."</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a><span class="bu">print</span>(c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Tom's idea: "Python" is amazing, let's learn it.</code></pre>
+</div>
+</div>
+<p>此处，我们用 <code>\"</code> 来表示字符串中的双引号，以避免与外围的双引号冲突。类似地，我们也可以用 <code>\'</code> 来表示字符串中的单引号。</p>
+<p>除了单引号之外，还有一些其他的字符需要转义，比如，斜杠 <code>\</code> 本身就需要转义，因为如果不对 <code>\</code> 转义，解释器无法知晓这个斜杠是一个纯粹的斜杠，还是与后面的字符链接起来的转义字符，比如：</p>
+<div id="cell-39" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>a <span class="op">=</span> <span class="st">"a 工作路径为 D:\mydata\python"</span></span>
+<span id="cb36-2"><a href="#cb36-2"></a>b <span class="op">=</span> <span class="st">"b 工作路径为 D:</span><span class="ch">\\</span><span class="st">mydata</span><span class="ch">\\</span><span class="st">python"</span></span>
+<span id="cb36-3"><a href="#cb36-3"></a><span class="bu">print</span>(a)</span>
+<span id="cb36-4"><a href="#cb36-4"></a><span class="bu">print</span>(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>a 工作路径为 D:\mydata\python
+b 工作路径为 D:\mydata\python</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>&lt;&gt;:1: SyntaxWarning: invalid escape sequence '\m'
+&lt;&gt;:1: SyntaxWarning: invalid escape sequence '\m'
+C:\Users\arlio\AppData\Local\Temp\ipykernel_31208\1298254725.py:1: SyntaxWarning: invalid escape sequence '\m'
+  a = "a 工作路径为 D:\mydata\python"</code></pre>
+</div>
+</div>
+<p>除此之外，Python 中还有其他转义字符：</p>
+<ul>
+<li>每一行结尾处的 <code>\</code>：续行符<br>
+</li>
+<li><code>\\</code>：反斜杠<br>
+</li>
+<li><code>\'</code>：单引号<br>
+</li>
+<li><code>\"</code>：双引号<br>
+</li>
+<li><code>\b</code>：退格<br>
+</li>
+<li><code>\v</code>：纵向制表符<br>
+</li>
+<li><code>\t</code>：横向制表符<br>
+</li>
+<li><code>\r</code>：回车<br>
+</li>
+<li><code>\n</code>：换行<br>
+</li>
+<li><code>\f</code>：换页<br>
+</li>
+<li>……</li>
+</ul>
+<p>举几个例子：</p>
+<div id="cell-41" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a><span class="bu">print</span>(<span class="st">"Name:</span><span class="ch">\t</span><span class="st">Tom</span><span class="ch">\t</span><span class="st">谭萱</span><span class="ch">\n</span><span class="st">Age:</span><span class="ch">\t</span><span class="st">30</span><span class="ch">\t</span><span class="st">25</span><span class="ch">\n</span><span class="st">Sex:</span><span class="ch">\t</span><span class="st">男</span><span class="ch">\t</span><span class="st">女"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Name:   Tom 谭萱
+Age:    30  25
+Sex:    男   女</code></pre>
+</div>
+</div>
+<p>在 Python 中，<code>\n</code> 表示 <strong>换行符</strong>，而 <code>\r</code> 表示 <strong>回车符</strong>。它们的作用略有不同，具体如下：</p>
+<ul>
+<li><code>\n</code> 会将光标移到下一行的开头，相当于“<strong>换行并定位至该行行首</strong>”；</li>
+<li><code>\r</code> 只会将光标移到<strong>当前行的行首</strong>，但不会换行，因此它会从当前行的开头开始重新输出字符，可能会覆盖原来的内容。</li>
+</ul>
+<p>来看一个例子：</p>
+<div id="cell-43" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a><span class="bu">print</span>(<span class="st">"Downloading...</span><span class="ch">\n</span><span class="st">搞定了"</span>)  <span class="co"># 使用 \n（换行符）</span></span>
+<span id="cb41-2"><a href="#cb41-2"></a><span class="bu">print</span>(<span class="st">'-'</span><span class="op">*</span><span class="dv">30</span>)</span>
+<span id="cb41-3"><a href="#cb41-3"></a><span class="bu">print</span>(<span class="st">"Downloading...</span><span class="ch">\r</span><span class="st">搞定了"</span>)  <span class="co"># 使用 \r（回车符） </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Downloading...
+搞定了
+------------------------------
+搞定了nloading...</code></pre>
+</div>
+</div>
+<p>第二个输出结果有点奇怪，是因为 <code>\r</code> 把光标拉回了行首 (没有换行)，然后开始打印 <code>搞定了</code>。这会覆盖原有字符 <code>Downloading...</code> 中开头 3 个字符 (<code>Dow</code>)，最终变成了 <code>搞定了nloading...</code>。</p>
+<p>这种 <code>\r</code> 的行为在一些进度条或动态打印时非常常见。下面的代码中，由于每次打印都用 <code>\r</code> 把光标拉回了行首，覆盖原内容，所以你看到的其实<strong>只有一行在不断刷新</strong>。</p>
+<div id="cell-45" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a><span class="im">import</span> time</span>
+<span id="cb43-2"><a href="#cb43-2"></a></span>
+<span id="cb43-3"><a href="#cb43-3"></a><span class="co"># 模拟一个简单的进度条</span></span>
+<span id="cb43-4"><a href="#cb43-4"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">101</span>, <span class="dv">10</span>):</span>
+<span id="cb43-5"><a href="#cb43-5"></a>    <span class="bu">print</span>(<span class="ss">f"下载进度：</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">%"</span>.ljust(<span class="dv">20</span>), end<span class="op">=</span><span class="st">"</span><span class="ch">\r</span><span class="st">"</span>)</span>
+<span id="cb43-6"><a href="#cb43-6"></a>    time.sleep(<span class="fl">0.2</span>)  <span class="co"># 暂停 0.2 秒，模拟下载过程</span></span>
+<span id="cb43-7"><a href="#cb43-7"></a></span>
+<span id="cb43-8"><a href="#cb43-8"></a><span class="bu">print</span>(<span class="st">"下载完成！            "</span>)  <span class="co"># 打印最终状态</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>下载完成！               </code></pre>
+</div>
+</div>
+<p>除了使用单引号和双引号表示字符串之外，Python 还支持长字符串、原始字符串两种表示方法：长字符串使用三个单引号 <code>'''</code> 或者三个双引号 <code>"""</code> 包裹，可以用来表示跨越多行的字符串。比如：</p>
+<div id="cell-47" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a>a <span class="op">=</span> <span class="st">"""这是一个可以跨行的字符串</span></span>
+<span id="cb45-2"><a href="#cb45-2"></a><span class="st">使用三个单引号</span></span>
+<span id="cb45-3"><a href="#cb45-3"></a><span class="st">或者三个双引号包裹</span></span>
+<span id="cb45-4"><a href="#cb45-4"></a><span class="st">"""</span></span>
+<span id="cb45-5"><a href="#cb45-5"></a></span>
+<span id="cb45-6"><a href="#cb45-6"></a>b <span class="op">=</span> <span class="st">'''</span></span>
+<span id="cb45-7"><a href="#cb45-7"></a><span class="st">Hello, my friend!</span></span>
+<span id="cb45-8"><a href="#cb45-8"></a><span class="st">I am learning Python.</span></span>
+<span id="cb45-9"><a href="#cb45-9"></a><span class="st">'''</span></span>
+<span id="cb45-10"><a href="#cb45-10"></a><span class="bu">print</span>(a)</span>
+<span id="cb45-11"><a href="#cb45-11"></a><span class="bu">print</span>(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>这是一个可以跨行的字符串
+使用三个单引号
+或者三个双引号包裹
+
+
+Hello, my friend!
+I am learning Python.
+</code></pre>
+</div>
+</div>
+<p>而原始字符串即不对反斜杠进行转义，比如一个路径可能为：</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a>a <span class="op">=</span> <span class="st">"C:</span><span class="ch">\n</span><span class="st">etwork</span><span class="ch">\t</span><span class="st">able"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>然而注意到，由于 <code>\n</code> 有转义，所以 Python 解释器在碰到 <code>\n</code> 时将其解释为回车。同理，<code>\t</code> 则会被解释为 <strong>Tab</strong>：</p>
+<div id="cell-49" class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a>a <span class="op">=</span> <span class="st">"C:</span><span class="ch">\n</span><span class="st">etwork"</span></span>
+<span id="cb48-2"><a href="#cb48-2"></a><span class="bu">print</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>C:
+etwork</code></pre>
+</div>
+</div>
+<p>如果需要声明该字符串为原始字符串，可以直接在字符串前面加一个“r”，即：</p>
+<div id="cell-51" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a>a<span class="op">=</span><span class="vs">r"C:\network"</span></span>
+<span id="cb50-2"><a href="#cb50-2"></a><span class="bu">print</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>C:\network</code></pre>
+</div>
+</div>
+<p>此时，Python解释器就不会将“\n”进行转义了。</p>
+<p>此外，Python3中所有的字符串都是以Unicode进行编码的，因而极大地规避了在Python2以及其他语言中可能碰到的乱码问题，因而使用Python3是非常方便的。也正因为如此，我们可以很方便的使用Unicode字符，并使用“\N{unicode_name}”来表示Unicode字符，比如：</p>
+<div id="cell-53" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a>a<span class="op">=</span><span class="st">"This is a cat: </span><span class="ch">\N{cat}</span><span class="st">"</span></span>
+<span id="cb52-2"><a href="#cb52-2"></a><span class="bu">print</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>This is a cat: 🐈</code></pre>
+</div>
+</div>
+<p>Unicode字符可以从 http://unicode-table.com 中找到。</p>
+<p>如果需要拼接两个字符串，可以简单的使用加号：</p>
+<div id="cell-56" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1"></a>a<span class="op">=</span><span class="st">"This is a cat: "</span></span>
+<span id="cb54-2"><a href="#cb54-2"></a>b<span class="op">=</span><span class="st">"</span><span class="ch">\N{cat}</span><span class="st">"</span></span>
+<span id="cb54-3"><a href="#cb54-3"></a>c<span class="op">=</span>a<span class="op">+</span>b</span>
+<span id="cb54-4"><a href="#cb54-4"></a><span class="bu">print</span>(c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>This is a cat: 🐈</code></pre>
+</div>
+</div>
+<p>最后需要额外注意的是，作为字符串的 “3” 和作为整型数据的 3 是完全不一样的。因此，我们不能使用如下表达式：</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1"></a><span class="co">"3"</span> <span class="op">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>正确的做法是：先使用 <code>int()</code> 函数将字符串 “3” 转化为数值类型，再进行计算：</p>
+<div id="cell-58" class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1"></a>a <span class="op">=</span> <span class="bu">int</span>(<span class="st">"3"</span>) <span class="op">+</span> <span class="dv">2</span></span>
+<span id="cb57-2"><a href="#cb57-2"></a><span class="bu">print</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>5</code></pre>
+</div>
+</div>
+<p>同理，如果希望将一个数值型数字处理为字符串，也需要使用 <code>str()</code> 函数先将数字转化为字符串：</p>
+<div id="cell-60" class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1"></a>a <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb59-2"><a href="#cb59-2"></a>b <span class="op">=</span> <span class="st">"There are "</span> <span class="op">+</span> <span class="bu">str</span>(a) <span class="op">+</span> <span class="st">" cats."</span></span>
+<span id="cb59-3"><a href="#cb59-3"></a><span class="bu">print</span>(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>There are 3 cats.</code></pre>
+</div>
+</div>
+</section>
+<section id="列表和元组" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="列表和元组"><span class="header-section-number">8.7</span> 列表和元组</h2>
+<p>以上我们初步介绍了 Python 的三种基本数据类型：整型、浮点型以及字符串。接下来我们引入 Python 中的两种最基本也是最常用的数据结构：<strong>列表</strong>（list）和 <strong>元组</strong>（tuple）。</p>
+<p>列表和元组都是序列（sequence）的一种，可以看成是一些元素的集合，每个元素都有其位置编号，编号从 0 开始。列表使用方括号 “[ ]” 进行声明，而元组使用小括号 “( )” 进行声明，或者不用括号直接声明。列表和元组所包含的内容可以是任何 Python 允许的数据类型、对象等等。</p>
+<section id="元组" class="level3" data-number="8.7.1">
+<h3 data-number="8.7.1" class="anchored" data-anchor-id="元组"><span class="header-section-number">8.7.1</span> 元组</h3>
+<p>最简单也是最基本的是元组。元组不可更改，一旦创建，只能读取而不能写入 (定义后不能修改)，比如：</p>
+<div id="cell-62" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1"></a>name_list <span class="op">=</span> <span class="st">"Messi"</span>, <span class="dv">10</span></span>
+<span id="cb61-2"><a href="#cb61-2"></a><span class="bu">print</span>(name_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>('Messi', 10)</code></pre>
+</div>
+</div>
+<p>我们可以使用元组名后面加一个方括号读取相应编号位的元素：</p>
+<div id="cell-64" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1"></a><span class="bu">print</span>(name_list[<span class="dv">0</span>])</span>
+<span id="cb63-2"><a href="#cb63-2"></a><span class="bu">print</span>(name_list[<span class="dv">1</span>])</span>
+<span id="cb63-3"><a href="#cb63-3"></a><span class="co">## 以下语句会报错：</span></span>
+<span id="cb63-4"><a href="#cb63-4"></a><span class="co"># name_list[1]=7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Messi
+10</code></pre>
+</div>
+</div>
+<p>由于编号从 0 开始，因而 <code>name_list[0]</code> 代表的是元组中的第一个元素，而 <code>name_list[1]</code> 代表第二个元素。方括号中也可以是负数，代表倒数第几个元素：</p>
+<div id="cell-66" class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1"></a><span class="bu">print</span>(name_list[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb65-2"><a href="#cb65-2"></a><span class="bu">print</span>(name_list[<span class="op">-</span><span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>10
+Messi</code></pre>
+</div>
+</div>
+<p>此外，如果需要声明只有一个元素的元组，需要额外加一个逗号，否则解释器无法判断需要声明的是一个值还是一个元组：</p>
+<div id="cell-68" class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1"></a>name <span class="op">=</span> <span class="st">'Messi'</span>,</span>
+<span id="cb67-2"><a href="#cb67-2"></a><span class="bu">print</span>(name)</span>
+<span id="cb67-3"><a href="#cb67-3"></a></span>
+<span id="cb67-4"><a href="#cb67-4"></a>name1 <span class="op">=</span> <span class="st">'Messi'</span></span>
+<span id="cb67-5"><a href="#cb67-5"></a><span class="bu">print</span>(name1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>('Messi',)
+Messi</code></pre>
+</div>
+</div>
+<p>当然，在声明元组时，一个良好的习惯是加上括号，使得程序更具有可读性。</p>
+<p>由于元组也是 Python 中的对象，因而元组中的元素也可以是元组，并可以使用两个方括号对作为元组成员的元组中的元素进行读取操作：</p>
+<div id="cell-70" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1"></a>name_list<span class="op">=</span>((<span class="st">'Messi'</span>,<span class="dv">10</span>),</span>
+<span id="cb69-2"><a href="#cb69-2"></a>           (<span class="st">'Xavi'</span>,<span class="dv">6</span>),</span>
+<span id="cb69-3"><a href="#cb69-3"></a>           (<span class="st">'Iniesta'</span>,<span class="dv">8</span>),</span>
+<span id="cb69-4"><a href="#cb69-4"></a>           (<span class="st">'Puyol'</span>,<span class="dv">5</span>)</span>
+<span id="cb69-5"><a href="#cb69-5"></a>          )</span>
+<span id="cb69-6"><a href="#cb69-6"></a><span class="bu">print</span>(name_list[<span class="dv">0</span>][<span class="dv">0</span>])</span>
+<span id="cb69-7"><a href="#cb69-7"></a><span class="bu">print</span>(name_list[<span class="dv">1</span>][<span class="dv">0</span>],<span class="st">":"</span>,name_list[<span class="dv">1</span>][<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Messi
+Xavi : 6</code></pre>
+</div>
+</div>
+<p>元组虽然不能修改，但支持切片（slicing）操作：可以从元组中取出一个子集。切片操作使用元组名后加方括号，在方括号中用冒号“:”指定起始和结束位置（注意是左闭右开区间）：</p>
+<div id="cell-72" class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1"></a><span class="bu">print</span>(name_list[<span class="dv">0</span>:<span class="dv">2</span>])</span>
+<span id="cb71-2"><a href="#cb71-2"></a><span class="bu">print</span>(name_list[<span class="op">-</span><span class="dv">3</span>:<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb71-3"><a href="#cb71-3"></a><span class="bu">print</span>(name_list[<span class="op">-</span><span class="dv">3</span>:])</span>
+<span id="cb71-4"><a href="#cb71-4"></a><span class="bu">print</span>(name_list[<span class="dv">2</span>:])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(('Messi', 10), ('Xavi', 6))
+(('Xavi', 6), ('Iniesta', 8))
+(('Xavi', 6), ('Iniesta', 8), ('Puyol', 5))
+(('Iniesta', 8), ('Puyol', 5))</code></pre>
+</div>
+</div>
+<p>实际上，切片操作还可以支持步进，切片的通用语法为：</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1"></a>x[start:end:step]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>其中start的默认值为0，step的默认值为1，而end的默认值为x的维数的大小。如果我们只想取出奇数位的元素，我们可以使用：</p>
+<div id="cell-74" class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1"></a><span class="bu">print</span>(name_list[::<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(('Messi', 10), ('Iniesta', 8))</code></pre>
+</div>
+</div>
+<p>以上切片操作被翻译为：从0开始，一直到结束，隔一个取一个元素。</p>
+</section>
+<section id="列表" class="level3" data-number="8.7.2">
+<h3 data-number="8.7.2" class="anchored" data-anchor-id="列表"><span class="header-section-number">8.7.2</span> 列表</h3>
+<p>列表的很多操作跟元组类似，但是列表允许被修改，因而更加灵活，也有更多的操作。</p>
+<p>我们可以很方便的使用方括号定义一个列表：</p>
+<div id="cell-77" class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1"></a>player_list<span class="op">=</span>[(<span class="st">'Messi'</span>,<span class="dv">10</span>),</span>
+<span id="cb76-2"><a href="#cb76-2"></a>           (<span class="st">'Xavi'</span>,<span class="dv">6</span>),</span>
+<span id="cb76-3"><a href="#cb76-3"></a>           (<span class="st">'Iniesta'</span>,<span class="dv">8</span>),</span>
+<span id="cb76-4"><a href="#cb76-4"></a>           (<span class="st">'Puyol'</span>,<span class="dv">5</span>)</span>
+<span id="cb76-5"><a href="#cb76-5"></a>          ]</span>
+<span id="cb76-6"><a href="#cb76-6"></a><span class="bu">print</span>(player_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[('Messi', 10), ('Xavi', 6), ('Iniesta', 8), ('Puyol', 5)]</code></pre>
+</div>
+</div>
+<p>注意以上声明的过程中，与元组唯一的不同是我们在最外面使用了方括号而非圆括号。</p>
+<p>或者，我们可以使用 <code>list()</code> 将一个<strong>可迭代</strong>（<strong>iterable</strong>）的对象（包括字符串、元组、列表等）转化为一个列表，比如：</p>
+<div id="cell-79" class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1"></a><span class="bu">print</span>(name_list)</span>
+<span id="cb78-2"><a href="#cb78-2"></a>name_list_list<span class="op">=</span><span class="bu">list</span>(name_list)</span>
+<span id="cb78-3"><a href="#cb78-3"></a><span class="bu">print</span>(name_list_list)</span>
+<span id="cb78-4"><a href="#cb78-4"></a>messi<span class="op">=</span><span class="bu">list</span>(<span class="st">'Messi'</span>)</span>
+<span id="cb78-5"><a href="#cb78-5"></a><span class="bu">print</span>(messi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(('Messi', 10), ('Xavi', 6), ('Iniesta', 8), ('Puyol', 5))
+[('Messi', 10), ('Xavi', 6), ('Iniesta', 8), ('Puyol', 5)]
+['M', 'e', 's', 's', 'i']</code></pre>
+</div>
+</div>
+<p>与列表不同的是，我们可以对列表进行修改操作：</p>
+<div id="cell-81" class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1"></a><span class="bu">print</span>(player_list)</span>
+<span id="cb80-2"><a href="#cb80-2"></a>player_list[<span class="dv">3</span>]<span class="op">=</span>(<span class="st">'ter Stegen'</span>,<span class="dv">1</span>)</span>
+<span id="cb80-3"><a href="#cb80-3"></a><span class="bu">print</span>(player_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[('Messi', 10), ('Xavi', 6), ('Iniesta', 8), ('Puyol', 5)]
+[('Messi', 10), ('Xavi', 6), ('Iniesta', 8), ('ter Stegen', 1)]</code></pre>
+</div>
+</div>
+<p>以及使用del语句进行删除操作：</p>
+<div id="cell-83" class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1"></a><span class="kw">del</span> player_list[<span class="dv">2</span>]</span>
+<span id="cb82-2"><a href="#cb82-2"></a><span class="bu">print</span>(player_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[('Messi', 10), ('Xavi', 6), ('ter Stegen', 1)]</code></pre>
+</div>
+</div>
+<p>当然，也可以进行新增，使用列表的append()方法可以在列表最后添加一个元素，比如：</p>
+<div id="cell-85" class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1"></a>player_list.append((<span class="st">'Busquets'</span>,<span class="dv">5</span>))</span>
+<span id="cb84-2"><a href="#cb84-2"></a><span class="bu">print</span>(player_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[('Messi', 10), ('Xavi', 6), ('ter Stegen', 1), ('Busquets', 5)]</code></pre>
+</div>
+</div>
+<p>如果需要添加的元素比较多，可以使用extend()方法，比如：</p>
+<div id="cell-87" class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1"></a>player_list_new<span class="op">=</span>[(<span class="st">'Pique'</span>,<span class="dv">3</span>),(<span class="st">'Suárez'</span>,<span class="dv">9</span>)]</span>
+<span id="cb86-2"><a href="#cb86-2"></a>player_list.extend(player_list_new)</span>
+<span id="cb86-3"><a href="#cb86-3"></a><span class="bu">print</span>(player_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[('Messi', 10), ('Xavi', 6), ('ter Stegen', 1), ('Busquets', 5), ('Pique', 3), ('Suárez', 9)]</code></pre>
+</div>
+</div>
+<p>如果需要在某一个位置插入元素，可以使用insert()方法：</p>
+<div id="cell-89" class="cell" data-execution_count="58">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1"></a>player_list.insert(<span class="dv">1</span>,(<span class="st">'Alba'</span>,<span class="dv">18</span>))</span>
+<span id="cb88-2"><a href="#cb88-2"></a><span class="bu">print</span>(player_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[('Messi', 10), ('Alba', 18), ('Xavi', 6), ('ter Stegen', 1), ('Busquets', 5), ('Pique', 3), ('Suárez', 9)]</code></pre>
+</div>
+</div>
+<p>还可以使用count()方法计算某个元素出现的次数、使用index()方法找到某个元素第一次出现的位置，比如：</p>
+<div id="cell-91" class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1"></a>messi<span class="op">=</span><span class="bu">list</span>(<span class="st">'Messi'</span>)</span>
+<span id="cb90-2"><a href="#cb90-2"></a>count_s<span class="op">=</span>messi.count(<span class="st">'s'</span>)</span>
+<span id="cb90-3"><a href="#cb90-3"></a>first_s<span class="op">=</span>messi.index(<span class="st">'s'</span>)</span>
+<span id="cb90-4"><a href="#cb90-4"></a><span class="bu">print</span>(count_s)</span>
+<span id="cb90-5"><a href="#cb90-5"></a><span class="bu">print</span>(first_s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2
+2</code></pre>
+</div>
+</div>
+<p>需要特别注意的是，在Python中，使用等号将一个对象赋值给另一个对象，并不会导致对象的拷贝，而仅仅是给了一个别名，比如：</p>
+<div id="cell-93" class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1"></a>another_play_list<span class="op">=</span>player_list</span>
+<span id="cb92-2"><a href="#cb92-2"></a><span class="bu">print</span>(player_list)</span>
+<span id="cb92-3"><a href="#cb92-3"></a><span class="kw">del</span> another_play_list[<span class="dv">1</span>]</span>
+<span id="cb92-4"><a href="#cb92-4"></a><span class="bu">print</span>(player_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[('Messi', 10), ('Alba', 18), ('Xavi', 6), ('ter Stegen', 1), ('Busquets', 5), ('Pique', 3), ('Suárez', 9)]
+[('Messi', 10), ('Xavi', 6), ('ter Stegen', 1), ('Busquets', 5), ('Pique', 3), ('Suárez', 9)]</code></pre>
+</div>
+</div>
+<p>在以上程序中，我们会发现，虽然我们删除的是another_play_list的第2个元素，但是实际上，another_player_list和play_list只是同一个变量的不同别名而已，并没有重新复制一个新的list。</p>
+<p>如果我们需要的是list的一个新的拷贝，需要使用list的copy()方法：</p>
+<div id="cell-95" class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1"></a>another_play_list<span class="op">=</span>player_list.copy()</span>
+<span id="cb94-2"><a href="#cb94-2"></a><span class="bu">print</span>(player_list)</span>
+<span id="cb94-3"><a href="#cb94-3"></a><span class="kw">del</span> another_play_list[<span class="dv">1</span>]</span>
+<span id="cb94-4"><a href="#cb94-4"></a><span class="bu">print</span>(player_list)</span>
+<span id="cb94-5"><a href="#cb94-5"></a><span class="bu">print</span>(another_play_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[('Messi', 10), ('Xavi', 6), ('ter Stegen', 1), ('Busquets', 5), ('Pique', 3), ('Suárez', 9)]
+[('Messi', 10), ('Xavi', 6), ('ter Stegen', 1), ('Busquets', 5), ('Pique', 3), ('Suárez', 9)]
+[('Messi', 10), ('ter Stegen', 1), ('Busquets', 5), ('Pique', 3), ('Suárez', 9)]</code></pre>
+</div>
+</div>
+<p>最后，列表、元组、字符串还支持in操作符，该操作符判断in之前的元素是否属于之后的列表、元组或者字符串，比如：</p>
+<div id="cell-97" class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1"></a><span class="bu">print</span>(<span class="st">'Messi'</span> <span class="kw">in</span> player_list[<span class="dv">0</span>][<span class="dv">0</span>])</span>
+<span id="cb96-2"><a href="#cb96-2"></a><span class="bu">print</span>(<span class="st">'Messi'</span> <span class="kw">in</span> player_list[<span class="dv">1</span>][<span class="dv">0</span>])</span>
+<span id="cb96-3"><a href="#cb96-3"></a><span class="bu">print</span>((<span class="st">'Pique'</span>, <span class="dv">3</span>) <span class="kw">in</span> player_list)</span>
+<span id="cb96-4"><a href="#cb96-4"></a><span class="bu">print</span>(<span class="st">'d'</span> <span class="kw">in</span> <span class="st">'Messi'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>True
+False
+True
+False</code></pre>
+</div>
+</div>
+<p>如果要判断in之前的元素“不属于”之后的列表、元组或字符串，可以使用“not in”:</p>
+<div id="cell-99" class="cell" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1"></a><span class="bu">print</span>(<span class="st">'Messi'</span> <span class="kw">not</span> <span class="kw">in</span> player_list[<span class="dv">0</span>][<span class="dv">0</span>])</span>
+<span id="cb98-2"><a href="#cb98-2"></a><span class="bu">print</span>(<span class="st">'Messi'</span> <span class="kw">not</span> <span class="kw">in</span> player_list[<span class="dv">1</span>][<span class="dv">0</span>])</span>
+<span id="cb98-3"><a href="#cb98-3"></a><span class="bu">print</span>((<span class="st">'Pique'</span>, <span class="dv">3</span>) <span class="kw">not</span> <span class="kw">in</span> player_list)</span>
+<span id="cb98-4"><a href="#cb98-4"></a><span class="bu">print</span>(<span class="st">'d'</span> <span class="kw">not</span> <span class="kw">in</span> <span class="st">'Messi'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>False
+True
+False
+True</code></pre>
+</div>
+</div>
+<p>最后，我们还可以使用 <code>sort()</code> 方法对列表进行排序，比如：</p>
+<div id="cell-101" class="cell" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1"></a>a<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">7</span>]</span>
+<span id="cb100-2"><a href="#cb100-2"></a>a.sort()</span>
+<span id="cb100-3"><a href="#cb100-3"></a><span class="bu">print</span>(a)</span>
+<span id="cb100-4"><a href="#cb100-4"></a>a.sort(reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb100-5"><a href="#cb100-5"></a><span class="bu">print</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1, 2, 4, 6, 7]
+[7, 6, 4, 2, 1]</code></pre>
+</div>
+</div>
+<p>在比较复杂的情况下，还可以使用key选项制定排序的方式，比如，我们可能需要对player_list中的球员号码进行排序，可以使用：</p>
+<div id="cell-103" class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1"></a>player_list.sort(key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">1</span>])</span>
+<span id="cb102-2"><a href="#cb102-2"></a><span class="bu">print</span>(player_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[('ter Stegen', 1), ('Pique', 3), ('Busquets', 5), ('Xavi', 6), ('Suárez', 9), ('Messi', 10)]</code></pre>
+</div>
+</div>
+<p>当然，以上的语法已经超出了目前所学范围，我们将在后面介绍lambda的含义。</p>
+</section>
+</section>
+<section id="集合" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="集合"><span class="header-section-number">8.8</span> 集合</h2>
+<p>无论是列表还是元组，都允许有重复的元素存在，但是有时我们可能需要不重复的元素，此时可以使用<strong>集合</strong>（<strong>set</strong>）类。</p>
+<p>集合的声明与列表类似，区别在于集合使用大括号{}，而非中括号。</p>
+<p>与list()类似，可以使用使用set()构建集合：</p>
+<div id="cell-106" class="cell" data-execution_count="66">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1"></a>letters<span class="op">=</span><span class="bu">set</span>(<span class="st">"Messi"</span>)</span>
+<span id="cb104-2"><a href="#cb104-2"></a><span class="bu">print</span>(letters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'e', 's', 'i', 'M'}</code></pre>
+</div>
+</div>
+<p>以上可以看到，set()构建了一个不重复元素组成的集合。可以使用add()方法以及update()方法为集合新增元素，比如：</p>
+<div id="cell-108" class="cell" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1"></a>letters.add(<span class="st">'a'</span>)</span>
+<span id="cb106-2"><a href="#cb106-2"></a><span class="bu">print</span>(letters)</span>
+<span id="cb106-3"><a href="#cb106-3"></a>letters.add((<span class="st">'a'</span>,))</span>
+<span id="cb106-4"><a href="#cb106-4"></a><span class="bu">print</span>(letters)</span>
+<span id="cb106-5"><a href="#cb106-5"></a>letters.update({<span class="st">'c'</span>,<span class="st">'d'</span>})</span>
+<span id="cb106-6"><a href="#cb106-6"></a><span class="bu">print</span>(letters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'M', 'e', 's', 'i', 'a'}
+{('a',), 'M', 'e', 's', 'i', 'a'}
+{('a',), 'M', 'e', 'd', 's', 'i', 'a', 'c'}</code></pre>
+</div>
+</div>
+<p>值得注意的是，在上面的程序中，我们添加了字符串’a’，以及一个元组(‘a’,)，两者一个是字符串，一个是元组，是不同的，因而在集合中两者并不冲突。</p>
+<p>如果需要删除，可以使用remove()方法以及discard()方法，两者的区别在于：remove()方法不能删除不存在的元素，否则报错；而discard()方法如果要删除的元素不存在，不会报错。</p>
+<div id="cell-110" class="cell" data-execution_count="68">
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1"></a>letters.remove((<span class="st">'a'</span>,))</span>
+<span id="cb108-2"><a href="#cb108-2"></a><span class="bu">print</span>(letters)</span>
+<span id="cb108-3"><a href="#cb108-3"></a>letters.discard(<span class="st">'z'</span>)</span>
+<span id="cb108-4"><a href="#cb108-4"></a><span class="bu">print</span>(letters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'M', 'e', 'd', 's', 'i', 'a', 'c'}
+{'M', 'e', 'd', 's', 'i', 'a', 'c'}</code></pre>
+</div>
+</div>
+<p>最后，作为集合，还可以使用issubset()和issuperset()方法判断某一个集合是不是另外一个集合的子集或者超集：</p>
+<div id="cell-112" class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1"></a><span class="bu">print</span>(letters.issuperset({<span class="st">'a'</span>,<span class="st">'b'</span>}))</span>
+<span id="cb110-2"><a href="#cb110-2"></a><span class="bu">print</span>(letters.issuperset({<span class="st">'a'</span>,<span class="st">'d'</span>}))</span>
+<span id="cb110-3"><a href="#cb110-3"></a><span class="bu">print</span>({<span class="st">'a'</span>,<span class="st">'d'</span>}.issubset(letters))</span>
+<span id="cb110-4"><a href="#cb110-4"></a><span class="bu">print</span>({<span class="st">'a'</span>,<span class="st">'d'</span>}.issuperset(letters))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>False
+True
+True
+False</code></pre>
+</div>
+</div>
+</section>
+<section id="控制语句循环" class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="控制语句循环"><span class="header-section-number">8.9</span> 控制语句：循环</h2>
+<p>有时我们需要重复一条类似的命令很多次，此时我们可以使用循环命令。</p>
+<p>在Python中有两个循环语句：while和for，两者很大程度上是等价的，但是在不同情况下方便程度时不一样的。</p>
+<p>for作为关键字，其基本语法为：</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1"></a><span class="cf">for</span> var <span class="kw">in</span> iterable_obj:</span>
+<span id="cb112-2"><a href="#cb112-2"></a>    <span class="co">## code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>其中var为一个变量，iterable_obj为一个可迭代对象，如列表、元组或者字符串，其后面紧接着跟着一个冒号。</p>
+<p>在这里需要注意的是，不像C或者Java使用大括号区分代码块，在Python中，主要靠缩进区分代码块，因而需要循环执行的代码，要写在for语句的下一行，并使用Tab键或者几个（一般为4/8个）空格进行缩进。</p>
+<p>比如，以下语句把字符串中的每个字符都分别打印出来：</p>
+<div id="cell-114" class="cell" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1"></a>name<span class="op">=</span><span class="st">'Messi'</span></span>
+<span id="cb113-2"><a href="#cb113-2"></a><span class="cf">for</span> n <span class="kw">in</span> name:</span>
+<span id="cb113-3"><a href="#cb113-3"></a>    <span class="bu">print</span>(n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>M
+e
+s
+s
+i</code></pre>
+</div>
+</div>
+<p>而以下代码将player_list中所有的人名及号码打印出来：</p>
+<div id="cell-116" class="cell" data-execution_count="71">
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1"></a><span class="cf">for</span> player <span class="kw">in</span> player_list:</span>
+<span id="cb115-2"><a href="#cb115-2"></a>    <span class="bu">print</span>(player[<span class="dv">0</span>],end<span class="op">=</span><span class="st">''</span>)</span>
+<span id="cb115-3"><a href="#cb115-3"></a>    <span class="bu">print</span>(<span class="st">" : "</span>,end<span class="op">=</span><span class="st">''</span>)</span>
+<span id="cb115-4"><a href="#cb115-4"></a>    <span class="bu">print</span>(player[<span class="dv">1</span>])</span>
+<span id="cb115-5"><a href="#cb115-5"></a><span class="bu">print</span>(<span class="st">"---the end---"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ter Stegen : 1
+Pique : 3
+Busquets : 5
+Xavi : 6
+Suárez : 9
+Messi : 10
+---the end---</code></pre>
+</div>
+</div>
+<p>注意到最后一行并没有被缩进，因而不属于需要循环执行的代码块，因而只执行了一次。</p>
+<p>此外，经常遇到的一个情形是对数字进行循环，此时可以使用range()函数。如果使用range(N)，将会返回一个可迭代的对象，其值为0,…,N-1。比如：</p>
+<div id="cell-118" class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1"></a><span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="72">
+<pre><code>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</code></pre>
+</div>
+</div>
+<p>也可以使用range(N,M)的形式，此时返回迭代对象的值为N,N+1,…,M-1，比如：</p>
+<div id="cell-120" class="cell" data-execution_count="73">
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb119-1"><a href="#cb119-1"></a><span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">11</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="73">
+<pre><code>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</code></pre>
+</div>
+</div>
+<p>使用以上特性，我们可以方便的使用range()函数来写for 循环，比如：</p>
+<div id="cell-122" class="cell" data-execution_count="74">
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb121-1"><a href="#cb121-1"></a>name<span class="op">=</span><span class="st">'Messi'</span></span>
+<span id="cb121-2"><a href="#cb121-2"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(name)):</span>
+<span id="cb121-3"><a href="#cb121-3"></a>    <span class="bu">print</span>(name[i])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>M
+e
+s
+s
+i</code></pre>
+</div>
+</div>
+<p>其中len()函数取得name中元素的个数，由于len(name)的值为5，因而range(len(name))就产生了一个可以迭代的、值为0,1,2,3,4的对象。</p>
+<p>以下程序计算了从1到101的所有奇数的和：</p>
+<div id="cell-124" class="cell" data-execution_count="75">
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb123-1"><a href="#cb123-1"></a>sum_odd<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb123-2"><a href="#cb123-2"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">51</span>):</span>
+<span id="cb123-3"><a href="#cb123-3"></a>    odd<span class="op">=</span><span class="dv">2</span><span class="op">*</span>i<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb123-4"><a href="#cb123-4"></a>    sum_odd<span class="op">+=</span>odd</span>
+<span id="cb123-5"><a href="#cb123-5"></a><span class="bu">print</span>(sum_odd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2601</code></pre>
+</div>
+</div>
+<p>而while循环的语法为：</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb125-1"><a href="#cb125-1"></a><span class="cf">while</span> logic_expression:</span>
+<span id="cb125-2"><a href="#cb125-2"></a>    <span class="co">## code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>同样，while循环的代码块也需要用缩进表示，而logic_expression是一个逻辑判断语句，只有当logic_expression值为真时，循环才继续执行，否则跳出循环。比如刚刚从1到101的所有奇数的和的代码也可以写为：</p>
+<div id="cell-126" class="cell" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb126-1"><a href="#cb126-1"></a>sum_odd<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb126-2"><a href="#cb126-2"></a>odd<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb126-3"><a href="#cb126-3"></a><span class="cf">while</span> odd<span class="op">&lt;=</span><span class="dv">101</span>:</span>
+<span id="cb126-4"><a href="#cb126-4"></a>    sum_odd<span class="op">+=</span>odd</span>
+<span id="cb126-5"><a href="#cb126-5"></a>    odd<span class="op">+=</span><span class="dv">2</span></span>
+<span id="cb126-6"><a href="#cb126-6"></a><span class="bu">print</span>(sum_odd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2601</code></pre>
+</div>
+</div>
+<p>特别需要注意的是一定不要忘了及时更新odd，否则很容易造成无限循环。</p>
+</section>
+<section id="控制语句条件" class="level2" data-number="8.10">
+<h2 data-number="8.10" class="anchored" data-anchor-id="控制语句条件"><span class="header-section-number">8.10</span> 控制语句：条件</h2>
+<p>条件语句用于判断某一个逻辑表达式，如果为真，则执行某个代码块。其最基本的形式如下：</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb128-1"><a href="#cb128-1"></a><span class="cf">if</span> logic_expression:</span>
+<span id="cb128-2"><a href="#cb128-2"></a>    <span class="co">## code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>同样，代码块也需要用缩进表示，其中的代码块只有当logic_expression的值为真时才执行，否则不执行。</p>
+<p>比如，如下的代码中，首先判断球员姓名是否为Messi或者Suárez，如果是，则打印其位置：</p>
+<div id="cell-129" class="cell" data-execution_count="77">
+<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb129-1"><a href="#cb129-1"></a><span class="cf">for</span> p <span class="kw">in</span> player_list:</span>
+<span id="cb129-2"><a href="#cb129-2"></a>    <span class="cf">if</span> p[<span class="dv">0</span>]<span class="op">==</span><span class="st">'Messi'</span> <span class="kw">or</span> p[<span class="dv">0</span>]<span class="op">==</span><span class="st">'Suárez'</span>:</span>
+<span id="cb129-3"><a href="#cb129-3"></a>        <span class="bu">print</span>(p[<span class="dv">0</span>],<span class="st">":前锋"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Suárez :前锋
+Messi :前锋</code></pre>
+</div>
+</div>
+<p>此外，if 后面还可以跟elif语句：</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb131-1"><a href="#cb131-1"></a><span class="cf">if</span> logic_expression1:</span>
+<span id="cb131-2"><a href="#cb131-2"></a>    <span class="co">## code1</span></span>
+<span id="cb131-3"><a href="#cb131-3"></a><span class="cf">elif</span> logic_expression2:</span>
+<span id="cb131-4"><a href="#cb131-4"></a>    <span class="co">## code2</span></span>
+<span id="cb131-5"><a href="#cb131-5"></a><span class="cf">elif</span>  logic_expression3:</span>
+<span id="cb131-6"><a href="#cb131-6"></a>    <span class="co">## code3</span></span>
+<span id="cb131-7"><a href="#cb131-7"></a>....</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>即“else if”，如果logic_expression1满足，则执行code1，如果不满足，则继续判断logic_expression2是否满足，若满足，则执行code2，以此类推。比如：</p>
+<div id="cell-131" class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb132-1"><a href="#cb132-1"></a><span class="cf">for</span> p <span class="kw">in</span> player_list:</span>
+<span id="cb132-2"><a href="#cb132-2"></a>    <span class="cf">if</span> p[<span class="dv">0</span>] <span class="kw">in</span> (<span class="st">'Messi'</span>, <span class="st">'Suárez'</span>):</span>
+<span id="cb132-3"><a href="#cb132-3"></a>        <span class="bu">print</span>(p[<span class="dv">0</span>],<span class="st">"：前锋"</span>)</span>
+<span id="cb132-4"><a href="#cb132-4"></a>    <span class="cf">elif</span> p[<span class="dv">0</span>] <span class="kw">in</span> (<span class="st">'Xavi'</span>, <span class="st">'Arthur'</span>,<span class="st">'Busquets'</span>):</span>
+<span id="cb132-5"><a href="#cb132-5"></a>        <span class="bu">print</span>(p[<span class="dv">0</span>],<span class="st">"：中场"</span>)</span>
+<span id="cb132-6"><a href="#cb132-6"></a>    <span class="cf">elif</span> p[<span class="dv">0</span>] <span class="kw">in</span> (<span class="st">'Pique'</span>):</span>
+<span id="cb132-7"><a href="#cb132-7"></a>        <span class="bu">print</span>(p[<span class="dv">0</span>],<span class="st">"：后卫"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Pique ：后卫
+Busquets ：中场
+Xavi ：中场
+Suárez ：前锋
+Messi ：前锋</code></pre>
+</div>
+</div>
+<p>最后，还可以加else语句，用于所有的if或者elif的逻辑表达式都不满足时执行</p>
+<div id="cell-133" class="cell" data-execution_count="79">
+<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb134-1"><a href="#cb134-1"></a><span class="cf">for</span> p <span class="kw">in</span> player_list:</span>
+<span id="cb134-2"><a href="#cb134-2"></a>    <span class="cf">if</span> p[<span class="dv">0</span>] <span class="kw">in</span> (<span class="st">'Messi'</span>, <span class="st">'Suárez'</span>):</span>
+<span id="cb134-3"><a href="#cb134-3"></a>        <span class="bu">print</span>(p[<span class="dv">0</span>],<span class="st">"：前锋"</span>)</span>
+<span id="cb134-4"><a href="#cb134-4"></a>    <span class="cf">elif</span> p[<span class="dv">0</span>] <span class="kw">in</span> (<span class="st">'Xavi'</span>, <span class="st">'Iniesta'</span>,<span class="st">'Busquets'</span>):</span>
+<span id="cb134-5"><a href="#cb134-5"></a>        <span class="bu">print</span>(p[<span class="dv">0</span>],<span class="st">"：中场"</span>)</span>
+<span id="cb134-6"><a href="#cb134-6"></a>    <span class="cf">elif</span> p[<span class="dv">0</span>] <span class="kw">in</span> (<span class="st">'Pique'</span>):</span>
+<span id="cb134-7"><a href="#cb134-7"></a>        <span class="bu">print</span>(p[<span class="dv">0</span>],<span class="st">"：后卫"</span>)</span>
+<span id="cb134-8"><a href="#cb134-8"></a>    <span class="cf">else</span>:</span>
+<span id="cb134-9"><a href="#cb134-9"></a>        <span class="bu">print</span>(p[<span class="dv">0</span>],<span class="st">"守门员"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ter Stegen 守门员
+Pique ：后卫
+Busquets ：中场
+Xavi ：中场
+Suárez ：前锋
+Messi ：前锋</code></pre>
+</div>
+</div>
+<p>此外，if语句可以与break、continue、pass等一起控制循环。其中：</p>
+<ul>
+<li>break：跳出循环不再执行</li>
+<li>countinue：跳出本次循环后面的代码，但是循环继续执行</li>
+<li>pass：什么都不做，继续执行</li>
+</ul>
+<p>比如，计算从1到101的所有奇数的和的代码也可以写为：</p>
+<div id="cell-135" class="cell" data-execution_count="80">
+<div class="sourceCode cell-code" id="cb136"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb136-1"><a href="#cb136-1"></a>sum_odd<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb136-2"><a href="#cb136-2"></a>odd<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb136-3"><a href="#cb136-3"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb136-4"><a href="#cb136-4"></a>    sum_odd<span class="op">+=</span>odd</span>
+<span id="cb136-5"><a href="#cb136-5"></a>    odd<span class="op">+=</span><span class="dv">2</span></span>
+<span id="cb136-6"><a href="#cb136-6"></a>    <span class="cf">if</span> odd<span class="op">&gt;</span><span class="dv">101</span>:</span>
+<span id="cb136-7"><a href="#cb136-7"></a>        <span class="cf">break</span></span>
+<span id="cb136-8"><a href="#cb136-8"></a><span class="bu">print</span>(sum_odd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2601</code></pre>
+</div>
+</div>
+<p>在以上代码中，while True代表循环会一直执行，但是if语句会判断odd是否大于了101，如果odd一旦大于101，就会使用break退出循环。</p>
+<p>如果我们需要计算从1到101的所有不能被5整除的奇数的和，可以使用pass语句：</p>
+<div id="cell-137" class="cell" data-execution_count="81">
+<div class="sourceCode cell-code" id="cb138"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb138-1"><a href="#cb138-1"></a>sum_odd<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb138-2"><a href="#cb138-2"></a>odd<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb138-3"><a href="#cb138-3"></a><span class="cf">while</span> odd<span class="op">&lt;=</span><span class="dv">101</span>:</span>
+<span id="cb138-4"><a href="#cb138-4"></a>    <span class="cf">if</span> odd<span class="op">%</span><span class="dv">5</span><span class="op">==</span><span class="dv">0</span>:</span>
+<span id="cb138-5"><a href="#cb138-5"></a>        <span class="cf">pass</span></span>
+<span id="cb138-6"><a href="#cb138-6"></a>    <span class="cf">else</span>:</span>
+<span id="cb138-7"><a href="#cb138-7"></a>        sum_odd<span class="op">+=</span>odd</span>
+<span id="cb138-8"><a href="#cb138-8"></a>    odd<span class="op">+=</span><span class="dv">2</span></span>
+<span id="cb138-9"><a href="#cb138-9"></a><span class="bu">print</span>(sum_odd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2101</code></pre>
+</div>
+</div>
+<p>以下代码我们使用continue语句将一个字符串中所有的’s’都给去掉</p>
+<div id="cell-139" class="cell" data-execution_count="82">
+<div class="sourceCode cell-code" id="cb140"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb140-1"><a href="#cb140-1"></a>a<span class="op">=</span><span class="st">'Messi'</span></span>
+<span id="cb140-2"><a href="#cb140-2"></a>b<span class="op">=</span><span class="st">''</span></span>
+<span id="cb140-3"><a href="#cb140-3"></a><span class="cf">for</span> s <span class="kw">in</span> a:</span>
+<span id="cb140-4"><a href="#cb140-4"></a>    <span class="cf">if</span> s<span class="op">==</span><span class="st">'s'</span>:</span>
+<span id="cb140-5"><a href="#cb140-5"></a>        <span class="cf">continue</span></span>
+<span id="cb140-6"><a href="#cb140-6"></a>    b<span class="op">+=</span>s</span>
+<span id="cb140-7"><a href="#cb140-7"></a><span class="bu">print</span>(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Mei</code></pre>
+</div>
+</div>
+<p>在以上代码中，当碰到’s’时，循环跳过了b+=s这一句，而是继续执行循环，直到循环结束。与之相比的是break命令直接跳出了循环：</p>
+<div id="cell-141" class="cell" data-execution_count="83">
+<div class="sourceCode cell-code" id="cb142"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb142-1"><a href="#cb142-1"></a>a<span class="op">=</span><span class="st">'Messi'</span></span>
+<span id="cb142-2"><a href="#cb142-2"></a>b<span class="op">=</span><span class="st">''</span></span>
+<span id="cb142-3"><a href="#cb142-3"></a><span class="cf">for</span> s <span class="kw">in</span> a:</span>
+<span id="cb142-4"><a href="#cb142-4"></a>    <span class="cf">if</span> s<span class="op">==</span><span class="st">'s'</span>:</span>
+<span id="cb142-5"><a href="#cb142-5"></a>        <span class="cf">break</span></span>
+<span id="cb142-6"><a href="#cb142-6"></a>    b<span class="op">+=</span>s</span>
+<span id="cb142-7"><a href="#cb142-7"></a><span class="bu">print</span>(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Me</code></pre>
+</div>
+</div>
+</section>
+<section id="实例" class="level2" data-number="8.11">
+<h2 data-number="8.11" class="anchored" data-anchor-id="实例"><span class="header-section-number">8.11</span> 实例</h2>
+<div id="cell-143" class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb144"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb144-1"><a href="#cb144-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb144-2"><a href="#cb144-2"></a></span>
+<span id="cb144-3"><a href="#cb144-3"></a><span class="co"># 构造一个简单的学生成绩数据</span></span>
+<span id="cb144-4"><a href="#cb144-4"></a>students <span class="op">=</span> [</span>
+<span id="cb144-5"><a href="#cb144-5"></a>    {<span class="st">"name"</span>: <span class="st">"Alice"</span>, <span class="st">"score"</span>: <span class="dv">85</span>},</span>
+<span id="cb144-6"><a href="#cb144-6"></a>    {<span class="st">"name"</span>: <span class="st">"Bob"</span>, <span class="st">"score"</span>: <span class="dv">58</span>},</span>
+<span id="cb144-7"><a href="#cb144-7"></a>    {<span class="st">"name"</span>: <span class="st">"Charlie"</span>, <span class="st">"score"</span>: <span class="dv">92</span>},</span>
+<span id="cb144-8"><a href="#cb144-8"></a>    {<span class="st">"name"</span>: <span class="st">"David"</span>, <span class="st">"score"</span>: <span class="dv">40</span>},</span>
+<span id="cb144-9"><a href="#cb144-9"></a>    {<span class="st">"name"</span>: <span class="st">"Eva"</span>, <span class="st">"score"</span>: <span class="dv">60</span>}</span>
+<span id="cb144-10"><a href="#cb144-10"></a>]</span>
+<span id="cb144-11"><a href="#cb144-11"></a></span>
+<span id="cb144-12"><a href="#cb144-12"></a><span class="co"># 只保留成绩及格（&gt;=60）的学生</span></span>
+<span id="cb144-13"><a href="#cb144-13"></a>passed_students <span class="op">=</span> [s <span class="cf">for</span> s <span class="kw">in</span> students <span class="cf">if</span> s[<span class="st">"score"</span>] <span class="op">&gt;=</span> <span class="dv">60</span>]</span>
+<span id="cb144-14"><a href="#cb144-14"></a></span>
+<span id="cb144-15"><a href="#cb144-15"></a><span class="co"># 转换为 pandas DataFrame 并打印为表格</span></span>
+<span id="cb144-16"><a href="#cb144-16"></a>df_passed <span class="op">=</span> pd.DataFrame(passed_students)</span>
+<span id="cb144-17"><a href="#cb144-17"></a></span>
+<span id="cb144-18"><a href="#cb144-18"></a><span class="co"># 打印格式化的表格</span></span>
+<span id="cb144-19"><a href="#cb144-19"></a><span class="bu">print</span>(<span class="st">"及格学生名单："</span>)</span>
+<span id="cb144-20"><a href="#cb144-20"></a><span class="bu">print</span>(df_passed.to_string(index<span class="op">=</span><span class="va">False</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>及格学生名单：
+   name  score
+  Alice     85
+Charlie     92
+    Eva     60</code></pre>
+</div>
+</div>
+<p>在上例中，我们使用了 <strong>列表推导式</strong>（List Comprehension）写法：<code>passed_students</code> 是一个新列表，它通过列表推导式从 <code>students</code> 列表中筛选出所有 <code>"score"</code> 大于等于 60 的学生字典 <code>s</code>。这种写法逻辑简洁、表达紧凑：</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb146-1"><a href="#cb146-1"></a>passed_students <span class="op">=</span> [s <span class="cf">for</span> s <span class="kw">in</span> students <span class="cf">if</span> s[<span class="st">"score"</span>] <span class="op">&gt;=</span> <span class="dv">60</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>它等价于下面的传统写法：</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb147-1"><a href="#cb147-1"></a>passed_students <span class="op">=</span> []</span>
+<span id="cb147-2"><a href="#cb147-2"></a><span class="cf">for</span> s <span class="kw">in</span> students:</span>
+<span id="cb147-3"><a href="#cb147-3"></a>    <span class="cf">if</span> s[<span class="st">"score"</span>] <span class="op">&gt;=</span> <span class="dv">60</span>:</span>
+<span id="cb147-4"><a href="#cb147-4"></a>        passed_students.append(s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>两者实现的功能完全一致，都是<strong>遍历 <code>students</code> 列表，对每个学生字典 <code>s</code> 检查其 <code>"score"</code> 值是否大于等于 60</strong>，如果是，就将该学生加入新的列表 <code>passed_students</code>。</p>
+<p>列表推导式的优势在于：</p>
+<ul>
+<li>写法简洁，更适合一行逻辑较清晰的筛选任务；</li>
+<li>常用于数据清洗、筛选、转换等操作，阅读性和执行效率较高。</li>
+</ul>
+<p>当逻辑比较复杂（如嵌套循环或多个条件判断）时，仍推荐使用传统的 <code>for</code> 循环方式，更利于维护和调试。</p>
+</section>
+<section id="控制语句异常" class="level2" data-number="8.12">
+<h2 data-number="8.12" class="anchored" data-anchor-id="控制语句异常"><span class="header-section-number">8.12</span> 控制语句：异常</h2>
+<p>理想与现实总是有差距的。在程序现实运行过程中，出于很多原因，总是可能会存在<strong>异常</strong>（<strong>exception</strong>）。比如，一个最简单的异常是，允许用户输入两个数字相除，但是用户却输入了0作为分母；或者，用户输入的不是数字，而是字母。此时，正常的程序可能会发生错误。</p>
+<p>任何高级语言几乎都带有处理异常的功能，Python也不例外。</p>
+<p>在Python中，可以使用try…except…else…finally语句来处理异常，语法为：</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb148-1"><a href="#cb148-1"></a><span class="cf">try</span>:</span>
+<span id="cb148-2"><a href="#cb148-2"></a>    <span class="co"># code1</span></span>
+<span id="cb148-3"><a href="#cb148-3"></a><span class="cf">except</span> Exception1:</span>
+<span id="cb148-4"><a href="#cb148-4"></a>    <span class="co"># code2</span></span>
+<span id="cb148-5"><a href="#cb148-5"></a><span class="cf">except</span> Exception2:</span>
+<span id="cb148-6"><a href="#cb148-6"></a>......</span>
+<span id="cb148-7"><a href="#cb148-7"></a></span>
+<span id="cb148-8"><a href="#cb148-8"></a><span class="cf">else</span>:</span>
+<span id="cb148-9"><a href="#cb148-9"></a>    <span class="co"># code3</span></span>
+<span id="cb148-10"><a href="#cb148-10"></a><span class="cf">finally</span>:</span>
+<span id="cb148-11"><a href="#cb148-11"></a>    <span class="co">#code4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>首先，解释器会执行code1，如果没有错误，就执行code3，并继续下去。如果发生了错误，会查看具体发生何种错误，执行相应的except中的命令。最终，无论错误是否发生，code4都会被执行，并继续执行finally后面的代码。</p>
+<p>比如，下面一个例子展示了分母为0时的处理方法：</p>
+<div id="cell-146" class="cell" data-execution_count="84">
+<div class="sourceCode cell-code" id="cb149"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb149-1"><a href="#cb149-1"></a>a<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb149-2"><a href="#cb149-2"></a>b<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb149-3"><a href="#cb149-3"></a><span class="cf">try</span>:</span>
+<span id="cb149-4"><a href="#cb149-4"></a>    c<span class="op">=</span>a<span class="op">/</span>b</span>
+<span id="cb149-5"><a href="#cb149-5"></a><span class="cf">except</span> <span class="pp">ZeroDivisionError</span> <span class="im">as</span> e:</span>
+<span id="cb149-6"><a href="#cb149-6"></a>    <span class="bu">print</span>(<span class="st">"分母为0:，错误信息："</span>, e)</span>
+<span id="cb149-7"><a href="#cb149-7"></a><span class="cf">else</span>:</span>
+<span id="cb149-8"><a href="#cb149-8"></a>    <span class="bu">print</span>(<span class="st">"没有错误发生。"</span>)</span>
+<span id="cb149-9"><a href="#cb149-9"></a><span class="cf">finally</span>:</span>
+<span id="cb149-10"><a href="#cb149-10"></a>    <span class="bu">print</span>(<span class="st">"C'est la vie!"</span>)</span>
+<span id="cb149-11"><a href="#cb149-11"></a>    <span class="bu">print</span>(c)</span>
+<span id="cb149-12"><a href="#cb149-12"></a><span class="bu">print</span>(<span class="st">"生活还要继续。"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>分母为0:，错误信息： division by zero
+C'est la vie!
+This is a cat: 🐈
+生活还要继续。</code></pre>
+</div>
+</div>
+<div id="cell-147" class="cell" data-execution_count="85">
+<div class="sourceCode cell-code" id="cb151"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb151-1"><a href="#cb151-1"></a>a<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb151-2"><a href="#cb151-2"></a>b<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb151-3"><a href="#cb151-3"></a><span class="cf">try</span>:</span>
+<span id="cb151-4"><a href="#cb151-4"></a>    c<span class="op">=</span>a<span class="op">/</span>b</span>
+<span id="cb151-5"><a href="#cb151-5"></a><span class="cf">except</span> <span class="pp">ZeroDivisionError</span> <span class="im">as</span> e:</span>
+<span id="cb151-6"><a href="#cb151-6"></a>    <span class="bu">print</span>(<span class="st">"分母为0:，错误信息："</span>, e)</span>
+<span id="cb151-7"><a href="#cb151-7"></a><span class="cf">else</span>:</span>
+<span id="cb151-8"><a href="#cb151-8"></a>    <span class="bu">print</span>(<span class="st">"没有错误发生。"</span>)</span>
+<span id="cb151-9"><a href="#cb151-9"></a><span class="cf">finally</span>:</span>
+<span id="cb151-10"><a href="#cb151-10"></a>    <span class="bu">print</span>(<span class="st">"C'est la vie!"</span>)</span>
+<span id="cb151-11"><a href="#cb151-11"></a>    <span class="bu">print</span>(c)</span>
+<span id="cb151-12"><a href="#cb151-12"></a><span class="bu">print</span>(<span class="st">"生活还要继续。"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>没有错误发生。
+C'est la vie!
+0.0
+生活还要继续。</code></pre>
+</div>
+</div>
+<p>except可以不止有一个，比如，我们可能还需要处理类型错误，比如将数字和字符串进行运算：</p>
+<div id="cell-149" class="cell" data-execution_count="86">
+<div class="sourceCode cell-code" id="cb153"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb153-1"><a href="#cb153-1"></a>a<span class="op">=</span><span class="st">'0'</span></span>
+<span id="cb153-2"><a href="#cb153-2"></a>b<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb153-3"><a href="#cb153-3"></a><span class="cf">try</span>:</span>
+<span id="cb153-4"><a href="#cb153-4"></a>    c<span class="op">=</span>a<span class="op">/</span>b</span>
+<span id="cb153-5"><a href="#cb153-5"></a><span class="cf">except</span> <span class="pp">ZeroDivisionError</span> <span class="im">as</span> e:</span>
+<span id="cb153-6"><a href="#cb153-6"></a>    <span class="bu">print</span>(<span class="st">"分母为0:，错误信息："</span>, e)</span>
+<span id="cb153-7"><a href="#cb153-7"></a><span class="cf">except</span> <span class="pp">TypeError</span> <span class="im">as</span> e:</span>
+<span id="cb153-8"><a href="#cb153-8"></a>    <span class="bu">print</span>(<span class="st">"类型错误："</span>, e)</span>
+<span id="cb153-9"><a href="#cb153-9"></a><span class="cf">else</span>:</span>
+<span id="cb153-10"><a href="#cb153-10"></a>    <span class="bu">print</span>(<span class="st">"没有错误发生。"</span>)</span>
+<span id="cb153-11"><a href="#cb153-11"></a><span class="cf">finally</span>:</span>
+<span id="cb153-12"><a href="#cb153-12"></a>    <span class="bu">print</span>(<span class="st">"C'est la vie!"</span>)</span>
+<span id="cb153-13"><a href="#cb153-13"></a>    <span class="bu">print</span>(c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>类型错误： unsupported operand type(s) for /: 'str' and 'int'
+C'est la vie!
+0.0</code></pre>
+</div>
+</div>
+<p>或者可以将两者合并：</p>
+<div id="cell-151" class="cell" data-execution_count="87">
+<div class="sourceCode cell-code" id="cb155"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb155-1"><a href="#cb155-1"></a>a<span class="op">=</span><span class="st">'0'</span></span>
+<span id="cb155-2"><a href="#cb155-2"></a>b<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb155-3"><a href="#cb155-3"></a><span class="cf">try</span>:</span>
+<span id="cb155-4"><a href="#cb155-4"></a>    c<span class="op">=</span>a<span class="op">/</span>b</span>
+<span id="cb155-5"><a href="#cb155-5"></a><span class="cf">except</span> (<span class="pp">ZeroDivisionError</span>,<span class="pp">TypeError</span>) <span class="im">as</span> e:</span>
+<span id="cb155-6"><a href="#cb155-6"></a>    <span class="bu">print</span>(<span class="st">"错误："</span>, e)</span>
+<span id="cb155-7"><a href="#cb155-7"></a><span class="cf">else</span>:</span>
+<span id="cb155-8"><a href="#cb155-8"></a>    <span class="bu">print</span>(<span class="st">"没有错误发生。"</span>)</span>
+<span id="cb155-9"><a href="#cb155-9"></a><span class="cf">finally</span>:</span>
+<span id="cb155-10"><a href="#cb155-10"></a>    <span class="bu">print</span>(<span class="st">"C'est la vie!"</span>)</span>
+<span id="cb155-11"><a href="#cb155-11"></a>    <span class="bu">print</span>(c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>错误： unsupported operand type(s) for /: 'str' and 'int'
+C'est la vie!
+0.0</code></pre>
+</div>
+</div>
+<p>如果不知道会发生什么错误，也可以什么也不加，捕获所有错误：</p>
+<div id="cell-153" class="cell" data-execution_count="88">
+<div class="sourceCode cell-code" id="cb157"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb157-1"><a href="#cb157-1"></a>a<span class="op">=</span><span class="st">'0'</span></span>
+<span id="cb157-2"><a href="#cb157-2"></a>b<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb157-3"><a href="#cb157-3"></a><span class="cf">try</span>:</span>
+<span id="cb157-4"><a href="#cb157-4"></a>    c<span class="op">=</span>a<span class="op">/</span>b</span>
+<span id="cb157-5"><a href="#cb157-5"></a><span class="cf">except</span>:</span>
+<span id="cb157-6"><a href="#cb157-6"></a>    <span class="bu">print</span>(<span class="st">"错误："</span>)</span>
+<span id="cb157-7"><a href="#cb157-7"></a><span class="cf">else</span>:</span>
+<span id="cb157-8"><a href="#cb157-8"></a>    <span class="bu">print</span>(<span class="st">"没有错误发生。"</span>)</span>
+<span id="cb157-9"><a href="#cb157-9"></a><span class="cf">finally</span>:</span>
+<span id="cb157-10"><a href="#cb157-10"></a>    <span class="bu">print</span>(<span class="st">"C'est la vie!"</span>)</span>
+<span id="cb157-11"><a href="#cb157-11"></a>    <span class="bu">print</span>(c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>错误：
+C'est la vie!
+0.0</code></pre>
+</div>
+</div>
+<p>更好的办法是将错误捕获，并打印出来方便调试：</p>
+<div id="cell-155" class="cell" data-execution_count="89">
+<div class="sourceCode cell-code" id="cb159"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb159-1"><a href="#cb159-1"></a>a<span class="op">=</span><span class="st">'0'</span></span>
+<span id="cb159-2"><a href="#cb159-2"></a>b<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb159-3"><a href="#cb159-3"></a><span class="cf">try</span>:</span>
+<span id="cb159-4"><a href="#cb159-4"></a>    c<span class="op">=</span>a<span class="op">/</span>b</span>
+<span id="cb159-5"><a href="#cb159-5"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb159-6"><a href="#cb159-6"></a>    <span class="bu">print</span>(<span class="st">"错误："</span>, e)</span>
+<span id="cb159-7"><a href="#cb159-7"></a><span class="cf">else</span>:</span>
+<span id="cb159-8"><a href="#cb159-8"></a>    <span class="bu">print</span>(<span class="st">"没有错误发生。"</span>)</span>
+<span id="cb159-9"><a href="#cb159-9"></a><span class="cf">finally</span>:</span>
+<span id="cb159-10"><a href="#cb159-10"></a>    <span class="bu">print</span>(<span class="st">"C'est la vie!"</span>)</span>
+<span id="cb159-11"><a href="#cb159-11"></a>    <span class="bu">print</span>(c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>错误： unsupported operand type(s) for /: 'str' and 'int'
+C'est la vie!
+0.0</code></pre>
+</div>
+</div>
+</section>
+<section id="列表推导" class="level2" data-number="8.13">
+<h2 data-number="8.13" class="anchored" data-anchor-id="列表推导"><span class="header-section-number">8.13</span> 列表推导</h2>
+<p>在Python中，可以结合循环语句for、判断语句if、else等，写出更加简洁的程序。</p>
+<p>比如，如果我们希望生成一个1…99中所有能被3整除的奇数的表达式，一般可以通过如下的程序：</p>
+<div id="cell-157" class="cell" data-execution_count="90">
+<div class="sourceCode cell-code" id="cb161"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb161-1"><a href="#cb161-1"></a>a<span class="op">=</span>[]</span>
+<span id="cb161-2"><a href="#cb161-2"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>):</span>
+<span id="cb161-3"><a href="#cb161-3"></a>    <span class="cf">if</span> (<span class="dv">2</span><span class="op">*</span>i<span class="op">+</span><span class="dv">1</span>)<span class="op">%</span><span class="dv">3</span><span class="op">==</span><span class="dv">0</span>:</span>
+<span id="cb161-4"><a href="#cb161-4"></a>        a.append(<span class="dv">2</span><span class="op">*</span>i<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb161-5"><a href="#cb161-5"></a><span class="bu">print</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[3, 9, 15, 21, 27, 33, 39, 45, 51, 57, 63, 69, 75, 81, 87, 93, 99]</code></pre>
+</div>
+</div>
+<p>以上代码已经足够简洁，但是Python还支持以下更简洁的方式：</p>
+<div id="cell-159" class="cell" data-execution_count="91">
+<div class="sourceCode cell-code" id="cb163"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb163-1"><a href="#cb163-1"></a>a<span class="op">=</span>[<span class="dv">2</span><span class="op">*</span>i<span class="op">+</span><span class="dv">1</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>) <span class="cf">if</span> (<span class="dv">2</span><span class="op">*</span>i<span class="op">+</span><span class="dv">1</span>)<span class="op">%</span><span class="dv">3</span><span class="op">==</span><span class="dv">0</span>]</span>
+<span id="cb163-2"><a href="#cb163-2"></a><span class="bu">print</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[3, 9, 15, 21, 27, 33, 39, 45, 51, 57, 63, 69, 75, 81, 87, 93, 99]</code></pre>
+</div>
+</div>
+<p>当然，也支持双重循环，比如列出一个奇数元组，第一个分类能被3整除，第二个分类能被5整除：</p>
+<div id="cell-161" class="cell" data-execution_count="92">
+<div class="sourceCode cell-code" id="cb165"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb165-1"><a href="#cb165-1"></a>b<span class="op">=</span>[(<span class="dv">2</span><span class="op">*</span>i<span class="op">+</span><span class="dv">1</span>,<span class="dv">2</span><span class="op">*</span>j<span class="op">+</span><span class="dv">1</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>) <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>) <span class="cf">if</span> (<span class="dv">2</span><span class="op">*</span>i<span class="op">+</span><span class="dv">1</span>)<span class="op">%</span><span class="dv">3</span><span class="op">==</span><span class="dv">0</span> <span class="kw">and</span> (<span class="dv">2</span><span class="op">*</span>j<span class="op">+</span><span class="dv">1</span>)<span class="op">%</span><span class="dv">5</span><span class="op">==</span><span class="dv">0</span>]</span>
+<span id="cb165-2"><a href="#cb165-2"></a><span class="bu">print</span>(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[(3, 5), (3, 15), (3, 25), (3, 35), (3, 45), (3, 55), (3, 65), (3, 75), (3, 85), (3, 95), (9, 5), (9, 15), (9, 25), (9, 35), (9, 45), (9, 55), (9, 65), (9, 75), (9, 85), (9, 95), (15, 5), (15, 15), (15, 25), (15, 35), (15, 45), (15, 55), (15, 65), (15, 75), (15, 85), (15, 95), (21, 5), (21, 15), (21, 25), (21, 35), (21, 45), (21, 55), (21, 65), (21, 75), (21, 85), (21, 95), (27, 5), (27, 15), (27, 25), (27, 35), (27, 45), (27, 55), (27, 65), (27, 75), (27, 85), (27, 95), (33, 5), (33, 15), (33, 25), (33, 35), (33, 45), (33, 55), (33, 65), (33, 75), (33, 85), (33, 95), (39, 5), (39, 15), (39, 25), (39, 35), (39, 45), (39, 55), (39, 65), (39, 75), (39, 85), (39, 95), (45, 5), (45, 15), (45, 25), (45, 35), (45, 45), (45, 55), (45, 65), (45, 75), (45, 85), (45, 95), (51, 5), (51, 15), (51, 25), (51, 35), (51, 45), (51, 55), (51, 65), (51, 75), (51, 85), (51, 95), (57, 5), (57, 15), (57, 25), (57, 35), (57, 45), (57, 55), (57, 65), (57, 75), (57, 85), (57, 95), (63, 5), (63, 15), (63, 25), (63, 35), (63, 45), (63, 55), (63, 65), (63, 75), (63, 85), (63, 95), (69, 5), (69, 15), (69, 25), (69, 35), (69, 45), (69, 55), (69, 65), (69, 75), (69, 85), (69, 95), (75, 5), (75, 15), (75, 25), (75, 35), (75, 45), (75, 55), (75, 65), (75, 75), (75, 85), (75, 95), (81, 5), (81, 15), (81, 25), (81, 35), (81, 45), (81, 55), (81, 65), (81, 75), (81, 85), (81, 95), (87, 5), (87, 15), (87, 25), (87, 35), (87, 45), (87, 55), (87, 65), (87, 75), (87, 85), (87, 95), (93, 5), (93, 15), (93, 25), (93, 35), (93, 45), (93, 55), (93, 65), (93, 75), (93, 85), (93, 95), (99, 5), (99, 15), (99, 25), (99, 35), (99, 45), (99, 55), (99, 65), (99, 75), (99, 85), (99, 95)]</code></pre>
+</div>
+</div>
+<p>此外还支持else语句，比如，以下代码将1…10的所有奇数都取负数，所有偶数保持不变：</p>
+<div id="cell-163" class="cell" data-execution_count="93">
+<div class="sourceCode cell-code" id="cb167"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb167-1"><a href="#cb167-1"></a>c<span class="op">=</span>[i<span class="op">+</span><span class="dv">1</span> <span class="cf">if</span> (i<span class="op">+</span><span class="dv">1</span>)<span class="op">%</span><span class="dv">2</span><span class="op">==</span><span class="dv">0</span> <span class="cf">else</span> <span class="op">-</span>(i<span class="op">+</span><span class="dv">1</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>)]</span>
+<span id="cb167-2"><a href="#cb167-2"></a><span class="bu">print</span>(c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[-1, 2, -3, 4, -5, 6, -7, 8, -9, 10]</code></pre>
+</div>
+</div>
+<p>注意如果需要使用else，if…else…要写在for前面。</p>
+</section>
+<section id="字典" class="level2" data-number="8.14">
+<h2 data-number="8.14" class="anchored" data-anchor-id="字典"><span class="header-section-number">8.14</span> 字典</h2>
+<p><strong>字典</strong>（<strong>dictionary</strong>）在Python中是一种映射关系，即特定的单词（<strong>键</strong>，<strong>key</strong>）以及其<strong>值</strong>（<strong>value</strong>）之间的关系。字典可以使用大括号配合冒号进行声明，比如之前的球员号码：</p>
+<div id="cell-166" class="cell" data-execution_count="94">
+<div class="sourceCode cell-code" id="cb169"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb169-1"><a href="#cb169-1"></a>players<span class="op">=</span>{<span class="st">"Messi"</span>:<span class="dv">10</span>,</span>
+<span id="cb169-2"><a href="#cb169-2"></a>        <span class="st">"Xavi"</span>:<span class="dv">6</span>,</span>
+<span id="cb169-3"><a href="#cb169-3"></a>        <span class="st">"Iniesta"</span>:<span class="dv">8</span>,</span>
+<span id="cb169-4"><a href="#cb169-4"></a>        <span class="st">"Pique"</span>:<span class="dv">3</span>}</span>
+<span id="cb169-5"><a href="#cb169-5"></a><span class="bu">print</span>(players)</span>
+<span id="cb169-6"><a href="#cb169-6"></a><span class="bu">print</span>(players[<span class="st">'Messi'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'Messi': 10, 'Xavi': 6, 'Iniesta': 8, 'Pique': 3}
+10</code></pre>
+</div>
+</div>
+<p>在以上的代码中，我们使用大括号以及冒号声明了一个字典：playsers，其中键为”Messi”、“Xavi”等等，其值分别为10、6等等。接着，使用players[‘Messi’]取得了键为’Messi’的值。另外也可以使用dict()进行创建：</p>
+<div id="cell-168" class="cell" data-execution_count="95">
+<div class="sourceCode cell-code" id="cb171"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb171-1"><a href="#cb171-1"></a>players<span class="op">=</span><span class="bu">dict</span>(Messi<span class="op">=</span><span class="dv">10</span>,Xavi<span class="op">=</span><span class="dv">6</span>,Iniesta<span class="op">=</span><span class="dv">8</span>,Pique<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb171-2"><a href="#cb171-2"></a><span class="bu">print</span>(players)</span>
+<span id="cb171-3"><a href="#cb171-3"></a><span class="bu">print</span>(players[<span class="st">'Messi'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'Messi': 10, 'Xavi': 6, 'Iniesta': 8, 'Pique': 3}
+10</code></pre>
+</div>
+</div>
+<p>与上面的结果一样。</p>
+<p>在循环语句中，可以使用通常的循环方法获得一个字典的keys：</p>
+<div id="cell-170" class="cell" data-execution_count="96">
+<div class="sourceCode cell-code" id="cb173"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb173-1"><a href="#cb173-1"></a><span class="cf">for</span> k <span class="kw">in</span> players:</span>
+<span id="cb173-2"><a href="#cb173-2"></a>    <span class="bu">print</span>(<span class="st">"Player: "</span>,k,<span class="st">": "</span>,players[k])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Player:  Messi :  10
+Player:  Xavi :  6
+Player:  Iniesta :  8
+Player:  Pique :  3</code></pre>
+</div>
+</div>
+<p>在以上循环中，我们使用循环遍历了players中所有的键，并将其值打印了出来。</p>
+<p>此外，字典还支持如下操作：</p>
+<ul>
+<li>len(players)：字典players的键-值对的个数</li>
+<li>del players(k)：删除键k</li>
+<li>k in players：判断字典players中是否有键k</li>
+</ul>
+<p>比如：</p>
+<div id="cell-172" class="cell" data-execution_count="97">
+<div class="sourceCode cell-code" id="cb175"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb175-1"><a href="#cb175-1"></a><span class="bu">print</span>(<span class="st">"Players中有"</span>,<span class="bu">len</span>(players),<span class="st">"个球员"</span>)</span>
+<span id="cb175-2"><a href="#cb175-2"></a><span class="bu">print</span>(players)</span>
+<span id="cb175-3"><a href="#cb175-3"></a><span class="cf">if</span> <span class="st">"Iniesta"</span> <span class="kw">in</span> players:</span>
+<span id="cb175-4"><a href="#cb175-4"></a>    <span class="kw">del</span> players[<span class="st">"Iniesta"</span>]</span>
+<span id="cb175-5"><a href="#cb175-5"></a><span class="bu">print</span>(players)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Players中有 4 个球员
+{'Messi': 10, 'Xavi': 6, 'Iniesta': 8, 'Pique': 3}
+{'Messi': 10, 'Xavi': 6, 'Pique': 3}</code></pre>
+</div>
+</div>
+</section>
+<section id="python中的none" class="level2" data-number="8.15">
+<h2 data-number="8.15" class="anchored" data-anchor-id="python中的none"><span class="header-section-number">8.15</span> Python中的None</h2>
+<p>在Python中还有一个非常特殊的类型：None，即什么都没有。注意None并不是空的元组、列表，也不是空的字符串，就是None：</p>
+<div id="cell-174" class="cell" data-execution_count="98">
+<div class="sourceCode cell-code" id="cb177"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb177-1"><a href="#cb177-1"></a><span class="bu">type</span>(<span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="98">
+<pre><code>NoneType</code></pre>
+</div>
+</div>
+<div id="cell-175" class="cell" data-execution_count="99">
+<div class="sourceCode cell-code" id="cb179"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb179-1"><a href="#cb179-1"></a><span class="bu">type</span>(<span class="st">''</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="99">
+<pre><code>str</code></pre>
+</div>
+</div>
+<div id="cell-176" class="cell" data-execution_count="100">
+<div class="sourceCode cell-code" id="cb181"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb181-1"><a href="#cb181-1"></a><span class="bu">type</span>([])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="100">
+<pre><code>list</code></pre>
+</div>
+</div>
+<div id="cell-177" class="cell" data-execution_count="101">
+<div class="sourceCode cell-code" id="cb183"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb183-1"><a href="#cb183-1"></a><span class="bu">type</span>(<span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="101">
+<pre><code>bool</code></pre>
+</div>
+</div>
+<p>由于None表示空的、没有，因而None跟其他任何数据类型比较都是返回False。</p>
+<p>如果要判断某个变量是否是None，可以使用is关键字：</p>
+<div id="cell-179" class="cell" data-execution_count="102">
+<div class="sourceCode cell-code" id="cb185"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb185-1"><a href="#cb185-1"></a>a<span class="op">=</span><span class="va">None</span></span>
+<span id="cb185-2"><a href="#cb185-2"></a>b<span class="op">=</span>[]</span>
+<span id="cb185-3"><a href="#cb185-3"></a><span class="bu">print</span>(a <span class="kw">is</span> <span class="va">None</span>)</span>
+<span id="cb185-4"><a href="#cb185-4"></a><span class="bu">print</span>(b <span class="kw">is</span> <span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>True
+False</code></pre>
+</div>
+</div>
+</section>
+<section id="小结" class="level2" data-number="8.16">
+<h2 data-number="8.16" class="anchored" data-anchor-id="小结"><span class="header-section-number">8.16</span> 小结</h2>
+<p>最后，我们使用一个综合的例子，回顾一下目前未知所学的内容。</p>
+<p>在接下来的程序中，我们使用input()函数从用户的输入中得到数字，知道用户输入“end”为止，并将所有的数字相加。</p>
+<div id="cell-181" class="cell" data-execution_count="103">
+<div class="sourceCode cell-code" id="cb187"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb187-1"><a href="#cb187-1"></a>summ<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb187-2"><a href="#cb187-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb187-3"><a href="#cb187-3"></a>    text<span class="op">=</span><span class="bu">input</span>(<span class="st">"请输入一个数字，或者end结束："</span>)</span>
+<span id="cb187-4"><a href="#cb187-4"></a>    <span class="cf">if</span> text<span class="op">==</span><span class="st">"end"</span>:</span>
+<span id="cb187-5"><a href="#cb187-5"></a>        <span class="cf">break</span></span>
+<span id="cb187-6"><a href="#cb187-6"></a>    summ<span class="op">+=</span><span class="bu">float</span>(text)</span>
+<span id="cb187-7"><a href="#cb187-7"></a><span class="bu">print</span>(summ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>请输入一个数字，或者end结束：3
+请输入一个数字，或者end结束：3
+请输入一个数字，或者end结束：2.3
+请输入一个数字，或者end结束：end
+8.3</code></pre>
+</div>
+</div>
+<p>在以上的程序中，我们首先使用input()函数获得用户输入，接着判断用户输入的是否为”end”，如果是，则退出，否则，由于input()获得的是一个字符串，因而我们使用float()函数将该字符串转换为一个浮点数字，再将其相加。</p>
+<p>但是以上程序并不完美，比如，如果用户输入的不是“end”也不是数字，就会报错，因而一个更完善的版本是加入错误处理：</p>
+<div id="cell-183" class="cell" data-execution_count="104">
+<div class="sourceCode cell-code" id="cb189"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb189-1"><a href="#cb189-1"></a>summ<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb189-2"><a href="#cb189-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb189-3"><a href="#cb189-3"></a>    text<span class="op">=</span><span class="bu">input</span>(<span class="st">"请输入一个数字，或者end结束："</span>)</span>
+<span id="cb189-4"><a href="#cb189-4"></a>    <span class="cf">if</span> text<span class="op">==</span><span class="st">"end"</span>:</span>
+<span id="cb189-5"><a href="#cb189-5"></a>        <span class="cf">break</span></span>
+<span id="cb189-6"><a href="#cb189-6"></a>    <span class="cf">try</span>:</span>
+<span id="cb189-7"><a href="#cb189-7"></a>        summ<span class="op">+=</span><span class="bu">float</span>(text)</span>
+<span id="cb189-8"><a href="#cb189-8"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb189-9"><a href="#cb189-9"></a>        <span class="bu">print</span>(<span class="st">"请输入数字或end！"</span>)</span>
+<span id="cb189-10"><a href="#cb189-10"></a>        <span class="cf">continue</span></span>
+<span id="cb189-11"><a href="#cb189-11"></a><span class="bu">print</span>(summ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>请输入一个数字，或者end结束：5
+请输入一个数字，或者end结束：5
+请输入一个数字，或者end结束：bug
+请输入数字或end！
+请输入一个数字，或者end结束：end
+10.0</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../body/01_04_markdown.html" class="pagination-link" aria-label="何谓 Markdown？">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">何谓 Markdown？</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../body/02_py_01_grammer.html" class="pagination-link" aria-label="Python 代码风格">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Python 代码风格</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><a href="https://www.lianxh.cn">www.lianxh.cn</a></p>
+</div>
+    <div class="nav-footer-right">
+<p>Support: <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

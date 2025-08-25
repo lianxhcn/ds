@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>38&nbsp; GARCH 模型 – 数据分析</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../body/test_AB_test.html" rel="next">
+<link href="../body/TS_FRED_US_unemploy_rate.html" rel="prev">
+<link href="../images/ds-book-logo-40.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e8fb9d25728d58bfeac61b497e4a6629.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-8434d2026ae8291579158df2ad8dfa64.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/TS_asset_return.html"><strong>时间序列</strong></a></li><li class="breadcrumb-item"><a href="../body/TS_GARCH_BYD.html"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">GARCH 模型</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../"></a><a href="../index.html">DS</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
+    <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
+    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">数据分析</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/00_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">课程简介和资源</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>基础配置</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_00_coding_with_AI.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">借助 AI 写代码</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_01_install_anaconda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">软件安装和环境配置</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_02_jupyter_notebook.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Jupyter Notebook 的使用</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_03_install_FAQs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python 安装常见问题</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_04_markdown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">何谓 Markdown？</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Python 基础</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_00_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Python 入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_01_grammer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Python 代码风格</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_02_QuickReference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Python 常用命令速查表</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_03_packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python 常用扩展包</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_04_import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Python：import 使用详解</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_05_OOP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Python：语法解析-面向对象编程</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_06_filepath.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Python 路径设置</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_01_numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_02_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">pandas 快速入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_03_matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Matplotlib简介</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_04_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">函数</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_05_class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">类和对象</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>数据分析</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_01_get_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">数据获取和读入</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_01_readdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">读取数据</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_02_data_type.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">数据分析是什么？</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_02_get_data_GMD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">获取数据：GMD</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_SZ_index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">上证指数的时序特征</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/web_01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">数据爬虫入门</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>可视化</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Python 可视化：简介</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_box_violin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">箱型图和小提琴图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_histogram.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">直方图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_kdensity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">核密度函数图</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>线性回归</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_01_OLS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">线性回归模型</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_02_wage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">线性回归分析</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_03_binscatter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">分仓散点图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_04_wage_prediction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">线性回归分析</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>时间序列</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_asset_return.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">资产收益率（Asset Returns）</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_man_weight.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">时序建模思路：模拟体重变化</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_ARMA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">ARMA 模型</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_FRED_US_unemploy_rate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_GARCH_BYD.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">GARCH 模型</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>机器学习</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/test_AB_test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-Naive-Bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">In Depth: Naive Bayes Classification</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-Random-Forests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">深入理解：决策树与随机森林</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-baggboost-lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Tree-Based Methods</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-Support-Vector-Machines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">支持向量机 (Support Vector Machines)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-svm-lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Support Vector Machines</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/06.00-Figure-Code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">Appendix: Figure Code</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>作业展示</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Dangdang_G7_01_data_clean.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">当当网-G7-01</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Dangdang_G7_02_data_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">当当网-G7-02</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/G8_China_stock_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">G8-中国上市公司</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_01_data_crawler.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">G4-01</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_02_data_cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">G4-02</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_03_data_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">G4-03</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_万诗晴.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">ex02_万诗晴</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_吴倩茵.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">ex02_吴倩茵</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_朱少荣.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">ex02_朱少荣</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_黄伊姿.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">ex02_黄伊姿</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#arch-与-garch" id="toc-arch-与-garch" class="nav-link active" data-scroll-target="#arch-与-garch"><span class="header-section-number">38.1</span> ARCH 与 GARCH</a>
+  <ul class="collapse">
+  <li><a href="#条件期望与非条件期望" id="toc-条件期望与非条件期望" class="nav-link" data-scroll-target="#条件期望与非条件期望"><span class="header-section-number">38.1.1</span> 条件期望与非条件期望</a></li>
+  <li><a href="#arch-模型" id="toc-arch-模型" class="nav-link" data-scroll-target="#arch-模型"><span class="header-section-number">38.1.2</span> ARCH 模型</a></li>
+  <li><a href="#operatornamearchp-模型及其扩展" id="toc-operatornamearchp-模型及其扩展" class="nav-link" data-scroll-target="#operatornamearchp-模型及其扩展"><span class="header-section-number">38.1.3</span> <span class="math inline">\(\operatorname{ARCH}(p)\)</span> 模型及其扩展</a></li>
+  <li><a href="#arch-效应的检验" id="toc-arch-效应的检验" class="nav-link" data-scroll-target="#arch-效应的检验"><span class="header-section-number">38.1.4</span> ARCH 效应的检验</a></li>
+  <li><a href="#模型的评估" id="toc-模型的评估" class="nav-link" data-scroll-target="#模型的评估"><span class="header-section-number">38.1.5</span> 模型的评估</a></li>
+  </ul></li>
+  <li><a href="#garch-模型" id="toc-garch-模型" class="nav-link" data-scroll-target="#garch-模型"><span class="header-section-number">38.2</span> GARCH 模型</a></li>
+  <li><a href="#模拟-garch-效应" id="toc-模拟-garch-效应" class="nav-link" data-scroll-target="#模拟-garch-效应"><span class="header-section-number">38.3</span> 模拟 GARCH 效应</a>
+  <ul class="collapse">
+  <li><a href="#尖峰厚尾特征" id="toc-尖峰厚尾特征" class="nav-link" data-scroll-target="#尖峰厚尾特征"><span class="header-section-number">38.3.1</span> 尖峰厚尾特征</a></li>
+  <li><a href="#估计-arch-和-garch-模型" id="toc-估计-arch-和-garch-模型" class="nav-link" data-scroll-target="#估计-arch-和-garch-模型"><span class="header-section-number">38.3.2</span> 估计 ARCH 和 GARCH 模型</a></li>
+  </ul></li>
+  <li><a href="#实例比亚迪汽车" id="toc-实例比亚迪汽车" class="nav-link" data-scroll-target="#实例比亚迪汽车"><span class="header-section-number">38.4</span> 实例：比亚迪汽车</a>
+  <ul class="collapse">
+  <li><a href="#后续" id="toc-后续" class="nav-link" data-scroll-target="#后续"><span class="header-section-number">38.4.1</span> 后续</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/TS_asset_return.html"><strong>时间序列</strong></a></li><li class="breadcrumb-item"><a href="../body/TS_GARCH_BYD.html"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">GARCH 模型</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">GARCH 模型</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>金融时间序列常常表现出不同于宏观时间序列的特征，如波动的丛聚性和分布的＂尖峰厚尾＂特征。传统的时间序列模型（假设干扰项的方差不随时间改变）往往无法捕捉这些特征。 Engle（1982）提出的 ARCH（auto－ regressive conditional heteroskedasticity）能够较好地描述金融资产价格波动的特征，在过去的二十年里得到了广泛的应用。在实际应用中，为了达到更好的拟合效果，常常需要设定较多的滞后项来描述波动的持续性，这往往会因为参数数目过多而降低估计的有效性。</p>
+<p>针对这个问题，Bollerslev （1986）提出了广义 ARCH 模型，即 <span class="math inline">\(\operatorname{GARCH}(\mathrm{p}, \mathrm{q})\)</span> 模型。在随后的研究中，学者们根据金融时间序列的特征，又进一步提出了 ARCH－M（Engle et al．， 1987），EGARCH（Nelson，1991），Threshold ARCH（TARCH，Zakoian， 1990），Power ARCH（PARCH，Higgins and Bear，1992），Asymmetric power ARCH（A－PARCH，Ding，Granger and Engle，1993），多元 GARCH （Multivariable GARCH，Engle and Kroner，1995）等模型。</p>
+<section id="arch-与-garch" class="level2" data-number="38.1">
+<h2 data-number="38.1" class="anchored" data-anchor-id="arch-与-garch"><span class="header-section-number">38.1</span> ARCH 与 GARCH</h2>
+<section id="条件期望与非条件期望" class="level3" data-number="38.1.1">
+<h3 data-number="38.1.1" class="anchored" data-anchor-id="条件期望与非条件期望"><span class="header-section-number">38.1.1</span> 条件期望与非条件期望</h3>
+<p>Engle (1982) 提出的 ARCH 模型的基本特点是允许干扰项的<strong>条件方差</strong>随时间改变，而其<strong>非条件方差</strong>则不随时间改变。</p>
+<p>此前我们曾提到，若一个时间序列的均值、方差或协方差是随时间改变的，那么它就是<strong>非平稳的</strong>。然而，这并不意味着条件方差随时间改变的时间序列就是非平稳的。</p>
+<p>需要注意的是，在此前定义“非平稳过程”时，我们强调的是序列的“长期”或“非条件”均值或方差。因此，只要一个序列的非条件方差是不随时间改变的，即使其条件方差随时间改变，它仍然是平稳的。</p>
+<p>因此，在学习 ARCH 模型过程中，我们需要<strong>区分条件期望与非条件期望</strong>，这会进一步影响序列的概率分布。在使用最大似然估计（MLE）估计计量模型时，我们往往假设序列的<strong>条件分布</strong>为正态分布。然而，序列的<strong>非条件分布</strong>往往不同于其条件分布。</p>
+<p>在 ARCH 模型中，若假设其条件分布为正态的，那么其非条件分布往往是非正态的，通常具有“厚尾”（<em>fat-tails</em>）特征。</p>
+<p>由于大家对自回归（AR）过程已经比较熟悉，我们可以从 AR(1) 入手来解释 ARCH 模型的设定思想。考虑如下 AR(1) 模型：</p>
+<p><span class="math display">\[
+y_t = \rho y_{t-1} + u_t
+\]</span></p>
+<p>其中，<span class="math inline">\(t = 1, 2, \cdots, T\)</span>，<span class="math inline">\(u_t \sim \text{IID}(0, \sigma^2)\)</span>，并假设 <span class="math inline">\(|\rho| &lt; 1\)</span>。显然，<span class="math inline">\(y_t\)</span> 是一个平稳过程，其<strong>非条件期望</strong>与<strong>方差</strong>分别为：</p>
+<p><span class="math display">\[
+E(y_t) = 0,\quad Var(y_t) = \frac{\sigma^2}{1 - \rho^2}
+\]</span></p>
+<p>若记第 <span class="math inline">\(t-1\)</span> 期的信息集合为 <span class="math inline">\(\Omega_{t-1}\)</span>，则 <span class="math inline">\(y_t\)</span> 的<strong>条件期望</strong>为：</p>
+<p><span class="math display">\[
+E(y_t \mid \Omega_{t-1}) = \rho y_{t-1}
+\]</span></p>
+<p>其<strong>条件方差</strong>为：</p>
+<p><span class="math display">\[
+Var(y_t \mid \Omega_{t-1}) = E(u_t^2 \mid \Omega_{t-1}) = \sigma^2
+\]</span></p>
+<p>可见，<span class="math inline">\(y_t\)</span> 的条件期望是随时间变化的，而非条件期望则不随时间变化。</p>
+<p>有些情况下，我们不仅需要预测时间序列的<strong>水平趋势</strong>，同时也要预测其<strong>波动情况</strong>。下图展示了上证综指的时序图，在某些时段其波动很小，而在另一些时段波动却非常剧烈。</p>
+<p><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20250512175414.png" class="img-fluid"></p>
+<p>这种波动的变化，即<strong>方差的变化</strong>，对研究金融市场的微观机制具有非常重要的意义。因为投资者在持有风险较高的资产时，往往希望获得更高的回报率作为补偿。</p>
+</section>
+<section id="arch-模型" class="level3" data-number="38.1.2">
+<h3 data-number="38.1.2" class="anchored" data-anchor-id="arch-模型"><span class="header-section-number">38.1.2</span> ARCH 模型</h3>
+<p>虽然在上面的例子中，<span class="math inline">\(u_t\)</span> 的非条件方差是不随时间改变的，但对于多数金融时间序列而言，其条件方差往往是随时间改变的。我们可以采用如下 <span class="math inline">\(\operatorname{AR}(p)\)</span> 过程来描述这种特征：</p>
+<p><span class="math display">\[
+u_t^2=\alpha_0+\alpha_1 u_{t-1}^2+\alpha_2 u_{t-2}^2+\cdots+\alpha_p u_{t-p}^2+v_t
+\]</span></p>
+<p>其中，<span class="math inline">\(v_t \sim \operatorname{IID} N\left(0, \sigma^2\right)\)</span> 。由此可知，<span class="math inline">\(u_t^2\)</span> 的条件期望为：</p>
+<p><span class="math display">\[
+\mathrm{E}\left(u_t^2\right)=\alpha_0+\alpha_1 u_{t-1}^2+\alpha_2 u_{t-2}^2+\cdots+\alpha_p u_{t-p}^2
+\]</span></p>
+<p>满足（11－2）式的白噪声序列 <span class="math inline">\(u_t\)</span> 称为 <span class="math inline">\(p\)</span> 阶＂自回归条件异方差＂（AutoRe－ gression Conditional Heteroskedastic）过程，通常表示为 <span class="math inline">\(u_t \sim A R C H(p)\)</span> 。</p>
+<p>下面我们以最简单的 <span class="math inline">\(\operatorname{ARCH}(1)\)</span> 过程来说明，采用文献中惯用的方式可将 <span class="math inline">\(\operatorname{ARCH}(1)\)</span> 过程表示为：</p>
+<p><span class="math display">\[
+\begin{aligned}
+y_t &amp; =\mathbf{x}_t^{\prime} \beta+u_t \\
+u_t &amp; =v_t \sqrt{h_t} \\
+h_t &amp; =a_0+a_1 u_{t-1}^2
+\end{aligned}
+\]</span></p>
+<p>其中，<span class="math inline">\(v_t \sim \operatorname{IID} N(0,1), a_0&gt;0\)</span> 且 <span class="math inline">\(a_1&lt;1\)</span> 。则 <span class="math inline">\(u_t\)</span> 的非条件期望和方差分别为：<span class="math inline">\({ }^1\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathrm{E}\left(u_t\right) &amp; =0 \\
+\operatorname{Var}\left(u_t\right) &amp; =\frac{a_0}{1-a_1}
+\end{aligned}
+\]</span></p>
+<p>我们注意到，模型（11－3a）－（11－3c）完全满足传统线性回归模型的基本假设条件，因此，OLS 估计仍然是 <span class="math inline">\(\beta\)</span> 的所有线性无偏估计中最有效的估计量 （BLUE）。</p>
+<p>然而，由于模型具有 ARCH 效应，所以还存在更为有效的非线性估计量。 <span class="math inline">\(u_t\)</span> 的条件期望和方差分别为：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathrm{E}\left(u_t \mid \Omega_{t-1}\right) &amp; =0 \\
+\operatorname{Var}\left(u_t \mid \Omega_{t-1}\right) &amp; =\mathrm{E}\left(u_t^2 \mid \Omega_{t-1}\right) \\
+&amp; =a_0+a_1 u_{t-1}^2
+\end{aligned}
+\]</span></p>
+<p>据此，我们可以进一步得到 <span class="math inline">\(y_t\)</span> 的条件期望和条件方差：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathrm{E}\left(y_t \mid \Omega_{t-1}\right) &amp; =\mathbf{x}_t^{\prime} \beta \\
+\operatorname{Var}\left(y_t \mid \Omega_{t-1}\right) &amp; =a_0+a_1 u_{t-1}^2
+\end{aligned}
+\]</span></p>
+<p>因此，<span class="math inline">\(y_t\)</span> 的条件方差同样是 <span class="math inline">\(u_{t-1}^2\)</span> 的函数。换言之，ARCH 会直接影响干扰项 <span class="math inline">\(u_t\)</span> ，而被解释变量 <span class="math inline">\(y_t\)</span> 虽然是由线性模型产生，但由于其干扰项中包含了 ARCH 效应，所以 <span class="math inline">\(y_t\)</span> 本身也是一个 ARCH 过程。</p>
+</section>
+<section id="operatornamearchp-模型及其扩展" class="level3" data-number="38.1.3">
+<h3 data-number="38.1.3" class="anchored" data-anchor-id="operatornamearchp-模型及其扩展"><span class="header-section-number">38.1.3</span> <span class="math inline">\(\operatorname{ARCH}(p)\)</span> 模型及其扩展</h3>
+<p>前面已经提到，金融时间序列的波动往往具有＂从聚性＂，因此将上面介绍的 <span class="math inline">\(\operatorname{ARCH}(1)\)</span> 模型扩展至 <span class="math inline">\(\operatorname{ARCH}(\mathrm{p})\)</span> 模型往往能够更好的描述这种波动特征。ARCH（p）模型可表示为：</p>
+<p><span class="math display">\[
+\begin{aligned}
+u_t &amp; =v_t \sqrt{h_t} \quad v_t \sim \operatorname{IID} N(0,1) \\
+h_t &amp; =a_0+a_1 u_{t-1}^2+a_2 u_{t-2}^2+\cdots+a_p u_{t-p}^2
+\end{aligned}
+\]</span></p>
+<p>基于（14－1）的设定，我们可以把 <span class="math inline">\(\operatorname{ARCH}(p)\)</span> 模型扩展为 <span class="math inline">\(\operatorname{AR}(m)-\operatorname{ARCH}(p)\)</span> 模型：</p>
+<p><span class="math display">\[
+\begin{aligned}
+y_t &amp; =\delta+\sum_{j=1}^m \rho_j y_{t-j}+u_t \\
+u_t &amp; =v_t \sqrt{h_t} \quad v_t \sim \operatorname{IID} N(0,1) \\
+h_t &amp; =a_0+\sum_{j=1}^p a_j u_{t-j}^2
+\end{aligned}
+\]</span></p>
+<p>显然，按照这一思路，我们同样可以建立 ARMA <span class="math inline">\((m, n)-\mathrm{ARCH}(p)\)</span> 。 基于（14－3a）的设定，我们尚可把 <span class="math inline">\(\operatorname{ARCH}(p)\)</span> 模型扩展为多元回归模型：</p>
+<p><span class="math display">\[
+\begin{aligned}
+y_t &amp; =\beta_0+\sum_{j=1}^k \beta_j x_{i t}+u_t \\
+u_t &amp; =v_t \sqrt{h_t} \quad v_t \sim \operatorname{IID} N(0,1) \\
+h_t &amp; =a_0+\sum_{j=1}^p a_j u_{t-j}^2
+\end{aligned}
+\]</span></p>
+<p>这里，<span class="math inline">\(x_{i t}\)</span> 为外生变量或被解释变量的滞后项。在金融时间序列分析中，如果研究的对象是资产价格，我们往往还会在模型设定中加入虚拟变量，以捕捉＂周内川历效应＂（day－of－the－week）。</p>
+<p>例如，在分析股票价格的 1 资料时，我们便可以在（14－5a）的基础上作如下设定：</p>
+<p><span class="math display">\[
+y_t=\sum_{j=1}^k \beta_j x_{i t}+\sum_{l=1}^5 a_l D_{l t}+u_t
+\]</span></p>
+<p>其中，<span class="math inline">\(l=1\)</span>（周一）， 2 （周二）， 3 （周三）， 4 （周四）， 5 （周五），<span class="math inline">\(D_{l t}\)</span> 为 <span class="math inline">\(0 / 1\)</span> 虚拟变量。</p>
+</section>
+<section id="arch-效应的检验" class="level3" data-number="38.1.4">
+<h3 data-number="38.1.4" class="anchored" data-anchor-id="arch-效应的检验"><span class="header-section-number">38.1.4</span> ARCH 效应的检验</h3>
+<p>在模型设定之前，我们需要检验是否存在 ARCH 或 GARCH 效应。前面已经提到，由于模型（14－3a）－（14－3b）的 OLS 估计是无偏且一致的，所以我们可以利用 OLS 估计的残差来检验 ARCH 效应是否存在。基本步骤如下：</p>
+<ul>
+<li><p>第一步 采用 OLS 估计模型 <span class="math inline">\(y_t=\mathbf{x}_t^{\prime} \boldsymbol{\beta}+u_t\)</span> ，得到残差 <span class="math inline">\(\hat{u}_t\)</span> ，以及 <span class="math inline">\(\hat{u}_t^2\)</span> ；</p></li>
+<li><p>第二步 估计模型 <span class="math inline">\(\hat{u}_t^2=a_0+a_1 \hat{u}_{t-1}^2+\cdots+a_p \hat{u}_{t-p}^2\)</span> ，得到 <span class="math inline">\(R^2\)</span> ；</p></li>
+<li><p>第三步 构造统计量：<span class="math inline">\(L M=T \cdot R^2 \sim \chi^2(p)\)</span> 。</p></li>
+</ul>
+<p>该检验山 Engle（1982）提出，基本思想在于，若不存在 ARCH 效应，则 <span class="math inline">\(\hat{a}_1, \hat{a}_2, \cdot, \hat{a}_p\)</span> 应当不会显著异于零。因此，我们可以针对原假设 <span class="math inline">\(\mathrm{H}_0: a_1=a_2=\cdots=a_p=0\)</span> 进行检验，并基于 LM原则构造统计量。</p>
+</section>
+<section id="模型的评估" class="level3" data-number="38.1.5">
+<h3 data-number="38.1.5" class="anchored" data-anchor-id="模型的评估"><span class="header-section-number">38.1.5</span> 模型的评估</h3>
+<p>若我们设定的 ARCH 模型是正确的，那么标准化后的残差：</p>
+<p><span class="math display">\[
+z_t=\frac{u_t}{\sqrt{h_t}}
+\]</span></p>
+<p>应当为一 i．i．d 的随机序列。因此，我们可以通过分析序列 <span class="math inline">\(\left\{z_t\right\}\)</span> 来评估模型的设定是否合理。具体而言，若均值方程设定无误，则 <span class="math inline">\(z_t\)</span> 不应表现出显著的序列相关，这可以采用 Ljung－Box 统计量进行检验。我们可以采用同样的方法分析 <span class="math inline">\(z_t^2\)</span> 以评判方差方程的设定情况。最后，通过分析 <span class="math inline">\(z_t\)</span>的偏度、峰度以及分位－分位图（即，Q－Q 图），我们可以大体判定模型的分布假设是否合理。</p>
+</section>
+</section>
+<section id="garch-模型" class="level2" data-number="38.2">
+<h2 data-number="38.2" class="anchored" data-anchor-id="garch-模型"><span class="header-section-number">38.2</span> GARCH 模型</h2>
+<p>GARCH 模型是对 ARCH 模型的扩展，允许条件方差不仅与过去的干扰项有关，还与过去的条件方差有关。GARCH 模型的基本形式为： <span class="math display">\[
+\begin{aligned}
+u_t &amp; =v_t \sqrt{h_t} \quad v_t \sim \operatorname{IID} N(0,1) \\
+h_t &amp; =a_0+\sum_{j=1}^p a_j u_{t-j}^2+\sum_{j=1}^q b_j h_{t-j}
+\end{aligned}
+\]</span> 其中，<span class="math inline">\(a_0&gt;0\)</span>，<span class="math inline">\(a_j \geq 0\)</span>，<span class="math inline">\(b_j \geq 0\)</span>。显然，GARCH 模型的条件方差不仅与过去的干扰项有关，还与过去的条件方差有关。GARCH 模型的一个重要特征是其非条件方差是有限的，即： <span class="math display">\[
+Var(u_t) = \frac{a_0}{1 - \sum_{j=1}^p a_j - \sum_{j=1}^q b_j}
+\]</span> 其中，<span class="math inline">\(\sum_{j=1}^p a_j + \sum_{j=1}^q b_j &lt; 1\)</span>。这意味着 GARCH 模型可以捕捉到金融时间序列的波动性聚集现象。</p>
+<p>GARCH 模型的一个重要应用是用于金融市场的风险管理。通过对 GARCH 模型的估计，我们可以得到未来的波动率预测，从而为投资者提供风险管理的依据。此外，GARCH 模型还可以用于资产定价、投资组合优化等领域。</p>
+<p>GARCH 模型的估计通常采用最大似然估计（MLE）方法。由于 GARCH 模型的非线性特征，MLE 方法的计算相对复杂，通常需要使用数值优化算法来求解。</p>
+<p>在实际应用中，GARCH 模型的参数估计和模型选择通常使用信息准则（如 AIC、BIC）来进行。信息准则可以帮助我们在不同的 GARCH 模型中选择最优模型，以便更好地拟合数据。 GARCH 模型的一个重要扩展是 EGARCH 模型（Exponential GARCH），它允许条件方差的对数为线性函数。EGARCH 模型可以更好地捕捉到金融时间序列中的非对称效应和杠杆效应。 EGARCH 模型的基本形式为： <span class="math display">\[
+\begin{aligned}
+\log(h_t) &amp; =a_0+\sum_{j=1}^p a_j \left(\frac{u_{t-j}}{\sqrt{h_{t-j}}}\right)^2+\sum_{j=1}^q b_j \log(h_{t-j})
+\end{aligned}
+\]</span> 其中，<span class="math inline">\(a_0\)</span> 是常数项，<span class="math inline">\(a_j\)</span> 和 <span class="math inline">\(b_j\)</span> 是模型参数。EGARCH 模型的一个重要特征是其条件方差的对数是线性函数，这使得 EGARCH 模型能够捕捉到金融时间序列中的非对称效应和杠杆效应。</p>
+</section>
+<section id="模拟-garch-效应" class="level2" data-number="38.3">
+<h2 data-number="38.3" class="anchored" data-anchor-id="模拟-garch-效应"><span class="header-section-number">38.3</span> 模拟 GARCH 效应</h2>
+<p>在下图中，我们模拟产生了三个时间序列，数据产生过程如下：</p>
+<p><span class="math display">\[
+\begin{aligned}
+y_t &amp; =0.9 y_{t-1}+u_t \\
+u_t &amp; =v_t \sqrt{1+a_1 u_{t-1}^2} \quad v_t \sim \operatorname{IID} N(0,1)
+\end{aligned}
+\]</span></p>
+<p>其中，（a）－（c）图分别对应 <span class="math inline">\(a_1=0, a_1=0.3\)</span> 和 <span class="math inline">\(a_1=0.5\)</span> 。可见，<span class="math inline">\(a_1\)</span> 值越大波动的自相关性（波动的持续性）越强。这一特征在 <span class="math inline">\(y_t^2\)</span> 序列中表现得更加显著。</p>
+<div id="cell-8" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># 设置随机种子以保证可重复性</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>np.random.seed(<span class="dv">405</span>)</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># 参数设置</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>T <span class="op">=</span> <span class="dv">200</span>             <span class="co"># 时间序列长度</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>rho <span class="op">=</span> <span class="fl">0.8</span>           <span class="co"># y_t 的自回归系数</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>a1_values <span class="op">=</span> [<span class="fl">0.0</span>, <span class="fl">0.3</span>, <span class="fl">0.6</span>]  <span class="co"># 三个不同的 a1 值</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="co"># 初始化三个序列</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>y1 <span class="op">=</span> np.zeros(T)</span>
+<span id="cb1-14"><a href="#cb1-14"></a>y2 <span class="op">=</span> np.zeros(T)</span>
+<span id="cb1-15"><a href="#cb1-15"></a>y3 <span class="op">=</span> np.zeros(T)</span>
+<span id="cb1-16"><a href="#cb1-16"></a></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="co"># 准备绘图</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-19"><a href="#cb1-19"></a>fig.suptitle(<span class="vs">r"ARCH-like Process Simulation: $y_t = 0.8 y_{t-1} + u_t$, $u_t = v_t \sqrt{1 + a_1 u_{t-1}^2}$"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb1-20"><a href="#cb1-20"></a></span>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="co"># 遍历每个 a1 取值，进行模拟与绘图</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a><span class="cf">for</span> i, a1 <span class="kw">in</span> <span class="bu">enumerate</span>(a1_values):</span>
+<span id="cb1-23"><a href="#cb1-23"></a>    y <span class="op">=</span> np.zeros(T)</span>
+<span id="cb1-24"><a href="#cb1-24"></a>    u <span class="op">=</span> np.zeros(T)</span>
+<span id="cb1-25"><a href="#cb1-25"></a>    v <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, T)</span>
+<span id="cb1-26"><a href="#cb1-26"></a></span>
+<span id="cb1-27"><a href="#cb1-27"></a>    <span class="co"># 初始化前两个值</span></span>
+<span id="cb1-28"><a href="#cb1-28"></a>    y[<span class="dv">0</span>] <span class="op">=</span> v[<span class="dv">0</span>]</span>
+<span id="cb1-29"><a href="#cb1-29"></a>    u[<span class="dv">0</span>] <span class="op">=</span> v[<span class="dv">0</span>]</span>
+<span id="cb1-30"><a href="#cb1-30"></a></span>
+<span id="cb1-31"><a href="#cb1-31"></a>    <span class="co"># 生成序列</span></span>
+<span id="cb1-32"><a href="#cb1-32"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, T):</span>
+<span id="cb1-33"><a href="#cb1-33"></a>        u[t] <span class="op">=</span> v[t] <span class="op">*</span> np.sqrt(<span class="dv">1</span> <span class="op">+</span> a1 <span class="op">*</span> u[t<span class="op">-</span><span class="dv">1</span>]<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-34"><a href="#cb1-34"></a>        y[t] <span class="op">=</span> rho <span class="op">*</span> y[t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> u[t]</span>
+<span id="cb1-35"><a href="#cb1-35"></a></span>
+<span id="cb1-36"><a href="#cb1-36"></a>    <span class="co"># 将生成的序列赋值给对应的变量</span></span>
+<span id="cb1-37"><a href="#cb1-37"></a>    <span class="cf">if</span> i <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb1-38"><a href="#cb1-38"></a>        y1 <span class="op">=</span> y</span>
+<span id="cb1-39"><a href="#cb1-39"></a>    <span class="cf">elif</span> i <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb1-40"><a href="#cb1-40"></a>        y2 <span class="op">=</span> y</span>
+<span id="cb1-41"><a href="#cb1-41"></a>    <span class="cf">elif</span> i <span class="op">==</span> <span class="dv">2</span>:</span>
+<span id="cb1-42"><a href="#cb1-42"></a>        y3 <span class="op">=</span> y</span>
+<span id="cb1-43"><a href="#cb1-43"></a></span>
+<span id="cb1-44"><a href="#cb1-44"></a>    <span class="co"># 绘制 y_t 图像</span></span>
+<span id="cb1-45"><a href="#cb1-45"></a>    axes[i, <span class="dv">0</span>].plot(y, color<span class="op">=</span><span class="st">'steelblue'</span>)</span>
+<span id="cb1-46"><a href="#cb1-46"></a>    axes[i, <span class="dv">0</span>].set_ylabel(<span class="vs">r"$y_t$"</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb1-47"><a href="#cb1-47"></a>    axes[i, <span class="dv">0</span>].set_ylim(<span class="op">-</span><span class="dv">6</span>, <span class="dv">6</span>)</span>
+<span id="cb1-48"><a href="#cb1-48"></a>    axes[i, <span class="dv">0</span>].set_title(<span class="ss">f"(a</span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">) $a_1$ = </span><span class="sc">{</span>a1<span class="sc">}</span><span class="ss">"</span>, loc<span class="op">=</span><span class="st">'left'</span>)</span>
+<span id="cb1-49"><a href="#cb1-49"></a></span>
+<span id="cb1-50"><a href="#cb1-50"></a>    <span class="co"># 绘制 y_t^2 图像</span></span>
+<span id="cb1-51"><a href="#cb1-51"></a>    axes[i, <span class="dv">1</span>].plot(y<span class="op">**</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">'darkorange'</span>)</span>
+<span id="cb1-52"><a href="#cb1-52"></a>    axes[i, <span class="dv">1</span>].set_ylabel(<span class="vs">r"$y_t^2$"</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb1-53"><a href="#cb1-53"></a>    axes[i, <span class="dv">1</span>].set_ylim(<span class="dv">0</span>, <span class="dv">50</span>)</span>
+<span id="cb1-54"><a href="#cb1-54"></a>    axes[i, <span class="dv">1</span>].set_title(<span class="ss">f"(b</span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">)"</span>, loc<span class="op">=</span><span class="st">'left'</span>)</span>
+<span id="cb1-55"><a href="#cb1-55"></a></span>
+<span id="cb1-56"><a href="#cb1-56"></a><span class="co"># 美化图形</span></span>
+<span id="cb1-57"><a href="#cb1-57"></a>axes[<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>].set_xlabel(<span class="st">"Time"</span>)</span>
+<span id="cb1-58"><a href="#cb1-58"></a>axes[<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>].set_xlabel(<span class="st">"Time"</span>)</span>
+<span id="cb1-59"><a href="#cb1-59"></a>plt.tight_layout(rect<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.95</span>])</span>
+<span id="cb1-60"><a href="#cb1-60"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_GARCH_BYD_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-9" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co"># 准备绘图</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">5</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-8"><a href="#cb2-8"></a>fig.suptitle(<span class="st">"Density Plots with Normal Distribution"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb2-9"><a href="#cb2-9"></a></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="co"># 数据列表</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>data_list <span class="op">=</span> [y1, y2, y3]</span>
+<span id="cb2-12"><a href="#cb2-12"></a>titles <span class="op">=</span> [<span class="st">"y1 Density"</span>, <span class="st">"y2 Density"</span>, <span class="st">"y3 Density"</span>]</span>
+<span id="cb2-13"><a href="#cb2-13"></a></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="co"># 遍历每个数据集</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="cf">for</span> i, (data, title) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(data_list, titles)):</span>
+<span id="cb2-16"><a href="#cb2-16"></a>    <span class="co"># 计算密度</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>    density, bins, _ <span class="op">=</span> axes[i].hist(data, bins<span class="op">=</span><span class="dv">30</span>, density<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, color<span class="op">=</span><span class="st">'steelblue'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb2-18"><a href="#cb2-18"></a>    </span>
+<span id="cb2-19"><a href="#cb2-19"></a>    <span class="co"># 计算正态分布曲线</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a>    mu, std <span class="op">=</span> np.mean(data), np.std(data)</span>
+<span id="cb2-21"><a href="#cb2-21"></a>    x <span class="op">=</span> np.linspace(<span class="bu">min</span>(data), <span class="bu">max</span>(data), <span class="dv">1000</span>)</span>
+<span id="cb2-22"><a href="#cb2-22"></a>    p <span class="op">=</span> norm.pdf(x, mu, std)</span>
+<span id="cb2-23"><a href="#cb2-23"></a>    </span>
+<span id="cb2-24"><a href="#cb2-24"></a>    <span class="co"># 绘制正态分布曲线</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>    axes[i].plot(x, p, <span class="st">'r'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f"Normal Curve</span><span class="ch">\n</span><span class="ss">$\mu=</span><span class="sc">{</span>mu<span class="sc">:.2f}</span><span class="ss">$, $\sigma=</span><span class="sc">{</span>std<span class="sc">:.2f}</span><span class="ss">$"</span>)</span>
+<span id="cb2-26"><a href="#cb2-26"></a>    axes[i].set_title(title, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb2-27"><a href="#cb2-27"></a>    axes[i].set_xlim(<span class="op">-</span><span class="dv">6</span>, <span class="op">+</span><span class="dv">6</span>)</span>
+<span id="cb2-28"><a href="#cb2-28"></a>    axes[i].legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb2-29"><a href="#cb2-29"></a>    axes[i].grid(alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb2-30"><a href="#cb2-30"></a></span>
+<span id="cb2-31"><a href="#cb2-31"></a><span class="co"># 美化图形</span></span>
+<span id="cb2-32"><a href="#cb2-32"></a>plt.tight_layout(rect<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.95</span>])</span>
+<span id="cb2-33"><a href="#cb2-33"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>&lt;&gt;:25: SyntaxWarning: invalid escape sequence '\m'
+&lt;&gt;:25: SyntaxWarning: invalid escape sequence '\s'
+&lt;&gt;:25: SyntaxWarning: invalid escape sequence '\m'
+&lt;&gt;:25: SyntaxWarning: invalid escape sequence '\s'
+C:\Users\Administrator\AppData\Local\Temp\ipykernel_26588\3673749718.py:25: SyntaxWarning: invalid escape sequence '\m'
+  axes[i].plot(x, p, 'r', linewidth=2, label=f"Normal Curve\n$\mu={mu:.2f}$, $\sigma={std:.2f}$")
+C:\Users\Administrator\AppData\Local\Temp\ipykernel_26588\3673749718.py:25: SyntaxWarning: invalid escape sequence '\s'
+  axes[i].plot(x, p, 'r', linewidth=2, label=f"Normal Curve\n$\mu={mu:.2f}$, $\sigma={std:.2f}$")</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_GARCH_BYD_files/figure-html/cell-3-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="尖峰厚尾特征" class="level3" data-number="38.3.1">
+<h3 data-number="38.3.1" class="anchored" data-anchor-id="尖峰厚尾特征"><span class="header-section-number">38.3.1</span> 尖峰厚尾特征</h3>
+<p>可以看出： - 三个序列都具有尖峰厚尾特征； - 然而，随着 <span class="math inline">\(\alpha_1\)</span> 的取值不断变大，序列的偏度和峰度也在不断增大；这说明，随着 <span class="math inline">\(\alpha_1\)</span> 的增大，序列的尖峰厚尾特征也在不断增强。</p>
+</section>
+<section id="估计-arch-和-garch-模型" class="level3" data-number="38.3.2">
+<h3 data-number="38.3.2" class="anchored" data-anchor-id="估计-arch-和-garch-模型"><span class="header-section-number">38.3.2</span> 估计 ARCH 和 GARCH 模型</h3>
+<p>我们先使用上述模拟数据估计 ARCH (P) 模型。由于数据是模拟产生的，因此我们可以直接使用 OLS 估计模型： <span class="math display">\[
+y_t=\beta_0+\beta_1 y_{t-1}+u_t
+\]</span> 然后，利用 OLS 估计的残差 <span class="math inline">\(\hat{u}_t\)</span> 来检验 ARCH 效应是否存在。我们可以使用 LM 检验来检验 ARCH 效应是否存在。LM 检验的原假设为：不存在 ARCH 效应。 LM 检验的统计量为： <span class="math display">\[
+LM=T \cdot R^2 \sim \chi^2(p)
+\]</span> 其中，<span class="math inline">\(R^2\)</span> 为 OLS 估计的残差平方和的决定系数，<span class="math inline">\(T\)</span> 为样本容量，<span class="math inline">\(p\)</span> 为滞后阶数。LM 检验的结果如下：</p>
+<div id="cell-12" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="im">from</span> arch <span class="im">import</span> arch_model</span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co"># 定义函数：估计 ARCH(p) 和 GARCH(1,1) 模型</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="kw">def</span> estimate_models(data, p<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb4-6"><a href="#cb4-6"></a>    <span class="co"># 确保输入是 pandas Series 且为零均值</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(data, pd.Series):</span>
+<span id="cb4-8"><a href="#cb4-8"></a>        data <span class="op">=</span> pd.Series(data)</span>
+<span id="cb4-9"><a href="#cb4-9"></a>    data <span class="op">=</span> data <span class="op">-</span> data.mean()</span>
+<span id="cb4-10"><a href="#cb4-10"></a></span>
+<span id="cb4-11"><a href="#cb4-11"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Estimating models for data with length </span><span class="sc">{</span><span class="bu">len</span>(data)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13"></a>    <span class="co"># ARCH(p) 模型估计</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a>    <span class="cf">try</span>:</span>
+<span id="cb4-15"><a href="#cb4-15"></a>        arch_model_instance <span class="op">=</span> arch_model(data, mean<span class="op">=</span><span class="st">"Zero"</span>, vol<span class="op">=</span><span class="st">"ARCH"</span>, p<span class="op">=</span>p)</span>
+<span id="cb4-16"><a href="#cb4-16"></a>        arch_fitted <span class="op">=</span> arch_model_instance.fit(disp<span class="op">=</span><span class="st">"off"</span>)</span>
+<span id="cb4-17"><a href="#cb4-17"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">ARCH(</span><span class="sc">{</span>p<span class="sc">}</span><span class="ss">) Model Summary:"</span>)</span>
+<span id="cb4-18"><a href="#cb4-18"></a>        <span class="bu">print</span>(arch_fitted.summary())</span>
+<span id="cb4-19"><a href="#cb4-19"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb4-20"><a href="#cb4-20"></a>        <span class="bu">print</span>(<span class="ss">f"ARCH(</span><span class="sc">{</span>p<span class="sc">}</span><span class="ss">) model failed: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-21"><a href="#cb4-21"></a>        arch_fitted <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb4-22"><a href="#cb4-22"></a></span>
+<span id="cb4-23"><a href="#cb4-23"></a>    <span class="co"># GARCH(1,1) 模型估计</span></span>
+<span id="cb4-24"><a href="#cb4-24"></a>    <span class="cf">try</span>:</span>
+<span id="cb4-25"><a href="#cb4-25"></a>        garch_model_instance <span class="op">=</span> arch_model(data, mean<span class="op">=</span><span class="st">"Zero"</span>, vol<span class="op">=</span><span class="st">"GARCH"</span>, p<span class="op">=</span><span class="dv">1</span>, q<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb4-26"><a href="#cb4-26"></a>        garch_fitted <span class="op">=</span> garch_model_instance.fit(disp<span class="op">=</span><span class="st">"off"</span>)</span>
+<span id="cb4-27"><a href="#cb4-27"></a>        <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">GARCH(1,1) Model Summary:"</span>)</span>
+<span id="cb4-28"><a href="#cb4-28"></a>        <span class="bu">print</span>(garch_fitted.summary())</span>
+<span id="cb4-29"><a href="#cb4-29"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb4-30"><a href="#cb4-30"></a>        <span class="bu">print</span>(<span class="ss">f"GARCH(1,1) model failed: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-31"><a href="#cb4-31"></a>        garch_fitted <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb4-32"><a href="#cb4-32"></a></span>
+<span id="cb4-33"><a href="#cb4-33"></a>    <span class="cf">return</span> arch_fitted, garch_fitted</span>
+<span id="cb4-34"><a href="#cb4-34"></a></span>
+<span id="cb4-35"><a href="#cb4-35"></a><span class="co"># 示例使用（假设 y1, y2, y3 是已定义的 pandas Series）</span></span>
+<span id="cb4-36"><a href="#cb4-36"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb4-37"><a href="#cb4-37"></a>    p <span class="op">=</span> <span class="dv">1</span>  <span class="co"># ARCH(p) 模型的阶数</span></span>
+<span id="cb4-38"><a href="#cb4-38"></a></span>
+<span id="cb4-39"><a href="#cb4-39"></a>    <span class="bu">print</span>(<span class="st">"=== Results for y1 ==="</span>)</span>
+<span id="cb4-40"><a href="#cb4-40"></a>    arch_y1, garch_y1 <span class="op">=</span> estimate_models(y1, p)</span>
+<span id="cb4-41"><a href="#cb4-41"></a></span>
+<span id="cb4-42"><a href="#cb4-42"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== Results for y2 ==="</span>)</span>
+<span id="cb4-43"><a href="#cb4-43"></a>    arch_y2, garch_y2 <span class="op">=</span> estimate_models(y2, p)</span>
+<span id="cb4-44"><a href="#cb4-44"></a></span>
+<span id="cb4-45"><a href="#cb4-45"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== Results for y3 ==="</span>)</span>
+<span id="cb4-46"><a href="#cb4-46"></a>    arch_y3, garch_y3 <span class="op">=</span> estimate_models(y3, p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Results for y1 ===
+
+Estimating models for data with length 300
+
+ARCH(1) Model Summary:
+                        Zero Mean - ARCH Model Results                        
+==============================================================================
+Dep. Variable:                   None   R-squared:                       0.000
+Mean Model:                 Zero Mean   Adj. R-squared:                  0.003
+Vol Model:                       ARCH   Log-Likelihood:               -597.875
+Distribution:                  Normal   AIC:                           1199.75
+Method:            Maximum Likelihood   BIC:                           1207.16
+                                        No. Observations:                  300
+Date:                Mon, May 12 2025   Df Residuals:                      300
+Time:                        18:38:01   Df Model:                            0
+                            Volatility Model                            
+========================================================================
+                 coef    std err          t      P&gt;|t|  95.0% Conf. Int.
+------------------------------------------------------------------------
+omega          1.0461      0.182      5.738  9.569e-09 [  0.689,  1.403]
+alpha[1]       0.7511  5.787e-02     12.978  1.623e-38 [  0.638,  0.865]
+========================================================================
+
+Covariance estimator: robust
+
+GARCH(1,1) Model Summary:
+                       Zero Mean - GARCH Model Results                        
+==============================================================================
+Dep. Variable:                   None   R-squared:                       0.000
+Mean Model:                 Zero Mean   Adj. R-squared:                  0.003
+Vol Model:                      GARCH   Log-Likelihood:               -597.875
+Distribution:                  Normal   AIC:                           1201.75
+Method:            Maximum Likelihood   BIC:                           1212.86
+                                        No. Observations:                  300
+Date:                Mon, May 12 2025   Df Residuals:                      300
+Time:                        18:38:01   Df Model:                            0
+                            Volatility Model                            
+========================================================================
+                 coef    std err          t      P&gt;|t|  95.0% Conf. Int.
+------------------------------------------------------------------------
+omega          1.0462      0.286      3.663  2.490e-04 [  0.486,  1.606]
+alpha[1]       0.7511      0.103      7.286  3.186e-13 [  0.549,  0.953]
+beta[1]        0.0000      0.125      0.000      1.000 [ -0.245,  0.245]
+========================================================================
+
+Covariance estimator: robust
+
+=== Results for y2 ===
+
+Estimating models for data with length 300
+
+ARCH(1) Model Summary:
+                        Zero Mean - ARCH Model Results                        
+==============================================================================
+Dep. Variable:                   None   R-squared:                       0.000
+Mean Model:                 Zero Mean   Adj. R-squared:                  0.003
+Vol Model:                       ARCH   Log-Likelihood:               -651.550
+Distribution:                  Normal   AIC:                           1307.10
+Method:            Maximum Likelihood   BIC:                           1314.51
+                                        No. Observations:                  300
+Date:                Mon, May 12 2025   Df Residuals:                      300
+Time:                        18:38:01   Df Model:                            0
+                            Volatility Model                            
+========================================================================
+                 coef    std err          t      P&gt;|t|  95.0% Conf. Int.
+------------------------------------------------------------------------
+omega          1.1389      0.214      5.328  9.917e-08 [  0.720,  1.558]
+alpha[1]       0.9064  8.347e-02     10.860  1.790e-27 [  0.743,  1.070]
+========================================================================
+
+Covariance estimator: robust
+
+GARCH(1,1) Model Summary:
+                       Zero Mean - GARCH Model Results                        
+==============================================================================
+Dep. Variable:                   None   R-squared:                       0.000
+Mean Model:                 Zero Mean   Adj. R-squared:                  0.003
+Vol Model:                      GARCH   Log-Likelihood:               -651.495
+Distribution:                  Normal   AIC:                           1308.99
+Method:            Maximum Likelihood   BIC:                           1320.10
+                                        No. Observations:                  300
+Date:                Mon, May 12 2025   Df Residuals:                      300
+Time:                        18:38:01   Df Model:                            0
+                              Volatility Model                             
+===========================================================================
+                 coef    std err          t      P&gt;|t|     95.0% Conf. Int.
+---------------------------------------------------------------------------
+omega          1.0947      0.235      4.658  3.190e-06    [  0.634,  1.555]
+alpha[1]       0.8859  8.917e-02      9.935  2.925e-23    [  0.711,  1.061]
+beta[1]        0.0222  5.370e-02      0.413      0.679 [-8.305e-02,  0.127]
+===========================================================================
+
+Covariance estimator: robust
+
+=== Results for y3 ===
+
+Estimating models for data with length 300
+
+ARCH(1) Model Summary:
+                        Zero Mean - ARCH Model Results                        
+==============================================================================
+Dep. Variable:                   None   R-squared:                       0.000
+Mean Model:                 Zero Mean   Adj. R-squared:                  0.003
+Vol Model:                       ARCH   Log-Likelihood:               -736.965
+Distribution:                  Normal   AIC:                           1477.93
+Method:            Maximum Likelihood   BIC:                           1485.34
+                                        No. Observations:                  300
+Date:                Mon, May 12 2025   Df Residuals:                      300
+Time:                        18:38:02   Df Model:                            0
+                            Volatility Model                            
+========================================================================
+                 coef    std err          t      P&gt;|t|  95.0% Conf. Int.
+------------------------------------------------------------------------
+omega          1.6920      0.300      5.648  1.626e-08 [  1.105,  2.279]
+alpha[1]       0.8964  7.192e-02     12.464  1.174e-35 [  0.755,  1.037]
+========================================================================
+
+Covariance estimator: robust
+
+GARCH(1,1) Model Summary:
+                       Zero Mean - GARCH Model Results                        
+==============================================================================
+Dep. Variable:                   None   R-squared:                       0.000
+Mean Model:                 Zero Mean   Adj. R-squared:                  0.003
+Vol Model:                      GARCH   Log-Likelihood:               -736.168
+Distribution:                  Normal   AIC:                           1478.34
+Method:            Maximum Likelihood   BIC:                           1489.45
+                                        No. Observations:                  300
+Date:                Mon, May 12 2025   Df Residuals:                      300
+Time:                        18:38:02   Df Model:                            0
+                              Volatility Model                             
+===========================================================================
+                 coef    std err          t      P&gt;|t|     95.0% Conf. Int.
+---------------------------------------------------------------------------
+omega          1.2832      0.350      3.665  2.470e-04    [  0.597,  1.969]
+alpha[1]       0.8105  9.290e-02      8.725  2.673e-18    [  0.628,  0.993]
+beta[1]        0.1195  7.511e-02      1.590      0.112 [-2.776e-02,  0.267]
+===========================================================================
+
+Covariance estimator: robust</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="实例比亚迪汽车" class="level2" data-number="38.4">
+<h2 data-number="38.4" class="anchored" data-anchor-id="实例比亚迪汽车"><span class="header-section-number">38.4</span> 实例：比亚迪汽车</h2>
+<div id="cell-15" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="im">import</span> akshare <span class="im">as</span> ak</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co"># 获取比亚迪（002594）股票的前复权日线行情数据</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>byd_stock_data <span class="op">=</span> ak.stock_zh_a_hist(</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    symbol<span class="op">=</span><span class="st">"002594"</span>,      <span class="co"># 股票代码</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>    period<span class="op">=</span><span class="st">"daily"</span>,       <span class="co"># 日频率</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>    start_date<span class="op">=</span><span class="st">"20021128"</span>,<span class="co"># 起始日期（比亚迪上市时间）</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>    adjust<span class="op">=</span><span class="st">"qfq"</span>          <span class="co"># 复权类型：前复权</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>)</span>
+<span id="cb6-11"><a href="#cb6-11"></a></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co"># 删除不需要的列（如果存在）</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a>cols_to_drop <span class="op">=</span> [<span class="st">"开盘"</span>, <span class="st">"收盘"</span>, <span class="st">"最高"</span>, <span class="st">"最低"</span>, <span class="st">"换手率"</span>]</span>
+<span id="cb6-14"><a href="#cb6-14"></a>byd_stock_data <span class="op">=</span> byd_stock_data.drop(columns<span class="op">=</span>[col <span class="cf">for</span> col <span class="kw">in</span> cols_to_drop <span class="cf">if</span> col <span class="kw">in</span> byd_stock_data.columns])</span>
+<span id="cb6-15"><a href="#cb6-15"></a></span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="co"># 将“日期”列转换为 datetime 类型</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a>byd_stock_data[<span class="st">"日期"</span>] <span class="op">=</span> pd.to_datetime(byd_stock_data[<span class="st">"日期"</span>])</span>
+<span id="cb6-18"><a href="#cb6-18"></a></span>
+<span id="cb6-19"><a href="#cb6-19"></a><span class="co"># 可选：将日期设置为索引</span></span>
+<span id="cb6-20"><a href="#cb6-20"></a>byd_stock_data.set_index(<span class="st">"日期"</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-21"><a href="#cb6-21"></a></span>
+<span id="cb6-22"><a href="#cb6-22"></a><span class="co"># 查看前几行数据</span></span>
+<span id="cb6-23"><a href="#cb6-23"></a><span class="bu">print</span>(byd_stock_data.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              股票代码     成交量           成交额     振幅    涨跌幅   涨跌额
+日期                                                          
+2011-06-30  002594  562925  1.349342e+09  33.49  59.55  7.45
+2011-07-01  002594  335613  8.986792e+08  15.03  12.78  2.55
+2011-07-04  002594  219646  6.535179e+08   9.86  12.44  2.80
+2011-07-05  002594  381081  1.257046e+09   7.86   8.89  2.25
+2011-07-06  002594  312967  1.056614e+09  12.48   1.27  0.35</code></pre>
+</div>
+</div>
+<div id="cell-16" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># 收盘价时序图</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="im">import</span> akshare <span class="im">as</span> ak</span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="im">from</span> matplotlib <span class="im">import</span> rcParams</span>
+<span id="cb8-7"><a href="#cb8-7"></a></span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="co"># 添加中文支持</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'SimHei'</span>]  <span class="co"># 设置字体为黑体</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span>   <span class="co"># 解决负号显示问题</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a></span>
+<span id="cb8-12"><a href="#cb8-12"></a><span class="co"># 获取比亚迪（002594）股票的前复权日线行情数据</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a>byd_stock_data <span class="op">=</span> ak.stock_zh_a_hist(</span>
+<span id="cb8-14"><a href="#cb8-14"></a>    symbol<span class="op">=</span><span class="st">"002594"</span>,</span>
+<span id="cb8-15"><a href="#cb8-15"></a>    period<span class="op">=</span><span class="st">"daily"</span>,</span>
+<span id="cb8-16"><a href="#cb8-16"></a>    start_date<span class="op">=</span><span class="st">"20021128"</span>,</span>
+<span id="cb8-17"><a href="#cb8-17"></a>    adjust<span class="op">=</span><span class="st">"qfq"</span></span>
+<span id="cb8-18"><a href="#cb8-18"></a>)</span>
+<span id="cb8-19"><a href="#cb8-19"></a></span>
+<span id="cb8-20"><a href="#cb8-20"></a><span class="co"># 保留日期和收盘价列，并转换日期为 datetime 类型</span></span>
+<span id="cb8-21"><a href="#cb8-21"></a>byd_stock_data[<span class="st">"日期"</span>] <span class="op">=</span> pd.to_datetime(byd_stock_data[<span class="st">"日期"</span>])</span>
+<span id="cb8-22"><a href="#cb8-22"></a>byd_stock_data.set_index(<span class="st">"日期"</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-23"><a href="#cb8-23"></a></span>
+<span id="cb8-24"><a href="#cb8-24"></a><span class="co"># 绘图：收盘价时序图</span></span>
+<span id="cb8-25"><a href="#cb8-25"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb8-26"><a href="#cb8-26"></a>plt.plot(byd_stock_data[<span class="st">"收盘"</span>], color<span class="op">=</span><span class="st">'steelblue'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb8-27"><a href="#cb8-27"></a>plt.title(<span class="st">"比亚迪（002594）前复权收盘价时序图"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb8-28"><a href="#cb8-28"></a>plt.xlabel(<span class="st">"日期"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-29"><a href="#cb8-29"></a>plt.ylabel(<span class="st">"收盘价（元）"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-30"><a href="#cb8-30"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb8-31"><a href="#cb8-31"></a>plt.tight_layout()</span>
+<span id="cb8-32"><a href="#cb8-32"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_GARCH_BYD_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-17" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># 设置时间范围</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>start_date <span class="op">=</span> <span class="st">"2015-01-01"</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>end_date <span class="op">=</span> <span class="st">"2021-12-31"</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="co"># 筛选指定时间范围内的数据</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>byd_stock_data_filtered <span class="op">=</span> byd_stock_data.loc[start_date:end_date]</span>
+<span id="cb9-7"><a href="#cb9-7"></a></span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="co"># 计算日收益率</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a>byd_stock_data_filtered[<span class="st">'日收益率'</span>] <span class="op">=</span> byd_stock_data_filtered[<span class="st">'收盘'</span>].pct_change() <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a></span>
+<span id="cb9-11"><a href="#cb9-11"></a><span class="co"># 绘制收益率趋势图</span></span>
+<span id="cb9-12"><a href="#cb9-12"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb9-13"><a href="#cb9-13"></a>plt.plot(byd_stock_data_filtered.index, byd_stock_data_filtered[<span class="st">'日收益率'</span>], color<span class="op">=</span><span class="st">'steelblue'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb9-14"><a href="#cb9-14"></a>plt.title(<span class="st">"比亚迪（002594）日收益率趋势图"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb9-15"><a href="#cb9-15"></a>plt.xlabel(<span class="st">"日期"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb9-16"><a href="#cb9-16"></a>plt.ylabel(<span class="st">"日收益率（%）"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb9-17"><a href="#cb9-17"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb9-18"><a href="#cb9-18"></a>plt.tight_layout()</span>
+<span id="cb9-19"><a href="#cb9-19"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_GARCH_BYD_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-18" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># 绘制日收益率平方的时序图</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb10-3"><a href="#cb10-3"></a>plt.plot(byd_stock_data_filtered.index, byd_stock_data_filtered[<span class="st">'日收益率'</span>]<span class="op">**</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">'darkorange'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb10-4"><a href="#cb10-4"></a>plt.title(<span class="st">"比亚迪（002594）日收益率平方时序图"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb10-5"><a href="#cb10-5"></a>plt.xlabel(<span class="st">"日期"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb10-6"><a href="#cb10-6"></a>plt.ylabel(<span class="st">"日收益率平方"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb10-7"><a href="#cb10-7"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb10-8"><a href="#cb10-8"></a>plt.tight_layout()</span>
+<span id="cb10-9"><a href="#cb10-9"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_GARCH_BYD_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="后续" class="level3" data-number="38.4.1">
+<h3 data-number="38.4.1" class="anchored" data-anchor-id="后续"><span class="header-section-number">38.4.1</span> 后续</h3>
+<ul>
+<li>估计 GARCH 模型</li>
+<li>检验 GARCH 效应</li>
+<li>模型评估</li>
+<li>预测波动率</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../body/TS_FRED_US_unemploy_rate.html" class="pagination-link" aria-label="案例：美国失业率和通胀率关系分析">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../body/test_AB_test.html" class="pagination-link" aria-label="A/B test-分组对照试验">
+        <span class="nav-page-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><a href="https://www.lianxh.cn">www.lianxh.cn</a></p>
+</div>
+    <div class="nav-footer-right">
+<p>Support: <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

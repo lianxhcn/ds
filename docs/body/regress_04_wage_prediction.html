@@ -1,0 +1,2949 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>33&nbsp; 线性回归分析 – 数据分析</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../body/TS_asset_return.html" rel="next">
+<link href="../body/regress_03_binscatter.html" rel="prev">
+<link href="../images/ds-book-logo-40.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e8fb9d25728d58bfeac61b497e4a6629.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-8434d2026ae8291579158df2ad8dfa64.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/regress_01_OLS.html"><strong>线性回归</strong></a></li><li class="breadcrumb-item"><a href="../body/regress_04_wage_prediction.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">线性回归分析</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../"></a><a href="../index.html">DS</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
+    <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
+    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">数据分析</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/00_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">课程简介和资源</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>基础配置</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_00_coding_with_AI.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">借助 AI 写代码</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_01_install_anaconda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">软件安装和环境配置</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_02_jupyter_notebook.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Jupyter Notebook 的使用</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_03_install_FAQs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python 安装常见问题</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_04_markdown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">何谓 Markdown？</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Python 基础</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_00_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Python 入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_01_grammer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Python 代码风格</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_02_QuickReference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Python 常用命令速查表</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_03_packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python 常用扩展包</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_04_import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Python：import 使用详解</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_05_OOP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Python：语法解析-面向对象编程</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_06_filepath.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Python 路径设置</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_01_numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_02_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">pandas 快速入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_03_matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Matplotlib简介</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_04_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">函数</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_05_class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">类和对象</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>数据分析</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_01_get_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">数据获取和读入</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_01_readdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">读取数据</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_02_data_type.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">数据分析是什么？</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_02_get_data_GMD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">获取数据：GMD</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_SZ_index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">上证指数的时序特征</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/web_01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">数据爬虫入门</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>可视化</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Python 可视化：简介</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_box_violin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">箱型图和小提琴图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_histogram.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">直方图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_kdensity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">核密度函数图</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>线性回归</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_01_OLS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">线性回归模型</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_02_wage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">线性回归分析</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_03_binscatter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">分仓散点图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_04_wage_prediction.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">线性回归分析</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>时间序列</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_asset_return.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">资产收益率（Asset Returns）</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_man_weight.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">时序建模思路：模拟体重变化</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_ARMA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">ARMA 模型</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_FRED_US_unemploy_rate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_GARCH_BYD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">GARCH 模型</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>机器学习</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/test_AB_test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-Naive-Bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">In Depth: Naive Bayes Classification</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-Random-Forests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">深入理解：决策树与随机森林</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-baggboost-lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Tree-Based Methods</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-Support-Vector-Machines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">支持向量机 (Support Vector Machines)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-svm-lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Support Vector Machines</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/06.00-Figure-Code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">Appendix: Figure Code</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>作业展示</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Dangdang_G7_01_data_clean.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">当当网-G7-01</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Dangdang_G7_02_data_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">当当网-G7-02</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/G8_China_stock_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">G8-中国上市公司</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_01_data_crawler.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">G4-01</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_02_data_cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">G4-02</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_03_data_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">G4-03</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_万诗晴.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">ex02_万诗晴</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_吴倩茵.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">ex02_吴倩茵</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_朱少荣.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">ex02_朱少荣</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_黄伊姿.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">ex02_黄伊姿</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#简介" id="toc-简介" class="nav-link active" data-scroll-target="#简介"><span class="header-section-number">33.1</span> 简介</a></li>
+  <li><a href="#数据说明" id="toc-数据说明" class="nav-link" data-scroll-target="#数据说明"><span class="header-section-number">33.2</span> 数据说明</a>
+  <ul class="collapse">
+  <li><a href="#变量标签与变量解释" id="toc-变量标签与变量解释" class="nav-link" data-scroll-target="#变量标签与变量解释"><span class="header-section-number">33.2.1</span> 变量标签与变量解释</a></li>
+  <li><a href="#变量进一步解释和常见分组" id="toc-变量进一步解释和常见分组" class="nav-link" data-scroll-target="#变量进一步解释和常见分组"><span class="header-section-number">33.2.2</span> 变量进一步解释和常见分组</a></li>
+  <li><a href="#参考说明与代码本依据" id="toc-参考说明与代码本依据" class="nav-link" data-scroll-target="#参考说明与代码本依据"><span class="header-section-number">33.2.3</span> 参考说明与代码本依据</a></li>
+  <li><a href="#相关-rpython-代码标签举例" id="toc-相关-rpython-代码标签举例" class="nav-link" data-scroll-target="#相关-rpython-代码标签举例"><span class="header-section-number">33.2.4</span> 相关 R/Python 代码标签举例</a></li>
+  </ul></li>
+  <li><a href="#基本数据分析" id="toc-基本数据分析" class="nav-link" data-scroll-target="#基本数据分析"><span class="header-section-number">33.3</span> 基本数据分析</a>
+  <ul class="collapse">
+  <li><a href="#变量生成及变量标签" id="toc-变量生成及变量标签" class="nav-link" data-scroll-target="#变量生成及变量标签"><span class="header-section-number">33.3.1</span> 变量生成及变量标签</a></li>
+  <li><a href="#不同职业类别的工资分布" id="toc-不同职业类别的工资分布" class="nav-link" data-scroll-target="#不同职业类别的工资分布"><span class="header-section-number">33.3.2</span> 不同职业类别的工资分布</a></li>
+  <li><a href="#不同行业类别的工资分布" id="toc-不同行业类别的工资分布" class="nav-link" data-scroll-target="#不同行业类别的工资分布"><span class="header-section-number">33.3.3</span> 不同行业类别的工资分布</a></li>
+  </ul></li>
+  <li><a href="#不同教育水平的工资分布" id="toc-不同教育水平的工资分布" class="nav-link" data-scroll-target="#不同教育水平的工资分布"><span class="header-section-number">33.4</span> 不同教育水平的工资分布</a>
+  <ul class="collapse">
+  <li><a href="#箱线图不同教育水平的工资分布" id="toc-箱线图不同教育水平的工资分布" class="nav-link" data-scroll-target="#箱线图不同教育水平的工资分布"><span class="header-section-number">33.4.1</span> 箱线图：不同教育水平的工资分布</a></li>
+  <li><a href="#不同教育水平下的工资性别差异" id="toc-不同教育水平下的工资性别差异" class="nav-link" data-scroll-target="#不同教育水平下的工资性别差异"><span class="header-section-number">33.4.2</span> 不同教育水平下的工资性别差异</a></li>
+  <li><a href="#不同地区的工资分布" id="toc-不同地区的工资分布" class="nav-link" data-scroll-target="#不同地区的工资分布"><span class="header-section-number">33.4.3</span> 不同地区的工资分布</a></li>
+  <li><a href="#组间均值差异检验" id="toc-组间均值差异检验" class="nav-link" data-scroll-target="#组间均值差异检验"><span class="header-section-number">33.4.4</span> 组间均值差异检验</a></li>
+  <li><a href="#组间均值差异检验多组比较" id="toc-组间均值差异检验多组比较" class="nav-link" data-scroll-target="#组间均值差异检验多组比较"><span class="header-section-number">33.4.5</span> 组间均值差异检验：多组比较</a></li>
+  </ul></li>
+  <li><a href="#wage-与-experience-的关系" id="toc-wage-与-experience-的关系" class="nav-link" data-scroll-target="#wage-与-experience-的关系"><span class="header-section-number">33.5</span> wage 与 experience 的关系</a></li>
+  <li><a href="#分仓散点图" id="toc-分仓散点图" class="nav-link" data-scroll-target="#分仓散点图"><span class="header-section-number">33.6</span> 分仓散点图</a>
+  <ul class="collapse">
+  <li><a href="#变量构造" id="toc-变量构造" class="nav-link" data-scroll-target="#变量构造"><span class="header-section-number">33.6.1</span> 变量构造</a></li>
+  </ul></li>
+  <li><a href="#预测" id="toc-预测" class="nav-link" data-scroll-target="#预测"><span class="header-section-number">33.7</span> 预测</a>
+  <ul class="collapse">
+  <li><a href="#数据拆分与模型评估" id="toc-数据拆分与模型评估" class="nav-link" data-scroll-target="#数据拆分与模型评估"><span class="header-section-number">33.7.1</span> 数据拆分与模型评估</a></li>
+  </ul></li>
+  <li><a href="#数据拆分样本外预测表现" id="toc-数据拆分样本外预测表现" class="nav-link" data-scroll-target="#数据拆分样本外预测表现"><span class="header-section-number">33.8</span> 数据拆分：样本外预测表现</a>
+  <ul class="collapse">
+  <li><a href="#超灵活模型与过拟合" id="toc-超灵活模型与过拟合" class="nav-link" data-scroll-target="#超灵活模型与过拟合"><span class="header-section-number">33.8.1</span> 超灵活模型与过拟合</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/regress_01_OLS.html"><strong>线性回归</strong></a></li><li class="breadcrumb-item"><a href="../body/regress_04_wage_prediction.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">线性回归分析</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">线性回归分析</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>提示词：</p>
+<p>翻译为中文，讲义风格。为了符合中文表述喜欢，可以适当意译。 关键变量，如 Y, X 都用 Latex 格式，即 <span class="math inline">\(Y\)</span>, <span class="math inline">\(X\)</span> 所有圆括号都采用半角模式； 中英文混排加空格。</p>
+<p>Source: Chernozhukov, V. &amp; Hansen, C. &amp; Kallus, N. &amp; Spindler, M. &amp; Syrgkanis, V. (<strong>2024</strong>): Applied Causal Inference Powered by ML and AI. <a href="https://causalml-book.org/">CausalML-book.org</a>; arXiv:2403.02467. <a href="https://arxiv.org/pdf/2403.02467">-PDF-</a>，<a href="https://causalml-book.org/">Website</a>, <a href="https://github.com/CausalAIBook/MetricsMLNotebooks">github</a> → <a href="https://github.com/CausalAIBook/MetricsMLNotebooks/blob/main/PM1/python-ols-and-lasso-for-wage-prediction.ipynb">This Note</a></p>
+<section id="简介" class="level2" data-number="33.1">
+<h2 data-number="33.1" class="anchored" data-anchor-id="简介"><span class="header-section-number">33.1</span> 简介</h2>
+<p>在劳动经济学中，一个核心问题是：工人的工资 <span class="math inline">\(Y\)</span> 由什么因素决定？虽然这是一个因果推断问题，但我们可以先从预测的角度进行分析。</p>
+<p>在下面的工资案例中，<span class="math inline">\(Y\)</span> 表示工人的（对数）小时工资，<span class="math inline">\(X\)</span> 是工人的特征向量，例如教育、工作经验、性别等。这里我们关注两个主要问题：</p>
+<ul>
+<li>如何利用与工作相关的特征（如教育和经验）更好地预测工资 <span class="math inline">\(Y\)</span>？</li>
+<li>在其他工作相关特征 <span class="math inline">\(X\)</span> 相同的情况下，男性和女性工人的预测工资有何不同？</li>
+</ul>
+<p>本实验首先聚焦于回归分析和预测问题。</p>
+</section>
+<section id="数据说明" class="level2" data-number="33.2">
+<h2 data-number="33.2" class="anchored" data-anchor-id="数据说明"><span class="header-section-number">33.2</span> 数据说明</h2>
+<p>本次分析的数据来源于 2015 年美国现行人口调查（CPS）三月补充调查。我们筛选了 25 至 64 岁的白人非西班牙裔个体，要求每年工作超过 50 周且每周工作时间超过 35 小时。排除了自雇人员、居住在集体宿舍的个体、军人、农业或私人家庭部门的个体，以及在收入和就业状态报告上存在不一致、变量有缺失或分配信息的观测，同时剔除了小时工资低于 3 的样本。</p>
+<p>我们关注的核心变量 <span class="math inline">\(Y\)</span>，即（对数）小时工资率，是由年收入除以总工作小时数得到的。其中，总工作小时数等于每年工作周数乘以每周通常工作小时数。在分析中，我们还聚焦于未婚（从未结婚）工人。最终样本量为 <span class="math inline">\(n=5150\)</span>。</p>
+<section id="变量标签与变量解释" class="level3" data-number="33.2.1">
+<h3 data-number="33.2.1" class="anchored" data-anchor-id="变量标签与变量解释"><span class="header-section-number">33.2.1</span> 变量标签与变量解释</h3>
+<p>下面列示了该数据集中每个变量的常用英文标签及中文解释说明。部分变量根据 CPS 典型设定和相关代码本推断并补充。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 20%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>变量名</th>
+<th>英文标签</th>
+<th>中文解释</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>wage</td>
+<td>Hourly wage</td>
+<td>小时工资（美元）</td>
+</tr>
+<tr class="even">
+<td>lwage</td>
+<td>Log hourly wage</td>
+<td>小时工资的对数</td>
+</tr>
+<tr class="odd">
+<td>sex</td>
+<td>Female (1=Female)</td>
+<td>性别（女性=1，男性=0）</td>
+</tr>
+<tr class="even">
+<td>shs</td>
+<td>&lt;12 years of schooling</td>
+<td>教育年限未满 12 年（未完成高中）</td>
+</tr>
+<tr class="odd">
+<td>hsg</td>
+<td>High school graduate</td>
+<td>高中毕业</td>
+</tr>
+<tr class="even">
+<td>scl</td>
+<td>Some college</td>
+<td>大学肄业（上过大学但未获得学位）</td>
+</tr>
+<tr class="odd">
+<td>clg</td>
+<td>College graduate</td>
+<td>大学毕业（获得学士学位）</td>
+</tr>
+<tr class="even">
+<td>ad</td>
+<td>Advanced degree</td>
+<td>研究生学历（硕士或博士）</td>
+</tr>
+<tr class="odd">
+<td>mw</td>
+<td>Midwest region</td>
+<td>美国中西部地区（居住地）</td>
+</tr>
+<tr class="even">
+<td>so</td>
+<td>South region</td>
+<td>美国南部地区（居住地）</td>
+</tr>
+<tr class="odd">
+<td>we</td>
+<td>West region</td>
+<td>美国西部地区（居住地）</td>
+</tr>
+<tr class="even">
+<td>ne</td>
+<td>Northeast region</td>
+<td>美国东北地区（居住地）</td>
+</tr>
+<tr class="odd">
+<td>exp1</td>
+<td>Potential experience</td>
+<td>潜在工作经验年数（age - education - 6）</td>
+</tr>
+<tr class="even">
+<td>exp2</td>
+<td>Potential experience squared</td>
+<td>潜在工作经验年数的平方</td>
+</tr>
+<tr class="odd">
+<td>exp3</td>
+<td>Potential experience cubed</td>
+<td>潜在工作经验年数的三次方</td>
+</tr>
+<tr class="even">
+<td>exp4</td>
+<td>Potential experience^4</td>
+<td>潜在工作经验年数的四次方</td>
+</tr>
+<tr class="odd">
+<td>occ</td>
+<td>Occupation code</td>
+<td>职业代码（细分，通常为 3-5 位数）</td>
+</tr>
+<tr class="even">
+<td>occ2</td>
+<td>Major occupation group</td>
+<td>职业大类代码（22 类）</td>
+</tr>
+<tr class="odd">
+<td>ind</td>
+<td>Industry code</td>
+<td>行业代码（细分，通常为 3-5 位数）</td>
+</tr>
+<tr class="even">
+<td>ind2</td>
+<td>Major industry group</td>
+<td>行业大类代码（22 类）</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="变量进一步解释和常见分组" class="level3" data-number="33.2.2">
+<h3 data-number="33.2.2" class="anchored" data-anchor-id="变量进一步解释和常见分组"><span class="header-section-number">33.2.2</span> 变量进一步解释和常见分组</h3>
+<ul>
+<li><p><strong>学历变量（shs, hsg, scl, clg, ad）</strong> 这些是<strong>互斥</strong>的 dummy 变量，每个人只能属于其中一个。常见定义如下：</p>
+<ul>
+<li><code>shs</code>: 小于高中毕业（未完成高中学业）</li>
+<li><code>hsg</code>: 高中毕业但没有上过大学</li>
+<li><code>scl</code>: 上过大学但未毕业（包括两年制大学、部分大学课程等，未获得学位）</li>
+<li><code>clg</code>: 获得学士学位（本科毕业）</li>
+<li><code>ad</code>: 获得更高学位（硕士及以上）</li>
+</ul></li>
+<li><p><strong>地区变量（mw, so, we, ne）</strong> 根据居住地划分的美国四大区域，具体可以参考美国人口调查标准地区定义。</p></li>
+<li><p><strong>经验变量（exp1, exp2, exp3, exp4）</strong> 经验变量通常由公式 <span class="math inline">\(exp1 = \text{age} - \text{years of schooling} - 6\)</span> 计算，近似代表进入劳动力市场的年数，其高次项常用于工资方程中的经验-工资非线性关系建模。</p></li>
+<li><p><strong>职业/行业变量（occ, occ2, ind, ind2）</strong></p>
+<ul>
+<li><code>occ</code>/<code>ind</code> 为细分的职业/行业代码，通常来自于 CPS 的详细分类。</li>
+<li><code>occ2</code>/<code>ind2</code> 则为大类分组，便于建模和控制大类异质性。</li>
+</ul></li>
+</ul>
+</section>
+<section id="参考说明与代码本依据" class="level3" data-number="33.2.3">
+<h3 data-number="33.2.3" class="anchored" data-anchor-id="参考说明与代码本依据"><span class="header-section-number">33.2.3</span> 参考说明与代码本依据</h3>
+<p>这些变量的定义可参考 CPS（Current Population Survey）文档和相关学术论文，例如：</p>
+<ul>
+<li>Angrist, J. D., &amp; Pischke, J.-S. (2009). <em>Mostly Harmless Econometrics: An Empiricist’s Companion</em>. Princeton University Press. <a href="https://press.princeton.edu/books/paperback/9780691120355/mostly-harmless-econometrics">Link</a>, <a href="https://scholar.google.com/scholar?q=Mostly+Harmless+Econometrics">Google</a>.</li>
+<li>Card, D., &amp; Krueger, A. B. (1992). School Quality and Black-White Relative Earnings: A Direct Assessment. <em>Quarterly Journal of Economics</em>, 107(1), 151–200. <a href="https://doi.org/10.2307/2118323">Link</a>, <a href="http://sci-hub.ren/10.2307/2118323">PDF</a>, <a href="https://scholar.google.com/scholar?q=School+Quality+and+Black-White+Relative+Earnings">Google</a>.</li>
+</ul>
+</section>
+<section id="相关-rpython-代码标签举例" class="level3" data-number="33.2.4">
+<h3 data-number="33.2.4" class="anchored" data-anchor-id="相关-rpython-代码标签举例"><span class="header-section-number">33.2.4</span> 相关 R/Python 代码标签举例</h3>
+<p>常见的学历 dummies 在原始代码中的构造（R/Python 通用思路）：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Python 示意</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>df[<span class="st">"shs"</span>] <span class="op">=</span> (df[<span class="st">"educ"</span>] <span class="op">&lt;</span> <span class="dv">12</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a>df[<span class="st">"hsg"</span>] <span class="op">=</span> (df[<span class="st">"educ"</span>] <span class="op">==</span> <span class="dv">12</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb1-4"><a href="#cb1-4"></a>df[<span class="st">"scl"</span>] <span class="op">=</span> ((df[<span class="st">"educ"</span>] <span class="op">&gt;</span> <span class="dv">12</span>) <span class="op">&amp;</span> (df[<span class="st">"educ"</span>] <span class="op">&lt;</span> <span class="dv">16</span>)).astype(<span class="bu">int</span>)</span>
+<span id="cb1-5"><a href="#cb1-5"></a>df[<span class="st">"clg"</span>] <span class="op">=</span> (df[<span class="st">"educ"</span>] <span class="op">==</span> <span class="dv">16</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb1-6"><a href="#cb1-6"></a>df[<span class="st">"ad"</span>] <span class="op">=</span> (df[<span class="st">"educ"</span>] <span class="op">&gt;</span> <span class="dv">16</span>).astype(<span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-4" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="im">import</span> sklearn.linear_model <span class="im">as</span> lm</span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="im">import</span> warnings</span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="co"># ignore potential convergence warnings; for some small penalty levels,</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co"># tried out, optimization might not converge</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>warnings.simplefilter(<span class="st">'ignore'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="基本数据分析" class="level2" data-number="33.3">
+<h2 data-number="33.3" class="anchored" data-anchor-id="基本数据分析"><span class="header-section-number">33.3</span> 基本数据分析</h2>
+<p>本节将对数据进行初步分析，包括：</p>
+<ul>
+<li>生成一些新变量，以便于后续分组绘图；</li>
+<li>探索性数据分析：采用散点图、箱线图、小提琴图等可视化工具，分析工资在不同子样本 (不同教育水平、不同地区、不同性别等) 下的分布情况，以便初步了解工资与各个特征之间的关系；</li>
+<li>计算工资的描述性统计量（均值、中位数、标准差等）；</li>
+<li>采用分仓散点图和回归线，分析工资与潜在工作经验之间的关系。</li>
+</ul>
+<div id="cell-6" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># 导入数据</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="bu">file</span> <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/CausalAIBook/MetricsMLNotebooks/main/data/wage2015_subsample_inference.csv"</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>df <span class="op">=</span> pd.read_csv(<span class="bu">file</span>)</span>
+<span id="cb3-5"><a href="#cb3-5"></a></span>
+<span id="cb3-6"><a href="#cb3-6"></a>df.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>Index(['wage', 'lwage', 'sex', 'shs', 'hsg', 'scl', 'clg', 'ad', 'mw', 'so',
+       'we', 'ne', 'exp1', 'exp2', 'exp3', 'exp4', 'occ', 'occ2', 'ind',
+       'ind2'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<section id="变量生成及变量标签" class="level3" data-number="33.3.1">
+<h3 data-number="33.3.1" class="anchored" data-anchor-id="变量生成及变量标签"><span class="header-section-number">33.3.1</span> 变量生成及变量标签</h3>
+<p>在本节中，我们将对数据集进行变量生成和标签定义，以便后续分析和建模。</p>
+<ul>
+<li>基于 sex 生成新变量：带标签的变量 sex_label
+<ul>
+<li><code>sex_label</code>：{0: Male; 1: Female}，表示性别。我们将其转换为字符串标签。</li>
+</ul></li>
+<li>教育水平和地区
+<ul>
+<li>定义一个新变量：edu_group，表示教育水平的分组，取值为 <code>{'shs': '&lt;HS', 'hsg': 'HS', 'scl': 'Some College', 'clg': 'College', 'ad': 'Advanced'}</code>。后续分析中采用这个变量更便于分组绘图和统计分析。</li>
+<li>定义一个新变量：regeion，表示居住地区的分组，取值为 <code>{'mw': 'Midwest', 'so': 'South', 'we': 'West', 'ne': 'Northeast'}</code>。后续分析中采用这个变量更便于分组绘图和统计分析。</li>
+</ul></li>
+</ul>
+<div id="cell-8" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># 基于 sex 生成 sex_label 变量（0: Male, 1: Female），并转换为字符串标签</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>df[<span class="st">'sex_label'</span>] <span class="op">=</span> df[<span class="st">'sex'</span>].<span class="bu">map</span>({<span class="dv">0</span>: <span class="st">'Male'</span>, <span class="dv">1</span>: <span class="st">'Female'</span>})</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co"># 定义 edu_group 变量</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>edu_map <span class="op">=</span> {<span class="st">'shs'</span>: <span class="st">'&lt;HS'</span>, <span class="st">'hsg'</span>: <span class="st">'HS'</span>, <span class="st">'scl'</span>: <span class="st">'Some College'</span>, <span class="st">'clg'</span>: <span class="st">'College'</span>, <span class="st">'ad'</span>: <span class="st">'Advanced'</span>}</span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="kw">def</span> get_edu_group(row):</span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="cf">for</span> k <span class="kw">in</span> edu_map:</span>
+<span id="cb5-8"><a href="#cb5-8"></a>        <span class="cf">if</span> row[k] <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb5-9"><a href="#cb5-9"></a>            <span class="cf">return</span> edu_map[k]</span>
+<span id="cb5-10"><a href="#cb5-10"></a>    <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a>df[<span class="st">'edu_group'</span>] <span class="op">=</span> df.<span class="bu">apply</span>(get_edu_group, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-12"><a href="#cb5-12"></a></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="co"># 定义 region 变量</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a>region_map <span class="op">=</span> {<span class="st">'mw'</span>: <span class="st">'Midwest'</span>, <span class="st">'so'</span>: <span class="st">'South'</span>, <span class="st">'we'</span>: <span class="st">'West'</span>, <span class="st">'ne'</span>: <span class="st">'Northeast'</span>}</span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="kw">def</span> get_region(row):</span>
+<span id="cb5-16"><a href="#cb5-16"></a>    <span class="cf">for</span> k <span class="kw">in</span> region_map:</span>
+<span id="cb5-17"><a href="#cb5-17"></a>        <span class="cf">if</span> row[k] <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb5-18"><a href="#cb5-18"></a>            <span class="cf">return</span> region_map[k]</span>
+<span id="cb5-19"><a href="#cb5-19"></a>    <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb5-20"><a href="#cb5-20"></a>df[<span class="st">'region'</span>] <span class="op">=</span> df.<span class="bu">apply</span>(get_region, axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-9" class="cell" data-execution_count="222">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># 变量清单</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a>df.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="222">
+<pre><code>Index(['wage', 'lwage', 'sex', 'shs', 'hsg', 'scl', 'clg', 'ad', 'mw', 'so',
+       'we', 'ne', 'exp1', 'exp2', 'exp3', 'exp4', 'occ', 'occ2', 'ind',
+       'ind2', 'sex_label', 'edu_group', 'region'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<div id="cell-10" class="cell" data-execution_count="223">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># 描述性统计量</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>cols_to_exclude <span class="op">=</span> [<span class="st">'exp2'</span>, <span class="st">'exp3'</span>, <span class="st">'exp4'</span>, <span class="st">'occ'</span>, <span class="st">'ind'</span>]</span>
+<span id="cb8-3"><a href="#cb8-3"></a>desc <span class="op">=</span> df.drop(columns<span class="op">=</span>cols_to_exclude).describe().T[[<span class="st">'count'</span>, <span class="st">'mean'</span>, <span class="st">'std'</span>, <span class="st">'min'</span>, <span class="st">'max'</span>]]</span>
+<span id="cb8-4"><a href="#cb8-4"></a>desc <span class="op">=</span> desc.rename(columns<span class="op">=</span>{<span class="st">'count'</span>: <span class="st">'N'</span>, <span class="st">'std'</span>: <span class="st">'sd'</span>})</span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="bu">print</span>(desc.<span class="bu">round</span>(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            N   mean     sd   min     max
+wage   5150.0  23.41  21.00  3.02  528.85
+lwage  5150.0   2.97   0.57  1.11    6.27
+sex    5150.0   0.44   0.50  0.00    1.00
+shs    5150.0   0.02   0.15  0.00    1.00
+hsg    5150.0   0.24   0.43  0.00    1.00
+scl    5150.0   0.28   0.45  0.00    1.00
+clg    5150.0   0.32   0.47  0.00    1.00
+ad     5150.0   0.14   0.34  0.00    1.00
+mw     5150.0   0.26   0.44  0.00    1.00
+so     5150.0   0.30   0.46  0.00    1.00
+we     5150.0   0.22   0.41  0.00    1.00
+ne     5150.0   0.23   0.42  0.00    1.00
+exp1   5150.0  13.76  10.61  0.00   47.00
+occ2   5150.0  11.67   6.97  1.00   22.00
+ind2   5150.0  13.32   5.70  2.00   22.00</code></pre>
+</div>
+</div>
+</section>
+<section id="不同职业类别的工资分布" class="level3" data-number="33.3.2">
+<h3 data-number="33.3.2" class="anchored" data-anchor-id="不同职业类别的工资分布"><span class="header-section-number">33.3.2</span> 不同职业类别的工资分布</h3>
+<div id="cell-12" class="cell" data-execution_count="224">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># 按照 occ2 分组，计算每个职业类别的平均工资</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>stats <span class="op">=</span> [<span class="st">'count'</span>, <span class="st">'mean'</span>, <span class="st">'std'</span>, <span class="st">'min'</span>, <span class="st">'median'</span>, <span class="st">'max'</span>]</span>
+<span id="cb10-3"><a href="#cb10-3"></a>wage_by_occ2 <span class="op">=</span> df.groupby(<span class="st">'occ2'</span>)[<span class="st">'wage'</span>].agg(stats).reset_index()</span>
+<span id="cb10-4"><a href="#cb10-4"></a>wage_by_occ2.columns <span class="op">=</span> [<span class="st">'occ2'</span>] <span class="op">+</span> stats</span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="bu">print</span>(wage_by_occ2.<span class="bu">round</span>(<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    occ2  count  mean   std  min  median    max
+0      1    603  30.3  19.5  4.2    25.6  153.8
+1      2    331  30.9  24.7  4.2    25.5  276.9
+2      3    224  31.9  15.8  5.5    28.8  120.2
+3      4    106  28.2  11.3  5.7    27.3   60.1
+4      5     73  28.9  14.1  4.2    26.9   76.9
+5      6    120  19.6   8.8  5.5    19.2   72.1
+6      7     92  39.6  34.2  9.7    29.1  240.4
+7      8    271  21.4  10.3  4.3    19.2   72.1
+8      9    142  26.2  16.6  3.1    21.6   96.2
+9     10    301  30.4  31.9  4.8    24.0  384.6
+10    11     86  14.4   6.5  4.3    13.5   51.2
+11    12    103  23.8  15.5  4.8    17.9   74.2
+12    13    237  13.3   6.0  3.8    12.0   43.7
+13    14    117  14.4   6.6  4.3    13.5   51.9
+14    15    117  15.0   7.2  3.0    14.3   43.3
+15    16    546  24.4  39.9  3.8    17.3  528.8
+16    17    670  17.7   8.4  4.8    16.2   64.1
+17    18      6  21.3  15.8  8.7    17.5   52.0
+18    19    229  20.6  10.4  6.4    17.5   65.8
+19    20    208  21.2  10.2  3.4    19.2   55.3
+20    21    338  19.2   9.9  4.7    16.8   67.3
+21    22    230  17.1   9.7  4.4    14.7   96.6</code></pre>
+</div>
+</div>
+<div id="cell-13" class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># 箱线图：不同职业类别的工资分布</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co"># 只绘制工资小于100的样本，以避免极端值影响图形</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb12-5"><a href="#cb12-5"></a></span>
+<span id="cb12-6"><a href="#cb12-6"></a>plt.figure(figsize <span class="op">=</span> (<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb12-7"><a href="#cb12-7"></a>df[df[<span class="st">'wage'</span>]<span class="op">&lt;</span><span class="dv">100</span>].boxplot(column<span class="op">=</span><span class="st">'wage'</span>, by<span class="op">=</span><span class="st">'occ2'</span>)</span>
+<span id="cb12-8"><a href="#cb12-8"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;Figure size 1000x600 with 0 Axes&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regress_04_wage_prediction_files/figure-html/cell-8-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-14" class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># 对数工资 ln(wage): boxplot </span></span>
+<span id="cb14-2"><a href="#cb14-2"></a></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb14-4"><a href="#cb14-4"></a></span>
+<span id="cb14-5"><a href="#cb14-5"></a>df.boxplot(column<span class="op">=</span><span class="st">'lwage'</span>, by<span class="op">=</span><span class="st">'occ2'</span>)</span>
+<span id="cb14-6"><a href="#cb14-6"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regress_04_wage_prediction_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="不同行业类别的工资分布" class="level3" data-number="33.3.3">
+<h3 data-number="33.3.3" class="anchored" data-anchor-id="不同行业类别的工资分布"><span class="header-section-number">33.3.3</span> 不同行业类别的工资分布</h3>
+<div id="cell-16" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># 按照 ind2 分组，计算每个行业类别的样本数、平均工资和工资标准差</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>stats <span class="op">=</span> [<span class="st">'count'</span>, <span class="st">'mean'</span>, <span class="st">'std'</span>, <span class="st">'min'</span>, <span class="st">'max'</span>]</span>
+<span id="cb15-3"><a href="#cb15-3"></a>wage_by_ind2 <span class="op">=</span> df.groupby(<span class="st">'ind2'</span>)[<span class="st">'wage'</span>].agg(stats).reset_index()</span>
+<span id="cb15-4"><a href="#cb15-4"></a>wage_by_ind2.columns <span class="op">=</span> [<span class="st">'ind2'</span>] <span class="op">+</span> stats</span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="bu">print</span>(wage_by_ind2.<span class="bu">round</span>(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    ind2  count   mean    std   min     max
+0      2     45  30.06  19.34  6.32  111.54
+1      3     52  26.58  14.88  6.84   72.12
+2      4    297  21.06  10.20  4.81   60.58
+3      5    195  22.78  14.67  5.29  106.84
+4      6    373  21.64  11.92  4.52   78.08
+5      7     69  29.58  57.51  4.33  490.20
+6      8     67  23.73  19.11  6.99  145.96
+7      9    616  20.66  32.82  3.37  528.85
+8     10    143  20.05  11.00  7.21   96.63
+9     11    169  29.65  20.39  3.08  115.38
+10    12    284  31.39  23.91  5.12  240.38
+11    13     84  24.55  12.65  6.29   67.31
+12    14    484  31.31  29.56  4.57  384.62
+13    15     14  24.91  11.44  9.13   50.00
+14    16    185  19.50  17.68  4.43  213.46
+15    17    408  23.17  11.51  4.25   96.15
+16    18    664  21.97  14.73  4.33  120.19
+17    19    108  19.36  12.26  3.02   86.54
+18    20    363  14.54   7.56  3.85   48.08
+19    21    223  20.95  12.02  4.81  111.34
+20    22    307  28.21  16.63  3.90  126.92</code></pre>
+</div>
+</div>
+<div id="cell-17" class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># 箱线图：不同行业类别的工资分布</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a></span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb17-4"><a href="#cb17-4"></a></span>
+<span id="cb17-5"><a href="#cb17-5"></a>df[df[<span class="st">'wage'</span>] <span class="op">&lt;</span> <span class="dv">100</span>].boxplot(column<span class="op">=</span><span class="st">'wage'</span>, by<span class="op">=</span><span class="st">'ind2'</span>, grid<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb17-6"><a href="#cb17-6"></a>plt.title(<span class="st">'Sample: wage &lt; 100'</span>)</span>
+<span id="cb17-7"><a href="#cb17-7"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regress_04_wage_prediction_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-18" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># 对数工资 ln(wage): boxplot 不同行业类别</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a></span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb18-4"><a href="#cb18-4"></a></span>
+<span id="cb18-5"><a href="#cb18-5"></a>df.boxplot(column<span class="op">=</span><span class="st">'lwage'</span>, by<span class="op">=</span><span class="st">'ind2'</span>, grid<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb18-6"><a href="#cb18-6"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regress_04_wage_prediction_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="不同教育水平的工资分布" class="level2" data-number="33.4">
+<h2 data-number="33.4" class="anchored" data-anchor-id="不同教育水平的工资分布"><span class="header-section-number">33.4</span> 不同教育水平的工资分布</h2>
+<p>使用 <code>edu_group</code> 变量绘制不同教育水平的工资分布图。可以使用箱线图（boxplot）或小提琴图（violin plot）来展示不同教育水平下工资的分布情况。</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+提示词
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>使用 <code>edu_group</code> 变量绘制不同教育水平的工资分布图：</p>
+<ul>
+<li>小提琴图：颜色-深黄色；</li>
+<li>纵轴刻度：0(5)100；</li>
+<li>Sample: wage &lt; 100；</li>
+<li>添加浅灰色横向网格线，间隔 5</li>
+</ul>
+</div>
+</div>
+<div id="cell-20" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb19-3"><a href="#cb19-3"></a></span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb19-5"><a href="#cb19-5"></a></span>
+<span id="cb19-6"><a href="#cb19-6"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb19-7"><a href="#cb19-7"></a>sns.violinplot(</span>
+<span id="cb19-8"><a href="#cb19-8"></a>    data<span class="op">=</span>df_wage_less_100,</span>
+<span id="cb19-9"><a href="#cb19-9"></a>    x<span class="op">=</span><span class="st">'edu_group'</span>, y<span class="op">=</span><span class="st">'wage'</span>,</span>
+<span id="cb19-10"><a href="#cb19-10"></a>    order<span class="op">=</span>edu_labels,</span>
+<span id="cb19-11"><a href="#cb19-11"></a>    inner<span class="op">=</span><span class="st">'box'</span>, color<span class="op">=</span><span class="st">'#FFD600'</span>  <span class="co"># 深黄色</span></span>
+<span id="cb19-12"><a href="#cb19-12"></a>)</span>
+<span id="cb19-13"><a href="#cb19-13"></a>plt.xlabel(<span class="st">'Education Level'</span>)</span>
+<span id="cb19-14"><a href="#cb19-14"></a>plt.ylabel(<span class="st">'Wage'</span>)</span>
+<span id="cb19-15"><a href="#cb19-15"></a>plt.title(<span class="st">'Wage Distribution by Education Level (Violin Plot)'</span>)</span>
+<span id="cb19-16"><a href="#cb19-16"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, color<span class="op">=</span><span class="st">'lightgray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.7</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb19-17"><a href="#cb19-17"></a>plt.yticks(np.arange(<span class="dv">0</span>, df_wage_less_100[<span class="st">'wage'</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="dv">2</span>, <span class="dv">5</span>))</span>
+<span id="cb19-18"><a href="#cb19-18"></a>plt.tight_layout()</span>
+<span id="cb19-19"><a href="#cb19-19"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regress_04_wage_prediction_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="箱线图不同教育水平的工资分布" class="level3" data-number="33.4.1">
+<h3 data-number="33.4.1" class="anchored" data-anchor-id="箱线图不同教育水平的工资分布"><span class="header-section-number">33.4.1</span> 箱线图：不同教育水平的工资分布</h3>
+<div id="cell-22" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a>edu_vars <span class="op">=</span> [<span class="st">'shs'</span>, <span class="st">'hsg'</span>, <span class="st">'scl'</span>, <span class="st">'clg'</span>, <span class="st">'ad'</span>]</span>
+<span id="cb20-4"><a href="#cb20-4"></a>edu_labels <span class="op">=</span> [<span class="st">'&lt;HS'</span>, <span class="st">'HS'</span>, <span class="st">'Some College'</span>, <span class="st">'College'</span>, <span class="st">'Advanced'</span>]</span>
+<span id="cb20-5"><a href="#cb20-5"></a></span>
+<span id="cb20-6"><a href="#cb20-6"></a><span class="co"># 为每个学历子样本绘制工资箱线图</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a>wage_data <span class="op">=</span> [df[df[edu]<span class="op">==</span><span class="dv">1</span>][<span class="st">'wage'</span>] <span class="cf">for</span> edu <span class="kw">in</span> edu_vars]</span>
+<span id="cb20-8"><a href="#cb20-8"></a></span>
+<span id="cb20-9"><a href="#cb20-9"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb20-10"><a href="#cb20-10"></a>plt.boxplot(wage_data, labels<span class="op">=</span>edu_labels, showfliers<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb20-11"><a href="#cb20-11"></a>plt.xlabel(<span class="st">'Education Level'</span>)</span>
+<span id="cb20-12"><a href="#cb20-12"></a>plt.ylabel(<span class="st">'Wage'</span>)</span>
+<span id="cb20-13"><a href="#cb20-13"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, color<span class="op">=</span><span class="st">'lightgray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.7</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb20-14"><a href="#cb20-14"></a>plt.yticks(np.arange(<span class="dv">0</span>, df_wage_less_100[<span class="st">'wage'</span>].<span class="bu">max</span>() <span class="op">-</span><span class="dv">25</span>, <span class="dv">5</span>))</span>
+<span id="cb20-15"><a href="#cb20-15"></a>plt.title(<span class="st">'Wage Distribution by Education Level'</span>)</span>
+<span id="cb20-16"><a href="#cb20-16"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regress_04_wage_prediction_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="不同教育水平下的工资性别差异" class="level3" data-number="33.4.2">
+<h3 data-number="33.4.2" class="anchored" data-anchor-id="不同教育水平下的工资性别差异"><span class="header-section-number">33.4.2</span> 不同教育水平下的工资性别差异</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+提示词
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>在每个教育水平组内，进一步区分 Male 和 Female，绘制箱线图。 - 箱线图箱体填充色 Male: 深蓝色；Female：金黄色 - legend：放在左上角 - y 轴范围：0(10)80</p>
+</div>
+</div>
+<div id="cell-24" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb21-3"><a href="#cb21-3"></a></span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb21-5"><a href="#cb21-5"></a></span>
+<span id="cb21-6"><a href="#cb21-6"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb21-7"><a href="#cb21-7"></a>sns.boxplot(</span>
+<span id="cb21-8"><a href="#cb21-8"></a>    data<span class="op">=</span>df_plot,</span>
+<span id="cb21-9"><a href="#cb21-9"></a>    x<span class="op">=</span><span class="st">'edu_group'</span>,</span>
+<span id="cb21-10"><a href="#cb21-10"></a>    y<span class="op">=</span><span class="st">'wage'</span>,</span>
+<span id="cb21-11"><a href="#cb21-11"></a>    hue<span class="op">=</span><span class="st">'sex_label'</span>,</span>
+<span id="cb21-12"><a href="#cb21-12"></a>    order<span class="op">=</span>edu_labels,</span>
+<span id="cb21-13"><a href="#cb21-13"></a>    hue_order<span class="op">=</span>gender_order,</span>
+<span id="cb21-14"><a href="#cb21-14"></a>    showfliers<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb21-15"><a href="#cb21-15"></a>    palette<span class="op">=</span>{<span class="st">'Male'</span>: <span class="st">'#1f77b4'</span>, <span class="st">'Female'</span>: <span class="st">'#FFD600'</span>}  <span class="co"># 深蓝色和金黄色</span></span>
+<span id="cb21-16"><a href="#cb21-16"></a>)</span>
+<span id="cb21-17"><a href="#cb21-17"></a>plt.xlabel(<span class="st">'Education Level'</span>)</span>
+<span id="cb21-18"><a href="#cb21-18"></a>plt.ylabel(<span class="st">'Wage'</span>)</span>
+<span id="cb21-19"><a href="#cb21-19"></a>plt.title(<span class="st">'Wage Distribution by Education Level and Gender'</span>)</span>
+<span id="cb21-20"><a href="#cb21-20"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, color<span class="op">=</span><span class="st">'lightgray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.7</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb21-21"><a href="#cb21-21"></a>plt.yticks(np.arange(<span class="dv">0</span>, <span class="dv">81</span>, <span class="dv">10</span>))</span>
+<span id="cb21-22"><a href="#cb21-22"></a>plt.ylim(<span class="dv">0</span>, <span class="dv">80</span>)</span>
+<span id="cb21-23"><a href="#cb21-23"></a>plt.legend(title<span class="op">=</span><span class="st">'Gender'</span>, loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb21-24"><a href="#cb21-24"></a>plt.tight_layout()</span>
+<span id="cb21-25"><a href="#cb21-25"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regress_04_wage_prediction_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>按区域和性别来展示工资的箱线图。</p>
+<ul>
+<li>首先，根据地区（region）和性别（sex）将原始数据 <code>df</code> 转换成长格式 <code>long_df_region</code>，便于后续分组绘图。</li>
+<li>接着，利用 seaborn 的 <code>boxplot</code> 和 <code>stripplot</code>，分别绘制了不同地区和性别组合下工资（<code>wage</code> 或 <code>lwage</code>）的箱线图和散点分布。</li>
+</ul>
+</section>
+<section id="不同地区的工资分布" class="level3" data-number="33.4.3">
+<h3 data-number="33.4.3" class="anchored" data-anchor-id="不同地区的工资分布"><span class="header-section-number">33.4.3</span> 不同地区的工资分布</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+提示词
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>使用 <code>region</code> 变量绘制不同地区 Male 和 Female 的工资分布图：</li>
+<li>箱线图 + 散点图</li>
+<li>箱线图：无需填充箱体颜色
+<ul>
+<li>边框颜色：Male-深蓝色；Female-深黄色；</li>
+<li>纵轴刻度：0(5)100；添加浅灰色横向网格线</li>
+<li>Sample: wage &lt; 100；</li>
+</ul></li>
+<li>散点：Male-深蓝色；Female-深黄色；透明度：0.18</li>
+<li>legend: 能区分 Male 和 Female 即可</li>
+</ol>
+</div>
+</div>
+<div id="cell-27" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># {cell-label-region_sex}</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb22-4"><a href="#cb22-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb22-5"><a href="#cb22-5"></a></span>
+<span id="cb22-6"><a href="#cb22-6"></a><span class="co"># yvar 可以为 'wage' 或 'lwage'</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a>yvar <span class="op">=</span> <span class="st">'wage'</span>   <span class="co"># 或 'lwage'</span></span>
+<span id="cb22-8"><a href="#cb22-8"></a><span class="co">#yvar = 'lwage'</span></span>
+<span id="cb22-9"><a href="#cb22-9"></a></span>
+<span id="cb22-10"><a href="#cb22-10"></a>region_vars <span class="op">=</span> [<span class="st">'mw'</span>, <span class="st">'so'</span>, <span class="st">'we'</span>, <span class="st">'ne'</span>]</span>
+<span id="cb22-11"><a href="#cb22-11"></a>region_labels <span class="op">=</span> [<span class="st">'Midwest'</span>, <span class="st">'South'</span>, <span class="st">'West'</span>, <span class="st">'Northeast'</span>]</span>
+<span id="cb22-12"><a href="#cb22-12"></a></span>
+<span id="cb22-13"><a href="#cb22-13"></a><span class="co"># 宽转长：只保留每个人的所在地区</span></span>
+<span id="cb22-14"><a href="#cb22-14"></a>long_df_region <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb22-15"><a href="#cb22-15"></a><span class="cf">for</span> var, label <span class="kw">in</span> <span class="bu">zip</span>(region_vars, region_labels):</span>
+<span id="cb22-16"><a href="#cb22-16"></a>    tmp <span class="op">=</span> df[df[var] <span class="op">==</span> <span class="dv">1</span>].copy()</span>
+<span id="cb22-17"><a href="#cb22-17"></a>    tmp[<span class="st">'Region'</span>] <span class="op">=</span> label</span>
+<span id="cb22-18"><a href="#cb22-18"></a>    long_df_region <span class="op">=</span> pd.concat([long_df_region, tmp], axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb22-19"><a href="#cb22-19"></a>long_df_region <span class="op">=</span> long_df_region.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb22-20"><a href="#cb22-20"></a></span>
+<span id="cb22-21"><a href="#cb22-21"></a><span class="co"># 性别英文标签</span></span>
+<span id="cb22-22"><a href="#cb22-22"></a>long_df_region[<span class="st">'Gender'</span>] <span class="op">=</span> long_df_region[<span class="st">'sex'</span>].<span class="bu">map</span>({<span class="dv">0</span>: <span class="st">'Male'</span>, <span class="dv">1</span>: <span class="st">'Female'</span>})</span>
+<span id="cb22-23"><a href="#cb22-23"></a></span>
+<span id="cb22-24"><a href="#cb22-24"></a><span class="co"># 保证 Male 在左，Female 在右</span></span>
+<span id="cb22-25"><a href="#cb22-25"></a>gender_order <span class="op">=</span> [<span class="st">'Male'</span>, <span class="st">'Female'</span>]</span>
+<span id="cb22-26"><a href="#cb22-26"></a>palette <span class="op">=</span> {<span class="st">'Male'</span>: <span class="st">'#1f77b4'</span>, <span class="st">'Female'</span>: <span class="st">'#ff7f0e'</span>}  <span class="co"># 深蓝和橙色</span></span>
+<span id="cb22-27"><a href="#cb22-27"></a></span>
+<span id="cb22-28"><a href="#cb22-28"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb22-29"><a href="#cb22-29"></a>sns.boxplot(</span>
+<span id="cb22-30"><a href="#cb22-30"></a>    data<span class="op">=</span>long_df_region,</span>
+<span id="cb22-31"><a href="#cb22-31"></a>    x<span class="op">=</span><span class="st">'Region'</span>,</span>
+<span id="cb22-32"><a href="#cb22-32"></a>    y<span class="op">=</span>yvar,</span>
+<span id="cb22-33"><a href="#cb22-33"></a>    hue<span class="op">=</span><span class="st">'Gender'</span>,</span>
+<span id="cb22-34"><a href="#cb22-34"></a>    order<span class="op">=</span>region_labels,</span>
+<span id="cb22-35"><a href="#cb22-35"></a>    hue_order<span class="op">=</span>gender_order,</span>
+<span id="cb22-36"><a href="#cb22-36"></a>    showfliers<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb22-37"><a href="#cb22-37"></a>    palette<span class="op">=</span>palette,</span>
+<span id="cb22-38"><a href="#cb22-38"></a>    boxprops<span class="op">=</span>{<span class="st">'facecolor'</span>: <span class="st">'none'</span>}  <span class="co"># 不填充箱体颜色</span></span>
+<span id="cb22-39"><a href="#cb22-39"></a>)</span>
+<span id="cb22-40"><a href="#cb22-40"></a>sns.stripplot(</span>
+<span id="cb22-41"><a href="#cb22-41"></a>    data<span class="op">=</span>long_df_region[long_df_region[yvar] <span class="op">&lt;</span> <span class="dv">100</span>],  <span class="co"># 只显示低工资点，若画 wage 可改为 &lt;100</span></span>
+<span id="cb22-42"><a href="#cb22-42"></a>    x<span class="op">=</span><span class="st">'Region'</span>,</span>
+<span id="cb22-43"><a href="#cb22-43"></a>    y<span class="op">=</span>yvar,</span>
+<span id="cb22-44"><a href="#cb22-44"></a>    hue<span class="op">=</span><span class="st">'Gender'</span>,</span>
+<span id="cb22-45"><a href="#cb22-45"></a>    order<span class="op">=</span>region_labels,</span>
+<span id="cb22-46"><a href="#cb22-46"></a>    hue_order<span class="op">=</span>gender_order,</span>
+<span id="cb22-47"><a href="#cb22-47"></a>    dodge<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb22-48"><a href="#cb22-48"></a>    alpha<span class="op">=</span><span class="fl">0.18</span>,</span>
+<span id="cb22-49"><a href="#cb22-49"></a>    size<span class="op">=</span><span class="dv">4</span>,</span>
+<span id="cb22-50"><a href="#cb22-50"></a>    marker<span class="op">=</span><span class="st">'o'</span>,</span>
+<span id="cb22-51"><a href="#cb22-51"></a>    palette<span class="op">=</span>palette</span>
+<span id="cb22-52"><a href="#cb22-52"></a>)</span>
+<span id="cb22-53"><a href="#cb22-53"></a></span>
+<span id="cb22-54"><a href="#cb22-54"></a>plt.xlabel(<span class="st">'Region'</span>)</span>
+<span id="cb22-55"><a href="#cb22-55"></a>plt.ylabel(yvar)</span>
+<span id="cb22-56"><a href="#cb22-56"></a>plt.title(<span class="ss">f'</span><span class="sc">{</span>yvar<span class="sc">}</span><span class="ss"> by Region and Gender'</span>)</span>
+<span id="cb22-57"><a href="#cb22-57"></a>plt.legend(title<span class="op">=</span><span class="st">'Gender'</span>, loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb22-58"><a href="#cb22-58"></a>plt.tight_layout()</span>
+<span id="cb22-59"><a href="#cb22-59"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regress_04_wage_prediction_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>简要分析：</p>
+<ul>
+<li>男性和女性在不同地区的工资分布存在明显差异，尤其是在 ‘中西部 (Midwest)’ 和 ‘西部 (West)’ 地区，男性的工资中位数普遍高于女性。不过，这种工资的性别差异相比于教育水平的差异要小得多。</li>
+<li>在 ‘南部 (South)’，男性和女性的工资分布较为接近。</li>
+<li>在 ‘东北部 (Northeast)’，女性的工资甚至略高于男性。</li>
+</ul>
+</section>
+<section id="组间均值差异检验" class="level3" data-number="33.4.4">
+<h3 data-number="33.4.4" class="anchored" data-anchor-id="组间均值差异检验"><span class="header-section-number">33.4.4</span> 组间均值差异检验</h3>
+<p>在实际经济与社会数据分析中，我们经常需要比较两个不同群体（如男性与女性、实验组与对照组、不同地区等）的平均水平是否存在统计学上的显著差异。例如，在本例中，我们关注 Midwest 区域男性与女性的平均工资是否不同。这一问题本质上属于<strong>组间均值差异检验</strong>。</p>
+<section id="检验思路" class="level4" data-number="33.4.4.1">
+<h4 data-number="33.4.4.1" class="anchored" data-anchor-id="检验思路"><span class="header-section-number">33.4.4.1</span> 检验思路</h4>
+<p>假设有两组独立观测值 <span class="math inline">\(X_{1,1}, ..., X_{1,n_1}\)</span>（如男性工资）与 <span class="math inline">\(X_{2,1}, ..., X_{2,n_2}\)</span>（如女性工资），我们关注这两组样本的均值是否存在显著差异。统计学上，常用的检验方法是<strong>两独立样本 t 检验</strong>。</p>
+<ul>
+<li><strong>原假设</strong>（<span class="math inline">\(H_0\)</span>）：两组总体均值相等，即 $ _1 = _2 $</li>
+<li><strong>备择假设</strong>（<span class="math inline">\(H_1\)</span>）：两组总体均值不等，即 $ _1 _2 $</li>
+</ul>
+</section>
+<section id="t-统计量的构建与分布" class="level4" data-number="33.4.4.2">
+<h4 data-number="33.4.4.2" class="anchored" data-anchor-id="t-统计量的构建与分布"><span class="header-section-number">33.4.4.2</span> t 统计量的构建与分布</h4>
+<p>假设两组观测值独立，且服从正态分布。若不假定两组方差相等（更贴合实际），则采用 Welch t 检验，t 统计量的计算公式为：</p>
+<p><span class="math display">\[
+t = \frac{ \bar{X}_1 - \bar{X}_2 }{ \sqrt{ \frac{S_1^2}{n_1} + \frac{S_2^2}{n_2} } } \sim t(k)
+\]</span></p>
+<p>其中：</p>
+<ul>
+<li>$ {X}_1, {X}_2 $ 为两组样本均值</li>
+<li>$ S_1^2, S_2^2 $ 为两组样本方差</li>
+<li>$ n_1, n_2 $ 为两组样本容量</li>
+</ul>
+<p>自由度为</p>
+<p><span class="math display">\[
+k = \frac{ \left( \frac{S_1^2}{n_1} + \frac{S_2^2}{n_2} \right)^2 }{ \frac{ (S_1^2 / n_1)^2 }{ n_1 - 1 } + \frac{ (S_2^2 / n_2)^2 }{ n_2 - 1 } }
+\]</span></p>
+<p>在 <span class="math inline">\(H_0\)</span> 成立的前提下，t 统计量服从自由度为 <span class="math inline">\(k\)</span> 的 t 分布（即 Welch–Satterthwaite 近似）。若两组样本方差相等，则简化为标准的 t 检验，即</p>
+<p><span class="math display">\[
+t = \frac{ \bar{X}_1 - \bar{X}_2 }{ \sqrt{ \frac{S^2}{n_1} + \frac{S^2}{n_2} } } \sim t(n_1 + n_2 - 2)
+\]</span></p>
+</section>
+<section id="显著性判别" class="level4" data-number="33.4.4.3">
+<h4 data-number="33.4.4.3" class="anchored" data-anchor-id="显著性判别"><span class="header-section-number">33.4.4.3</span> 显著性判别</h4>
+<ul>
+<li>计算得到的 t 统计量越大，说明两组样本均值差异越显著。</li>
+<li>通过查找 t 分布的分位点或直接计算 P 值，判断观察到的样本均值差异出现的概率有多大。</li>
+<li>若 P 值小于设定的显著性水平（如 0.05），则拒绝原假设，认为两组均值存在显著差异。</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+提示词
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>采用 t-test 检验 Midwest 区域的 Male 和 Female 的平均工资是否存在显著差异。</p>
+</div>
+</div>
+<div id="cell-30" class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># 独立样本 t 检验：男女平均工资差异检验</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a></span>
+<span id="cb23-3"><a href="#cb23-3"></a><span class="im">from</span> scipy.stats <span class="im">import</span> ttest_ind</span>
+<span id="cb23-4"><a href="#cb23-4"></a></span>
+<span id="cb23-5"><a href="#cb23-5"></a><span class="co"># 选取 Midwest 区域的样本</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>midwest <span class="op">=</span> long_df_region[long_df_region[<span class="st">'Region'</span>] <span class="op">==</span> <span class="st">'Midwest'</span>]</span>
+<span id="cb23-7"><a href="#cb23-7"></a></span>
+<span id="cb23-8"><a href="#cb23-8"></a><span class="co"># 分别提取男性和女性的工资</span></span>
+<span id="cb23-9"><a href="#cb23-9"></a>wage_male <span class="op">=</span> midwest[midwest[<span class="st">'Gender'</span>] <span class="op">==</span> <span class="st">'Male'</span>][<span class="st">'wage'</span>]</span>
+<span id="cb23-10"><a href="#cb23-10"></a>wage_female <span class="op">=</span> midwest[midwest[<span class="st">'Gender'</span>] <span class="op">==</span> <span class="st">'Female'</span>][<span class="st">'wage'</span>]</span>
+<span id="cb23-11"><a href="#cb23-11"></a></span>
+<span id="cb23-12"><a href="#cb23-12"></a><span class="co"># 独立样本 t 检验（默认不假定方差齐性）</span></span>
+<span id="cb23-13"><a href="#cb23-13"></a>t_stat, p_value <span class="op">=</span> ttest_ind(wage_male, wage_female, equal_var<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb23-14"><a href="#cb23-14"></a></span>
+<span id="cb23-15"><a href="#cb23-15"></a><span class="bu">print</span>(<span class="ss">f"t-statistic: </span><span class="sc">{</span>t_stat<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb23-16"><a href="#cb23-16"></a><span class="bu">print</span>(<span class="ss">f"p-value: </span><span class="sc">{</span>p_value<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb23-17"><a href="#cb23-17"></a><span class="cf">if</span> p_value <span class="op">&lt;</span> <span class="fl">0.05</span>:</span>
+<span id="cb23-18"><a href="#cb23-18"></a>    <span class="bu">print</span>(<span class="st">"Midwest 区域的男性和女性平均工资存在显著差异（5% 显著性水平）"</span>)</span>
+<span id="cb23-19"><a href="#cb23-19"></a><span class="cf">else</span>:</span>
+<span id="cb23-20"><a href="#cb23-20"></a>    <span class="bu">print</span>(<span class="st">"Midwest 区域的男性和女性平均工资不存在显著差异（5% 显著性水平）"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>t-statistic: 2.5385
+p-value: 0.0113
+Midwest 区域的男性和女性平均工资存在显著差异（5% 显著性水平）</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="组间均值差异检验多组比较" class="level3" data-number="33.4.5">
+<h3 data-number="33.4.5" class="anchored" data-anchor-id="组间均值差异检验多组比较"><span class="header-section-number">33.4.5</span> 组间均值差异检验：多组比较</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+提示词
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>目的：用于检验多个组内 (如 edu_group 或 region) 的 Male 和 Female 的平均工资是否存在显著差异。</li>
+<li>分别使用 <code>edu_group</code> 和 <code>region</code> 变量进行分组检验。</li>
+<li>输出每个组的平均工资和 t-test 的结果。
+<ul>
+<li>列示：mean1, mean2, diff (小数点后保留一位有效数字); t-statistic, p-value (小数点后保留三位)</li>
+<li>列明：采用极简方式，如 ‘Male’, ‘Female’, ‘diff’, ‘t’, ‘p-value’</li>
+</ul></li>
+<li>可以调用好用的包，提供尽可能简洁的代码</li>
+</ol>
+</div>
+</div>
+<div id="cell-32" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> ttest_ind</span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb25-3"><a href="#cb25-3"></a></span>
+<span id="cb25-4"><a href="#cb25-4"></a><span class="kw">def</span> ttest_group_diff_simple(df, group_col, value_col<span class="op">=</span><span class="st">'wage'</span>, gender_col<span class="op">=</span><span class="st">'sex_label'</span>):</span>
+<span id="cb25-5"><a href="#cb25-5"></a>    <span class="co">"""</span></span>
+<span id="cb25-6"><a href="#cb25-6"></a><span class="co">    Performs t-test for group differences between Male and Female for each group in group_col.</span></span>
+<span id="cb25-7"><a href="#cb25-7"></a><span class="co">    gender_col: should be a column with values 'Male' and 'Female'.</span></span>
+<span id="cb25-8"><a href="#cb25-8"></a><span class="co">    """</span></span>
+<span id="cb25-9"><a href="#cb25-9"></a>    results <span class="op">=</span> []</span>
+<span id="cb25-10"><a href="#cb25-10"></a>    groups <span class="op">=</span> df[group_col].dropna().unique()</span>
+<span id="cb25-11"><a href="#cb25-11"></a>    <span class="cf">for</span> group <span class="kw">in</span> groups:</span>
+<span id="cb25-12"><a href="#cb25-12"></a>        sub <span class="op">=</span> df[df[group_col] <span class="op">==</span> group]</span>
+<span id="cb25-13"><a href="#cb25-13"></a>        male <span class="op">=</span> sub[sub[gender_col] <span class="op">==</span> <span class="st">'Male'</span>][value_col]</span>
+<span id="cb25-14"><a href="#cb25-14"></a>        female <span class="op">=</span> sub[sub[gender_col] <span class="op">==</span> <span class="st">'Female'</span>][value_col]</span>
+<span id="cb25-15"><a href="#cb25-15"></a>        <span class="cf">if</span> male.empty <span class="kw">or</span> female.empty:</span>
+<span id="cb25-16"><a href="#cb25-16"></a>            <span class="cf">continue</span></span>
+<span id="cb25-17"><a href="#cb25-17"></a>        mean_male <span class="op">=</span> male.mean()</span>
+<span id="cb25-18"><a href="#cb25-18"></a>        mean_female <span class="op">=</span> female.mean()</span>
+<span id="cb25-19"><a href="#cb25-19"></a>        diff <span class="op">=</span> mean_male <span class="op">-</span> mean_female</span>
+<span id="cb25-20"><a href="#cb25-20"></a>        t_stat, p_val <span class="op">=</span> ttest_ind(male, female, equal_var<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb25-21"><a href="#cb25-21"></a>        results.append({</span>
+<span id="cb25-22"><a href="#cb25-22"></a>            group_col: group,</span>
+<span id="cb25-23"><a href="#cb25-23"></a>            <span class="st">'Male'</span>: <span class="bu">round</span>(<span class="bu">float</span>(mean_male), <span class="dv">1</span>),</span>
+<span id="cb25-24"><a href="#cb25-24"></a>            <span class="st">'Female'</span>: <span class="bu">round</span>(<span class="bu">float</span>(mean_female), <span class="dv">1</span>),</span>
+<span id="cb25-25"><a href="#cb25-25"></a>            <span class="st">'diff'</span>: <span class="bu">round</span>(<span class="bu">float</span>(diff), <span class="dv">1</span>),</span>
+<span id="cb25-26"><a href="#cb25-26"></a>            <span class="st">'t'</span>: <span class="bu">round</span>(<span class="bu">float</span>(t_stat), <span class="dv">3</span>),</span>
+<span id="cb25-27"><a href="#cb25-27"></a>            <span class="st">'p-value'</span>: <span class="bu">round</span>(<span class="bu">float</span>(p_val), <span class="dv">3</span>)</span>
+<span id="cb25-28"><a href="#cb25-28"></a>        })</span>
+<span id="cb25-29"><a href="#cb25-29"></a>    df_res <span class="op">=</span> pd.DataFrame(results)</span>
+<span id="cb25-30"><a href="#cb25-30"></a>    <span class="co"># 按学历顺序排序（如果是 edu_group）</span></span>
+<span id="cb25-31"><a href="#cb25-31"></a>    <span class="cf">if</span> group_col <span class="op">==</span> <span class="st">'edu_group'</span>:</span>
+<span id="cb25-32"><a href="#cb25-32"></a>        edu_order <span class="op">=</span> [<span class="st">'&lt;HS'</span>, <span class="st">'HS'</span>, <span class="st">'Some College'</span>, <span class="st">'College'</span>, <span class="st">'Advanced'</span>]</span>
+<span id="cb25-33"><a href="#cb25-33"></a>        df_res[<span class="st">'order'</span>] <span class="op">=</span> df_res[group_col].<span class="bu">map</span>({k: i <span class="cf">for</span> i, k <span class="kw">in</span> <span class="bu">enumerate</span>(edu_order)})</span>
+<span id="cb25-34"><a href="#cb25-34"></a>        df_res <span class="op">=</span> df_res.sort_values(<span class="st">'order'</span>).drop(columns<span class="op">=</span><span class="st">'order'</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb25-35"><a href="#cb25-35"></a>    <span class="cf">return</span> df_res</span>
+<span id="cb25-36"><a href="#cb25-36"></a></span>
+<span id="cb25-37"><a href="#cb25-37"></a><span class="co"># 仅保留工资小于 100 的子样本</span></span>
+<span id="cb25-38"><a href="#cb25-38"></a>df_wage_less_100 <span class="op">=</span> df[df[<span class="st">'wage'</span>] <span class="op">&lt;</span> <span class="dv">100</span>]</span>
+<span id="cb25-39"><a href="#cb25-39"></a></span>
+<span id="cb25-40"><a href="#cb25-40"></a><span class="co"># 教育分组</span></span>
+<span id="cb25-41"><a href="#cb25-41"></a>edu_test <span class="op">=</span> ttest_group_diff_simple(df_wage_less_100, <span class="st">'edu_group'</span>, gender_col<span class="op">=</span><span class="st">'sex_label'</span>)</span>
+<span id="cb25-42"><a href="#cb25-42"></a><span class="bu">print</span>(<span class="st">"按学历分组的性别工资差异："</span>)</span>
+<span id="cb25-43"><a href="#cb25-43"></a><span class="bu">print</span>(edu_test)</span>
+<span id="cb25-44"><a href="#cb25-44"></a></span>
+<span id="cb25-45"><a href="#cb25-45"></a><span class="co"># 地区分组（long_df_region）</span></span>
+<span id="cb25-46"><a href="#cb25-46"></a><span class="co"># 确保 long_df_region 有 sex_label 列，如果没有则加上</span></span>
+<span id="cb25-47"><a href="#cb25-47"></a><span class="cf">if</span> <span class="st">'sex_label'</span> <span class="kw">not</span> <span class="kw">in</span> long_df_region.columns <span class="kw">and</span> <span class="st">'Gender'</span> <span class="kw">in</span> long_df_region.columns:</span>
+<span id="cb25-48"><a href="#cb25-48"></a>    long_df_region[<span class="st">'sex_label'</span>] <span class="op">=</span> long_df_region[<span class="st">'Gender'</span>]</span>
+<span id="cb25-49"><a href="#cb25-49"></a>region_test <span class="op">=</span> ttest_group_diff_simple(long_df_region, <span class="st">'Region'</span>, gender_col<span class="op">=</span><span class="st">'sex_label'</span>)</span>
+<span id="cb25-50"><a href="#cb25-50"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">按地区分组的性别工资差异："</span>)</span>
+<span id="cb25-51"><a href="#cb25-51"></a><span class="bu">print</span>(region_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>按学历分组的性别工资差异：
+      edu_group  Male  Female  diff      t  p-value
+0           &lt;HS  14.9    14.5   0.3  0.142    0.888
+1            HS  17.7    15.8   1.9  3.567    0.000
+2  Some College  20.7    18.0   2.7  4.761    0.000
+3       College  26.7    24.8   1.9  2.821    0.005
+4      Advanced  34.9    29.3   5.7  4.150    0.000
+
+按地区分组的性别工资差异：
+      Region  Male  Female  diff      t  p-value
+0    Midwest  23.6    20.6   3.0  2.538    0.011
+1      South  24.0    22.3   1.7  2.252    0.024
+2       West  25.6    23.2   2.5  1.685    0.092
+3  Northeast  22.9    24.9  -2.0 -1.646    0.100</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="wage-与-experience-的关系" class="level2" data-number="33.5">
+<h2 data-number="33.5" class="anchored" data-anchor-id="wage-与-experience-的关系"><span class="header-section-number">33.5</span> wage 与 experience 的关系</h2>
+<ul>
+<li>绘制 wage 和 experience 的 ‘散点图+线性回归线 (+ 95% CI)’ 图。</li>
+<li>绘制 wage 和 experience 的 ‘散点图+二次曲线拟合线 (+ 95% CI)’ 图。(省略了)</li>
+</ul>
+<div id="cell-34" class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># 绘制 wage 和 experience 的 '散点图+线性回归线 (+ 95% CI)' 图。</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a></span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb27-4"><a href="#cb27-4"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb27-5"><a href="#cb27-5"></a></span>
+<span id="cb27-6"><a href="#cb27-6"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb27-7"><a href="#cb27-7"></a></span>
+<span id="cb27-8"><a href="#cb27-8"></a><span class="co"># 只用 wage &lt; 100 的样本</span></span>
+<span id="cb27-9"><a href="#cb27-9"></a>df_plot <span class="op">=</span> df_wage_less_100.copy()</span>
+<span id="cb27-10"><a href="#cb27-10"></a></span>
+<span id="cb27-11"><a href="#cb27-11"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb27-12"><a href="#cb27-12"></a>sns.regplot(</span>
+<span id="cb27-13"><a href="#cb27-13"></a>    data<span class="op">=</span>df_plot,</span>
+<span id="cb27-14"><a href="#cb27-14"></a>    x<span class="op">=</span><span class="st">'exp1'</span>, y<span class="op">=</span><span class="st">'wage'</span>,</span>
+<span id="cb27-15"><a href="#cb27-15"></a>    scatter_kws<span class="op">=</span>{<span class="st">'alpha'</span>: <span class="fl">0.18</span>, <span class="st">'color'</span>: <span class="st">'#1f77b4'</span>},</span>
+<span id="cb27-16"><a href="#cb27-16"></a>    line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'#ff7f0e'</span>},</span>
+<span id="cb27-17"><a href="#cb27-17"></a>    ci<span class="op">=</span><span class="dv">95</span></span>
+<span id="cb27-18"><a href="#cb27-18"></a>)</span>
+<span id="cb27-19"><a href="#cb27-19"></a>plt.xlabel(<span class="st">'Experience (years)'</span>)</span>
+<span id="cb27-20"><a href="#cb27-20"></a>plt.ylabel(<span class="st">'Wage'</span>)</span>
+<span id="cb27-21"><a href="#cb27-21"></a>plt.title(<span class="st">'Wage vs. Experience (Linear Fit with 95% CI)'</span>)</span>
+<span id="cb27-22"><a href="#cb27-22"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, color<span class="op">=</span><span class="st">'lightgray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.7</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb27-23"><a href="#cb27-23"></a>plt.yticks(np.arange(<span class="dv">0</span>, <span class="dv">105</span>, <span class="dv">10</span>))</span>
+<span id="cb27-24"><a href="#cb27-24"></a>plt.tight_layout()</span>
+<span id="cb27-25"><a href="#cb27-25"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regress_04_wage_prediction_files/figure-html/cell-19-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="分仓散点图" class="level2" data-number="33.6">
+<h2 data-number="33.6" class="anchored" data-anchor-id="分仓散点图"><span class="header-section-number">33.6</span> 分仓散点图</h2>
+<ul>
+<li>绘制 wage 和 experience 的 ‘分仓散点图 (binscatter)+线性回归线 (+ 95% CI)’ 图。</li>
+</ul>
+<div id="cell-36" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="im">from</span> scipy.stats <span class="im">import</span> binned_statistic</span>
+<span id="cb28-4"><a href="#cb28-4"></a></span>
+<span id="cb28-5"><a href="#cb28-5"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb28-6"><a href="#cb28-6"></a></span>
+<span id="cb28-7"><a href="#cb28-7"></a><span class="co"># 只用 wage &lt; 100 的样本</span></span>
+<span id="cb28-8"><a href="#cb28-8"></a>df_wage_less_100 <span class="op">=</span> df[df[<span class="st">'wage'</span>] <span class="op">&lt;</span> <span class="dv">100</span>].copy()</span>
+<span id="cb28-9"><a href="#cb28-9"></a>df_plot <span class="op">=</span> df_wage_less_100.copy()</span>
+<span id="cb28-10"><a href="#cb28-10"></a></span>
+<span id="cb28-11"><a href="#cb28-11"></a><span class="co"># 设置分箱数量</span></span>
+<span id="cb28-12"><a href="#cb28-12"></a>n_bins <span class="op">=</span> <span class="dv">40</span></span>
+<span id="cb28-13"><a href="#cb28-13"></a>bin_means, bin_edges, binnumber <span class="op">=</span> binned_statistic(</span>
+<span id="cb28-14"><a href="#cb28-14"></a>    df_plot[<span class="st">'exp1'</span>], df_plot[<span class="st">'wage'</span>], statistic<span class="op">=</span><span class="st">'mean'</span>, bins<span class="op">=</span>n_bins</span>
+<span id="cb28-15"><a href="#cb28-15"></a>)</span>
+<span id="cb28-16"><a href="#cb28-16"></a>bin_centers <span class="op">=</span> (bin_edges[:<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> bin_edges[<span class="dv">1</span>:]) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb28-17"><a href="#cb28-17"></a></span>
+<span id="cb28-18"><a href="#cb28-18"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb28-19"><a href="#cb28-19"></a><span class="co"># 绘制分仓均值散点</span></span>
+<span id="cb28-20"><a href="#cb28-20"></a>plt.scatter(bin_centers, bin_means, color<span class="op">=</span><span class="st">'#1f77b4'</span>, s<span class="op">=</span><span class="dv">60</span>, label<span class="op">=</span><span class="st">'Binned Means'</span>)</span>
+<span id="cb28-21"><a href="#cb28-21"></a></span>
+<span id="cb28-22"><a href="#cb28-22"></a><span class="co"># 拟合线性回归线和置信区间</span></span>
+<span id="cb28-23"><a href="#cb28-23"></a>sns.regplot(</span>
+<span id="cb28-24"><a href="#cb28-24"></a>    data<span class="op">=</span>df_plot,</span>
+<span id="cb28-25"><a href="#cb28-25"></a>    x<span class="op">=</span><span class="st">'exp1'</span>, y<span class="op">=</span><span class="st">'wage'</span>,</span>
+<span id="cb28-26"><a href="#cb28-26"></a>    scatter<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb28-27"><a href="#cb28-27"></a>    line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'#ff7f0e'</span>},</span>
+<span id="cb28-28"><a href="#cb28-28"></a>    ci<span class="op">=</span><span class="dv">95</span>,</span>
+<span id="cb28-29"><a href="#cb28-29"></a>    label<span class="op">=</span><span class="st">'Linear Fit (95% CI)'</span></span>
+<span id="cb28-30"><a href="#cb28-30"></a>)</span>
+<span id="cb28-31"><a href="#cb28-31"></a></span>
+<span id="cb28-32"><a href="#cb28-32"></a>plt.xlabel(<span class="st">'Experience (years)'</span>)</span>
+<span id="cb28-33"><a href="#cb28-33"></a>plt.ylabel(<span class="st">'Wage'</span>)</span>
+<span id="cb28-34"><a href="#cb28-34"></a>plt.title(<span class="st">'Binscatter: Wage vs. Experience (+ Linear Fit &amp; 95% CI)'</span>)</span>
+<span id="cb28-35"><a href="#cb28-35"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, color<span class="op">=</span><span class="st">'lightgray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.7</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb28-36"><a href="#cb28-36"></a>plt.yticks(np.arange(<span class="dv">5</span>, <span class="dv">40</span>, <span class="dv">5</span>))</span>
+<span id="cb28-37"><a href="#cb28-37"></a>plt.legend()</span>
+<span id="cb28-38"><a href="#cb28-38"></a>plt.tight_layout()</span>
+<span id="cb28-39"><a href="#cb28-39"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regress_04_wage_prediction_files/figure-html/cell-20-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="变量构造" class="level3" data-number="33.6.1">
+<h3 data-number="33.6.1" class="anchored" data-anchor-id="变量构造"><span class="header-section-number">33.6.1</span> 变量构造</h3>
+<p>我们在本节中构造了输出变量 <span class="math inline">\(Y\)</span> 以及包含工人特征的特征矩阵 <span class="math inline">\(Z\)</span>，这些特征均来源于原始数据集。</p>
+<div id="cell-38" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>Y <span class="op">=</span> np.log(df[<span class="st">'wage'</span>])</span>
+<span id="cb29-2"><a href="#cb29-2"></a>Z <span class="op">=</span> df.drop([<span class="st">'wage'</span>, <span class="st">'lwage'</span>, <span class="st">'edu_group'</span>, <span class="st">'region'</span>, <span class="st">'sex_label'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb29-3"><a href="#cb29-3"></a>Z.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>(5150, 18)</code></pre>
+</div>
+</div>
+<p>For the outcome variable (log) wage and a subset of the raw regressors, we calculate the empirical mean and other empirical measures to get familiar with the data.</p>
+<div id="cell-40" class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>stats <span class="op">=</span> [<span class="st">'count'</span>, <span class="st">'mean'</span>, <span class="st">'std'</span>, <span class="st">'min'</span>, <span class="st">'max'</span>]</span>
+<span id="cb31-2"><a href="#cb31-2"></a>s <span class="op">=</span> Z.describe().T.reset_index()</span>
+<span id="cb31-3"><a href="#cb31-3"></a>s <span class="op">=</span> s[[<span class="st">'index'</span>] <span class="op">+</span> stats]</span>
+<span id="cb31-4"><a href="#cb31-4"></a>s.columns <span class="op">=</span> [<span class="st">'Variable'</span>] <span class="op">+</span> stats</span>
+<span id="cb31-5"><a href="#cb31-5"></a><span class="bu">print</span>(s.<span class="bu">round</span>(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Variable   count     mean       std    min        max
+0       sex  5150.0     0.44      0.50    0.0       1.00
+1       shs  5150.0     0.02      0.15    0.0       1.00
+2       hsg  5150.0     0.24      0.43    0.0       1.00
+3       scl  5150.0     0.28      0.45    0.0       1.00
+4       clg  5150.0     0.32      0.47    0.0       1.00
+5        ad  5150.0     0.14      0.34    0.0       1.00
+6        mw  5150.0     0.26      0.44    0.0       1.00
+7        so  5150.0     0.30      0.46    0.0       1.00
+8        we  5150.0     0.22      0.41    0.0       1.00
+9        ne  5150.0     0.23      0.42    0.0       1.00
+10     exp1  5150.0    13.76     10.61    0.0      47.00
+11     exp2  5150.0     3.02      4.00    0.0      22.09
+12     exp3  5150.0     8.24     14.49    0.0     103.82
+13     exp4  5150.0    25.12     53.53    0.0     487.97
+14      occ  5150.0  5310.74  11874.36   10.0  100000.00
+15     occ2  5150.0    11.67      6.97    1.0      22.00
+16      ind  5150.0  6629.15   5333.44  370.0  100000.00
+17     ind2  5150.0    13.32      5.70    2.0      22.00</code></pre>
+</div>
+</div>
+<p>例如，我们样本中女性工人占比约为 44%（<span class="math inline">\(sex=1\)</span> 表示女性）。</p>
+<div id="cell-42" class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a><span class="co"># if you want to print this table to latex</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a><span class="bu">print</span>(Z.describe().style.to_latex())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="预测" class="level2" data-number="33.7">
+<h2 data-number="33.7" class="anchored" data-anchor-id="预测"><span class="header-section-number">33.7</span> 预测</h2>
+<p>接下来，我们将构建一个关于小时（对数）工资 <span class="math inline">\(Y\)</span> 的预测规则，假设 <span class="math inline">\(Y\)</span> 与与工作相关的特征 <span class="math inline">\(X\)</span> 之间存在线性关系：</p>
+<p><span class="math display">\[
+Y = \beta' X + \epsilon \tag{1}
+\]</span></p>
+<p>我们的目标包括：</p>
+<ul>
+<li><p>利用工人的多种特征预测工资水平，包括：</p>
+<ul>
+<li>教育水平（如高中毕业、大学毕业等）；</li>
+<li>工作经验（如潜在工作经验）；</li>
+<li>性别（男性或女性）；</li>
+<li>居住地区（如中西部、南部等）。</li>
+</ul></li>
+<li><p>通过（调整后的）样本均方误差（MSE）、（调整后的）样本 <span class="math inline">\(R^2\)</span> 以及样本外的 MSE 和 <span class="math inline">\(R^2\)</span>，评估模型的预测能力。</p>
+<ul>
+<li><p><span class="math inline">\(MSE = \frac{1}{n} \sum_{i=1}^{n} (Y_i - \hat{Y}_i)^2\)</span>，其中 <span class="math inline">\(\hat{Y}_i\)</span> 是模型预测的工资；</p></li>
+<li><p><span class="math inline">\(R^2 = 1 - \frac{MSE}{\text{Var}(Y)}\)</span>，其中 <span class="math inline">\(\text{Var}(Y)\)</span> 是工资的样本方差。</p></li>
+<li><p><span class="math inline">\(\bar{R}^2 = 1 - \frac{(1-R^2)(n-1)}{n-k-1}\)</span>，其中 <span class="math inline">\(k\)</span> 是模型中使用的特征数量。</p></li>
+<li><p>样本外的 MSE 和 <span class="math inline">\(R^2\)</span> 是将基于训练样本得到的系数估计值带入测试样本中计算而得。</p></li>
+</ul></li>
+</ul>
+<p>为实现上述目标，我们采用数据拆分（data splitting）的方法来衡量两种模型的预测效果：</p>
+<ul>
+<li>随机将数据集分为训练集和测试集（更复杂的做法如分层抽样可进一步提升效果，这里仅用最基础的随机拆分）；</li>
+<li>在训练集上估计基本模型和灵活模型的参数；</li>
+<li>在使用测试集前，先评估模型在训练集上的拟合表现。</li>
+</ul>
+<div id="cell-45" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># 将数据集分为训练集和测试集，使用 80% 的数据作为训练集，20% 的数据作为测试集</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb34-3"><a href="#cb34-3"></a>train, test <span class="op">=</span> train_test_split(df, test_size<span class="op">=</span><span class="fl">0.20</span>, random_state<span class="op">=</span><span class="dv">123</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>我们采用两种不同的预测模型设定：</p>
+<ol type="1">
+<li><p><strong>基础模型（Basic Model）</strong>：<span class="math inline">\(X\)</span> 包含一组原始解释变量（如性别、工作经验、学历虚拟变量、职业和行业虚拟变量、地区虚拟变量等）。</p></li>
+<li><p><strong>灵活模型（Flexible Model）</strong>：<span class="math inline">\(X\)</span> 不仅包含基础模型中的所有原始解释变量，还加入了变量变换（如 <span class="math inline">\({exp}^2\)</span>、<span class="math inline">\({exp}^3\)</span> 等高次项）以及工作经验与其他解释变量的两两交互项。例如，“工作经验 × 大学学历指示变量”就是一种典型的交互项。</p></li>
+</ol>
+<p>采用<strong>灵活模型</strong>可以用更复杂的回归函数来逼近真实关系，从而降低偏差。灵活模型拓展了回归函数的可能形状范围。一般来说，灵活模型往往能带来更高的预测准确性，但模型解释性会变弱。</p>
+<p>我们也可以将灵活模型视为「变系数模型」，具体说明如下。</p>
+<p>假设基础模型设定如下：</p>
+<p><span class="math display">\[
+Y_i = \alpha_1 + \beta X_{i} + \gamma W_{i} + \varepsilon_i \tag{2}
+\]</span></p>
+<p>其中 <span class="math inline">\(X_i\)</span> 是一组原始解释变量，<span class="math inline">\(W_i\)</span> 是一组控制变量。<span class="math inline">\(X\)</span> 对 <span class="math inline">\(Y\)</span> 的边际影响可以表示为：</p>
+<p><span class="math display">\[
+\frac{\partial Y_i}{\partial X_i} = \beta  \tag{3}
+\]</span></p>
+<p>在基础模型中，<span class="math inline">\(\beta\)</span> 是一个常数，表示 <span class="math inline">\(X\)</span> 对 <span class="math inline">\(Y\)</span> 的边际影响是恒定的。然而，现实中，<span class="math inline">\(X\)</span> 对 <span class="math inline">\(Y\)</span> 的影响可能会随着其他变量（如工作经验、教育水平等）的变化而变化。因此，我们可以将 <span class="math inline">\(\beta\)</span> 视为一个函数：</p>
+<p><span class="math display">\[
+\beta_i = \alpha_2 + \theta Z_i \tag{4}
+\]</span></p>
+<p>此处，<span class="math inline">\(Z\)</span> 可以是一个变量，也可以是一组变量。用 (4) 式中的 <span class="math inline">\(\beta_i\)</span> 替换 (2) 式中的 <span class="math inline">\(\beta\)</span>，我们得到变系数模型：</p>
+<p><span class="math display">\[
+\begin{aligned}
+Y_i &amp;= \alpha_1 + \beta_i X_{i} + \gamma W_{i} + \varepsilon_i \\
+    &amp;= \alpha_1 + (\alpha_2 + \theta Z_i) X_{i} + \gamma W_{i} + \varepsilon_i \\
+    &amp;= \alpha_1 + \alpha_2 X_{i} + \theta Z_i X_{i} + \gamma W_{i} + \varepsilon_i \tag{5}
+\end{aligned}
+\]</span></p>
+<p>在 (5) 式中，<span class="math inline">\(Z_i X_{i}\)</span> 表示 <span class="math inline">\(Z_i\)</span> 和 <span class="math inline">\(X_i\)</span> 的交互项。通过这种方式，我们可以捕捉到 <span class="math inline">\(X\)</span> 对 <span class="math inline">\(Y\)</span> 的边际影响如何随着其他变量的变化而变化。</p>
+<p>需要说明的是，当 <span class="math inline">\(Z=X\)</span> 或 <span class="math inline">\(Z = (X, X^2)\)</span> 时，(5) 式中就会包含 <span class="math inline">\(X\)</span> 的平方项或更高次项，这样就可以捕捉到 <span class="math inline">\(X\)</span> 的非线性效应。</p>
+<section id="数据拆分与模型评估" class="level3" data-number="33.7.1">
+<h3 data-number="33.7.1" class="anchored" data-anchor-id="数据拆分与模型评估"><span class="header-section-number">33.7.1</span> 数据拆分与模型评估</h3>
+<p>数据拆分（Data-Splitting）是一种常用的模型评估方法。我们将数据集随机分为训练集（train）和测试集（test），通常比例为 80% : 20%。在训练集上拟合模型，并在测试集上评估模型的预测能力。这样可以有效避免模型过拟合，获得更真实的预测性能指标。</p>
+<p>本节将分别对基础模型（Basic Model）和灵活模型（Flexible Model）进行训练集内（in-sample）性能评估，包括 <span class="math inline">\(R^2\)</span>、调整 <span class="math inline">\(R^2\)</span>、MSE 及调整 MSE 等指标。</p>
+<p>接下来，我们对数据分别拟合基础模型和灵活模型，采用普通最小二乘法（OLS）进行估计：</p>
+<div id="cell-48" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a><span class="co"># 1. Basic Model</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a>model_base <span class="op">=</span> <span class="st">'lwage ~ sex + exp1 + shs + hsg+ scl + clg + mw + so + we + C(occ2) + C(ind2)'</span></span>
+<span id="cb35-3"><a href="#cb35-3"></a>base <span class="op">=</span> smf.ols(model_base, data<span class="op">=</span>train)</span>
+<span id="cb35-4"><a href="#cb35-4"></a>results_base <span class="op">=</span> base.fit()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-49" class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>rsquared_base <span class="op">=</span> results_base.rsquared</span>
+<span id="cb36-2"><a href="#cb36-2"></a>rsquared_adj_base <span class="op">=</span> results_base.rsquared_adj</span>
+<span id="cb36-3"><a href="#cb36-3"></a>mse_base <span class="op">=</span> np.mean(results_base.resid<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb36-4"><a href="#cb36-4"></a>mse_adj_base <span class="op">=</span> results_base.mse_resid</span>
+<span id="cb36-5"><a href="#cb36-5"></a><span class="bu">print</span>(<span class="ss">f'Rsquared = </span><span class="sc">{</span>rsquared_base<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb36-6"><a href="#cb36-6"></a><span class="bu">print</span>(<span class="ss">f'Rsquared_adjusted = </span><span class="sc">{</span>rsquared_adj_base<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb36-7"><a href="#cb36-7"></a><span class="bu">print</span>(<span class="ss">f'MSE = </span><span class="sc">{</span>mse_base<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb36-8"><a href="#cb36-8"></a><span class="bu">print</span>(<span class="ss">f'MSE_adjusted = </span><span class="sc">{</span>mse_adj_base<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rsquared=0.3176
+Rsquared_adjusted=0.3092
+MSE=0.2202
+MSE_adjusted=0.2229</code></pre>
+</div>
+</div>
+<div id="cell-50" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a><span class="co"># verify the formulas</span></span>
+<span id="cb38-2"><a href="#cb38-2"></a>X, y <span class="op">=</span> base.data.exog, base.data.endog</span>
+<span id="cb38-3"><a href="#cb38-3"></a>n, p <span class="op">=</span> X.shape</span>
+<span id="cb38-4"><a href="#cb38-4"></a>mse <span class="op">=</span> np.mean((y <span class="op">-</span> results_base.predict(X, transform<span class="op">=</span><span class="va">False</span>))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb38-5"><a href="#cb38-5"></a>mse_adj <span class="op">=</span> mse <span class="op">*</span> n <span class="op">/</span> (n <span class="op">-</span> p)</span>
+<span id="cb38-6"><a href="#cb38-6"></a>rsquared <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> mse <span class="op">/</span> np.var(y)</span>
+<span id="cb38-7"><a href="#cb38-7"></a>rsquared_adj <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> mse_adj <span class="op">/</span> np.var(y)</span>
+<span id="cb38-8"><a href="#cb38-8"></a><span class="bu">print</span>(<span class="ss">f'Rsquared = </span><span class="sc">{</span>rsquared<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb38-9"><a href="#cb38-9"></a><span class="bu">print</span>(<span class="ss">f'Rsquared_adjusted = </span><span class="sc">{</span>rsquared_adj<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb38-10"><a href="#cb38-10"></a><span class="bu">print</span>(<span class="ss">f'MSE = </span><span class="sc">{</span>mse<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb38-11"><a href="#cb38-11"></a><span class="bu">print</span>(<span class="ss">f'MSE_adjusted = </span><span class="sc">{</span>mse_adj<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rsquared = 0.3176
+Rsquared_adjusted = 0.3091
+MSE = 0.2202
+MSE_adjusted = 0.2229</code></pre>
+</div>
+</div>
+<div id="cell-51" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a><span class="co"># 2. Flexible Model</span></span>
+<span id="cb40-2"><a href="#cb40-2"></a>model_flex <span class="op">=</span> (<span class="st">'lwage ~ sex + shs+hsg+scl+clg+C(occ2)+C(ind2)+mw+so+we '</span></span>
+<span id="cb40-3"><a href="#cb40-3"></a>              <span class="st">'+ (exp1+exp2+exp3+exp4)*(shs+hsg+scl+clg+C(occ2)+C(ind2)+mw+so+we)'</span>)</span>
+<span id="cb40-4"><a href="#cb40-4"></a>flex <span class="op">=</span> smf.ols(model_flex, data<span class="op">=</span>train)</span>
+<span id="cb40-5"><a href="#cb40-5"></a>results_flex <span class="op">=</span> flex.fit()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-52" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>rsquared_flex <span class="op">=</span> results_flex.rsquared</span>
+<span id="cb41-2"><a href="#cb41-2"></a>rsquared_adj_flex <span class="op">=</span> results_flex.rsquared_adj</span>
+<span id="cb41-3"><a href="#cb41-3"></a>mse_flex <span class="op">=</span> np.mean(results_flex.resid<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb41-4"><a href="#cb41-4"></a>mse_adj_flex <span class="op">=</span> results_flex.mse_resid</span>
+<span id="cb41-5"><a href="#cb41-5"></a><span class="bu">print</span>(<span class="ss">f'Rsquared = </span><span class="sc">{</span>rsquared_flex<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb41-6"><a href="#cb41-6"></a><span class="bu">print</span>(<span class="ss">f'Rsquared_adjusted = </span><span class="sc">{</span>rsquared_adj_flex<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb41-7"><a href="#cb41-7"></a><span class="bu">print</span>(<span class="ss">f'MSE = </span><span class="sc">{</span>mse_flex<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb41-8"><a href="#cb41-8"></a><span class="bu">print</span>(<span class="ss">f'MSE_adjusted = </span><span class="sc">{</span>mse_adj_flex<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rsquared = 0.3643
+Rsquared_adjusted = 0.3241
+MSE = 0.2051
+MSE_adjusted = 0.2181</code></pre>
+</div>
+</div>
+<section id="使用-lasso-重新估计灵活模型" class="level4" data-number="33.7.1.1">
+<h4 data-number="33.7.1.1" class="anchored" data-anchor-id="使用-lasso-重新估计灵活模型"><span class="header-section-number">33.7.1.1</span> 使用 Lasso 重新估计灵活模型</h4>
+<p>我们用 Lasso（最小绝对收缩与选择算子）方法，重新估计灵活模型（Flexible Model），而不是采用 ols。Lasso 是一种带惩罚项的回归方法，适用于 <span class="math inline">\(p/n\)</span> 不小的情形，可以有效降低模型复杂度。关于 Lasso 的理论介绍将在后续课程详细展开，这里我们将其作为“黑箱”预测工具进行尝试。</p>
+<p>我们在特征构造阶段依然使用 statsmodels 的 formula api，以保证变量处理的一致性；在模型估计阶段，采用 sklearn 的 Lasso，并通过交叉验证自动选择正则化参数。</p>
+<div id="cell-54" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a><span class="co"># Lasso with cross-validation</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a>X <span class="op">=</span> flex.data.exog[:, <span class="dv">1</span>:]  <span class="co"># exclude the intercept; we don't want the lasso to penalize the intercept</span></span>
+<span id="cb43-3"><a href="#cb43-3"></a>y <span class="op">=</span> flex.data.endog</span>
+<span id="cb43-4"><a href="#cb43-4"></a></span>
+<span id="cb43-5"><a href="#cb43-5"></a><span class="co"># train model using Lasso with cross validation and variable normalization</span></span>
+<span id="cb43-6"><a href="#cb43-6"></a>lasso <span class="op">=</span> Pipeline([(<span class="st">'scale'</span>, StandardScaler()),  <span class="co"># standardize the variables</span></span>
+<span id="cb43-7"><a href="#cb43-7"></a>                  (<span class="st">'lasso'</span>, lm.LassoCV())])</span>
+<span id="cb43-8"><a href="#cb43-8"></a>lasso.fit(X, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="38">
+<style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+#sk-container-id-1 label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[('scale', StandardScaler()), ('lasso', LassoCV())])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox"><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Pipeline</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[('scale', StandardScaler()), ('lasso', LassoCV())])</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox"><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>StandardScaler</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></div></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox"><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>LassoCV</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.linear_model.LassoCV.html">?<span>Documentation for LassoCV</span></a></div></label><div class="sk-toggleable__content fitted"><pre>LassoCV()</pre></div> </div></div></div></div></div></div>
+</div>
+</div>
+<div id="cell-55" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a><span class="co"># verify the formulas</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a>n, p <span class="op">=</span> X.shape</span>
+<span id="cb44-3"><a href="#cb44-3"></a>p <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb44-4"><a href="#cb44-4"></a>mse_lasso <span class="op">=</span> np.mean((y <span class="op">-</span> lasso.predict(X))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb44-5"><a href="#cb44-5"></a>mse_adj_lasso <span class="op">=</span> mse_lasso <span class="op">*</span> n <span class="op">/</span> (n <span class="op">-</span> p)</span>
+<span id="cb44-6"><a href="#cb44-6"></a>rsquared_lasso <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> mse_lasso <span class="op">/</span> np.var(y)</span>
+<span id="cb44-7"><a href="#cb44-7"></a>rsquared_adj_lasso <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> mse_adj_lasso <span class="op">/</span> np.var(y)</span>
+<span id="cb44-8"><a href="#cb44-8"></a><span class="bu">print</span>(<span class="ss">f'Rsquared = </span><span class="sc">{</span>rsquared_lasso<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb44-9"><a href="#cb44-9"></a><span class="bu">print</span>(<span class="ss">f'Rsquared_adjusted = </span><span class="sc">{</span>rsquared_adj_lasso<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb44-10"><a href="#cb44-10"></a><span class="bu">print</span>(<span class="ss">f'MSE = </span><span class="sc">{</span>mse_lasso<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb44-11"><a href="#cb44-11"></a><span class="bu">print</span>(<span class="ss">f'MSE_adjusted = </span><span class="sc">{</span>mse_adj_lasso<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rsquared = 0.3309
+Rsquared_adjusted = 0.2885
+MSE = 0.2159
+MSE_adjusted = 0.2296</code></pre>
+</div>
+</div>
+<div id="cell-56" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a><span class="co"># store the results in a table</span></span>
+<span id="cb46-2"><a href="#cb46-2"></a>res_df <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb46-3"><a href="#cb46-3"></a></span>
+<span id="cb46-4"><a href="#cb46-4"></a>res_df[<span class="st">'Model'</span>] <span class="op">=</span> [<span class="st">'Basic reg'</span>, <span class="st">'Flexible reg'</span>, <span class="st">'Flexible Lasso'</span>]</span>
+<span id="cb46-5"><a href="#cb46-5"></a></span>
+<span id="cb46-6"><a href="#cb46-6"></a>res_df[<span class="st">'p'</span>] <span class="op">=</span> [results_base.params.shape[<span class="dv">0</span>],</span>
+<span id="cb46-7"><a href="#cb46-7"></a>               results_flex.params.shape[<span class="dv">0</span>],</span>
+<span id="cb46-8"><a href="#cb46-8"></a>               results_flex.params.shape[<span class="dv">0</span>]]</span>
+<span id="cb46-9"><a href="#cb46-9"></a></span>
+<span id="cb46-10"><a href="#cb46-10"></a>res_df[<span class="st">'R2'</span>] <span class="op">=</span> [rsquared_base, rsquared_flex, rsquared_lasso]</span>
+<span id="cb46-11"><a href="#cb46-11"></a>res_df[<span class="st">'MSE'</span>] <span class="op">=</span> [mse_base, mse_flex, mse_lasso]</span>
+<span id="cb46-12"><a href="#cb46-12"></a></span>
+<span id="cb46-13"><a href="#cb46-13"></a>res_df[<span class="st">'adj_R2'</span>] <span class="op">=</span> [rsquared_adj_base, rsquared_adj_flex, rsquared_adj_lasso]</span>
+<span id="cb46-14"><a href="#cb46-14"></a>res_df[<span class="st">'adj_MSE'</span>] <span class="op">=</span> [mse_adj_base, mse_adj_flex, mse_adj_lasso]</span>
+<span id="cb46-15"><a href="#cb46-15"></a></span>
+<span id="cb46-16"><a href="#cb46-16"></a><span class="co"># Show results</span></span>
+<span id="cb46-17"><a href="#cb46-17"></a><span class="bu">print</span>(res_df.head().<span class="bu">round</span>(<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Model    p     R2    MSE  adj_R2  adj_MSE
+0       Basic reg   51  0.318  0.220   0.309    0.223
+1    Flexible reg  246  0.364  0.205   0.324    0.218
+2  Flexible Lasso  246  0.331  0.216   0.288    0.230</code></pre>
+</div>
+</div>
+<div id="cell-57" class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a><span class="co"># print to Latex</span></span>
+<span id="cb48-2"><a href="#cb48-2"></a><span class="bu">print</span>(res_df.style.to_latex())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>综合上述各项指标，灵活模型（Flexible Model）的表现略优于基础模型（Basic Model）。</p>
+<p>由于 <span class="math inline">\(p/n\)</span> 并不大，调整前后的各项指标差异不大。但如果 <span class="math inline">\(p/n\)</span> 较大，调整项的影响会更明显。此时，为了防止过拟合，我们通常会采用<strong>数据拆分（data splitting）</strong>等更通用的策略。下面将通过具体例子进行说明。</p>
+</section>
+</section>
+</section>
+<section id="数据拆分样本外预测表现" class="level2" data-number="33.8">
+<h2 data-number="33.8" class="anchored" data-anchor-id="数据拆分样本外预测表现"><span class="header-section-number">33.8</span> 数据拆分：样本外预测表现</h2>
+<p>在前面分析了样本内拟合效果后，我们进一步评估模型在样本外（out-of-sample）的预测能力：</p>
+<ul>
+<li>使用测试集（testing sample）进行评估。对于测试集中的每个观测，利用训练集估计得到的参数预测其 <span class="math inline">\(\mathtt{wage}\)</span>（工资）；</li>
+<li>计算两种预测模型在测试集上的均方预测误差 <span class="math inline">\(MSE_{test}\)</span>，即样本外均方误差。</li>
+</ul>
+<p>通过这种方式，可以更真实地反映模型的泛化能力，避免仅凭样本内拟合效果（如 <span class="math inline">\(R^2\)</span>、<span class="math inline">\(MSE\)</span>）对模型优劣做出过于乐观的判断。</p>
+<div id="cell-60" class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1"></a><span class="co"># 我们这里采用 smf.ols 仅用于提取完整的设计矩阵（data frame），</span></span>
+<span id="cb49-2"><a href="#cb49-2"></a><span class="co"># 而实际样本外预测更方便用 sm.OLS。</span></span>
+<span id="cb49-3"><a href="#cb49-3"></a><span class="co"># 这是因为 smf.ols 在样本外预测时处理较为繁琐。</span></span>
+<span id="cb49-4"><a href="#cb49-4"></a></span>
+<span id="cb49-5"><a href="#cb49-5"></a>tmp <span class="op">=</span> smf.ols(model_base, data<span class="op">=</span>df)  <span class="co"># 这里只是为了提取数据，不用于实际建模</span></span>
+<span id="cb49-6"><a href="#cb49-6"></a>X_full <span class="op">=</span> tmp.data.exog</span>
+<span id="cb49-7"><a href="#cb49-7"></a>y_full <span class="op">=</span> tmp.data.endog</span>
+<span id="cb49-8"><a href="#cb49-8"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X_full, y_full, </span>
+<span id="cb49-9"><a href="#cb49-9"></a>                                                    test_size<span class="op">=</span><span class="fl">0.2</span>, </span>
+<span id="cb49-10"><a href="#cb49-10"></a>                                                    shuffle<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-61" class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a><span class="co"># estimating the parameters in the training sample</span></span>
+<span id="cb50-2"><a href="#cb50-2"></a>regbasic <span class="op">=</span> sm.OLS(y_train, X_train).fit()</span>
+<span id="cb50-3"><a href="#cb50-3"></a></span>
+<span id="cb50-4"><a href="#cb50-4"></a><span class="co"># predict out of sample</span></span>
+<span id="cb50-5"><a href="#cb50-5"></a>yhat_reg_base <span class="op">=</span> regbasic.predict(X_test)</span>
+<span id="cb50-6"><a href="#cb50-6"></a></span>
+<span id="cb50-7"><a href="#cb50-7"></a><span class="co"># calculating out-of-sample MSE</span></span>
+<span id="cb50-8"><a href="#cb50-8"></a>MSE_test1 <span class="op">=</span> <span class="bu">sum</span>((y_test <span class="op">-</span> yhat_reg_base)<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> y_test.shape[<span class="dv">0</span>]</span>
+<span id="cb50-9"><a href="#cb50-9"></a>R2_test1 <span class="op">=</span> <span class="fl">1.</span> <span class="op">-</span> MSE_test1 <span class="op">/</span> np.var(y_test)</span>
+<span id="cb50-10"><a href="#cb50-10"></a></span>
+<span id="cb50-11"><a href="#cb50-11"></a><span class="bu">print</span>(<span class="st">"Test MSE for the basic model: "</span> <span class="op">+</span> <span class="bu">str</span>(<span class="bu">round</span>(MSE_test1, <span class="dv">3</span>)))</span>
+<span id="cb50-12"><a href="#cb50-12"></a><span class="bu">print</span>(<span class="st">"Test R2  for the basic model: "</span> <span class="op">+</span> <span class="bu">str</span>(<span class="bu">round</span>(R2_test1, <span class="dv">3</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test MSE for the basic model: 0.218
+Test R2  for the basic model: 0.332</code></pre>
+</div>
+</div>
+<p>在基础模型中，<span class="math inline">\(MSE_{test}\)</span>（样本外均方误差）与 <span class="math inline">\(MSE_{sample}\)</span>（样本内均方误差）非常接近。</p>
+<div id="cell-63" class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a><span class="co"># 这里只用 smf.ols 提取完整的设计矩阵（data frame），实际样本外预测更方便用 sm.OLS</span></span>
+<span id="cb52-2"><a href="#cb52-2"></a><span class="co"># 这是因为 smf.ols 在样本外预测时处理较为繁琐</span></span>
+<span id="cb52-3"><a href="#cb52-3"></a></span>
+<span id="cb52-4"><a href="#cb52-4"></a>tmp <span class="op">=</span> smf.ols(model_flex, data<span class="op">=</span>df)  <span class="co"># 这里只是为了提取数据，不用于实际建模</span></span>
+<span id="cb52-5"><a href="#cb52-5"></a>X_full <span class="op">=</span> tmp.data.exog</span>
+<span id="cb52-6"><a href="#cb52-6"></a>y_full <span class="op">=</span> tmp.data.endog</span>
+<span id="cb52-7"><a href="#cb52-7"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X_full, y_full, test_size<span class="op">=</span><span class="fl">.2</span>, shuffle<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb52-8"><a href="#cb52-8"></a></span>
+<span id="cb52-9"><a href="#cb52-9"></a><span class="co"># 在训练集上估计灵活模型参数</span></span>
+<span id="cb52-10"><a href="#cb52-10"></a>regflex <span class="op">=</span> sm.OLS(y_train, X_train).fit()</span>
+<span id="cb52-11"><a href="#cb52-11"></a></span>
+<span id="cb52-12"><a href="#cb52-12"></a><span class="co"># 用测试集进行样本外预测</span></span>
+<span id="cb52-13"><a href="#cb52-13"></a>yhat_reg_flex <span class="op">=</span> regflex.predict(X_test)</span>
+<span id="cb52-14"><a href="#cb52-14"></a></span>
+<span id="cb52-15"><a href="#cb52-15"></a><span class="co"># 计算样本外均方误差（MSE）和 $R^2$</span></span>
+<span id="cb52-16"><a href="#cb52-16"></a>MSE_test2 <span class="op">=</span> np.mean((y_test <span class="op">-</span> yhat_reg_flex)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb52-17"><a href="#cb52-17"></a>R2_test2 <span class="op">=</span> <span class="fl">1.</span> <span class="op">-</span> MSE_test2 <span class="op">/</span> np.var(y_test)</span>
+<span id="cb52-18"><a href="#cb52-18"></a></span>
+<span id="cb52-19"><a href="#cb52-19"></a><span class="bu">print</span>(<span class="st">"灵活模型的测试集 MSE: </span><span class="sc">{:.3f}</span><span class="st">"</span>.<span class="bu">format</span>(MSE_test2))</span>
+<span id="cb52-20"><a href="#cb52-20"></a><span class="bu">print</span>(<span class="st">"灵活模型的测试集 R2: </span><span class="sc">{:.3f}</span><span class="st">"</span>.<span class="bu">format</span>(R2_test2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>灵活模型的测试集 MSE: 0.243
+灵活模型的测试集 R2: 0.292</code></pre>
+</div>
+</div>
+<p>在灵活模型（Flexible Model）设定下，样本外均方误差 <span class="math inline">\(MSE_{test}\)</span> 与样本内均方误差 <span class="math inline">\(MSE_{sample}\)</span> 的差距并不大。</p>
+<p>需要注意的是，<span class="math inline">\(MSE_{test}\)</span> 会随着数据拆分的不同而有所波动。因此，通常建议对多次数据拆分下的样本外 <span class="math inline">\(MSE\)</span> 取平均，以获得更稳健的评估结果。</p>
+<p>总体来看，基于样本外 <span class="math inline">\(MSE\)</span>，采用 OLS 回归的基础模型（Basic Model）与灵活模型的预测表现相当，甚至基础模型略优。</p>
+<p>接下来，我们将在灵活模型中用 Lasso 回归替代 OLS 回归。需要强调的是，样本外 <span class="math inline">\(MSE\)</span> 也可以用于评估其他任意“黑箱”预测方法。最后，我们将比较 Lasso 回归与 OLS 回归在灵活模型下的预测表现。</p>
+<div id="cell-65" class="cell" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1"></a><span class="co"># train model using Lasso with cross validation and variable normalization</span></span>
+<span id="cb54-2"><a href="#cb54-2"></a>lasso <span class="op">=</span> Pipeline([(<span class="st">'scale'</span>, StandardScaler()),  <span class="co"># standardize the variables</span></span>
+<span id="cb54-3"><a href="#cb54-3"></a>                  (<span class="st">'lasso'</span>, lm.LassoCV())])</span>
+<span id="cb54-4"><a href="#cb54-4"></a>lasso.fit(X_train[:, <span class="dv">1</span>:], y_train)</span>
+<span id="cb54-5"><a href="#cb54-5"></a></span>
+<span id="cb54-6"><a href="#cb54-6"></a><span class="co"># predict out of sample</span></span>
+<span id="cb54-7"><a href="#cb54-7"></a>yhat_test_lasso <span class="op">=</span> lasso.predict(X_test[:, <span class="dv">1</span>:])</span>
+<span id="cb54-8"><a href="#cb54-8"></a></span>
+<span id="cb54-9"><a href="#cb54-9"></a><span class="co"># calculating out-of-sample MSE</span></span>
+<span id="cb54-10"><a href="#cb54-10"></a>MSE_test3 <span class="op">=</span> np.mean((y_test <span class="op">-</span> yhat_test_lasso)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb54-11"><a href="#cb54-11"></a>R2_test3 <span class="op">=</span> <span class="fl">1.</span> <span class="op">-</span> MSE_test3 <span class="op">/</span> np.var(y_test)</span>
+<span id="cb54-12"><a href="#cb54-12"></a></span>
+<span id="cb54-13"><a href="#cb54-13"></a><span class="bu">print</span>(<span class="st">"Test MSE for the lasso model: </span><span class="sc">{:.3f}</span><span class="st">"</span>.<span class="bu">format</span>(MSE_test3))</span>
+<span id="cb54-14"><a href="#cb54-14"></a><span class="bu">print</span>(<span class="st">"Test R2 for the lasso model: </span><span class="sc">{:.3f}</span><span class="st">"</span>.<span class="bu">format</span>(R2_test3))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test MSE for the lasso model: 0.231
+Test R2 for the lasso model: 0.297</code></pre>
+</div>
+</div>
+<div id="cell-66" class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1"></a><span class="co"># store the results in a table</span></span>
+<span id="cb56-2"><a href="#cb56-2"></a>res_df2 <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb56-3"><a href="#cb56-3"></a></span>
+<span id="cb56-4"><a href="#cb56-4"></a>res_df2[<span class="st">'Model'</span>] <span class="op">=</span> [<span class="st">'Basic reg'</span>, <span class="st">'Flexible reg'</span>, <span class="st">'Flexible Lasso'</span>]</span>
+<span id="cb56-5"><a href="#cb56-5"></a></span>
+<span id="cb56-6"><a href="#cb56-6"></a>res_df2[<span class="st">'$MSE_</span><span class="sc">{test}</span><span class="st">$'</span>] <span class="op">=</span> [MSE_test1, MSE_test2, MSE_test3]</span>
+<span id="cb56-7"><a href="#cb56-7"></a>res_df2[<span class="st">'$R^2_</span><span class="sc">{test}</span><span class="st">$'</span>] <span class="op">=</span> [R2_test1, R2_test2, R2_test3]</span>
+<span id="cb56-8"><a href="#cb56-8"></a></span>
+<span id="cb56-9"><a href="#cb56-9"></a><span class="co"># Show results</span></span>
+<span id="cb56-10"><a href="#cb56-10"></a><span class="bu">print</span>(res_df2.head().<span class="bu">round</span>(<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Model  $MSE_{test}$  $R^2_{test}$
+0       Basic reg         0.218         0.332
+1    Flexible reg         0.243         0.292
+2  Flexible Lasso         0.233         0.321</code></pre>
+</div>
+</div>
+<div id="cell-67" class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1"></a><span class="co"># print to Latex</span></span>
+<span id="cb58-2"><a href="#cb58-2"></a><span class="bu">print</span>(res_df2.style.to_latex())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="超灵活模型与过拟合" class="level3" data-number="33.8.1">
+<h3 data-number="33.8.1" class="anchored" data-anchor-id="超灵活模型与过拟合"><span class="header-section-number">33.8.1</span> 超灵活模型与过拟合</h3>
+<p>从前面的结果来看，Lasso 与 OLS 的预测表现差异并不大，似乎没有充分理由一定要用 Lasso。为了更好地说明 Lasso 的优势，我们引入一个“超灵活模型”（extra flexible model），展示 OLS 在高维协变量下如何严重过拟合训练集（in-sample），而在测试集（out-of-sample）上表现很差。</p>
+<p>超灵活模型包含了大量变量及其交互项，极大地提升了模型复杂度。在这种设定下，OLS 可以在训练集上取得极高的 <span class="math inline">\(R^2\)</span>，但由于模型过于贴合训练数据，导致泛化能力下降，测试集上的预测误差显著增大。这种现象就是典型的“过拟合”（overfitting）。</p>
+<p>相比之下，Lasso 通过引入惩罚项（正则化），自动筛选和收缩部分系数，有效抑制了过拟合问题。即使在高维协变量下，Lasso 依然能保持较好的样本外预测能力。因此，在变量维度较高或模型复杂度较大时，Lasso 等正则化方法具有明显优势。</p>
+<div id="cell-69" class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1"></a><span class="co"># Extra Flexible Model</span></span>
+<span id="cb59-2"><a href="#cb59-2"></a>model_extra <span class="op">=</span> (</span>
+<span id="cb59-3"><a href="#cb59-3"></a>    <span class="st">'lwage ~ sex + (exp1 + exp2 + exp3 + exp4 + shs + hsg + scl + clg + C(occ2) + C(ind2) + mw + so + we) ** 2'</span></span>
+<span id="cb59-4"><a href="#cb59-4"></a>)</span>
+<span id="cb59-5"><a href="#cb59-5"></a>tmp <span class="op">=</span> smf.ols(model_extra, data<span class="op">=</span>df)  <span class="co"># just to extract df, not actually using this model</span></span>
+<span id="cb59-6"><a href="#cb59-6"></a></span>
+<span id="cb59-7"><a href="#cb59-7"></a><span class="co"># In-sample fit</span></span>
+<span id="cb59-8"><a href="#cb59-8"></a>insamplefit <span class="op">=</span> tmp.fit()</span>
+<span id="cb59-9"><a href="#cb59-9"></a>rsquared_ex <span class="op">=</span> insamplefit.rsquared</span>
+<span id="cb59-10"><a href="#cb59-10"></a>rsquared_adj_ex <span class="op">=</span> insamplefit.rsquared_adj</span>
+<span id="cb59-11"><a href="#cb59-11"></a>mse_ex <span class="op">=</span> np.mean(insamplefit.resid <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb59-12"><a href="#cb59-12"></a>mse_adj_ex <span class="op">=</span> insamplefit.mse_resid</span>
+<span id="cb59-13"><a href="#cb59-13"></a><span class="bu">print</span>(<span class="ss">f'(In-sample) Rsquared = </span><span class="sc">{</span>rsquared_ex<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb59-14"><a href="#cb59-14"></a><span class="bu">print</span>(<span class="ss">f'(In-sample) Rsquared_adjusted = </span><span class="sc">{</span>rsquared_adj_ex<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb59-15"><a href="#cb59-15"></a><span class="bu">print</span>(<span class="ss">f'(In-sample) MSE = </span><span class="sc">{</span>mse_ex<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb59-16"><a href="#cb59-16"></a><span class="bu">print</span>(<span class="ss">f'(In-sample) MSE_adjusted = </span><span class="sc">{</span>mse_adj_ex<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb59-17"><a href="#cb59-17"></a></span>
+<span id="cb59-18"><a href="#cb59-18"></a><span class="co"># Train test Split</span></span>
+<span id="cb59-19"><a href="#cb59-19"></a>X_full <span class="op">=</span> tmp.data.exog</span>
+<span id="cb59-20"><a href="#cb59-20"></a>y_full <span class="op">=</span> tmp.data.endog</span>
+<span id="cb59-21"><a href="#cb59-21"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X_full, y_full, test_size<span class="op">=</span><span class="fl">0.2</span>, shuffle<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb59-22"><a href="#cb59-22"></a></span>
+<span id="cb59-23"><a href="#cb59-23"></a><span class="co"># estimating the parameters in the training sample</span></span>
+<span id="cb59-24"><a href="#cb59-24"></a>regextra <span class="op">=</span> sm.OLS(y_train, X_train).fit()</span>
+<span id="cb59-25"><a href="#cb59-25"></a></span>
+<span id="cb59-26"><a href="#cb59-26"></a><span class="co"># predict out of sample</span></span>
+<span id="cb59-27"><a href="#cb59-27"></a>yhat_reg_extra <span class="op">=</span> regextra.predict(X_test)</span>
+<span id="cb59-28"><a href="#cb59-28"></a></span>
+<span id="cb59-29"><a href="#cb59-29"></a><span class="co"># calculating out-of-sample MSE</span></span>
+<span id="cb59-30"><a href="#cb59-30"></a>MSE_test4 <span class="op">=</span> np.mean((y_test <span class="op">-</span> yhat_reg_extra) <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb59-31"><a href="#cb59-31"></a>R2_test4 <span class="op">=</span> <span class="fl">1.</span> <span class="op">-</span> MSE_test4 <span class="op">/</span> np.var(y_test)</span>
+<span id="cb59-32"><a href="#cb59-32"></a></span>
+<span id="cb59-33"><a href="#cb59-33"></a><span class="bu">print</span>(<span class="ss">f"Test MSE for the flexible model: </span><span class="sc">{</span>MSE_test4<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb59-34"><a href="#cb59-34"></a><span class="bu">print</span>(<span class="ss">f"Test R2 for the flexible model: </span><span class="sc">{</span>R2_test4<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(In-sample) Rsquared = 0.4489
+(In-sample) Rsquared_adjusted = 0.3506
+(In-sample) MSE = 0.1793
+(In-sample) MSE_adjusted = 0.2113
+Test MSE for the flexible model: 0.2650
+Test R2 for the flexible model: 0.1925</code></pre>
+</div>
+</div>
+<p>可以看到，当协变量维度很高时，简单的 OLS 回归会出现明显的过拟合现象：样本内（in-sample）拟合效果非常好，但样本外（out-of-sample）预测能力却大幅下降。</p>
+<p>与此对比，Lasso 方法表现如下：</p>
+<div id="cell-71" class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1"></a>np.<span class="bu">sum</span>(lasso.named_steps[<span class="st">'lasso'</span>].coef_ <span class="op">!=</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="60">
+<pre><code>85</code></pre>
+</div>
+</div>
+<div id="cell-72" class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1"></a><span class="co"># train model using Lasso with cross validation and variable normalization</span></span>
+<span id="cb63-2"><a href="#cb63-2"></a>lasso <span class="op">=</span> Pipeline([(<span class="st">'scale'</span>, StandardScaler()),  <span class="co"># standardize the variables</span></span>
+<span id="cb63-3"><a href="#cb63-3"></a>                  (<span class="st">'lasso'</span>, lm.LassoCV())])</span>
+<span id="cb63-4"><a href="#cb63-4"></a>lasso.fit(X_train[:, <span class="dv">1</span>:], y_train)</span>
+<span id="cb63-5"><a href="#cb63-5"></a></span>
+<span id="cb63-6"><a href="#cb63-6"></a><span class="co"># predict in sample</span></span>
+<span id="cb63-7"><a href="#cb63-7"></a>yhat_train_lasso <span class="op">=</span> lasso.predict(X_train[:, <span class="dv">1</span>:])</span>
+<span id="cb63-8"><a href="#cb63-8"></a></span>
+<span id="cb63-9"><a href="#cb63-9"></a><span class="co"># Calculate R-squared</span></span>
+<span id="cb63-10"><a href="#cb63-10"></a>R2_L <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> np.<span class="bu">sum</span>((yhat_train_lasso <span class="op">-</span> y_train)<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> np.<span class="bu">sum</span>((y_train <span class="op">-</span> np.mean(y_train))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb63-11"><a href="#cb63-11"></a></span>
+<span id="cb63-12"><a href="#cb63-12"></a><span class="co"># Calculate adjusted R-squared</span></span>
+<span id="cb63-13"><a href="#cb63-13"></a>pL <span class="op">=</span> np.<span class="bu">sum</span>(lasso.named_steps[<span class="st">'lasso'</span>].coef_ <span class="op">!=</span> <span class="dv">0</span>)</span>
+<span id="cb63-14"><a href="#cb63-14"></a>ntrain <span class="op">=</span> <span class="bu">len</span>(X_train)</span>
+<span id="cb63-15"><a href="#cb63-15"></a>baseline <span class="op">=</span> np.<span class="bu">sum</span>((y_train <span class="op">-</span> np.mean(y_train))<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (ntrain <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb63-16"><a href="#cb63-16"></a>R2_adjL <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (np.<span class="bu">sum</span>((yhat_train_lasso <span class="op">-</span> y_train)<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (ntrain <span class="op">-</span> pL <span class="op">-</span> <span class="dv">1</span>)) <span class="op">/</span> baseline</span>
+<span id="cb63-17"><a href="#cb63-17"></a></span>
+<span id="cb63-18"><a href="#cb63-18"></a><span class="co"># Calculate Mean Squared Error (MSE)</span></span>
+<span id="cb63-19"><a href="#cb63-19"></a>lasso_res <span class="op">=</span> y_train <span class="op">-</span> yhat_train_lasso</span>
+<span id="cb63-20"><a href="#cb63-20"></a>MSEL <span class="op">=</span> np.mean(lasso_res<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb63-21"><a href="#cb63-21"></a></span>
+<span id="cb63-22"><a href="#cb63-22"></a><span class="co"># Calculate adjusted MSE</span></span>
+<span id="cb63-23"><a href="#cb63-23"></a>MSE_adjL <span class="op">=</span> (ntrain <span class="op">/</span> (ntrain <span class="op">-</span> pL <span class="op">-</span> <span class="dv">1</span>)) <span class="op">*</span> MSEL</span>
+<span id="cb63-24"><a href="#cb63-24"></a></span>
+<span id="cb63-25"><a href="#cb63-25"></a><span class="co"># Print the results</span></span>
+<span id="cb63-26"><a href="#cb63-26"></a><span class="bu">print</span>(<span class="st">"R-squared for the lasso with the extra flexible model (in-sample):"</span>, <span class="bu">round</span>(R2_L, <span class="dv">3</span>))</span>
+<span id="cb63-27"><a href="#cb63-27"></a><span class="bu">print</span>(<span class="st">"Adjusted R-squared for the extra flexible model (in-sample):"</span>, <span class="bu">round</span>(R2_adjL, <span class="dv">3</span>))</span>
+<span id="cb63-28"><a href="#cb63-28"></a><span class="bu">print</span>(<span class="st">"MSE for the lasso with the extra flexible model (in-sample):"</span>, <span class="bu">round</span>(MSEL, <span class="dv">3</span>))</span>
+<span id="cb63-29"><a href="#cb63-29"></a><span class="bu">print</span>(<span class="st">"Adjusted MSE for the lasso with the extra flexible model (in-sample):"</span>, <span class="bu">round</span>(MSE_adjL, <span class="dv">3</span>))</span>
+<span id="cb63-30"><a href="#cb63-30"></a></span>
+<span id="cb63-31"><a href="#cb63-31"></a><span class="co"># predict out of sample</span></span>
+<span id="cb63-32"><a href="#cb63-32"></a>yhat_test_lasso <span class="op">=</span> lasso.predict(X_test[:, <span class="dv">1</span>:])</span>
+<span id="cb63-33"><a href="#cb63-33"></a></span>
+<span id="cb63-34"><a href="#cb63-34"></a><span class="co"># calculating out-of-sample MSE</span></span>
+<span id="cb63-35"><a href="#cb63-35"></a>MSE_test5 <span class="op">=</span> np.mean((y_test <span class="op">-</span> yhat_test_lasso)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb63-36"><a href="#cb63-36"></a>R2_test5 <span class="op">=</span> <span class="fl">1.</span> <span class="op">-</span> MSE_test5 <span class="op">/</span> np.var(y_test)</span>
+<span id="cb63-37"><a href="#cb63-37"></a></span>
+<span id="cb63-38"><a href="#cb63-38"></a><span class="bu">print</span>(<span class="st">"Test MSE for the lasso with the extra flexible model: </span><span class="sc">{:.3f}</span><span class="st">"</span>.<span class="bu">format</span>(MSE_test5))</span>
+<span id="cb63-39"><a href="#cb63-39"></a><span class="bu">print</span>(<span class="st">"Test R2 for the lasso with the extra flexible model: </span><span class="sc">{:.3f}</span><span class="st">"</span>.<span class="bu">format</span>(R2_test5))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R-squared for the lasso with the extra flexible model (in-sample): 0.361
+Adjusted R-squared for the extra flexible model (in-sample): 0.33
+MSE for the lasso with the extra flexible model (in-sample): 0.207
+Adjusted MSE for the lasso with the extra flexible model (in-sample): 0.217
+Test MSE for the lasso with the extra flexible model: 0.231
+Test R2 for the lasso with the extra flexible model: 0.297</code></pre>
+</div>
+</div>
+<p>如上所示，惩罚回归模型（如 Lasso）能够有效缓解过拟合（overfitting）问题。</p>
+<ul>
+<li>在高维特征或模型复杂度较高的情况下，普通最小二乘法（OLS）往往会出现“样本内拟合很好、样本外预测很差”的现象，即过拟合。</li>
+<li>而引入惩罚项的回归方法（如 Lasso），通过对系数收缩和变量选择，能够提升模型的泛化能力，使得样本外 <span class="math inline">\(Y\)</span> 的预测表现更加稳健。</li>
+</ul>
+<p>因此，在 <span class="math inline">\(X\)</span> 维度较高或变量间存在多重共线性的实际应用中，Lasso 等正则化方法是防止过拟合、提升预测准确性的有效工具。</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../body/regress_03_binscatter.html" class="pagination-link" aria-label="分仓散点图">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">分仓散点图</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../body/TS_asset_return.html" class="pagination-link" aria-label="资产收益率（Asset Returns）">
+        <span class="nav-page-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">资产收益率（Asset Returns）</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><a href="https://www.lianxh.cn">www.lianxh.cn</a></p>
+</div>
+    <div class="nav-footer-right">
+<p>Support: <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

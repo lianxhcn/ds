@@ -113,6 +113,11 @@ arlionn@163.com
 # 教什么？
 # 学生的特点
 
+---
+
+# 整体感受
+
+- 忐忑不安 
 
 ---
 
@@ -344,4 +349,38 @@ arlionn@163.com
 
 ---
 
-Computational tools for reproducible data analysis and version control (Git/GitHub, Emacs/RStudio/Spyder), reproducible data (Data repositories/Dataverse) and reproducible dynamic report generation (Rmarkdown/R Notebook/Jupyter/Pandoc), and workflows.
+## 讨论 1：彼此的优势
+
+### 老师
+
+- 理论基础
+- 工具地图和分析流程
+- 前沿工具
+
+### 学生
+
+- 实践经验 &rarr; 应用场景 (提问)
+- 案例分析能力
+- 内卷的潜力：对新工具的适应能力
+
+---
+
+## 讨论 2：教什么？
+
+- 学生没有能力或者需要花很多时间才能理解的内容
+  - 线性回归 &rarr; 非参数估计 (KNN, 核密度函数图, 随机森林) 
+  - 条件期望 + 条件概率 &rarr; GLM (广义线性模型) &rarr; Logit/Duration
+- 分析流程和规范 (经验)
+  - EDA &rarr; 可视化 &rarr; 回归分析 &rarr; 机器学习
+  - 离群值
+  - 非结构化数据 &rarr; 结构化数据
+- 环境配置：让代码跑起来
+
+--- 
+
+## 讨论 3：作业
+
+### 个人作业：
+- 环境配置
+- 基础知识和概念
+- &#x1F34E;：要让学生「卷起来」

@@ -5,84 +5,84 @@
     <lastmod>2025-05-21T15:59:05.346Z</lastmod>
   </url>
   <url>
-    <loc>https://book.lianxh.cn/ds/index.html/body/_home.html</loc>
-    <lastmod>2025-05-21T16:00:52.768Z</lastmod>
-  </url>
-  <url>
     <loc>https://book.lianxh.cn/ds/index.html/body/00_intro.html</loc>
-    <lastmod>2025-08-25T03:26:51.724Z</lastmod>
+    <lastmod>2025-08-25T17:43:46.869Z</lastmod>
   </url>
   <url>
-    <loc>https://book.lianxh.cn/ds/index.html/body/00_py_with_AI_intro.html</loc>
-    <lastmod>2025-08-25T03:33:49.307Z</lastmod>
+    <loc>https://book.lianxh.cn/ds/index.html/body/01_00_coding_with_AI.html</loc>
+    <lastmod>2025-08-25T09:22:05.975Z</lastmod>
   </url>
   <url>
-    <loc>https://book.lianxh.cn/ds/index.html/body/00_py_with_AI_pic.html</loc>
-    <lastmod>2025-06-06T19:52:05.710Z</lastmod>
+    <loc>https://book.lianxh.cn/ds/index.html/body/01_01_install_anaconda.html</loc>
+    <lastmod>2025-08-25T10:13:06.153Z</lastmod>
   </url>
   <url>
-    <loc>https://book.lianxh.cn/ds/index.html/body/01_1_1_install-Anaconda.html</loc>
-    <lastmod>2025-08-02T08:17:49.658Z</lastmod>
-  </url>
-  <url>
-    <loc>https://book.lianxh.cn/ds/index.html/body/01_1_2_use_Junpyter_Notebook.html</loc>
+    <loc>https://book.lianxh.cn/ds/index.html/body/01_02_jupyter_notebook.html</loc>
     <lastmod>2025-07-30T11:39:08.982Z</lastmod>
   </url>
   <url>
-    <loc>https://book.lianxh.cn/ds/index.html/body/01_2_install_FAQs.html</loc>
+    <loc>https://book.lianxh.cn/ds/index.html/body/01_03_install_FAQs.html</loc>
     <lastmod>2025-08-02T07:18:02.537Z</lastmod>
   </url>
   <url>
-    <loc>https://book.lianxh.cn/ds/index.html/body/01_3_markdown.html</loc>
-    <lastmod>2025-08-25T04:04:25.897Z</lastmod>
+    <loc>https://book.lianxh.cn/ds/index.html/body/01_04_markdown.html</loc>
+    <lastmod>2025-08-25T09:44:47.091Z</lastmod>
   </url>
   <url>
-    <loc>https://book.lianxh.cn/ds/index.html/body/01_py_01_basic.html</loc>
-    <lastmod>2025-06-06T19:52:05.719Z</lastmod>
+    <loc>https://book.lianxh.cn/ds/index.html/body/02_py_00_intro.html</loc>
+    <lastmod>2025-08-25T08:41:08.973Z</lastmod>
   </url>
   <url>
-    <loc>https://book.lianxh.cn/ds/index.html/body/01_py_01_basic_01_grammer.html</loc>
-    <lastmod>2025-05-19T09:20:27.741Z</lastmod>
+    <loc>https://book.lianxh.cn/ds/index.html/body/02_py_01_grammer.html</loc>
+    <lastmod>2025-08-25T08:43:58.578Z</lastmod>
   </url>
   <url>
-    <loc>https://book.lianxh.cn/ds/index.html/body/01_py_01_basic_02_QuickReference.html</loc>
+    <loc>https://book.lianxh.cn/ds/index.html/body/02_py_02_QuickReference.html</loc>
     <lastmod>2025-05-16T17:57:12.151Z</lastmod>
   </url>
   <url>
-    <loc>https://book.lianxh.cn/ds/index.html/body/01_py_01_basic_03_Packages.html</loc>
-    <lastmod>2025-05-19T14:37:59.782Z</lastmod>
+    <loc>https://book.lianxh.cn/ds/index.html/body/02_py_03_packages.html</loc>
+    <lastmod>2025-08-25T08:44:50.845Z</lastmod>
   </url>
   <url>
-    <loc>https://book.lianxh.cn/ds/index.html/body/01_py_01_basic_04_import.html</loc>
-    <lastmod>2025-05-23T17:02:56.681Z</lastmod>
+    <loc>https://book.lianxh.cn/ds/index.html/body/02_py_04_import.html</loc>
+    <lastmod>2025-08-25T09:25:44.675Z</lastmod>
   </url>
   <url>
-    <loc>https://book.lianxh.cn/ds/index.html/body/01_py_01_basic_05_OOP.html</loc>
+    <loc>https://book.lianxh.cn/ds/index.html/body/02_py_05_OOP.html</loc>
     <lastmod>2025-05-23T18:03:24.603Z</lastmod>
   </url>
   <url>
-    <loc>https://book.lianxh.cn/ds/index.html/body/01_py_01_basic_06_filepath.html</loc>
+    <loc>https://book.lianxh.cn/ds/index.html/body/02_py_06_filepath.html</loc>
     <lastmod>2025-05-23T18:32:52.850Z</lastmod>
   </url>
   <url>
-    <loc>https://book.lianxh.cn/ds/index.html/body/01_py_02_numpy_scipy.html</loc>
+    <loc>https://book.lianxh.cn/ds/index.html/body/03_py_01_numpy.html</loc>
     <lastmod>2025-05-23T18:10:22.176Z</lastmod>
   </url>
   <url>
-    <loc>https://book.lianxh.cn/ds/index.html/body/01_py_02_pandas.html</loc>
+    <loc>https://book.lianxh.cn/ds/index.html/body/03_py_02_pandas.html</loc>
     <lastmod>2025-05-23T18:44:10.025Z</lastmod>
   </url>
   <url>
-    <loc>https://book.lianxh.cn/ds/index.html/body/01_py_03_matplotlib.html</loc>
+    <loc>https://book.lianxh.cn/ds/index.html/body/03_py_03_matplotlib.html</loc>
     <lastmod>2025-05-19T10:06:29.531Z</lastmod>
   </url>
   <url>
-    <loc>https://book.lianxh.cn/ds/index.html/body/01_py_04_func_and_module.html</loc>
+    <loc>https://book.lianxh.cn/ds/index.html/body/03_py_04_function.html</loc>
     <lastmod>2019-05-27T02:07:38.871Z</lastmod>
   </url>
   <url>
-    <loc>https://book.lianxh.cn/ds/index.html/body/01_py_05_class.html</loc>
-    <lastmod>2025-05-11T03:00:14.337Z</lastmod>
+    <loc>https://book.lianxh.cn/ds/index.html/body/03_py_05_class.html</loc>
+    <lastmod>2025-08-25T09:18:21.056Z</lastmod>
+  </url>
+  <url>
+    <loc>https://book.lianxh.cn/ds/index.html/body/data_01_get_data.html</loc>
+    <lastmod>2025-08-25T17:44:59.877Z</lastmod>
+  </url>
+  <url>
+    <loc>https://book.lianxh.cn/ds/index.html/body/data_01_readdata.html</loc>
+    <lastmod>2025-08-25T17:41:37.853Z</lastmod>
   </url>
   <url>
     <loc>https://book.lianxh.cn/ds/index.html/body/data_02_data_type.html</loc>
@@ -97,8 +97,12 @@
     <lastmod>2025-05-23T07:24:57.351Z</lastmod>
   </url>
   <url>
+    <loc>https://book.lianxh.cn/ds/index.html/body/web_01_intro.html</loc>
+    <lastmod>2025-05-15T16:38:30.182Z</lastmod>
+  </url>
+  <url>
     <loc>https://book.lianxh.cn/ds/index.html/body/graph_01_intro.html</loc>
-    <lastmod>2025-05-26T01:13:00.567Z</lastmod>
+    <lastmod>2025-08-25T17:40:13.296Z</lastmod>
   </url>
   <url>
     <loc>https://book.lianxh.cn/ds/index.html/body/graph_dis_box_violin.html</loc>
@@ -113,10 +117,6 @@
     <lastmod>2025-05-21T16:54:15.152Z</lastmod>
   </url>
   <url>
-    <loc>https://book.lianxh.cn/ds/index.html/body/test_AB_test.html</loc>
-    <lastmod>2025-06-06T16:24:59.315Z</lastmod>
-  </url>
-  <url>
     <loc>https://book.lianxh.cn/ds/index.html/body/regress_01_OLS.html</loc>
     <lastmod>2025-08-25T01:36:51.085Z</lastmod>
   </url>
@@ -129,8 +129,56 @@
     <lastmod>2025-07-30T02:31:51.680Z</lastmod>
   </url>
   <url>
+    <loc>https://book.lianxh.cn/ds/index.html/body/regress_04_wage_prediction.html</loc>
+    <lastmod>2025-06-06T17:31:56.009Z</lastmod>
+  </url>
+  <url>
+    <loc>https://book.lianxh.cn/ds/index.html/body/TS_asset_return.html</loc>
+    <lastmod>2025-08-25T02:23:46.081Z</lastmod>
+  </url>
+  <url>
+    <loc>https://book.lianxh.cn/ds/index.html/body/TS_man_weight.html</loc>
+    <lastmod>2025-05-07T17:08:16.177Z</lastmod>
+  </url>
+  <url>
+    <loc>https://book.lianxh.cn/ds/index.html/body/TS_ARMA.html</loc>
+    <lastmod>2025-05-12T07:28:05.129Z</lastmod>
+  </url>
+  <url>
     <loc>https://book.lianxh.cn/ds/index.html/body/TS_FRED_US_unemploy_rate.html</loc>
     <lastmod>2025-05-19T03:00:35.294Z</lastmod>
+  </url>
+  <url>
+    <loc>https://book.lianxh.cn/ds/index.html/body/TS_GARCH_BYD.html</loc>
+    <lastmod>2025-05-12T23:02:29.579Z</lastmod>
+  </url>
+  <url>
+    <loc>https://book.lianxh.cn/ds/index.html/body/test_AB_test.html</loc>
+    <lastmod>2025-06-06T16:24:59.315Z</lastmod>
+  </url>
+  <url>
+    <loc>https://book.lianxh.cn/ds/index.html/body/ML-Naive-Bayes.html</loc>
+    <lastmod>2025-04-06T08:51:44.850Z</lastmod>
+  </url>
+  <url>
+    <loc>https://book.lianxh.cn/ds/index.html/body/ML-Random-Forests.html</loc>
+    <lastmod>2025-08-25T16:36:15.273Z</lastmod>
+  </url>
+  <url>
+    <loc>https://book.lianxh.cn/ds/index.html/body/ML-baggboost-lab.html</loc>
+    <lastmod>2025-05-14T08:02:30.766Z</lastmod>
+  </url>
+  <url>
+    <loc>https://book.lianxh.cn/ds/index.html/body/ML-Support-Vector-Machines.html</loc>
+    <lastmod>2025-08-25T16:40:36.346Z</lastmod>
+  </url>
+  <url>
+    <loc>https://book.lianxh.cn/ds/index.html/body/ML-svm-lab.html</loc>
+    <lastmod>2025-04-30T16:51:53.839Z</lastmod>
+  </url>
+  <url>
+    <loc>https://book.lianxh.cn/ds/index.html/body/06.00-Figure-Code.html</loc>
+    <lastmod>2025-04-06T08:51:44.935Z</lastmod>
   </url>
   <url>
     <loc>https://book.lianxh.cn/ds/index.html/homework/pre/Dangdang_G7_01_data_clean.html</loc>

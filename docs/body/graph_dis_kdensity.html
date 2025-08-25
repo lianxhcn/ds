@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>28&nbsp; 核密度函数图 – 数据分析</title>
+<title>29&nbsp; 核密度函数图 – 数据分析</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../body/test_AB_test.html" rel="next">
+<link href="../body/regress_01_OLS.html" rel="next">
 <link href="../body/graph_dis_histogram.html" rel="prev">
 <link href="../images/ds-book-logo-40.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
@@ -146,7 +146,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/graph_01_intro.html"><strong>可视化</strong></a></li><li class="breadcrumb-item"><a href="../body/graph_dis_kdensity.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">核密度函数图</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/graph_01_intro.html"><strong>可视化</strong></a></li><li class="breadcrumb-item"><a href="../body/graph_dis_kdensity.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">核密度函数图</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -192,20 +192,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/_home.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">关于我们</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../body/00_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">前言</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">课程简介和资源</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text"><strong>Python 基础</strong></span></a>
+ <span class="menu-text"><strong>基础配置</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -213,110 +207,32 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/00_py_with_AI_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">借助 AI 写代码</span></span></a>
+  <a href="../body/01_00_coding_with_AI.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">借助 AI 写代码</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/00_py_with_AI_pic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ansome Python + AI</span></span></a>
+  <a href="../body/01_01_install_anaconda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">软件安装和环境配置</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/01_1_1_install-Anaconda.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python：安装和环境配置</span></span></a>
+  <a href="../body/01_02_jupyter_notebook.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Jupyter Notebook 的使用</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/01_1_2_use_Junpyter_Notebook.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Jupyter Notebook 的使用</span></span></a>
+  <a href="../body/01_03_install_FAQs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python 安装常见问题</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/01_2_install_FAQs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Python 安装常见问题</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_3_markdown.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_01_basic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Python 入门</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_01_basic_01_grammer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python 代码风格</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_01_basic_02_QuickReference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Python 常用命令速查表</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_01_basic_03_Packages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Python 常用扩展包</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_01_basic_04_import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Python：import 使用详解</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_01_basic_05_OOP.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Python：语法解析-面向对象编程</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_01_basic_06_filepath.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Python 路径设置</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_02_numpy_scipy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_02_pandas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">pandas 快速入门</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_03_matplotlib.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Matplotlib简介</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_04_func_and_module.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">函数</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_05_class.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">类和对象</span></span></a>
+  <a href="../body/01_04_markdown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">何谓 Markdown？</span></span></a>
   </div>
 </li>
       </ul>
@@ -324,12 +240,107 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text"><strong>数据分析</strong></span></a>
+ <span class="menu-text"><strong>Python 基础</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_00_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Python 入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_01_grammer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Python 代码风格</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_02_QuickReference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Python 常用命令速查表</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_03_packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python 常用扩展包</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_04_import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Python：import 使用详解</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_05_OOP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Python：语法解析-面向对象编程</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_06_filepath.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Python 路径设置</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_01_numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_02_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">pandas 快速入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_03_matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Matplotlib简介</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_04_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">函数</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_05_class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">类和对象</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>数据分析</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_01_get_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">数据获取和读入</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_01_readdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">读取数据</span></span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../body/data_02_data_type.html" class="sidebar-item-text sidebar-link">
@@ -348,39 +359,10 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">上证指数的时序特征</span></span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text"><strong>可视化</strong></span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/graph_01_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Python 可视化：简介</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/graph_dis_box_violin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">箱型图和小提琴图</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/graph_dis_histogram.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">直方图</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/graph_dis_kdensity.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">核密度函数图</span></span></a>
+  <a href="../body/web_01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">数据爬虫入门</span></span></a>
   </div>
 </li>
       </ul>
@@ -388,7 +370,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text"><strong>回归分析</strong></span></a>
+ <span class="menu-text"><strong>可视化</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -396,10 +378,39 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/test_AB_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></span></a>
+  <a href="../body/graph_01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Python 可视化：简介</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_box_violin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">箱型图和小提琴图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_histogram.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">直方图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_kdensity.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">核密度函数图</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>线性回归</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../body/regress_01_OLS.html" class="sidebar-item-text sidebar-link">
@@ -418,21 +429,10 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">分仓散点图</span></span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text"><strong>时间序列分析</strong></span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/TS_FRED_US_unemploy_rate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></span></a>
+  <a href="../body/regress_04_wage_prediction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">线性回归分析</span></span></a>
   </div>
 </li>
       </ul>
@@ -440,7 +440,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text"><strong>作业展示</strong></span></a>
+ <span class="menu-text"><strong>时间序列</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -448,62 +448,156 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../body/TS_asset_return.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">资产收益率（Asset Returns）</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_man_weight.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">时序建模思路：模拟体重变化</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_ARMA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">ARMA 模型</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_FRED_US_unemploy_rate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_GARCH_BYD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">GARCH 模型</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>机器学习</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/test_AB_test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-Naive-Bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">In Depth: Naive Bayes Classification</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-Random-Forests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">深入理解：决策树与随机森林</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-baggboost-lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Tree-Based Methods</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-Support-Vector-Machines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">支持向量机 (Support Vector Machines)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-svm-lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Support Vector Machines</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/06.00-Figure-Code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">Appendix: Figure Code</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>作业展示</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../homework/pre/Dangdang_G7_01_data_clean.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">当当网-G7-01</span></span></a>
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">当当网-G7-01</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/Dangdang_G7_02_data_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">当当网-G7-02</span></span></a>
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">当当网-G7-02</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/G8_China_stock_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">G8-中国上市公司</span></span></a>
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">G8-中国上市公司</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/Stock_G4_01_data_crawler.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">G4-01</span></span></a>
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">G4-01</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/Stock_G4_02_data_cleaning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">G4-02</span></span></a>
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">G4-02</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/Stock_G4_03_data_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">G4-03</span></span></a>
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">G4-03</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/_ex02_万诗晴.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">ex02_万诗晴</span></span></a>
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">ex02_万诗晴</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/_ex02_吴倩茵.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">ex02_吴倩茵</span></span></a>
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">ex02_吴倩茵</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/_ex02_朱少荣.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">ex02_朱少荣</span></span></a>
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">ex02_朱少荣</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/_ex02_黄伊姿.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">ex02_黄伊姿</span></span></a>
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">ex02_黄伊姿</span></span></a>
   </div>
 </li>
       </ul>
@@ -518,23 +612,23 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#核密度估计" id="toc-核密度估计" class="nav-link active" data-scroll-target="#核密度估计"><span class="header-section-number">28.1</span> 核密度估计</a>
+  <li><a href="#核密度估计" id="toc-核密度估计" class="nav-link active" data-scroll-target="#核密度估计"><span class="header-section-number">29.1</span> 核密度估计</a>
   <ul class="collapse">
-  <li><a href="#核函数" id="toc-核函数" class="nav-link" data-scroll-target="#核函数"><span class="header-section-number">28.1.1</span> 核函数</a></li>
-  <li><a href="#核函数的性质" id="toc-核函数的性质" class="nav-link" data-scroll-target="#核函数的性质"><span class="header-section-number">28.1.2</span> 核函数的性质</a></li>
+  <li><a href="#核函数" id="toc-核函数" class="nav-link" data-scroll-target="#核函数"><span class="header-section-number">29.1.1</span> 核函数</a></li>
+  <li><a href="#核函数的性质" id="toc-核函数的性质" class="nav-link" data-scroll-target="#核函数的性质"><span class="header-section-number">29.1.2</span> 核函数的性质</a></li>
   </ul></li>
-  <li><a href="#单变量核密度函数图" id="toc-单变量核密度函数图" class="nav-link" data-scroll-target="#单变量核密度函数图"><span class="header-section-number">28.2</span> 单变量核密度函数图</a></li>
-  <li><a href="#多变量核密度函数图" id="toc-多变量核密度函数图" class="nav-link" data-scroll-target="#多变量核密度函数图"><span class="header-section-number">28.3</span> 多变量核密度函数图</a>
+  <li><a href="#单变量核密度函数图" id="toc-单变量核密度函数图" class="nav-link" data-scroll-target="#单变量核密度函数图"><span class="header-section-number">29.2</span> 单变量核密度函数图</a></li>
+  <li><a href="#多变量核密度函数图" id="toc-多变量核密度函数图" class="nav-link" data-scroll-target="#多变量核密度函数图"><span class="header-section-number">29.3</span> 多变量核密度函数图</a>
   <ul class="collapse">
-  <li><a href="#多变量核密度函数图山脊图" id="toc-多变量核密度函数图山脊图" class="nav-link" data-scroll-target="#多变量核密度函数图山脊图"><span class="header-section-number">28.3.1</span> 多变量核密度函数图：山脊图</a></li>
+  <li><a href="#多变量核密度函数图山脊图" id="toc-多变量核密度函数图山脊图" class="nav-link" data-scroll-target="#多变量核密度函数图山脊图"><span class="header-section-number">29.3.1</span> 多变量核密度函数图：山脊图</a></li>
   </ul></li>
-  <li><a href="#进阶用法" id="toc-进阶用法" class="nav-link" data-scroll-target="#进阶用法"><span class="header-section-number">28.4</span> 进阶用法</a>
+  <li><a href="#进阶用法" id="toc-进阶用法" class="nav-link" data-scroll-target="#进阶用法"><span class="header-section-number">29.4</span> 进阶用法</a>
   <ul class="collapse">
-  <li><a href="#散点图-核密度函数图" id="toc-散点图-核密度函数图" class="nav-link" data-scroll-target="#散点图-核密度函数图"><span class="header-section-number">28.4.1</span> 散点图 + 核密度函数图</a></li>
-  <li><a href="#多个变量的情形pairplot" id="toc-多个变量的情形pairplot" class="nav-link" data-scroll-target="#多个变量的情形pairplot"><span class="header-section-number">28.4.2</span> 多个变量的情形：pairplot</a></li>
-  <li><a href="#联合分布图" id="toc-联合分布图" class="nav-link" data-scroll-target="#联合分布图"><span class="header-section-number">28.4.3</span> 联合分布图</a></li>
-  <li><a href="#d-核密度函数图" id="toc-d-核密度函数图" class="nav-link" data-scroll-target="#d-核密度函数图"><span class="header-section-number">28.4.4</span> 3D 核密度函数图</a></li>
-  <li><a href="#密度函数图条形码" id="toc-密度函数图条形码" class="nav-link" data-scroll-target="#密度函数图条形码"><span class="header-section-number">28.4.5</span> 密度函数图+条形码</a></li>
+  <li><a href="#散点图-核密度函数图" id="toc-散点图-核密度函数图" class="nav-link" data-scroll-target="#散点图-核密度函数图"><span class="header-section-number">29.4.1</span> 散点图 + 核密度函数图</a></li>
+  <li><a href="#多个变量的情形pairplot" id="toc-多个变量的情形pairplot" class="nav-link" data-scroll-target="#多个变量的情形pairplot"><span class="header-section-number">29.4.2</span> 多个变量的情形：pairplot</a></li>
+  <li><a href="#联合分布图" id="toc-联合分布图" class="nav-link" data-scroll-target="#联合分布图"><span class="header-section-number">29.4.3</span> 联合分布图</a></li>
+  <li><a href="#d-核密度函数图" id="toc-d-核密度函数图" class="nav-link" data-scroll-target="#d-核密度函数图"><span class="header-section-number">29.4.4</span> 3D 核密度函数图</a></li>
+  <li><a href="#密度函数图条形码" id="toc-密度函数图条形码" class="nav-link" data-scroll-target="#密度函数图条形码"><span class="header-section-number">29.4.5</span> 密度函数图+条形码</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -542,9 +636,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/graph_01_intro.html"><strong>可视化</strong></a></li><li class="breadcrumb-item"><a href="../body/graph_dis_kdensity.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">核密度函数图</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/graph_01_intro.html"><strong>可视化</strong></a></li><li class="breadcrumb-item"><a href="../body/graph_dis_kdensity.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">核密度函数图</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">核密度函数图</span></h1>
+<h1 class="title"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">核密度函数图</span></h1>
 </div>
 
 
@@ -561,8 +655,8 @@ window.Quarto = {
 </header>
 
 
-<section id="核密度估计" class="level2" data-number="28.1">
-<h2 data-number="28.1" class="anchored" data-anchor-id="核密度估计"><span class="header-section-number">28.1</span> 核密度估计</h2>
+<section id="核密度估计" class="level2" data-number="29.1">
+<h2 data-number="29.1" class="anchored" data-anchor-id="核密度估计"><span class="header-section-number">29.1</span> 核密度估计</h2>
 <p>核密度估计 (Kernel Density Estimation, KDE) 是一种用于估计未知概率密度函数的非参数方法，适用于连续型数据且不依赖于事先指定的分布形式。其基本思想是：在密度函数的每一个估计点上，根据样本点到该点的距离，使用核函数分配权重并加权平均，从而构建平滑的密度曲线。</p>
 <p>设样本为 <span class="math inline">\(x_1, x_2, \dots, x_n\)</span>，其密度函数在任意点 <span class="math inline">\(x\)</span> 上的估计形式为：</p>
 <p><span class="math display">\[
@@ -574,8 +668,8 @@ window.Quarto = {
 <li><span class="math inline">\(h &gt; 0\)</span> 是带宽参数（bandwidth），控制核函数的缩放程度和平滑水平；</li>
 <li><span class="math inline">\(\hat{f}_h(x)\)</span> 是点 <span class="math inline">\(x\)</span> 处的密度估计值。</li>
 </ul>
-<section id="核函数" class="level3" data-number="28.1.1">
-<h3 data-number="28.1.1" class="anchored" data-anchor-id="核函数"><span class="header-section-number">28.1.1</span> 核函数</h3>
+<section id="核函数" class="level3" data-number="29.1.1">
+<h3 data-number="29.1.1" class="anchored" data-anchor-id="核函数"><span class="header-section-number">29.1.1</span> 核函数</h3>
 <p>在实际应用中，核函数的选择对估计结果的影响相对较小，而带宽的设置对估计曲线的光滑程度影响较大。</p>
 <p>核函数的作用可以理解为：在估计点 <span class="math inline">\(x\)</span> 处，根据样本点 <span class="math inline">\(x_i\)</span> 与 <span class="math inline">\(x\)</span> 之间的距离，赋予不同的权重。距离 <span class="math inline">\(x\)</span> 越近的样本点，其权重越大；距离越远，权重越小。通过对所有样本点的加权平均，得到该点的密度估计。将所有位置的估计值拼接起来，即可得到整体的密度函数曲线。</p>
 <p>为了更清楚地理解核函数的加权机制，我们可以对距离进行标准化处理，设：</p>
@@ -596,8 +690,8 @@ u_i = \frac{X_i - c}{h}
 <li>Gaussian 核：采用正态分布函数，所有样本点均有非零权重，平滑程度高，适用于大多数实际应用场景。</li>
 </ul>
 </section>
-<section id="核函数的性质" class="level3" data-number="28.1.2">
-<h3 data-number="28.1.2" class="anchored" data-anchor-id="核函数的性质"><span class="header-section-number">28.1.2</span> 核函数的性质</h3>
+<section id="核函数的性质" class="level3" data-number="29.1.2">
+<h3 data-number="29.1.2" class="anchored" data-anchor-id="核函数的性质"><span class="header-section-number">29.1.2</span> 核函数的性质</h3>
 <p><strong>常见核函数及其表达式：</strong></p>
 <ul>
 <li><p><strong>Uniform 核函数</strong> <span class="math inline">\(K(u) = \frac{1}{2} \cdot \mathbf{1}\{\left|u\right| \leq 1\}\)</span> （也称为 Rectangular 核函数）</p></li>
@@ -627,8 +721,8 @@ u_i = \frac{X_i - c}{h}
 </ul>
 </section>
 </section>
-<section id="单变量核密度函数图" class="level2" data-number="28.2">
-<h2 data-number="28.2" class="anchored" data-anchor-id="单变量核密度函数图"><span class="header-section-number">28.2</span> 单变量核密度函数图</h2>
+<section id="单变量核密度函数图" class="level2" data-number="29.2">
+<h2 data-number="29.2" class="anchored" data-anchor-id="单变量核密度函数图"><span class="header-section-number">29.2</span> 单变量核密度函数图</h2>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -680,8 +774,8 @@ u_i = \frac{X_i - c}{h}
 </div>
 </div>
 </section>
-<section id="多变量核密度函数图" class="level2" data-number="28.3">
-<h2 data-number="28.3" class="anchored" data-anchor-id="多变量核密度函数图"><span class="header-section-number">28.3</span> 多变量核密度函数图</h2>
+<section id="多变量核密度函数图" class="level2" data-number="29.3">
+<h2 data-number="29.3" class="anchored" data-anchor-id="多变量核密度函数图"><span class="header-section-number">29.3</span> 多变量核密度函数图</h2>
 <ul>
 <li>不同时期的收入分布 - 时序</li>
 <li>不同种族的收入分布 - 截面</li>
@@ -766,8 +860,8 @@ u_i = \frac{X_i - c}{h}
 </div>
 </div>
 <p><strong>练习：</strong> 绘制 White 和 Black 两个种族的妇女的 ln(wage) 的核密度函数图</p>
-<section id="多变量核密度函数图山脊图" class="level3" data-number="28.3.1">
-<h3 data-number="28.3.1" class="anchored" data-anchor-id="多变量核密度函数图山脊图"><span class="header-section-number">28.3.1</span> 多变量核密度函数图：山脊图</h3>
+<section id="多变量核密度函数图山脊图" class="level3" data-number="29.3.1">
+<h3 data-number="29.3.1" class="anchored" data-anchor-id="多变量核密度函数图山脊图"><span class="header-section-number">29.3.1</span> 多变量核密度函数图：山脊图</h3>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -865,10 +959,10 @@ u_i = \frac{X_i - c}{h}
 </div>
 </section>
 </section>
-<section id="进阶用法" class="level2" data-number="28.4">
-<h2 data-number="28.4" class="anchored" data-anchor-id="进阶用法"><span class="header-section-number">28.4</span> 进阶用法</h2>
-<section id="散点图-核密度函数图" class="level3" data-number="28.4.1">
-<h3 data-number="28.4.1" class="anchored" data-anchor-id="散点图-核密度函数图"><span class="header-section-number">28.4.1</span> 散点图 + 核密度函数图</h3>
+<section id="进阶用法" class="level2" data-number="29.4">
+<h2 data-number="29.4" class="anchored" data-anchor-id="进阶用法"><span class="header-section-number">29.4</span> 进阶用法</h2>
+<section id="散点图-核密度函数图" class="level3" data-number="29.4.1">
+<h3 data-number="29.4.1" class="anchored" data-anchor-id="散点图-核密度函数图"><span class="header-section-number">29.4.1</span> 散点图 + 核密度函数图</h3>
 <p><strong>penguins</strong> 数据集是一个经典的数据集，包含了三种企鹅物种（Adelie、Chinstrap 和 Gentoo）的生物测量数据。该数据集常用于统计分析和机器学习建模的教学和研究。本例中，我们抽取了三个变量：</p>
 <ul>
 <li><code>species</code>：企鹅的物种（Adelie、Chinstrap 或 Gentoo）。</li>
@@ -908,8 +1002,8 @@ u_i = \frac{X_i - c}{h}
 <p>你可以在 <a href="https://www.animalspot.net/penguin">这里</a> 找到它们的详细介绍。有位热心的<a href="https://www.deviantart.com/bluegio/art/Adelie-Chinstrap-and-Gentoo-867439280">网友</a>特意绘制了它们的合影 (从左到右依次为 Adelie、Chinstrap 和 Gentoo)，如下图所示：</p>
 <p><img src="figs/graph-Adelie-Chinstrap-and-Gentoo-867439280.jpg" width="500pt"></p>
 </section>
-<section id="多个变量的情形pairplot" class="level3" data-number="28.4.2">
-<h3 data-number="28.4.2" class="anchored" data-anchor-id="多个变量的情形pairplot"><span class="header-section-number">28.4.2</span> 多个变量的情形：pairplot</h3>
+<section id="多个变量的情形pairplot" class="level3" data-number="29.4.2">
+<h3 data-number="29.4.2" class="anchored" data-anchor-id="多个变量的情形pairplot"><span class="header-section-number">29.4.2</span> 多个变量的情形：pairplot</h3>
 <p>在上面的例子中，我们只考虑了两个变量之间的关系。实际上，数据集中可能有多个变量，此时可以使用 <strong>seaborn</strong> 中的 <code>pairplot</code> 函数来绘制多个变量之间的关系图。</p>
 <p>下面的例子中，我们同时呈现了三个变量 (<code>flipper_length_mm</code>、<code>bill_length_mm</code> 和 <code>body_mass_g</code>) 之间的两两配对散点图，以及单个变量的核密度函数图。与此同时，我们还使用了不同的颜色来区分不同的物种。</p>
 <div id="91b38bfe" class="cell">
@@ -927,19 +1021,19 @@ u_i = \frac{X_i - c}{h}
 </div>
 </div>
 </section>
-<section id="联合分布图" class="level3" data-number="28.4.3">
-<h3 data-number="28.4.3" class="anchored" data-anchor-id="联合分布图"><span class="header-section-number">28.4.3</span> 联合分布图</h3>
+<section id="联合分布图" class="level3" data-number="29.4.3">
+<h3 data-number="29.4.3" class="anchored" data-anchor-id="联合分布图"><span class="header-section-number">29.4.3</span> 联合分布图</h3>
 <p>https://seaborn.pydata.org/generated/seaborn.kdeplot.html</p>
 </section>
-<section id="d-核密度函数图" class="level3" data-number="28.4.4">
-<h3 data-number="28.4.4" class="anchored" data-anchor-id="d-核密度函数图"><span class="header-section-number">28.4.4</span> 3D 核密度函数图</h3>
+<section id="d-核密度函数图" class="level3" data-number="29.4.4">
+<h3 data-number="29.4.4" class="anchored" data-anchor-id="d-核密度函数图"><span class="header-section-number">29.4.4</span> 3D 核密度函数图</h3>
 <p><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20250511164056.png" class="img-fluid"></p>
 <blockquote class="blockquote">
 <p>Source: <a href="https://matplotlib.org/stable/gallery/mplot3d/fillunder3d.html#sphx-glr-gallery-mplot3d-fillunder3d-py">matplotlib - Fill under 3D line graphs</a></p>
 </blockquote>
 </section>
-<section id="密度函数图条形码" class="level3" data-number="28.4.5">
-<h3 data-number="28.4.5" class="anchored" data-anchor-id="密度函数图条形码"><span class="header-section-number">28.4.5</span> 密度函数图+条形码</h3>
+<section id="密度函数图条形码" class="level3" data-number="29.4.5">
+<h3 data-number="29.4.5" class="anchored" data-anchor-id="密度函数图条形码"><span class="header-section-number">29.4.5</span> 密度函数图+条形码</h3>
 <p><a href="https://seaborn.pydata.org/generated/seaborn.rugplot.html">seaborn.rugplot</a></p>
 <div id="44ed3430" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns<span class="op">;</span> sns.set_theme()</span>
@@ -1385,12 +1479,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../body/graph_dis_histogram.html" class="pagination-link" aria-label="直方图">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">直方图</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">直方图</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../body/test_AB_test.html" class="pagination-link" aria-label="A/B test-分组对照试验">
-        <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../body/regress_01_OLS.html" class="pagination-link" aria-label="线性回归模型">
+        <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">线性回归模型</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

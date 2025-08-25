@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>36&nbsp; ARMA 模型 – 数据分析</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../body/TS_FRED_US_unemploy_rate.html" rel="next">
+<link href="../body/TS_man_weight.html" rel="prev">
+<link href="../images/ds-book-logo-40.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e8fb9d25728d58bfeac61b497e4a6629.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-8434d2026ae8291579158df2ad8dfa64.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/TS_asset_return.html"><strong>时间序列</strong></a></li><li class="breadcrumb-item"><a href="../body/TS_ARMA.html"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">ARMA 模型</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../"></a><a href="../index.html">DS</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
+    <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
+    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">数据分析</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/00_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">课程简介和资源</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>基础配置</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_00_coding_with_AI.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">借助 AI 写代码</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_01_install_anaconda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">软件安装和环境配置</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_02_jupyter_notebook.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Jupyter Notebook 的使用</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_03_install_FAQs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python 安装常见问题</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/01_04_markdown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">何谓 Markdown？</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Python 基础</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_00_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Python 入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_01_grammer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Python 代码风格</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_02_QuickReference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Python 常用命令速查表</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_03_packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python 常用扩展包</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_04_import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Python：import 使用详解</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_05_OOP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Python：语法解析-面向对象编程</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_06_filepath.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Python 路径设置</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_01_numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_02_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">pandas 快速入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_03_matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Matplotlib简介</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_04_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">函数</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_05_class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">类和对象</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>数据分析</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_01_get_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">数据获取和读入</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_01_readdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">读取数据</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_02_data_type.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">数据分析是什么？</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_02_get_data_GMD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">获取数据：GMD</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_SZ_index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">上证指数的时序特征</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/web_01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">数据爬虫入门</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>可视化</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Python 可视化：简介</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_box_violin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">箱型图和小提琴图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_histogram.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">直方图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_kdensity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">核密度函数图</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>线性回归</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_01_OLS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">线性回归模型</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_02_wage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">线性回归分析</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_03_binscatter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">分仓散点图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/regress_04_wage_prediction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">线性回归分析</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>时间序列</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_asset_return.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">资产收益率（Asset Returns）</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_man_weight.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">时序建模思路：模拟体重变化</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_ARMA.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">ARMA 模型</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_FRED_US_unemploy_rate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_GARCH_BYD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">GARCH 模型</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>机器学习</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/test_AB_test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-Naive-Bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">In Depth: Naive Bayes Classification</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-Random-Forests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">深入理解：决策树与随机森林</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-baggboost-lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Tree-Based Methods</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-Support-Vector-Machines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">支持向量机 (Support Vector Machines)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-svm-lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Support Vector Machines</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/06.00-Figure-Code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">Appendix: Figure Code</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>作业展示</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Dangdang_G7_01_data_clean.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">当当网-G7-01</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Dangdang_G7_02_data_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">当当网-G7-02</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/G8_China_stock_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">G8-中国上市公司</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_01_data_crawler.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">G4-01</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_02_data_cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">G4-02</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/Stock_G4_03_data_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">G4-03</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_万诗晴.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">ex02_万诗晴</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_吴倩茵.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">ex02_吴倩茵</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_朱少荣.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">ex02_朱少荣</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../homework/pre/_ex02_黄伊姿.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">ex02_黄伊姿</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#arp-模型" id="toc-arp-模型" class="nav-link active" data-scroll-target="#arp-模型"><span class="header-section-number">36.1</span> <span class="math inline">\(AR(p)\)</span> 模型</a>
+  <ul class="collapse">
+  <li><a href="#ar1-模型" id="toc-ar1-模型" class="nav-link" data-scroll-target="#ar1-模型"><span class="header-section-number">36.1.1</span> <span class="math inline">\(AR(1)\)</span> 模型</a></li>
+  <li><a href="#单位根过程" id="toc-单位根过程" class="nav-link" data-scroll-target="#单位根过程"><span class="header-section-number">36.1.2</span> 单位根过程</a></li>
+  <li><a href="#ar-过程与单位根过程的区别" id="toc-ar-过程与单位根过程的区别" class="nav-link" data-scroll-target="#ar-过程与单位根过程的区别"><span class="header-section-number">36.1.3</span> AR 过程与单位根过程的区别</a></li>
+  </ul></li>
+  <li><a href="#相关图和偏相关图" id="toc-相关图和偏相关图" class="nav-link" data-scroll-target="#相关图和偏相关图"><span class="header-section-number">36.2</span> 相关图和偏相关图</a>
+  <ul class="collapse">
+  <li><a href="#相关图-acf-autocorrelation-function" id="toc-相关图-acf-autocorrelation-function" class="nav-link" data-scroll-target="#相关图-acf-autocorrelation-function"><span class="header-section-number">36.2.1</span> 相关图 (ACF, Autocorrelation Function)</a></li>
+  <li><a href="#偏相关图-pacf-partial-autocorrelation-function" id="toc-偏相关图-pacf-partial-autocorrelation-function" class="nav-link" data-scroll-target="#偏相关图-pacf-partial-autocorrelation-function"><span class="header-section-number">36.2.2</span> 偏相关图 (PACF, Partial Autocorrelation Function)</a></li>
+  <li><a href="#相关图和偏相关图的特征" id="toc-相关图和偏相关图的特征" class="nav-link" data-scroll-target="#相关图和偏相关图的特征"><span class="header-section-number">36.2.3</span> 相关图和偏相关图的特征</a></li>
+  </ul></li>
+  <li><a href="#ma-过程" id="toc-ma-过程" class="nav-link" data-scroll-target="#ma-过程"><span class="header-section-number">36.3</span> MA 过程</a>
+  <ul class="collapse">
+  <li><a href="#移动平均过程-moving-average-process" id="toc-移动平均过程-moving-average-process" class="nav-link" data-scroll-target="#移动平均过程-moving-average-process"><span class="header-section-number">36.3.1</span> 移动平均过程 (Moving Average Process)</a></li>
+  <li><a href="#ma1-模型" id="toc-ma1-模型" class="nav-link" data-scroll-target="#ma1-模型"><span class="header-section-number">36.3.2</span> MA(1) 模型</a></li>
+  <li><a href="#ma-过程的特性" id="toc-ma-过程的特性" class="nav-link" data-scroll-target="#ma-过程的特性"><span class="header-section-number">36.3.3</span> MA 过程的特性</a></li>
+  <li><a href="#ma-过程的应用" id="toc-ma-过程的应用" class="nav-link" data-scroll-target="#ma-过程的应用"><span class="header-section-number">36.3.4</span> MA 过程的应用</a></li>
+  <li><a href="#ar-过程和-ma-过程的区别" id="toc-ar-过程和-ma-过程的区别" class="nav-link" data-scroll-target="#ar-过程和-ma-过程的区别"><span class="header-section-number">36.3.5</span> AR 过程和 MA 过程的区别</a></li>
+  <li><a href="#ar1-和-ma1-的区别acf-和-pacf" id="toc-ar1-和-ma1-的区别acf-和-pacf" class="nav-link" data-scroll-target="#ar1-和-ma1-的区别acf-和-pacf"><span class="header-section-number">36.3.6</span> AR(1) 和 MA(1) 的区别：ACF 和 PACF</a></li>
+  </ul></li>
+  <li><a href="#armap-q-模型" id="toc-armap-q-模型" class="nav-link" data-scroll-target="#armap-q-模型"><span class="header-section-number">36.4</span> ARMA(p, q) 模型</a>
+  <ul class="collapse">
+  <li><a href="#特性" id="toc-特性" class="nav-link" data-scroll-target="#特性"><span class="header-section-number">36.4.1</span> 特性</a></li>
+  <li><a href="#模型选择" id="toc-模型选择" class="nav-link" data-scroll-target="#模型选择"><span class="header-section-number">36.4.2</span> 模型选择</a></li>
+  <li><a href="#应用场景" id="toc-应用场景" class="nav-link" data-scroll-target="#应用场景"><span class="header-section-number">36.4.3</span> 应用场景</a></li>
+  <li><a href="#示例" id="toc-示例" class="nav-link" data-scroll-target="#示例"><span class="header-section-number">36.4.4</span> 示例</a></li>
+  <li><a href="#注意" id="toc-注意" class="nav-link" data-scroll-target="#注意"><span class="header-section-number">36.4.5</span> 注意</a></li>
+  </ul></li>
+  <li><a href="#单位根检验" id="toc-单位根检验" class="nav-link" data-scroll-target="#单位根检验"><span class="header-section-number">36.5</span> 单位根检验</a>
+  <ul class="collapse">
+  <li><a href="#adf-检验" id="toc-adf-检验" class="nav-link" data-scroll-target="#adf-检验"><span class="header-section-number">36.5.1</span> ADF 检验</a></li>
+  <li><a href="#其它检验方法" id="toc-其它检验方法" class="nav-link" data-scroll-target="#其它检验方法"><span class="header-section-number">36.5.2</span> 其它检验方法</a></li>
+  <li><a href="#模拟分析" id="toc-模拟分析" class="nav-link" data-scroll-target="#模拟分析"><span class="header-section-number">36.5.3</span> 模拟分析</a></li>
+  <li><a href="#单位根检验-1" id="toc-单位根检验-1" class="nav-link" data-scroll-target="#单位根检验-1"><span class="header-section-number">36.5.4</span> 单位根检验</a></li>
+  </ul></li>
+  <li><a href="#待更新" id="toc-待更新" class="nav-link" data-scroll-target="#待更新"><span class="header-section-number">36.6</span> 待更新</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/TS_asset_return.html"><strong>时间序列</strong></a></li><li class="breadcrumb-item"><a href="../body/TS_ARMA.html"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">ARMA 模型</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">ARMA 模型</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p> </p>
+<section id="arp-模型" class="level2" data-number="36.1">
+<h2 data-number="36.1" class="anchored" data-anchor-id="arp-模型"><span class="header-section-number">36.1</span> <span class="math inline">\(AR(p)\)</span> 模型</h2>
+<p>在时间序列分析中，<span class="math inline">\(AR(p)\)</span> 模型是最基本的模型之一。它假设当前值与过去 <span class="math inline">\(p\)</span> 个时刻的值存在线性关系。一般形式为：</p>
+<p><span class="math display">\[
+X_t = \phi_1 X_{t-1} + \phi_2 X_{t-2} + ... + \phi_p X_{t-p} + \epsilon_t \tag{1}
+\]</span></p>
+<p>其中，<span class="math inline">\(\phi_1, \phi_2, ..., \phi_p\)</span> 是模型参数，<span class="math inline">\(\epsilon_t\)</span> 是白噪声项。</p>
+<section id="ar1-模型" class="level3" data-number="36.1.1">
+<h3 data-number="36.1.1" class="anchored" data-anchor-id="ar1-模型"><span class="header-section-number">36.1.1</span> <span class="math inline">\(AR(1)\)</span> 模型</h3>
+<p>当 <span class="math inline">\(p=1\)</span> 时，<span class="math inline">\(AR(1)\)</span> 模型为：</p>
+<p><span class="math display">\[
+X_t = \phi_1 X_{t-1} + \epsilon_t \tag{2}
+\]</span></p>
+<p>虽然看起来很简单，但 <span class="math inline">\(AR(1)\)</span> 模型在时间序列分析中非常重要，因为它可以捕捉到数据的自相关性。从模型设定形式上来看，它具有递推的特征，当前值仅与前一个值相关。</p>
+<p>具体而言，(2) 式在 <span class="math inline">\(t-1\)</span> 时刻可以表示为：</p>
+<p><span class="math display">\[
+X_{t-1} = \phi_1 X_{t-2} + \epsilon_{t-1} \tag{3}
+\]</span></p>
+<p>将 (3) 式代入 (2) 式中，我们可以得到：</p>
+<p><span class="math display">\[
+X_t = \phi_1 (\phi_1 X_{t-2} + \epsilon_{t-1}) + \epsilon_t = \phi_1^2 X_{t-2} + \phi_1 \epsilon_{t-1} + \epsilon_t \tag{4}
+\]</span></p>
+<p>将 (4) 式继续递推下去，我们可以得到：</p>
+<p><span class="math display">\[
+X_t = \phi_1^t X_0 + \sum_{i=0}^{t-1} \phi_1^i \epsilon_{t-i} \tag{5}
+\]</span></p>
+<p>由 (5) 式可知，<span class="math inline">\(X_t\)</span> 由初始值 <span class="math inline">\(X_0\)</span> 和过去的随机扰动项 <span class="math inline">\(\epsilon_{t-i}\)</span> 线性组合而成。</p>
+<p>由此，我们可以看出 <span class="math inline">\(AR(1)\)</span> 模型的一个重要特性：当前值 <span class="math inline">\(X_t\)</span> 不仅与前一个值 <span class="math inline">\(X_{t-1}\)</span> 相关，还与更早的值 <span class="math inline">\(X_{t-2}, X_{t-3}, ...\)</span> 相关。具体来说，当前值 <span class="math inline">\(X_t\)</span> 是过去所有随机扰动项 <span class="math inline">\(\epsilon_{t-i}\)</span> 的加权和，其中权重由 <span class="math inline">\(\phi_1^i\)</span> 决定。随着 <span class="math inline">\(i\)</span> 的增大，权重 <span class="math inline">\(\phi_1^i\)</span> 会迅速减小，这表明较早的随机扰动对当前值的影响逐渐减弱。</p>
+<p>因此，<span class="math inline">\(AR(1)\)</span> 模型可以看作是一个具有指数衰减特性的模型。也就是说，当前值 <span class="math inline">\(X_t\)</span> 主要受到最近的随机扰动项 <span class="math inline">\(\epsilon_{t-1}\)</span> 的影响，而对更早的随机扰动项的影响则逐渐减弱。这种特性使得 <span class="math inline">\(AR(1)\)</span> 模型在建模时间序列数据时非常实用，因为它能够有效地捕捉到数据的自相关性和记忆效应。</p>
+<p>在实际应用中，<span class="math inline">\(AR(1)\)</span> 模型常用于建模具有自相关性的时间序列数据，如股票价格、气温等。通过估计参数 <span class="math inline">\(\phi_1\)</span>，我们可以了解数据的自相关程度，从而为后续的预测和分析提供依据。</p>
+</section>
+<section id="单位根过程" class="level3" data-number="36.1.2">
+<h3 data-number="36.1.2" class="anchored" data-anchor-id="单位根过程"><span class="header-section-number">36.1.2</span> 单位根过程</h3>
+<p>前面已经提到，只有当 <span class="math inline">\(|\phi_1|&lt;1\)</span> 时，<span class="math inline">\(AR(1)\)</span> 模型才是平稳的。平稳性是时间序列分析中的一个重要概念，它意味着序列的统计特性（如均值、方差和自相关函数）在时间上保持不变。平稳序列的均值和方差是有限的，并且自相关函数仅依赖于时间间隔，而与具体时间点无关。</p>
+<p>那么，当 <span class="math inline">\(|\phi_1|=1\)</span> 时，<span class="math inline">\(AR(1)\)</span> 模型会发生什么呢？在这种情况下，模型变为：</p>
+<p><span class="math display">\[
+X_t = X_{t-1} + \epsilon_t \tag{6}
+\]</span></p>
+<p>我们称这种模型为单位根过程。单位根过程是一种特殊的非平稳序列，其均值和方差随时间变化而变化。具体来说，单位根过程的均值是无限的，而方差是无穷大的。这意味着单位根过程具有非常强的记忆效应，过去的随机扰动对当前值的影响不会随着时间的推移而减弱。</p>
+<p>我们可以将 <span class="math inline">\(\phi_1 = 1\)</span> 带入 (5) 式中，得到：</p>
+<p><span class="math display">\[
+x_t = X_0 + \sum_{i=0}^{t-1} \epsilon_{t-i} \tag{5}
+\]</span></p>
+<p>可见，过往的随机扰动项 <span class="math inline">\(\epsilon_{t-i}\)</span> 对当前值 <span class="math inline">\(X_t\)</span> 的影响具有累积性，且它们的影响不会随着时间的推移而减弱。这种特性使得单位根过程具有非常强的记忆效应。用大白话来说，它很记仇，即使是 30 年前受到的冲击，它今天仍然记忆犹新。</p>
+<p>具体而言，单位根过程的均值和方差可以表示为：</p>
+<p><span class="math display">\[
+\mu_t = E[X_t] = E[X_{t-1}] + E[\epsilon_t] = \mu_{t-1} + 0 = \mu_0 \tag{7}
+\]</span></p>
+<p><span class="math display">\[
+\sigma^2_t = Var[X_t] = Var[X_{t-1}] + Var[\epsilon_t] = \sigma^2_{t-1} + \sigma^2_\epsilon = \sigma^2_0 + t \cdot \sigma^2_\epsilon \tag{8}
+\]</span></p>
+</section>
+<section id="ar-过程与单位根过程的区别" class="level3" data-number="36.1.3">
+<h3 data-number="36.1.3" class="anchored" data-anchor-id="ar-过程与单位根过程的区别"><span class="header-section-number">36.1.3</span> AR 过程与单位根过程的区别</h3>
+<p>AR 过程和单位根过程的主要区别在于平稳性。AR 过程是平稳的，而单位根过程是非平稳的。平稳性意味着序列的统计特性在时间上保持不变，而非平稳性则意味着序列的统计特性随时间变化而变化。</p>
+<p>平稳序列的均值和方差是有限的，并且自相关函数仅依赖于时间间隔，而与具体时间点无关。非平稳序列的均值和方差是无限的，并且自相关函数依赖于具体时间点。</p>
+<p>下面，我们通过一个简单的模拟实例来说明 AR 过程和单位根过程的区别。</p>
+<div id="4fcfa293" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a href="#cb1-2"></a>os.chdir(<span class="vs">r"D:\github\dslian\body"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="b0532f54" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># 模拟分析平稳 AR(1) 过程与单位根过程的差别</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co"># 设置随机种子以保证结果可重复</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb2-8"><a href="#cb2-8"></a></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co"># 模拟 AR(1) 过程 --------- 参数设定 -----------</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>n <span class="op">=</span> <span class="dv">100</span>  <span class="co"># 时间序列长度</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>phi <span class="op">=</span> <span class="fl">0.8</span>  <span class="co"># AR(1) 系数</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co"># ------------------------ 参数设定 -----------</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a></span>
+<span id="cb2-14"><a href="#cb2-14"></a>epsilon <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, n)  <span class="co"># 白噪声</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>ar1 <span class="op">=</span> np.zeros(n)</span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
+<span id="cb2-17"><a href="#cb2-17"></a>    ar1[t] <span class="op">=</span> phi <span class="op">*</span> ar1[t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> epsilon[t]</span>
+<span id="cb2-18"><a href="#cb2-18"></a></span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="co"># 模拟单位根过程</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a>unit_root <span class="op">=</span> np.zeros(n)</span>
+<span id="cb2-21"><a href="#cb2-21"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
+<span id="cb2-22"><a href="#cb2-22"></a>    unit_root[t] <span class="op">=</span> unit_root[t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> epsilon[t]</span>
+<span id="cb2-23"><a href="#cb2-23"></a></span>
+<span id="cb2-24"><a href="#cb2-24"></a><span class="co"># 绘图比较</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb2-26"><a href="#cb2-26"></a>plt.plot(ar1, label<span class="op">=</span><span class="st">"AR(1) Process (phi=0.8)"</span>, color<span class="op">=</span><span class="st">"blue"</span>)</span>
+<span id="cb2-27"><a href="#cb2-27"></a>plt.plot(unit_root, label<span class="op">=</span><span class="st">"Unit Root Process"</span>, color<span class="op">=</span><span class="st">"red"</span>)</span>
+<span id="cb2-28"><a href="#cb2-28"></a></span>
+<span id="cb2-29"><a href="#cb2-29"></a><span class="co"># 添加时间趋势线</span></span>
+<span id="cb2-30"><a href="#cb2-30"></a>time <span class="op">=</span> np.arange(n)</span>
+<span id="cb2-31"><a href="#cb2-31"></a>ar1_trend <span class="op">=</span> np.poly1d(np.polyfit(time, ar1, <span class="dv">1</span>))(time)</span>
+<span id="cb2-32"><a href="#cb2-32"></a>unit_root_trend <span class="op">=</span> np.poly1d(np.polyfit(time, unit_root, <span class="dv">1</span>))(time)</span>
+<span id="cb2-33"><a href="#cb2-33"></a></span>
+<span id="cb2-34"><a href="#cb2-34"></a><span class="co"># 绘图</span></span>
+<span id="cb2-35"><a href="#cb2-35"></a>plt.plot(time, ar1_trend, label<span class="op">=</span><span class="st">"AR(1) Trend Line"</span>, color<span class="op">=</span><span class="st">"cyan"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb2-36"><a href="#cb2-36"></a>plt.plot(time, unit_root_trend, label<span class="op">=</span><span class="st">"Unit Root Trend Line"</span>, color<span class="op">=</span><span class="st">"orange"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb2-37"><a href="#cb2-37"></a></span>
+<span id="cb2-38"><a href="#cb2-38"></a>plt.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">"green"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">"y=0 Line"</span>)</span>
+<span id="cb2-39"><a href="#cb2-39"></a>plt.title(<span class="st">"Comparison of AR(1) Process and Unit Root Process with Trend Lines"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb2-40"><a href="#cb2-40"></a>plt.xlabel(<span class="st">"Time"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb2-41"><a href="#cb2-41"></a>plt.ylabel(<span class="st">"Value"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb2-42"><a href="#cb2-42"></a>plt.legend()</span>
+<span id="cb2-43"><a href="#cb2-43"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-44"><a href="#cb2-44"></a>plt.tight_layout()</span>
+<span id="cb2-45"><a href="#cb2-45"></a>plt.show()</span>
+<span id="cb2-46"><a href="#cb2-46"></a></span>
+<span id="cb2-47"><a href="#cb2-47"></a><span class="co"># 基本统计量</span></span>
+<span id="cb2-48"><a href="#cb2-48"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-49"><a href="#cb2-49"></a></span>
+<span id="cb2-50"><a href="#cb2-50"></a><span class="bu">print</span>(<span class="st">"AR(1) Process Statistics:"</span>)</span>
+<span id="cb2-51"><a href="#cb2-51"></a><span class="bu">print</span>(pd.Series(ar1).describe().<span class="bu">round</span>(<span class="dv">2</span>))</span>
+<span id="cb2-52"><a href="#cb2-52"></a></span>
+<span id="cb2-53"><a href="#cb2-53"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Unit Root Process Statistics:"</span>)</span>
+<span id="cb2-54"><a href="#cb2-54"></a><span class="bu">print</span>(pd.Series(unit_root).describe().<span class="bu">round</span>(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_ARMA_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>AR(1) Process Statistics:
+count    100.00
+mean      -0.52
+std        1.44
+min       -3.65
+25%       -1.67
+50%       -0.50
+75%        0.43
+max        2.93
+dtype: float64
+
+Unit Root Process Statistics:
+count    100.00
+mean      -6.90
+std        4.64
+min      -12.74
+25%      -10.36
+50%       -8.77
+75%       -4.56
+max        3.98
+dtype: float64</code></pre>
+</div>
+</div>
+<p>下图呈现了模拟 100 次的结果 (<a href="codes\TS_MC_AR1_vs_UnitRoot.ipynb">codes</a>)，发现 AR 过程的均值和方差是有限的，而单位根过程的均值虽然有限，但其方差会随着时间的推移不断增大，表现出非平稳的特征。</p>
+<p><img src="figs\TS_unit_root_vs_ar1_02.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="相关图和偏相关图" class="level2" data-number="36.2">
+<h2 data-number="36.2" class="anchored" data-anchor-id="相关图和偏相关图"><span class="header-section-number">36.2</span> 相关图和偏相关图</h2>
+<section id="相关图-acf-autocorrelation-function" class="level3" data-number="36.2.1">
+<h3 data-number="36.2.1" class="anchored" data-anchor-id="相关图-acf-autocorrelation-function"><span class="header-section-number">36.2.1</span> 相关图 (ACF, Autocorrelation Function)</h3>
+<p>相关图展示了时间序列数据在不同滞后期的自相关系数。自相关系数衡量了当前值与过去值之间的线性关系，其定义公式为：</p>
+<p><span class="math display">\[
+\rho_k = \frac{\text{Cov}(X_t, X_{t-k})}{\sqrt{\text{Var}(X_t) \cdot \text{Var}(X_{t-k})}}
+\]</span></p>
+<p>其中，<span class="math inline">\(k\)</span> 表示滞后期，<span class="math inline">\(\text{Cov}\)</span> 表示协方差，<span class="math inline">\(\text{Var}\)</span> 表示方差。</p>
+</section>
+<section id="偏相关图-pacf-partial-autocorrelation-function" class="level3" data-number="36.2.2">
+<h3 data-number="36.2.2" class="anchored" data-anchor-id="偏相关图-pacf-partial-autocorrelation-function"><span class="header-section-number">36.2.2</span> 偏相关图 (PACF, Partial Autocorrelation Function)</h3>
+<p>偏相关图展示了时间序列数据在不同滞后期的偏自相关系数。偏自相关系数衡量了当前值与某一滞后值之间的线性关系，剔除了其他中间滞后值的影响。其定义公式为：</p>
+<p><span class="math display">\[
+\phi_{kk} = \text{Partial Correlation}(X_t, X_{t-k} | X_{t-1}, X_{t-2}, \dots, X_{t-(k-1)})
+\]</span></p>
+<p>偏相关系数可以通过递归方法（如 Durbin-Levinson 算法）计算。</p>
+</section>
+<section id="相关图和偏相关图的特征" class="level3" data-number="36.2.3">
+<h3 data-number="36.2.3" class="anchored" data-anchor-id="相关图和偏相关图的特征"><span class="header-section-number">36.2.3</span> 相关图和偏相关图的特征</h3>
+<section id="arp-模型的相关图和偏相关图特征" class="level4" data-number="36.2.3.1">
+<h4 data-number="36.2.3.1" class="anchored" data-anchor-id="arp-模型的相关图和偏相关图特征"><span class="header-section-number">36.2.3.1</span> AR(p) 模型的相关图和偏相关图特征</h4>
+<ul>
+<li><strong>相关图 (ACF)</strong>：AR(p) 模型的自相关函数通常在滞后期 <span class="math inline">\(k &gt; p\)</span> 时呈指数衰减或振荡衰减。</li>
+<li><strong>偏相关图 (PACF)</strong>：AR(p) 模型的偏自相关函数在滞后期 <span class="math inline">\(k &gt; p\)</span> 时迅速趋近于零，而在 <span class="math inline">\(k \leq p\)</span> 时可能显著。</li>
+</ul>
+</section>
+<section id="单位根过程的相关图特征" class="level4" data-number="36.2.3.2">
+<h4 data-number="36.2.3.2" class="anchored" data-anchor-id="单位根过程的相关图特征"><span class="header-section-number">36.2.3.2</span> 单位根过程的相关图特征</h4>
+<p>单位根过程（如随机游走）的相关图和偏相关图具有以下特征： - <strong>相关图 (ACF)</strong>：自相关函数在所有滞后期 <span class="math inline">\(k\)</span> 上都接近于 1，且衰减非常缓慢。 - <strong>偏相关图 (PACF)</strong>：偏自相关函数在滞后期 <span class="math inline">\(k = 1\)</span> 时显著，而在 <span class="math inline">\(k &gt; 1\)</span> 时迅速趋近于零。</p>
+<p>这些特征反映了单位根过程的非平稳性和强记忆效应。</p>
+<div id="e46e551f" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">from</span> statsmodels.graphics.tsaplots <span class="im">import</span> plot_acf, plot_pacf</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-4"><a href="#cb4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co"># 绘制 AR(1) 过程的 ACF 和 PACF</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb4-7"><a href="#cb4-7"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb4-8"><a href="#cb4-8"></a>plot_acf(ar1, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb4-9"><a href="#cb4-9"></a>plt.title(<span class="st">'ACF of AR(1) Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb4-10"><a href="#cb4-10"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb4-11"><a href="#cb4-11"></a>plot_pacf(ar1, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb4-12"><a href="#cb4-12"></a>plt.title(<span class="st">'PACF of AR(1) Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb4-13"><a href="#cb4-13"></a></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="co"># 绘制单位根过程的 ACF 和 PACF</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb4-16"><a href="#cb4-16"></a>plot_acf(unit_root, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb4-17"><a href="#cb4-17"></a>plt.title(<span class="st">'ACF of Unit Root Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb4-18"><a href="#cb4-18"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb4-19"><a href="#cb4-19"></a>plot_pacf(unit_root, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb4-20"><a href="#cb4-20"></a>plt.title(<span class="st">'PACF of Unit Root Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb4-21"><a href="#cb4-21"></a></span>
+<span id="cb4-22"><a href="#cb4-22"></a>plt.tight_layout()</span>
+<span id="cb4-23"><a href="#cb4-23"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_ARMA_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="ma-过程" class="level2" data-number="36.3">
+<h2 data-number="36.3" class="anchored" data-anchor-id="ma-过程"><span class="header-section-number">36.3</span> MA 过程</h2>
+<section id="移动平均过程-moving-average-process" class="level3" data-number="36.3.1">
+<h3 data-number="36.3.1" class="anchored" data-anchor-id="移动平均过程-moving-average-process"><span class="header-section-number">36.3.1</span> 移动平均过程 (Moving Average Process)</h3>
+<p>移动平均过程 (MA) 是时间序列分析中的一种基本模型。它假设当前值是过去若干期随机扰动项的线性组合。MA 过程的数学表达式为：</p>
+<p><span class="math display">\[
+X_t = \mu + \epsilon_t + \theta_1 \epsilon_{t-1} + \theta_2 \epsilon_{t-2} + \dots + \theta_q \epsilon_{t-q} \tag{1}
+\]</span></p>
+<p>其中： - <span class="math inline">\(X_t\)</span> 是时间序列的当前值； - <span class="math inline">\(\mu\)</span> 是序列的均值； - <span class="math inline">\(\epsilon_t\)</span> 是白噪声项，满足 <span class="math inline">\(E[\epsilon_t] = 0\)</span> 和 <span class="math inline">\(Var[\epsilon_t] = \sigma^2\)</span>； - <span class="math inline">\(\theta_1, \theta_2, \dots, \theta_q\)</span> 是模型参数； - <span class="math inline">\(q\)</span> 是移动平均过程的阶数。</p>
+</section>
+<section id="ma1-模型" class="level3" data-number="36.3.2">
+<h3 data-number="36.3.2" class="anchored" data-anchor-id="ma1-模型"><span class="header-section-number">36.3.2</span> MA(1) 模型</h3>
+<p>当 <span class="math inline">\(q=1\)</span> 时，MA(1) 模型的形式为：</p>
+<p><span class="math display">\[
+X_t = \mu + \epsilon_t + \theta_1 \epsilon_{t-1} \tag{2}
+\]</span></p>
+<p>在 MA(1) 模型中，当前值 <span class="math inline">\(X_t\)</span> 由当前随机扰动 <span class="math inline">\(\epsilon_t\)</span> 和前一期随机扰动 <span class="math inline">\(\epsilon_{t-1}\)</span> 的加权和决定。</p>
+</section>
+<section id="ma-过程的特性" class="level3" data-number="36.3.3">
+<h3 data-number="36.3.3" class="anchored" data-anchor-id="ma-过程的特性"><span class="header-section-number">36.3.3</span> MA 过程的特性</h3>
+<ol type="1">
+<li><strong>平稳性</strong>：MA 过程是平稳的，因为它仅依赖于有限个随机扰动项。</li>
+<li><strong>自相关函数 (ACF)</strong>：
+<ul>
+<li>MA(q) 模型的自相关函数在滞后期 <span class="math inline">\(k &gt; q\)</span> 时为 0；<br>
+</li>
+<li>在滞后期 <span class="math inline">\(k \leq q\)</span> 时，自相关函数可能显著。</li>
+</ul></li>
+<li><strong>偏自相关函数 (PACF)</strong>：
+<ul>
+<li>MA(q) 模型的偏自相关函数在所有滞后期 <span class="math inline">\(k &gt; 1\)</span> 时迅速衰减；<br>
+</li>
+<li>在滞后期 <span class="math inline">\(k = 1\)</span> 时，偏自相关函数可能显著。</li>
+</ul></li>
+</ol>
+</section>
+<section id="ma-过程的应用" class="level3" data-number="36.3.4">
+<h3 data-number="36.3.4" class="anchored" data-anchor-id="ma-过程的应用"><span class="header-section-number">36.3.4</span> MA 过程的应用</h3>
+<p>MA 过程常用于建模时间序列中的短期依赖关系。例如： - 经济数据中的短期波动； - 金融数据中的短期价格变化。</p>
+</section>
+<section id="ar-过程和-ma-过程的区别" class="level3" data-number="36.3.5">
+<h3 data-number="36.3.5" class="anchored" data-anchor-id="ar-过程和-ma-过程的区别"><span class="header-section-number">36.3.5</span> AR 过程和 MA 过程的区别</h3>
+<p>AR 过程和 MA 过程是时间序列分析中的两种基本模型，它们在建模思路、平稳性、自相关函数和偏自相关函数等方面存在显著差异。以下是它们的主要区别： - <strong>建模思路</strong>：AR 过程假设当前值与过去值之间存在线性关系，而 MA 过程假设当前值是过去随机扰动项的线性组合。 - <strong>平稳性</strong>：AR 过程的平稳性取决于参数的取值，而 MA 过程是平稳的，因为它仅依赖于有限个随机扰动项。</p>
+<section id="ar1-可以表示为-ma" class="level4" data-number="36.3.5.1">
+<h4 data-number="36.3.5.1" class="anchored" data-anchor-id="ar1-可以表示为-ma"><span class="header-section-number">36.3.5.1</span> AR(1) 可以表示为 MA(∞)</h4>
+<p>AR(1) 过程可以通过递归展开的方式表示为 MA(∞) 过程。具体来说，假设 AR(1) 模型为：</p>
+<p><span class="math display">\[
+X_t = \phi X_{t-1} + \epsilon_t
+\]</span></p>
+<p>将 <span class="math inline">\(X_{t-1}\)</span> 代入上述公式，可以得到：</p>
+<p><span class="math display">\[
+X_t = \phi (\phi X_{t-2} + \epsilon_{t-1}) + \epsilon_t = \phi^2 X_{t-2} + \phi \epsilon_{t-1} + \epsilon_t
+\]</span></p>
+<p>继续递归下去，可以得到：</p>
+<p><span class="math display">\[
+X_t = \phi^t X_0 + \sum_{i=0}^{\infty} \phi^i \epsilon_{t-i}
+\]</span></p>
+<p>由此可见，AR(1) 过程可以表示为一个 MA(∞) 过程，其中当前值 <span class="math inline">\(X_t\)</span> 是所有过去随机扰动项 <span class="math inline">\(\epsilon_{t-i}\)</span> 的加权和，权重由 <span class="math inline">\(\phi^i\)</span> 决定，并随着 <span class="math inline">\(i\)</span> 的增大呈指数衰减。</p>
+<div id="0be97391" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># 模拟分析：AR(1) 和 MA(1) 过程的差别</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co"># 模拟 MA(1) 过程</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>theta <span class="op">=</span> <span class="fl">0.8</span>  <span class="co"># MA(1) 系数</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>ma1 <span class="op">=</span> np.zeros(n)</span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
+<span id="cb5-7"><a href="#cb5-7"></a>    ma1[t] <span class="op">=</span> epsilon[t] <span class="op">+</span> theta <span class="op">*</span> epsilon[t<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb5-8"><a href="#cb5-8"></a></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co"># 绘图比较 AR(1) 和 MA(1) 过程</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb5-11"><a href="#cb5-11"></a>plt.plot(ar1, label<span class="op">=</span><span class="st">"AR(1) Process (phi=0.8)"</span>, color<span class="op">=</span><span class="st">"blue"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12"></a>plt.plot(ma1, label<span class="op">=</span><span class="st">"MA(1) Process (theta=0.8)"</span>, color<span class="op">=</span><span class="st">"red"</span>)</span>
+<span id="cb5-13"><a href="#cb5-13"></a></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="co"># 添加时间趋势线</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a>plt.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">"green"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">"y=0 Line"</span>)</span>
+<span id="cb5-16"><a href="#cb5-16"></a></span>
+<span id="cb5-17"><a href="#cb5-17"></a>plt.title(<span class="st">"Comparison of AR(1) and MA(1) Processes"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb5-18"><a href="#cb5-18"></a>plt.xlabel(<span class="st">"Time"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb5-19"><a href="#cb5-19"></a>plt.ylabel(<span class="st">"Value"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb5-20"><a href="#cb5-20"></a>plt.legend()</span>
+<span id="cb5-21"><a href="#cb5-21"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb5-22"><a href="#cb5-22"></a>plt.tight_layout()</span>
+<span id="cb5-23"><a href="#cb5-23"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_ARMA_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="ar1-和-ma1-的区别acf-和-pacf" class="level3" data-number="36.3.6">
+<h3 data-number="36.3.6" class="anchored" data-anchor-id="ar1-和-ma1-的区别acf-和-pacf"><span class="header-section-number">36.3.6</span> AR(1) 和 MA(1) 的区别：ACF 和 PACF</h3>
+<p>AR(1) 和 MA(1) 模型在自相关函数 (ACF) 和偏自相关函数 (PACF) 上有显著的区别。以下是它们的主要区别： - <strong>AR(1) 模型</strong>： - ACF：在滞后期 <span class="math inline">\(k &gt; 1\)</span> 时，ACF 呈指数衰减或振荡衰减； - PACF：在滞后期 <span class="math inline">\(k = 1\)</span> 时显著，而在 <span class="math inline">\(k &gt; 1\)</span> 时迅速趋近于零。 - 这表明 AR(1) 模型具有长记忆效应，当前值与过去值之间存在较强的线性关系。 - <strong>MA(1) 模型</strong>： - ACF：在滞后期 <span class="math inline">\(k &gt; 1\)</span> 时迅速趋近于零； - PACF：在滞后期 <span class="math inline">\(k = 1\)</span> 时显著，而在 <span class="math inline">\(k &gt; 1\)</span> 时迅速趋近于零。 - 这表明 MA(1) 模型具有短记忆效应，当前值主要受最近的随机扰动项影响。</p>
+<div id="051b92d6" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">from</span> statsmodels.graphics.tsaplots <span class="im">import</span> plot_acf, plot_pacf</span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co"># ACF 和 PACF 分析：AR(1) v.s. MA(1)</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-5"><a href="#cb6-5"></a></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co"># 绘制 AR(1) 过程的 ACF 和 PACF</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb6-8"><a href="#cb6-8"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb6-9"><a href="#cb6-9"></a>plot_acf(ar1, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb6-10"><a href="#cb6-10"></a>plt.title(<span class="st">'ACF of AR(1) Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb6-11"><a href="#cb6-11"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb6-12"><a href="#cb6-12"></a>plot_pacf(ar1, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb6-13"><a href="#cb6-13"></a>plt.title(<span class="st">'PACF of AR(1) Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb6-14"><a href="#cb6-14"></a></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="co"># 绘制 MA(1) 过程的 ACF 和 PACF</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb6-17"><a href="#cb6-17"></a>plot_acf(ma1, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb6-18"><a href="#cb6-18"></a>plt.title(<span class="st">'ACF of MA(1) Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb6-19"><a href="#cb6-19"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb6-20"><a href="#cb6-20"></a>plot_pacf(ma1, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb6-21"><a href="#cb6-21"></a>plt.title(<span class="st">'PACF of MA(1) Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb6-22"><a href="#cb6-22"></a></span>
+<span id="cb6-23"><a href="#cb6-23"></a>plt.tight_layout()</span>
+<span id="cb6-24"><a href="#cb6-24"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_ARMA_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="armap-q-模型" class="level2" data-number="36.4">
+<h2 data-number="36.4" class="anchored" data-anchor-id="armap-q-模型"><span class="header-section-number">36.4</span> ARMA(p, q) 模型</h2>
+<p>ARMA 模型（AutoRegressive Moving Average Model，自回归移动平均模型）是时间序列分析中的一种经典模型。它结合了 AR(p) 模型和 MA(q) 模型的特性，用于描述时间序列数据的线性依赖结构。</p>
+<p>ARMA(p, q) 模型的数学表达式为：</p>
+<p><span class="math display">\[
+X_t = \phi_1 X_{t-1} + \phi_2 X_{t-2} + \dots + \phi_p X_{t-p} + \epsilon_t + \theta_1 \epsilon_{t-1} + \theta_2 \epsilon_{t-2} + \dots + \theta_q \epsilon_{t-q}
+\]</span></p>
+<p>其中： - <span class="math inline">\(X_t\)</span> 是时间序列的当前值； - <span class="math inline">\(\phi_1, \phi_2, \dots, \phi_p\)</span> 是 AR 部分的参数； - <span class="math inline">\(\theta_1, \theta_2, \dots, \theta_q\)</span> 是 MA 部分的参数； - <span class="math inline">\(\epsilon_t\)</span> 是白噪声项，满足 <span class="math inline">\(E[\epsilon_t] = 0\)</span> 和 <span class="math inline">\(Var[\epsilon_t] = \sigma^2\)</span>； - <span class="math inline">\(p\)</span> 是自回归部分的阶数； - <span class="math inline">\(q\)</span> 是移动平均部分的阶数。</p>
+<section id="特性" class="level3" data-number="36.4.1">
+<h3 data-number="36.4.1" class="anchored" data-anchor-id="特性"><span class="header-section-number">36.4.1</span> 特性</h3>
+<ol type="1">
+<li><strong>平稳性</strong>：ARMA 模型要求时间序列是平稳的，即均值、方差和自相关函数在时间上保持不变。</li>
+<li><strong>自相关函数 (ACF)</strong> 和 <strong>偏自相关函数 (PACF)</strong>：
+<ul>
+<li>ARMA 模型的 ACF 和 PACF 通常在滞后期 <span class="math inline">\(k &gt; \max(p, q)\)</span> 时迅速衰减。</li>
+<li>ACF 和 PACF 的具体模式取决于 <span class="math inline">\(p\)</span> 和 <span class="math inline">\(q\)</span> 的值。</li>
+</ul></li>
+</ol>
+</section>
+<section id="模型选择" class="level3" data-number="36.4.2">
+<h3 data-number="36.4.2" class="anchored" data-anchor-id="模型选择"><span class="header-section-number">36.4.2</span> 模型选择</h3>
+<p>在实际应用中，选择 ARMA 模型的阶数 <span class="math inline">\(p\)</span> 和 <span class="math inline">\(q\)</span> 通常需要结合以下方法： 1. <strong>ACF 和 PACF 图</strong>：通过观察时间序列的 ACF 和 PACF 图，初步判断 <span class="math inline">\(p\)</span> 和 <span class="math inline">\(q\)</span> 的可能值。 2. <strong>信息准则</strong>：如 AIC（Akaike 信息准则）和 BIC（贝叶斯信息准则），用于选择最优的 <span class="math inline">\(p\)</span> 和 <span class="math inline">\(q\)</span>。 3. <strong>模型拟合优度</strong>：通过比较不同模型的拟合效果，选择最优模型。</p>
+</section>
+<section id="应用场景" class="level3" data-number="36.4.3">
+<h3 data-number="36.4.3" class="anchored" data-anchor-id="应用场景"><span class="header-section-number">36.4.3</span> 应用场景</h3>
+<p>ARMA 模型适用于平稳时间序列的建模和预测，常见的应用场景包括： - 经济数据（如 GDP、消费指数）的短期预测； - 金融数据（如股票价格、汇率）的波动分析； - 工业过程中的信号处理。</p>
+</section>
+<section id="示例" class="level3" data-number="36.4.4">
+<h3 data-number="36.4.4" class="anchored" data-anchor-id="示例"><span class="header-section-number">36.4.4</span> 示例</h3>
+<p>在上文中，我们已经模拟了 AR(1) 和 MA(1) 过程，并绘制了它们的 ACF 和 PACF 图。接下来，我们可以尝试拟合 ARMA 模型来描述这些时间序列的特性。</p>
+<p>以下是拟合 ARMA 模型的步骤： 1. 检查时间序列的平稳性（如 ADF 检验）。 2. 绘制 ACF 和 PACF 图，初步判断 <span class="math inline">\(p\)</span> 和 <span class="math inline">\(q\)</span> 的值。 3. 使用 <code>statsmodels</code> 库中的 <code>ARIMA</code> 模块拟合 ARMA 模型。 4. 检查模型的残差是否为白噪声。 5. 使用模型进行预测。</p>
+<p>通过 ARMA 模型，我们可以更好地理解时间序列的动态特性，并进行有效的预测。</p>
+</section>
+<section id="注意" class="level3" data-number="36.4.5">
+<h3 data-number="36.4.5" class="anchored" data-anchor-id="注意"><span class="header-section-number">36.4.5</span> 注意</h3>
+<p>多数情况下，使用 ARMA(1,1) 模型就可以描述多数平稳时间序列的特征：</p>
+<p><span class="math display">\[
+X_t = \phi_1 X_{t-1} + \theta_1 \epsilon_{t-1} + \epsilon_t
+\]</span></p>
+</section>
+</section>
+<section id="单位根检验" class="level2" data-number="36.5">
+<h2 data-number="36.5" class="anchored" data-anchor-id="单位根检验"><span class="header-section-number">36.5</span> 单位根检验</h2>
+<p>从上面的 <span class="math inline">\(ARMA(1,1)\)</span> 模型的结果来看，<span class="math inline">\(AR(1)\)</span> 系数的估计值为 <span class="math inline">\(0.9847\)</span>，接近于 <span class="math inline">\(1\)</span>，这表明该序列可能是一个单位根序列。</p>
+<p>我们可以使用 <code>statsmodels</code> 库中的 <code>adfuller</code> 函数来进行单位根检验。</p>
+<section id="adf-检验" class="level3" data-number="36.5.1">
+<h3 data-number="36.5.1" class="anchored" data-anchor-id="adf-检验"><span class="header-section-number">36.5.1</span> ADF 检验</h3>
+<p>给定一个时间序列 <span class="math inline">\(X_t\)</span>，我们可以使用以下的 ADF 检验来检验 <span class="math inline">\(X_t\)</span> 是否是平稳的： <span class="math display">\[
+X_t = \phi_0 + \phi_1 X_{t-1} + \phi_2 X_{t-2} + ... + \phi_p X_{t-p} + \epsilon_t\]</span> 其中，<span class="math inline">\(\epsilon_t\)</span> 是一个白噪声序列。</p>
+<p>ADF 检验的原假设是：<span class="math inline">\(X_t\)</span> 是一个单位根序列，即 <span class="math inline">\(H_0: \phi_1 = 1\)</span>。 如果 <span class="math inline">\(H_0\)</span> 被拒绝，则说明 <span class="math inline">\(X_t\)</span> 是平稳的。</p>
+<p>ADF 检验包含几种典型的数据生成机制： - 纯随机游走：<span class="math inline">\(X_t = X_{t-1} + \epsilon_t\)</span>，其中 <span class="math inline">\(\epsilon_t\)</span> 是一个白噪声序列。 - 随机游走加趋势：<span class="math inline">\(X_t = \phi_0 + \phi_1 X_{t-1} + \phi_2 t + \epsilon_t\)</span>，其中 <span class="math inline">\(\epsilon_t\)</span> 是一个白噪声序列，<span class="math inline">\(t\)</span> 是时间趋势项。 - 随机游走加季节性：<span class="math inline">\(X_t = \phi_0 + \phi_1 X_{t-1} + S_t + \epsilon_t\)</span>，其中 <span class="math inline">\(\epsilon_t\)</span> 是一个白噪声序列，<span class="math inline">\(S_t\)</span> 是季节性项。 - 随机游走加趋势和季节性：<span class="math inline">\(X_t = \phi_0 + \phi_1 X_{t-1} + \phi_2 t + S_t + \epsilon_t\)</span>，其中 <span class="math inline">\(\epsilon_t\)</span> 是一个白噪声序列，<span class="math inline">\(t\)</span> 是时间趋势项，<span class="math inline">\(S_t\)</span> 是季节性项。</p>
+</section>
+<section id="其它检验方法" class="level3" data-number="36.5.2">
+<h3 data-number="36.5.2" class="anchored" data-anchor-id="其它检验方法"><span class="header-section-number">36.5.2</span> 其它检验方法</h3>
+<p>除了 ADF 检验，还有其他一些常用的单位根检验方法，如 KPSS 检验和 PP 检验。</p>
+<section id="kpss-检验" class="level4" data-number="36.5.2.1">
+<h4 data-number="36.5.2.1" class="anchored" data-anchor-id="kpss-检验"><span class="header-section-number">36.5.2.1</span> KPSS 检验</h4>
+<p>KPSS 检验的原假设是：<span class="math inline">\(X_t\)</span> 是平稳的，即 <span class="math inline">\(H_0: \phi_1 &lt; 1\)</span>。 如果 <span class="math inline">\(H_0\)</span> 被拒绝，则说明 <span class="math inline">\(X_t\)</span> 是一个单位根序列。</p>
+</section>
+<section id="pp-检验" class="level4" data-number="36.5.2.2">
+<h4 data-number="36.5.2.2" class="anchored" data-anchor-id="pp-检验"><span class="header-section-number">36.5.2.2</span> PP 检验</h4>
+<p>PP 检验的原假设是：<span class="math inline">\(X_t\)</span> 是一个单位根序列，即 <span class="math inline">\(H_0: \phi_1 = 1\)</span>。 如果 <span class="math inline">\(H_0\)</span> 被拒绝，则说明 <span class="math inline">\(X_t\)</span> 是平稳的。</p>
+</section>
+</section>
+<section id="模拟分析" class="level3" data-number="36.5.3">
+<h3 data-number="36.5.3" class="anchored" data-anchor-id="模拟分析"><span class="header-section-number">36.5.3</span> 模拟分析</h3>
+<p>我们生成四个不同的时间序列，分别是 AR(1)、带时间趋势的 AR(1)、ARMA(1,1) 和单位根过程。以下是它们的生成过程：</p>
+<ol type="1">
+<li><p><strong>AR(1) 平稳序列</strong><br>
+AR(1) 模型的数学表达式为：<br>
+<span class="math display">\[
+X_t = \phi X_{t-1} + \epsilon_t
+\]</span><br>
+其中，<span class="math inline">\(\phi = 0.8\)</span>，<span class="math inline">\(\epsilon_t\)</span> 是均值为 0、方差为 1 的白噪声。</p></li>
+<li><p><strong>带时间趋势的 AR(1) 序列</strong><br>
+在 AR(1) 模型的基础上加入线性时间趋势：<br>
+<span class="math display">\[
+X_t = \phi X_{t-1} + \epsilon_t + \text{trend}(t)
+\]</span><br>
+其中，<span class="math inline">\(\text{trend}(t)\)</span> 是一个线性增长的时间趋势项。</p></li>
+<li><p><strong>ARMA(1,1) 平稳序列</strong><br>
+ARMA(1,1) 模型的数学表达式为：<br>
+<span class="math display">\[
+X_t = \phi X_{t-1} + \epsilon_t + \theta \epsilon_{t-1}
+\]</span><br>
+其中，<span class="math inline">\(\phi = 0.8\)</span>，<span class="math inline">\(\theta = 0.5\)</span>，<span class="math inline">\(\epsilon_t\)</span> 是均值为 0、方差为 1 的白噪声。</p></li>
+<li><p><strong>单位根过程</strong><br>
+单位根过程的数学表达式为：<br>
+<span class="math display">\[
+X_t = X_{t-1} + \epsilon_t
+\]</span><br>
+其中，<span class="math inline">\(\epsilon_t\)</span> 是均值为 0、方差为 1 的白噪声。</p></li>
+</ol>
+<p>通过这些序列的生成，我们可以观察不同时间序列的特性，并进行单位根检验和其他分析。</p>
+<div id="ef0b8278" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="im">from</span> statsmodels.tsa.stattools <span class="im">import</span> adfuller</span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-6"><a href="#cb7-6"></a></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co"># 模拟四个序列</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb7-9"><a href="#cb7-9"></a>n <span class="op">=</span> <span class="dv">200</span>  <span class="co"># 时间序列长度</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>epsilon <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, n)</span>
+<span id="cb7-11"><a href="#cb7-11"></a></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="co"># 1. AR(1) 平稳</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>phi <span class="op">=</span> <span class="fl">0.8</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a>ar1_stationary <span class="op">=</span> np.zeros(n)</span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
+<span id="cb7-16"><a href="#cb7-16"></a>    ar1_stationary[t] <span class="op">=</span> phi <span class="op">*</span> ar1_stationary[t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> epsilon[t]</span>
+<span id="cb7-17"><a href="#cb7-17"></a></span>
+<span id="cb7-18"><a href="#cb7-18"></a><span class="co"># 2. AR(1) + 时间趋势</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a>trend <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, n)</span>
+<span id="cb7-20"><a href="#cb7-20"></a>ar1_with_trend <span class="op">=</span> np.zeros(n)</span>
+<span id="cb7-21"><a href="#cb7-21"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
+<span id="cb7-22"><a href="#cb7-22"></a>    ar1_with_trend[t] <span class="op">=</span> phi <span class="op">*</span> ar1_with_trend[t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> epsilon[t]</span>
+<span id="cb7-23"><a href="#cb7-23"></a>ar1_with_trend <span class="op">+=</span> trend</span>
+<span id="cb7-24"><a href="#cb7-24"></a></span>
+<span id="cb7-25"><a href="#cb7-25"></a><span class="co"># 3. ARMA(1,1) 平稳</span></span>
+<span id="cb7-26"><a href="#cb7-26"></a>theta <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb7-27"><a href="#cb7-27"></a>arma11_stationary <span class="op">=</span> np.zeros(n)</span>
+<span id="cb7-28"><a href="#cb7-28"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
+<span id="cb7-29"><a href="#cb7-29"></a>    arma11_stationary[t] <span class="op">=</span> phi <span class="op">*</span> arma11_stationary[t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> epsilon[t] <span class="op">+</span> theta <span class="op">*</span> epsilon[t<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb7-30"><a href="#cb7-30"></a></span>
+<span id="cb7-31"><a href="#cb7-31"></a><span class="co"># 4. 单位根过程</span></span>
+<span id="cb7-32"><a href="#cb7-32"></a>unit_root <span class="op">=</span> np.zeros(n)</span>
+<span id="cb7-33"><a href="#cb7-33"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
+<span id="cb7-34"><a href="#cb7-34"></a>    unit_root[t] <span class="op">=</span> unit_root[t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> epsilon[t]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="图形比较" class="level4" data-number="36.5.3.1">
+<h4 data-number="36.5.3.1" class="anchored" data-anchor-id="图形比较"><span class="header-section-number">36.5.3.1</span> 图形比较</h4>
+<p>我们先直观地展示这四个序列的图形，然后再分析其 ACF 和 PACF 图，最后通过单位根检验来验证它们的平稳性。</p>
+<div id="e2a44e7f" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># 绘图比较</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb8-3"><a href="#cb8-3"></a></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># AR(1) 平稳序列</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb8-6"><a href="#cb8-6"></a>plt.plot(ar1_stationary, label<span class="op">=</span><span class="st">"AR(1) Stationary"</span>, color<span class="op">=</span><span class="st">"blue"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7"></a>plt.title(<span class="st">"AR(1) Stationary Sequence"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb8-8"><a href="#cb8-8"></a>plt.xlabel(<span class="st">"Time"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-9"><a href="#cb8-9"></a>plt.ylabel(<span class="st">"Value"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-10"><a href="#cb8-10"></a>plt.legend()</span>
+<span id="cb8-11"><a href="#cb8-11"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb8-12"><a href="#cb8-12"></a></span>
+<span id="cb8-13"><a href="#cb8-13"></a><span class="co"># AR(1) + 时间趋势序列</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb8-15"><a href="#cb8-15"></a>plt.plot(ar1_with_trend, label<span class="op">=</span><span class="st">"AR(1) with Trend"</span>, color<span class="op">=</span><span class="st">"orange"</span>)</span>
+<span id="cb8-16"><a href="#cb8-16"></a>plt.title(<span class="st">"AR(1) with Trend Sequence"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb8-17"><a href="#cb8-17"></a>plt.xlabel(<span class="st">"Time"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-18"><a href="#cb8-18"></a>plt.ylabel(<span class="st">"Value"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-19"><a href="#cb8-19"></a>plt.legend()</span>
+<span id="cb8-20"><a href="#cb8-20"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb8-21"><a href="#cb8-21"></a></span>
+<span id="cb8-22"><a href="#cb8-22"></a><span class="co"># ARMA(1,1) 平稳序列</span></span>
+<span id="cb8-23"><a href="#cb8-23"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb8-24"><a href="#cb8-24"></a>plt.plot(arma11_stationary, label<span class="op">=</span><span class="st">"ARMA(1,1) Stationary"</span>, color<span class="op">=</span><span class="st">"green"</span>)</span>
+<span id="cb8-25"><a href="#cb8-25"></a>plt.title(<span class="st">"ARMA(1,1) Stationary Sequence"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb8-26"><a href="#cb8-26"></a>plt.xlabel(<span class="st">"Time"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-27"><a href="#cb8-27"></a>plt.ylabel(<span class="st">"Value"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-28"><a href="#cb8-28"></a>plt.legend()</span>
+<span id="cb8-29"><a href="#cb8-29"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb8-30"><a href="#cb8-30"></a></span>
+<span id="cb8-31"><a href="#cb8-31"></a><span class="co"># 单位根过程</span></span>
+<span id="cb8-32"><a href="#cb8-32"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb8-33"><a href="#cb8-33"></a>plt.plot(unit_root, label<span class="op">=</span><span class="st">"Unit Root Process"</span>, color<span class="op">=</span><span class="st">"red"</span>)</span>
+<span id="cb8-34"><a href="#cb8-34"></a>plt.title(<span class="st">"Unit Root Process"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb8-35"><a href="#cb8-35"></a>plt.xlabel(<span class="st">"Time"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-36"><a href="#cb8-36"></a>plt.ylabel(<span class="st">"Value"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-37"><a href="#cb8-37"></a>plt.legend()</span>
+<span id="cb8-38"><a href="#cb8-38"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb8-39"><a href="#cb8-39"></a></span>
+<span id="cb8-40"><a href="#cb8-40"></a>plt.tight_layout()</span>
+<span id="cb8-41"><a href="#cb8-41"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_ARMA_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="acf-和-pacf-图" class="level4" data-number="36.5.3.2">
+<h4 data-number="36.5.3.2" class="anchored" data-anchor-id="acf-和-pacf-图"><span class="header-section-number">36.5.3.2</span> ACF 和 PACF 图</h4>
+<p>我们可以使用 <code>statsmodels</code> 库中的 <code>plot_acf</code> 和 <code>plot_pacf</code> 函数来绘制 ACF 和 PACF 图。以下是对四个序列的 ACF 和 PACF 图的分析：</p>
+<div id="7be721f9" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># 绘制 ACF 和 PACF 图</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="im">from</span> statsmodels.graphics.tsaplots <span class="im">import</span> plot_acf, plot_pacf</span>
+<span id="cb9-4"><a href="#cb9-4"></a></span>
+<span id="cb9-5"><a href="#cb9-5"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">12</span>))</span>
+<span id="cb9-6"><a href="#cb9-6"></a></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="co"># AR(1) 平稳序列</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb9-9"><a href="#cb9-9"></a>plot_acf(ar1_stationary, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb9-10"><a href="#cb9-10"></a>plt.title(<span class="st">'ACF of AR(1) Stationary Sequence'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb9-11"><a href="#cb9-11"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb9-12"><a href="#cb9-12"></a>plot_pacf(ar1_stationary, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb9-13"><a href="#cb9-13"></a>plt.title(<span class="st">'PACF of AR(1) Stationary Sequence'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb9-14"><a href="#cb9-14"></a></span>
+<span id="cb9-15"><a href="#cb9-15"></a><span class="co"># AR(1) + 时间趋势序列</span></span>
+<span id="cb9-16"><a href="#cb9-16"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb9-17"><a href="#cb9-17"></a>plot_acf(ar1_with_trend, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb9-18"><a href="#cb9-18"></a>plt.title(<span class="st">'ACF of AR(1) with Trend Sequence'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb9-19"><a href="#cb9-19"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb9-20"><a href="#cb9-20"></a>plot_pacf(ar1_with_trend, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb9-21"><a href="#cb9-21"></a>plt.title(<span class="st">'PACF of AR(1) with Trend Sequence'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb9-22"><a href="#cb9-22"></a></span>
+<span id="cb9-23"><a href="#cb9-23"></a><span class="co"># ARMA(1,1) 平稳序列</span></span>
+<span id="cb9-24"><a href="#cb9-24"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>)</span>
+<span id="cb9-25"><a href="#cb9-25"></a>plot_acf(arma11_stationary, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb9-26"><a href="#cb9-26"></a>plt.title(<span class="st">'ACF of ARMA(1,1) Stationary Sequence'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb9-27"><a href="#cb9-27"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">6</span>)</span>
+<span id="cb9-28"><a href="#cb9-28"></a>plot_pacf(arma11_stationary, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb9-29"><a href="#cb9-29"></a>plt.title(<span class="st">'PACF of ARMA(1,1) Stationary Sequence'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb9-30"><a href="#cb9-30"></a></span>
+<span id="cb9-31"><a href="#cb9-31"></a><span class="co"># 单位根过程</span></span>
+<span id="cb9-32"><a href="#cb9-32"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">7</span>)</span>
+<span id="cb9-33"><a href="#cb9-33"></a>plot_acf(unit_root, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb9-34"><a href="#cb9-34"></a>plt.title(<span class="st">'ACF of Unit Root Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb9-35"><a href="#cb9-35"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">8</span>)</span>
+<span id="cb9-36"><a href="#cb9-36"></a>plot_pacf(unit_root, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb9-37"><a href="#cb9-37"></a>plt.title(<span class="st">'PACF of Unit Root Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb9-38"><a href="#cb9-38"></a></span>
+<span id="cb9-39"><a href="#cb9-39"></a>plt.tight_layout()</span>
+<span id="cb9-40"><a href="#cb9-40"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TS_ARMA_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="单位根检验-1" class="level3" data-number="36.5.4">
+<h3 data-number="36.5.4" class="anchored" data-anchor-id="单位根检验-1"><span class="header-section-number">36.5.4</span> 单位根检验</h3>
+<p>我们可以使用 <code>statsmodels</code> 库中的 <code>adfuller</code> 函数来进行单位根检验。以下是对四个序列的单位根检验结果的分析：</p>
+<div id="2a9b26a5" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="co"># 定义 test_stationarity 函数</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="kw">def</span> test_stationarity(timeseries):</span>
+<span id="cb10-4"><a href="#cb10-4"></a>    <span class="co"># 进行ADF检验</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>    adf_result <span class="op">=</span> adfuller(timeseries)</span>
+<span id="cb10-6"><a href="#cb10-6"></a>    <span class="bu">print</span>(<span class="ss">f'ADF Statistic: </span><span class="sc">{</span>adf_result[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb10-7"><a href="#cb10-7"></a>    <span class="bu">print</span>(<span class="ss">f'p-value: </span><span class="sc">{</span>adf_result[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb10-8"><a href="#cb10-8"></a>    <span class="cf">if</span> adf_result[<span class="dv">1</span>] <span class="op">&lt;=</span> <span class="fl">0.05</span>:</span>
+<span id="cb10-9"><a href="#cb10-9"></a>        <span class="bu">print</span>(<span class="st">"Reject the null hypothesis: The time series is stationary."</span>)</span>
+<span id="cb10-10"><a href="#cb10-10"></a>    <span class="cf">else</span>:</span>
+<span id="cb10-11"><a href="#cb10-11"></a>        <span class="bu">print</span>(<span class="st">"Fail to reject the null hypothesis: The time series is non-stationary."</span>)</span>
+<span id="cb10-12"><a href="#cb10-12"></a></span>
+<span id="cb10-13"><a href="#cb10-13"></a>    <span class="co"># 进行KPSS检验</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a>    <span class="im">from</span> statsmodels.tsa.stattools <span class="im">import</span> kpss</span>
+<span id="cb10-15"><a href="#cb10-15"></a>    kpss_result <span class="op">=</span> kpss(timeseries, regression<span class="op">=</span><span class="st">'c'</span>)</span>
+<span id="cb10-16"><a href="#cb10-16"></a>    <span class="bu">print</span>(<span class="ss">f'KPSS Statistic: </span><span class="sc">{</span>kpss_result[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb10-17"><a href="#cb10-17"></a>    <span class="bu">print</span>(<span class="ss">f'p-value: </span><span class="sc">{</span>kpss_result[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb10-18"><a href="#cb10-18"></a>    <span class="cf">if</span> kpss_result[<span class="dv">1</span>] <span class="op">&lt;=</span> <span class="fl">0.05</span>:</span>
+<span id="cb10-19"><a href="#cb10-19"></a>        <span class="bu">print</span>(<span class="st">"Reject the null hypothesis: The time series is non-stationary."</span>)</span>
+<span id="cb10-20"><a href="#cb10-20"></a>    <span class="cf">else</span>:</span>
+<span id="cb10-21"><a href="#cb10-21"></a>        <span class="bu">print</span>(<span class="st">"Fail to reject the null hypothesis: The time series is stationary."</span>)</span>
+<span id="cb10-22"><a href="#cb10-22"></a></span>
+<span id="cb10-23"><a href="#cb10-23"></a></span>
+<span id="cb10-24"><a href="#cb10-24"></a><span class="co"># 执行单位根检验</span></span>
+<span id="cb10-25"><a href="#cb10-25"></a><span class="bu">print</span>(<span class="st">"AR(1) 平稳序列:"</span>)</span>
+<span id="cb10-26"><a href="#cb10-26"></a>test_stationarity(ar1_stationary)</span>
+<span id="cb10-27"><a href="#cb10-27"></a></span>
+<span id="cb10-28"><a href="#cb10-28"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">AR(1) + 时间趋势序列:"</span>)</span>
+<span id="cb10-29"><a href="#cb10-29"></a>test_stationarity(ar1_with_trend)</span>
+<span id="cb10-30"><a href="#cb10-30"></a></span>
+<span id="cb10-31"><a href="#cb10-31"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">ARMA(1,1) 平稳序列:"</span>)</span>
+<span id="cb10-32"><a href="#cb10-32"></a>test_stationarity(arma11_stationary)</span>
+<span id="cb10-33"><a href="#cb10-33"></a></span>
+<span id="cb10-34"><a href="#cb10-34"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">单位根序列:"</span>)</span>
+<span id="cb10-35"><a href="#cb10-35"></a>test_stationarity(unit_root)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>AR(1) 平稳序列:
+ADF Statistic: -5.140188092198668
+p-value: 1.1632040113030607e-05
+Reject the null hypothesis: The time series is stationary.
+KPSS Statistic: 0.40971623118293043
+p-value: 0.0729671417314955
+Fail to reject the null hypothesis: The time series is stationary.
+
+AR(1) + 时间趋势序列:
+ADF Statistic: -1.083734015465617
+p-value: 0.7215148114561589
+Fail to reject the null hypothesis: The time series is non-stationary.
+KPSS Statistic: 1.9346683267076523
+p-value: 0.01
+Reject the null hypothesis: The time series is non-stationary.
+
+ARMA(1,1) 平稳序列:
+ADF Statistic: -3.6707270981703113
+p-value: 0.004544260482266915
+Reject the null hypothesis: The time series is stationary.
+KPSS Statistic: 0.40642058881067256
+p-value: 0.07438767723677908
+Fail to reject the null hypothesis: The time series is stationary.
+
+单位根序列:
+ADF Statistic: -2.3072851790645252
+p-value: 0.1696291207894372
+Fail to reject the null hypothesis: The time series is non-stationary.
+KPSS Statistic: 0.7001396636588889
+p-value: 0.013532757849191916
+Reject the null hypothesis: The time series is non-stationary.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\arlio\AppData\Local\Temp\ipykernel_4892\3041600984.py:14: InterpolationWarning: The test statistic is outside of the range of p-values available in the
+look-up table. The actual p-value is smaller than the p-value returned.
+
+  kpss_result = kpss(timeseries, regression='c')</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="待更新" class="level2" data-number="36.6">
+<h2 data-number="36.6" class="anchored" data-anchor-id="待更新"><span class="header-section-number">36.6</span> 待更新</h2>
+<div id="cdad0e6b" class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># 3. VAR模型</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="kw">def</span> fit_var_model(data, maxlags<span class="op">=</span><span class="dv">15</span>):</span>
+<span id="cb13-3"><a href="#cb13-3"></a>    model <span class="op">=</span> VAR(data)</span>
+<span id="cb13-4"><a href="#cb13-4"></a>    results <span class="op">=</span> model.fit(maxlags<span class="op">=</span>maxlags, ic<span class="op">=</span><span class="st">'aic'</span>)</span>
+<span id="cb13-5"><a href="#cb13-5"></a>    <span class="bu">print</span>(results.summary())</span>
+<span id="cb13-6"><a href="#cb13-6"></a>    <span class="cf">return</span> results</span>
+<span id="cb13-7"><a href="#cb13-7"></a></span>
+<span id="cb13-8"><a href="#cb13-8"></a><span class="co"># 4. Granger因果关系检验</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a><span class="kw">def</span> granger_causality_test(data, max_lag<span class="op">=</span><span class="dv">15</span>):</span>
+<span id="cb13-10"><a href="#cb13-10"></a>    test_result <span class="op">=</span> grangercausalitytests(data, max_lag, verbose<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-11"><a href="#cb13-11"></a>    <span class="cf">return</span> test_result</span>
+<span id="cb13-12"><a href="#cb13-12"></a></span>
+<span id="cb13-13"><a href="#cb13-13"></a><span class="co"># 5. 协整检验</span></span>
+<span id="cb13-14"><a href="#cb13-14"></a><span class="kw">def</span> cointegration_test(data):</span>
+<span id="cb13-15"><a href="#cb13-15"></a>    score, p_value, _ <span class="op">=</span> coint(data.iloc[:, <span class="dv">0</span>], data.iloc[:, <span class="dv">1</span>])</span>
+<span id="cb13-16"><a href="#cb13-16"></a>    <span class="bu">print</span>(<span class="ss">f'Cointegration test statistic: </span><span class="sc">{</span>score<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb13-17"><a href="#cb13-17"></a>    <span class="bu">print</span>(<span class="ss">f'p-value: </span><span class="sc">{</span>p_value<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb13-18"><a href="#cb13-18"></a>    <span class="cf">if</span> p_value <span class="op">&lt;=</span> <span class="fl">0.05</span>:</span>
+<span id="cb13-19"><a href="#cb13-19"></a>        <span class="bu">print</span>(<span class="st">"Reject the null hypothesis: The time series are cointegrated."</span>)</span>
+<span id="cb13-20"><a href="#cb13-20"></a>    <span class="cf">else</span>:</span>
+<span id="cb13-21"><a href="#cb13-21"></a>        <span class="bu">print</span>(<span class="st">"Fail to reject the null hypothesis: The time series are not cointegrated."</span>)</span>
+<span id="cb13-22"><a href="#cb13-22"></a></span>
+<span id="cb13-23"><a href="#cb13-23"></a><span class="co"># 6. VAR模型的脉冲响应函数</span></span>
+<span id="cb13-24"><a href="#cb13-24"></a><span class="kw">def</span> impulse_response_function(model, steps<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb13-25"><a href="#cb13-25"></a>    irf <span class="op">=</span> model.irf(steps)</span>
+<span id="cb13-26"><a href="#cb13-26"></a>    irf.plot(orth<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb13-27"><a href="#cb13-27"></a>    plt.show()</span>
+<span id="cb13-28"><a href="#cb13-28"></a></span>
+<span id="cb13-29"><a href="#cb13-29"></a><span class="co"># 7. VAR模型的方差分解</span></span>
+<span id="cb13-30"><a href="#cb13-30"></a><span class="kw">def</span> variance_decomposition(model, steps<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb13-31"><a href="#cb13-31"></a>    fevd <span class="op">=</span> model.fevd(steps)</span>
+<span id="cb13-32"><a href="#cb13-32"></a>    fevd.plot()</span>
+<span id="cb13-33"><a href="#cb13-33"></a>    plt.show()</span>
+<span id="cb13-34"><a href="#cb13-34"></a></span>
+<span id="cb13-35"><a href="#cb13-35"></a><span class="co"># 8. VAR模型的预测</span></span>
+<span id="cb13-36"><a href="#cb13-36"></a><span class="kw">def</span> forecast_var_model(model, steps<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb13-37"><a href="#cb13-37"></a>    forecast <span class="op">=</span> model.forecast(model.y, steps<span class="op">=</span>steps)</span>
+<span id="cb13-38"><a href="#cb13-38"></a>    forecast_df <span class="op">=</span> pd.DataFrame(forecast, index<span class="op">=</span>pd.date_range(start<span class="op">=</span>df_unemp.index[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> pd.DateOffset(<span class="dv">1</span>), periods<span class="op">=</span>steps, freq<span class="op">=</span><span class="st">'M'</span>), columns<span class="op">=</span>model.names)</span>
+<span id="cb13-39"><a href="#cb13-39"></a>    <span class="cf">return</span> forecast_df</span>
+<span id="cb13-40"><a href="#cb13-40"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../body/TS_man_weight.html" class="pagination-link" aria-label="时序建模思路：模拟体重变化">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">时序建模思路：模拟体重变化</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../body/TS_FRED_US_unemploy_rate.html" class="pagination-link" aria-label="案例：美国失业率和通胀率关系分析">
+        <span class="nav-page-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><a href="https://www.lianxh.cn">www.lianxh.cn</a></p>
+</div>
+    <div class="nav-footer-right">
+<p>Support: <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

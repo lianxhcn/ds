@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>33&nbsp; 案例：美国失业率和通胀率关系分析 – 数据分析</title>
+<title>37&nbsp; 案例：美国失业率和通胀率关系分析 – 数据分析</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../homework/pre/Dangdang_G7_01_data_clean.html" rel="next">
-<link href="../body/regress_03_binscatter.html" rel="prev">
+<link href="../body/TS_GARCH_BYD.html" rel="next">
+<link href="../body/TS_ARMA.html" rel="prev">
 <link href="../images/ds-book-logo-40.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -146,7 +146,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/TS_FRED_US_unemploy_rate.html"><strong>时间序列分析</strong></a></li><li class="breadcrumb-item"><a href="../body/TS_FRED_US_unemploy_rate.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/TS_asset_return.html"><strong>时间序列</strong></a></li><li class="breadcrumb-item"><a href="../body/TS_FRED_US_unemploy_rate.html"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -192,20 +192,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/_home.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">关于我们</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../body/00_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">前言</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">课程简介和资源</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text"><strong>Python 基础</strong></span></a>
+ <span class="menu-text"><strong>基础配置</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -213,110 +207,32 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/00_py_with_AI_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">借助 AI 写代码</span></span></a>
+  <a href="../body/01_00_coding_with_AI.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">借助 AI 写代码</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/00_py_with_AI_pic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ansome Python + AI</span></span></a>
+  <a href="../body/01_01_install_anaconda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">软件安装和环境配置</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/01_1_1_install-Anaconda.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python：安装和环境配置</span></span></a>
+  <a href="../body/01_02_jupyter_notebook.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Jupyter Notebook 的使用</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/01_1_2_use_Junpyter_Notebook.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Jupyter Notebook 的使用</span></span></a>
+  <a href="../body/01_03_install_FAQs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python 安装常见问题</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/01_2_install_FAQs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Python 安装常见问题</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_3_markdown.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_01_basic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Python 入门</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_01_basic_01_grammer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python 代码风格</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_01_basic_02_QuickReference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Python 常用命令速查表</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_01_basic_03_Packages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Python 常用扩展包</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_01_basic_04_import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Python：import 使用详解</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_01_basic_05_OOP.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Python：语法解析-面向对象编程</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_01_basic_06_filepath.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Python 路径设置</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_02_numpy_scipy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_02_pandas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">pandas 快速入门</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_03_matplotlib.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Matplotlib简介</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_04_func_and_module.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">函数</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_05_class.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">类和对象</span></span></a>
+  <a href="../body/01_04_markdown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">何谓 Markdown？</span></span></a>
   </div>
 </li>
       </ul>
@@ -324,12 +240,107 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text"><strong>数据分析</strong></span></a>
+ <span class="menu-text"><strong>Python 基础</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_00_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Python 入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_01_grammer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Python 代码风格</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_02_QuickReference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Python 常用命令速查表</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_03_packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python 常用扩展包</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_04_import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Python：import 使用详解</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_05_OOP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Python：语法解析-面向对象编程</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_06_filepath.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Python 路径设置</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_01_numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_02_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">pandas 快速入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_03_matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Matplotlib简介</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_04_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">函数</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_05_class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">类和对象</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>数据分析</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_01_get_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">数据获取和读入</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_01_readdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">读取数据</span></span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../body/data_02_data_type.html" class="sidebar-item-text sidebar-link">
@@ -348,39 +359,10 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">上证指数的时序特征</span></span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text"><strong>可视化</strong></span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/graph_01_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Python 可视化：简介</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/graph_dis_box_violin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">箱型图和小提琴图</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/graph_dis_histogram.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">直方图</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/graph_dis_kdensity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">核密度函数图</span></span></a>
+  <a href="../body/web_01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">数据爬虫入门</span></span></a>
   </div>
 </li>
       </ul>
@@ -388,7 +370,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text"><strong>回归分析</strong></span></a>
+ <span class="menu-text"><strong>可视化</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -396,10 +378,39 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/test_AB_test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></span></a>
+  <a href="../body/graph_01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Python 可视化：简介</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_box_violin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">箱型图和小提琴图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_histogram.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">直方图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_kdensity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">核密度函数图</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>线性回归</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../body/regress_01_OLS.html" class="sidebar-item-text sidebar-link">
@@ -418,21 +429,10 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">分仓散点图</span></span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text"><strong>时间序列分析</strong></span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/TS_FRED_US_unemploy_rate.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></span></a>
+  <a href="../body/regress_04_wage_prediction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">线性回归分析</span></span></a>
   </div>
 </li>
       </ul>
@@ -440,7 +440,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text"><strong>作业展示</strong></span></a>
+ <span class="menu-text"><strong>时间序列</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -448,62 +448,156 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../body/TS_asset_return.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">资产收益率（Asset Returns）</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_man_weight.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">时序建模思路：模拟体重变化</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_ARMA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">ARMA 模型</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_FRED_US_unemploy_rate.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_GARCH_BYD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">GARCH 模型</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>机器学习</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/test_AB_test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-Naive-Bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">In Depth: Naive Bayes Classification</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-Random-Forests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">深入理解：决策树与随机森林</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-baggboost-lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Tree-Based Methods</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-Support-Vector-Machines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">支持向量机 (Support Vector Machines)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-svm-lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Support Vector Machines</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/06.00-Figure-Code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">Appendix: Figure Code</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>作业展示</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../homework/pre/Dangdang_G7_01_data_clean.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">当当网-G7-01</span></span></a>
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">当当网-G7-01</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/Dangdang_G7_02_data_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">当当网-G7-02</span></span></a>
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">当当网-G7-02</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/G8_China_stock_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">G8-中国上市公司</span></span></a>
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">G8-中国上市公司</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/Stock_G4_01_data_crawler.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">G4-01</span></span></a>
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">G4-01</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/Stock_G4_02_data_cleaning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">G4-02</span></span></a>
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">G4-02</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/Stock_G4_03_data_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">G4-03</span></span></a>
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">G4-03</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/_ex02_万诗晴.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">ex02_万诗晴</span></span></a>
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">ex02_万诗晴</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/_ex02_吴倩茵.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">ex02_吴倩茵</span></span></a>
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">ex02_吴倩茵</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/_ex02_朱少荣.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">ex02_朱少荣</span></span></a>
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">ex02_朱少荣</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/_ex02_黄伊姿.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">ex02_黄伊姿</span></span></a>
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">ex02_黄伊姿</span></span></a>
   </div>
 </li>
       </ul>
@@ -518,40 +612,40 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#下载美国失业率数据" id="toc-下载美国失业率数据" class="nav-link active" data-scroll-target="#下载美国失业率数据"><span class="header-section-number">33.1</span> 下载美国失业率数据</a></li>
-  <li><a href="#美国失业率的时序特征" id="toc-美国失业率的时序特征" class="nav-link" data-scroll-target="#美国失业率的时序特征"><span class="header-section-number">33.2</span> 美国失业率的时序特征</a>
+  <li><a href="#下载美国失业率数据" id="toc-下载美国失业率数据" class="nav-link active" data-scroll-target="#下载美国失业率数据"><span class="header-section-number">37.1</span> 下载美国失业率数据</a></li>
+  <li><a href="#美国失业率的时序特征" id="toc-美国失业率的时序特征" class="nav-link" data-scroll-target="#美国失业率的时序特征"><span class="header-section-number">37.2</span> 美国失业率的时序特征</a>
   <ul class="collapse">
-  <li><a href="#问题如何分析失业率的时序特征" id="toc-问题如何分析失业率的时序特征" class="nav-link" data-scroll-target="#问题如何分析失业率的时序特征"><span class="header-section-number">33.2.1</span> 问题：如何分析失业率的时序特征？</a></li>
-  <li><a href="#年移动平均" id="toc-年移动平均" class="nav-link" data-scroll-target="#年移动平均"><span class="header-section-number">33.2.2</span> 10 年移动平均</a></li>
+  <li><a href="#问题如何分析失业率的时序特征" id="toc-问题如何分析失业率的时序特征" class="nav-link" data-scroll-target="#问题如何分析失业率的时序特征"><span class="header-section-number">37.2.1</span> 问题：如何分析失业率的时序特征？</a></li>
+  <li><a href="#年移动平均" id="toc-年移动平均" class="nav-link" data-scroll-target="#年移动平均"><span class="header-section-number">37.2.2</span> 10 年移动平均</a></li>
   </ul></li>
-  <li><a href="#消费者物价指数cpi" id="toc-消费者物价指数cpi" class="nav-link" data-scroll-target="#消费者物价指数cpi"><span class="header-section-number">33.3</span> 消费者物价指数（CPI）</a>
+  <li><a href="#消费者物价指数cpi" id="toc-消费者物价指数cpi" class="nav-link" data-scroll-target="#消费者物价指数cpi"><span class="header-section-number">37.3</span> 消费者物价指数（CPI）</a>
   <ul class="collapse">
-  <li><a href="#美国消费者物价指数cpi趋势图解读" id="toc-美国消费者物价指数cpi趋势图解读" class="nav-link" data-scroll-target="#美国消费者物价指数cpi趋势图解读"><span class="header-section-number">33.3.1</span> 美国消费者物价指数（CPI）趋势图解读</a></li>
+  <li><a href="#美国消费者物价指数cpi趋势图解读" id="toc-美国消费者物价指数cpi趋势图解读" class="nav-link" data-scroll-target="#美国消费者物价指数cpi趋势图解读"><span class="header-section-number">37.3.1</span> 美国消费者物价指数（CPI）趋势图解读</a></li>
   </ul></li>
-  <li><a href="#失业率和通货膨胀率的关系" id="toc-失业率和通货膨胀率的关系" class="nav-link" data-scroll-target="#失业率和通货膨胀率的关系"><span class="header-section-number">33.4</span> 失业率和通货膨胀率的关系</a>
+  <li><a href="#失业率和通货膨胀率的关系" id="toc-失业率和通货膨胀率的关系" class="nav-link" data-scroll-target="#失业率和通货膨胀率的关系"><span class="header-section-number">37.4</span> 失业率和通货膨胀率的关系</a>
   <ul class="collapse">
-  <li><a href="#建模思路" id="toc-建模思路" class="nav-link" data-scroll-target="#建模思路"><span class="header-section-number">33.4.1</span> 建模思路</a></li>
+  <li><a href="#建模思路" id="toc-建模思路" class="nav-link" data-scroll-target="#建模思路"><span class="header-section-number">37.4.1</span> 建模思路</a></li>
   </ul></li>
-  <li><a href="#线性回归模型" id="toc-线性回归模型" class="nav-link" data-scroll-target="#线性回归模型"><span class="header-section-number">33.5</span> 线性回归模型</a></li>
-  <li><a href="#单变量分析" id="toc-单变量分析" class="nav-link" data-scroll-target="#单变量分析"><span class="header-section-number">33.6</span> 单变量分析</a>
+  <li><a href="#线性回归模型" id="toc-线性回归模型" class="nav-link" data-scroll-target="#线性回归模型"><span class="header-section-number">37.5</span> 线性回归模型</a></li>
+  <li><a href="#单变量分析" id="toc-单变量分析" class="nav-link" data-scroll-target="#单变量分析"><span class="header-section-number">37.6</span> 单变量分析</a>
   <ul class="collapse">
-  <li><a href="#arma11-模型" id="toc-arma11-模型" class="nav-link" data-scroll-target="#arma11-模型"><span class="header-section-number">33.6.1</span> ARMA(1,1) 模型</a></li>
-  <li><a href="#单位根检验" id="toc-单位根检验" class="nav-link" data-scroll-target="#单位根检验"><span class="header-section-number">33.6.2</span> 单位根检验</a></li>
+  <li><a href="#arma11-模型" id="toc-arma11-模型" class="nav-link" data-scroll-target="#arma11-模型"><span class="header-section-number">37.6.1</span> ARMA(1,1) 模型</a></li>
+  <li><a href="#单位根检验" id="toc-单位根检验" class="nav-link" data-scroll-target="#单位根检验"><span class="header-section-number">37.6.2</span> 单位根检验</a></li>
   </ul></li>
-  <li><a href="#var-模型" id="toc-var-模型" class="nav-link" data-scroll-target="#var-模型"><span class="header-section-number">33.7</span> VAR 模型</a>
+  <li><a href="#var-模型" id="toc-var-模型" class="nav-link" data-scroll-target="#var-模型"><span class="header-section-number">37.7</span> VAR 模型</a>
   <ul class="collapse">
-  <li><a href="#var2-模型的形式" id="toc-var2-模型的形式" class="nav-link" data-scroll-target="#var2-模型的形式"><span class="header-section-number">33.7.1</span> VAR(2) 模型的形式</a></li>
-  <li><a href="#varp-模型的扩展" id="toc-varp-模型的扩展" class="nav-link" data-scroll-target="#varp-模型的扩展"><span class="header-section-number">33.7.2</span> VAR(P) 模型的扩展</a></li>
-  <li><a href="#var-模型的估计" id="toc-var-模型的估计" class="nav-link" data-scroll-target="#var-模型的估计"><span class="header-section-number">33.7.3</span> VAR 模型的估计</a></li>
-  <li><a href="#granger-因果检验" id="toc-granger-因果检验" class="nav-link" data-scroll-target="#granger-因果检验"><span class="header-section-number">33.7.4</span> Granger 因果检验</a></li>
+  <li><a href="#var2-模型的形式" id="toc-var2-模型的形式" class="nav-link" data-scroll-target="#var2-模型的形式"><span class="header-section-number">37.7.1</span> VAR(2) 模型的形式</a></li>
+  <li><a href="#varp-模型的扩展" id="toc-varp-模型的扩展" class="nav-link" data-scroll-target="#varp-模型的扩展"><span class="header-section-number">37.7.2</span> VAR(P) 模型的扩展</a></li>
+  <li><a href="#var-模型的估计" id="toc-var-模型的估计" class="nav-link" data-scroll-target="#var-模型的估计"><span class="header-section-number">37.7.3</span> VAR 模型的估计</a></li>
+  <li><a href="#granger-因果检验" id="toc-granger-因果检验" class="nav-link" data-scroll-target="#granger-因果检验"><span class="header-section-number">37.7.4</span> Granger 因果检验</a></li>
   </ul></li>
-  <li><a href="#脉冲响应分析" id="toc-脉冲响应分析" class="nav-link" data-scroll-target="#脉冲响应分析"><span class="header-section-number">33.8</span> 脉冲响应分析</a>
+  <li><a href="#脉冲响应分析" id="toc-脉冲响应分析" class="nav-link" data-scroll-target="#脉冲响应分析"><span class="header-section-number">37.8</span> 脉冲响应分析</a>
   <ul class="collapse">
-  <li><a href="#什么是脉冲响应分析" id="toc-什么是脉冲响应分析" class="nav-link" data-scroll-target="#什么是脉冲响应分析"><span class="header-section-number">33.8.1</span> 什么是脉冲响应分析？</a></li>
-  <li><a href="#数学定义" id="toc-数学定义" class="nav-link" data-scroll-target="#数学定义"><span class="header-section-number">33.8.2</span> 数学定义</a></li>
-  <li><a href="#分析步骤" id="toc-分析步骤" class="nav-link" data-scroll-target="#分析步骤"><span class="header-section-number">33.8.3</span> 分析步骤</a></li>
-  <li><a href="#示例失业率与通胀率的脉冲响应分析" id="toc-示例失业率与通胀率的脉冲响应分析" class="nav-link" data-scroll-target="#示例失业率与通胀率的脉冲响应分析"><span class="header-section-number">33.8.4</span> 示例：失业率与通胀率的脉冲响应分析</a></li>
-  <li><a href="#总结" id="toc-总结" class="nav-link" data-scroll-target="#总结"><span class="header-section-number">33.8.5</span> 总结</a></li>
+  <li><a href="#什么是脉冲响应分析" id="toc-什么是脉冲响应分析" class="nav-link" data-scroll-target="#什么是脉冲响应分析"><span class="header-section-number">37.8.1</span> 什么是脉冲响应分析？</a></li>
+  <li><a href="#数学定义" id="toc-数学定义" class="nav-link" data-scroll-target="#数学定义"><span class="header-section-number">37.8.2</span> 数学定义</a></li>
+  <li><a href="#分析步骤" id="toc-分析步骤" class="nav-link" data-scroll-target="#分析步骤"><span class="header-section-number">37.8.3</span> 分析步骤</a></li>
+  <li><a href="#示例失业率与通胀率的脉冲响应分析" id="toc-示例失业率与通胀率的脉冲响应分析" class="nav-link" data-scroll-target="#示例失业率与通胀率的脉冲响应分析"><span class="header-section-number">37.8.4</span> 示例：失业率与通胀率的脉冲响应分析</a></li>
+  <li><a href="#总结" id="toc-总结" class="nav-link" data-scroll-target="#总结"><span class="header-section-number">37.8.5</span> 总结</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -559,9 +653,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/TS_FRED_US_unemploy_rate.html"><strong>时间序列分析</strong></a></li><li class="breadcrumb-item"><a href="../body/TS_FRED_US_unemploy_rate.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/TS_asset_return.html"><strong>时间序列</strong></a></li><li class="breadcrumb-item"><a href="../body/TS_FRED_US_unemploy_rate.html"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></h1>
+<h1 class="title"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></h1>
 </div>
 
 
@@ -581,8 +675,8 @@ window.Quarto = {
 <p>本讲以 <code>pandas_datareader</code> 为例，介绍如何获取宏观数据，以及时间序列的基本特征和分析流程。</p>
 <p>FRED 是美国联邦储备银行提供的宏观经济数据，包含了大量的经济指标。 FRED 提供了一个 API 接口，可以通过 <code>pandas_datareader</code> 来获取数据。</p>
 <p>本文写作过程中借助了 AI，包括 ChatGPT (<a href="https://chatgpt.com/share/6818e458-538c-8005-9af1-1a8c31ee50f1">提示词</a>) 和 Github Coplilot。</p>
-<section id="下载美国失业率数据" class="level2" data-number="33.1">
-<h2 data-number="33.1" class="anchored" data-anchor-id="下载美国失业率数据"><span class="header-section-number">33.1</span> 下载美国失业率数据</h2>
+<section id="下载美国失业率数据" class="level2" data-number="37.1">
+<h2 data-number="37.1" class="anchored" data-anchor-id="下载美国失业率数据"><span class="header-section-number">37.1</span> 下载美国失业率数据</h2>
 <blockquote class="blockquote">
 <p>Source: U.S. Bureau of Labor Statistics, Unemployment Rate [UNRATE], retrieved from FRED, Federal Reserve Bank of St.&nbsp;Louis; <a href="https://fred.stlouisfed.org/series/UNRATE" class="uri">https://fred.stlouisfed.org/series/UNRATE</a>, May 5, 2025.</p>
 </blockquote>
@@ -636,16 +730,16 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="美国失业率的时序特征" class="level2" data-number="33.2">
-<h2 data-number="33.2" class="anchored" data-anchor-id="美国失业率的时序特征"><span class="header-section-number">33.2</span> 美国失业率的时序特征</h2>
+<section id="美国失业率的时序特征" class="level2" data-number="37.2">
+<h2 data-number="37.2" class="anchored" data-anchor-id="美国失业率的时序特征"><span class="header-section-number">37.2</span> 美国失业率的时序特征</h2>
 <p>上图展示了自 1960 年以来美国的月度失业率变化趋势。总体来看，美国失业率呈现出显著的<strong>周期性波动</strong>，其高峰通常与经济衰退期相吻合，低谷则出现在经济扩张阶段。</p>
 <ul>
 <li><strong>周期波动明显</strong>：失业率大致每 8-10 年出现一次较大波动，与美国历次经济衰退（如 1974、1982、1991、2008 和 2020 年）高度对应。</li>
 <li><strong>历史极值</strong>：2020 年新冠疫情爆发初期，失业率迅速飙升至超过 14%，为图中最高点，反映出突发公共卫生事件对劳动市场的巨大冲击。</li>
 <li><strong>长期下行趋势</strong>：尽管存在周期性波动，但在部分阶段（如 1982-2000 年间、2010-2019 年间）可观察到失业率逐步下降的趋势，显示出结构性改善可能性。</li>
 </ul>
-<section id="问题如何分析失业率的时序特征" class="level3" data-number="33.2.1">
-<h3 data-number="33.2.1" class="anchored" data-anchor-id="问题如何分析失业率的时序特征"><span class="header-section-number">33.2.1</span> 问题：如何分析失业率的时序特征？</h3>
+<section id="问题如何分析失业率的时序特征" class="level3" data-number="37.2.1">
+<h3 data-number="37.2.1" class="anchored" data-anchor-id="问题如何分析失业率的时序特征"><span class="header-section-number">37.2.1</span> 问题：如何分析失业率的时序特征？</h3>
 <p>从图中失业率的走势出发，我们可以从以下几个角度提出计量建模中需要关注的核心问题：</p>
 <ul>
 <li><p><strong>平稳性与周期性：</strong> 失业率呈现一定的均值回复特征 (在上图中，均值约为 6Z%)，但是否真正平稳？如何通过单位根检验（如 ADF 检验）判断？如果该序列非平稳，我们是否应进行差分处理以便后续建模？</p></li>
@@ -710,8 +804,8 @@ Name: UNRATE, dtype: float64</code></pre>
 </div>
 </div>
 </section>
-<section id="年移动平均" class="level3" data-number="33.2.2">
-<h3 data-number="33.2.2" class="anchored" data-anchor-id="年移动平均"><span class="header-section-number">33.2.2</span> 10 年移动平均</h3>
+<section id="年移动平均" class="level3" data-number="37.2.2">
+<h3 data-number="37.2.2" class="anchored" data-anchor-id="年移动平均"><span class="header-section-number">37.2.2</span> 10 年移动平均</h3>
 <p>我们可以使用 <code>rolling</code> 函数来计算 10 年移动平均，以便从更长时间尺度上观察失业率的变化趋势。</p>
 <div id="987f5137" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># 10 年和 5 年滚动平均</span></span>
@@ -735,8 +829,8 @@ Name: UNRATE, dtype: float64</code></pre>
 </div>
 </section>
 </section>
-<section id="消费者物价指数cpi" class="level2" data-number="33.3">
-<h2 data-number="33.3" class="anchored" data-anchor-id="消费者物价指数cpi"><span class="header-section-number">33.3</span> 消费者物价指数（CPI）</h2>
+<section id="消费者物价指数cpi" class="level2" data-number="37.3">
+<h2 data-number="37.3" class="anchored" data-anchor-id="消费者物价指数cpi"><span class="header-section-number">37.3</span> 消费者物价指数（CPI）</h2>
 <blockquote class="blockquote">
 <p>Source: U.S. Bureau of Labor Statistics, Consumer Price Index for All Urban Consumers: All Items in U.S. City Average, Not Seasonally Adjusted [CPIAUCNS], retrieved from FRED, Federal Reserve Bank of St.&nbsp;Louis; <a href="https://fred.stlouisfed.org/series/CPIAUCNS" class="uri">https://fred.stlouisfed.org/series/CPIAUCNS</a>, May 5, 2025.</p>
 </blockquote>
@@ -769,8 +863,8 @@ Name: UNRATE, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<section id="美国消费者物价指数cpi趋势图解读" class="level3" data-number="33.3.1">
-<h3 data-number="33.3.1" class="anchored" data-anchor-id="美国消费者物价指数cpi趋势图解读"><span class="header-section-number">33.3.1</span> 美国消费者物价指数（CPI）趋势图解读</h3>
+<section id="美国消费者物价指数cpi趋势图解读" class="level3" data-number="37.3.1">
+<h3 data-number="37.3.1" class="anchored" data-anchor-id="美国消费者物价指数cpi趋势图解读"><span class="header-section-number">37.3.1</span> 美国消费者物价指数（CPI）趋势图解读</h3>
 <p>上图展示了自 1960 年以来美国城市居民的消费者物价指数（CPI-U）的长期变化趋势，数据来自 FRED 数据库，基期设为 1982-1984 年的平均水平（指数 = 100）。</p>
 <p>从图中可以观察到以下几个重要特征：</p>
 <ul>
@@ -841,8 +935,8 @@ Name: UNRATE, dtype: float64</code></pre>
 </div>
 </section>
 </section>
-<section id="失业率和通货膨胀率的关系" class="level2" data-number="33.4">
-<h2 data-number="33.4" class="anchored" data-anchor-id="失业率和通货膨胀率的关系"><span class="header-section-number">33.4</span> 失业率和通货膨胀率的关系</h2>
+<section id="失业率和通货膨胀率的关系" class="level2" data-number="37.4">
+<h2 data-number="37.4" class="anchored" data-anchor-id="失业率和通货膨胀率的关系"><span class="header-section-number">37.4</span> 失业率和通货膨胀率的关系</h2>
 <p>接下来，我们将失业率和通货膨胀率结合起来，分析它们之间的关系。我们可以使用 <code>pandas</code> 和 <code>matplotlib</code> 来绘制散点图和线性回归线，以便更好地理解它们之间的关系。</p>
 <div id="a696a082" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># 绘图：失业率 + 通货膨胀率</span></span>
@@ -891,8 +985,8 @@ Name: UNRATE, dtype: float64</code></pre>
 <li>在部分阶段（例如 1980s 中后期、1990s、2010s），通胀与失业呈现出某种程度的负相关，符合传统的菲利普斯曲线（Phillips Curve）设定。</li>
 </ul></li>
 </ul>
-<section id="建模思路" class="level3" data-number="33.4.1">
-<h3 data-number="33.4.1" class="anchored" data-anchor-id="建模思路"><span class="header-section-number">33.4.1</span> 建模思路</h3>
+<section id="建模思路" class="level3" data-number="37.4.1">
+<h3 data-number="37.4.1" class="anchored" data-anchor-id="建模思路"><span class="header-section-number">37.4.1</span> 建模思路</h3>
 <p>如果我们想建立一个模型来刻画失业率与通胀率之间的关系，有哪些可行的建模思路呢？</p>
 <ul>
 <li>线性回归</li>
@@ -902,8 +996,8 @@ Name: UNRATE, dtype: float64</code></pre>
 </ul>
 </section>
 </section>
-<section id="线性回归模型" class="level2" data-number="33.5">
-<h2 data-number="33.5" class="anchored" data-anchor-id="线性回归模型"><span class="header-section-number">33.5</span> 线性回归模型</h2>
+<section id="线性回归模型" class="level2" data-number="37.5">
+<h2 data-number="37.5" class="anchored" data-anchor-id="线性回归模型"><span class="header-section-number">37.5</span> 线性回归模型</h2>
 <div id="b4121bc0" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># UNRATE 和 Inflation Rate 的关系</span></span>
 <span id="cb14-2"><a href="#cb14-2"></a></span>
@@ -951,11 +1045,11 @@ Notes:
 </div>
 </div>
 </section>
-<section id="单变量分析" class="level2" data-number="33.6">
-<h2 data-number="33.6" class="anchored" data-anchor-id="单变量分析"><span class="header-section-number">33.6</span> 单变量分析</h2>
+<section id="单变量分析" class="level2" data-number="37.6">
+<h2 data-number="37.6" class="anchored" data-anchor-id="单变量分析"><span class="header-section-number">37.6</span> 单变量分析</h2>
 <p>我们先采用 ARMA 模型来分析失业率和通货膨胀率的单变量特征。进而使用单位根检验（如 ADF 检验）来判断序列的平稳性。 在下一小节中，将采用 VAR 模型来分析失业率和通货膨胀率的关系。</p>
-<section id="arma11-模型" class="level3" data-number="33.6.1">
-<h3 data-number="33.6.1" class="anchored" data-anchor-id="arma11-模型"><span class="header-section-number">33.6.1</span> ARMA(1,1) 模型</h3>
+<section id="arma11-模型" class="level3" data-number="37.6.1">
+<h3 data-number="37.6.1" class="anchored" data-anchor-id="arma11-模型"><span class="header-section-number">37.6.1</span> ARMA(1,1) 模型</h3>
 <p><span class="math display">\[y_t = \alpha + \beta y_{t-1} + \epsilon_t + \theta \epsilon_{t-1}\]</span></p>
 <p>其中，<span class="math inline">\(\epsilon_t \sim N(0, \sigma^2)\)</span>。</p>
 <p>我们可以使用 <code>statsmodels</code> 库，分别针对失业率序列和通货膨胀序列来拟合 ARMA 模型。</p>
@@ -1035,12 +1129,12 @@ Warnings:
 </div>
 </div>
 </section>
-<section id="单位根检验" class="level3" data-number="33.6.2">
-<h3 data-number="33.6.2" class="anchored" data-anchor-id="单位根检验"><span class="header-section-number">33.6.2</span> 单位根检验</h3>
+<section id="单位根检验" class="level3" data-number="37.6.2">
+<h3 data-number="37.6.2" class="anchored" data-anchor-id="单位根检验"><span class="header-section-number">37.6.2</span> 单位根检验</h3>
 <p>从上面的 <span class="math inline">\(ARMA(1,1)\)</span> 模型的结果来看，<span class="math inline">\(AR(1)\)</span> 系数的估计值为 <span class="math inline">\(0.9847\)</span>，接近于 <span class="math inline">\(1\)</span>，这表明该序列可能是一个单位根序列。</p>
 <p>我们可以使用 <code>statsmodels</code> 库中的 <code>adfuller</code> 函数来进行单位根检验。</p>
-<section id="adf-检验" class="level4" data-number="33.6.2.1">
-<h4 data-number="33.6.2.1" class="anchored" data-anchor-id="adf-检验"><span class="header-section-number">33.6.2.1</span> ADF 检验</h4>
+<section id="adf-检验" class="level4" data-number="37.6.2.1">
+<h4 data-number="37.6.2.1" class="anchored" data-anchor-id="adf-检验"><span class="header-section-number">37.6.2.1</span> ADF 检验</h4>
 <p>给定一个时间序列 <span class="math inline">\(X_t\)</span>，我们可以使用以下的 ADF 检验来检验 <span class="math inline">\(X_t\)</span> 是否是平稳的：</p>
 <p><span class="math display">\[
 X_t = \phi_0 + \phi_1 X_{t-1} + \phi_2 X_{t-2} + ... + \phi_p X_{t-p} + \epsilon_t\]</span></p>
@@ -1054,12 +1148,12 @@ X_t = \phi_0 + \phi_1 X_{t-1} + \phi_2 X_{t-2} + ... + \phi_p X_{t-p} + \epsilon
 <li>随机游走加趋势和季节性：<span class="math inline">\(X_t = \phi_0 + \phi_1 X_{t-1} + \phi_2 t + S_t + \epsilon_t\)</span>，其中 <span class="math inline">\(\epsilon_t\)</span> 是一个白噪声序列，<span class="math inline">\(t\)</span> 是时间趋势项，<span class="math inline">\(S_t\)</span> 是季节性项。</li>
 </ul>
 </section>
-<section id="kpss-检验" class="level4" data-number="33.6.2.2">
-<h4 data-number="33.6.2.2" class="anchored" data-anchor-id="kpss-检验"><span class="header-section-number">33.6.2.2</span> KPSS 检验</h4>
+<section id="kpss-检验" class="level4" data-number="37.6.2.2">
+<h4 data-number="37.6.2.2" class="anchored" data-anchor-id="kpss-检验"><span class="header-section-number">37.6.2.2</span> KPSS 检验</h4>
 <p>KPSS 检验的原假设是：<span class="math inline">\(X_t\)</span> 是平稳的，即 <span class="math inline">\(H_0: \phi_1 &lt; 1\)</span>。 如果 <span class="math inline">\(H_0\)</span> 被拒绝，则说明 <span class="math inline">\(X_t\)</span> 是一个单位根序列。</p>
 </section>
-<section id="pp-检验" class="level4" data-number="33.6.2.3">
-<h4 data-number="33.6.2.3" class="anchored" data-anchor-id="pp-检验"><span class="header-section-number">33.6.2.3</span> PP 检验</h4>
+<section id="pp-检验" class="level4" data-number="37.6.2.3">
+<h4 data-number="37.6.2.3" class="anchored" data-anchor-id="pp-检验"><span class="header-section-number">37.6.2.3</span> PP 检验</h4>
 <p>PP 检验的原假设是：<span class="math inline">\(X_t\)</span> 是一个单位根序列，即 <span class="math inline">\(H_0: \phi_1 = 1\)</span>。 如果 <span class="math inline">\(H_0\)</span> 被拒绝，则说明 <span class="math inline">\(X_t\)</span> 是平稳的。</p>
 <div id="778b8e4a" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="im">from</span> statsmodels.tsa.stattools <span class="im">import</span> adfuller, kpss</span>
@@ -1218,11 +1312,11 @@ Conclusion: Reject H0 (Non-Stationary)
 </section>
 </section>
 </section>
-<section id="var-模型" class="level2" data-number="33.7">
-<h2 data-number="33.7" class="anchored" data-anchor-id="var-模型"><span class="header-section-number">33.7</span> VAR 模型</h2>
+<section id="var-模型" class="level2" data-number="37.7">
+<h2 data-number="37.7" class="anchored" data-anchor-id="var-模型"><span class="header-section-number">37.7</span> VAR 模型</h2>
 <p>向量自回归模型（Vector Autoregression, VAR）是一种多元时间序列模型，用于捕捉多个变量之间的动态关系。它假设每个变量不仅受自身滞后值的影响，还受到其他变量滞后值的影响。</p>
-<section id="var2-模型的形式" class="level3" data-number="33.7.1">
-<h3 data-number="33.7.1" class="anchored" data-anchor-id="var2-模型的形式"><span class="header-section-number">33.7.1</span> VAR(2) 模型的形式</h3>
+<section id="var2-模型的形式" class="level3" data-number="37.7.1">
+<h3 data-number="37.7.1" class="anchored" data-anchor-id="var2-模型的形式"><span class="header-section-number">37.7.1</span> VAR(2) 模型的形式</h3>
 <p>以两个变量 <span class="math inline">\(y_t\)</span> 和 <span class="math inline">\(x_t\)</span> 为例，VAR(2) 模型的形式如下：</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -1237,8 +1331,8 @@ x_t &amp;= a_{20} + a_{21} y_{t-1} + a_{22} x_{t-1} + a_{23} y_{t-2} + a_{24} x_
 <li><span class="math inline">\(\epsilon_{y,t}\)</span> 和 <span class="math inline">\(\epsilon_{x,t}\)</span> 是误差项，通常假设为白噪声。</li>
 </ul>
 </section>
-<section id="varp-模型的扩展" class="level3" data-number="33.7.2">
-<h3 data-number="33.7.2" class="anchored" data-anchor-id="varp-模型的扩展"><span class="header-section-number">33.7.2</span> VAR(P) 模型的扩展</h3>
+<section id="varp-模型的扩展" class="level3" data-number="37.7.2">
+<h3 data-number="37.7.2" class="anchored" data-anchor-id="varp-模型的扩展"><span class="header-section-number">37.7.2</span> VAR(P) 模型的扩展</h3>
 <p>VAR(P) 模型是 VAR(2) 模型的推广形式，表示包含 <span class="math inline">\(P\)</span> 阶滞后项的向量自回归模型。其一般形式为：</p>
 <p><span class="math display">\[
 Y_t = A_1 Y_{t-1} + A_2 Y_{t-2} + \dots + A_P Y_{t-P} + \epsilon_t,
@@ -1251,8 +1345,8 @@ Y_t = A_1 Y_{t-1} + A_2 Y_{t-2} + \dots + A_P Y_{t-P} + \epsilon_t,
 </ul>
 <p>通过增加滞后阶数 <span class="math inline">\(P\)</span>，VAR 模型可以捕捉更复杂的动态关系，但也可能导致参数过多的问题。因此，选择合适的滞后阶数是建模中的关键步骤。</p>
 </section>
-<section id="var-模型的估计" class="level3" data-number="33.7.3">
-<h3 data-number="33.7.3" class="anchored" data-anchor-id="var-模型的估计"><span class="header-section-number">33.7.3</span> VAR 模型的估计</h3>
+<section id="var-模型的估计" class="level3" data-number="37.7.3">
+<h3 data-number="37.7.3" class="anchored" data-anchor-id="var-模型的估计"><span class="header-section-number">37.7.3</span> VAR 模型的估计</h3>
 <p>在 VAR 模型中，估计的核心任务是确定模型的滞后阶数，并对模型参数进行估计。以下是 VAR 模型估计的主要步骤：</p>
 <ol type="1">
 <li>数据准备：确保时间序列数据是平稳的。如果数据非平稳，可以通过差分或其他变换使其平稳。</li>
@@ -1373,25 +1467,25 @@ Inflation Rate               -0.142756        1.000000
 </ol>
 <p>综上，<strong>通胀率的变化对失业率存在短期的显著负向影响</strong>，但 <strong>失业率对通胀率的影响不明显</strong>，两者关系具有方向性和滞后性，表现出一定的不对称特征。这一结果对政策制定者具有重要意义：在制定货币或财政政策以影响就业时，应特别关注通胀路径对失业的动态传导。</p>
 </section>
-<section id="granger-因果检验" class="level3" data-number="33.7.4">
-<h3 data-number="33.7.4" class="anchored" data-anchor-id="granger-因果检验"><span class="header-section-number">33.7.4</span> Granger 因果检验</h3>
+<section id="granger-因果检验" class="level3" data-number="37.7.4">
+<h3 data-number="37.7.4" class="anchored" data-anchor-id="granger-因果检验"><span class="header-section-number">37.7.4</span> Granger 因果检验</h3>
 <p>Granger 因果检验的核心思想是通过回归分析判断一个变量的滞后值是否能够显著提高对另一个变量的预测能力。以下是 Granger 因果检验的数学公式及其在失业率 <span class="math inline">\(u\)</span> 和通胀率 <span class="math inline">\(e\)</span> 上的应用。</p>
-<section id="单变量回归模型" class="level4" data-number="33.7.4.1">
-<h4 data-number="33.7.4.1" class="anchored" data-anchor-id="单变量回归模型"><span class="header-section-number">33.7.4.1</span> 1. 单变量回归模型</h4>
+<section id="单变量回归模型" class="level4" data-number="37.7.4.1">
+<h4 data-number="37.7.4.1" class="anchored" data-anchor-id="单变量回归模型"><span class="header-section-number">37.7.4.1</span> 1. 单变量回归模型</h4>
 <p>首先，构建仅包含因变量自身滞后项的回归模型： <span class="math display">\[
 u_t = \alpha_0 + \sum_{i=1}^p \alpha_i u_{t-i} + \epsilon_t
 \]</span> 其中：<span class="math inline">\(u_t\)</span> 表示当前的失业率；<span class="math inline">\(u_{t-i}\)</span> 表示失业率的第 <span class="math inline">\(i\)</span> 阶滞后值；<span class="math inline">\(\epsilon_t\)</span> 是误差项。</p>
 </section>
-<section id="多变量回归模型" class="level4" data-number="33.7.4.2">
-<h4 data-number="33.7.4.2" class="anchored" data-anchor-id="多变量回归模型"><span class="header-section-number">33.7.4.2</span> 2. 多变量回归模型</h4>
+<section id="多变量回归模型" class="level4" data-number="37.7.4.2">
+<h4 data-number="37.7.4.2" class="anchored" data-anchor-id="多变量回归模型"><span class="header-section-number">37.7.4.2</span> 2. 多变量回归模型</h4>
 <p>然后，构建同时包含因变量和另一个变量滞后项的回归模型：</p>
 <p><span class="math display">\[
 u_t = \beta_0 + \sum_{i=1}^p \beta_i u_{t-i} + \sum_{j=1}^q \gamma_j e_{t-j} + \eta_t
 \]</span></p>
 <p>其中：<span class="math inline">\(e_{t-j}\)</span> 表示通胀率的第 <span class="math inline">\(j\)</span> 阶滞后值；<span class="math inline">\(\eta_t\)</span> 是误差项。</p>
 </section>
-<section id="检验假设" class="level4" data-number="33.7.4.3">
-<h4 data-number="33.7.4.3" class="anchored" data-anchor-id="检验假设"><span class="header-section-number">33.7.4.3</span> 3. 检验假设</h4>
+<section id="检验假设" class="level4" data-number="37.7.4.3">
+<h4 data-number="37.7.4.3" class="anchored" data-anchor-id="检验假设"><span class="header-section-number">37.7.4.3</span> 3. 检验假设</h4>
 <p>通过 F 检验比较上述两个模型的拟合优度，检验以下假设：</p>
 <ul>
 <li>原假设 <span class="math inline">\(H_0\)</span>：<span class="math inline">\(e_{t-j}\)</span> 的系数 <span class="math inline">\(\gamma_j = 0\)</span>，即通胀率的滞后值对失业率没有显著影响；</li>
@@ -1495,10 +1589,10 @@ Granger Causality Test Summary (e -&gt; u):
 </section>
 </section>
 </section>
-<section id="脉冲响应分析" class="level2" data-number="33.8">
-<h2 data-number="33.8" class="anchored" data-anchor-id="脉冲响应分析"><span class="header-section-number">33.8</span> 脉冲响应分析</h2>
-<section id="什么是脉冲响应分析" class="level3" data-number="33.8.1">
-<h3 data-number="33.8.1" class="anchored" data-anchor-id="什么是脉冲响应分析"><span class="header-section-number">33.8.1</span> 什么是脉冲响应分析？</h3>
+<section id="脉冲响应分析" class="level2" data-number="37.8">
+<h2 data-number="37.8" class="anchored" data-anchor-id="脉冲响应分析"><span class="header-section-number">37.8</span> 脉冲响应分析</h2>
+<section id="什么是脉冲响应分析" class="level3" data-number="37.8.1">
+<h3 data-number="37.8.1" class="anchored" data-anchor-id="什么是脉冲响应分析"><span class="header-section-number">37.8.1</span> 什么是脉冲响应分析？</h3>
 <p>脉冲响应分析（Impulse Response Analysis）是时间序列分析中的一种重要工具，用于研究系统对外部冲击的动态反应。具体来说，在向量自回归模型（VAR）中，脉冲响应分析可以帮助我们回答以下问题：</p>
 <ul>
 <li>当某个变量受到一个单位冲击时，其他变量会如何反应？</li>
@@ -1506,8 +1600,8 @@ Granger Causality Test Summary (e -&gt; u):
 <li>反应的方向和强度如何？</li>
 </ul>
 </section>
-<section id="数学定义" class="level3" data-number="33.8.2">
-<h3 data-number="33.8.2" class="anchored" data-anchor-id="数学定义"><span class="header-section-number">33.8.2</span> 数学定义</h3>
+<section id="数学定义" class="level3" data-number="37.8.2">
+<h3 data-number="37.8.2" class="anchored" data-anchor-id="数学定义"><span class="header-section-number">37.8.2</span> 数学定义</h3>
 <p>假设我们有一个 <span class="math inline">\(\text{VAR}(p)\)</span> 模型：</p>
 <p><span class="math display">\[
 Y_t = A_1 Y_{t-1} + A_2 Y_{t-2} + \dots + A_p Y_{t-p} + \epsilon_t
@@ -1520,16 +1614,16 @@ Y_t = A_1 Y_{t-1} + A_2 Y_{t-2} + \dots + A_p Y_{t-p} + \epsilon_t
 </ul>
 <p>脉冲响应函数（Impulse Response Function, IRF）描述了 <span class="math inline">\(Y_t\)</span> 中某个变量对 <span class="math inline">\(\epsilon_t\)</span> 中某个分量的单位冲击的动态反应。</p>
 </section>
-<section id="分析步骤" class="level3" data-number="33.8.3">
-<h3 data-number="33.8.3" class="anchored" data-anchor-id="分析步骤"><span class="header-section-number">33.8.3</span> 分析步骤</h3>
+<section id="分析步骤" class="level3" data-number="37.8.3">
+<h3 data-number="37.8.3" class="anchored" data-anchor-id="分析步骤"><span class="header-section-number">37.8.3</span> 分析步骤</h3>
 <ol type="1">
 <li><strong>拟合 VAR 模型</strong>：首先需要对时间序列数据拟合一个 VAR 模型。</li>
 <li><strong>计算脉冲响应函数</strong>：基于拟合的 VAR 模型，计算各变量对冲击的响应。</li>
 <li><strong>绘制脉冲响应图</strong>：将响应结果可视化，便于直观理解。</li>
 </ol>
 </section>
-<section id="示例失业率与通胀率的脉冲响应分析" class="level3" data-number="33.8.4">
-<h3 data-number="33.8.4" class="anchored" data-anchor-id="示例失业率与通胀率的脉冲响应分析"><span class="header-section-number">33.8.4</span> 示例：失业率与通胀率的脉冲响应分析</h3>
+<section id="示例失业率与通胀率的脉冲响应分析" class="level3" data-number="37.8.4">
+<h3 data-number="37.8.4" class="anchored" data-anchor-id="示例失业率与通胀率的脉冲响应分析"><span class="header-section-number">37.8.4</span> 示例：失业率与通胀率的脉冲响应分析</h3>
 <p>以下是基于失业率和通胀率的脉冲响应分析步骤：</p>
 <ol type="1">
 <li><strong>拟合 VAR 模型</strong>：我们已经拟合了一个 VAR(2) 模型。</li>
@@ -1589,8 +1683,8 @@ Y_t = A_1 Y_{t-1} + A_2 Y_{t-2} + \dots + A_p Y_{t-p} + \epsilon_t
 </ul></li>
 </ol>
 </section>
-<section id="总结" class="level3" data-number="33.8.5">
-<h3 data-number="33.8.5" class="anchored" data-anchor-id="总结"><span class="header-section-number">33.8.5</span> 总结</h3>
+<section id="总结" class="level3" data-number="37.8.5">
+<h3 data-number="37.8.5" class="anchored" data-anchor-id="总结"><span class="header-section-number">37.8.5</span> 总结</h3>
 <p>通过脉冲响应分析可以看出，失业率和通货膨胀率之间存在一定的动态关系，但这种关系在短期内更为显著，长期影响则趋于平稳。这为进一步的经济建模和政策分析提供了重要的参考依据。</p>
 
 
@@ -2022,13 +2116,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../body/regress_03_binscatter.html" class="pagination-link" aria-label="分仓散点图">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">分仓散点图</span></span>
+      <a href="../body/TS_ARMA.html" class="pagination-link" aria-label="ARMA 模型">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">ARMA 模型</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../homework/pre/Dangdang_G7_01_data_clean.html" class="pagination-link" aria-label="当当网-G7-01">
-        <span class="nav-page-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">当当网-G7-01</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../body/TS_GARCH_BYD.html" class="pagination-link" aria-label="GARCH 模型">
+        <span class="nav-page-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">GARCH 模型</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

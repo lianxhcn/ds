@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>29&nbsp; A/B test-分组对照试验 – 数据分析</title>
+<title>39&nbsp; A/B test-分组对照试验 – 数据分析</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../body/regress_01_OLS.html" rel="next">
-<link href="../body/graph_dis_kdensity.html" rel="prev">
+<link href="../body/ML-Naive-Bayes.html" rel="next">
+<link href="../body/TS_GARCH_BYD.html" rel="prev">
 <link href="../images/ds-book-logo-40.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -146,7 +146,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/test_AB_test.html"><strong>回归分析</strong></a></li><li class="breadcrumb-item"><a href="../body/test_AB_test.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/test_AB_test.html"><strong>机器学习</strong></a></li><li class="breadcrumb-item"><a href="../body/test_AB_test.html"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -192,20 +192,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/_home.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">关于我们</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../body/00_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">前言</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">课程简介和资源</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text"><strong>Python 基础</strong></span></a>
+ <span class="menu-text"><strong>基础配置</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -213,110 +207,32 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/00_py_with_AI_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">借助 AI 写代码</span></span></a>
+  <a href="../body/01_00_coding_with_AI.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">借助 AI 写代码</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/00_py_with_AI_pic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ansome Python + AI</span></span></a>
+  <a href="../body/01_01_install_anaconda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">软件安装和环境配置</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/01_1_1_install-Anaconda.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python：安装和环境配置</span></span></a>
+  <a href="../body/01_02_jupyter_notebook.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Jupyter Notebook 的使用</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/01_1_2_use_Junpyter_Notebook.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Jupyter Notebook 的使用</span></span></a>
+  <a href="../body/01_03_install_FAQs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Python 安装常见问题</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/01_2_install_FAQs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Python 安装常见问题</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_3_markdown.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_01_basic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Python 入门</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_01_basic_01_grammer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python 代码风格</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_01_basic_02_QuickReference.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Python 常用命令速查表</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_01_basic_03_Packages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Python 常用扩展包</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_01_basic_04_import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Python：import 使用详解</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_01_basic_05_OOP.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Python：语法解析-面向对象编程</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_01_basic_06_filepath.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Python 路径设置</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_02_numpy_scipy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_02_pandas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">pandas 快速入门</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_03_matplotlib.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Matplotlib简介</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_04_func_and_module.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">函数</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/01_py_05_class.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">类和对象</span></span></a>
+  <a href="../body/01_04_markdown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">何谓 Markdown？</span></span></a>
   </div>
 </li>
       </ul>
@@ -324,12 +240,107 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text"><strong>数据分析</strong></span></a>
+ <span class="menu-text"><strong>Python 基础</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_00_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Python 入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_01_grammer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Python 代码风格</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_02_QuickReference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Python 常用命令速查表</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_03_packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python 常用扩展包</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_04_import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Python：import 使用详解</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_05_OOP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Python：语法解析-面向对象编程</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/02_py_06_filepath.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Python 路径设置</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_01_numpy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_02_pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">pandas 快速入门</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_03_matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Matplotlib简介</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_04_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">函数</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/03_py_05_class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">类和对象</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>数据分析</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_01_get_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">数据获取和读入</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_01_readdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">读取数据</span></span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../body/data_02_data_type.html" class="sidebar-item-text sidebar-link">
@@ -348,39 +359,10 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">上证指数的时序特征</span></span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text"><strong>可视化</strong></span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/graph_01_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Python 可视化：简介</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/graph_dis_box_violin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">箱型图和小提琴图</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/graph_dis_histogram.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">直方图</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../body/graph_dis_kdensity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">核密度函数图</span></span></a>
+  <a href="../body/web_01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">数据爬虫入门</span></span></a>
   </div>
 </li>
       </ul>
@@ -388,7 +370,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text"><strong>回归分析</strong></span></a>
+ <span class="menu-text"><strong>可视化</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -396,10 +378,39 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/test_AB_test.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></span></a>
+  <a href="../body/graph_01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Python 可视化：简介</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_box_violin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">箱型图和小提琴图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_histogram.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">直方图</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/graph_dis_kdensity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">核密度函数图</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>线性回归</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../body/regress_01_OLS.html" class="sidebar-item-text sidebar-link">
@@ -418,21 +429,10 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">分仓散点图</span></span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text"><strong>时间序列分析</strong></span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../body/TS_FRED_US_unemploy_rate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></span></a>
+  <a href="../body/regress_04_wage_prediction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">线性回归分析</span></span></a>
   </div>
 </li>
       </ul>
@@ -440,7 +440,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text"><strong>作业展示</strong></span></a>
+ <span class="menu-text"><strong>时间序列</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -448,62 +448,156 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../body/TS_asset_return.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">资产收益率（Asset Returns）</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_man_weight.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">时序建模思路：模拟体重变化</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_ARMA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">ARMA 模型</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_FRED_US_unemploy_rate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">案例：美国失业率和通胀率关系分析</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/TS_GARCH_BYD.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">GARCH 模型</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>机器学习</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/test_AB_test.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-Naive-Bayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">In Depth: Naive Bayes Classification</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-Random-Forests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">深入理解：决策树与随机森林</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-baggboost-lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Tree-Based Methods</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-Support-Vector-Machines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">支持向量机 (Support Vector Machines)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/ML-svm-lab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Support Vector Machines</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/06.00-Figure-Code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">Appendix: Figure Code</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>作业展示</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../homework/pre/Dangdang_G7_01_data_clean.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">当当网-G7-01</span></span></a>
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">当当网-G7-01</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/Dangdang_G7_02_data_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">当当网-G7-02</span></span></a>
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">当当网-G7-02</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/G8_China_stock_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">G8-中国上市公司</span></span></a>
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">G8-中国上市公司</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/Stock_G4_01_data_crawler.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">G4-01</span></span></a>
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">G4-01</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/Stock_G4_02_data_cleaning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">G4-02</span></span></a>
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">G4-02</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/Stock_G4_03_data_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">G4-03</span></span></a>
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">G4-03</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/_ex02_万诗晴.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">ex02_万诗晴</span></span></a>
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">ex02_万诗晴</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/_ex02_吴倩茵.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">ex02_吴倩茵</span></span></a>
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">ex02_吴倩茵</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/_ex02_朱少荣.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">ex02_朱少荣</span></span></a>
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">ex02_朱少荣</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../homework/pre/_ex02_黄伊姿.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">ex02_黄伊姿</span></span></a>
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">ex02_黄伊姿</span></span></a>
   </div>
 </li>
       </ul>
@@ -518,46 +612,46 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#简介" id="toc-简介" class="nav-link active" data-scroll-target="#简介"><span class="header-section-number">29.1</span> 简介</a>
+  <li><a href="#简介" id="toc-简介" class="nav-link active" data-scroll-target="#简介"><span class="header-section-number">39.1</span> 简介</a>
   <ul class="collapse">
-  <li><a href="#什么是-ab-测试" id="toc-什么是-ab-测试" class="nav-link" data-scroll-target="#什么是-ab-测试"><span class="header-section-number">29.1.1</span> 什么是 A/B 测试？</a></li>
-  <li><a href="#ab-测试的基本流程" id="toc-ab-测试的基本流程" class="nav-link" data-scroll-target="#ab-测试的基本流程"><span class="header-section-number">29.1.2</span> A/B 测试的基本流程</a></li>
+  <li><a href="#什么是-ab-测试" id="toc-什么是-ab-测试" class="nav-link" data-scroll-target="#什么是-ab-测试"><span class="header-section-number">39.1.1</span> 什么是 A/B 测试？</a></li>
+  <li><a href="#ab-测试的基本流程" id="toc-ab-测试的基本流程" class="nav-link" data-scroll-target="#ab-测试的基本流程"><span class="header-section-number">39.1.2</span> A/B 测试的基本流程</a></li>
   </ul></li>
-  <li><a href="#案例引入与问题设定" id="toc-案例引入与问题设定" class="nav-link" data-scroll-target="#案例引入与问题设定"><span class="header-section-number">29.2</span> 案例引入与问题设定</a>
+  <li><a href="#案例引入与问题设定" id="toc-案例引入与问题设定" class="nav-link" data-scroll-target="#案例引入与问题设定"><span class="header-section-number">39.2</span> 案例引入与问题设定</a>
   <ul class="collapse">
-  <li><a href="#案例背景咖啡店促销策略优化" id="toc-案例背景咖啡店促销策略优化" class="nav-link" data-scroll-target="#案例背景咖啡店促销策略优化"><span class="header-section-number">29.2.1</span> 案例背景：咖啡店促销策略优化</a></li>
-  <li><a href="#指标设定与分析思路" id="toc-指标设定与分析思路" class="nav-link" data-scroll-target="#指标设定与分析思路"><span class="header-section-number">29.2.2</span> 指标设定与分析思路</a></li>
+  <li><a href="#案例背景咖啡店促销策略优化" id="toc-案例背景咖啡店促销策略优化" class="nav-link" data-scroll-target="#案例背景咖啡店促销策略优化"><span class="header-section-number">39.2.1</span> 案例背景：咖啡店促销策略优化</a></li>
+  <li><a href="#指标设定与分析思路" id="toc-指标设定与分析思路" class="nav-link" data-scroll-target="#指标设定与分析思路"><span class="header-section-number">39.2.2</span> 指标设定与分析思路</a></li>
   </ul></li>
-  <li><a href="#随机分组与实验控制" id="toc-随机分组与实验控制" class="nav-link" data-scroll-target="#随机分组与实验控制"><span class="header-section-number">29.3</span> 随机分组与实验控制</a>
+  <li><a href="#随机分组与实验控制" id="toc-随机分组与实验控制" class="nav-link" data-scroll-target="#随机分组与实验控制"><span class="header-section-number">39.3</span> 随机分组与实验控制</a>
   <ul class="collapse">
-  <li><a href="#如何实现随机分组" id="toc-如何实现随机分组" class="nav-link" data-scroll-target="#如何实现随机分组"><span class="header-section-number">29.3.1</span> 如何实现随机分组？</a></li>
-  <li><a href="#分层随机分组" id="toc-分层随机分组" class="nav-link" data-scroll-target="#分层随机分组"><span class="header-section-number">29.3.2</span> 分层随机分组</a></li>
+  <li><a href="#如何实现随机分组" id="toc-如何实现随机分组" class="nav-link" data-scroll-target="#如何实现随机分组"><span class="header-section-number">39.3.1</span> 如何实现随机分组？</a></li>
+  <li><a href="#分层随机分组" id="toc-分层随机分组" class="nav-link" data-scroll-target="#分层随机分组"><span class="header-section-number">39.3.2</span> 分层随机分组</a></li>
   </ul></li>
-  <li><a href="#核心指标及多指标综合评价" id="toc-核心指标及多指标综合评价" class="nav-link" data-scroll-target="#核心指标及多指标综合评价"><span class="header-section-number">29.4</span> 核心指标及多指标综合评价</a></li>
-  <li><a href="#统计检验方法详解" id="toc-统计检验方法详解" class="nav-link" data-scroll-target="#统计检验方法详解"><span class="header-section-number">29.5</span> 统计检验方法详解</a>
+  <li><a href="#核心指标及多指标综合评价" id="toc-核心指标及多指标综合评价" class="nav-link" data-scroll-target="#核心指标及多指标综合评价"><span class="header-section-number">39.4</span> 核心指标及多指标综合评价</a></li>
+  <li><a href="#统计检验方法详解" id="toc-统计检验方法详解" class="nav-link" data-scroll-target="#统计检验方法详解"><span class="header-section-number">39.5</span> 统计检验方法详解</a>
   <ul class="collapse">
-  <li><a href="#均值差异的-t-检验独立样本-t-检验" id="toc-均值差异的-t-检验独立样本-t-检验" class="nav-link" data-scroll-target="#均值差异的-t-检验独立样本-t-检验"><span class="header-section-number">29.5.1</span> 均值差异的 t 检验（独立样本 t 检验）</a></li>
-  <li><a href="#非参数检验mann-whitney-u-检验" id="toc-非参数检验mann-whitney-u-检验" class="nav-link" data-scroll-target="#非参数检验mann-whitney-u-检验"><span class="header-section-number">29.5.2</span> 非参数检验（Mann-Whitney U 检验）</a></li>
-  <li><a href="#转化率比例的-z-检验" id="toc-转化率比例的-z-检验" class="nav-link" data-scroll-target="#转化率比例的-z-检验"><span class="header-section-number">29.5.3</span> 转化率/比例的 Z 检验</a></li>
-  <li><a href="#显著性水平p-值" id="toc-显著性水平p-值" class="nav-link" data-scroll-target="#显著性水平p-值"><span class="header-section-number">29.5.4</span> 显著性水平、P 值</a></li>
-  <li><a href="#置信区间" id="toc-置信区间" class="nav-link" data-scroll-target="#置信区间"><span class="header-section-number">29.5.5</span> 置信区间</a></li>
+  <li><a href="#均值差异的-t-检验独立样本-t-检验" id="toc-均值差异的-t-检验独立样本-t-检验" class="nav-link" data-scroll-target="#均值差异的-t-检验独立样本-t-检验"><span class="header-section-number">39.5.1</span> 均值差异的 t 检验（独立样本 t 检验）</a></li>
+  <li><a href="#非参数检验mann-whitney-u-检验" id="toc-非参数检验mann-whitney-u-检验" class="nav-link" data-scroll-target="#非参数检验mann-whitney-u-检验"><span class="header-section-number">39.5.2</span> 非参数检验（Mann-Whitney U 检验）</a></li>
+  <li><a href="#转化率比例的-z-检验" id="toc-转化率比例的-z-检验" class="nav-link" data-scroll-target="#转化率比例的-z-检验"><span class="header-section-number">39.5.3</span> 转化率/比例的 Z 检验</a></li>
+  <li><a href="#显著性水平p-值" id="toc-显著性水平p-值" class="nav-link" data-scroll-target="#显著性水平p-值"><span class="header-section-number">39.5.4</span> 显著性水平、P 值</a></li>
+  <li><a href="#置信区间" id="toc-置信区间" class="nav-link" data-scroll-target="#置信区间"><span class="header-section-number">39.5.5</span> 置信区间</a></li>
   </ul></li>
-  <li><a href="#样本量与实验效能" id="toc-样本量与实验效能" class="nav-link" data-scroll-target="#样本量与实验效能"><span class="header-section-number">29.6</span> 样本量与实验效能</a></li>
-  <li><a href="#python-实操咖啡店促销方案" id="toc-python-实操咖啡店促销方案" class="nav-link" data-scroll-target="#python-实操咖啡店促销方案"><span class="header-section-number">29.7</span> Python 实操：咖啡店促销方案</a>
+  <li><a href="#样本量与实验效能" id="toc-样本量与实验效能" class="nav-link" data-scroll-target="#样本量与实验效能"><span class="header-section-number">39.6</span> 样本量与实验效能</a></li>
+  <li><a href="#python-实操咖啡店促销方案" id="toc-python-实操咖啡店促销方案" class="nav-link" data-scroll-target="#python-实操咖啡店促销方案"><span class="header-section-number">39.7</span> Python 实操：咖啡店促销方案</a>
   <ul class="collapse">
-  <li><a href="#数据背景与问题回顾" id="toc-数据背景与问题回顾" class="nav-link" data-scroll-target="#数据背景与问题回顾"><span class="header-section-number">29.7.1</span> 数据背景与问题回顾</a></li>
-  <li><a href="#数据模拟与分组" id="toc-数据模拟与分组" class="nav-link" data-scroll-target="#数据模拟与分组"><span class="header-section-number">29.7.2</span> 数据模拟与分组</a></li>
-  <li><a href="#数据可视化与描述统计" id="toc-数据可视化与描述统计" class="nav-link" data-scroll-target="#数据可视化与描述统计"><span class="header-section-number">29.7.3</span> 数据可视化与描述统计</a></li>
-  <li><a href="#统计检验" id="toc-统计检验" class="nav-link" data-scroll-target="#统计检验"><span class="header-section-number">29.7.4</span> 统计检验</a></li>
-  <li><a href="#功效分析" id="toc-功效分析" class="nav-link" data-scroll-target="#功效分析"><span class="header-section-number">29.7.5</span> 功效分析</a></li>
-  <li><a href="#结果解读与业务建议" id="toc-结果解读与业务建议" class="nav-link" data-scroll-target="#结果解读与业务建议"><span class="header-section-number">29.7.6</span> 结果解读与业务建议</a></li>
+  <li><a href="#数据背景与问题回顾" id="toc-数据背景与问题回顾" class="nav-link" data-scroll-target="#数据背景与问题回顾"><span class="header-section-number">39.7.1</span> 数据背景与问题回顾</a></li>
+  <li><a href="#数据模拟与分组" id="toc-数据模拟与分组" class="nav-link" data-scroll-target="#数据模拟与分组"><span class="header-section-number">39.7.2</span> 数据模拟与分组</a></li>
+  <li><a href="#数据可视化与描述统计" id="toc-数据可视化与描述统计" class="nav-link" data-scroll-target="#数据可视化与描述统计"><span class="header-section-number">39.7.3</span> 数据可视化与描述统计</a></li>
+  <li><a href="#统计检验" id="toc-统计检验" class="nav-link" data-scroll-target="#统计检验"><span class="header-section-number">39.7.4</span> 统计检验</a></li>
+  <li><a href="#功效分析" id="toc-功效分析" class="nav-link" data-scroll-target="#功效分析"><span class="header-section-number">39.7.5</span> 功效分析</a></li>
+  <li><a href="#结果解读与业务建议" id="toc-结果解读与业务建议" class="nav-link" data-scroll-target="#结果解读与业务建议"><span class="header-section-number">39.7.6</span> 结果解读与业务建议</a></li>
   </ul></li>
-  <li><a href="#非随机分组实验情境影响与对策" id="toc-非随机分组实验情境影响与对策" class="nav-link" data-scroll-target="#非随机分组实验情境影响与对策"><span class="header-section-number">29.8</span> 非随机分组实验：情境、影响与对策</a>
+  <li><a href="#非随机分组实验情境影响与对策" id="toc-非随机分组实验情境影响与对策" class="nav-link" data-scroll-target="#非随机分组实验情境影响与对策"><span class="header-section-number">39.8</span> 非随机分组实验：情境、影响与对策</a>
   <ul class="collapse">
-  <li><a href="#典型情境" id="toc-典型情境" class="nav-link" data-scroll-target="#典型情境"><span class="header-section-number">29.8.1</span> 典型情境</a></li>
-  <li><a href="#影响分析" id="toc-影响分析" class="nav-link" data-scroll-target="#影响分析"><span class="header-section-number">29.8.2</span> 影响分析</a></li>
-  <li><a href="#应对与改进策略" id="toc-应对与改进策略" class="nav-link" data-scroll-target="#应对与改进策略"><span class="header-section-number">29.8.3</span> 应对与改进策略</a></li>
-  <li><a href="#小结" id="toc-小结" class="nav-link" data-scroll-target="#小结"><span class="header-section-number">29.8.4</span> 小结</a></li>
+  <li><a href="#典型情境" id="toc-典型情境" class="nav-link" data-scroll-target="#典型情境"><span class="header-section-number">39.8.1</span> 典型情境</a></li>
+  <li><a href="#影响分析" id="toc-影响分析" class="nav-link" data-scroll-target="#影响分析"><span class="header-section-number">39.8.2</span> 影响分析</a></li>
+  <li><a href="#应对与改进策略" id="toc-应对与改进策略" class="nav-link" data-scroll-target="#应对与改进策略"><span class="header-section-number">39.8.3</span> 应对与改进策略</a></li>
+  <li><a href="#小结" id="toc-小结" class="nav-link" data-scroll-target="#小结"><span class="header-section-number">39.8.4</span> 小结</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -565,9 +659,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/test_AB_test.html"><strong>回归分析</strong></a></li><li class="breadcrumb-item"><a href="../body/test_AB_test.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/test_AB_test.html"><strong>机器学习</strong></a></li><li class="breadcrumb-item"><a href="../body/test_AB_test.html"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></h1>
+<h1 class="title"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">A/B test-分组对照试验</span></h1>
 </div>
 
 
@@ -588,8 +682,8 @@ window.Quarto = {
 <li>案例 1：<a href="https://github.com/renatofillinich/ab_test_guide_in_python/blob/master/AB%20testing%20with%20Python.ipynb">A/B 检验：新版网页更有吸引力吗？</a></li>
 <li>案例 2：<a href="https://www.cnblogs.com/ministep/p/18278179">A/B 检验：支付宝营销策略效果分析</a></li>
 </ul>
-<section id="简介" class="level2" data-number="29.1">
-<h2 data-number="29.1" class="anchored" data-anchor-id="简介"><span class="header-section-number">29.1</span> 简介</h2>
+<section id="简介" class="level2" data-number="39.1">
+<h2 data-number="39.1" class="anchored" data-anchor-id="简介"><span class="header-section-number">39.1</span> 简介</h2>
 <p>近年来，金融科技公司不断尝试提升贷款客户的还款率。例如，「某金融公司」通过数据分析发现，许多客户因遗忘或忽视账单信息而逾期。市场与风控团队提出：<strong>如果在还款日前定时发送短信提醒，能否显著提升客户的按时还款率？</strong></p>
 <p>在全面推行这个新策略之前，公司希望通过科学方法验证其有效性。目前的验证方法有如下几种：</p>
 <ul>
@@ -600,8 +694,8 @@ window.Quarto = {
 <blockquote class="blockquote">
 <p><strong>讨论</strong>：上述三种方法的优点和缺点是什么？</p>
 </blockquote>
-<section id="什么是-ab-测试" class="level3" data-number="29.1.1">
-<h3 data-number="29.1.1" class="anchored" data-anchor-id="什么是-ab-测试"><span class="header-section-number">29.1.1</span> 什么是 A/B 测试？</h3>
+<section id="什么是-ab-测试" class="level3" data-number="39.1.1">
+<h3 data-number="39.1.1" class="anchored" data-anchor-id="什么是-ab-测试"><span class="header-section-number">39.1.1</span> 什么是 A/B 测试？</h3>
 <p>A/B 测试，也被称为分组对照实验（Randomized Controlled Trial, RCT），是数据分析和产品优化领域中常用的一种实验设计方法。A/B 测试通过将用户或样本<strong>随机分为两组</strong>——实验组 (B 组) 和对照组 (A 组)，并分别施加不同的处理或策略，比较两组关键指标的差异，从而评估某项新方案或改进措施是否有效。</p>
 <p><strong>应用场景举例</strong>：</p>
 <ul>
@@ -611,8 +705,8 @@ window.Quarto = {
 </ul>
 <p>A/B 测试以其<strong>操作简单、原理严谨、结果直观</strong>的特点，被广泛应用于互联网、零售、金融等行业的数据驱动决策流程中。</p>
 </section>
-<section id="ab-测试的基本流程" class="level3" data-number="29.1.2">
-<h3 data-number="29.1.2" class="anchored" data-anchor-id="ab-测试的基本流程"><span class="header-section-number">29.1.2</span> A/B 测试的基本流程</h3>
+<section id="ab-测试的基本流程" class="level3" data-number="39.1.2">
+<h3 data-number="39.1.2" class="anchored" data-anchor-id="ab-测试的基本流程"><span class="header-section-number">39.1.2</span> A/B 测试的基本流程</h3>
 <ol type="1">
 <li><strong>明确实验目标</strong>：如提升转化率、点击率或收入</li>
 <li><strong>确定实验组与对照组</strong>：通常采用<strong>随机分组</strong>，保证组间差异仅来源于处理</li>
@@ -623,10 +717,10 @@ window.Quarto = {
 </ol>
 </section>
 </section>
-<section id="案例引入与问题设定" class="level2" data-number="29.2">
-<h2 data-number="29.2" class="anchored" data-anchor-id="案例引入与问题设定"><span class="header-section-number">29.2</span> 案例引入与问题设定</h2>
-<section id="案例背景咖啡店促销策略优化" class="level3" data-number="29.2.1">
-<h3 data-number="29.2.1" class="anchored" data-anchor-id="案例背景咖啡店促销策略优化"><span class="header-section-number">29.2.1</span> 案例背景：咖啡店促销策略优化</h3>
+<section id="案例引入与问题设定" class="level2" data-number="39.2">
+<h2 data-number="39.2" class="anchored" data-anchor-id="案例引入与问题设定"><span class="header-section-number">39.2</span> 案例引入与问题设定</h2>
+<section id="案例背景咖啡店促销策略优化" class="level3" data-number="39.2.1">
+<h3 data-number="39.2.1" class="anchored" data-anchor-id="案例背景咖啡店促销策略优化"><span class="header-section-number">39.2.1</span> 案例背景：咖啡店促销策略优化</h3>
 <p>假设你在某连锁咖啡品牌的运营团队工作。近期，为了提升门店销量，市场部设计了两种不同的促销方案：</p>
 <ul>
 <li><strong>A 方案（对照组）</strong>：原有满 30 元减 5 元活动</li>
@@ -635,8 +729,8 @@ window.Quarto = {
 <p>日常运营中，人们常常认为加大折扣就一定能带来更高消费，但实际效果却受到多种因素影响。只有通过<strong>随机分组实验</strong>和统计检验，才能避免偶然性和主观偏差，客观评估新策略的价值。</p>
 <p>为此，门店计划进行为期一个月的测试，在此期间，将顾客随机分为两组，分别接受 A 或 B 方案。管理层希望通过 A/B 测试，判断哪种方案能更有效地提升人均消费金额。</p>
 </section>
-<section id="指标设定与分析思路" class="level3" data-number="29.2.2">
-<h3 data-number="29.2.2" class="anchored" data-anchor-id="指标设定与分析思路"><span class="header-section-number">29.2.2</span> 指标设定与分析思路</h3>
+<section id="指标设定与分析思路" class="level3" data-number="39.2.2">
+<h3 data-number="39.2.2" class="anchored" data-anchor-id="指标设定与分析思路"><span class="header-section-number">39.2.2</span> 指标设定与分析思路</h3>
 <ul>
 <li><p><strong>核心指标</strong>：人均消费金额</p></li>
 <li><p><strong>数据需求</strong>：每位顾客的消费金额、所属促销组别</p></li>
@@ -649,11 +743,11 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="随机分组与实验控制" class="level2" data-number="29.3">
-<h2 data-number="29.3" class="anchored" data-anchor-id="随机分组与实验控制"><span class="header-section-number">29.3</span> 随机分组与实验控制</h2>
+<section id="随机分组与实验控制" class="level2" data-number="39.3">
+<h2 data-number="39.3" class="anchored" data-anchor-id="随机分组与实验控制"><span class="header-section-number">39.3</span> 随机分组与实验控制</h2>
 <p>A/B 测试的关键在于科学分组。<strong>随机分组</strong>意味着每一个样本都被赋予相同的概率进入实验组或对照组，从而最大程度上消除两组间的系统性差异，使实验结果具有因果解释力。</p>
-<section id="如何实现随机分组" class="level3" data-number="29.3.1">
-<h3 data-number="29.3.1" class="anchored" data-anchor-id="如何实现随机分组"><span class="header-section-number">29.3.1</span> 如何实现随机分组？</h3>
+<section id="如何实现随机分组" class="level3" data-number="39.3.1">
+<h3 data-number="39.3.1" class="anchored" data-anchor-id="如何实现随机分组"><span class="header-section-number">39.3.1</span> 如何实现随机分组？</h3>
 <p>在业务系统中，常见做法有按照用户 ID 尾号、系统随机数等方式分配用户，也可以利用 Python 中的 <code>numpy</code> 包提供的随机抽样函数直接实现。</p>
 <p>下面是 Python 的实现方式示例：</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -664,8 +758,8 @@ window.Quarto = {
 <span id="cb1-6"><a href="#cb1-6"></a><span class="co"># 随机分配到实验组(B)或对照组(A)</span></span>
 <span id="cb1-7"><a href="#cb1-7"></a>df[<span class="st">'group'</span>] <span class="op">=</span> np.random.choice([<span class="st">'A'</span>, <span class="st">'B'</span>], size<span class="op">=</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="分层随机分组" class="level3" data-number="29.3.2">
-<h3 data-number="29.3.2" class="anchored" data-anchor-id="分层随机分组"><span class="header-section-number">29.3.2</span> 分层随机分组</h3>
+<section id="分层随机分组" class="level3" data-number="39.3.2">
+<h3 data-number="39.3.2" class="anchored" data-anchor-id="分层随机分组"><span class="header-section-number">39.3.2</span> 分层随机分组</h3>
 <p><strong>分层随机分组</strong>（Stratified Randomization）是指先将样本按某些关键特征分层，然后在每一层内进行独立的随机分组，以保证组间关键变量的分布均衡。</p>
 <p><strong>实践建议</strong>：分层变量可以是性别、年龄段、会员等级、地域等类别变量。在如下几种情况下，建议使用分层随机分组：</p>
 <ul>
@@ -682,8 +776,8 @@ window.Quarto = {
 <span id="cb2-7"><a href="#cb2-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="核心指标及多指标综合评价" class="level2" data-number="29.4">
-<h2 data-number="29.4" class="anchored" data-anchor-id="核心指标及多指标综合评价"><span class="header-section-number">29.4</span> 核心指标及多指标综合评价</h2>
+<section id="核心指标及多指标综合评价" class="level2" data-number="39.4">
+<h2 data-number="39.4" class="anchored" data-anchor-id="核心指标及多指标综合评价"><span class="header-section-number">39.4</span> 核心指标及多指标综合评价</h2>
 <p>A/B 测试的成败，很大程度上取决于你设定的<strong>评价指标</strong>。不同业务场景会选取不同的核心指标。常见的指标如下：</p>
 <p><strong>转化率（Conversion Rate）</strong>：完成特定目标（如下单、注册、付费）的用户比例。</p>
 <p><span class="math display">\[
@@ -701,10 +795,10 @@ window.Quarto = {
 <p>在实际分析中，通常不会只看一个指标。例如，电商会同时关注点击率、转化率、客单价、利润率等多个指标。因为，有些政策或策略虽然在某个指标上收效良好，但却可能对其他指标产生负面影响，反之亦然。</p>
 <p>需要注意的是，当同时关注多个指标时，要注意<strong>多重检验问题</strong>，即检验的指标越多，“误判为有效”的概率也会上升。常用如 <a href="https://en.wikipedia.org/wiki/Bonferroni_correction">Bonferroni 修正</a> 等方法，调整各项检验的显著性水平，降低假阳性的概率。</p>
 </section>
-<section id="统计检验方法详解" class="level2" data-number="29.5">
-<h2 data-number="29.5" class="anchored" data-anchor-id="统计检验方法详解"><span class="header-section-number">29.5</span> 统计检验方法详解</h2>
-<section id="均值差异的-t-检验独立样本-t-检验" class="level3" data-number="29.5.1">
-<h3 data-number="29.5.1" class="anchored" data-anchor-id="均值差异的-t-检验独立样本-t-检验"><span class="header-section-number">29.5.1</span> 均值差异的 t 检验（独立样本 t 检验）</h3>
+<section id="统计检验方法详解" class="level2" data-number="39.5">
+<h2 data-number="39.5" class="anchored" data-anchor-id="统计检验方法详解"><span class="header-section-number">39.5</span> 统计检验方法详解</h2>
+<section id="均值差异的-t-检验独立样本-t-检验" class="level3" data-number="39.5.1">
+<h3 data-number="39.5.1" class="anchored" data-anchor-id="均值差异的-t-检验独立样本-t-检验"><span class="header-section-number">39.5.1</span> 均值差异的 t 检验（独立样本 t 检验）</h3>
 <ul>
 <li><p><strong>适用场景</strong>：对照组和实验组数据近似正态分布，且样本独立。</p></li>
 <li><p><strong>检验原理</strong>：对比两组均值，判断其差异是否显著。</p></li>
@@ -736,8 +830,8 @@ s_p^2 = \frac{(n_A - 1)s_A^2 + (n_B - 1)s_B^2}{n_A + n_B - 2}
 <span id="cb3-3"><a href="#cb3-3"></a>scipy.stats.ttest_ind(a, b, equal_var<span class="op">=</span><span class="va">False</span>) <span class="co"># 异方差</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </section>
-<section id="非参数检验mann-whitney-u-检验" class="level3" data-number="29.5.2">
-<h3 data-number="29.5.2" class="anchored" data-anchor-id="非参数检验mann-whitney-u-检验"><span class="header-section-number">29.5.2</span> 非参数检验（Mann-Whitney U 检验）</h3>
+<section id="非参数检验mann-whitney-u-检验" class="level3" data-number="39.5.2">
+<h3 data-number="39.5.2" class="anchored" data-anchor-id="非参数检验mann-whitney-u-检验"><span class="header-section-number">39.5.2</span> 非参数检验（Mann-Whitney U 检验）</h3>
 <ul>
 <li><p><strong>适用场景</strong>：当样本分布偏态或存在异常值时，采用非参数检验方法更稳健。</p></li>
 <li><p><strong>检验原理</strong>：将两组样本混合排序，比较每组的秩和，判断分布是否有统计显著差异。</p></li>
@@ -752,8 +846,8 @@ U_A = n_A n_B + \frac{n_A(n_A+1)}{2} - R_A
 <span id="cb4-3"><a href="#cb4-3"></a>scipy.stats.mannwhitneyu(a, b, alternative<span class="op">=</span><span class="st">'greater'</span>)   <span class="co"># 单尾检验</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </section>
-<section id="转化率比例的-z-检验" class="level3" data-number="29.5.3">
-<h3 data-number="29.5.3" class="anchored" data-anchor-id="转化率比例的-z-检验"><span class="header-section-number">29.5.3</span> 转化率/比例的 Z 检验</h3>
+<section id="转化率比例的-z-检验" class="level3" data-number="39.5.3">
+<h3 data-number="39.5.3" class="anchored" data-anchor-id="转化率比例的-z-检验"><span class="header-section-number">39.5.3</span> 转化率/比例的 Z 检验</h3>
 <ul>
 <li><p><strong>适用场景</strong>：核心指标为转化率等比例变量时</p></li>
 <li><p><strong>原假设</strong>：两组转化率无显著差异</p></li>
@@ -774,8 +868,8 @@ p = \frac{n_A p_A + n_B p_B}{n_A + n_B}
 <span id="cb5-4"><a href="#cb5-4"></a>  nobs<span class="op">=</span>[n_A, n_B])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </section>
-<section id="显著性水平p-值" class="level3" data-number="29.5.4">
-<h3 data-number="29.5.4" class="anchored" data-anchor-id="显著性水平p-值"><span class="header-section-number">29.5.4</span> 显著性水平、P 值</h3>
+<section id="显著性水平p-值" class="level3" data-number="39.5.4">
+<h3 data-number="39.5.4" class="anchored" data-anchor-id="显著性水平p-值"><span class="header-section-number">39.5.4</span> 显著性水平、P 值</h3>
 <ul>
 <li><p><strong>显著性水平（Significance Level, <span class="math inline">\(\alpha\)</span>）</strong></p>
 <ul>
@@ -790,8 +884,8 @@ p = \frac{n_A p_A + n_B p_B}{n_A + n_B}
 </ul></li>
 </ul>
 </section>
-<section id="置信区间" class="level3" data-number="29.5.5">
-<h3 data-number="29.5.5" class="anchored" data-anchor-id="置信区间"><span class="header-section-number">29.5.5</span> 置信区间</h3>
+<section id="置信区间" class="level3" data-number="39.5.5">
+<h3 data-number="39.5.5" class="anchored" data-anchor-id="置信区间"><span class="header-section-number">39.5.5</span> 置信区间</h3>
 <p><strong>点估计与区间估计</strong></p>
 <p>在 A/B 测试等数据分析中，估计出的 A 组和 B 组的平均差异 <span class="math inline">\(d = \bar{x}_A - \bar{x}_B\)</span> 称为「点估计」。由于它是一个随机变量，单纯看 <span class="math inline">\(d\)</span> 的数值是没有意义的，需要根据其标准误来构造 t 统计量来执行假设检验。</p>
 <p>另一种常用的估计方法是<strong>区间估计</strong>，它提供了一个范围而不是单一数值。我们常用<strong>置信区间（Confidence Interval, CI）</strong>来表达对总体参数（如均值、比例等）的不确定性估计。例如，我们估算短信提醒提升还款率，得到「提升幅度的 95% 置信区间为 <span class="math inline">\([2\%, 5\%]\)</span>」。</p>
@@ -807,8 +901,8 @@ p = \frac{n_A p_A + n_B p_B}{n_A + n_B}
 <p>在实际分析中，我们往往只进行<strong>一次实验</strong>，也只能计算出<strong>一个</strong>置信区间（如 <span class="math inline">\([2\%, 5\%]\)</span>）。对于这一次计算出的区间，<strong>真实参数要么在区间内，要么不在区间内</strong>。我们<strong>不能</strong>说“参数有 95% 的概率落在本次区间内” (这是一种非常普遍的错误理解)。我们只能说，<span class="math inline">\([2\%, 5\%]\)</span> 有「95% 的可靠性」或「95% 的覆盖率」。</p>
 </section>
 </section>
-<section id="样本量与实验效能" class="level2" data-number="29.6">
-<h2 data-number="29.6" class="anchored" data-anchor-id="样本量与实验效能"><span class="header-section-number">29.6</span> 样本量与实验效能</h2>
+<section id="样本量与实验效能" class="level2" data-number="39.6">
+<h2 data-number="39.6" class="anchored" data-anchor-id="样本量与实验效能"><span class="header-section-number">39.6</span> 样本量与实验效能</h2>
 <p>样本量不足可能导致“假阴性”（即实际上存在差异，但没有检验出来）。虽然通常来讲，样本量越大，检验的统计效能越高，但过大的样本量会导致资源浪费和计算效率低下。因此，在设计 A/B 测试时，需要合理计算所需的样本量。</p>
 <p><strong>功效分析（Power Analysis）</strong> 用于预先计算所需样本量，以保证检验的敏感性和可靠性。</p>
 <p><strong>样本量计算公式</strong>（以均值差异检验为例）：</p>
@@ -827,11 +921,11 @@ p = \frac{n_A p_A + n_B p_B}{n_A + n_B}
 <span id="cb6-3"><a href="#cb6-3"></a>  n <span class="op">=</span> sms.NormalIndPower().solve_power(effect_size<span class="op">=</span>effect_size, alpha<span class="op">=</span><span class="fl">0.05</span>, power<span class="op">=</span><span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </section>
-<section id="python-实操咖啡店促销方案" class="level2" data-number="29.7">
-<h2 data-number="29.7" class="anchored" data-anchor-id="python-实操咖啡店促销方案"><span class="header-section-number">29.7</span> Python 实操：咖啡店促销方案</h2>
+<section id="python-实操咖啡店促销方案" class="level2" data-number="39.7">
+<h2 data-number="39.7" class="anchored" data-anchor-id="python-实操咖啡店促销方案"><span class="header-section-number">39.7</span> Python 实操：咖啡店促销方案</h2>
 <p>本节将以「咖啡店促销方案」为例，完整展示 A/B 测试的数据生成、分组、统计检验和结果可视化的全过程。所有代码均配详细中文注释，便于初学者自学和复现。</p>
-<section id="数据背景与问题回顾" class="level3" data-number="29.7.1">
-<h3 data-number="29.7.1" class="anchored" data-anchor-id="数据背景与问题回顾"><span class="header-section-number">29.7.1</span> 数据背景与问题回顾</h3>
+<section id="数据背景与问题回顾" class="level3" data-number="39.7.1">
+<h3 data-number="39.7.1" class="anchored" data-anchor-id="数据背景与问题回顾"><span class="header-section-number">39.7.1</span> 数据背景与问题回顾</h3>
 <p><strong>业务场景简述</strong></p>
 <p>某连锁咖啡店运营团队为了提升门店人均消费金额，设计了两种促销方案：</p>
 <ul>
@@ -845,8 +939,8 @@ p = \frac{n_A p_A + n_B p_B}{n_A + n_B}
 <li>提供业务解读与决策建议</li>
 </ul>
 </section>
-<section id="数据模拟与分组" class="level3" data-number="29.7.2">
-<h3 data-number="29.7.2" class="anchored" data-anchor-id="数据模拟与分组"><span class="header-section-number">29.7.2</span> 数据模拟与分组</h3>
+<section id="数据模拟与分组" class="level3" data-number="39.7.2">
+<h3 data-number="39.7.2" class="anchored" data-anchor-id="数据模拟与分组"><span class="header-section-number">39.7.2</span> 数据模拟与分组</h3>
 <div id="698df8eb" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a></span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -875,10 +969,10 @@ p = \frac{n_A p_A + n_B p_B}{n_A + n_B}
 <span id="cb7-25"><a href="#cb7-25"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="数据可视化与描述统计" class="level3" data-number="29.7.3">
-<h3 data-number="29.7.3" class="anchored" data-anchor-id="数据可视化与描述统计"><span class="header-section-number">29.7.3</span> 数据可视化与描述统计</h3>
-<section id="描述统计" class="level4" data-number="29.7.3.1">
-<h4 data-number="29.7.3.1" class="anchored" data-anchor-id="描述统计"><span class="header-section-number">29.7.3.1</span> 描述统计</h4>
+<section id="数据可视化与描述统计" class="level3" data-number="39.7.3">
+<h3 data-number="39.7.3" class="anchored" data-anchor-id="数据可视化与描述统计"><span class="header-section-number">39.7.3</span> 数据可视化与描述统计</h3>
+<section id="描述统计" class="level4" data-number="39.7.3.1">
+<h4 data-number="39.7.3.1" class="anchored" data-anchor-id="描述统计"><span class="header-section-number">39.7.3.1</span> 描述统计</h4>
 <div id="83748926" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a></span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="co"># 分组描述统计</span></span>
@@ -893,8 +987,8 @@ B      41.3  8.8    500  16.7  64.7</code></pre>
 </div>
 </div>
 </section>
-<section id="消费金额分布对比" class="level4" data-number="29.7.3.2">
-<h4 data-number="29.7.3.2" class="anchored" data-anchor-id="消费金额分布对比"><span class="header-section-number">29.7.3.2</span> 2. 消费金额分布对比</h4>
+<section id="消费金额分布对比" class="level4" data-number="39.7.3.2">
+<h4 data-number="39.7.3.2" class="anchored" data-anchor-id="消费金额分布对比"><span class="header-section-number">39.7.3.2</span> 2. 消费金额分布对比</h4>
 <div id="778e01d1" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># 绘制实验组与对照组的消费金额密度函数图</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
@@ -916,8 +1010,8 @@ B      41.3  8.8    500  16.7  64.7</code></pre>
 </div>
 </div>
 </section>
-<section id="箱线图" class="level4" data-number="29.7.3.3">
-<h4 data-number="29.7.3.3" class="anchored" data-anchor-id="箱线图"><span class="header-section-number">29.7.3.3</span> 3. 箱线图</h4>
+<section id="箱线图" class="level4" data-number="39.7.3.3">
+<h4 data-number="39.7.3.3" class="anchored" data-anchor-id="箱线图"><span class="header-section-number">39.7.3.3</span> 3. 箱线图</h4>
 <div id="4839e2b2" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a></span>
 <span id="cb11-2"><a href="#cb11-2"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'SimHei'</span>]  <span class="co"># 设置中文字体为黑体</span></span>
@@ -939,10 +1033,10 @@ B      41.3  8.8    500  16.7  64.7</code></pre>
 </div>
 </section>
 </section>
-<section id="统计检验" class="level3" data-number="29.7.4">
-<h3 data-number="29.7.4" class="anchored" data-anchor-id="统计检验"><span class="header-section-number">29.7.4</span> 统计检验</h3>
-<section id="独立样本-t-检验" class="level4" data-number="29.7.4.1">
-<h4 data-number="29.7.4.1" class="anchored" data-anchor-id="独立样本-t-检验"><span class="header-section-number">29.7.4.1</span> 独立样本 t 检验</h4>
+<section id="统计检验" class="level3" data-number="39.7.4">
+<h3 data-number="39.7.4" class="anchored" data-anchor-id="统计检验"><span class="header-section-number">39.7.4</span> 统计检验</h3>
+<section id="独立样本-t-检验" class="level4" data-number="39.7.4.1">
+<h4 data-number="39.7.4.1" class="anchored" data-anchor-id="独立样本-t-检验"><span class="header-section-number">39.7.4.1</span> 独立样本 t 检验</h4>
 <div id="044659d6" class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a></span>
 <span id="cb12-2"><a href="#cb12-2"></a><span class="im">from</span> scipy.stats <span class="im">import</span> ttest_ind</span>
@@ -967,8 +1061,8 @@ t 检验 P 值：0.0000</code></pre>
 </div>
 </div>
 </section>
-<section id="mann-whitney-u-检验非参数" class="level4" data-number="29.7.4.2">
-<h4 data-number="29.7.4.2" class="anchored" data-anchor-id="mann-whitney-u-检验非参数"><span class="header-section-number">29.7.4.2</span> Mann-Whitney U 检验（非参数）</h4>
+<section id="mann-whitney-u-检验非参数" class="level4" data-number="39.7.4.2">
+<h4 data-number="39.7.4.2" class="anchored" data-anchor-id="mann-whitney-u-检验非参数"><span class="header-section-number">39.7.4.2</span> Mann-Whitney U 检验（非参数）</h4>
 <div id="9f58d7dd" class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a></span>
 <span id="cb14-2"><a href="#cb14-2"></a><span class="im">from</span> scipy.stats <span class="im">import</span> mannwhitneyu</span>
@@ -982,8 +1076,8 @@ t 检验 P 值：0.0000</code></pre>
 </div>
 </section>
 </section>
-<section id="功效分析" class="level3" data-number="29.7.5">
-<h3 data-number="29.7.5" class="anchored" data-anchor-id="功效分析"><span class="header-section-number">29.7.5</span> 功效分析</h3>
+<section id="功效分析" class="level3" data-number="39.7.5">
+<h3 data-number="39.7.5" class="anchored" data-anchor-id="功效分析"><span class="header-section-number">39.7.5</span> 功效分析</h3>
 <p>计算所需样本量，以保证检验的敏感性和可靠性。</p>
 <div id="3b0b6113" class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># 安装 statsmodels（如未安装）</span></span>
@@ -1015,8 +1109,8 @@ t 检验 P 值：0.0000</code></pre>
 </div>
 </div>
 </section>
-<section id="结果解读与业务建议" class="level3" data-number="29.7.6">
-<h3 data-number="29.7.6" class="anchored" data-anchor-id="结果解读与业务建议"><span class="header-section-number">29.7.6</span> 结果解读与业务建议</h3>
+<section id="结果解读与业务建议" class="level3" data-number="39.7.6">
+<h3 data-number="39.7.6" class="anchored" data-anchor-id="结果解读与业务建议"><span class="header-section-number">39.7.6</span> 结果解读与业务建议</h3>
 <ul>
 <li><p><strong>t 检验结果</strong> 如果 P 值显著低于 0.05，说明实验组和对照组的人均消费金额存在统计学意义上的差异。</p></li>
 <li><p><strong>非参数检验结果</strong> P 值同样低于 0.05，则无论数据是否正态分布，结果均具有统计显著性。</p></li>
@@ -1029,27 +1123,27 @@ t 检验 P 值：0.0000</code></pre>
 </ul>
 </section>
 </section>
-<section id="非随机分组实验情境影响与对策" class="level2" data-number="29.8">
-<h2 data-number="29.8" class="anchored" data-anchor-id="非随机分组实验情境影响与对策"><span class="header-section-number">29.8</span> 非随机分组实验：情境、影响与对策</h2>
+<section id="非随机分组实验情境影响与对策" class="level2" data-number="39.8">
+<h2 data-number="39.8" class="anchored" data-anchor-id="非随机分组实验情境影响与对策"><span class="header-section-number">39.8</span> 非随机分组实验：情境、影响与对策</h2>
 <p>A/B 测试的理想状态是<strong>将所有实验对象随机分配到各组</strong>，这样可以确保两组除了促销方案不同以外，在性别、年龄、消费习惯等一切可观测与不可观测因素上都没有系统性差异。这样才能保证我们观察到的人均消费差异，是由促销方案本身引起的，而不是由其他外部因素“混淆”了实验结论。</p>
 <p>但在实际业务中，往往会遇到<strong>非随机分组</strong>（non-random assignment）的情形，导致样本选择偏误或自选择偏误，影响实验的内部和外部有效性。以咖啡店促销方案为例，常见的非随机分组情境包括：</p>
-<section id="典型情境" class="level3" data-number="29.8.1">
-<h3 data-number="29.8.1" class="anchored" data-anchor-id="典型情境"><span class="header-section-number">29.8.1</span> 典型情境</h3>
+<section id="典型情境" class="level3" data-number="39.8.1">
+<h3 data-number="39.8.1" class="anchored" data-anchor-id="典型情境"><span class="header-section-number">39.8.1</span> 典型情境</h3>
 <ul>
 <li><p><strong>自选择偏误（Self-selection Bias）</strong> 例如顾客可以自行选择参与哪种促销方案。愿意选择 B 方案（满 40 减 10）的顾客可能本身消费能力较强、更愿意多消费。这使得实验组和对照组“天生不同”，即使 B 方案本身没效果，实验组人均消费也可能更高，造成促销效果被高估。</p></li>
 <li><p><strong>系统性分配（Algorithmic or Policy-based Assignment）</strong> 系统根据顾客历史消费金额、会员等级、性别、年龄、工作日/周末等特征进行分组。例如高活跃用户分配 B 方案、低活跃用户分配 A 方案。这使实验组的基础消费水平本来就更高，导致促销效果被高估，影响因果解释力。</p></li>
 <li><p><strong>参与概率不均等</strong> 某些顾客接触到促销活动的机会较多（如常驻用户或新客），分组概率并不均等。如果分析时不加控制，实验结果只代表被高频分配组的用户，而非全部用户。</p></li>
 </ul>
 </section>
-<section id="影响分析" class="level3" data-number="29.8.2">
-<h3 data-number="29.8.2" class="anchored" data-anchor-id="影响分析"><span class="header-section-number">29.8.2</span> 影响分析</h3>
+<section id="影响分析" class="level3" data-number="39.8.2">
+<h3 data-number="39.8.2" class="anchored" data-anchor-id="影响分析"><span class="header-section-number">39.8.2</span> 影响分析</h3>
 <ul>
 <li><p><strong>因果解释性丧失</strong> 分组不是完全随机时，实验组和对照组的差异不仅仅来源于促销方案，其他因素（如用户自带的高消费倾向）也会影响结果。此时对比两组人均消费金额，不能得出“方案 B 导致消费增加”的结论。</p></li>
 <li><p><strong>外部有效性受限</strong> 如果实验样本只覆盖特定用户群体，结论无法推广到所有门店或所有客户。</p></li>
 </ul>
 </section>
-<section id="应对与改进策略" class="level3" data-number="29.8.3">
-<h3 data-number="29.8.3" class="anchored" data-anchor-id="应对与改进策略"><span class="header-section-number">29.8.3</span> 应对与改进策略</h3>
+<section id="应对与改进策略" class="level3" data-number="39.8.3">
+<h3 data-number="39.8.3" class="anchored" data-anchor-id="应对与改进策略"><span class="header-section-number">39.8.3</span> 应对与改进策略</h3>
 <ul>
 <li><p><strong>坚持随机分组原则</strong> 实验方案设计阶段，优先采用系统随机分配，确保每个用户分到各组的概率相等，排除人为和算法干预。</p></li>
 <li><p><strong>分层随机化（Stratified Randomization）</strong> 若用户本身在性别、年龄、消费能力等方面差异较大，可在这些特征层内分别进行随机分组，保证每一层次的用户在各组中比例相等。</p></li>
@@ -1057,8 +1151,8 @@ t 检验 P 值：0.0000</code></pre>
 <li><p><strong>基线特征均衡性检验</strong> 在实验开始前后，比较实验组和对照组在性别、年龄、消费历史等关键变量上的分布情况，及时发现和修正不均衡。</p></li>
 </ul>
 </section>
-<section id="小结" class="level3" data-number="29.8.4">
-<h3 data-number="29.8.4" class="anchored" data-anchor-id="小结"><span class="header-section-number">29.8.4</span> 小结</h3>
+<section id="小结" class="level3" data-number="39.8.4">
+<h3 data-number="39.8.4" class="anchored" data-anchor-id="小结"><span class="header-section-number">39.8.4</span> 小结</h3>
 <p>A/B 测试设计和执行阶段，<strong>分组方法决定了因果推断的科学性</strong>。一旦存在非随机分组，就可能导致样本选择偏误、自选择偏误等问题，结果解读需更加谨慎。 如发现偏误不可避免，应在报告中<strong>如实披露实验设计与样本来源的局限性</strong>，避免业务决策受到误导。</p>
 <p>上述问题都是因果推断中的常见挑战，解决这些问题需要结合实验设计、统计方法和业务理解进行综合考虑。通过坚持随机分组原则、分层随机化、事后加权等方法，可以最大程度上提高实验结果的可靠性和解释力。</p>
 <p>对此有兴趣的读者可以参考以下资料：</p>
@@ -1505,13 +1599,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../body/graph_dis_kdensity.html" class="pagination-link" aria-label="核密度函数图">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">核密度函数图</span></span>
+      <a href="../body/TS_GARCH_BYD.html" class="pagination-link" aria-label="GARCH 模型">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">GARCH 模型</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../body/regress_01_OLS.html" class="pagination-link" aria-label="线性回归模型">
-        <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">线性回归模型</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../body/ML-Naive-Bayes.html" class="pagination-link" aria-label="In Depth: Naive Bayes Classification">
+        <span class="nav-page-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">In Depth: Naive Bayes Classification</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

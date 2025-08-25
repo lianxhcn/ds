@@ -38,49 +38,65 @@ book:
   chapters:
 
     - index.qmd
-    - body/_home.qmd
+#    - body/_home.qmd
     - body/00_intro.ipynb
+    - part: "**基础配置**"
+      chapters: 
+        - body/01_00_coding_with_AI.ipynb
+        - body/01_01_install_anaconda.ipynb
+        - body/01_02_jupyter_notebook.ipynb
+        - body/01_03_install_FAQs.ipynb
+        - body/01_04_markdown.md
     - part: "**Python 基础**"
       chapters: 
-        - body/00_py_with_AI_intro.ipynb
-        - body/00_py_with_AI_pic.ipynb
-        - body/01_1_1_install-Anaconda.ipynb
-        - body/01_1_2_use_Junpyter_Notebook.ipynb
-        - body/01_2_install_FAQs.ipynb
-        - body/01_3_markdown.md
-        - body/01_py_01_basic.ipynb
-        - body/01_py_01_basic_01_grammer.ipynb
-        - body/01_py_01_basic_02_QuickReference.md
-        - body/01_py_01_basic_03_Packages.md
-        - body/01_py_01_basic_04_import.md
-        - body/01_py_01_basic_05_OOP.ipynb
-        - body/01_py_01_basic_06_filepath.ipynb
-        - body/01_py_02_numpy_scipy.ipynb
-        - body/01_py_02_pandas.ipynb
-        - body/01_py_03_matplotlib.ipynb
-        - body/01_py_04_func_and_module.ipynb
-        - body/01_py_05_class.ipynb
+        - body/02_py_00_intro.ipynb
+        - body/02_py_01_grammer.ipynb
+        - body/02_py_02_QuickReference.md
+        - body/02_py_03_packages.md
+        - body/02_py_04_import.md
+        - body/02_py_05_OOP.ipynb
+        - body/02_py_06_filepath.ipynb
+        - body/03_py_01_numpy.ipynb
+        - body/03_py_02_pandas.ipynb
+        - body/03_py_03_matplotlib.ipynb
+        - body/03_py_04_function.ipynb
+        - body/03_py_05_class.ipynb
     - part: "**数据分析**"
       chapters: 
-#        - body/data_01_intro.ipynb
+        - body/data_01_get_data.ipynb
+        - body/data_01_readdata.ipynb
         - body/data_02_data_type.ipynb
         - body/data_02_get_data_GMD.ipynb
-        - body/TS_SZ_index.ipynb        
+        - body/TS_SZ_index.ipynb 
+        - body/web_01_intro.md
     - part: "**可视化**"
       chapters: 
         - body/graph_01_intro.ipynb
         - body/graph_dis_box_violin.ipynb
         - body/graph_dis_histogram.ipynb
         - body/graph_dis_kdensity.ipynb
-    - part: "**回归分析**"
+    - part: "**线性回归**"
       chapters: 
-        - body/test_AB_test.ipynb
         - body/regress_01_OLS.ipynb
         - body/regress_02_wage.ipynb
         - body/regress_03_binscatter.ipynb
-    - part: "**时间序列分析**"
+        - body/regress_04_wage_prediction.ipynb
+    - part: "**时间序列**"
       chapters: 
+        - body/TS_asset_return.qmd
+        - body/TS_man_weight.ipynb
+        - body/TS_ARMA.ipynb
         - body/TS_FRED_US_unemploy_rate.ipynb
+        - body/TS_GARCH_BYD.ipynb
+    - part: "**机器学习**"
+      chapters: 
+        - body/test_AB_test.ipynb
+        - body/ML-Naive-Bayes.ipynb
+        - body/ML-Random-Forests.ipynb
+        - body/ML-baggboost-lab.ipynb
+        - body/ML-Support-Vector-Machines.ipynb
+        - body/ML-svm-lab.ipynb
+        - body/06.00-Figure-Code.ipynb
     - part: "**作业展示**"
       chapters: 
         - homework/pre/Dangdang_G7_01_data_clean.ipynb
