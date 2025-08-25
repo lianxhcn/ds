@@ -1,4 +1,4 @@
-# Markdown
+#   
 
 ## 何谓 Markdown？
 
@@ -315,27 +315,32 @@ arlionn@163.com
   - 连玉君, 2022, [Marp幻灯片模板：用Markdown快速写幻灯片](https://www.lianxh.cn/details/1059.html), 连享会 No.1059.
 
 
-### Marp 常见问题
 
-1. **如何安装 Marp？**
-   - 请参考 [安装指南](https://marp.app/docs/install) 进行安装。
+## 编写在线讲义或书稿
 
-2. **Marp 支持哪些格式的文件？**
-   - Marp 支持 Markdown 格式的文件，通常以 `.md` 作为文件扩展名。
+使用 Markdown 语法，你可以轻松地编写在线讲义或书稿。本书便是使用 VScode 中的 [Quarto](https://quarto.org/docs/books/) 插件编写的：你可以将多个章节文档通过一个名为 `_quarto.yml` 的文件组织成一本书，然后将其编译为一本电子书 (HTML 或 PDF 格式均可)，进而通过 [GitHub Pages](https://pages.github.com/) 发布。
 
-3. **如何导出幻灯片？**
-   - 在 Marp 中，你可以将幻灯片导出为 PDF 或 PPTX 格式，具体操作请参考 [导出指南](https://marp.app/docs/export)。
+详细制作过程参见：
 
-4. **Marp 是否支持自定义主题？**
-   - 是的，Marp 支持自定义主题，你可以通过 CSS 来修改幻灯片的样式。
+- 连玉君，2025，[Quarto book](https://lianxhcn.github.io/quarto_book/)。
 
-## 用 Markdown 编写个人网站和简历
+## 编写个人主页
 
 使用 Markdown 语法，你可以轻松地创建个人网站和简历。
 
 你可以参考如下推文，轻松创建个人主页 (无需购买域名，也无需学习 HTML 和 CSS)：
 
-- 连小白, 2025, [50 分钟搞定个人主页：Fork 模板 + GitHub Pages + Quarto 完整教程](https://www.lianxh.cn/details/1644.html)
+- 连小白, 2025, [50 分钟搞定个人主页](https://www.lianxh.cn/details/1644.html)
+
+输出效果如下：
+
+[![](https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20250718174945.png)](https://lianyujun.github.io/)
+
+- 主页地址：[https://lianyujun.github.io](https://lianyujun.github.io/)
+- github 仓库：<https://github.com/lianyujun/lianyujun.github.io>
+
+
+## 制作个人简历
 
 Markdown 也可以用来制作简历，参见：
 
