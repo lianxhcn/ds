@@ -160,7 +160,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -168,7 +168,7 @@ window.Quarto = {
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -667,47 +667,47 @@ window.Quarto = {
 <p> </p>
 <p>本讲使用 <code>akshare</code> 库获取上证指数的历史数据，并使用 <code>statsmodels</code> 库进行时间序列分析。主要包括： - 在线获取上证指数的历史数据，包括：收盘价、开盘价、最高价、最低价、成交量等。 - 计算日收益率、周收益率和年化收益率，并采用 <code>matplotlib</code> 库进行可视化。 - 图示收益率的分布特征 - 收益率的直方图、密度函数图等 - 收益率的自相关图、偏自相关图等 - 收益率的波动性分析 - 收益率标准差、方差等</p>
 <div id="02d26a47" class="cell" data-execution_count="79">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># -*- coding: utf-8 -*-</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># 导入必要的库</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># pip install akshare</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="im">import</span> akshare <span class="im">as</span> ak</span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-8"><a href="#cb1-8"></a></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
-<span id="cb1-10"><a href="#cb1-10"></a></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># 屏蔽提示信息</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="im">import</span> warnings</span>
-<span id="cb1-13"><a href="#cb1-13"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span>
-<span id="cb1-14"><a href="#cb1-14"></a></span>
-<span id="cb1-15"><a href="#cb1-15"></a><span class="co"># 设置中文字体支持（如已设置可省略）</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'SimHei'</span>] </span>
-<span id="cb1-17"><a href="#cb1-17"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -*- coding: utf-8 -*-</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 导入必要的库</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># pip install akshare</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> akshare <span class="im">as</span> ak</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 屏蔽提示信息</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置中文字体支持（如已设置可省略）</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'SimHei'</span>] </span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="获取数据" class="level2" data-number="24.1">
 <h2 data-number="24.1" class="anchored" data-anchor-id="获取数据"><span class="header-section-number">24.1</span> 获取数据</h2>
 <div id="66077a2e" class="cell" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># 设置起始时间和结束时间</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>start_date <span class="op">=</span> <span class="st">'1991-01-01'</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>end_date <span class="op">=</span> datetime.now().strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">'</span>)  <span class="co"># 设置为当前日期</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="co"># 获取上证指数的历史数据</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>sz_index <span class="op">=</span> ak.stock_zh_index_daily(symbol<span class="op">=</span><span class="st">"sh000001"</span>)  <span class="co"># 上证指数代码为 "sh000001"</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="co"># 重命名列名以便后续处理</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>sz_index.rename(columns<span class="op">=</span>{<span class="st">'date'</span>: <span class="st">'day'</span>, <span class="st">'close'</span>: <span class="st">'close'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-11"><a href="#cb2-11"></a></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="co"># 筛选指定起止时间的数据</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a>sz_index[<span class="st">'day'</span>] <span class="op">=</span> pd.to_datetime(sz_index[<span class="st">'day'</span>])  <span class="co"># 确保日期列为 datetime 类型</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a>sz_index <span class="op">=</span> sz_index[(sz_index[<span class="st">'day'</span>] <span class="op">&gt;=</span> pd.to_datetime(start_date)) <span class="op">&amp;</span> (sz_index[<span class="st">'day'</span>] <span class="op">&lt;=</span> pd.to_datetime(end_date))]</span>
-<span id="cb2-15"><a href="#cb2-15"></a></span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span> <span class="op">+</span> <span class="st">'='</span><span class="op">*</span><span class="dv">10</span> <span class="op">+</span> <span class="st">' Head'</span> <span class="op">+</span> <span class="st">'='</span><span class="op">*</span><span class="dv">10</span>)</span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="bu">print</span>(sz_index.head())  <span class="co"># 显示前几行数据</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a></span>
-<span id="cb2-19"><a href="#cb2-19"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span> <span class="op">+</span> <span class="st">'='</span><span class="op">*</span><span class="dv">10</span> <span class="op">+</span> <span class="st">' Tail'</span> <span class="op">+</span> <span class="st">'='</span><span class="op">*</span><span class="dv">10</span>)</span>
-<span id="cb2-20"><a href="#cb2-20"></a><span class="bu">print</span>(sz_index.tail())  <span class="co"># 显示后几行数据</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置起始时间和结束时间</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>start_date <span class="op">=</span> <span class="st">'1991-01-01'</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>end_date <span class="op">=</span> datetime.now().strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">'</span>)  <span class="co"># 设置为当前日期</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取上证指数的历史数据</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>sz_index <span class="op">=</span> ak.stock_zh_index_daily(symbol<span class="op">=</span><span class="st">"sh000001"</span>)  <span class="co"># 上证指数代码为 "sh000001"</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 重命名列名以便后续处理</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>sz_index.rename(columns<span class="op">=</span>{<span class="st">'date'</span>: <span class="st">'day'</span>, <span class="st">'close'</span>: <span class="st">'close'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 筛选指定起止时间的数据</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>sz_index[<span class="st">'day'</span>] <span class="op">=</span> pd.to_datetime(sz_index[<span class="st">'day'</span>])  <span class="co"># 确保日期列为 datetime 类型</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>sz_index <span class="op">=</span> sz_index[(sz_index[<span class="st">'day'</span>] <span class="op">&gt;=</span> pd.to_datetime(start_date)) <span class="op">&amp;</span> (sz_index[<span class="st">'day'</span>] <span class="op">&lt;=</span> pd.to_datetime(end_date))]</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span> <span class="op">+</span> <span class="st">'='</span><span class="op">*</span><span class="dv">10</span> <span class="op">+</span> <span class="st">' Head'</span> <span class="op">+</span> <span class="st">'='</span><span class="op">*</span><span class="dv">10</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sz_index.head())  <span class="co"># 显示前几行数据</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span> <span class="op">+</span> <span class="st">'='</span><span class="op">*</span><span class="dv">10</span> <span class="op">+</span> <span class="st">' Tail'</span> <span class="op">+</span> <span class="st">'='</span><span class="op">*</span><span class="dv">10</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sz_index.tail())  <span class="co"># 显示后几行数据</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 ========== Head==========
@@ -733,13 +733,13 @@ window.Quarto = {
 <section id="静态图形" class="level3" data-number="24.2.1">
 <h3 data-number="24.2.1" class="anchored" data-anchor-id="静态图形"><span class="header-section-number">24.2.1</span> 静态图形</h3>
 <div id="e8d50382" class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># 绘制收盘价走势图</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">7</span>))</span>
-<span id="cb4-3"><a href="#cb4-3"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb4-4"><a href="#cb4-4"></a>plt.plot(sz_index[<span class="st">'day'</span>], sz_index[<span class="st">'close'</span>], label<span class="op">=</span><span class="st">'Close Price'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
-<span id="cb4-5"><a href="#cb4-5"></a>plt.title(<span class="st">'Shanghai Composite Index Daily Close Price'</span>) </span>
-<span id="cb4-6"><a href="#cb4-6"></a>plt.legend()</span>
-<span id="cb4-7"><a href="#cb4-7"></a>plt.grid()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制收盘价走势图</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">7</span>))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plt.plot(sz_index[<span class="st">'day'</span>], sz_index[<span class="st">'close'</span>], label<span class="op">=</span><span class="st">'Close Price'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Shanghai Composite Index Daily Close Price'</span>) </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>plt.grid()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -775,63 +775,63 @@ window.Quarto = {
 </ol>
 <p>该图表可嵌入网页或 Jupyter Notebook 中动态展示，是教学、报告与展示金融时间序列数据的有力工具。</p>
 <div id="20e8a81b" class="cell" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># 安装必要的库（如未安装）</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="co"># !pip install plotly akshare pandas</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="im">import</span> akshare <span class="im">as</span> ak</span>
-<span id="cb5-8"><a href="#cb5-8"></a></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="co"># 设置起始时间和结束时间</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a>start_date <span class="op">=</span> <span class="st">'2005-01-01'</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a>end_date <span class="op">=</span> datetime.now().strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">'</span>)  <span class="co"># 设置为当前日期</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a></span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="co"># 获取上证指数的历史数据</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a>sz_index <span class="op">=</span> ak.stock_zh_index_daily(symbol<span class="op">=</span><span class="st">"sh000001"</span>)  <span class="co"># 上证指数代码为 "sh000001"</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a></span>
-<span id="cb5-16"><a href="#cb5-16"></a><span class="co"># 重命名列名以便后续处理</span></span>
-<span id="cb5-17"><a href="#cb5-17"></a>sz_index.rename(columns<span class="op">=</span>{<span class="st">'date'</span>: <span class="st">'day'</span>, <span class="st">'close'</span>: <span class="st">'close'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-18"><a href="#cb5-18"></a></span>
-<span id="cb5-19"><a href="#cb5-19"></a><span class="co"># 将日期列转换为 datetime 类型</span></span>
-<span id="cb5-20"><a href="#cb5-20"></a>sz_index[<span class="st">'day'</span>] <span class="op">=</span> pd.to_datetime(sz_index[<span class="st">'day'</span>])</span>
-<span id="cb5-21"><a href="#cb5-21"></a></span>
-<span id="cb5-22"><a href="#cb5-22"></a><span class="co"># 计算日收益率</span></span>
-<span id="cb5-23"><a href="#cb5-23"></a>sz_index[<span class="st">'daily_return'</span>] <span class="op">=</span> sz_index[<span class="st">'close'</span>].pct_change()</span>
-<span id="cb5-24"><a href="#cb5-24"></a></span>
-<span id="cb5-25"><a href="#cb5-25"></a><span class="co"># 筛选指定时间区间内的数据</span></span>
-<span id="cb5-26"><a href="#cb5-26"></a>filtered_data <span class="op">=</span> sz_index.query(<span class="st">" @start_date &lt;= day &lt;= @end_date "</span>)</span>
-<span id="cb5-27"><a href="#cb5-27"></a></span>
-<span id="cb5-28"><a href="#cb5-28"></a><span class="co"># 创建交互式图形对象</span></span>
-<span id="cb5-29"><a href="#cb5-29"></a>fig <span class="op">=</span> go.Figure()</span>
-<span id="cb5-30"><a href="#cb5-30"></a></span>
-<span id="cb5-31"><a href="#cb5-31"></a><span class="co"># 添加收盘价的折线图</span></span>
-<span id="cb5-32"><a href="#cb5-32"></a>fig.add_trace(go.Scatter(</span>
-<span id="cb5-33"><a href="#cb5-33"></a>    x<span class="op">=</span>filtered_data[<span class="st">'day'</span>],</span>
-<span id="cb5-34"><a href="#cb5-34"></a>    y<span class="op">=</span>filtered_data[<span class="st">'close'</span>],</span>
-<span id="cb5-35"><a href="#cb5-35"></a>    mode<span class="op">=</span><span class="st">'lines'</span>,  <span class="co"># 只显示线条</span></span>
-<span id="cb5-36"><a href="#cb5-36"></a>    name<span class="op">=</span><span class="st">'收盘价'</span>,</span>
-<span id="cb5-37"><a href="#cb5-37"></a>    line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'blue'</span>),</span>
-<span id="cb5-38"><a href="#cb5-38"></a>    customdata<span class="op">=</span>filtered_data[[<span class="st">'daily_return'</span>]].values,</span>
-<span id="cb5-39"><a href="#cb5-39"></a>    hovertemplate<span class="op">=</span>(</span>
-<span id="cb5-40"><a href="#cb5-40"></a>        <span class="st">'&lt;b&gt;日期：&lt;/b&gt; %{x|%Y-%m-</span><span class="sc">%d</span><span class="st">}&lt;br&gt;'</span></span>
-<span id="cb5-41"><a href="#cb5-41"></a>        <span class="st">'&lt;b&gt;收盘价：&lt;/b&gt; %</span><span class="sc">{y:.2f}</span><span class="st">&lt;br&gt;'</span></span>
-<span id="cb5-42"><a href="#cb5-42"></a>        <span class="st">'&lt;b&gt;日收益率：&lt;/b&gt; %</span><span class="sc">{customdata[0]:.2%}</span><span class="st">&lt;extra&gt;&lt;/extra&gt;'</span></span>
-<span id="cb5-43"><a href="#cb5-43"></a>    )</span>
-<span id="cb5-44"><a href="#cb5-44"></a>))</span>
-<span id="cb5-45"><a href="#cb5-45"></a></span>
-<span id="cb5-46"><a href="#cb5-46"></a><span class="co"># 设置图表整体布局</span></span>
-<span id="cb5-47"><a href="#cb5-47"></a>fig.update_layout(</span>
-<span id="cb5-48"><a href="#cb5-48"></a>    title<span class="op">=</span><span class="st">'上证指数交互图'</span>,</span>
-<span id="cb5-49"><a href="#cb5-49"></a>    xaxis_title<span class="op">=</span><span class="st">'日期'</span>,</span>
-<span id="cb5-50"><a href="#cb5-50"></a>    yaxis_title<span class="op">=</span><span class="st">'收盘价'</span>,</span>
-<span id="cb5-51"><a href="#cb5-51"></a>    hovermode<span class="op">=</span><span class="st">'x unified'</span>,</span>
-<span id="cb5-52"><a href="#cb5-52"></a>    template<span class="op">=</span><span class="st">'plotly_white'</span>,</span>
-<span id="cb5-53"><a href="#cb5-53"></a>    margin<span class="op">=</span><span class="bu">dict</span>(l<span class="op">=</span><span class="dv">60</span>, r<span class="op">=</span><span class="dv">40</span>, t<span class="op">=</span><span class="dv">60</span>, b<span class="op">=</span><span class="dv">50</span>)</span>
-<span id="cb5-54"><a href="#cb5-54"></a>)</span>
-<span id="cb5-55"><a href="#cb5-55"></a></span>
-<span id="cb5-56"><a href="#cb5-56"></a><span class="co"># 显示图表</span></span>
-<span id="cb5-57"><a href="#cb5-57"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 安装必要的库（如未安装）</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install plotly akshare pandas</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> akshare <span class="im">as</span> ak</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置起始时间和结束时间</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>start_date <span class="op">=</span> <span class="st">'2005-01-01'</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>end_date <span class="op">=</span> datetime.now().strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">'</span>)  <span class="co"># 设置为当前日期</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取上证指数的历史数据</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>sz_index <span class="op">=</span> ak.stock_zh_index_daily(symbol<span class="op">=</span><span class="st">"sh000001"</span>)  <span class="co"># 上证指数代码为 "sh000001"</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 重命名列名以便后续处理</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>sz_index.rename(columns<span class="op">=</span>{<span class="st">'date'</span>: <span class="st">'day'</span>, <span class="st">'close'</span>: <span class="st">'close'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 将日期列转换为 datetime 类型</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>sz_index[<span class="st">'day'</span>] <span class="op">=</span> pd.to_datetime(sz_index[<span class="st">'day'</span>])</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算日收益率</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>sz_index[<span class="st">'daily_return'</span>] <span class="op">=</span> sz_index[<span class="st">'close'</span>].pct_change()</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 筛选指定时间区间内的数据</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="op">=</span> sz_index.query(<span class="st">" @start_date &lt;= day &lt;= @end_date "</span>)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建交互式图形对象</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> go.Figure()</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加收盘价的折线图</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>fig.add_trace(go.Scatter(</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>filtered_data[<span class="st">'day'</span>],</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>filtered_data[<span class="st">'close'</span>],</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    mode<span class="op">=</span><span class="st">'lines'</span>,  <span class="co"># 只显示线条</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'收盘价'</span>,</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'blue'</span>),</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    customdata<span class="op">=</span>filtered_data[[<span class="st">'daily_return'</span>]].values,</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    hovertemplate<span class="op">=</span>(</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>        <span class="st">'&lt;b&gt;日期：&lt;/b&gt; %{x|%Y-%m-</span><span class="sc">%d</span><span class="st">}&lt;br&gt;'</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>        <span class="st">'&lt;b&gt;收盘价：&lt;/b&gt; %</span><span class="sc">{y:.2f}</span><span class="st">&lt;br&gt;'</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>        <span class="st">'&lt;b&gt;日收益率：&lt;/b&gt; %</span><span class="sc">{customdata[0]:.2%}</span><span class="st">&lt;extra&gt;&lt;/extra&gt;'</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置图表整体布局</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">'上证指数交互图'</span>,</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    xaxis_title<span class="op">=</span><span class="st">'日期'</span>,</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>    yaxis_title<span class="op">=</span><span class="st">'收盘价'</span>,</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    hovermode<span class="op">=</span><span class="st">'x unified'</span>,</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>    template<span class="op">=</span><span class="st">'plotly_white'</span>,</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    margin<span class="op">=</span><span class="bu">dict</span>(l<span class="op">=</span><span class="dv">60</span>, r<span class="op">=</span><span class="dv">40</span>, t<span class="op">=</span><span class="dv">60</span>, b<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="co"># 显示图表</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>Unable to display output for mime type(s): application/vnd.plotly.v1+json</code></pre>
 </div>
@@ -845,44 +845,44 @@ window.Quarto = {
 </blockquote>
 <p>钉形图的构建主要包括以下几个步骤： 1. <strong>数据准备</strong>：从 <code>akshare</code> 获取上证指数的历史数据，包括开盘价、收盘价、最高价和最低价等。将数据转换为 <code>pandas</code> DataFrame 格式，并设置日期为索引。 2. <strong>图形绘制</strong>：使用 <code>plotly.graph_objects</code> 中的 <code>go.Candlestick()</code> 函数创建钉形图。该函数需要传入开盘价、收盘价、最高价和最低价等数据，并设置相应的颜色（上涨为绿色，下跌为红色）。 3. <strong>图表布局设置</strong>：通过 <code>fig.update_layout()</code> 设置图表的标题、坐标轴标签、背景颜色等属性。可以使用 <code>plotly</code> 提供的多种模板来美化图表。 4. <strong>交互功能</strong>：钉形图支持鼠标悬停时显示详细信息，包括日期、开盘价、收盘价、最高价和最低价等。可以通过设置 <code>hovertemplate</code> 来定制显示内容。</p>
 <div id="789c4f15" class="cell" data-execution_count="74">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
-<span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="co"># 设置起始时间和结束时间</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>start_date <span class="op">=</span> <span class="st">'2025-01-01'</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a>end_date <span class="op">=</span> <span class="st">'2025-03-30'</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="co"># 筛选绘图所需的列</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a>candlestick_data <span class="op">=</span> sz_index.query(<span class="st">" @start_date &lt;= day &lt;= @end_date "</span>)[[<span class="st">'day'</span>, <span class="st">'open'</span>, <span class="st">'high'</span>, <span class="st">'low'</span>, <span class="st">'close'</span>]]</span>
-<span id="cb7-9"><a href="#cb7-9"></a></span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="co"># 创建钉形图</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a>fig <span class="op">=</span> go.Figure(data<span class="op">=</span>[go.Candlestick(</span>
-<span id="cb7-12"><a href="#cb7-12"></a>    x<span class="op">=</span>candlestick_data[<span class="st">'day'</span>],       <span class="co"># 日期</span></span>
-<span id="cb7-13"><a href="#cb7-13"></a>    <span class="bu">open</span><span class="op">=</span>candlestick_data[<span class="st">'open'</span>],   <span class="co"># 开盘价</span></span>
-<span id="cb7-14"><a href="#cb7-14"></a>    high<span class="op">=</span>candlestick_data[<span class="st">'high'</span>],   <span class="co"># 最高价</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a>    low<span class="op">=</span>candlestick_data[<span class="st">'low'</span>],     <span class="co"># 最低价</span></span>
-<span id="cb7-16"><a href="#cb7-16"></a>    close<span class="op">=</span>candlestick_data[<span class="st">'close'</span>], <span class="co"># 收盘价</span></span>
-<span id="cb7-17"><a href="#cb7-17"></a>    increasing_line_color<span class="op">=</span><span class="st">'green'</span>,   <span class="co"># 上涨颜色</span></span>
-<span id="cb7-18"><a href="#cb7-18"></a>    decreasing_line_color<span class="op">=</span><span class="st">'red'</span>      <span class="co"># 下跌颜色</span></span>
-<span id="cb7-19"><a href="#cb7-19"></a>)])</span>
-<span id="cb7-20"><a href="#cb7-20"></a></span>
-<span id="cb7-21"><a href="#cb7-21"></a><span class="co"># 设置图表标题和布局</span></span>
-<span id="cb7-22"><a href="#cb7-22"></a>fig.update_layout(</span>
-<span id="cb7-23"><a href="#cb7-23"></a>    title<span class="op">=</span><span class="st">'上证指数钉形图'</span>,</span>
-<span id="cb7-24"><a href="#cb7-24"></a>    template<span class="op">=</span><span class="st">'plotly_white'</span>,</span>
-<span id="cb7-25"><a href="#cb7-25"></a>    xaxis_rangeslider_visible<span class="op">=</span><span class="va">False</span>,  <span class="co"># 隐藏范围滑块</span></span>
-<span id="cb7-26"><a href="#cb7-26"></a>    xaxis_tickformat<span class="op">=</span><span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">'</span>,  <span class="co"># 设置横轴刻度格式</span></span>
-<span id="cb7-27"><a href="#cb7-27"></a>    xaxis_tickangle<span class="op">=-</span><span class="dv">30</span>,  <span class="co"># 旋转横轴刻度 -30 度</span></span>
-<span id="cb7-28"><a href="#cb7-28"></a>)</span>
-<span id="cb7-29"><a href="#cb7-29"></a></span>
-<span id="cb7-30"><a href="#cb7-30"></a><span class="co"># 设置横轴刻度间隔</span></span>
-<span id="cb7-31"><a href="#cb7-31"></a>fig.update_xaxes(</span>
-<span id="cb7-32"><a href="#cb7-32"></a>    tickmode<span class="op">=</span><span class="st">'array'</span>,</span>
-<span id="cb7-33"><a href="#cb7-33"></a>    tickvals<span class="op">=</span>candlestick_data[<span class="st">'day'</span>][::<span class="dv">5</span>],  <span class="co"># 每隔 5 天显示一个刻度</span></span>
-<span id="cb7-34"><a href="#cb7-34"></a>    ticktext<span class="op">=</span>candlestick_data[<span class="st">'day'</span>][::<span class="dv">5</span>].dt.strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">'</span>)  <span class="co"># 格式化日期</span></span>
-<span id="cb7-35"><a href="#cb7-35"></a>)</span>
-<span id="cb7-36"><a href="#cb7-36"></a></span>
-<span id="cb7-37"><a href="#cb7-37"></a><span class="co"># 显示图表</span></span>
-<span id="cb7-38"><a href="#cb7-38"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置起始时间和结束时间</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>start_date <span class="op">=</span> <span class="st">'2025-01-01'</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>end_date <span class="op">=</span> <span class="st">'2025-03-30'</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 筛选绘图所需的列</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>candlestick_data <span class="op">=</span> sz_index.query(<span class="st">" @start_date &lt;= day &lt;= @end_date "</span>)[[<span class="st">'day'</span>, <span class="st">'open'</span>, <span class="st">'high'</span>, <span class="st">'low'</span>, <span class="st">'close'</span>]]</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建钉形图</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> go.Figure(data<span class="op">=</span>[go.Candlestick(</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>candlestick_data[<span class="st">'day'</span>],       <span class="co"># 日期</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">open</span><span class="op">=</span>candlestick_data[<span class="st">'open'</span>],   <span class="co"># 开盘价</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    high<span class="op">=</span>candlestick_data[<span class="st">'high'</span>],   <span class="co"># 最高价</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    low<span class="op">=</span>candlestick_data[<span class="st">'low'</span>],     <span class="co"># 最低价</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    close<span class="op">=</span>candlestick_data[<span class="st">'close'</span>], <span class="co"># 收盘价</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    increasing_line_color<span class="op">=</span><span class="st">'green'</span>,   <span class="co"># 上涨颜色</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    decreasing_line_color<span class="op">=</span><span class="st">'red'</span>      <span class="co"># 下跌颜色</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>)])</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置图表标题和布局</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">'上证指数钉形图'</span>,</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    template<span class="op">=</span><span class="st">'plotly_white'</span>,</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    xaxis_rangeslider_visible<span class="op">=</span><span class="va">False</span>,  <span class="co"># 隐藏范围滑块</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    xaxis_tickformat<span class="op">=</span><span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">'</span>,  <span class="co"># 设置横轴刻度格式</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    xaxis_tickangle<span class="op">=-</span><span class="dv">30</span>,  <span class="co"># 旋转横轴刻度 -30 度</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置横轴刻度间隔</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>fig.update_xaxes(</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    tickmode<span class="op">=</span><span class="st">'array'</span>,</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    tickvals<span class="op">=</span>candlestick_data[<span class="st">'day'</span>][::<span class="dv">5</span>],  <span class="co"># 每隔 5 天显示一个刻度</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    ticktext<span class="op">=</span>candlestick_data[<span class="st">'day'</span>][::<span class="dv">5</span>].dt.strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">'</span>)  <span class="co"># 格式化日期</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="co"># 显示图表</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>Unable to display output for mime type(s): application/vnd.plotly.v1+json</code></pre>
 </div>
@@ -903,29 +903,29 @@ window.Quarto = {
 </ul></li>
 </ul>
 <div id="ce75d72c" class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># 计算日收益率</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>daily_return <span class="op">=</span> sz_index[<span class="st">'close'</span>].pct_change()  <span class="co"># 计算日收益率</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="co"># 绘制日收益率走势图</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="co">#-- 控制绘图的时间范围</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="co">#start_plot_date = '1991-01-01'</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a>start_plot_date <span class="op">=</span> <span class="st">'2019-01-01'</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a>end_plot_date   <span class="op">=</span> <span class="st">'2025-05-01'</span></span>
-<span id="cb9-9"><a href="#cb9-9"></a>sz_index_plot <span class="op">=</span> sz_index.query(<span class="st">" @start_date &lt;= day &lt;= @end_date "</span>)</span>
-<span id="cb9-10"><a href="#cb9-10"></a></span>
-<span id="cb9-11"><a href="#cb9-11"></a><span class="co"># 绘制日收益率走势图</span></span>
-<span id="cb9-12"><a href="#cb9-12"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">8</span>))  <span class="co"># 调整图形尺寸</span></span>
-<span id="cb9-13"><a href="#cb9-13"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb9-14"><a href="#cb9-14"></a>plt.plot(sz_index_plot[<span class="st">'day'</span>], </span>
-<span id="cb9-15"><a href="#cb9-15"></a>         sz_index_plot[<span class="st">'daily_return'</span>], </span>
-<span id="cb9-16"><a href="#cb9-16"></a>         label<span class="op">=</span><span class="st">'Daily Return'</span>, </span>
-<span id="cb9-17"><a href="#cb9-17"></a>         color<span class="op">=</span><span class="st">'red'</span>)</span>
-<span id="cb9-18"><a href="#cb9-18"></a>plt.title(<span class="st">'Shanghai Composite Index Daily Return'</span>)</span>
-<span id="cb9-19"><a href="#cb9-19"></a>plt.xlabel(<span class="st">'Date'</span>)</span>
-<span id="cb9-20"><a href="#cb9-20"></a>plt.ylabel(<span class="st">'Daily Return'</span>)</span>
-<span id="cb9-21"><a href="#cb9-21"></a>plt.legend()</span>
-<span id="cb9-22"><a href="#cb9-22"></a>plt.grid()</span>
-<span id="cb9-23"><a href="#cb9-23"></a>plt.tight_layout()  <span class="co"># 调整子图间距</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算日收益率</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>daily_return <span class="op">=</span> sz_index[<span class="st">'close'</span>].pct_change()  <span class="co"># 计算日收益率</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制日收益率走势图</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#-- 控制绘图的时间范围</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#start_plot_date = '1991-01-01'</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>start_plot_date <span class="op">=</span> <span class="st">'2019-01-01'</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>end_plot_date   <span class="op">=</span> <span class="st">'2025-05-01'</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>sz_index_plot <span class="op">=</span> sz_index.query(<span class="st">" @start_date &lt;= day &lt;= @end_date "</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制日收益率走势图</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">8</span>))  <span class="co"># 调整图形尺寸</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>plt.plot(sz_index_plot[<span class="st">'day'</span>], </span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>         sz_index_plot[<span class="st">'daily_return'</span>], </span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>         label<span class="op">=</span><span class="st">'Daily Return'</span>, </span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>         color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Shanghai Composite Index Daily Return'</span>)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Date'</span>)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Daily Return'</span>)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()  <span class="co"># 调整子图间距</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -950,21 +950,21 @@ window.Quarto = {
 <li><strong>异常值（Outliers）</strong>：胡须之外的黑点，表示极端收益波动的观察值。</li>
 </ul>
 <p><img style="width: 550px" src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/box_plots_01.png"></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource raw number-lines code-with-copy"><code class="sourceCode"><span id="cb10-1"><a href="#cb10-1"></a>     Q1-1.5IQR   Q1   median  Q3   Q3+1.5IQR</span>
-<span id="cb10-2"><a href="#cb10-2"></a>                  |-----:-----|</span>
-<span id="cb10-3"><a href="#cb10-3"></a>  o      |--------|     :     |--------|    o  o</span>
-<span id="cb10-4"><a href="#cb10-4"></a>                  |-----:-----|</span>
-<span id="cb10-5"><a href="#cb10-5"></a>flier             &lt;-----------&gt;            fliers</span>
-<span id="cb10-6"><a href="#cb10-6"></a>                       IQR</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="raw"><code>     Q1-1.5IQR   Q1   median  Q3   Q3+1.5IQR
+                  |-----:-----|
+  o      |--------|     :     |--------|    o  o
+                  |-----:-----|
+flier             &lt;-----------&gt;            fliers
+                       IQR</code></pre>
 <div id="e706be16" class="cell" data-execution_count="55">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># 筛选 20XX 年的数据</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>box_year <span class="op">=</span> <span class="dv">2024</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a>df_box_year <span class="op">=</span> sz_index[sz_index[<span class="st">'year'</span>] <span class="op">==</span> box_year][<span class="st">'daily_return'</span>].dropna()</span>
-<span id="cb11-4"><a href="#cb11-4"></a></span>
-<span id="cb11-5"><a href="#cb11-5"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">3</span>))</span>
-<span id="cb11-6"><a href="#cb11-6"></a>plt.boxplot(df_box_year)</span>
-<span id="cb11-7"><a href="#cb11-7"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb11-8"><a href="#cb11-8"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 筛选 20XX 年的数据</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>box_year <span class="op">=</span> <span class="dv">2024</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>df_box_year <span class="op">=</span> sz_index[sz_index[<span class="st">'year'</span>] <span class="op">==</span> box_year][<span class="st">'daily_return'</span>].dropna()</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">3</span>))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>plt.boxplot(df_box_year)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -978,23 +978,23 @@ window.Quarto = {
 <h3 data-number="24.3.3" class="anchored" data-anchor-id="同时呈现多个箱线图"><span class="header-section-number">24.3.3</span> 同时呈现多个箱线图</h3>
 <p>在实际应用中，可以同时呈现多个箱线图，以便比较不同时间段或不同资产的收益率分布特征。可以使用 <code>matplotlib</code> 的 <code>subplots()</code> 函数创建多个子图，并在每个子图上绘制箱线图。</p>
 <div id="7da0875f" class="cell" data-execution_count="77">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb12-3"><a href="#cb12-3"></a></span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="co"># 提取年份列</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a>sz_index[<span class="st">'year'</span>] <span class="op">=</span> sz_index[<span class="st">'day'</span>].dt.year</span>
-<span id="cb12-6"><a href="#cb12-6"></a></span>
-<span id="cb12-7"><a href="#cb12-7"></a><span class="co"># 筛选指定年份的数据</span></span>
-<span id="cb12-8"><a href="#cb12-8"></a>selected_years <span class="op">=</span> [<span class="dv">2000</span>, <span class="dv">2005</span>, <span class="dv">2010</span>, <span class="dv">2015</span>, <span class="dv">2020</span>, <span class="dv">2024</span>]</span>
-<span id="cb12-9"><a href="#cb12-9"></a>filtered_data <span class="op">=</span> sz_index[sz_index[<span class="st">'year'</span>].isin(selected_years)]</span>
-<span id="cb12-10"><a href="#cb12-10"></a></span>
-<span id="cb12-11"><a href="#cb12-11"></a><span class="co"># 绘制多个年度的箱型图</span></span>
-<span id="cb12-12"><a href="#cb12-12"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">3</span>))</span>
-<span id="cb12-13"><a href="#cb12-13"></a>sns.boxplot(x<span class="op">=</span><span class="st">'year'</span>, y<span class="op">=</span><span class="st">'daily_return'</span>, data<span class="op">=</span>filtered_data, palette<span class="op">=</span><span class="st">'Set3'</span>)</span>
-<span id="cb12-14"><a href="#cb12-14"></a></span>
-<span id="cb12-15"><a href="#cb12-15"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb12-16"><a href="#cb12-16"></a></span>
-<span id="cb12-17"><a href="#cb12-17"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 提取年份列</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>sz_index[<span class="st">'year'</span>] <span class="op">=</span> sz_index[<span class="st">'day'</span>].dt.year</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 筛选指定年份的数据</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>selected_years <span class="op">=</span> [<span class="dv">2000</span>, <span class="dv">2005</span>, <span class="dv">2010</span>, <span class="dv">2015</span>, <span class="dv">2020</span>, <span class="dv">2024</span>]</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="op">=</span> sz_index[sz_index[<span class="st">'year'</span>].isin(selected_years)]</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制多个年度的箱型图</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">3</span>))</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>sns.boxplot(x<span class="op">=</span><span class="st">'year'</span>, y<span class="op">=</span><span class="st">'daily_return'</span>, data<span class="op">=</span>filtered_data, palette<span class="op">=</span><span class="st">'Set3'</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1019,7 +1019,7 @@ h = \frac{\max(r) - \min(r)}{K}
 <section id="核心代码说明" class="level3" data-number="24.4.2">
 <h3 data-number="24.4.2" class="anchored" data-anchor-id="核心代码说明"><span class="header-section-number">24.4.2</span> 核心代码说明</h3>
 <p>以下代码用于绘制上证指数的日收益率直方图：</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>sz_index_plot[<span class="st">'daily_return'</span>].dropna().hist(bins<span class="op">=</span><span class="dv">200</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sz_index_plot[<span class="st">'daily_return'</span>].dropna().hist(bins<span class="op">=</span><span class="dv">200</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>说明如下：</p>
 <ul>
 <li><code>daily_return</code>：表示日收益率列。</li>
@@ -1086,12 +1086,12 @@ h = \frac{\max(r) - \min(r)}{K}
 </ul>
 <p>直方图有助于识别收益率分布的偏态、厚尾特征，是金融时间序列分析中不可或缺的工具之一。</p>
 <div id="9308223c" class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># 绘制日收益率的基本直方图</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a>sz_index_daily_return <span class="op">=</span> sz_index_plot[<span class="st">'daily_return'</span>].dropna()</span>
-<span id="cb14-3"><a href="#cb14-3"></a>sz_index_daily_return.hist(bins<span class="op">=</span><span class="dv">100</span>,  <span class="co"># 设置直方图的柱子数量</span></span>
-<span id="cb14-4"><a href="#cb14-4"></a>                           color<span class="op">=</span><span class="st">'green'</span>, </span>
-<span id="cb14-5"><a href="#cb14-5"></a>                           alpha<span class="op">=</span><span class="fl">0.7</span>, <span class="co"># 设置透明度</span></span>
-<span id="cb14-6"><a href="#cb14-6"></a>                           figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制日收益率的基本直方图</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>sz_index_daily_return <span class="op">=</span> sz_index_plot[<span class="st">'daily_return'</span>].dropna()</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>sz_index_daily_return.hist(bins<span class="op">=</span><span class="dv">100</span>,  <span class="co"># 设置直方图的柱子数量</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                           color<span class="op">=</span><span class="st">'green'</span>, </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                           alpha<span class="op">=</span><span class="fl">0.7</span>, <span class="co"># 设置透明度</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                           figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1167,10 +1167,10 @@ u_i = \frac{X_i - c}{h}
 <li>核密度估计为我们提供了一种平滑、灵活且无需模型假设的分布估计方法，广泛应用于经济学、金融学、机器学习等领域的探索性数据分析任务中。</li>
 </ul>
 <div id="ff6382cc" class="cell" data-execution_count="97">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb15-2"><a href="#cb15-2"></a></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="co"># 日收益率的核密度函数图</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a>sz_index_plot[<span class="st">'daily_return'</span>].plot(kind<span class="op">=</span><span class="st">'kde'</span>)  <span class="co">#内置函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 日收益率的核密度函数图</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>sz_index_plot[<span class="st">'daily_return'</span>].plot(kind<span class="op">=</span><span class="st">'kde'</span>)  <span class="co">#内置函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1180,35 +1180,35 @@ u_i = \frac{X_i - c}{h}
 </div>
 </div>
 <div id="1e30b47a" class="cell" data-execution_count="81">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="co">'''提示词</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="co">用最简单的命令同时呈现 2005, 2010, 2015, 2020 和 2024 年的收益率密度函数图</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a><span class="co">'''</span></span>
-<span id="cb16-4"><a href="#cb16-4"></a></span>
-<span id="cb16-5"><a href="#cb16-5"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb16-6"><a href="#cb16-6"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb16-7"><a href="#cb16-7"></a></span>
-<span id="cb16-8"><a href="#cb16-8"></a><span class="co"># 筛选指定年份的数据</span></span>
-<span id="cb16-9"><a href="#cb16-9"></a><span class="co">#selected_years = [2005, 2010, 2015, 2020, 2024]</span></span>
-<span id="cb16-10"><a href="#cb16-10"></a>selected_years <span class="op">=</span> [<span class="dv">2005</span>, <span class="dv">2015</span>, <span class="dv">2024</span>]</span>
-<span id="cb16-11"><a href="#cb16-11"></a>filtered_data <span class="op">=</span> sz_index[sz_index[<span class="st">'day'</span>].dt.year.isin(selected_years)]</span>
-<span id="cb16-12"><a href="#cb16-12"></a></span>
-<span id="cb16-13"><a href="#cb16-13"></a><span class="co"># 创建图形对象</span></span>
-<span id="cb16-14"><a href="#cb16-14"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">3</span>))</span>
-<span id="cb16-15"><a href="#cb16-15"></a></span>
-<span id="cb16-16"><a href="#cb16-16"></a><span class="co"># 绘制每个年份的核密度估计图</span></span>
-<span id="cb16-17"><a href="#cb16-17"></a><span class="cf">for</span> year <span class="kw">in</span> selected_years:</span>
-<span id="cb16-18"><a href="#cb16-18"></a>    sns.kdeplot(</span>
-<span id="cb16-19"><a href="#cb16-19"></a>        data<span class="op">=</span>filtered_data[filtered_data[<span class="st">'day'</span>].dt.year <span class="op">==</span> year][<span class="st">'daily_return'</span>].dropna(),</span>
-<span id="cb16-20"><a href="#cb16-20"></a>        label<span class="op">=</span><span class="ss">f'</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">'</span></span>
-<span id="cb16-21"><a href="#cb16-21"></a>    )</span>
-<span id="cb16-22"><a href="#cb16-22"></a></span>
-<span id="cb16-23"><a href="#cb16-23"></a><span class="co"># 添加标题和图例</span></span>
-<span id="cb16-24"><a href="#cb16-24"></a>plt.title(<span class="ss">f'各年度收益率密度函数图)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb16-25"><a href="#cb16-25"></a>plt.xlabel(<span class="st">'日收益率'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb16-26"><a href="#cb16-26"></a>plt.ylabel(<span class="st">'密度'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb16-27"><a href="#cb16-27"></a>plt.legend(title<span class="op">=</span><span class="st">'年份'</span>)</span>
-<span id="cb16-28"><a href="#cb16-28"></a>plt.grid()</span>
-<span id="cb16-29"><a href="#cb16-29"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">'''提示词</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">用最简单的命令同时呈现 2005, 2010, 2015, 2020 和 2024 年的收益率密度函数图</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 筛选指定年份的数据</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#selected_years = [2005, 2010, 2015, 2020, 2024]</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>selected_years <span class="op">=</span> [<span class="dv">2005</span>, <span class="dv">2015</span>, <span class="dv">2024</span>]</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="op">=</span> sz_index[sz_index[<span class="st">'day'</span>].dt.year.isin(selected_years)]</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建图形对象</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">3</span>))</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制每个年份的核密度估计图</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> year <span class="kw">in</span> selected_years:</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    sns.kdeplot(</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>        data<span class="op">=</span>filtered_data[filtered_data[<span class="st">'day'</span>].dt.year <span class="op">==</span> year][<span class="st">'daily_return'</span>].dropna(),</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="ss">f'</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">'</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加标题和图例</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f'各年度收益率密度函数图)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'日收益率'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'密度'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>plt.legend(title<span class="op">=</span><span class="st">'年份'</span>)</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1226,19 +1226,19 @@ u_i = \frac{X_i - c}{h}
 <li>月收益率：<code>(本月收盘价 - 上月收盘价) / 上月收盘价</code></li>
 </ul>
 <div id="69f5c01f" class="cell" data-execution_count="59">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># 计算每周的收益率</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a>sz_index[<span class="st">'week'</span>] <span class="op">=</span> sz_index[<span class="st">'day'</span>].dt.isocalendar().week  <span class="co"># 提取周数</span></span>
-<span id="cb17-3"><a href="#cb17-3"></a>sz_index[<span class="st">'year_week'</span>] <span class="op">=</span> sz_index[<span class="st">'day'</span>].dt.year.astype(<span class="bu">str</span>) <span class="op">\</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a>                        <span class="op">+</span> <span class="st">'-w'</span> \</span>
-<span id="cb17-5"><a href="#cb17-5"></a>                        <span class="op">+</span> sz_index[<span class="st">'week'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">2</span>)  <span class="co"># 组合年份和周数，周数补零</span></span>
-<span id="cb17-6"><a href="#cb17-6"></a></span>
-<span id="cb17-7"><a href="#cb17-7"></a><span class="co"># 计算每周的收益率</span></span>
-<span id="cb17-8"><a href="#cb17-8"></a>weekly_return <span class="op">=</span> sz_index.groupby(<span class="st">'year_week'</span>)[<span class="st">'close'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: (x.iloc[<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> x.iloc[<span class="dv">0</span>]) <span class="op">/</span> x.iloc[<span class="dv">0</span>])</span>
-<span id="cb17-9"><a href="#cb17-9"></a>weekly_return <span class="op">=</span> weekly_return.reset_index()  <span class="co"># 重置索引</span></span>
-<span id="cb17-10"><a href="#cb17-10"></a>weekly_return.columns <span class="op">=</span> [<span class="st">'Year_Week'</span>, <span class="st">'Weekly_Return'</span>]  <span class="co"># 重命名列</span></span>
-<span id="cb17-11"><a href="#cb17-11"></a></span>
-<span id="cb17-12"><a href="#cb17-12"></a><span class="co"># 打印结果</span></span>
-<span id="cb17-13"><a href="#cb17-13"></a><span class="bu">print</span>(weekly_return.sort_values(by<span class="op">=</span><span class="st">'Year_Week'</span>).tail(<span class="dv">10</span>))  <span class="co"># 按时间顺序显示最后20周的收益率</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算每周的收益率</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>sz_index[<span class="st">'week'</span>] <span class="op">=</span> sz_index[<span class="st">'day'</span>].dt.isocalendar().week  <span class="co"># 提取周数</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>sz_index[<span class="st">'year_week'</span>] <span class="op">=</span> sz_index[<span class="st">'day'</span>].dt.year.astype(<span class="bu">str</span>) <span class="op">\</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                        <span class="op">+</span> <span class="st">'-w'</span> \</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                        <span class="op">+</span> sz_index[<span class="st">'week'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">2</span>)  <span class="co"># 组合年份和周数，周数补零</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算每周的收益率</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>weekly_return <span class="op">=</span> sz_index.groupby(<span class="st">'year_week'</span>)[<span class="st">'close'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: (x.iloc[<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> x.iloc[<span class="dv">0</span>]) <span class="op">/</span> x.iloc[<span class="dv">0</span>])</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>weekly_return <span class="op">=</span> weekly_return.reset_index()  <span class="co"># 重置索引</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>weekly_return.columns <span class="op">=</span> [<span class="st">'Year_Week'</span>, <span class="st">'Weekly_Return'</span>]  <span class="co"># 重命名列</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 打印结果</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(weekly_return.sort_values(by<span class="op">=</span><span class="st">'Year_Week'</span>).tail(<span class="dv">10</span>))  <span class="co"># 按时间顺序显示最后20周的收益率</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     Year_Week  Weekly_Return
 1729  2025-w09      -0.015455
@@ -1254,34 +1254,34 @@ u_i = \frac{X_i - c}{h}
 </div>
 </div>
 <div id="c7f2ae0d" class="cell" data-execution_count="60">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># 设置起始时间和结束时间</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a>start_week <span class="op">=</span> <span class="st">'2005-w01'</span></span>
-<span id="cb19-3"><a href="#cb19-3"></a>end_week <span class="op">=</span> <span class="st">'2028-w16'</span></span>
-<span id="cb19-4"><a href="#cb19-4"></a></span>
-<span id="cb19-5"><a href="#cb19-5"></a><span class="co"># 筛选指定时间范围内的数据</span></span>
-<span id="cb19-6"><a href="#cb19-6"></a>filtered_weekly_return <span class="op">=</span> weekly_return[(weekly_return[<span class="st">'Year_Week'</span>] <span class="op">&gt;=</span> start_week) <span class="op">&amp;</span> </span>
-<span id="cb19-7"><a href="#cb19-7"></a>                                       (weekly_return[<span class="st">'Year_Week'</span>] <span class="op">&lt;=</span> end_week)]</span>
-<span id="cb19-8"><a href="#cb19-8"></a></span>
-<span id="cb19-9"><a href="#cb19-9"></a><span class="co"># 绘制每周收益率走势图</span></span>
-<span id="cb19-10"><a href="#cb19-10"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">7</span>))</span>
-<span id="cb19-11"><a href="#cb19-11"></a>plt.plot(filtered_weekly_return[<span class="st">'Year_Week'</span>], filtered_weekly_return[<span class="st">'Weekly_Return'</span>], label<span class="op">=</span><span class="st">'Weekly Return'</span>, color<span class="op">=</span><span class="st">'green'</span>)</span>
-<span id="cb19-12"><a href="#cb19-12"></a>plt.title(<span class="st">'Shanghai Composite Index Weekly Return'</span>)</span>
-<span id="cb19-13"><a href="#cb19-13"></a>plt.xlabel(<span class="st">'Year'</span>)</span>
-<span id="cb19-14"><a href="#cb19-14"></a>plt.ylabel(<span class="st">'Weekly Return'</span>)</span>
-<span id="cb19-15"><a href="#cb19-15"></a></span>
-<span id="cb19-16"><a href="#cb19-16"></a><span class="co"># 修改 x 轴标签，仅显示年份</span></span>
-<span id="cb19-17"><a href="#cb19-17"></a>year_labels <span class="op">=</span> [label.split(<span class="st">'-'</span>)[<span class="dv">0</span>] <span class="cf">if</span> label.endswith(<span class="st">'-w01'</span>) <span class="cf">else</span> <span class="st">''</span> <span class="cf">for</span> label <span class="kw">in</span> filtered_weekly_return[<span class="st">'Year_Week'</span>]]</span>
-<span id="cb19-18"><a href="#cb19-18"></a>plt.xticks(ticks<span class="op">=</span><span class="bu">range</span>(<span class="bu">len</span>(year_labels)), labels<span class="op">=</span>year_labels, rotation<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb19-19"><a href="#cb19-19"></a></span>
-<span id="cb19-20"><a href="#cb19-20"></a><span class="co"># 添加 y=0 的水平线</span></span>
-<span id="cb19-21"><a href="#cb19-21"></a>plt.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb19-22"><a href="#cb19-22"></a></span>
-<span id="cb19-23"><a href="#cb19-23"></a><span class="co"># 设置 grid，仅显示主要的 grid</span></span>
-<span id="cb19-24"><a href="#cb19-24"></a>plt.grid(visible<span class="op">=</span><span class="va">True</span>, which<span class="op">=</span><span class="st">'major'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb19-25"><a href="#cb19-25"></a></span>
-<span id="cb19-26"><a href="#cb19-26"></a>plt.legend()</span>
-<span id="cb19-27"><a href="#cb19-27"></a>plt.tight_layout()  <span class="co"># 调整子图间距</span></span>
-<span id="cb19-28"><a href="#cb19-28"></a>plt.show()  <span class="co"># 显示图形</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置起始时间和结束时间</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>start_week <span class="op">=</span> <span class="st">'2005-w01'</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>end_week <span class="op">=</span> <span class="st">'2028-w16'</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 筛选指定时间范围内的数据</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>filtered_weekly_return <span class="op">=</span> weekly_return[(weekly_return[<span class="st">'Year_Week'</span>] <span class="op">&gt;=</span> start_week) <span class="op">&amp;</span> </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                                       (weekly_return[<span class="st">'Year_Week'</span>] <span class="op">&lt;=</span> end_week)]</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制每周收益率走势图</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">7</span>))</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>plt.plot(filtered_weekly_return[<span class="st">'Year_Week'</span>], filtered_weekly_return[<span class="st">'Weekly_Return'</span>], label<span class="op">=</span><span class="st">'Weekly Return'</span>, color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Shanghai Composite Index Weekly Return'</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Year'</span>)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Weekly Return'</span>)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 修改 x 轴标签，仅显示年份</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>year_labels <span class="op">=</span> [label.split(<span class="st">'-'</span>)[<span class="dv">0</span>] <span class="cf">if</span> label.endswith(<span class="st">'-w01'</span>) <span class="cf">else</span> <span class="st">''</span> <span class="cf">for</span> label <span class="kw">in</span> filtered_weekly_return[<span class="st">'Year_Week'</span>]]</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>plt.xticks(ticks<span class="op">=</span><span class="bu">range</span>(<span class="bu">len</span>(year_labels)), labels<span class="op">=</span>year_labels, rotation<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加 y=0 的水平线</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置 grid，仅显示主要的 grid</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>plt.grid(visible<span class="op">=</span><span class="va">True</span>, which<span class="op">=</span><span class="st">'major'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()  <span class="co"># 调整子图间距</span></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>plt.show()  <span class="co"># 显示图形</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1309,18 +1309,18 @@ u_i = \frac{X_i - c}{h}
 </ul></li>
 </ul>
 <div id="a8426a60" class="cell" data-execution_count="66">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># 列出周收益率绝对值大于 0.2 的周</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>high_weekly_return <span class="op">=</span> weekly_return[weekly_return[<span class="st">'Weekly_Return'</span>].<span class="bu">abs</span>() <span class="op">&gt;</span> <span class="fl">0.2</span>]</span>
-<span id="cb20-3"><a href="#cb20-3"></a></span>
-<span id="cb20-4"><a href="#cb20-4"></a><span class="co"># 按收益率排序</span></span>
-<span id="cb20-5"><a href="#cb20-5"></a>high_weekly_return <span class="op">=</span> high_weekly_return.sort_values(by<span class="op">=</span><span class="st">'Weekly_Return'</span>, ascending<span class="op">=</span><span class="va">False</span>)  </span>
-<span id="cb20-6"><a href="#cb20-6"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span> <span class="op">+</span> <span class="st">'---'</span><span class="op">*</span><span class="dv">5</span> <span class="op">+</span> <span class="st">'high weekly return'</span> <span class="op">+</span> <span class="st">'---'</span><span class="op">*</span><span class="dv">5</span>)</span>
-<span id="cb20-7"><a href="#cb20-7"></a><span class="bu">print</span>(high_weekly_return)  <span class="co"># 打印结果</span></span>
-<span id="cb20-8"><a href="#cb20-8"></a></span>
-<span id="cb20-9"><a href="#cb20-9"></a><span class="co"># 按时间排序</span></span>
-<span id="cb20-10"><a href="#cb20-10"></a>high_weekly_return <span class="op">=</span> high_weekly_return.sort_values(by<span class="op">=</span><span class="st">'Year_Week'</span>)  <span class="co"># 按时间排序</span></span>
-<span id="cb20-11"><a href="#cb20-11"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span> <span class="op">+</span> <span class="st">'---'</span><span class="op">*</span><span class="dv">5</span> <span class="op">+</span> <span class="st">'sorted by Year_Week'</span> <span class="op">+</span> <span class="st">'---'</span><span class="op">*</span><span class="dv">5</span>)</span>
-<span id="cb20-12"><a href="#cb20-12"></a><span class="bu">print</span>(high_weekly_return)  <span class="co"># 打印结果</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 列出周收益率绝对值大于 0.2 的周</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>high_weekly_return <span class="op">=</span> weekly_return[weekly_return[<span class="st">'Weekly_Return'</span>].<span class="bu">abs</span>() <span class="op">&gt;</span> <span class="fl">0.2</span>]</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 按收益率排序</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>high_weekly_return <span class="op">=</span> high_weekly_return.sort_values(by<span class="op">=</span><span class="st">'Weekly_Return'</span>, ascending<span class="op">=</span><span class="va">False</span>)  </span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span> <span class="op">+</span> <span class="st">'---'</span><span class="op">*</span><span class="dv">5</span> <span class="op">+</span> <span class="st">'high weekly return'</span> <span class="op">+</span> <span class="st">'---'</span><span class="op">*</span><span class="dv">5</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(high_weekly_return)  <span class="co"># 打印结果</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 按时间排序</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>high_weekly_return <span class="op">=</span> high_weekly_return.sort_values(by<span class="op">=</span><span class="st">'Year_Week'</span>)  <span class="co"># 按时间排序</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span> <span class="op">+</span> <span class="st">'---'</span><span class="op">*</span><span class="dv">5</span> <span class="op">+</span> <span class="st">'sorted by Year_Week'</span> <span class="op">+</span> <span class="st">'---'</span><span class="op">*</span><span class="dv">5</span>)</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(high_weekly_return)  <span class="co"># 打印结果</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 ---------------high weekly return---------------
@@ -1359,20 +1359,20 @@ u_i = \frac{X_i - c}{h}
 <section id="年化收益率和标准差" class="level2" data-number="24.7">
 <h2 data-number="24.7" class="anchored" data-anchor-id="年化收益率和标准差"><span class="header-section-number">24.7</span> 年化收益率和标准差</h2>
 <div id="9300e107" class="cell" data-execution_count="57">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a></span>
-<span id="cb22-2"><a href="#cb22-2"></a><span class="co"># 各个年度的收益率和标准差</span></span>
-<span id="cb22-3"><a href="#cb22-3"></a>sz_index[<span class="st">'year'</span>] <span class="op">=</span> sz_index[<span class="st">'day'</span>].dt.year  <span class="co"># 提取年份</span></span>
-<span id="cb22-4"><a href="#cb22-4"></a>annual_stats <span class="op">=</span> sz_index.groupby(<span class="st">'year'</span>).agg({<span class="st">'daily_return'</span>: [<span class="st">'mean'</span>, <span class="st">'std'</span>]}).reset_index()</span>
-<span id="cb22-5"><a href="#cb22-5"></a></span>
-<span id="cb22-6"><a href="#cb22-6"></a><span class="co"># 重命名列名</span></span>
-<span id="cb22-7"><a href="#cb22-7"></a>annual_stats.columns <span class="op">=</span> [<span class="st">'Year'</span>, <span class="st">'Mean Daily Return'</span>, <span class="st">'Std Daily Return'</span>]</span>
-<span id="cb22-8"><a href="#cb22-8"></a><span class="co"># 将收益率和标准差转换为百分比，并计算年化收益率和年化标准差</span></span>
-<span id="cb22-9"><a href="#cb22-9"></a>annual_stats[<span class="st">'Mean Daily Return'</span>] <span class="op">=</span> annual_stats[<span class="st">'Mean Daily Return'</span>] <span class="op">*</span> <span class="dv">100</span>  <span class="co"># 转换为百分比</span></span>
-<span id="cb22-10"><a href="#cb22-10"></a>annual_stats[<span class="st">'Std Daily Return'</span>] <span class="op">=</span> annual_stats[<span class="st">'Std Daily Return'</span>] <span class="op">*</span> <span class="dv">100</span>  <span class="co"># 转换为百分比</span></span>
-<span id="cb22-11"><a href="#cb22-11"></a>annual_stats[<span class="st">'Annualized Return'</span>] <span class="op">=</span> annual_stats[<span class="st">'Mean Daily Return'</span>] <span class="op">*</span> <span class="dv">252</span> <span class="op">/</span> <span class="dv">100</span>  <span class="co"># 年化收益率</span></span>
-<span id="cb22-12"><a href="#cb22-12"></a>annual_stats[<span class="st">'Annualized Std'</span>] <span class="op">=</span> annual_stats[<span class="st">'Std Daily Return'</span>] <span class="op">*</span> (<span class="dv">252</span> <span class="op">**</span> <span class="fl">0.5</span>) <span class="op">/</span> <span class="dv">100</span>  <span class="co"># 年化标准差</span></span>
-<span id="cb22-13"><a href="#cb22-13"></a><span class="co"># 打印单数年份的收益率和标准差，小数点后保留三位，四列在同一行呈现</span></span>
-<span id="cb22-14"><a href="#cb22-14"></a><span class="bu">print</span>(annual_stats[annual_stats[<span class="st">'Year'</span>] <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">1</span>][[<span class="st">'Year'</span>, <span class="st">'Mean Daily Return'</span>, <span class="st">'Std Daily Return'</span>, <span class="st">'Annualized Return'</span>, <span class="st">'Annualized Std'</span>]].<span class="bu">round</span>(<span class="dv">3</span>).to_string(index<span class="op">=</span><span class="va">False</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 各个年度的收益率和标准差</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>sz_index[<span class="st">'year'</span>] <span class="op">=</span> sz_index[<span class="st">'day'</span>].dt.year  <span class="co"># 提取年份</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>annual_stats <span class="op">=</span> sz_index.groupby(<span class="st">'year'</span>).agg({<span class="st">'daily_return'</span>: [<span class="st">'mean'</span>, <span class="st">'std'</span>]}).reset_index()</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 重命名列名</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>annual_stats.columns <span class="op">=</span> [<span class="st">'Year'</span>, <span class="st">'Mean Daily Return'</span>, <span class="st">'Std Daily Return'</span>]</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 将收益率和标准差转换为百分比，并计算年化收益率和年化标准差</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>annual_stats[<span class="st">'Mean Daily Return'</span>] <span class="op">=</span> annual_stats[<span class="st">'Mean Daily Return'</span>] <span class="op">*</span> <span class="dv">100</span>  <span class="co"># 转换为百分比</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>annual_stats[<span class="st">'Std Daily Return'</span>] <span class="op">=</span> annual_stats[<span class="st">'Std Daily Return'</span>] <span class="op">*</span> <span class="dv">100</span>  <span class="co"># 转换为百分比</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>annual_stats[<span class="st">'Annualized Return'</span>] <span class="op">=</span> annual_stats[<span class="st">'Mean Daily Return'</span>] <span class="op">*</span> <span class="dv">252</span> <span class="op">/</span> <span class="dv">100</span>  <span class="co"># 年化收益率</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>annual_stats[<span class="st">'Annualized Std'</span>] <span class="op">=</span> annual_stats[<span class="st">'Std Daily Return'</span>] <span class="op">*</span> (<span class="dv">252</span> <span class="op">**</span> <span class="fl">0.5</span>) <span class="op">/</span> <span class="dv">100</span>  <span class="co"># 年化标准差</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 打印单数年份的收益率和标准差，小数点后保留三位，四列在同一行呈现</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(annual_stats[annual_stats[<span class="st">'Year'</span>] <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">1</span>][[<span class="st">'Year'</span>, <span class="st">'Mean Daily Return'</span>, <span class="st">'Std Daily Return'</span>, <span class="st">'Annualized Return'</span>, <span class="st">'Annualized Std'</span>]].<span class="bu">round</span>(<span class="dv">3</span>).to_string(index<span class="op">=</span><span class="va">False</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Year  Mean Daily Return  Std Daily Return  Annualized Return  Annualized Std
  1991              0.326             0.662              0.821           0.105
@@ -1396,24 +1396,24 @@ u_i = \frac{X_i - c}{h}
 </div>
 </div>
 <div id="7e009ed1" class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># 图示各个年度收益率和标准差</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">7</span>))</span>
-<span id="cb24-3"><a href="#cb24-3"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb24-4"><a href="#cb24-4"></a>plt.bar(annual_stats[<span class="st">'Year'</span>], annual_stats[<span class="st">'Mean Daily Return'</span>], color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Mean Daily Return'</span>)</span>
-<span id="cb24-5"><a href="#cb24-5"></a>plt.title(<span class="st">'Annual Mean Daily Return of Shanghai Composite Index'</span>)</span>
-<span id="cb24-6"><a href="#cb24-6"></a>plt.xlabel(<span class="st">'Year'</span>)</span>
-<span id="cb24-7"><a href="#cb24-7"></a>plt.ylabel(<span class="st">'Mean Daily Return'</span>)</span>
-<span id="cb24-8"><a href="#cb24-8"></a>plt.legend()</span>
-<span id="cb24-9"><a href="#cb24-9"></a>plt.grid()</span>
-<span id="cb24-10"><a href="#cb24-10"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb24-11"><a href="#cb24-11"></a>plt.bar(annual_stats[<span class="st">'Year'</span>], annual_stats[<span class="st">'Std Daily Return'</span>], color<span class="op">=</span><span class="st">'orange'</span>, label<span class="op">=</span><span class="st">'Std Daily Return'</span>)</span>
-<span id="cb24-12"><a href="#cb24-12"></a>plt.title(<span class="st">'Annual Std Daily Return of Shanghai Composite Index'</span>)</span>
-<span id="cb24-13"><a href="#cb24-13"></a>plt.xlabel(<span class="st">'Year'</span>)</span>
-<span id="cb24-14"><a href="#cb24-14"></a>plt.ylabel(<span class="st">'Std Daily Return'</span>)</span>
-<span id="cb24-15"><a href="#cb24-15"></a>plt.legend()</span>
-<span id="cb24-16"><a href="#cb24-16"></a>plt.grid()</span>
-<span id="cb24-17"><a href="#cb24-17"></a>plt.tight_layout()  <span class="co"># 调整子图间距</span></span>
-<span id="cb24-18"><a href="#cb24-18"></a>plt.show()  <span class="co"># 显示图形</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 图示各个年度收益率和标准差</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">7</span>))</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>plt.bar(annual_stats[<span class="st">'Year'</span>], annual_stats[<span class="st">'Mean Daily Return'</span>], color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Mean Daily Return'</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Annual Mean Daily Return of Shanghai Composite Index'</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Year'</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Mean Daily Return'</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>plt.bar(annual_stats[<span class="st">'Year'</span>], annual_stats[<span class="st">'Std Daily Return'</span>], color<span class="op">=</span><span class="st">'orange'</span>, label<span class="op">=</span><span class="st">'Std Daily Return'</span>)</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Annual Std Daily Return of Shanghai Composite Index'</span>)</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Year'</span>)</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Std Daily Return'</span>)</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()  <span class="co"># 调整子图间距</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>plt.show()  <span class="co"># 显示图形</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1423,20 +1423,20 @@ u_i = \frac{X_i - c}{h}
 </div>
 </div>
 <div id="68a6a6c7" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a></span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="co"># 图示波动率</span></span>
-<span id="cb25-3"><a href="#cb25-3"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">7</span>))</span>
-<span id="cb25-4"><a href="#cb25-4"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb25-5"><a href="#cb25-5"></a>plt.plot(sz_index[<span class="st">'day'</span>], </span>
-<span id="cb25-6"><a href="#cb25-6"></a>         sz_index[<span class="st">'daily_return'</span>].rolling(window<span class="op">=</span><span class="dv">30</span>).std(), </span>
-<span id="cb25-7"><a href="#cb25-7"></a>         label<span class="op">=</span><span class="st">'30-Day Rolling Volatility'</span>, </span>
-<span id="cb25-8"><a href="#cb25-8"></a>         color<span class="op">=</span><span class="st">'red'</span>)</span>
-<span id="cb25-9"><a href="#cb25-9"></a>plt.title(<span class="st">'SZ Index Daily Return Volatility'</span>)</span>
-<span id="cb25-10"><a href="#cb25-10"></a>plt.xlabel(<span class="st">'Date'</span>)</span>
-<span id="cb25-11"><a href="#cb25-11"></a>plt.ylabel(<span class="st">'Volatility'</span>)</span>
-<span id="cb25-12"><a href="#cb25-12"></a>plt.legend()</span>
-<span id="cb25-13"><a href="#cb25-13"></a>plt.grid()</span>
-<span id="cb25-14"><a href="#cb25-14"></a>plt.show()  <span class="co"># 显示图形</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 图示波动率</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">7</span>))</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>plt.plot(sz_index[<span class="st">'day'</span>], </span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>         sz_index[<span class="st">'daily_return'</span>].rolling(window<span class="op">=</span><span class="dv">30</span>).std(), </span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>         label<span class="op">=</span><span class="st">'30-Day Rolling Volatility'</span>, </span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>         color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'SZ Index Daily Return Volatility'</span>)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Date'</span>)</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Volatility'</span>)</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>plt.show()  <span class="co"># 显示图形</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1446,25 +1446,25 @@ u_i = \frac{X_i - c}{h}
 </div>
 </div>
 <div id="717b0ed6" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a></span>
-<span id="cb26-2"><a href="#cb26-2"></a><span class="co"># 将日期列转换为 datetime 类型</span></span>
-<span id="cb26-3"><a href="#cb26-3"></a>sz_index[<span class="st">'day'</span>] <span class="op">=</span> pd.to_datetime(sz_index[<span class="st">'day'</span>])</span>
-<span id="cb26-4"><a href="#cb26-4"></a></span>
-<span id="cb26-5"><a href="#cb26-5"></a><span class="co"># 将收盘价列转换为浮点数类型</span></span>
-<span id="cb26-6"><a href="#cb26-6"></a>sz_index[<span class="st">'close'</span>] <span class="op">=</span> sz_index[<span class="st">'close'</span>].astype(<span class="st">'float'</span>)</span>
-<span id="cb26-7"><a href="#cb26-7"></a></span>
-<span id="cb26-8"><a href="#cb26-8"></a><span class="co"># 创建一个示例 DataFrame，用于合并</span></span>
-<span id="cb26-9"><a href="#cb26-9"></a>data <span class="op">=</span> pd.DataFrame({<span class="st">'time'</span>: sz_index[<span class="st">'day'</span>], <span class="st">'pos_p'</span>: [<span class="dv">0</span>] <span class="op">*</span> <span class="bu">len</span>(sz_index)})</span>
-<span id="cb26-10"><a href="#cb26-10"></a></span>
-<span id="cb26-11"><a href="#cb26-11"></a><span class="co"># 合并两个 DataFrame，基于时间列进行内连接</span></span>
-<span id="cb26-12"><a href="#cb26-12"></a>data <span class="op">=</span> data.merge(sz_index, left_on<span class="op">=</span><span class="st">'time'</span>, right_on<span class="op">=</span><span class="st">'day'</span>, how<span class="op">=</span><span class="st">'inner'</span>)</span>
-<span id="cb26-13"><a href="#cb26-13"></a></span>
-<span id="cb26-14"><a href="#cb26-14"></a><span class="co"># 绘制图表</span></span>
-<span id="cb26-15"><a href="#cb26-15"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">3</span>))  <span class="co"># 设置图表大小</span></span>
-<span id="cb26-16"><a href="#cb26-16"></a>data.index <span class="op">=</span> data[<span class="st">'time'</span>]  <span class="co"># 将时间列设置为索引</span></span>
-<span id="cb26-17"><a href="#cb26-17"></a>data[[<span class="st">'pos_p'</span>, <span class="st">'close'</span>]].plot(secondary_y<span class="op">=</span>[<span class="st">'close'</span>])  <span class="co"># 绘制双 Y 轴图表</span></span>
-<span id="cb26-18"><a href="#cb26-18"></a>plt.title(<span class="st">'SH000001 15min K-line'</span>)  <span class="co"># 设置图表标题</span></span>
-<span id="cb26-19"><a href="#cb26-19"></a>plt.show()  <span class="co"># 显示图表</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 将日期列转换为 datetime 类型</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>sz_index[<span class="st">'day'</span>] <span class="op">=</span> pd.to_datetime(sz_index[<span class="st">'day'</span>])</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 将收盘价列转换为浮点数类型</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>sz_index[<span class="st">'close'</span>] <span class="op">=</span> sz_index[<span class="st">'close'</span>].astype(<span class="st">'float'</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个示例 DataFrame，用于合并</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({<span class="st">'time'</span>: sz_index[<span class="st">'day'</span>], <span class="st">'pos_p'</span>: [<span class="dv">0</span>] <span class="op">*</span> <span class="bu">len</span>(sz_index)})</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 合并两个 DataFrame，基于时间列进行内连接</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.merge(sz_index, left_on<span class="op">=</span><span class="st">'time'</span>, right_on<span class="op">=</span><span class="st">'day'</span>, how<span class="op">=</span><span class="st">'inner'</span>)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制图表</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">3</span>))  <span class="co"># 设置图表大小</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>data.index <span class="op">=</span> data[<span class="st">'time'</span>]  <span class="co"># 将时间列设置为索引</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>data[[<span class="st">'pos_p'</span>, <span class="st">'close'</span>]].plot(secondary_y<span class="op">=</span>[<span class="st">'close'</span>])  <span class="co"># 绘制双 Y 轴图表</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'SH000001 15min K-line'</span>)  <span class="co"># 设置图表标题</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>plt.show()  <span class="co"># 显示图表</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>&lt;Figure size 400x300 with 0 Axes&gt;</code></pre>
 </div>
@@ -1571,7 +1571,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

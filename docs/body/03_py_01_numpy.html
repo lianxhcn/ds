@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -620,20 +620,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>NumPy最核心的是提供了向量和矩阵两个数据结构，可以方便的使用这些数据结构进行向量的加、减、数乘，以及矩阵的加、减、数乘、乘法、求逆、矩阵分解等运算。</p>
 <p>在Python中，如果需要使用NumPy，首先要使用pip安装numpy，接着在文件中导入numpy。numpy.array()函数提供了将一个列表转化为一个向量的方法，比如：</p>
 <div id="cell-1" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a>a<span class="op">=</span>np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]) <span class="co">#创建一个三维向量</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="bu">print</span>(<span class="st">'向量a='</span>,a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span>np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]) <span class="co">#创建一个三维向量</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'向量a='</span>,a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>向量a= [1 2 3]</code></pre>
 </div>
 </div>
 <p>此外，还有一些其他的方法创建向量，比如：</p>
 <div id="cell-3" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>b<span class="op">=</span>np.ones(<span class="dv">3</span>) <span class="co">#创建一个元素全为1的向量</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="bu">print</span>(<span class="st">'b='</span>,b)</span>
-<span id="cb3-3"><a href="#cb3-3"></a>b0<span class="op">=</span>np.zeros(<span class="dv">3</span>) <span class="co">#创建一个元素全为0的向量</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="bu">print</span>(<span class="st">'b0='</span>,b0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>b<span class="op">=</span>np.ones(<span class="dv">3</span>) <span class="co">#创建一个元素全为1的向量</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'b='</span>,b)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>b0<span class="op">=</span>np.zeros(<span class="dv">3</span>) <span class="co">#创建一个元素全为0的向量</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'b0='</span>,b0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>b= [ 1.  1.  1.]
 b0= [ 0.  0.  0.]</code></pre>
@@ -641,8 +641,8 @@ b0= [ 0.  0.  0.]</code></pre>
 </div>
 <p>还有一个更加常用的函数:linespace(n1,n2,N)，该函数创建从n1到n2区间平均分为N等份的网格点：</p>
 <div id="cell-5" class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>lp <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">20</span>)   <span class="co"># 0 到 5 等分 20 等分</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="bu">print</span>(<span class="st">"0 到 5 等分 20 等分：</span><span class="ch">\n</span><span class="st">"</span>,lp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>lp <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">20</span>)   <span class="co"># 0 到 5 等分 20 等分</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"0 到 5 等分 20 等分：</span><span class="ch">\n</span><span class="st">"</span>,lp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0到5等分20等分：
  [ 0.          0.26315789  0.52631579  0.78947368  1.05263158  1.31578947
@@ -653,17 +653,17 @@ b0= [ 0.  0.  0.]</code></pre>
 </div>
 <p>NumPy支持很多向量运算，比如：</p>
 <div id="cell-7" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="bu">print</span>(<span class="st">"基本数学运算：元素对元素运算"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="bu">print</span>(<span class="st">'数乘：3*a='</span>,<span class="dv">3</span><span class="op">*</span>a)</span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="bu">print</span>(<span class="st">'a-b='</span>,a<span class="op">-</span>b)</span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="bu">print</span>(<span class="st">'a+b='</span>,a<span class="op">+</span>b)</span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="bu">print</span>(<span class="st">'a*b='</span>,a<span class="op">*</span>b)</span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="bu">print</span>(<span class="st">'b/a='</span>,b<span class="op">/</span>a)</span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="bu">print</span>(<span class="st">'向量运算'</span>)</span>
-<span id="cb7-8"><a href="#cb7-8"></a>c<span class="op">=</span>np.dot(a,b) <span class="co">#a.*b</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="bu">print</span>(<span class="st">'点乘（内积）a.*b='</span>,c)</span>
-<span id="cb7-10"><a href="#cb7-10"></a>d<span class="op">=</span>np.outer(a,b)</span>
-<span id="cb7-11"><a href="#cb7-11"></a><span class="bu">print</span>(<span class="st">'外积(a,b)=</span><span class="ch">\n</span><span class="st">'</span>,d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"基本数学运算：元素对元素运算"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'数乘：3*a='</span>,<span class="dv">3</span><span class="op">*</span>a)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'a-b='</span>,a<span class="op">-</span>b)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'a+b='</span>,a<span class="op">+</span>b)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'a*b='</span>,a<span class="op">*</span>b)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'b/a='</span>,b<span class="op">/</span>a)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'向量运算'</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>c<span class="op">=</span>np.dot(a,b) <span class="co">#a.*b</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'点乘（内积）a.*b='</span>,c)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>d<span class="op">=</span>np.outer(a,b)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'外积(a,b)=</span><span class="ch">\n</span><span class="st">'</span>,d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>基本数学运算：元素对元素运算
 数乘：3*a= [3 6 9]
@@ -682,8 +682,8 @@ b/a= [ 1.          0.5         0.33333333]
 <p>这里要特别特别注意的是，向量的乘法*和除法定义的是元素对元素的乘除法，这点与MATLAB等有很大不同。</p>
 <p>除了可以使用numpy.array()创建向量，也可以创建矩阵，创建矩阵时，提供一个列表的列表，每个列表代表矩阵中的一行：</p>
 <div id="cell-9" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>A<span class="op">=</span>np.array([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>],[<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">6</span>],[<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>]])</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="bu">print</span>(<span class="st">"矩阵A=</span><span class="ch">\n</span><span class="st">"</span>,A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>A<span class="op">=</span>np.array([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>],[<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">6</span>],[<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>]])</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"矩阵A=</span><span class="ch">\n</span><span class="st">"</span>,A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>矩阵A=
  [[1 2 3]
@@ -693,12 +693,12 @@ b/a= [ 1.          0.5         0.33333333]
 </div>
 <p>以及一些特殊矩阵：</p>
 <div id="cell-11" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>M<span class="op">=</span>np.zeros((<span class="dv">3</span>,<span class="dv">3</span>)) <span class="co">#全为0的矩阵</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="bu">print</span>(<span class="st">"矩阵M=</span><span class="ch">\n</span><span class="st">"</span>,M)</span>
-<span id="cb11-3"><a href="#cb11-3"></a>O<span class="op">=</span>np.ones((<span class="dv">3</span>,<span class="dv">3</span>)) <span class="co">#全为1的矩阵</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="bu">print</span>(<span class="st">"矩阵O=</span><span class="ch">\n</span><span class="st">"</span>,O)</span>
-<span id="cb11-5"><a href="#cb11-5"></a>I<span class="op">=</span>np.eye(<span class="dv">3</span>) <span class="co">#单位阵</span></span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="bu">print</span>(<span class="st">"矩阵I=</span><span class="ch">\n</span><span class="st">"</span>,I)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>M<span class="op">=</span>np.zeros((<span class="dv">3</span>,<span class="dv">3</span>)) <span class="co">#全为0的矩阵</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"矩阵M=</span><span class="ch">\n</span><span class="st">"</span>,M)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>O<span class="op">=</span>np.ones((<span class="dv">3</span>,<span class="dv">3</span>)) <span class="co">#全为1的矩阵</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"矩阵O=</span><span class="ch">\n</span><span class="st">"</span>,O)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>I<span class="op">=</span>np.eye(<span class="dv">3</span>) <span class="co">#单位阵</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"矩阵I=</span><span class="ch">\n</span><span class="st">"</span>,I)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>矩阵M=
  [[ 0.  0.  0.]
@@ -716,17 +716,17 @@ b/a= [ 1.          0.5         0.33333333]
 </div>
 <p>以及一些矩阵的运算：</p>
 <div id="cell-13" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="bu">print</span>(<span class="st">"A+I=</span><span class="ch">\n</span><span class="st">"</span>,A<span class="op">+</span>I)</span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="bu">print</span>(<span class="st">"A-I=</span><span class="ch">\n</span><span class="st">"</span>,A<span class="op">-</span>I)</span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="bu">print</span>(<span class="st">"A*I=</span><span class="ch">\n</span><span class="st">"</span>,A<span class="op">*</span>I)</span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="bu">print</span>(<span class="st">"I/A=</span><span class="ch">\n</span><span class="st">"</span>,I<span class="op">/</span>A)</span>
-<span id="cb13-5"><a href="#cb13-5"></a><span class="bu">print</span>(<span class="st">"矩阵相乘，A*O=</span><span class="ch">\n</span><span class="st">"</span>, np.dot(A,O))</span>
-<span id="cb13-6"><a href="#cb13-6"></a><span class="bu">print</span>(<span class="st">"矩阵相乘，O*A=</span><span class="ch">\n</span><span class="st">"</span>, np.dot(O,A))</span>
-<span id="cb13-7"><a href="#cb13-7"></a><span class="bu">print</span>(<span class="st">"矩阵转置，tranpose(A)=</span><span class="ch">\n</span><span class="st">"</span>, A.transpose())</span>
-<span id="cb13-8"><a href="#cb13-8"></a><span class="bu">print</span>(<span class="st">"矩阵的逆，inv(A)=</span><span class="ch">\n</span><span class="st">"</span>, np.linalg.inv(A))</span>
-<span id="cb13-9"><a href="#cb13-9"></a>l,L<span class="op">=</span>np.linalg.eig(A)</span>
-<span id="cb13-10"><a href="#cb13-10"></a><span class="bu">print</span>(<span class="st">"矩阵的特征值=</span><span class="ch">\n</span><span class="st">"</span>, l)</span>
-<span id="cb13-11"><a href="#cb13-11"></a><span class="bu">print</span>(<span class="st">"矩阵的特征向量=</span><span class="ch">\n</span><span class="st">"</span>, L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A+I=</span><span class="ch">\n</span><span class="st">"</span>,A<span class="op">+</span>I)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A-I=</span><span class="ch">\n</span><span class="st">"</span>,A<span class="op">-</span>I)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A*I=</span><span class="ch">\n</span><span class="st">"</span>,A<span class="op">*</span>I)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"I/A=</span><span class="ch">\n</span><span class="st">"</span>,I<span class="op">/</span>A)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"矩阵相乘，A*O=</span><span class="ch">\n</span><span class="st">"</span>, np.dot(A,O))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"矩阵相乘，O*A=</span><span class="ch">\n</span><span class="st">"</span>, np.dot(O,A))</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"矩阵转置，tranpose(A)=</span><span class="ch">\n</span><span class="st">"</span>, A.transpose())</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"矩阵的逆，inv(A)=</span><span class="ch">\n</span><span class="st">"</span>, np.linalg.inv(A))</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>l,L<span class="op">=</span>np.linalg.eig(A)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"矩阵的特征值=</span><span class="ch">\n</span><span class="st">"</span>, l)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"矩阵的特征向量=</span><span class="ch">\n</span><span class="st">"</span>, L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>A+I=
  [[ 2.  2.  3.]
@@ -772,7 +772,7 @@ I/A=
 <p>如果需要提取出矩阵的元素，可以使用 <strong>A[row,col]（而非A[row][col]！！）</strong>。</p>
 <p>此外，数组和矩阵都支持切片操作。比如，如果希望提取出矩阵A的奇数行、奇数列，可以用：</p>
 <div id="cell-15" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="bu">print</span>(<span class="st">"A的奇数行、奇数列=</span><span class="ch">\n</span><span class="st">"</span>, A[::<span class="dv">2</span>,::<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A的奇数行、奇数列=</span><span class="ch">\n</span><span class="st">"</span>, A[::<span class="dv">2</span>,::<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>A的奇数行、奇数列=
  [[1 3]
@@ -781,16 +781,16 @@ I/A=
 </div>
 <p>另外，这里与Python中的另外一个不同是，在Python的列表中，实行切片操作是直接对切片出的元素进行复制，而在NumPy中，切片操作只是一个视图（view），并没有进行复制。理解这一点是非常关键的，比如：</p>
 <div id="cell-17" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>lista<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]</span>
-<span id="cb17-2"><a href="#cb17-2"></a>suba<span class="op">=</span>lista[<span class="dv">1</span>:<span class="dv">3</span>]</span>
-<span id="cb17-3"><a href="#cb17-3"></a>suba[<span class="dv">0</span>]<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a><span class="bu">print</span>(lista)</span>
-<span id="cb17-5"><a href="#cb17-5"></a><span class="bu">print</span>(suba)</span>
-<span id="cb17-6"><a href="#cb17-6"></a>veca<span class="op">=</span>np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>])</span>
-<span id="cb17-7"><a href="#cb17-7"></a>suba<span class="op">=</span>veca[<span class="dv">1</span>:<span class="dv">3</span>]</span>
-<span id="cb17-8"><a href="#cb17-8"></a>suba[<span class="dv">0</span>]<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb17-9"><a href="#cb17-9"></a><span class="bu">print</span>(veca)</span>
-<span id="cb17-10"><a href="#cb17-10"></a><span class="bu">print</span>(suba)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>lista<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>suba<span class="op">=</span>lista[<span class="dv">1</span>:<span class="dv">3</span>]</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>suba[<span class="dv">0</span>]<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lista)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(suba)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>veca<span class="op">=</span>np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>])</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>suba<span class="op">=</span>veca[<span class="dv">1</span>:<span class="dv">3</span>]</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>suba[<span class="dv">0</span>]<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(veca)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(suba)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1, 2, 3, 4]
 [1, 3]
@@ -801,11 +801,11 @@ I/A=
 <p>因而，在对数组、矩阵进行切片、修改时，需要特别注意。</p>
 <p>如果需要创建切片的副本，需要用copy()方法：</p>
 <div id="cell-19" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>veca<span class="op">=</span>np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>])</span>
-<span id="cb19-2"><a href="#cb19-2"></a>suba<span class="op">=</span>veca[<span class="dv">1</span>:<span class="dv">3</span>].copy()</span>
-<span id="cb19-3"><a href="#cb19-3"></a>suba[<span class="dv">0</span>]<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb19-4"><a href="#cb19-4"></a><span class="bu">print</span>(veca)</span>
-<span id="cb19-5"><a href="#cb19-5"></a><span class="bu">print</span>(suba)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>veca<span class="op">=</span>np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>])</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>suba<span class="op">=</span>veca[<span class="dv">1</span>:<span class="dv">3</span>].copy()</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>suba[<span class="dv">0</span>]<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(veca)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(suba)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1 2 3 4]
 [1 3]</code></pre>
@@ -817,12 +817,12 @@ I/A=
 <h2 data-number="15.2" class="anchored" data-anchor-id="向量矩阵的变形合并和分裂"><span class="header-section-number">15.2</span> 向量、矩阵的变形、合并和分裂</h2>
 <p>对于向量、矩阵的另外一个更常用的操作是变形，比如，我们可能将一个向量变形为一个矩阵，可以按照如下的方法：</p>
 <div id="cell-22" class="cell" data-scrolled="true" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>vec_a<span class="op">=</span>np.linspace(<span class="dv">0</span>,<span class="dv">8</span>,<span class="dv">9</span>)</span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="bu">print</span>(<span class="st">"vec_a:</span><span class="ch">\n</span><span class="st">"</span>,vec_a)</span>
-<span id="cb21-3"><a href="#cb21-3"></a>mat_a<span class="op">=</span>vec_a.reshape(<span class="dv">3</span>,<span class="dv">3</span>)</span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="bu">print</span>(<span class="st">"mat_a:</span><span class="ch">\n</span><span class="st">"</span>,mat_a)</span>
-<span id="cb21-5"><a href="#cb21-5"></a>vec_b<span class="op">=</span>vec_a.reshape(<span class="dv">9</span>,<span class="dv">1</span>)</span>
-<span id="cb21-6"><a href="#cb21-6"></a><span class="bu">print</span>(<span class="st">"vec_b:</span><span class="ch">\n</span><span class="st">"</span>,vec_b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>vec_a<span class="op">=</span>np.linspace(<span class="dv">0</span>,<span class="dv">8</span>,<span class="dv">9</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"vec_a:</span><span class="ch">\n</span><span class="st">"</span>,vec_a)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>mat_a<span class="op">=</span>vec_a.reshape(<span class="dv">3</span>,<span class="dv">3</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"mat_a:</span><span class="ch">\n</span><span class="st">"</span>,mat_a)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>vec_b<span class="op">=</span>vec_a.reshape(<span class="dv">9</span>,<span class="dv">1</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"vec_b:</span><span class="ch">\n</span><span class="st">"</span>,vec_b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>vec_a:
  [ 0.  1.  2.  3.  4.  5.  6.  7.  8.]
@@ -844,9 +844,9 @@ vec_b:
 </div>
 <p>实际上，我们可以通过向量或者矩阵的ndim属性查看其维度：</p>
 <div id="cell-24" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="bu">print</span>(<span class="st">"Dimension of vec_a:</span><span class="sc">%2d</span><span class="st">"</span> <span class="op">%</span> vec_a.ndim)</span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="bu">print</span>(<span class="st">"Dimension of vec_b:</span><span class="sc">%2d</span><span class="st">"</span> <span class="op">%</span> vec_b.ndim)</span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="bu">print</span>(<span class="st">"Dimension of mat_a:</span><span class="sc">%2d</span><span class="st">"</span> <span class="op">%</span> mat_a.ndim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dimension of vec_a:</span><span class="sc">%2d</span><span class="st">"</span> <span class="op">%</span> vec_a.ndim)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dimension of vec_b:</span><span class="sc">%2d</span><span class="st">"</span> <span class="op">%</span> vec_b.ndim)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dimension of mat_a:</span><span class="sc">%2d</span><span class="st">"</span> <span class="op">%</span> mat_a.ndim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Dimension of vec_a: 1
 Dimension of vec_b: 2
@@ -855,9 +855,9 @@ Dimension of mat_a: 2</code></pre>
 </div>
 <p>可见，vec_b作为列向量，在NumPy中实际上看成时一个矩阵。如果要看其维数，需要用shape属性：</p>
 <div id="cell-26" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="bu">print</span>(<span class="st">"Dimension of vec_a:</span><span class="sc">%2d</span><span class="st">"</span> <span class="op">%</span> vec_a.shape)</span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="bu">print</span>(<span class="st">"Dimension of vec_b:</span><span class="sc">%2d</span><span class="st"> ×</span><span class="sc">%2d</span><span class="st">"</span> <span class="op">%</span> vec_b.shape)</span>
-<span id="cb25-3"><a href="#cb25-3"></a><span class="bu">print</span>(<span class="st">"Dimension of mat_a:</span><span class="sc">%2d</span><span class="st"> ×</span><span class="sc">%2d</span><span class="st">"</span> <span class="op">%</span> mat_a.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dimension of vec_a:</span><span class="sc">%2d</span><span class="st">"</span> <span class="op">%</span> vec_a.shape)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dimension of vec_b:</span><span class="sc">%2d</span><span class="st"> ×</span><span class="sc">%2d</span><span class="st">"</span> <span class="op">%</span> vec_b.shape)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dimension of mat_a:</span><span class="sc">%2d</span><span class="st"> ×</span><span class="sc">%2d</span><span class="st">"</span> <span class="op">%</span> mat_a.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Dimension of vec_a: 9
 Dimension of vec_b: 9 × 1
@@ -866,9 +866,9 @@ Dimension of mat_a: 3 × 3</code></pre>
 </div>
 <p>也可以只用size属性查看其大小：</p>
 <div id="cell-28" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="bu">print</span>(<span class="st">"Dimension of vec_a:</span><span class="sc">%2d</span><span class="st">"</span> <span class="op">%</span> vec_a.size)</span>
-<span id="cb27-2"><a href="#cb27-2"></a><span class="bu">print</span>(<span class="st">"Dimension of vec_b:</span><span class="sc">%2d</span><span class="st">"</span> <span class="op">%</span> vec_b.size)</span>
-<span id="cb27-3"><a href="#cb27-3"></a><span class="bu">print</span>(<span class="st">"Dimension of mat_a:</span><span class="sc">%2d</span><span class="st">"</span> <span class="op">%</span> mat_a.size)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dimension of vec_a:</span><span class="sc">%2d</span><span class="st">"</span> <span class="op">%</span> vec_a.size)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dimension of vec_b:</span><span class="sc">%2d</span><span class="st">"</span> <span class="op">%</span> vec_b.size)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dimension of mat_a:</span><span class="sc">%2d</span><span class="st">"</span> <span class="op">%</span> mat_a.size)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Dimension of vec_a: 9
 Dimension of vec_b: 9
@@ -878,25 +878,25 @@ Dimension of mat_a: 9</code></pre>
 <p>此外，有时我们还需要拼接两个矩阵，此时需要使用np.concatenate、np.vstack、np.hstack三个方法。</p>
 <p>np.concatenate方法用于拼接向量，比如：</p>
 <div id="cell-30" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>a<span class="op">=</span>np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
-<span id="cb29-2"><a href="#cb29-2"></a>b<span class="op">=</span>np.array([<span class="dv">4</span>,<span class="dv">5</span>])</span>
-<span id="cb29-3"><a href="#cb29-3"></a>c<span class="op">=</span>np.array([<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>])</span>
-<span id="cb29-4"><a href="#cb29-4"></a>vec<span class="op">=</span>np.concatenate([a,b,c])</span>
-<span id="cb29-5"><a href="#cb29-5"></a><span class="bu">print</span>(vec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span>np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>b<span class="op">=</span>np.array([<span class="dv">4</span>,<span class="dv">5</span>])</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>c<span class="op">=</span>np.array([<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>])</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>vec<span class="op">=</span>np.concatenate([a,b,c])</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(vec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1 2 3 4 5 6 7 8 9]</code></pre>
 </div>
 </div>
 <p>np.vstack用于竖直拼接矩阵，hstack用于水平拼接举着，比如：</p>
 <div id="cell-32" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>mat_a<span class="op">=</span>np.linspace(<span class="dv">0</span>,<span class="dv">8</span>,<span class="dv">9</span>).reshape(<span class="dv">3</span>,<span class="dv">3</span>)</span>
-<span id="cb31-2"><a href="#cb31-2"></a>mat_b<span class="op">=</span>np.linspace(<span class="dv">10</span>,<span class="dv">18</span>,<span class="dv">9</span>).reshape(<span class="dv">3</span>,<span class="dv">3</span>)</span>
-<span id="cb31-3"><a href="#cb31-3"></a><span class="bu">print</span>(<span class="st">"mat_a:</span><span class="ch">\n</span><span class="st">"</span>,mat_a)</span>
-<span id="cb31-4"><a href="#cb31-4"></a><span class="bu">print</span>(<span class="st">"mat_b:</span><span class="ch">\n</span><span class="st">"</span>,mat_b)</span>
-<span id="cb31-5"><a href="#cb31-5"></a>mat_hab<span class="op">=</span>np.hstack([mat_a,mat_b])</span>
-<span id="cb31-6"><a href="#cb31-6"></a><span class="bu">print</span>(<span class="st">"mat_hab:</span><span class="ch">\n</span><span class="st">"</span>,mat_hab)</span>
-<span id="cb31-7"><a href="#cb31-7"></a>mat_vab<span class="op">=</span>np.vstack([mat_a,mat_b])</span>
-<span id="cb31-8"><a href="#cb31-8"></a><span class="bu">print</span>(<span class="st">"mat_hab:</span><span class="ch">\n</span><span class="st">"</span>,mat_vab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>mat_a<span class="op">=</span>np.linspace(<span class="dv">0</span>,<span class="dv">8</span>,<span class="dv">9</span>).reshape(<span class="dv">3</span>,<span class="dv">3</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>mat_b<span class="op">=</span>np.linspace(<span class="dv">10</span>,<span class="dv">18</span>,<span class="dv">9</span>).reshape(<span class="dv">3</span>,<span class="dv">3</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"mat_a:</span><span class="ch">\n</span><span class="st">"</span>,mat_a)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"mat_b:</span><span class="ch">\n</span><span class="st">"</span>,mat_b)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>mat_hab<span class="op">=</span>np.hstack([mat_a,mat_b])</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"mat_hab:</span><span class="ch">\n</span><span class="st">"</span>,mat_hab)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>mat_vab<span class="op">=</span>np.vstack([mat_a,mat_b])</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"mat_hab:</span><span class="ch">\n</span><span class="st">"</span>,mat_vab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>mat_a:
  [[ 0.  1.  2.]
@@ -924,7 +924,7 @@ mat_hab:
 <h2 data-number="15.3" class="anchored" data-anchor-id="随机数生成"><span class="header-section-number">15.3</span> 随机数生成</h2>
 <p>科学计算中很多算法都依赖于随机数的生成，比如数值积分计算的Monte Carlo法、MCMC等方法。在Python中，自带了numpy.random包，可以用来生成随机数。</p>
 <p>为了使用numpy.random，必须先导入：</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a><span class="im">import</span> numpy.random <span class="im">as</span> nprd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy.random <span class="im">as</span> nprd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>接下来，就可以直接使用了。比如，</p>
 <ul>
 <li><code>nprd.random(n)</code> 产生一个 n 维向量，每个分量都服从均匀分布的随机数；</li>
@@ -938,22 +938,22 @@ mat_hab:
 <h2 data-number="15.4" class="anchored" data-anchor-id="向量函数"><span class="header-section-number">15.4</span> 向量函数</h2>
 <p>在此之前，我们曾经介绍过使用 Python 中自带的 <code>math.exp()</code>、<code>math.sin()</code>、<code>math.cos()</code> 等函数。现在想象以下，为了计算一个向量每个分量的指数函数，我们不得不写一个循环：</p>
 <div id="cell-35" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a><span class="im">import</span> math</span>
-<span id="cb34-2"><a href="#cb34-2"></a>a<span class="op">=</span>np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
-<span id="cb34-3"><a href="#cb34-3"></a>b<span class="op">=</span>np.array([math.exp(i) <span class="cf">for</span> i <span class="kw">in</span> a])</span>
-<span id="cb34-4"><a href="#cb34-4"></a><span class="bu">print</span>(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span>np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>b<span class="op">=</span>np.array([math.exp(i) <span class="cf">for</span> i <span class="kw">in</span> a])</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[  2.71828183   7.3890561   20.08553692]</code></pre>
 </div>
 </div>
 <p>然而，Python 的循环非常的缓慢，如果数据量巨大，以上做法非常耗时。幸运的是，<strong>NumPy</strong> 为我们提供了非常强大的函数功能，比如：</p>
 <div id="cell-37" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a>a<span class="op">=</span>np.array([<span class="dv">1</span>,<span class="fl">0.5</span>,<span class="dv">3</span>])</span>
-<span id="cb36-2"><a href="#cb36-2"></a><span class="bu">print</span>(<span class="st">'a='</span>,a)</span>
-<span id="cb36-3"><a href="#cb36-3"></a><span class="bu">print</span>(<span class="st">'cos(a)='</span>,np.cos(a))</span>
-<span id="cb36-4"><a href="#cb36-4"></a><span class="bu">print</span>(<span class="st">'exp(a)='</span>,np.exp(a))</span>
-<span id="cb36-5"><a href="#cb36-5"></a><span class="bu">print</span>(<span class="st">'ln(a)='</span>,np.log(a))</span>
-<span id="cb36-6"><a href="#cb36-6"></a><span class="bu">print</span>(<span class="st">'abs(a)='</span>,np.<span class="bu">abs</span>(a))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span>np.array([<span class="dv">1</span>,<span class="fl">0.5</span>,<span class="dv">3</span>])</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'a='</span>,a)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'cos(a)='</span>,np.cos(a))</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'exp(a)='</span>,np.exp(a))</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'ln(a)='</span>,np.log(a))</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'abs(a)='</span>,np.<span class="bu">abs</span>(a))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>a= [ 1.   0.5  3. ]
 cos(a)= [ 0.54030231  0.87758256 -0.9899925 ]
@@ -966,22 +966,22 @@ abs(a)= [ 1.   0.5  3. ]</code></pre>
 <p>此外，NumPy 还提供了方便的数据加总函数，比如求和、平均数、最大值、最小值、中位数等。</p>
 <p>比如，以下代码中，我们随机产生了一组正态分布的数据，并计算了其和和、平均数、最大值、最小值、中位数、四分位数：</p>
 <div id="cell-40" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb38-2"><a href="#cb38-2"></a><span class="im">import</span> numpy.random <span class="im">as</span> nprd</span>
-<span id="cb38-3"><a href="#cb38-3"></a></span>
-<span id="cb38-4"><a href="#cb38-4"></a>a <span class="op">=</span> nprd.randn(<span class="dv">1000</span>)</span>
-<span id="cb38-5"><a href="#cb38-5"></a></span>
-<span id="cb38-6"><a href="#cb38-6"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%-10s</span><span class="st">：</span><span class="sc">%10.4f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"和"</span>, np.<span class="bu">sum</span>(a)))</span>
-<span id="cb38-7"><a href="#cb38-7"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%-10s</span><span class="st">：</span><span class="sc">%10.4f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"均值"</span>, np.mean(a)))</span>
-<span id="cb38-8"><a href="#cb38-8"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%-10s</span><span class="st">：</span><span class="sc">%10.4f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"最大值"</span>, np.<span class="bu">max</span>(a)))</span>
-<span id="cb38-9"><a href="#cb38-9"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%-10s</span><span class="st">：</span><span class="sc">%10d</span><span class="st">"</span>   <span class="op">%</span> (<span class="st">"最大值索引"</span>, np.argmax(a)))</span>
-<span id="cb38-10"><a href="#cb38-10"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%-10s</span><span class="st">：</span><span class="sc">%10.4f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"最小值"</span>, np.<span class="bu">min</span>(a)))</span>
-<span id="cb38-11"><a href="#cb38-11"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%-10s</span><span class="st">：</span><span class="sc">%10d</span><span class="st">"</span>   <span class="op">%</span> (<span class="st">"最小值索引"</span>, np.argmin(a)))</span>
-<span id="cb38-12"><a href="#cb38-12"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%-10s</span><span class="st">：</span><span class="sc">%10.4f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"中位数"</span>, np.median(a)))</span>
-<span id="cb38-13"><a href="#cb38-13"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%-10s</span><span class="st">：</span><span class="sc">%10.4f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"上四分位数"</span>, np.percentile(a, <span class="dv">75</span>)))</span>
-<span id="cb38-14"><a href="#cb38-14"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%-10s</span><span class="st">：</span><span class="sc">%10.4f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"下四分位数"</span>, np.percentile(a, <span class="dv">25</span>)))</span>
-<span id="cb38-15"><a href="#cb38-15"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%-10s</span><span class="st">：</span><span class="sc">%10.4f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"标准差"</span>, np.std(a)))</span>
-<span id="cb38-16"><a href="#cb38-16"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%-10s</span><span class="st">：</span><span class="sc">%10.4f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"方差"</span>, np.var(a)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy.random <span class="im">as</span> nprd</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> nprd.randn(<span class="dv">1000</span>)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%-10s</span><span class="st">：</span><span class="sc">%10.4f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"和"</span>, np.<span class="bu">sum</span>(a)))</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%-10s</span><span class="st">：</span><span class="sc">%10.4f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"均值"</span>, np.mean(a)))</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%-10s</span><span class="st">：</span><span class="sc">%10.4f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"最大值"</span>, np.<span class="bu">max</span>(a)))</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%-10s</span><span class="st">：</span><span class="sc">%10d</span><span class="st">"</span>   <span class="op">%</span> (<span class="st">"最大值索引"</span>, np.argmax(a)))</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%-10s</span><span class="st">：</span><span class="sc">%10.4f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"最小值"</span>, np.<span class="bu">min</span>(a)))</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%-10s</span><span class="st">：</span><span class="sc">%10d</span><span class="st">"</span>   <span class="op">%</span> (<span class="st">"最小值索引"</span>, np.argmin(a)))</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%-10s</span><span class="st">：</span><span class="sc">%10.4f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"中位数"</span>, np.median(a)))</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%-10s</span><span class="st">：</span><span class="sc">%10.4f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"上四分位数"</span>, np.percentile(a, <span class="dv">75</span>)))</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%-10s</span><span class="st">：</span><span class="sc">%10.4f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"下四分位数"</span>, np.percentile(a, <span class="dv">25</span>)))</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%-10s</span><span class="st">：</span><span class="sc">%10.4f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"标准差"</span>, np.std(a)))</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%-10s</span><span class="st">：</span><span class="sc">%10.4f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"方差"</span>, np.var(a)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>和         ：   10.9811
 均值        ：    0.0110
@@ -998,17 +998,17 @@ abs(a)= [ 1.   0.5  3. ]</code></pre>
 </div>
 <p>不过，以上代码可能会有问题，如果向量中存在缺失值（比如NaN），以上函数也会计算出NaN。为了避免这一个问题，可以使用以上程序的安全版本：</p>
 <div id="cell-42" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">：</span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"和"</span>,np.nansum(a)))</span>
-<span id="cb40-2"><a href="#cb40-2"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">：</span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"均值"</span>,np.nanmean(a)))</span>
-<span id="cb40-3"><a href="#cb40-3"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">：</span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"最大值"</span>,np.nanmax(a)))</span>
-<span id="cb40-4"><a href="#cb40-4"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">：</span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"最大值索引"</span>,np.nanargmax(a)))</span>
-<span id="cb40-5"><a href="#cb40-5"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">：</span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"最小值"</span>,np.nanmin(a)))</span>
-<span id="cb40-6"><a href="#cb40-6"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">：</span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"最小值索引"</span>,np.nanargmin(a)))</span>
-<span id="cb40-7"><a href="#cb40-7"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">：</span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"中位数"</span>,np.nanmedian(a)))</span>
-<span id="cb40-8"><a href="#cb40-8"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">：</span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"上四分位数"</span>,np.nanpercentile(a,<span class="dv">75</span>)))</span>
-<span id="cb40-9"><a href="#cb40-9"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">：</span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"上四分位数"</span>,np.nanpercentile(a,<span class="dv">25</span>)))</span>
-<span id="cb40-10"><a href="#cb40-10"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">：</span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"标准差"</span>,np.nanstd(a)))</span>
-<span id="cb40-11"><a href="#cb40-11"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">：</span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"方差"</span>,np.nanvar(a)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">：</span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"和"</span>,np.nansum(a)))</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">：</span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"均值"</span>,np.nanmean(a)))</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">：</span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"最大值"</span>,np.nanmax(a)))</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">：</span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"最大值索引"</span>,np.nanargmax(a)))</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">：</span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"最小值"</span>,np.nanmin(a)))</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">：</span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"最小值索引"</span>,np.nanargmin(a)))</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">：</span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"中位数"</span>,np.nanmedian(a)))</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">：</span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"上四分位数"</span>,np.nanpercentile(a,<span class="dv">75</span>)))</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">：</span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"上四分位数"</span>,np.nanpercentile(a,<span class="dv">25</span>)))</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">：</span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"标准差"</span>,np.nanstd(a)))</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">%s</span><span class="st">：</span><span class="sc">%f</span><span class="st">"</span> <span class="op">%</span> (<span class="st">"方差"</span>,np.nanvar(a)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>和：10.981102
 均值：0.010981
@@ -1025,13 +1025,13 @@ abs(a)= [ 1.   0.5  3. ]</code></pre>
 </div>
 <p>此外还有两个特殊的函数：numpy.any()函数用于判断一个逻辑向量（其值为True/False）是否有True；而numpy.all()用于判断逻辑向量是否全为真，比如：</p>
 <div id="cell-44" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a>vec_a<span class="op">=</span>np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
-<span id="cb42-2"><a href="#cb42-2"></a><span class="bu">print</span>((vec_a<span class="op">==</span><span class="dv">2</span>).<span class="bu">any</span>())</span>
-<span id="cb42-3"><a href="#cb42-3"></a><span class="bu">print</span>((vec_a<span class="op">==</span><span class="dv">5</span>).<span class="bu">any</span>())</span>
-<span id="cb42-4"><a href="#cb42-4"></a>vec_b<span class="op">=</span>np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
-<span id="cb42-5"><a href="#cb42-5"></a><span class="bu">print</span>((vec_a<span class="op">==</span>vec_b).<span class="bu">all</span>())</span>
-<span id="cb42-6"><a href="#cb42-6"></a>vec_b<span class="op">=</span>np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>])</span>
-<span id="cb42-7"><a href="#cb42-7"></a><span class="bu">print</span>((vec_a<span class="op">==</span>vec_b).<span class="bu">all</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>vec_a<span class="op">=</span>np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((vec_a<span class="op">==</span><span class="dv">2</span>).<span class="bu">any</span>())</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((vec_a<span class="op">==</span><span class="dv">5</span>).<span class="bu">any</span>())</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>vec_b<span class="op">=</span>np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((vec_a<span class="op">==</span>vec_b).<span class="bu">all</span>())</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>vec_b<span class="op">=</span>np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>])</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((vec_a<span class="op">==</span>vec_b).<span class="bu">all</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>True
 False
@@ -1149,7 +1149,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

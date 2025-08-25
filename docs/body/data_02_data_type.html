@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -717,13 +717,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>有序型变量</strong> (ordinal)：类别之间存在明确的等级顺序，如学历 (小学 &lt; 初中 &lt; 高中 &lt; 本科 &lt; 研究生)、满意度评分 (不满意 &lt; 一般 &lt; 满意 &lt; 非常满意)。</li>
 </ul>
 <div id="63346c09" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a>df <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb1-4"><a href="#cb1-4"></a>    <span class="st">"性别"</span>: [<span class="st">"男"</span>, <span class="st">"女"</span>, <span class="st">"女"</span>, <span class="st">"男"</span>],</span>
-<span id="cb1-5"><a href="#cb1-5"></a>    <span class="st">"学历"</span>: [<span class="st">"本科"</span>, <span class="st">"硕士"</span>, <span class="st">"博士"</span>, <span class="st">"本科"</span>]</span>
-<span id="cb1-6"><a href="#cb1-6"></a>})</span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"性别"</span>: [<span class="st">"男"</span>, <span class="st">"女"</span>, <span class="st">"女"</span>, <span class="st">"男"</span>],</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"学历"</span>: [<span class="st">"本科"</span>, <span class="st">"硕士"</span>, <span class="st">"博士"</span>, <span class="st">"本科"</span>]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  性别  学历
 0  男  本科
@@ -748,19 +748,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>以下代码展示了如何通过字典将学历字段映射为对应的数值编码。</p>
 <div id="b2774426" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># 定义学历映射字典</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>education_mapping <span class="op">=</span> {</span>
-<span id="cb3-3"><a href="#cb3-3"></a>    <span class="st">"小学"</span>: <span class="dv">1</span>,</span>
-<span id="cb3-4"><a href="#cb3-4"></a>    <span class="st">"初中"</span>: <span class="dv">2</span>,</span>
-<span id="cb3-5"><a href="#cb3-5"></a>    <span class="st">"高中"</span>: <span class="dv">3</span>,</span>
-<span id="cb3-6"><a href="#cb3-6"></a>    <span class="st">"本科"</span>: <span class="dv">4</span>,</span>
-<span id="cb3-7"><a href="#cb3-7"></a>    <span class="st">"硕士"</span>: <span class="dv">5</span>,</span>
-<span id="cb3-8"><a href="#cb3-8"></a>    <span class="st">"博士"</span>: <span class="dv">6</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a>}</span>
-<span id="cb3-10"><a href="#cb3-10"></a></span>
-<span id="cb3-11"><a href="#cb3-11"></a><span class="co"># 将学历字段映射为数值编码</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a>df[<span class="st">"学历编码"</span>] <span class="op">=</span> df[<span class="st">"学历"</span>].<span class="bu">map</span>(education_mapping)</span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义学历映射字典</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>education_mapping <span class="op">=</span> {</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"小学"</span>: <span class="dv">1</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"初中"</span>: <span class="dv">2</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"高中"</span>: <span class="dv">3</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"本科"</span>: <span class="dv">4</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"硕士"</span>: <span class="dv">5</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"博士"</span>: <span class="dv">6</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 将学历字段映射为数值编码</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"学历编码"</span>] <span class="op">=</span> df[<span class="st">"学历"</span>].<span class="bu">map</span>(education_mapping)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  性别  学历  学历编码
 0  男  本科     4
@@ -783,12 +783,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>另一方面，从数值上来讲，<code>3</code> 分确实比 <code>2</code> 分高，<code>4</code> 分比 <code>3</code> 分高，因此它也可以作为数值变量来处理。</li>
 </ul>
 <div id="0d54da46" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb5-2"><a href="#cb5-2"></a>    <span class="st">"年龄"</span>: [<span class="dv">25</span>, <span class="dv">32</span>, <span class="dv">28</span>, <span class="dv">40</span>],</span>
-<span id="cb5-3"><a href="#cb5-3"></a>    <span class="st">"月薪"</span>: [<span class="dv">8000</span>, <span class="dv">12000</span>, <span class="dv">10000</span>, <span class="dv">15000</span>],</span>
-<span id="cb5-4"><a href="#cb5-4"></a>    <span class="st">"满意度评分"</span>: [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">2</span>]</span>
-<span id="cb5-5"><a href="#cb5-5"></a>})</span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"年龄"</span>: [<span class="dv">25</span>, <span class="dv">32</span>, <span class="dv">28</span>, <span class="dv">40</span>],</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"月薪"</span>: [<span class="dv">8000</span>, <span class="dv">12000</span>, <span class="dv">10000</span>, <span class="dv">15000</span>],</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"满意度评分"</span>: [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">2</span>]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   年龄     月薪  满意度评分
 0  25   8000      3
@@ -803,43 +803,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="22.3.3" class="anchored" data-anchor-id="半结构化数据机器可读的接口与嵌入式格式"><span class="header-section-number">22.3.3</span> 半结构化数据：机器可读的接口与嵌入式格式</h3>
 <p><strong>半结构化数据</strong> (semi-structured data) 介于结构化与非结构化之间。它没有固定表格格式，但可以通过规则解析提取信息，常见格式包括 JSON、XML、网页嵌入块等。</p>
 <p>在实际项目中，金融与政府数据平台往往提供 API 接口或 JSON 格式数据。例如，某公司年报摘要的接口可能返回如下内容：</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">{</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="dt">"company_name"</span><span class="fu">:</span> <span class="st">"贵州茅台"</span><span class="fu">,</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>  <span class="dt">"stock_code"</span><span class="fu">:</span> <span class="st">"600519"</span><span class="fu">,</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>  <span class="dt">"report_year"</span><span class="fu">:</span> <span class="dv">2023</span><span class="fu">,</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a>  <span class="dt">"financials"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a>    <span class="dt">"revenue"</span><span class="fu">:</span> <span class="fl">1360.5</span><span class="fu">,</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a>    <span class="dt">"net_profit"</span><span class="fu">:</span> <span class="fl">620.3</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a>  <span class="fu">},</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a>  <span class="dt">"industries"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"食品饮料"</span><span class="ot">,</span> <span class="st">"白酒"</span><span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a>  <span class="dt">"announcement_date"</span><span class="fu">:</span> <span class="st">"2024-03-25"</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"company_name"</span><span class="fu">:</span> <span class="st">"贵州茅台"</span><span class="fu">,</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"stock_code"</span><span class="fu">:</span> <span class="st">"600519"</span><span class="fu">,</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"report_year"</span><span class="fu">:</span> <span class="dv">2023</span><span class="fu">,</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"financials"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"revenue"</span><span class="fu">:</span> <span class="fl">1360.5</span><span class="fu">,</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"net_profit"</span><span class="fu">:</span> <span class="fl">620.3</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"industries"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"食品饮料"</span><span class="ot">,</span> <span class="st">"白酒"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"announcement_date"</span><span class="fu">:</span> <span class="st">"2024-03-25"</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>这类数据可以方便地转化为结构化表格，常用 Python 代码如下：</p>
 <div id="606dc747" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="im">import</span> json</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb8-3"><a href="#cb8-3"></a></span>
-<span id="cb8-4"><a href="#cb8-4"></a>data <span class="op">=</span> <span class="st">'''</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="st">{</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="st">  "company_name": "贵州茅台",</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="st">  "stock_code": "600519",</span></span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="st">  "report_year": 2023,</span></span>
-<span id="cb8-9"><a href="#cb8-9"></a><span class="st">  "financials": {</span></span>
-<span id="cb8-10"><a href="#cb8-10"></a><span class="st">    "revenue": 1360.5,</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a><span class="st">    "net_profit": 620.3</span></span>
-<span id="cb8-12"><a href="#cb8-12"></a><span class="st">  }</span></span>
-<span id="cb8-13"><a href="#cb8-13"></a><span class="st">}</span></span>
-<span id="cb8-14"><a href="#cb8-14"></a><span class="st">'''</span></span>
-<span id="cb8-15"><a href="#cb8-15"></a>info <span class="op">=</span> json.loads(data)  <span class="co"># 解析JSON数据</span></span>
-<span id="cb8-16"><a href="#cb8-16"></a></span>
-<span id="cb8-17"><a href="#cb8-17"></a><span class="co"># 打印解析后的数据</span></span>
-<span id="cb8-18"><a href="#cb8-18"></a><span class="bu">print</span>(<span class="st">"公司名称："</span>, info[<span class="st">"company_name"</span>])</span>
-<span id="cb8-19"><a href="#cb8-19"></a><span class="bu">print</span>(<span class="st">"净利润："</span>, info[<span class="st">"financials"</span>][<span class="st">"net_profit"</span>], <span class="st">"亿元"</span>)</span>
-<span id="cb8-20"><a href="#cb8-20"></a></span>
-<span id="cb8-21"><a href="#cb8-21"></a><span class="co"># 转换为数据框</span></span>
-<span id="cb8-22"><a href="#cb8-22"></a>df_info <span class="op">=</span> pd.DataFrame([flat_info])</span>
-<span id="cb8-23"><a href="#cb8-23"></a><span class="bu">print</span>(<span class="st">'-'</span><span class="op">*</span><span class="dv">50</span>)</span>
-<span id="cb8-24"><a href="#cb8-24"></a><span class="bu">print</span>(df_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="st">'''</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="st">  "company_name": "贵州茅台",</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="st">  "stock_code": "600519",</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="st">  "report_year": 2023,</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="st">  "financials": {</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="st">    "revenue": 1360.5,</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="st">    "net_profit": 620.3</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>info <span class="op">=</span> json.loads(data)  <span class="co"># 解析JSON数据</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 打印解析后的数据</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"公司名称："</span>, info[<span class="st">"company_name"</span>])</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"净利润："</span>, info[<span class="st">"financials"</span>][<span class="st">"net_profit"</span>], <span class="st">"亿元"</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 转换为数据框</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>df_info <span class="op">=</span> pd.DataFrame([flat_info])</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span><span class="op">*</span><span class="dv">50</span>)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>公司名称： 贵州茅台
 净利润： 620.3 亿元
@@ -1063,47 +1063,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 data-number="22.3.5.5" class="anchored" data-anchor-id="python-实操"><span class="header-section-number">22.3.5.5</span> Python 实操</h4>
 <p>以下是一个简单的示例，使用正则表达式从文本中提取贷款金额：</p>
 <div id="241db405" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="im">import</span> re</span>
-<span id="cb10-3"><a href="#cb10-3"></a></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="co"># Variables from the notebook</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a>text <span class="op">=</span> <span class="st">'贷款金额为 2 亿元人民币，期限 3 年，利率为年化 4.2%。'</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a></span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="co"># 从文本中提取信息并创建数据框</span></span>
-<span id="cb10-8"><a href="#cb10-8"></a></span>
-<span id="cb10-9"><a href="#cb10-9"></a><span class="co"># 提取贷款金额</span></span>
-<span id="cb10-10"><a href="#cb10-10"></a><span class="cf">if</span> amount:</span>
-<span id="cb10-11"><a href="#cb10-11"></a>    loan_amount <span class="op">=</span> <span class="bu">int</span>(<span class="bu">float</span>(amount.group(<span class="dv">1</span>)) <span class="op">*</span> <span class="fl">1e8</span>)  <span class="co"># 转换为元</span></span>
-<span id="cb10-12"><a href="#cb10-12"></a><span class="cf">else</span>:</span>
-<span id="cb10-13"><a href="#cb10-13"></a>    loan_amount <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb10-14"><a href="#cb10-14"></a></span>
-<span id="cb10-15"><a href="#cb10-15"></a><span class="co"># 提取货币单位</span></span>
-<span id="cb10-16"><a href="#cb10-16"></a>currency <span class="op">=</span> <span class="st">"人民币"</span>  <span class="co"># 假设货币单位为人民币</span></span>
-<span id="cb10-17"><a href="#cb10-17"></a></span>
-<span id="cb10-18"><a href="#cb10-18"></a><span class="co"># 提取签署时间</span></span>
-<span id="cb10-19"><a href="#cb10-19"></a>sign_date <span class="op">=</span> <span class="st">"2023-06-01"</span>  <span class="co"># 假设签署时间固定</span></span>
-<span id="cb10-20"><a href="#cb10-20"></a></span>
-<span id="cb10-21"><a href="#cb10-21"></a><span class="co"># 提取贷款期限</span></span>
-<span id="cb10-22"><a href="#cb10-22"></a><span class="cf">if</span> term:</span>
-<span id="cb10-23"><a href="#cb10-23"></a>    loan_term <span class="op">=</span> <span class="bu">int</span>(term.group(<span class="dv">1</span>))</span>
-<span id="cb10-24"><a href="#cb10-24"></a><span class="cf">else</span>:</span>
-<span id="cb10-25"><a href="#cb10-25"></a>    loan_term <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb10-26"><a href="#cb10-26"></a></span>
-<span id="cb10-27"><a href="#cb10-27"></a><span class="co"># 提取利率</span></span>
-<span id="cb10-28"><a href="#cb10-28"></a><span class="cf">if</span> rate:</span>
-<span id="cb10-29"><a href="#cb10-29"></a>    interest_rate <span class="op">=</span> <span class="bu">float</span>(rate.group(<span class="dv">1</span>)) <span class="op">/</span> <span class="dv">100</span>  <span class="co"># 转换为小数</span></span>
-<span id="cb10-30"><a href="#cb10-30"></a><span class="cf">else</span>:</span>
-<span id="cb10-31"><a href="#cb10-31"></a>    interest_rate <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb10-32"><a href="#cb10-32"></a></span>
-<span id="cb10-33"><a href="#cb10-33"></a><span class="co"># 创建数据框</span></span>
-<span id="cb10-34"><a href="#cb10-34"></a>data <span class="op">=</span> {</span>
-<span id="cb10-35"><a href="#cb10-35"></a>    <span class="st">"字段"</span>: [<span class="st">"贷款金额"</span>, <span class="st">"货币单位"</span>, <span class="st">"签署时间"</span>, <span class="st">"贷款期限(年)"</span>, <span class="st">"利率"</span>],</span>
-<span id="cb10-36"><a href="#cb10-36"></a>    <span class="st">"值"</span>: [loan_amount, currency, sign_date, loan_term, interest_rate]</span>
-<span id="cb10-37"><a href="#cb10-37"></a>}</span>
-<span id="cb10-38"><a href="#cb10-38"></a>df_output <span class="op">=</span> pd.DataFrame(data)</span>
-<span id="cb10-39"><a href="#cb10-39"></a></span>
-<span id="cb10-40"><a href="#cb10-40"></a><span class="co"># 打印数据框</span></span>
-<span id="cb10-41"><a href="#cb10-41"></a><span class="bu">print</span>(df_output)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Variables from the notebook</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">'贷款金额为 2 亿元人民币，期限 3 年，利率为年化 4.2%。'</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 从文本中提取信息并创建数据框</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 提取贷款金额</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> amount:</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    loan_amount <span class="op">=</span> <span class="bu">int</span>(<span class="bu">float</span>(amount.group(<span class="dv">1</span>)) <span class="op">*</span> <span class="fl">1e8</span>)  <span class="co"># 转换为元</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    loan_amount <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 提取货币单位</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>currency <span class="op">=</span> <span class="st">"人民币"</span>  <span class="co"># 假设货币单位为人民币</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 提取签署时间</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>sign_date <span class="op">=</span> <span class="st">"2023-06-01"</span>  <span class="co"># 假设签署时间固定</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 提取贷款期限</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> term:</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    loan_term <span class="op">=</span> <span class="bu">int</span>(term.group(<span class="dv">1</span>))</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    loan_term <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co"># 提取利率</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> rate:</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    interest_rate <span class="op">=</span> <span class="bu">float</span>(rate.group(<span class="dv">1</span>)) <span class="op">/</span> <span class="dv">100</span>  <span class="co"># 转换为小数</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    interest_rate <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建数据框</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">"字段"</span>: [<span class="st">"贷款金额"</span>, <span class="st">"货币单位"</span>, <span class="st">"签署时间"</span>, <span class="st">"贷款期限(年)"</span>, <span class="st">"利率"</span>],</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">"值"</span>: [loan_amount, currency, sign_date, loan_term, interest_rate]</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>df_output <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="co"># 打印数据框</span></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_output)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        字段           值
 0     贷款金额   200000000
@@ -1272,7 +1272,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

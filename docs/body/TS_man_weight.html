@@ -160,7 +160,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -168,7 +168,7 @@ window.Quarto = {
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -710,38 +710,38 @@ X_t = \phi_1^t X_0 + \sum_{i=0}^{t-1} \phi_1^i \epsilon_{t-i} \tag{5}
 <p>下面，我们来模拟生成几组 <span class="math inline">\(AR(1)\)</span> 过程的数据。</p>
 <p>请思考如下几个问题： - <span class="math inline">\(AR(1)\)</span> 模型能刻画一个人的体重变化吗？ - 不同的 <span class="math inline">\(\phi_1\)</span> 对数据生成有何影响？ - 模拟过程中，假设 <span class="math inline">\(\epsilon_t \sim (0, \sigma^2)\)</span>，参数 <span class="math inline">\(\sigma\)</span> 的取值对数据生成有何影响？ - 如何修改这个模型才能更好地刻画一个人的体重变化？</p>
 <div id="c57e50b9" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># 参数设置</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>phi_1 <span class="op">=</span> <span class="fl">0.99</span>  <span class="co"># AR(1) 系数</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a>sigma <span class="op">=</span> <span class="dv">5</span>  <span class="co"># 随机扰动项的标准差</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a></span>
-<span id="cb1-8"><a href="#cb1-8"></a>X_0 <span class="op">=</span> <span class="dv">60</span>      <span class="co"># 初始体重 (kg)</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a>n_years <span class="op">=</span> <span class="dv">10</span> <span class="co"># 模拟 10 年</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a>n_steps <span class="op">=</span> n_years <span class="op">*</span> <span class="dv">12</span>  <span class="co"># 每年 12 个月</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="co"># 随机扰动项 (白噪声)</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a>np.random.seed(<span class="dv">1234</span>)  <span class="co"># 固定随机种子以便复现</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a>epsilon <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span>sigma, size<span class="op">=</span>n_steps)</span>
-<span id="cb1-15"><a href="#cb1-15"></a></span>
-<span id="cb1-16"><a href="#cb1-16"></a><span class="co"># 模拟 AR(1) 过程</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a>X <span class="op">=</span> np.zeros(n_steps)</span>
-<span id="cb1-18"><a href="#cb1-18"></a>X[<span class="dv">0</span>] <span class="op">=</span> X_0</span>
-<span id="cb1-19"><a href="#cb1-19"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n_steps):</span>
-<span id="cb1-20"><a href="#cb1-20"></a>    X[t] <span class="op">=</span> phi_1 <span class="op">*</span> X[t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> epsilon[t]</span>
-<span id="cb1-21"><a href="#cb1-21"></a></span>
-<span id="cb1-22"><a href="#cb1-22"></a><span class="co"># 绘图</span></span>
-<span id="cb1-23"><a href="#cb1-23"></a>time <span class="op">=</span> np.arange(<span class="dv">1</span>, n_steps <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">12</span>  <span class="co"># 时间轴 (以年为单位)</span></span>
-<span id="cb1-24"><a href="#cb1-24"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
-<span id="cb1-25"><a href="#cb1-25"></a>plt.plot(time, X, label<span class="op">=</span><span class="st">"Simulated Weight (kg)"</span>, color<span class="op">=</span><span class="st">"blue"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb1-26"><a href="#cb1-26"></a>plt.axhline(y<span class="op">=</span>X_0, color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="st">"Initial Weight (3 kg)"</span>)</span>
-<span id="cb1-27"><a href="#cb1-27"></a>plt.title(<span class="st">"Simulated Weight Over 30 Years (AR(1) Process)"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb1-28"><a href="#cb1-28"></a>plt.xlabel(<span class="st">"Time (Years)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb1-29"><a href="#cb1-29"></a>plt.ylabel(<span class="st">"Weight (kg)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb1-30"><a href="#cb1-30"></a>plt.legend()</span>
-<span id="cb1-31"><a href="#cb1-31"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb1-32"><a href="#cb1-32"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 参数设置</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>phi_1 <span class="op">=</span> <span class="fl">0.99</span>  <span class="co"># AR(1) 系数</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="dv">5</span>  <span class="co"># 随机扰动项的标准差</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>X_0 <span class="op">=</span> <span class="dv">60</span>      <span class="co"># 初始体重 (kg)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>n_years <span class="op">=</span> <span class="dv">10</span> <span class="co"># 模拟 10 年</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>n_steps <span class="op">=</span> n_years <span class="op">*</span> <span class="dv">12</span>  <span class="co"># 每年 12 个月</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 随机扰动项 (白噪声)</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">1234</span>)  <span class="co"># 固定随机种子以便复现</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>epsilon <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span>sigma, size<span class="op">=</span>n_steps)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 模拟 AR(1) 过程</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.zeros(n_steps)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>X[<span class="dv">0</span>] <span class="op">=</span> X_0</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n_steps):</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    X[t] <span class="op">=</span> phi_1 <span class="op">*</span> X[t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> epsilon[t]</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> np.arange(<span class="dv">1</span>, n_steps <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">12</span>  <span class="co"># 时间轴 (以年为单位)</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>plt.plot(time, X, label<span class="op">=</span><span class="st">"Simulated Weight (kg)"</span>, color<span class="op">=</span><span class="st">"blue"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span>X_0, color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="st">"Initial Weight (3 kg)"</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Simulated Weight Over 30 Years (AR(1) Process)"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Time (Years)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Weight (kg)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -774,37 +774,37 @@ X_t = \phi_1^t X_0 + \sum_{i=0}^{t-1} \phi_1^i \epsilon_{t-i} \tag{5}
 <li><p>该模型仍然具有记忆衰减效应，当前值与前一个值的关系更强，随着时间的推移，影响逐渐减弱。</p></li>
 </ul>
 <div id="6b925b77" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># 带有时间趋势项的 AR(1) 模型 (每年 12 个月)</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># 参数设置</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>phi_1 <span class="op">=</span> <span class="fl">0.96</span>  <span class="co"># AR(1) 系数</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>sigma <span class="op">=</span> <span class="dv">2</span>  <span class="co"># 随机扰动项的标准差</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>X_0 <span class="op">=</span> <span class="dv">60</span>      <span class="co"># 初始体重 (kg)</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>n_years <span class="op">=</span> <span class="dv">10</span>  <span class="co"># 模拟 10 年</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>n_steps <span class="op">=</span> n_years <span class="op">*</span> <span class="dv">12</span>  <span class="co"># 每年 12 个月</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>t <span class="op">=</span> np.arange(<span class="dv">1</span>, n_steps <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">12</span>  <span class="co"># 时间轴 (以年为单位)</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>beta <span class="op">=</span> <span class="fl">0.5</span>    <span class="co"># 时间趋势项的系数</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="co"># 随机扰动项 (白噪声)</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a>np.random.seed(<span class="dv">12345</span>)  <span class="co"># 固定随机种子以便复现</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a>epsilon <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span>sigma, size<span class="op">=</span>n_steps)</span>
-<span id="cb2-15"><a href="#cb2-15"></a></span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="co"># 模拟带时间趋势项的 AR(1) 过程</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a>X <span class="op">=</span> np.zeros(n_steps)</span>
-<span id="cb2-18"><a href="#cb2-18"></a>X[<span class="dv">0</span>] <span class="op">=</span> X_0</span>
-<span id="cb2-19"><a href="#cb2-19"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n_steps):</span>
-<span id="cb2-20"><a href="#cb2-20"></a>    X[i] <span class="op">=</span> phi_1 <span class="op">*</span> X[i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> beta <span class="op">*</span> t[i] <span class="op">+</span> epsilon[i]</span>
-<span id="cb2-21"><a href="#cb2-21"></a></span>
-<span id="cb2-22"><a href="#cb2-22"></a><span class="co"># 绘图</span></span>
-<span id="cb2-23"><a href="#cb2-23"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
-<span id="cb2-24"><a href="#cb2-24"></a>plt.plot(t, X, label<span class="op">=</span><span class="st">"Simulated Weight with Trend (kg)"</span>, color<span class="op">=</span><span class="st">"blue"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb2-25"><a href="#cb2-25"></a>plt.axhline(y<span class="op">=</span>X_0, color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="ss">f"Initial Weight (</span><span class="sc">{</span>X_0<span class="sc">}</span><span class="ss"> kg)"</span>)</span>
-<span id="cb2-26"><a href="#cb2-26"></a>plt.title(<span class="ss">f"Simulated Weight Over </span><span class="sc">{</span>n_years<span class="sc">}</span><span class="ss"> Years (AR(1) with Trend)"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb2-27"><a href="#cb2-27"></a>plt.xlabel(<span class="st">"Time (Years)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb2-28"><a href="#cb2-28"></a>plt.ylabel(<span class="st">"Weight (kg)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb2-29"><a href="#cb2-29"></a>plt.legend()</span>
-<span id="cb2-30"><a href="#cb2-30"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb2-31"><a href="#cb2-31"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 带有时间趋势项的 AR(1) 模型 (每年 12 个月)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 参数设置</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>phi_1 <span class="op">=</span> <span class="fl">0.96</span>  <span class="co"># AR(1) 系数</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="dv">2</span>  <span class="co"># 随机扰动项的标准差</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>X_0 <span class="op">=</span> <span class="dv">60</span>      <span class="co"># 初始体重 (kg)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>n_years <span class="op">=</span> <span class="dv">10</span>  <span class="co"># 模拟 10 年</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>n_steps <span class="op">=</span> n_years <span class="op">*</span> <span class="dv">12</span>  <span class="co"># 每年 12 个月</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.arange(<span class="dv">1</span>, n_steps <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">12</span>  <span class="co"># 时间轴 (以年为单位)</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> <span class="fl">0.5</span>    <span class="co"># 时间趋势项的系数</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 随机扰动项 (白噪声)</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">12345</span>)  <span class="co"># 固定随机种子以便复现</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>epsilon <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span>sigma, size<span class="op">=</span>n_steps)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 模拟带时间趋势项的 AR(1) 过程</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.zeros(n_steps)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>X[<span class="dv">0</span>] <span class="op">=</span> X_0</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n_steps):</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    X[i] <span class="op">=</span> phi_1 <span class="op">*</span> X[i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> beta <span class="op">*</span> t[i] <span class="op">+</span> epsilon[i]</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>plt.plot(t, X, label<span class="op">=</span><span class="st">"Simulated Weight with Trend (kg)"</span>, color<span class="op">=</span><span class="st">"blue"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span>X_0, color<span class="op">=</span><span class="st">"red"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="ss">f"Initial Weight (</span><span class="sc">{</span>X_0<span class="sc">}</span><span class="ss"> kg)"</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"Simulated Weight Over </span><span class="sc">{</span>n_years<span class="sc">}</span><span class="ss"> Years (AR(1) with Trend)"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Time (Years)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Weight (kg)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -837,41 +837,41 @@ W_t = \mu + \theta (W_{t-1} - \mu) + \varepsilon_t
 </ul>
 <p>这称为 <strong>Ornstein–Uhlenbeck (OU)</strong> 过程的离散版本。</p>
 <div id="d0ebf70c" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># 改进的模拟代码（成年人体重演化）</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-5"><a href="#cb3-5"></a></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="co"># 设置参数</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a>mu <span class="op">=</span> <span class="dv">70</span>          <span class="co"># 长期均衡体重 (kg)</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a>theta <span class="op">=</span> <span class="fl">0.95</span>     <span class="co"># 回复速度 (0&lt;theta&lt;1，越小回复越快)</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a>sigma <span class="op">=</span> <span class="fl">1.5</span>      <span class="co"># 扰动项标准差</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a>W_0 <span class="op">=</span> <span class="dv">50</span>         <span class="co"># 初始体重 (kg)</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a>n_years <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a>n_steps <span class="op">=</span> n_years <span class="op">*</span> <span class="dv">12</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a></span>
-<span id="cb3-14"><a href="#cb3-14"></a><span class="co"># 白噪声扰动项</span></span>
-<span id="cb3-15"><a href="#cb3-15"></a>np.random.seed(<span class="dv">123</span>)</span>
-<span id="cb3-16"><a href="#cb3-16"></a>epsilon <span class="op">=</span> np.random.normal(<span class="dv">0</span>, sigma, n_steps)</span>
-<span id="cb3-17"><a href="#cb3-17"></a></span>
-<span id="cb3-18"><a href="#cb3-18"></a><span class="co"># 模拟 OU 过程</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a>W <span class="op">=</span> np.zeros(n_steps)</span>
-<span id="cb3-20"><a href="#cb3-20"></a>W[<span class="dv">0</span>] <span class="op">=</span> W_0</span>
-<span id="cb3-21"><a href="#cb3-21"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n_steps):</span>
-<span id="cb3-22"><a href="#cb3-22"></a>    W[t] <span class="op">=</span> mu <span class="op">+</span> theta <span class="op">*</span> (W[t<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> mu) <span class="op">+</span> epsilon[t]</span>
-<span id="cb3-23"><a href="#cb3-23"></a></span>
-<span id="cb3-24"><a href="#cb3-24"></a><span class="co"># 绘图</span></span>
-<span id="cb3-25"><a href="#cb3-25"></a>time <span class="op">=</span> np.arange(<span class="dv">1</span>, n_steps <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">12</span></span>
-<span id="cb3-26"><a href="#cb3-26"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
-<span id="cb3-27"><a href="#cb3-27"></a>plt.plot(time, W, label<span class="op">=</span><span class="st">"Simulated Weight (kg)"</span>, color<span class="op">=</span><span class="st">"darkgreen"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb3-28"><a href="#cb3-28"></a>plt.axhline(mu, color<span class="op">=</span><span class="st">"gray"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="ss">f"Long-run Weight μ = </span><span class="sc">{</span>mu<span class="sc">}</span><span class="ss"> kg"</span>)</span>
-<span id="cb3-29"><a href="#cb3-29"></a>plt.title(<span class="st">"Simulated Human Weight Over 30 Years"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb3-30"><a href="#cb3-30"></a>plt.xlabel(<span class="st">"Time (Years)"</span>)</span>
-<span id="cb3-31"><a href="#cb3-31"></a>plt.ylabel(<span class="st">"Weight (kg)"</span>)</span>
-<span id="cb3-32"><a href="#cb3-32"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb3-33"><a href="#cb3-33"></a>plt.legend()</span>
-<span id="cb3-34"><a href="#cb3-34"></a>plt.tight_layout()</span>
-<span id="cb3-35"><a href="#cb3-35"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 改进的模拟代码（成年人体重演化）</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置参数</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> <span class="dv">70</span>          <span class="co"># 长期均衡体重 (kg)</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> <span class="fl">0.95</span>     <span class="co"># 回复速度 (0&lt;theta&lt;1，越小回复越快)</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">1.5</span>      <span class="co"># 扰动项标准差</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>W_0 <span class="op">=</span> <span class="dv">50</span>         <span class="co"># 初始体重 (kg)</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>n_years <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>n_steps <span class="op">=</span> n_years <span class="op">*</span> <span class="dv">12</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 白噪声扰动项</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">123</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>epsilon <span class="op">=</span> np.random.normal(<span class="dv">0</span>, sigma, n_steps)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 模拟 OU 过程</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>W <span class="op">=</span> np.zeros(n_steps)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>W[<span class="dv">0</span>] <span class="op">=</span> W_0</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n_steps):</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    W[t] <span class="op">=</span> mu <span class="op">+</span> theta <span class="op">*</span> (W[t<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> mu) <span class="op">+</span> epsilon[t]</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> np.arange(<span class="dv">1</span>, n_steps <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">12</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>plt.plot(time, W, label<span class="op">=</span><span class="st">"Simulated Weight (kg)"</span>, color<span class="op">=</span><span class="st">"darkgreen"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>plt.axhline(mu, color<span class="op">=</span><span class="st">"gray"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="ss">f"Long-run Weight μ = </span><span class="sc">{</span>mu<span class="sc">}</span><span class="ss"> kg"</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Simulated Human Weight Over 30 Years"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Time (Years)"</span>)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Weight (kg)"</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -902,39 +902,39 @@ W_t = \frac{W_{\max}}{1 + \exp(-k(t - t_0))} + \varepsilon_t
 <li><span class="math inline">\(ϵ_t\)</span>：扰动项（模拟个体差异或偶发波动）</li>
 </ul>
 <div id="7898beb8" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">## 示例代码：儿童成长过程中的体重变化</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb4-5"><a href="#cb4-5"></a></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="co"># 模拟参数</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a>W_max <span class="op">=</span> <span class="dv">65</span>     <span class="co"># 成年体重上限 (kg)</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a>k <span class="op">=</span> <span class="fl">0.4</span>        <span class="co"># 增长速度</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a>t0 <span class="op">=</span> <span class="dv">12</span>        <span class="co"># 拐点年龄（增长最快期）</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a>sigma <span class="op">=</span> <span class="fl">0.5</span>    <span class="co"># 扰动标准差</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a></span>
-<span id="cb4-12"><a href="#cb4-12"></a>n_years <span class="op">=</span> <span class="dv">22</span></span>
-<span id="cb4-13"><a href="#cb4-13"></a>n_steps <span class="op">=</span> n_years <span class="op">*</span> <span class="dv">12</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a>t <span class="op">=</span> np.arange(n_steps) <span class="op">/</span> <span class="dv">12</span>  <span class="co"># 时间轴（以年为单位）</span></span>
-<span id="cb4-15"><a href="#cb4-15"></a></span>
-<span id="cb4-16"><a href="#cb4-16"></a><span class="co"># 随机扰动项（模拟月度波动）</span></span>
-<span id="cb4-17"><a href="#cb4-17"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb4-18"><a href="#cb4-18"></a>epsilon <span class="op">=</span> np.random.normal(<span class="dv">0</span>, sigma, size<span class="op">=</span>n_steps)</span>
-<span id="cb4-19"><a href="#cb4-19"></a></span>
-<span id="cb4-20"><a href="#cb4-20"></a><span class="co"># Logistic 增长体重</span></span>
-<span id="cb4-21"><a href="#cb4-21"></a>W <span class="op">=</span> W_max <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>k <span class="op">*</span> (t <span class="op">-</span> t0))) <span class="op">+</span> epsilon</span>
-<span id="cb4-22"><a href="#cb4-22"></a></span>
-<span id="cb4-23"><a href="#cb4-23"></a><span class="co"># 绘图</span></span>
-<span id="cb4-24"><a href="#cb4-24"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
-<span id="cb4-25"><a href="#cb4-25"></a>plt.plot(t, W, label<span class="op">=</span><span class="st">"Simulated Child Weight (kg)"</span>, color<span class="op">=</span><span class="st">"teal"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb4-26"><a href="#cb4-26"></a>plt.axhline(W_max, linestyle<span class="op">=</span><span class="st">"--"</span>, color<span class="op">=</span><span class="st">"gray"</span>, label<span class="op">=</span><span class="ss">f"Adult Weight ≈ </span><span class="sc">{</span>W_max<span class="sc">}</span><span class="ss"> kg"</span>)</span>
-<span id="cb4-27"><a href="#cb4-27"></a>plt.title(<span class="st">"Simulated Child Growth Trajectory (Weight)"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb4-28"><a href="#cb4-28"></a>plt.xlabel(<span class="st">"Age (Years)"</span>)</span>
-<span id="cb4-29"><a href="#cb4-29"></a>plt.ylabel(<span class="st">"Weight (kg)"</span>)</span>
-<span id="cb4-30"><a href="#cb4-30"></a>plt.legend()</span>
-<span id="cb4-31"><a href="#cb4-31"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb4-32"><a href="#cb4-32"></a>plt.tight_layout()</span>
-<span id="cb4-33"><a href="#cb4-33"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 示例代码：儿童成长过程中的体重变化</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 模拟参数</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>W_max <span class="op">=</span> <span class="dv">65</span>     <span class="co"># 成年体重上限 (kg)</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="fl">0.4</span>        <span class="co"># 增长速度</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> <span class="dv">12</span>        <span class="co"># 拐点年龄（增长最快期）</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.5</span>    <span class="co"># 扰动标准差</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>n_years <span class="op">=</span> <span class="dv">22</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>n_steps <span class="op">=</span> n_years <span class="op">*</span> <span class="dv">12</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.arange(n_steps) <span class="op">/</span> <span class="dv">12</span>  <span class="co"># 时间轴（以年为单位）</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 随机扰动项（模拟月度波动）</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>epsilon <span class="op">=</span> np.random.normal(<span class="dv">0</span>, sigma, size<span class="op">=</span>n_steps)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic 增长体重</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>W <span class="op">=</span> W_max <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>k <span class="op">*</span> (t <span class="op">-</span> t0))) <span class="op">+</span> epsilon</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>plt.plot(t, W, label<span class="op">=</span><span class="st">"Simulated Child Weight (kg)"</span>, color<span class="op">=</span><span class="st">"teal"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>plt.axhline(W_max, linestyle<span class="op">=</span><span class="st">"--"</span>, color<span class="op">=</span><span class="st">"gray"</span>, label<span class="op">=</span><span class="ss">f"Adult Weight ≈ </span><span class="sc">{</span>W_max<span class="sc">}</span><span class="ss"> kg"</span>)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Simulated Child Growth Trajectory (Weight)"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Age (Years)"</span>)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Weight (kg)"</span>)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1016,53 +1016,53 @@ W_t = \beta_0 + \beta_1 t + \beta_2 \cdot \mathbb{1}(t &gt; t_1) \cdot (t - t_1)
 <li>在 <span class="math inline">\(t &gt; t_2\)</span> 时，边际效应为 <span class="math inline">\(\frac{\partial{y}}{\partial{t}} \mid _{t &gt; t_2} = \beta_1 + \beta_2 + \beta_3\)</span>。</li>
 </ul>
 <div id="ba2ae770" class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">## Python 实现代码</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb5-5"><a href="#cb5-5"></a></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="co"># 时间设定</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a>n_years <span class="op">=</span> <span class="dv">18</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a>n_steps <span class="op">=</span> n_years <span class="op">*</span> <span class="dv">12</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a>t <span class="op">=</span> np.arange(n_steps) <span class="op">/</span> <span class="dv">12</span>  <span class="co"># 年龄（以年为单位）</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a></span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="co"># 断点设定</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a>t1 <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a>t2 <span class="op">=</span> <span class="dv">12</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a></span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="co"># Spline 变量</span></span>
-<span id="cb5-16"><a href="#cb5-16"></a><span class="kw">def</span> positive_part(x):</span>
-<span id="cb5-17"><a href="#cb5-17"></a>    <span class="cf">return</span> np.maximum(<span class="dv">0</span>, x)</span>
-<span id="cb5-18"><a href="#cb5-18"></a></span>
-<span id="cb5-19"><a href="#cb5-19"></a>s1 <span class="op">=</span> positive_part(t <span class="op">-</span> t1)</span>
-<span id="cb5-20"><a href="#cb5-20"></a>s2 <span class="op">=</span> positive_part(t <span class="op">-</span> t2)</span>
-<span id="cb5-21"><a href="#cb5-21"></a></span>
-<span id="cb5-22"><a href="#cb5-22"></a><span class="co"># 模拟参数</span></span>
-<span id="cb5-23"><a href="#cb5-23"></a>beta_0 <span class="op">=</span> <span class="dv">3</span>      <span class="co"># 初始体重（kg）</span></span>
-<span id="cb5-24"><a href="#cb5-24"></a>beta_1 <span class="op">=</span> <span class="fl">1.5</span>    <span class="co"># 0-5 岁期间增长速率</span></span>
-<span id="cb5-25"><a href="#cb5-25"></a>beta_2 <span class="op">=</span> <span class="fl">2.0</span>    <span class="co"># 5-12 岁之后的增长变化</span></span>
-<span id="cb5-26"><a href="#cb5-26"></a>beta_3 <span class="op">=</span> <span class="op">-</span><span class="fl">1.2</span>   <span class="co"># 12 岁之后的增长放缓</span></span>
-<span id="cb5-27"><a href="#cb5-27"></a>sigma <span class="op">=</span> <span class="fl">0.8</span>     <span class="co"># 扰动标准差</span></span>
-<span id="cb5-28"><a href="#cb5-28"></a></span>
-<span id="cb5-29"><a href="#cb5-29"></a><span class="co"># 随机扰动项</span></span>
-<span id="cb5-30"><a href="#cb5-30"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb5-31"><a href="#cb5-31"></a>epsilon <span class="op">=</span> np.random.normal(<span class="dv">0</span>, sigma, size<span class="op">=</span>n_steps)</span>
-<span id="cb5-32"><a href="#cb5-32"></a></span>
-<span id="cb5-33"><a href="#cb5-33"></a><span class="co"># 构建体重轨迹</span></span>
-<span id="cb5-34"><a href="#cb5-34"></a>W <span class="op">=</span> beta_0 <span class="op">+</span> beta_1 <span class="op">*</span> t <span class="op">+</span> beta_2 <span class="op">*</span> s1 <span class="op">+</span> beta_3 <span class="op">*</span> s2 <span class="op">+</span> epsilon</span>
-<span id="cb5-35"><a href="#cb5-35"></a></span>
-<span id="cb5-36"><a href="#cb5-36"></a><span class="co"># 绘图</span></span>
-<span id="cb5-37"><a href="#cb5-37"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
-<span id="cb5-38"><a href="#cb5-38"></a>plt.plot(t, W, label<span class="op">=</span><span class="st">"Simulated Weight (Piecewise Spline)"</span>, color<span class="op">=</span><span class="st">"purple"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb5-39"><a href="#cb5-39"></a>plt.axvline(x<span class="op">=</span>t1, linestyle<span class="op">=</span><span class="st">"--"</span>, color<span class="op">=</span><span class="st">"gray"</span>, label<span class="op">=</span><span class="ss">f"Breakpoint: </span><span class="sc">{</span>t1<span class="sc">}</span><span class="ss"> years"</span>)</span>
-<span id="cb5-40"><a href="#cb5-40"></a>plt.axvline(x<span class="op">=</span>t2, linestyle<span class="op">=</span><span class="st">"--"</span>, color<span class="op">=</span><span class="st">"gray"</span>, label<span class="op">=</span><span class="ss">f"Breakpoint: </span><span class="sc">{</span>t2<span class="sc">}</span><span class="ss"> years"</span>)</span>
-<span id="cb5-41"><a href="#cb5-41"></a>plt.title(<span class="st">"Simulated Child Weight with Piecewise Linear Spline"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb5-42"><a href="#cb5-42"></a>plt.xlabel(<span class="st">"Age (Years)"</span>)</span>
-<span id="cb5-43"><a href="#cb5-43"></a>plt.ylabel(<span class="st">"Weight (kg)"</span>)</span>
-<span id="cb5-44"><a href="#cb5-44"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb5-45"><a href="#cb5-45"></a>plt.legend()</span>
-<span id="cb5-46"><a href="#cb5-46"></a>plt.tight_layout()</span>
-<span id="cb5-47"><a href="#cb5-47"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Python 实现代码</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 时间设定</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>n_years <span class="op">=</span> <span class="dv">18</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>n_steps <span class="op">=</span> n_years <span class="op">*</span> <span class="dv">12</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.arange(n_steps) <span class="op">/</span> <span class="dv">12</span>  <span class="co"># 年龄（以年为单位）</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 断点设定</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>t2 <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Spline 变量</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> positive_part(x):</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.maximum(<span class="dv">0</span>, x)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> positive_part(t <span class="op">-</span> t1)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> positive_part(t <span class="op">-</span> t2)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 模拟参数</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>beta_0 <span class="op">=</span> <span class="dv">3</span>      <span class="co"># 初始体重（kg）</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>beta_1 <span class="op">=</span> <span class="fl">1.5</span>    <span class="co"># 0-5 岁期间增长速率</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>beta_2 <span class="op">=</span> <span class="fl">2.0</span>    <span class="co"># 5-12 岁之后的增长变化</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>beta_3 <span class="op">=</span> <span class="op">-</span><span class="fl">1.2</span>   <span class="co"># 12 岁之后的增长放缓</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.8</span>     <span class="co"># 扰动标准差</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 随机扰动项</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>epsilon <span class="op">=</span> np.random.normal(<span class="dv">0</span>, sigma, size<span class="op">=</span>n_steps)</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="co"># 构建体重轨迹</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>W <span class="op">=</span> beta_0 <span class="op">+</span> beta_1 <span class="op">*</span> t <span class="op">+</span> beta_2 <span class="op">*</span> s1 <span class="op">+</span> beta_3 <span class="op">*</span> s2 <span class="op">+</span> epsilon</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>plt.plot(t, W, label<span class="op">=</span><span class="st">"Simulated Weight (Piecewise Spline)"</span>, color<span class="op">=</span><span class="st">"purple"</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=</span>t1, linestyle<span class="op">=</span><span class="st">"--"</span>, color<span class="op">=</span><span class="st">"gray"</span>, label<span class="op">=</span><span class="ss">f"Breakpoint: </span><span class="sc">{</span>t1<span class="sc">}</span><span class="ss"> years"</span>)</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=</span>t2, linestyle<span class="op">=</span><span class="st">"--"</span>, color<span class="op">=</span><span class="st">"gray"</span>, label<span class="op">=</span><span class="ss">f"Breakpoint: </span><span class="sc">{</span>t2<span class="sc">}</span><span class="ss"> years"</span>)</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Simulated Child Weight with Piecewise Linear Spline"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Age (Years)"</span>)</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Weight (kg)"</span>)</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1169,7 +1169,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

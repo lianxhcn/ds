@@ -160,7 +160,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -168,7 +168,7 @@ window.Quarto = {
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -653,19 +653,19 @@ window.Quarto = {
 <h1 data-number="18"><span class="header-section-number">18</span> 实例1：数据的直方图以及散点图</h1>
 <p>在接下来的例子中看我们随机生成了一组期望为 0，方差为 2，包含 500 个观察值的随机数，并画出其直方图：</p>
 <div id="cell-2" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>z<span class="op">=</span>nprd.normal(<span class="dv">0</span>,np.sqrt(<span class="dv">2</span>),<span class="dv">1000</span>) <span class="co">## 生成100个均值为0，方差为2的正态分布</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="co">## 导入matplotlib</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co">## 使图形直接插入到jupyter中</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="co"># 设定图像大小</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a>plt.rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> (<span class="fl">15.0</span>, <span class="fl">8.0</span>)</span>
-<span id="cb1-8"><a href="#cb1-8"></a></span>
-<span id="cb1-9"><a href="#cb1-9"></a>plt.hist(z,bins<span class="op">=</span><span class="dv">40</span>) <span class="co">##柱状图，40 个柱子</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a>plt.xlabel(<span class="st">'z'</span>)</span>
-<span id="cb1-11"><a href="#cb1-11"></a>plt.ylabel(<span class="st">"Density"</span>)</span>
-<span id="cb1-12"><a href="#cb1-12"></a>plt.title(<span class="st">'Normal Distribution'</span>)</span>
-<span id="cb1-13"><a href="#cb1-13"></a>plt.show() <span class="co">## 画图</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>z<span class="op">=</span>nprd.normal(<span class="dv">0</span>,np.sqrt(<span class="dv">2</span>),<span class="dv">1000</span>) <span class="co">## 生成100个均值为0，方差为2的正态分布</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">## 导入matplotlib</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">## 使图形直接插入到jupyter中</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 设定图像大小</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> (<span class="fl">15.0</span>, <span class="fl">8.0</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.hist(z,bins<span class="op">=</span><span class="dv">40</span>) <span class="co">##柱状图，40 个柱子</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'z'</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Density"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Normal Distribution'</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.show() <span class="co">## 画图</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -676,14 +676,14 @@ window.Quarto = {
 </div>
 <p>而以下代码，产生了 500 个 <span class="math inline">\(x \sim N\left(0,2\right)\)</span>，以及 <span class="math inline">\(y=x+u\)</span>，<span class="math inline">\(u\sim N\left(0,1\right)\)</span>，并将其散点图、和关系图花在了同一张图上：</p>
 <div id="cell-4" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>x<span class="op">=</span>nprd.normal(<span class="dv">0</span>,np.sqrt(<span class="dv">2</span>),<span class="dv">500</span>) <span class="co">## 生成100个均值为0，方差为2的正态分布</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>y<span class="op">=</span>x<span class="op">+</span>nprd.normal(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">500</span>) <span class="co">## y与x为线性关系</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>plt.scatter(x,y,color<span class="op">=</span><span class="st">'pink'</span>) <span class="co">##散点图</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>plt.plot(x,x,color<span class="op">=</span><span class="st">'blue'</span>) <span class="co">## 回归曲线</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>plt.xlabel(<span class="st">'x'</span>)</span>
-<span id="cb2-6"><a href="#cb2-6"></a>plt.ylabel(<span class="st">"y"</span>)</span>
-<span id="cb2-7"><a href="#cb2-7"></a>plt.title(<span class="st">'Relationship of x and y'</span>)</span>
-<span id="cb2-8"><a href="#cb2-8"></a>plt.show() <span class="co">## 画图</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>nprd.normal(<span class="dv">0</span>,np.sqrt(<span class="dv">2</span>),<span class="dv">500</span>) <span class="co">## 生成100个均值为0，方差为2的正态分布</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>x<span class="op">+</span>nprd.normal(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">500</span>) <span class="co">## y与x为线性关系</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(x,y,color<span class="op">=</span><span class="st">'pink'</span>) <span class="co">##散点图</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>plt.plot(x,x,color<span class="op">=</span><span class="st">'blue'</span>) <span class="co">## 回归曲线</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"y"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relationship of x and y'</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>plt.show() <span class="co">## 画图</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -700,47 +700,47 @@ window.Quarto = {
 <p>从而根据你分布函数法，给定一个b，通过均匀分布u产生指数分布的随机数的公式为：<span class="math display">\[x=-b\cdot \log\left(u\right)\]</span></p>
 <p>接下来，我们使用matplotlib将李璐的分布函数和计算的经验分布函数画在了图上。</p>
 <div id="cell-6" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="im">import</span> numpy.random <span class="im">as</span> nprd</span>
-<span id="cb3-3"><a href="#cb3-3"></a></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="co">## 设定参数</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a></span>
-<span id="cb3-6"><a href="#cb3-6"></a>b<span class="op">=</span><span class="dv">3</span> <span class="co">#指数分布参数</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a>N<span class="op">=</span><span class="dv">200</span> <span class="co">#样本容量</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="co">## 生成N个x~F(x)=1-exp{-(1/b)*x}</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a>X<span class="op">=-</span>b<span class="op">*</span>np.log(nprd.random(N))</span>
-<span id="cb3-11"><a href="#cb3-11"></a></span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="co">## 给定一些点，在这些点上计算分布函数和经验分布函数</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a>x<span class="op">=</span>np.linspace(<span class="fl">0.1</span>,<span class="fl">9.9</span>,<span class="dv">50</span>) <span class="co">#0.1,0.3,...,9.9</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a></span>
-<span id="cb3-15"><a href="#cb3-15"></a><span class="co">## 计算理论的分布函数</span></span>
-<span id="cb3-16"><a href="#cb3-16"></a>F<span class="op">=</span><span class="dv">1</span><span class="op">-</span>np.exp((<span class="op">-</span><span class="dv">1</span><span class="op">/</span>b)<span class="op">*</span>x)</span>
-<span id="cb3-17"><a href="#cb3-17"></a></span>
-<span id="cb3-18"><a href="#cb3-18"></a><span class="co">## 计算经验分布函数</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a></span>
-<span id="cb3-20"><a href="#cb3-20"></a>empirical_F<span class="op">=</span><span class="kw">lambda</span> s: np.<span class="bu">sum</span>(X<span class="op">&lt;=</span>s)<span class="op">/</span>N <span class="co"># lambda表达式，定义了s点处的经验分布函数</span></span>
-<span id="cb3-21"><a href="#cb3-21"></a>F_hat<span class="op">=</span>np.array(<span class="bu">list</span>(<span class="bu">map</span>(empirical_F,x))) <span class="co"># 计算x的所有点的经验分布函数</span></span>
-<span id="cb3-22"><a href="#cb3-22"></a></span>
-<span id="cb3-23"><a href="#cb3-23"></a><span class="co">## 计算经验分布函数与真实的分布函数之间的绝对差异</span></span>
-<span id="cb3-24"><a href="#cb3-24"></a>bias<span class="op">=</span>np.<span class="bu">abs</span>(F<span class="op">-</span>F_hat)</span>
-<span id="cb3-25"><a href="#cb3-25"></a><span class="co">## 打印两个分布函数及其绝对差异，以及平均的绝对差异</span></span>
-<span id="cb3-26"><a href="#cb3-26"></a><span class="bu">print</span>(<span class="st">" x  | 分布函数| 经验分布函数| 差的绝对值"</span>)</span>
-<span id="cb3-27"><a href="#cb3-27"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>):</span>
-<span id="cb3-28"><a href="#cb3-28"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="sc">%.1f</span><span class="st"> |</span><span class="sc">%.5f</span><span class="st"> | </span><span class="sc">%.5f</span><span class="st">  | </span><span class="sc">%.5f</span><span class="st">"</span> <span class="op">%</span> (x[i],F[i],F_hat[i],bias[i]))</span>
-<span id="cb3-29"><a href="#cb3-29"></a><span class="bu">print</span>(<span class="st">"Mean absolute bias:"</span>,np.<span class="bu">sum</span>(bias)<span class="op">/</span><span class="dv">50</span>)</span>
-<span id="cb3-30"><a href="#cb3-30"></a></span>
-<span id="cb3-31"><a href="#cb3-31"></a><span class="co">## 导入matplotlib</span></span>
-<span id="cb3-32"><a href="#cb3-32"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span>
-<span id="cb3-33"><a href="#cb3-33"></a><span class="co">## 使图形直接插入到jupyter中</span></span>
-<span id="cb3-34"><a href="#cb3-34"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb3-35"><a href="#cb3-35"></a><span class="co"># 设定图像大小</span></span>
-<span id="cb3-36"><a href="#cb3-36"></a>plt.rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> (<span class="fl">15.0</span>, <span class="fl">8.0</span>)</span>
-<span id="cb3-37"><a href="#cb3-37"></a></span>
-<span id="cb3-38"><a href="#cb3-38"></a>plt.plot(x,F,label<span class="op">=</span><span class="vs">r'$F(x)$'</span>,color<span class="op">=</span><span class="st">'blue'</span>) <span class="co">## 画出理论的分布函数</span></span>
-<span id="cb3-39"><a href="#cb3-39"></a>plt.plot(x,F_hat,label<span class="op">=</span><span class="vs">r'$\hat</span><span class="sc">{F}</span><span class="vs">(x)$'</span>,color<span class="op">=</span><span class="st">'green'</span>) <span class="co">## 画出经验分布函数</span></span>
-<span id="cb3-40"><a href="#cb3-40"></a>plt.legend(loc<span class="op">=</span><span class="st">'upper left'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb3-41"><a href="#cb3-41"></a>plt.show() <span class="co">## 画图</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy.random <span class="im">as</span> nprd</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">## 设定参数</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>b<span class="op">=</span><span class="dv">3</span> <span class="co">#指数分布参数</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>N<span class="op">=</span><span class="dv">200</span> <span class="co">#样本容量</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">## 生成N个x~F(x)=1-exp{-(1/b)*x}</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>X<span class="op">=-</span>b<span class="op">*</span>np.log(nprd.random(N))</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">## 给定一些点，在这些点上计算分布函数和经验分布函数</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="fl">0.1</span>,<span class="fl">9.9</span>,<span class="dv">50</span>) <span class="co">#0.1,0.3,...,9.9</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">## 计算理论的分布函数</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>F<span class="op">=</span><span class="dv">1</span><span class="op">-</span>np.exp((<span class="op">-</span><span class="dv">1</span><span class="op">/</span>b)<span class="op">*</span>x)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">## 计算经验分布函数</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>empirical_F<span class="op">=</span><span class="kw">lambda</span> s: np.<span class="bu">sum</span>(X<span class="op">&lt;=</span>s)<span class="op">/</span>N <span class="co"># lambda表达式，定义了s点处的经验分布函数</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>F_hat<span class="op">=</span>np.array(<span class="bu">list</span>(<span class="bu">map</span>(empirical_F,x))) <span class="co"># 计算x的所有点的经验分布函数</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co">## 计算经验分布函数与真实的分布函数之间的绝对差异</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>bias<span class="op">=</span>np.<span class="bu">abs</span>(F<span class="op">-</span>F_hat)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co">## 打印两个分布函数及其绝对差异，以及平均的绝对差异</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">" x  | 分布函数| 经验分布函数| 差的绝对值"</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>):</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="sc">%.1f</span><span class="st"> |</span><span class="sc">%.5f</span><span class="st"> | </span><span class="sc">%.5f</span><span class="st">  | </span><span class="sc">%.5f</span><span class="st">"</span> <span class="op">%</span> (x[i],F[i],F_hat[i],bias[i]))</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Mean absolute bias:"</span>,np.<span class="bu">sum</span>(bias)<span class="op">/</span><span class="dv">50</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co">## 导入matplotlib</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co">## 使图形直接插入到jupyter中</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 设定图像大小</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> (<span class="fl">15.0</span>, <span class="fl">8.0</span>)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>plt.plot(x,F,label<span class="op">=</span><span class="vs">r'$F(x)$'</span>,color<span class="op">=</span><span class="st">'blue'</span>) <span class="co">## 画出理论的分布函数</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>plt.plot(x,F_hat,label<span class="op">=</span><span class="vs">r'$\hat</span><span class="sc">{F}</span><span class="vs">(x)$'</span>,color<span class="op">=</span><span class="st">'green'</span>) <span class="co">## 画出经验分布函数</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">'upper left'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>plt.show() <span class="co">## 画图</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> x  | 分布函数| 经验分布函数| 差的绝对值
 0.1 |0.03278 | 0.03500  | 0.00222
@@ -808,33 +808,33 @@ Mean absolute bias: 0.0147749175566</code></pre>
 <h1 data-number="20"><span class="header-section-number">20</span> 实例3：停止的鞅</h1>
 <p>现在考虑这么一个问题：如果我有 100 块钱，现在可以进行赌博，每次以 0.5 的概率赚一块钱，以 0.5 的概率赔一块钱，赚到 130 块我就收手，那么我的财富应该会如何变化？以下的程序模拟了这个问题：</p>
 <div id="cell-8" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="im">import</span> numpy.random <span class="im">as</span> nprd</span>
-<span id="cb5-3"><a href="#cb5-3"></a></span>
-<span id="cb5-4"><a href="#cb5-4"></a>T<span class="op">=</span><span class="dv">5000</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>x0<span class="op">=</span><span class="dv">100</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="kw">def</span> gen_martingale():</span>
-<span id="cb5-7"><a href="#cb5-7"></a>    X<span class="op">=</span>[]</span>
-<span id="cb5-8"><a href="#cb5-8"></a>    x<span class="op">=</span>x0</span>
-<span id="cb5-9"><a href="#cb5-9"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(T):</span>
-<span id="cb5-10"><a href="#cb5-10"></a>        <span class="cf">if</span> x<span class="op">&gt;=</span><span class="dv">130</span>:</span>
-<span id="cb5-11"><a href="#cb5-11"></a>            x<span class="op">=</span>x</span>
-<span id="cb5-12"><a href="#cb5-12"></a>        <span class="cf">else</span>:</span>
-<span id="cb5-13"><a href="#cb5-13"></a>            x<span class="op">=</span>x<span class="op">+</span>(<span class="dv">1</span> <span class="cf">if</span> nprd.uniform()<span class="op">&gt;</span><span class="fl">0.5</span> <span class="cf">else</span> <span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb5-14"><a href="#cb5-14"></a>        X.append(x)</span>
-<span id="cb5-15"><a href="#cb5-15"></a>    <span class="cf">return</span> X</span>
-<span id="cb5-16"><a href="#cb5-16"></a>        </span>
-<span id="cb5-17"><a href="#cb5-17"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb5-18"><a href="#cb5-18"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb5-19"><a href="#cb5-19"></a><span class="co"># 设定图像大小</span></span>
-<span id="cb5-20"><a href="#cb5-20"></a>plt.rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> (<span class="fl">15.0</span>, <span class="fl">8.0</span>)</span>
-<span id="cb5-21"><a href="#cb5-21"></a>N<span class="op">=</span><span class="dv">30</span></span>
-<span id="cb5-22"><a href="#cb5-22"></a>t<span class="op">=</span>[t <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(T)]</span>
-<span id="cb5-23"><a href="#cb5-23"></a>corlors<span class="op">=</span>np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,N)</span>
-<span id="cb5-24"><a href="#cb5-24"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N):</span>
-<span id="cb5-25"><a href="#cb5-25"></a>    x<span class="op">=</span>gen_martingale()</span>
-<span id="cb5-26"><a href="#cb5-26"></a>    plt.plot(t,x,color<span class="op">=</span>(<span class="fl">0.8</span>,<span class="dv">1</span><span class="op">-</span>corlors[i],corlors[i]))</span>
-<span id="cb5-27"><a href="#cb5-27"></a>plt.show() <span class="co">## 画图</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy.random <span class="im">as</span> nprd</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>T<span class="op">=</span><span class="dv">5000</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>x0<span class="op">=</span><span class="dv">100</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gen_martingale():</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    X<span class="op">=</span>[]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>x0</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(T):</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> x<span class="op">&gt;=</span><span class="dv">130</span>:</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>            x<span class="op">=</span>x</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>            x<span class="op">=</span>x<span class="op">+</span>(<span class="dv">1</span> <span class="cf">if</span> nprd.uniform()<span class="op">&gt;</span><span class="fl">0.5</span> <span class="cf">else</span> <span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        X.append(x)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> X</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 设定图像大小</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> (<span class="fl">15.0</span>, <span class="fl">8.0</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>N<span class="op">=</span><span class="dv">30</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>[t <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(T)]</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>corlors<span class="op">=</span>np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,N)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>gen_martingale()</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    plt.plot(t,x,color<span class="op">=</span>(<span class="fl">0.8</span>,<span class="dv">1</span><span class="op">-</span>corlors[i],corlors[i]))</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>plt.show() <span class="co">## 画图</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -848,40 +848,40 @@ Mean absolute bias: 0.0147749175566</code></pre>
 <h1 data-number="21"><span class="header-section-number">21</span> 实例4：大数定律和中心极限定理</h1>
 <p>我们知道，根据大数定律，样本均值会收敛到总体均值，即 <span class="math inline">\(\bar{x}\rightarrow_p\mu\)</span>，以下代码通过产生 10000 个服从 0-1 分布的随机数（真实概率为0.5，比如抛硬币），计算了前 n 次的均值，并将其画在图上：</p>
 <div id="cell-10" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="im">from</span> numpy <span class="im">import</span> random <span class="im">as</span> nprd</span>
-<span id="cb6-3"><a href="#cb6-3"></a></span>
-<span id="cb6-4"><a href="#cb6-4"></a>True_P<span class="op">=</span><span class="fl">0.5</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="kw">def</span> sampling(N):</span>
-<span id="cb6-7"><a href="#cb6-7"></a>    <span class="co">## 产生Bernouli样本</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a>    x<span class="op">=</span>nprd.rand(N)<span class="op">&lt;</span>True_P</span>
-<span id="cb6-9"><a href="#cb6-9"></a>    <span class="cf">return</span> x</span>
-<span id="cb6-10"><a href="#cb6-10"></a></span>
-<span id="cb6-11"><a href="#cb6-11"></a>M <span class="op">=</span> <span class="dv">10000</span> <span class="co">#模拟次数</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a>xbar <span class="op">=</span> np.zeros(M)</span>
-<span id="cb6-13"><a href="#cb6-13"></a>N <span class="op">=</span> np.array([i<span class="op">+</span><span class="dv">1</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(M)])</span>
-<span id="cb6-14"><a href="#cb6-14"></a>x <span class="op">=</span> sampling(M)</span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(M):</span>
-<span id="cb6-16"><a href="#cb6-16"></a>    <span class="cf">if</span> i<span class="op">==</span><span class="dv">0</span>:</span>
-<span id="cb6-17"><a href="#cb6-17"></a>        xbar[i]<span class="op">=</span>x[i]</span>
-<span id="cb6-18"><a href="#cb6-18"></a>    <span class="cf">else</span>:</span>
-<span id="cb6-19"><a href="#cb6-19"></a>        xbar[i]<span class="op">=</span>(x[i]<span class="op">+</span>xbar[i<span class="op">-</span><span class="dv">1</span>]<span class="op">*</span>i)<span class="op">/</span>(i<span class="op">+</span><span class="dv">1</span>)</span>
-<span id="cb6-20"><a href="#cb6-20"></a></span>
-<span id="cb6-21"><a href="#cb6-21"></a><span class="co">## 导入matplotlib</span></span>
-<span id="cb6-22"><a href="#cb6-22"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span>
-<span id="cb6-23"><a href="#cb6-23"></a><span class="co">## 使图形直接插入到jupyter中</span></span>
-<span id="cb6-24"><a href="#cb6-24"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb6-25"><a href="#cb6-25"></a><span class="co"># 设定图像大小</span></span>
-<span id="cb6-26"><a href="#cb6-26"></a>plt.rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> (<span class="fl">10.0</span>, <span class="fl">8.0</span>)</span>
-<span id="cb6-27"><a href="#cb6-27"></a></span>
-<span id="cb6-28"><a href="#cb6-28"></a>plt.plot(N,xbar,label<span class="op">=</span><span class="vs">r'$\bar</span><span class="sc">{x}</span><span class="vs">$'</span>,color<span class="op">=</span><span class="st">'pink'</span>) <span class="co">## xbar</span></span>
-<span id="cb6-29"><a href="#cb6-29"></a>xtrue<span class="op">=</span>np.ones(M)<span class="op">*</span>True_P</span>
-<span id="cb6-30"><a href="#cb6-30"></a>plt.plot(N,xtrue,label<span class="op">=</span><span class="vs">r'$0.5$'</span>,color<span class="op">=</span><span class="st">'black'</span>) <span class="co">## true xbar</span></span>
-<span id="cb6-31"><a href="#cb6-31"></a>plt.xlabel(<span class="st">'N'</span>)</span>
-<span id="cb6-32"><a href="#cb6-32"></a>plt.ylabel(<span class="vs">r'$\bar</span><span class="sc">{x}</span><span class="vs">$'</span>)</span>
-<span id="cb6-33"><a href="#cb6-33"></a>plt.legend(loc<span class="op">=</span><span class="st">'upper right'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb6-34"><a href="#cb6-34"></a>plt.show() <span class="co">## 画图</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy <span class="im">import</span> random <span class="im">as</span> nprd</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>True_P<span class="op">=</span><span class="fl">0.5</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sampling(N):</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 产生Bernouli样本</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>nprd.rand(N)<span class="op">&lt;</span>True_P</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> <span class="dv">10000</span> <span class="co">#模拟次数</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>xbar <span class="op">=</span> np.zeros(M)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> np.array([i<span class="op">+</span><span class="dv">1</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(M)])</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> sampling(M)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(M):</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i<span class="op">==</span><span class="dv">0</span>:</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        xbar[i]<span class="op">=</span>x[i]</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        xbar[i]<span class="op">=</span>(x[i]<span class="op">+</span>xbar[i<span class="op">-</span><span class="dv">1</span>]<span class="op">*</span>i)<span class="op">/</span>(i<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">## 导入matplotlib</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co">## 使图形直接插入到jupyter中</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 设定图像大小</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> (<span class="fl">10.0</span>, <span class="fl">8.0</span>)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>plt.plot(N,xbar,label<span class="op">=</span><span class="vs">r'$\bar</span><span class="sc">{x}</span><span class="vs">$'</span>,color<span class="op">=</span><span class="st">'pink'</span>) <span class="co">## xbar</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>xtrue<span class="op">=</span>np.ones(M)<span class="op">*</span>True_P</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>plt.plot(N,xtrue,label<span class="op">=</span><span class="vs">r'$0.5$'</span>,color<span class="op">=</span><span class="st">'black'</span>) <span class="co">## true xbar</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'N'</span>)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'$\bar</span><span class="sc">{x}</span><span class="vs">$'</span>)</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">'upper right'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>plt.show() <span class="co">## 画图</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -892,67 +892,67 @@ Mean absolute bias: 0.0147749175566</code></pre>
 </div>
 <p>而根据中心极限定理，当样本量足够大时，样本均值服从正态分布：<span class="math inline">\(\bar{x}\sim N\left(\mu,\sigma^2/N\right)\)</span>。以下代码，根据不同的样本量（<span class="math inline">\(N\)</span>），分别产生一些混合正态分布（双峰的），并计算其均值，计算 2000 次样本均值，并观察给定样本量的条件下 2000 次样本均值的分布情况。最终将样本均值的分布情况绘制成图：</p>
 <div id="cell-12" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="im">from</span> numpy <span class="im">import</span> random <span class="im">as</span> nprd</span>
-<span id="cb7-3"><a href="#cb7-3"></a></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="kw">def</span> sampling(N):</span>
-<span id="cb7-5"><a href="#cb7-5"></a>    <span class="co">## 产生一组样本，以0.5的概率为z+3，0.5的概率为z-3，其中z~N(0,1)</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a>    d<span class="op">=</span>nprd.rand(N)<span class="op">&lt;</span><span class="fl">0.5</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a>    z<span class="op">=</span>nprd.randn(N)</span>
-<span id="cb7-8"><a href="#cb7-8"></a>    x<span class="op">=</span>np.array([z[i]<span class="op">+</span><span class="dv">3</span> <span class="cf">if</span> d[i] <span class="cf">else</span> z[i]<span class="op">-</span><span class="dv">3</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N)])</span>
-<span id="cb7-9"><a href="#cb7-9"></a>    <span class="cf">return</span> x</span>
-<span id="cb7-10"><a href="#cb7-10"></a></span>
-<span id="cb7-11"><a href="#cb7-11"></a>N<span class="op">=</span>[<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">10</span>,<span class="dv">100</span>,<span class="dv">1000</span>] <span class="co"># sample size</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a>M<span class="op">=</span><span class="dv">2000</span></span>
-<span id="cb7-13"><a href="#cb7-13"></a>MEANS<span class="op">=</span>[]</span>
-<span id="cb7-14"><a href="#cb7-14"></a><span class="cf">for</span> n <span class="kw">in</span> N:</span>
-<span id="cb7-15"><a href="#cb7-15"></a>    mean_x<span class="op">=</span>np.zeros(M)</span>
-<span id="cb7-16"><a href="#cb7-16"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(M):</span>
-<span id="cb7-17"><a href="#cb7-17"></a>        x<span class="op">=</span>sampling(n)</span>
-<span id="cb7-18"><a href="#cb7-18"></a>        mean_x[i]<span class="op">=</span>np.mean(x)<span class="op">/</span>np.sqrt(<span class="dv">10</span><span class="op">/</span>n) <span class="co">## 标准化，因为var(x)=10</span></span>
-<span id="cb7-19"><a href="#cb7-19"></a>    MEANS.append(mean_x)</span>
-<span id="cb7-20"><a href="#cb7-20"></a></span>
-<span id="cb7-21"><a href="#cb7-21"></a><span class="co">## 导入matplotlib</span></span>
-<span id="cb7-22"><a href="#cb7-22"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb7-23"><a href="#cb7-23"></a><span class="im">import</span> matplotlib.mlab <span class="im">as</span> mlab</span>
-<span id="cb7-24"><a href="#cb7-24"></a><span class="co">## 使图形直接插入到jupyter中</span></span>
-<span id="cb7-25"><a href="#cb7-25"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb7-26"><a href="#cb7-26"></a><span class="co"># 设定图像大小</span></span>
-<span id="cb7-27"><a href="#cb7-27"></a>plt.rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> (<span class="fl">10.0</span>, <span class="fl">8.0</span>)</span>
-<span id="cb7-28"><a href="#cb7-28"></a></span>
-<span id="cb7-29"><a href="#cb7-29"></a>x<span class="op">=</span>sampling(<span class="dv">1000</span>)</span>
-<span id="cb7-30"><a href="#cb7-30"></a>plt.xlabel(<span class="st">'x'</span>)</span>
-<span id="cb7-31"><a href="#cb7-31"></a>plt.ylabel(<span class="st">'Density'</span>)</span>
-<span id="cb7-32"><a href="#cb7-32"></a>plt.title(<span class="st">'Histogram of Mixed Normal'</span>)</span>
-<span id="cb7-33"><a href="#cb7-33"></a>plt.hist(x,bins<span class="op">=</span><span class="dv">30</span>,normed<span class="op">=</span><span class="dv">1</span>) <span class="co">## histgram</span></span>
-<span id="cb7-34"><a href="#cb7-34"></a>plt.show() <span class="co">## 画图</span></span>
-<span id="cb7-35"><a href="#cb7-35"></a></span>
-<span id="cb7-36"><a href="#cb7-36"></a><span class="co">## 样本均值</span></span>
-<span id="cb7-37"><a href="#cb7-37"></a>ax1 <span class="op">=</span> plt.subplot(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>)</span>
-<span id="cb7-38"><a href="#cb7-38"></a>ax2 <span class="op">=</span> plt.subplot(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>)</span>
-<span id="cb7-39"><a href="#cb7-39"></a>ax3 <span class="op">=</span> plt.subplot(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>)</span>
-<span id="cb7-40"><a href="#cb7-40"></a>ax4 <span class="op">=</span> plt.subplot(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)</span>
-<span id="cb7-41"><a href="#cb7-41"></a>ax5 <span class="op">=</span> plt.subplot(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>)</span>
-<span id="cb7-42"><a href="#cb7-42"></a>ax6 <span class="op">=</span> plt.subplot(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">6</span>)</span>
-<span id="cb7-43"><a href="#cb7-43"></a></span>
-<span id="cb7-44"><a href="#cb7-44"></a><span class="co">## normal density</span></span>
-<span id="cb7-45"><a href="#cb7-45"></a>x<span class="op">=</span>np.linspace(<span class="op">-</span><span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">100</span>)</span>
-<span id="cb7-46"><a href="#cb7-46"></a>d<span class="op">=</span>[<span class="fl">1.0</span><span class="op">/</span>np.sqrt(<span class="dv">2</span><span class="op">*</span>np.pi)<span class="op">*</span>np.exp(<span class="op">-</span>i<span class="op">**</span><span class="dv">2</span><span class="op">/</span><span class="dv">2</span>) <span class="cf">for</span> i <span class="kw">in</span> x]</span>
-<span id="cb7-47"><a href="#cb7-47"></a></span>
-<span id="cb7-48"><a href="#cb7-48"></a><span class="kw">def</span> plot_density(ax,data,N):</span>
-<span id="cb7-49"><a href="#cb7-49"></a>    ax.hist(data,bins<span class="op">=</span><span class="dv">30</span>,normed<span class="op">=</span><span class="dv">1</span>) <span class="co">## histgram</span></span>
-<span id="cb7-50"><a href="#cb7-50"></a>    ax.plot(x,d)</span>
-<span id="cb7-51"><a href="#cb7-51"></a>    ax.set_title(<span class="vs">r'Histogram of $\bar</span><span class="sc">{x}</span><span class="vs">$:N=</span><span class="sc">%d</span><span class="vs">'</span> <span class="op">%</span> N)</span>
-<span id="cb7-52"><a href="#cb7-52"></a></span>
-<span id="cb7-53"><a href="#cb7-53"></a>plot_density(ax1,MEANS[<span class="dv">0</span>],N[<span class="dv">0</span>])</span>
-<span id="cb7-54"><a href="#cb7-54"></a>plot_density(ax2,MEANS[<span class="dv">1</span>],N[<span class="dv">1</span>])</span>
-<span id="cb7-55"><a href="#cb7-55"></a>plot_density(ax3,MEANS[<span class="dv">2</span>],N[<span class="dv">2</span>])</span>
-<span id="cb7-56"><a href="#cb7-56"></a>plot_density(ax4,MEANS[<span class="dv">3</span>],N[<span class="dv">3</span>])</span>
-<span id="cb7-57"><a href="#cb7-57"></a>plot_density(ax5,MEANS[<span class="dv">4</span>],N[<span class="dv">4</span>])</span>
-<span id="cb7-58"><a href="#cb7-58"></a>plot_density(ax6,MEANS[<span class="dv">5</span>],N[<span class="dv">5</span>])</span>
-<span id="cb7-59"><a href="#cb7-59"></a></span>
-<span id="cb7-60"><a href="#cb7-60"></a></span>
-<span id="cb7-61"><a href="#cb7-61"></a>plt.show() <span class="co">## 画图</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy <span class="im">import</span> random <span class="im">as</span> nprd</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sampling(N):</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">## 产生一组样本，以0.5的概率为z+3，0.5的概率为z-3，其中z~N(0,1)</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    d<span class="op">=</span>nprd.rand(N)<span class="op">&lt;</span><span class="fl">0.5</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    z<span class="op">=</span>nprd.randn(N)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>np.array([z[i]<span class="op">+</span><span class="dv">3</span> <span class="cf">if</span> d[i] <span class="cf">else</span> z[i]<span class="op">-</span><span class="dv">3</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N)])</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>N<span class="op">=</span>[<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">10</span>,<span class="dv">100</span>,<span class="dv">1000</span>] <span class="co"># sample size</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>M<span class="op">=</span><span class="dv">2000</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>MEANS<span class="op">=</span>[]</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> N:</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    mean_x<span class="op">=</span>np.zeros(M)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(M):</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>sampling(n)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        mean_x[i]<span class="op">=</span>np.mean(x)<span class="op">/</span>np.sqrt(<span class="dv">10</span><span class="op">/</span>n) <span class="co">## 标准化，因为var(x)=10</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    MEANS.append(mean_x)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co">## 导入matplotlib</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.mlab <span class="im">as</span> mlab</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co">## 使图形直接插入到jupyter中</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 设定图像大小</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> (<span class="fl">10.0</span>, <span class="fl">8.0</span>)</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>sampling(<span class="dv">1000</span>)</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Density'</span>)</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Histogram of Mixed Normal'</span>)</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>plt.hist(x,bins<span class="op">=</span><span class="dv">30</span>,normed<span class="op">=</span><span class="dv">1</span>) <span class="co">## histgram</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>plt.show() <span class="co">## 画图</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="co">## 样本均值</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> plt.subplot(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>)</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> plt.subplot(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>)</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>ax3 <span class="op">=</span> plt.subplot(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>)</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>ax4 <span class="op">=</span> plt.subplot(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>ax5 <span class="op">=</span> plt.subplot(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>)</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>ax6 <span class="op">=</span> plt.subplot(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">6</span>)</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="co">## normal density</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>np.linspace(<span class="op">-</span><span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">100</span>)</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>d<span class="op">=</span>[<span class="fl">1.0</span><span class="op">/</span>np.sqrt(<span class="dv">2</span><span class="op">*</span>np.pi)<span class="op">*</span>np.exp(<span class="op">-</span>i<span class="op">**</span><span class="dv">2</span><span class="op">/</span><span class="dv">2</span>) <span class="cf">for</span> i <span class="kw">in</span> x]</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_density(ax,data,N):</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>    ax.hist(data,bins<span class="op">=</span><span class="dv">30</span>,normed<span class="op">=</span><span class="dv">1</span>) <span class="co">## histgram</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>    ax.plot(x,d)</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="vs">r'Histogram of $\bar</span><span class="sc">{x}</span><span class="vs">$:N=</span><span class="sc">%d</span><span class="vs">'</span> <span class="op">%</span> N)</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>plot_density(ax1,MEANS[<span class="dv">0</span>],N[<span class="dv">0</span>])</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>plot_density(ax2,MEANS[<span class="dv">1</span>],N[<span class="dv">1</span>])</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>plot_density(ax3,MEANS[<span class="dv">2</span>],N[<span class="dv">2</span>])</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>plot_density(ax4,MEANS[<span class="dv">3</span>],N[<span class="dv">3</span>])</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>plot_density(ax5,MEANS[<span class="dv">4</span>],N[<span class="dv">4</span>])</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>plot_density(ax6,MEANS[<span class="dv">5</span>],N[<span class="dv">5</span>])</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>plt.show() <span class="co">## 画图</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -982,55 +982,55 @@ Mean absolute bias: 0.0147749175566</code></pre>
 \]</span></p>
 <p>我们将会重复抽样、估计M=500次，并根据这500次的结果计算矩估计量的偏差（bias）、标准误(standard error)以及均方误差（mean sqrared error）。</p>
 <div id="cell-14" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="im">from</span> numpy <span class="im">import</span> random <span class="im">as</span> nprd</span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="im">import</span> scipy <span class="im">as</span> sc</span>
-<span id="cb8-5"><a href="#cb8-5"></a></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="kw">def</span> sampling(a,b,N):</span>
-<span id="cb8-7"><a href="#cb8-7"></a>    x<span class="op">=</span>nprd.beta(a,b,N)</span>
-<span id="cb8-8"><a href="#cb8-8"></a>    <span class="cf">return</span> x</span>
-<span id="cb8-9"><a href="#cb8-9"></a></span>
-<span id="cb8-10"><a href="#cb8-10"></a><span class="kw">def</span> estimate(x):</span>
-<span id="cb8-11"><a href="#cb8-11"></a>    meanx<span class="op">=</span>np.mean(x)</span>
-<span id="cb8-12"><a href="#cb8-12"></a>    x2<span class="op">=</span>[xi<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> xi <span class="kw">in</span> x]</span>
-<span id="cb8-13"><a href="#cb8-13"></a>    meanx2<span class="op">=</span>np.mean(x2)</span>
-<span id="cb8-14"><a href="#cb8-14"></a>    <span class="kw">def</span> obj(theta):</span>
-<span id="cb8-15"><a href="#cb8-15"></a>        <span class="cf">return</span> (theta[<span class="dv">0</span>]<span class="op">/</span>(theta[<span class="dv">0</span>]<span class="op">+</span>theta[<span class="dv">1</span>])<span class="op">-</span>meanx)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> ((theta[<span class="dv">0</span>]<span class="op">/</span>(theta[<span class="dv">0</span>]<span class="op">+</span>theta[<span class="dv">1</span>]))<span class="op">**</span><span class="dv">2</span><span class="op">+</span>(theta[<span class="dv">0</span>]<span class="op">*</span>theta[<span class="dv">1</span>])<span class="op">/</span>((theta[<span class="dv">0</span>]<span class="op">+</span>theta[<span class="dv">1</span>])<span class="op">**</span><span class="dv">2</span><span class="op">*</span>(theta[<span class="dv">0</span>]<span class="op">+</span>theta[<span class="dv">1</span>]<span class="op">+</span><span class="dv">1</span>))<span class="op">-</span>meanx2)<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb8-16"><a href="#cb8-16"></a>    res<span class="op">=</span>minimize(obj, np.array([<span class="dv">1</span>,<span class="dv">1</span>]), method<span class="op">=</span><span class="st">'nelder-mead'</span>, options<span class="op">=</span>{<span class="st">'xtol'</span>: <span class="fl">1e-4</span>, <span class="st">'disp'</span>: <span class="va">False</span>})</span>
-<span id="cb8-17"><a href="#cb8-17"></a>    <span class="cf">return</span> res</span>
-<span id="cb8-18"><a href="#cb8-18"></a></span>
-<span id="cb8-19"><a href="#cb8-19"></a>M<span class="op">=</span><span class="dv">500</span> <span class="co">## simulation times</span></span>
-<span id="cb8-20"><a href="#cb8-20"></a>N<span class="op">=</span><span class="dv">200</span> <span class="co">## sample size</span></span>
-<span id="cb8-21"><a href="#cb8-21"></a>a<span class="op">=</span><span class="dv">3</span></span>
-<span id="cb8-22"><a href="#cb8-22"></a>b<span class="op">=</span><span class="dv">1</span> <span class="co">## true value</span></span>
-<span id="cb8-23"><a href="#cb8-23"></a>RESULT<span class="op">=</span>np.zeros((M,<span class="dv">2</span>), np.float64)</span>
-<span id="cb8-24"><a href="#cb8-24"></a><span class="cf">for</span> m <span class="kw">in</span> <span class="bu">range</span>(M):</span>
-<span id="cb8-25"><a href="#cb8-25"></a>    x<span class="op">=</span>sampling(a,b,N)</span>
-<span id="cb8-26"><a href="#cb8-26"></a>    res<span class="op">=</span>estimate(x)</span>
-<span id="cb8-27"><a href="#cb8-27"></a>    RESULT[m]<span class="op">=</span>res.x</span>
-<span id="cb8-28"><a href="#cb8-28"></a></span>
-<span id="cb8-29"><a href="#cb8-29"></a>MEAN_RESULT<span class="op">=</span>np.average(RESULT, <span class="dv">0</span>)</span>
-<span id="cb8-30"><a href="#cb8-30"></a>BIAS<span class="op">=</span>MEAN_RESULT<span class="op">-</span>np.array([a,b])</span>
-<span id="cb8-31"><a href="#cb8-31"></a>STD<span class="op">=</span>np.std(RESULT, <span class="dv">0</span>)</span>
-<span id="cb8-32"><a href="#cb8-32"></a>MSE2<span class="op">=</span>np.array([i<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> i <span class="kw">in</span> STD])<span class="op">+</span>np.array([i<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> i <span class="kw">in</span> BIAS])</span>
-<span id="cb8-33"><a href="#cb8-33"></a>MSE<span class="op">=</span>np.array([np.sqrt(i) <span class="cf">for</span> i <span class="kw">in</span> MSE2])</span>
-<span id="cb8-34"><a href="#cb8-34"></a><span class="bu">print</span>(<span class="st">"Bias = "</span>, BIAS)</span>
-<span id="cb8-35"><a href="#cb8-35"></a><span class="bu">print</span>(<span class="st">"s.e. = "</span>, STD)</span>
-<span id="cb8-36"><a href="#cb8-36"></a><span class="bu">print</span>(<span class="st">"RMSE = "</span>, MSE)</span>
-<span id="cb8-37"><a href="#cb8-37"></a></span>
-<span id="cb8-38"><a href="#cb8-38"></a><span class="co">## 画图</span></span>
-<span id="cb8-39"><a href="#cb8-39"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb8-40"><a href="#cb8-40"></a><span class="co">## 使图形直接插入到jupyter中</span></span>
-<span id="cb8-41"><a href="#cb8-41"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb8-42"><a href="#cb8-42"></a><span class="co"># 设定图像大小</span></span>
-<span id="cb8-43"><a href="#cb8-43"></a>plt.rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> (<span class="fl">10.0</span>, <span class="fl">8.0</span>)</span>
-<span id="cb8-44"><a href="#cb8-44"></a><span class="co">## 样本均值</span></span>
-<span id="cb8-45"><a href="#cb8-45"></a>ax1 <span class="op">=</span> plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>)</span>
-<span id="cb8-46"><a href="#cb8-46"></a>ax2 <span class="op">=</span> plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span>
-<span id="cb8-47"><a href="#cb8-47"></a>ax1.hist(RESULT[:,<span class="dv">0</span>],bins<span class="op">=</span><span class="dv">30</span>,normed<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb8-48"><a href="#cb8-48"></a>ax2.hist(RESULT[:,<span class="dv">1</span>],bins<span class="op">=</span><span class="dv">30</span>,normed<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb8-49"><a href="#cb8-49"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy <span class="im">import</span> random <span class="im">as</span> nprd</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> sc</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sampling(a,b,N):</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>nprd.beta(a,b,N)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> estimate(x):</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    meanx<span class="op">=</span>np.mean(x)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    x2<span class="op">=</span>[xi<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> xi <span class="kw">in</span> x]</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    meanx2<span class="op">=</span>np.mean(x2)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> obj(theta):</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> (theta[<span class="dv">0</span>]<span class="op">/</span>(theta[<span class="dv">0</span>]<span class="op">+</span>theta[<span class="dv">1</span>])<span class="op">-</span>meanx)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> ((theta[<span class="dv">0</span>]<span class="op">/</span>(theta[<span class="dv">0</span>]<span class="op">+</span>theta[<span class="dv">1</span>]))<span class="op">**</span><span class="dv">2</span><span class="op">+</span>(theta[<span class="dv">0</span>]<span class="op">*</span>theta[<span class="dv">1</span>])<span class="op">/</span>((theta[<span class="dv">0</span>]<span class="op">+</span>theta[<span class="dv">1</span>])<span class="op">**</span><span class="dv">2</span><span class="op">*</span>(theta[<span class="dv">0</span>]<span class="op">+</span>theta[<span class="dv">1</span>]<span class="op">+</span><span class="dv">1</span>))<span class="op">-</span>meanx2)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    res<span class="op">=</span>minimize(obj, np.array([<span class="dv">1</span>,<span class="dv">1</span>]), method<span class="op">=</span><span class="st">'nelder-mead'</span>, options<span class="op">=</span>{<span class="st">'xtol'</span>: <span class="fl">1e-4</span>, <span class="st">'disp'</span>: <span class="va">False</span>})</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> res</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>M<span class="op">=</span><span class="dv">500</span> <span class="co">## simulation times</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>N<span class="op">=</span><span class="dv">200</span> <span class="co">## sample size</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="dv">3</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>b<span class="op">=</span><span class="dv">1</span> <span class="co">## true value</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>RESULT<span class="op">=</span>np.zeros((M,<span class="dv">2</span>), np.float64)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> m <span class="kw">in</span> <span class="bu">range</span>(M):</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>sampling(a,b,N)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    res<span class="op">=</span>estimate(x)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    RESULT[m]<span class="op">=</span>res.x</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>MEAN_RESULT<span class="op">=</span>np.average(RESULT, <span class="dv">0</span>)</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>BIAS<span class="op">=</span>MEAN_RESULT<span class="op">-</span>np.array([a,b])</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>STD<span class="op">=</span>np.std(RESULT, <span class="dv">0</span>)</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>MSE2<span class="op">=</span>np.array([i<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> i <span class="kw">in</span> STD])<span class="op">+</span>np.array([i<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> i <span class="kw">in</span> BIAS])</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>MSE<span class="op">=</span>np.array([np.sqrt(i) <span class="cf">for</span> i <span class="kw">in</span> MSE2])</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Bias = "</span>, BIAS)</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"s.e. = "</span>, STD)</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"RMSE = "</span>, MSE)</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="co">## 画图</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="co">## 使图形直接插入到jupyter中</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a><span class="co"># 设定图像大小</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> (<span class="fl">10.0</span>, <span class="fl">8.0</span>)</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a><span class="co">## 样本均值</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>)</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>ax1.hist(RESULT[:,<span class="dv">0</span>],bins<span class="op">=</span><span class="dv">30</span>,normed<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>ax2.hist(RESULT[:,<span class="dv">1</span>],bins<span class="op">=</span><span class="dv">30</span>,normed<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Bias =  [ 0.04108888  0.01504609]
 s.e. =  [ 0.34001766  0.10260341]
@@ -1049,53 +1049,53 @@ RMSE =  [ 0.34249132  0.10370075]</code></pre>
 <h2 data-number="22.2" class="anchored" data-anchor-id="极大似然估计"><span class="header-section-number">22.2</span> 极大似然估计</h2>
 <p>由于Beta分布的对数似然函数为<span class="math display">\[\ln \left( \alpha, \beta | x \right)=\sum_{i=1}^N \left[ -\ln (Beta(\alpha,\beta))+(\alpha-1) \ln (x_i) + (\beta-1)\ln (1-x_i) \right]\]</span> 最大化似然函数，或者最小化负的似然函数，即可得到极大似然估计。</p>
 <div id="cell-16" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="im">from</span> numpy <span class="im">import</span> random <span class="im">as</span> nprd</span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="im">import</span> scipy <span class="im">as</span> sc</span>
-<span id="cb10-5"><a href="#cb10-5"></a></span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="kw">def</span> sampling(a,b,N):</span>
-<span id="cb10-7"><a href="#cb10-7"></a>    x<span class="op">=</span>nprd.beta(a,b,N)</span>
-<span id="cb10-8"><a href="#cb10-8"></a>    <span class="cf">return</span> x</span>
-<span id="cb10-9"><a href="#cb10-9"></a>    </span>
-<span id="cb10-10"><a href="#cb10-10"></a><span class="kw">def</span> estimate(x):</span>
-<span id="cb10-11"><a href="#cb10-11"></a>    <span class="kw">def</span> log_likelihood(theta):</span>
-<span id="cb10-12"><a href="#cb10-12"></a>        likeli<span class="op">=</span>np.array([<span class="op">-</span><span class="dv">1</span><span class="op">*</span>np.log(sc.special.beta(theta[<span class="dv">0</span>],theta[<span class="dv">1</span>]))<span class="op">+</span>(theta[<span class="dv">0</span>]<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>np.log(xi)<span class="op">+</span>(theta[<span class="dv">1</span>]<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>np.log(<span class="dv">1</span><span class="op">-</span>xi) <span class="cf">for</span> xi <span class="kw">in</span> x])</span>
-<span id="cb10-13"><a href="#cb10-13"></a>        <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">*</span>np.mean(likeli)</span>
-<span id="cb10-14"><a href="#cb10-14"></a>    res<span class="op">=</span>minimize(log_likelihood, np.array([<span class="dv">1</span>,<span class="dv">1</span>]), method<span class="op">=</span><span class="st">'nelder-mead'</span>, options<span class="op">=</span>{<span class="st">'xtol'</span>: <span class="fl">1e-4</span>, <span class="st">'disp'</span>: <span class="va">False</span>})</span>
-<span id="cb10-15"><a href="#cb10-15"></a>    <span class="cf">return</span> res</span>
-<span id="cb10-16"><a href="#cb10-16"></a></span>
-<span id="cb10-17"><a href="#cb10-17"></a>M<span class="op">=</span><span class="dv">500</span> <span class="co">## simulation times</span></span>
-<span id="cb10-18"><a href="#cb10-18"></a>N<span class="op">=</span><span class="dv">200</span> <span class="co">## sample size</span></span>
-<span id="cb10-19"><a href="#cb10-19"></a>a<span class="op">=</span><span class="dv">3</span></span>
-<span id="cb10-20"><a href="#cb10-20"></a>b<span class="op">=</span><span class="dv">1</span> <span class="co">## true value</span></span>
-<span id="cb10-21"><a href="#cb10-21"></a>RESULT<span class="op">=</span>np.zeros((M,<span class="dv">2</span>), np.float64)</span>
-<span id="cb10-22"><a href="#cb10-22"></a><span class="cf">for</span> m <span class="kw">in</span> <span class="bu">range</span>(M):</span>
-<span id="cb10-23"><a href="#cb10-23"></a>    x<span class="op">=</span>sampling(a,b,N)</span>
-<span id="cb10-24"><a href="#cb10-24"></a>    res<span class="op">=</span>estimate(x)</span>
-<span id="cb10-25"><a href="#cb10-25"></a>    RESULT[m]<span class="op">=</span>res.x</span>
-<span id="cb10-26"><a href="#cb10-26"></a></span>
-<span id="cb10-27"><a href="#cb10-27"></a>MEAN_RESULT<span class="op">=</span>np.average(RESULT, <span class="dv">0</span>)</span>
-<span id="cb10-28"><a href="#cb10-28"></a>BIAS<span class="op">=</span>MEAN_RESULT<span class="op">-</span>np.array([a,b])</span>
-<span id="cb10-29"><a href="#cb10-29"></a>STD<span class="op">=</span>np.std(RESULT, <span class="dv">0</span>)</span>
-<span id="cb10-30"><a href="#cb10-30"></a>MSE2<span class="op">=</span>np.array([i<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> i <span class="kw">in</span> STD])<span class="op">+</span>np.array([i<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> i <span class="kw">in</span> BIAS])</span>
-<span id="cb10-31"><a href="#cb10-31"></a>MSE<span class="op">=</span>np.array([np.sqrt(i) <span class="cf">for</span> i <span class="kw">in</span> MSE2])</span>
-<span id="cb10-32"><a href="#cb10-32"></a><span class="bu">print</span>(<span class="st">"Bias = "</span>, BIAS)</span>
-<span id="cb10-33"><a href="#cb10-33"></a><span class="bu">print</span>(<span class="st">"s.e. = "</span>, STD)</span>
-<span id="cb10-34"><a href="#cb10-34"></a><span class="bu">print</span>(<span class="st">"RMSE = "</span>, MSE)</span>
-<span id="cb10-35"><a href="#cb10-35"></a></span>
-<span id="cb10-36"><a href="#cb10-36"></a><span class="co">## 画图</span></span>
-<span id="cb10-37"><a href="#cb10-37"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb10-38"><a href="#cb10-38"></a><span class="co">## 使图形直接插入到jupyter中</span></span>
-<span id="cb10-39"><a href="#cb10-39"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb10-40"><a href="#cb10-40"></a><span class="co"># 设定图像大小</span></span>
-<span id="cb10-41"><a href="#cb10-41"></a>plt.rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> (<span class="fl">10.0</span>, <span class="fl">8.0</span>)</span>
-<span id="cb10-42"><a href="#cb10-42"></a><span class="co">## 样本均值</span></span>
-<span id="cb10-43"><a href="#cb10-43"></a>ax1 <span class="op">=</span> plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>)</span>
-<span id="cb10-44"><a href="#cb10-44"></a>ax2 <span class="op">=</span> plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span>
-<span id="cb10-45"><a href="#cb10-45"></a>ax1.hist(RESULT[:,<span class="dv">0</span>],bins<span class="op">=</span><span class="dv">30</span>,normed<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb10-46"><a href="#cb10-46"></a>ax2.hist(RESULT[:,<span class="dv">1</span>],bins<span class="op">=</span><span class="dv">30</span>,normed<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb10-47"><a href="#cb10-47"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy <span class="im">import</span> random <span class="im">as</span> nprd</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> sc</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sampling(a,b,N):</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>nprd.beta(a,b,N)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> estimate(x):</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> log_likelihood(theta):</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        likeli<span class="op">=</span>np.array([<span class="op">-</span><span class="dv">1</span><span class="op">*</span>np.log(sc.special.beta(theta[<span class="dv">0</span>],theta[<span class="dv">1</span>]))<span class="op">+</span>(theta[<span class="dv">0</span>]<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>np.log(xi)<span class="op">+</span>(theta[<span class="dv">1</span>]<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span>np.log(<span class="dv">1</span><span class="op">-</span>xi) <span class="cf">for</span> xi <span class="kw">in</span> x])</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">*</span>np.mean(likeli)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    res<span class="op">=</span>minimize(log_likelihood, np.array([<span class="dv">1</span>,<span class="dv">1</span>]), method<span class="op">=</span><span class="st">'nelder-mead'</span>, options<span class="op">=</span>{<span class="st">'xtol'</span>: <span class="fl">1e-4</span>, <span class="st">'disp'</span>: <span class="va">False</span>})</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> res</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>M<span class="op">=</span><span class="dv">500</span> <span class="co">## simulation times</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>N<span class="op">=</span><span class="dv">200</span> <span class="co">## sample size</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="dv">3</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>b<span class="op">=</span><span class="dv">1</span> <span class="co">## true value</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>RESULT<span class="op">=</span>np.zeros((M,<span class="dv">2</span>), np.float64)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> m <span class="kw">in</span> <span class="bu">range</span>(M):</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>sampling(a,b,N)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    res<span class="op">=</span>estimate(x)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    RESULT[m]<span class="op">=</span>res.x</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>MEAN_RESULT<span class="op">=</span>np.average(RESULT, <span class="dv">0</span>)</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>BIAS<span class="op">=</span>MEAN_RESULT<span class="op">-</span>np.array([a,b])</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>STD<span class="op">=</span>np.std(RESULT, <span class="dv">0</span>)</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>MSE2<span class="op">=</span>np.array([i<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> i <span class="kw">in</span> STD])<span class="op">+</span>np.array([i<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> i <span class="kw">in</span> BIAS])</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>MSE<span class="op">=</span>np.array([np.sqrt(i) <span class="cf">for</span> i <span class="kw">in</span> MSE2])</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Bias = "</span>, BIAS)</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"s.e. = "</span>, STD)</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"RMSE = "</span>, MSE)</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="co">## 画图</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="co">## 使图形直接插入到jupyter中</span></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="co"># 设定图像大小</span></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> (<span class="fl">10.0</span>, <span class="fl">8.0</span>)</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="co">## 样本均值</span></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>)</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> plt.subplot(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>ax1.hist(RESULT[:,<span class="dv">0</span>],bins<span class="op">=</span><span class="dv">30</span>,normed<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>ax2.hist(RESULT[:,<span class="dv">1</span>],bins<span class="op">=</span><span class="dv">30</span>,normed<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Bias =  [ 0.05519612  0.01536957]
 s.e. =  [ 0.32866097  0.09479056]
@@ -1205,7 +1205,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

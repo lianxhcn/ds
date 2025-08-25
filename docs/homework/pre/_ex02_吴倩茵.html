@@ -134,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -142,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -646,70 +646,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="step-1-提取asset_debt表中的变量并增加净资产变量" class="level3" data-number="54.2.1">
 <h3 data-number="54.2.1" class="anchored" data-anchor-id="step-1-提取asset_debt表中的变量并增加净资产变量"><span class="header-section-number">54.2.1</span> Step 1: 提取「asset_debt」表中的变量，并增加’净资产’变量</h3>
 <div id="5a8d1484" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> warnings</span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># 忽略openpyxl的样式警告</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>warnings.filterwarnings(<span class="st">'ignore'</span>, category<span class="op">=</span><span class="pp">UserWarning</span>, module<span class="op">=</span><span class="st">'openpyxl'</span>)</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># 读取数据</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>df_2010 <span class="op">=</span> pd.read_excel(<span class="st">'data_raw/asset_debt_2010.xlsx'</span>, dtype<span class="op">=</span>{<span class="st">'证券代码'</span>: <span class="bu">str</span>})</span>
-<span id="cb1-9"><a href="#cb1-9"></a>df_2024 <span class="op">=</span> pd.read_excel(<span class="st">'data_raw/asset_debt_2024.xlsx'</span>, dtype<span class="op">=</span>{<span class="st">'证券代码'</span>: <span class="bu">str</span>})</span>
-<span id="cb1-10"><a href="#cb1-10"></a></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># 需要提取的列名（请根据实际表头调整字段名）</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a>cols <span class="op">=</span> [</span>
-<span id="cb1-13"><a href="#cb1-13"></a>    <span class="st">'证券代码'</span>, <span class="st">'时间'</span>, </span>
-<span id="cb1-14"><a href="#cb1-14"></a>    <span class="st">'资产总计'</span>, <span class="st">'负债合计'</span>, <span class="st">'流动负债合计'</span>, </span>
-<span id="cb1-15"><a href="#cb1-15"></a>    <span class="st">'长期负债合计'</span>, <span class="st">'短期借款'</span>, <span class="st">'长期借款'</span>, <span class="st">'上市日期'</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a>]</span>
-<span id="cb1-17"><a href="#cb1-17"></a></span>
-<span id="cb1-18"><a href="#cb1-18"></a><span class="co"># 提取所需列</span></span>
-<span id="cb1-19"><a href="#cb1-19"></a>df_2010_sel <span class="op">=</span> df_2010[cols].copy()</span>
-<span id="cb1-20"><a href="#cb1-20"></a>df_2024_sel <span class="op">=</span> df_2024[cols].copy()</span>
-<span id="cb1-21"><a href="#cb1-21"></a></span>
-<span id="cb1-22"><a href="#cb1-22"></a><span class="co"># 提取上市日期的年份</span></span>
-<span id="cb1-23"><a href="#cb1-23"></a>df_2010_sel[<span class="st">'上市年份'</span>] <span class="op">=</span> pd.to_datetime(df_2010_sel[<span class="st">'上市日期'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>).dt.year</span>
-<span id="cb1-24"><a href="#cb1-24"></a>df_2024_sel[<span class="st">'上市年份'</span>] <span class="op">=</span> pd.to_datetime(df_2024_sel[<span class="st">'上市日期'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>).dt.year</span>
-<span id="cb1-25"><a href="#cb1-25"></a></span>
-<span id="cb1-26"><a href="#cb1-26"></a><span class="co"># 新增Age列</span></span>
-<span id="cb1-27"><a href="#cb1-27"></a>df_2010_sel[<span class="st">'Age'</span>] <span class="op">=</span> df_2010_sel.<span class="bu">apply</span>(</span>
-<span id="cb1-28"><a href="#cb1-28"></a>    <span class="kw">lambda</span> row: <span class="bu">max</span>(<span class="dv">0</span>, row[<span class="st">'时间'</span>] <span class="op">-</span> row[<span class="st">'上市年份'</span>]) <span class="cf">if</span> pd.notnull(row[<span class="st">'上市年份'</span>]) <span class="kw">and</span> row[<span class="st">'上市年份'</span>] <span class="op">&lt;=</span> row[<span class="st">'时间'</span>] <span class="cf">else</span> <span class="dv">0</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb1-29"><a href="#cb1-29"></a>df_2024_sel[<span class="st">'Age'</span>] <span class="op">=</span> df_2024_sel.<span class="bu">apply</span>(</span>
-<span id="cb1-30"><a href="#cb1-30"></a>    <span class="kw">lambda</span> row: <span class="bu">max</span>(<span class="dv">0</span>, row[<span class="st">'时间'</span>] <span class="op">-</span> row[<span class="st">'上市年份'</span>]) <span class="cf">if</span> pd.notnull(row[<span class="st">'上市年份'</span>]) <span class="kw">and</span> row[<span class="st">'上市年份'</span>] <span class="op">&lt;=</span> row[<span class="st">'时间'</span>] <span class="cf">else</span> <span class="dv">0</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb1-31"><a href="#cb1-31"></a></span>
-<span id="cb1-32"><a href="#cb1-32"></a><span class="co"># 合并两个表</span></span>
-<span id="cb1-33"><a href="#cb1-33"></a>stock_list <span class="op">=</span> pd.concat([df_2010_sel, df_2024_sel], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb1-34"><a href="#cb1-34"></a></span>
-<span id="cb1-35"><a href="#cb1-35"></a><span class="co"># 保存结果</span></span>
-<span id="cb1-36"><a href="#cb1-36"></a>stock_list.to_csv(<span class="st">'data_clean/stock_list.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb1-37"><a href="#cb1-37"></a></span>
-<span id="cb1-38"><a href="#cb1-38"></a><span class="co"># 删除不需要的列</span></span>
-<span id="cb1-39"><a href="#cb1-39"></a>stock_list.drop(columns<span class="op">=</span>[<span class="st">'上市日期'</span>], inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb1-40"><a href="#cb1-40"></a></span>
-<span id="cb1-41"><a href="#cb1-41"></a><span class="co"># 重命名列</span></span>
-<span id="cb1-42"><a href="#cb1-42"></a>stock_list.rename(columns<span class="op">=</span>{</span>
-<span id="cb1-43"><a href="#cb1-43"></a>    <span class="st">'时间'</span>: <span class="st">'时间'</span>,</span>
-<span id="cb1-44"><a href="#cb1-44"></a>    <span class="st">'证券代码'</span>: <span class="st">'证券代码'</span>,</span>
-<span id="cb1-45"><a href="#cb1-45"></a>    <span class="st">'上市年份'</span>: <span class="st">'上市年份'</span>,</span>
-<span id="cb1-46"><a href="#cb1-46"></a>    <span class="st">'资产总计'</span>: <span class="st">'总资产'</span>,</span>
-<span id="cb1-47"><a href="#cb1-47"></a>    <span class="st">'负债合计'</span>: <span class="st">'总负债'</span>,</span>
-<span id="cb1-48"><a href="#cb1-48"></a>    <span class="st">'流动负债合计'</span>: <span class="st">'流动负债'</span>,</span>
-<span id="cb1-49"><a href="#cb1-49"></a>    <span class="st">'长期负债合计'</span>: <span class="st">'长期负债'</span>,</span>
-<span id="cb1-50"><a href="#cb1-50"></a>    <span class="st">'短期借款'</span>: <span class="st">'短期银行借款'</span>,</span>
-<span id="cb1-51"><a href="#cb1-51"></a>    <span class="st">'长期借款'</span>: <span class="st">'长期银行借款'</span>,</span>
-<span id="cb1-52"><a href="#cb1-52"></a>    <span class="st">'Age'</span>: <span class="st">'Age'</span></span>
-<span id="cb1-53"><a href="#cb1-53"></a>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb1-54"><a href="#cb1-54"></a></span>
-<span id="cb1-55"><a href="#cb1-55"></a><span class="co"># 增加列</span></span>
-<span id="cb1-56"><a href="#cb1-56"></a>stock_list[<span class="st">'净资产'</span>] <span class="op">=</span> stock_list[<span class="st">'总资产'</span>] <span class="op">-</span> stock_list[<span class="st">'总负债'</span>]</span>
-<span id="cb1-57"><a href="#cb1-57"></a></span>
-<span id="cb1-58"><a href="#cb1-58"></a><span class="co"># 调整列顺序</span></span>
-<span id="cb1-59"><a href="#cb1-59"></a>stock_list <span class="op">=</span> stock_list[[<span class="st">'时间'</span>,<span class="st">'证券代码'</span>,  <span class="st">'上市年份'</span>,<span class="st">'总资产'</span>, <span class="st">'总负债'</span>, <span class="st">'流动负债'</span>, <span class="st">'长期负债'</span>, <span class="st">'短期银行借款'</span>, <span class="st">'长期银行借款'</span>, <span class="st">'净资产'</span> ,<span class="st">'Age'</span>]]</span>
-<span id="cb1-60"><a href="#cb1-60"></a></span>
-<span id="cb1-61"><a href="#cb1-61"></a><span class="co"># 保存结果</span></span>
-<span id="cb1-62"><a href="#cb1-62"></a>stock_list.to_csv(<span class="st">'data_clean/stock_list.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb1-63"><a href="#cb1-63"></a></span>
-<span id="cb1-64"><a href="#cb1-64"></a>stock_list.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 忽略openpyxl的样式警告</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>, category<span class="op">=</span><span class="pp">UserWarning</span>, module<span class="op">=</span><span class="st">'openpyxl'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取数据</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df_2010 <span class="op">=</span> pd.read_excel(<span class="st">'data_raw/asset_debt_2010.xlsx'</span>, dtype<span class="op">=</span>{<span class="st">'证券代码'</span>: <span class="bu">str</span>})</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>df_2024 <span class="op">=</span> pd.read_excel(<span class="st">'data_raw/asset_debt_2024.xlsx'</span>, dtype<span class="op">=</span>{<span class="st">'证券代码'</span>: <span class="bu">str</span>})</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 需要提取的列名（请根据实际表头调整字段名）</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> [</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'证券代码'</span>, <span class="st">'时间'</span>, </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'资产总计'</span>, <span class="st">'负债合计'</span>, <span class="st">'流动负债合计'</span>, </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'长期负债合计'</span>, <span class="st">'短期借款'</span>, <span class="st">'长期借款'</span>, <span class="st">'上市日期'</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 提取所需列</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>df_2010_sel <span class="op">=</span> df_2010[cols].copy()</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>df_2024_sel <span class="op">=</span> df_2024[cols].copy()</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 提取上市日期的年份</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>df_2010_sel[<span class="st">'上市年份'</span>] <span class="op">=</span> pd.to_datetime(df_2010_sel[<span class="st">'上市日期'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>).dt.year</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>df_2024_sel[<span class="st">'上市年份'</span>] <span class="op">=</span> pd.to_datetime(df_2024_sel[<span class="st">'上市日期'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>).dt.year</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 新增Age列</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>df_2010_sel[<span class="st">'Age'</span>] <span class="op">=</span> df_2010_sel.<span class="bu">apply</span>(</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> row: <span class="bu">max</span>(<span class="dv">0</span>, row[<span class="st">'时间'</span>] <span class="op">-</span> row[<span class="st">'上市年份'</span>]) <span class="cf">if</span> pd.notnull(row[<span class="st">'上市年份'</span>]) <span class="kw">and</span> row[<span class="st">'上市年份'</span>] <span class="op">&lt;=</span> row[<span class="st">'时间'</span>] <span class="cf">else</span> <span class="dv">0</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>df_2024_sel[<span class="st">'Age'</span>] <span class="op">=</span> df_2024_sel.<span class="bu">apply</span>(</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> row: <span class="bu">max</span>(<span class="dv">0</span>, row[<span class="st">'时间'</span>] <span class="op">-</span> row[<span class="st">'上市年份'</span>]) <span class="cf">if</span> pd.notnull(row[<span class="st">'上市年份'</span>]) <span class="kw">and</span> row[<span class="st">'上市年份'</span>] <span class="op">&lt;=</span> row[<span class="st">'时间'</span>] <span class="cf">else</span> <span class="dv">0</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co"># 合并两个表</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>stock_list <span class="op">=</span> pd.concat([df_2010_sel, df_2024_sel], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存结果</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>stock_list.to_csv(<span class="st">'data_clean/stock_list.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># 删除不需要的列</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>stock_list.drop(columns<span class="op">=</span>[<span class="st">'上市日期'</span>], inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co"># 重命名列</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>stock_list.rename(columns<span class="op">=</span>{</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="st">'时间'</span>: <span class="st">'时间'</span>,</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="st">'证券代码'</span>: <span class="st">'证券代码'</span>,</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="st">'上市年份'</span>: <span class="st">'上市年份'</span>,</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="st">'资产总计'</span>: <span class="st">'总资产'</span>,</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="st">'负债合计'</span>: <span class="st">'总负债'</span>,</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="st">'流动负债合计'</span>: <span class="st">'流动负债'</span>,</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="st">'长期负债合计'</span>: <span class="st">'长期负债'</span>,</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="st">'短期借款'</span>: <span class="st">'短期银行借款'</span>,</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="st">'长期借款'</span>: <span class="st">'长期银行借款'</span>,</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Age'</span>: <span class="st">'Age'</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="co"># 增加列</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>stock_list[<span class="st">'净资产'</span>] <span class="op">=</span> stock_list[<span class="st">'总资产'</span>] <span class="op">-</span> stock_list[<span class="st">'总负债'</span>]</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="co"># 调整列顺序</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>stock_list <span class="op">=</span> stock_list[[<span class="st">'时间'</span>,<span class="st">'证券代码'</span>,  <span class="st">'上市年份'</span>,<span class="st">'总资产'</span>, <span class="st">'总负债'</span>, <span class="st">'流动负债'</span>, <span class="st">'长期负债'</span>, <span class="st">'短期银行借款'</span>, <span class="st">'长期银行借款'</span>, <span class="st">'净资产'</span> ,<span class="st">'Age'</span>]]</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存结果</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>stock_list.to_csv(<span class="st">'data_clean/stock_list.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>stock_list.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="40">
 <div>
 
@@ -812,36 +812,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="step-2-从cash_flow表中提取相关变量" class="level3" data-number="54.2.2">
 <h3 data-number="54.2.2" class="anchored" data-anchor-id="step-2-从cash_flow表中提取相关变量"><span class="header-section-number">54.2.2</span> Step 2: 从「cash_flow」表中提取相关变量</h3>
 <div id="b6ea1799" class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># 读取现金流量表</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>cf_2010 <span class="op">=</span> pd.read_excel(<span class="st">'data_raw/cash_flow_2010.xlsx'</span>, dtype<span class="op">=</span>{<span class="st">'证券代码'</span>: <span class="bu">str</span>})</span>
-<span id="cb2-3"><a href="#cb2-3"></a>cf_2024 <span class="op">=</span> pd.read_excel(<span class="st">'data_raw/cash_flow_2024.xlsx'</span>, dtype<span class="op">=</span>{<span class="st">'证券代码'</span>: <span class="bu">str</span>})</span>
-<span id="cb2-4"><a href="#cb2-4"></a></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="co"># 需要提取的列名（请根据实际表头调整字段名）</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>cf_cols <span class="op">=</span> [<span class="st">'证券代码'</span>, <span class="st">'时间'</span>, <span class="st">'净利润'</span>, <span class="st">'期末现金及现金等价物余额'</span>]</span>
-<span id="cb2-7"><a href="#cb2-7"></a></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="co"># 提取所需列</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>cf_2010_sel <span class="op">=</span> cf_2010[cf_cols]</span>
-<span id="cb2-10"><a href="#cb2-10"></a>cf_2024_sel <span class="op">=</span> cf_2024[cf_cols]</span>
-<span id="cb2-11"><a href="#cb2-11"></a></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="co"># 合并两个表</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a>cf_all <span class="op">=</span> pd.concat([cf_2010_sel, cf_2024_sel], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-14"><a href="#cb2-14"></a></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="co"># 重命名列</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a>cf_all <span class="op">=</span> cf_all.rename(columns<span class="op">=</span>{<span class="st">'期末现金及现金等价物余额'</span>: <span class="st">'公司年末持有的现金和现金等价物'</span>})</span>
-<span id="cb2-17"><a href="#cb2-17"></a></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="co"># 合并到stock_list</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a>stock_list <span class="op">=</span> pd.merge(</span>
-<span id="cb2-20"><a href="#cb2-20"></a>    stock_list,</span>
-<span id="cb2-21"><a href="#cb2-21"></a>    cf_all,</span>
-<span id="cb2-22"><a href="#cb2-22"></a>    on<span class="op">=</span>[<span class="st">'证券代码'</span>, <span class="st">'时间'</span>],</span>
-<span id="cb2-23"><a href="#cb2-23"></a>    how<span class="op">=</span><span class="st">'left'</span></span>
-<span id="cb2-24"><a href="#cb2-24"></a>)</span>
-<span id="cb2-25"><a href="#cb2-25"></a></span>
-<span id="cb2-26"><a href="#cb2-26"></a><span class="co"># 保存结果</span></span>
-<span id="cb2-27"><a href="#cb2-27"></a>stock_list.to_csv(<span class="st">'data_clean/stock_list.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb2-28"><a href="#cb2-28"></a></span>
-<span id="cb2-29"><a href="#cb2-29"></a><span class="co"># 展示前几行</span></span>
-<span id="cb2-30"><a href="#cb2-30"></a>stock_list.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取现金流量表</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>cf_2010 <span class="op">=</span> pd.read_excel(<span class="st">'data_raw/cash_flow_2010.xlsx'</span>, dtype<span class="op">=</span>{<span class="st">'证券代码'</span>: <span class="bu">str</span>})</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>cf_2024 <span class="op">=</span> pd.read_excel(<span class="st">'data_raw/cash_flow_2024.xlsx'</span>, dtype<span class="op">=</span>{<span class="st">'证券代码'</span>: <span class="bu">str</span>})</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 需要提取的列名（请根据实际表头调整字段名）</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>cf_cols <span class="op">=</span> [<span class="st">'证券代码'</span>, <span class="st">'时间'</span>, <span class="st">'净利润'</span>, <span class="st">'期末现金及现金等价物余额'</span>]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 提取所需列</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>cf_2010_sel <span class="op">=</span> cf_2010[cf_cols]</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>cf_2024_sel <span class="op">=</span> cf_2024[cf_cols]</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 合并两个表</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>cf_all <span class="op">=</span> pd.concat([cf_2010_sel, cf_2024_sel], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 重命名列</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>cf_all <span class="op">=</span> cf_all.rename(columns<span class="op">=</span>{<span class="st">'期末现金及现金等价物余额'</span>: <span class="st">'公司年末持有的现金和现金等价物'</span>})</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 合并到stock_list</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>stock_list <span class="op">=</span> pd.merge(</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    stock_list,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    cf_all,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    on<span class="op">=</span>[<span class="st">'证券代码'</span>, <span class="st">'时间'</span>],</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">'left'</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存结果</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>stock_list.to_csv(<span class="st">'data_clean/stock_list.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 展示前几行</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>stock_list.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="41">
 <div>
 
@@ -956,38 +956,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="step-3-从常用变量查询年度表中提取相关变量" class="level3" data-number="54.2.3">
 <h3 data-number="54.2.3" class="anchored" data-anchor-id="step-3-从常用变量查询年度表中提取相关变量"><span class="header-section-number">54.2.3</span> Step 3: 从「常用变量查询（年度）」表中提取相关变量</h3>
 <div id="6001f6f4" class="cell" data-execution_count="42">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># 读取常用变量查询（年度）表</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>common_vars <span class="op">=</span> pd.read_excel(<span class="st">'data_raw/常用变量查询（年度）.xlsx'</span>, dtype<span class="op">=</span>{<span class="st">'证券代码'</span>: <span class="bu">str</span>})</span>
-<span id="cb3-3"><a href="#cb3-3"></a></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="co"># 调整列名</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a>common_vars.rename(columns<span class="op">=</span>{<span class="st">'股票代码'</span>: <span class="st">'证券代码'</span>, <span class="st">'会计年度'</span>: <span class="st">'时间'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb3-6"><a href="#cb3-6"></a></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="co"># 需要提取的列名（请根据实际表头调整字段名）</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a>common_cols <span class="op">=</span> [<span class="st">'证券代码'</span>, <span class="st">'时间'</span>, <span class="st">'股权集中度1'</span>, <span class="st">'股权集中度9'</span>]</span>
-<span id="cb3-9"><a href="#cb3-9"></a></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="co"># 提取所需列</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a>common_sel <span class="op">=</span> common_vars[common_cols]</span>
-<span id="cb3-12"><a href="#cb3-12"></a></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="co"># 重命名列</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a>common_sel <span class="op">=</span> common_sel.rename(columns<span class="op">=</span>{<span class="st">'股权集中度1'</span>: <span class="st">'Top1'</span>, <span class="st">'股权集中度9'</span>: <span class="st">'HHI5'</span>})</span>
-<span id="cb3-15"><a href="#cb3-15"></a></span>
-<span id="cb3-16"><a href="#cb3-16"></a><span class="co"># Ensure both columns have the same data type</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a>stock_list[<span class="st">'证券代码'</span>] <span class="op">=</span> stock_list[<span class="st">'证券代码'</span>].astype(<span class="bu">str</span>)</span>
-<span id="cb3-18"><a href="#cb3-18"></a>common_sel[<span class="st">'证券代码'</span>] <span class="op">=</span> common_sel[<span class="st">'证券代码'</span>].astype(<span class="bu">str</span>)</span>
-<span id="cb3-19"><a href="#cb3-19"></a></span>
-<span id="cb3-20"><a href="#cb3-20"></a><span class="co"># Merge the dataframes</span></span>
-<span id="cb3-21"><a href="#cb3-21"></a>stock_list <span class="op">=</span> pd.merge(</span>
-<span id="cb3-22"><a href="#cb3-22"></a>    stock_list,</span>
-<span id="cb3-23"><a href="#cb3-23"></a>    common_sel,</span>
-<span id="cb3-24"><a href="#cb3-24"></a>    on<span class="op">=</span>[<span class="st">'证券代码'</span>, <span class="st">'时间'</span>],</span>
-<span id="cb3-25"><a href="#cb3-25"></a>    how<span class="op">=</span><span class="st">'left'</span></span>
-<span id="cb3-26"><a href="#cb3-26"></a>)</span>
-<span id="cb3-27"><a href="#cb3-27"></a></span>
-<span id="cb3-28"><a href="#cb3-28"></a><span class="co"># 保存结果</span></span>
-<span id="cb3-29"><a href="#cb3-29"></a>stock_list.to_csv(<span class="st">'data_clean/stock_list.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb3-30"><a href="#cb3-30"></a></span>
-<span id="cb3-31"><a href="#cb3-31"></a><span class="co"># 展示前几行</span></span>
-<span id="cb3-32"><a href="#cb3-32"></a>stock_list.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取常用变量查询（年度）表</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>common_vars <span class="op">=</span> pd.read_excel(<span class="st">'data_raw/常用变量查询（年度）.xlsx'</span>, dtype<span class="op">=</span>{<span class="st">'证券代码'</span>: <span class="bu">str</span>})</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 调整列名</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>common_vars.rename(columns<span class="op">=</span>{<span class="st">'股票代码'</span>: <span class="st">'证券代码'</span>, <span class="st">'会计年度'</span>: <span class="st">'时间'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 需要提取的列名（请根据实际表头调整字段名）</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>common_cols <span class="op">=</span> [<span class="st">'证券代码'</span>, <span class="st">'时间'</span>, <span class="st">'股权集中度1'</span>, <span class="st">'股权集中度9'</span>]</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 提取所需列</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>common_sel <span class="op">=</span> common_vars[common_cols]</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 重命名列</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>common_sel <span class="op">=</span> common_sel.rename(columns<span class="op">=</span>{<span class="st">'股权集中度1'</span>: <span class="st">'Top1'</span>, <span class="st">'股权集中度9'</span>: <span class="st">'HHI5'</span>})</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure both columns have the same data type</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>stock_list[<span class="st">'证券代码'</span>] <span class="op">=</span> stock_list[<span class="st">'证券代码'</span>].astype(<span class="bu">str</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>common_sel[<span class="st">'证券代码'</span>] <span class="op">=</span> common_sel[<span class="st">'证券代码'</span>].astype(<span class="bu">str</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge the dataframes</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>stock_list <span class="op">=</span> pd.merge(</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    stock_list,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    common_sel,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    on<span class="op">=</span>[<span class="st">'证券代码'</span>, <span class="st">'时间'</span>],</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">'left'</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存结果</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>stock_list.to_csv(<span class="st">'data_clean/stock_list.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 展示前几行</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>stock_list.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="42">
 <div>
 
@@ -1115,31 +1115,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="54.2.4" class="anchored" data-anchor-id="step-4-从stk_listedcoinfoanl表中提取相关变量"><span class="header-section-number">54.2.4</span> Step 4: 从「STK_LISTEDCOINFOANL」表中提取相关变量</h3>
 <p>由于原始表中存在多个行业代码，根据目前行业分类标准，此处统一使用 [行业代码D] - 中国上市公司协会行业分类代码</p>
 <div id="f76b1561" class="cell" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># 读取基本信息表</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>info <span class="op">=</span> pd.read_excel(<span class="st">'data_raw/STK_LISTEDCOINFOANL.xlsx'</span>, dtype<span class="op">=</span>{<span class="st">'证券代码'</span>: <span class="bu">str</span>})</span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co"># 需要提取的列名（请根据实际表头调整字段名）</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a>info_cols <span class="op">=</span> [<span class="st">'证券代码'</span>, <span class="st">'时间'</span>, <span class="st">'行业代码D'</span>]</span>
-<span id="cb4-6"><a href="#cb4-6"></a></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="co"># 提取所需列</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a>info_sel <span class="op">=</span> info[info_cols]</span>
-<span id="cb4-9"><a href="#cb4-9"></a></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="co"># 重命名列</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a>info_sel <span class="op">=</span> info_sel.rename(columns<span class="op">=</span>{<span class="st">'行业代码D'</span>: <span class="st">'行业代码'</span>})</span>
-<span id="cb4-12"><a href="#cb4-12"></a></span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="co"># 合并到stock_list</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a>stock_list <span class="op">=</span> pd.merge(</span>
-<span id="cb4-15"><a href="#cb4-15"></a>    stock_list,</span>
-<span id="cb4-16"><a href="#cb4-16"></a>    info_sel,</span>
-<span id="cb4-17"><a href="#cb4-17"></a>    on<span class="op">=</span>[<span class="st">'证券代码'</span>, <span class="st">'时间'</span>],</span>
-<span id="cb4-18"><a href="#cb4-18"></a>    how<span class="op">=</span><span class="st">'left'</span></span>
-<span id="cb4-19"><a href="#cb4-19"></a>)</span>
-<span id="cb4-20"><a href="#cb4-20"></a></span>
-<span id="cb4-21"><a href="#cb4-21"></a><span class="co"># 保存结果</span></span>
-<span id="cb4-22"><a href="#cb4-22"></a>stock_list.to_csv(<span class="st">'data_clean/stock_list.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb4-23"><a href="#cb4-23"></a></span>
-<span id="cb4-24"><a href="#cb4-24"></a><span class="co"># 展示前几行</span></span>
-<span id="cb4-25"><a href="#cb4-25"></a>stock_list.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取基本信息表</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>info <span class="op">=</span> pd.read_excel(<span class="st">'data_raw/STK_LISTEDCOINFOANL.xlsx'</span>, dtype<span class="op">=</span>{<span class="st">'证券代码'</span>: <span class="bu">str</span>})</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 需要提取的列名（请根据实际表头调整字段名）</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>info_cols <span class="op">=</span> [<span class="st">'证券代码'</span>, <span class="st">'时间'</span>, <span class="st">'行业代码D'</span>]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 提取所需列</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>info_sel <span class="op">=</span> info[info_cols]</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 重命名列</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>info_sel <span class="op">=</span> info_sel.rename(columns<span class="op">=</span>{<span class="st">'行业代码D'</span>: <span class="st">'行业代码'</span>})</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 合并到stock_list</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>stock_list <span class="op">=</span> pd.merge(</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    stock_list,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    info_sel,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    on<span class="op">=</span>[<span class="st">'证券代码'</span>, <span class="st">'时间'</span>],</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">'left'</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存结果</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>stock_list.to_csv(<span class="st">'data_clean/stock_list.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 展示前几行</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>stock_list.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="43">
 <div>
 
@@ -1272,16 +1272,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="step-5-针对多个缺失值的记录进行删除" class="level3" data-number="54.2.5">
 <h3 data-number="54.2.5" class="anchored" data-anchor-id="step-5-针对多个缺失值的记录进行删除"><span class="header-section-number">54.2.5</span> Step 5: 针对多个缺失值的记录进行删除</h3>
 <div id="9634bfac" class="cell" data-execution_count="44">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># 复制stock_list为stock_list_clean</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>stock_list_clean <span class="op">=</span> stock_list.copy()</span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="co"># 删除总资产、总负债、流动负债、长期负债、短期银行借款、长期银行借款均为缺失值的记录</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>stock_list_clean <span class="op">=</span> stock_list_clean.dropna(subset<span class="op">=</span>[<span class="st">'总资产'</span>, <span class="st">'总负债'</span>, <span class="st">'流动负债'</span>, <span class="st">'长期负债'</span>, <span class="st">'短期银行借款'</span>, <span class="st">'长期银行借款'</span>], how<span class="op">=</span><span class="st">'all'</span>)</span>
-<span id="cb5-5"><a href="#cb5-5"></a></span>
-<span id="cb5-6"><a href="#cb5-6"></a></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="co"># 检查结果</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="bu">print</span>(stock_list.head())</span>
-<span id="cb5-9"><a href="#cb5-9"></a></span>
-<span id="cb5-10"><a href="#cb5-10"></a>stock_list_clean.to_csv(<span class="st">'data_clean/stock_list_clean.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 复制stock_list为stock_list_clean</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>stock_list_clean <span class="op">=</span> stock_list.copy()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 删除总资产、总负债、流动负债、长期负债、短期银行借款、长期银行借款均为缺失值的记录</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>stock_list_clean <span class="op">=</span> stock_list_clean.dropna(subset<span class="op">=</span>[<span class="st">'总资产'</span>, <span class="st">'总负债'</span>, <span class="st">'流动负债'</span>, <span class="st">'长期负债'</span>, <span class="st">'短期银行借款'</span>, <span class="st">'长期银行借款'</span>], how<span class="op">=</span><span class="st">'all'</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 检查结果</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(stock_list.head())</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>stock_list_clean.to_csv(<span class="st">'data_clean/stock_list_clean.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     时间    证券代码  上市年份           总资产           总负债          流动负债          长期负债  \
 0  2000  000001  1991  6.722750e+10  6.248862e+10           NaN           NaN   
@@ -1315,39 +1315,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="step-1计算指标" class="level5" data-number="54.3.0.1.1">
 <h5 data-number="54.3.0.1.1" class="anchored" data-anchor-id="step-1计算指标"><span class="header-section-number">54.3.0.1.1</span> Step 1:计算指标</h5>
 <div id="52dd2064" class="cell" data-execution_count="64">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb7-3"><a href="#cb7-3"></a></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="co"># 复制 stock_list 表格</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a>indicators <span class="op">=</span> stock_list_clean.copy()</span>
-<span id="cb7-6"><a href="#cb7-6"></a></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="co"># 计算各项指标</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a>indicators[<span class="st">'Lev'</span>] <span class="op">=</span> indicators[<span class="st">'总负债'</span>] <span class="op">/</span> indicators[<span class="st">'总资产'</span>]</span>
-<span id="cb7-9"><a href="#cb7-9"></a>indicators[<span class="st">'SL'</span>] <span class="op">=</span> indicators[<span class="st">'流动负债'</span>] <span class="op">/</span> indicators[<span class="st">'总资产'</span>]</span>
-<span id="cb7-10"><a href="#cb7-10"></a>indicators[<span class="st">'LL'</span>] <span class="op">=</span> indicators[<span class="st">'长期负债'</span>] <span class="op">/</span> indicators[<span class="st">'总资产'</span>]</span>
-<span id="cb7-11"><a href="#cb7-11"></a>indicators[<span class="st">'SDR'</span>] <span class="op">=</span> indicators[<span class="st">'流动负债'</span>] <span class="op">/</span> indicators[<span class="st">'总负债'</span>]</span>
-<span id="cb7-12"><a href="#cb7-12"></a>indicators[<span class="st">'Cash'</span>] <span class="op">=</span> indicators[<span class="st">'公司年末持有的现金和现金等价物'</span>] <span class="op">/</span> indicators[<span class="st">'总资产'</span>]</span>
-<span id="cb7-13"><a href="#cb7-13"></a>indicators[<span class="st">'ROA'</span>] <span class="op">=</span> indicators[<span class="st">'净利润'</span>] <span class="op">/</span> indicators[<span class="st">'总资产'</span>]</span>
-<span id="cb7-14"><a href="#cb7-14"></a>indicators[<span class="st">'ROE'</span>] <span class="op">=</span> indicators[<span class="st">'净利润'</span>] <span class="op">/</span> indicators[<span class="st">'净资产'</span>]</span>
-<span id="cb7-15"><a href="#cb7-15"></a>indicators[<span class="st">'SLoan'</span>] <span class="op">=</span> indicators[<span class="st">'短期银行借款'</span>] <span class="op">/</span> indicators[<span class="st">'总资产'</span>]</span>
-<span id="cb7-16"><a href="#cb7-16"></a>indicators[<span class="st">'LLoan'</span>] <span class="op">=</span> indicators[<span class="st">'长期银行借款'</span>] <span class="op">/</span> indicators[<span class="st">'总资产'</span>]</span>
-<span id="cb7-17"><a href="#cb7-17"></a>indicators[<span class="st">'Size'</span>] <span class="op">=</span> np.log(indicators[<span class="st">'总资产'</span>])</span>
-<span id="cb7-18"><a href="#cb7-18"></a></span>
-<span id="cb7-19"><a href="#cb7-19"></a><span class="co"># 只保留2000-2024年数据</span></span>
-<span id="cb7-20"><a href="#cb7-20"></a>indicators <span class="op">=</span> indicators[(indicators[<span class="st">'时间'</span>] <span class="op">&gt;=</span> <span class="dv">2000</span>) <span class="op">&amp;</span> (indicators[<span class="st">'时间'</span>] <span class="op">&lt;=</span> <span class="dv">2024</span>)]</span>
-<span id="cb7-21"><a href="#cb7-21"></a></span>
-<span id="cb7-22"><a href="#cb7-22"></a><span class="co"># 选择需要保存的列</span></span>
-<span id="cb7-23"><a href="#cb7-23"></a>cols_to_save <span class="op">=</span> [</span>
-<span id="cb7-24"><a href="#cb7-24"></a>    <span class="st">'时间'</span>, <span class="st">'证券代码'</span>, <span class="st">'Lev'</span>, <span class="st">'SL'</span>, <span class="st">'LL'</span>, <span class="st">'SDR'</span>, <span class="st">'Cash'</span>, <span class="st">'ROA'</span>, <span class="st">'ROE'</span>,</span>
-<span id="cb7-25"><a href="#cb7-25"></a>    <span class="st">'SLoan'</span>, <span class="st">'LLoan'</span>, <span class="st">'Top1'</span>, <span class="st">'HHI5'</span>, <span class="st">'Size'</span>, <span class="st">'Age'</span>,<span class="st">'行业代码'</span>,<span class="st">'总资产'</span></span>
-<span id="cb7-26"><a href="#cb7-26"></a>]</span>
-<span id="cb7-27"><a href="#cb7-27"></a></span>
-<span id="cb7-28"><a href="#cb7-28"></a><span class="co"># 保存最终结果</span></span>
-<span id="cb7-29"><a href="#cb7-29"></a>indicators <span class="op">=</span> indicators[cols_to_save]</span>
-<span id="cb7-30"><a href="#cb7-30"></a>indicators.to_csv(<span class="st">'data_clean/indicators.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb7-31"><a href="#cb7-31"></a></span>
-<span id="cb7-32"><a href="#cb7-32"></a><span class="co"># 打印前几行</span></span>
-<span id="cb7-33"><a href="#cb7-33"></a><span class="bu">print</span>(indicators.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 复制 stock_list 表格</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>indicators <span class="op">=</span> stock_list_clean.copy()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算各项指标</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>indicators[<span class="st">'Lev'</span>] <span class="op">=</span> indicators[<span class="st">'总负债'</span>] <span class="op">/</span> indicators[<span class="st">'总资产'</span>]</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>indicators[<span class="st">'SL'</span>] <span class="op">=</span> indicators[<span class="st">'流动负债'</span>] <span class="op">/</span> indicators[<span class="st">'总资产'</span>]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>indicators[<span class="st">'LL'</span>] <span class="op">=</span> indicators[<span class="st">'长期负债'</span>] <span class="op">/</span> indicators[<span class="st">'总资产'</span>]</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>indicators[<span class="st">'SDR'</span>] <span class="op">=</span> indicators[<span class="st">'流动负债'</span>] <span class="op">/</span> indicators[<span class="st">'总负债'</span>]</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>indicators[<span class="st">'Cash'</span>] <span class="op">=</span> indicators[<span class="st">'公司年末持有的现金和现金等价物'</span>] <span class="op">/</span> indicators[<span class="st">'总资产'</span>]</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>indicators[<span class="st">'ROA'</span>] <span class="op">=</span> indicators[<span class="st">'净利润'</span>] <span class="op">/</span> indicators[<span class="st">'总资产'</span>]</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>indicators[<span class="st">'ROE'</span>] <span class="op">=</span> indicators[<span class="st">'净利润'</span>] <span class="op">/</span> indicators[<span class="st">'净资产'</span>]</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>indicators[<span class="st">'SLoan'</span>] <span class="op">=</span> indicators[<span class="st">'短期银行借款'</span>] <span class="op">/</span> indicators[<span class="st">'总资产'</span>]</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>indicators[<span class="st">'LLoan'</span>] <span class="op">=</span> indicators[<span class="st">'长期银行借款'</span>] <span class="op">/</span> indicators[<span class="st">'总资产'</span>]</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>indicators[<span class="st">'Size'</span>] <span class="op">=</span> np.log(indicators[<span class="st">'总资产'</span>])</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 只保留2000-2024年数据</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>indicators <span class="op">=</span> indicators[(indicators[<span class="st">'时间'</span>] <span class="op">&gt;=</span> <span class="dv">2000</span>) <span class="op">&amp;</span> (indicators[<span class="st">'时间'</span>] <span class="op">&lt;=</span> <span class="dv">2024</span>)]</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 选择需要保存的列</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>cols_to_save <span class="op">=</span> [</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">'时间'</span>, <span class="st">'证券代码'</span>, <span class="st">'Lev'</span>, <span class="st">'SL'</span>, <span class="st">'LL'</span>, <span class="st">'SDR'</span>, <span class="st">'Cash'</span>, <span class="st">'ROA'</span>, <span class="st">'ROE'</span>,</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">'SLoan'</span>, <span class="st">'LLoan'</span>, <span class="st">'Top1'</span>, <span class="st">'HHI5'</span>, <span class="st">'Size'</span>, <span class="st">'Age'</span>,<span class="st">'行业代码'</span>,<span class="st">'总资产'</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存最终结果</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>indicators <span class="op">=</span> indicators[cols_to_save]</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>indicators.to_csv(<span class="st">'data_clean/indicators.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="co"># 打印前几行</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(indicators.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/pandas/core/arraylike.py:402: RuntimeWarning: divide by zero encountered in log
   result = getattr(ufunc, method)(*inputs, **kwargs)</code></pre>
@@ -1372,33 +1372,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="step-2处理离群值" class="level5" data-number="54.3.0.1.2">
 <h5 data-number="54.3.0.1.2" class="anchored" data-anchor-id="step-2处理离群值"><span class="header-section-number">54.3.0.1.2</span> Step 2:处理离群值</h5>
 <div id="2baf708e" class="cell" data-execution_count="65">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># 读取数据</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="cf">try</span>:</span>
-<span id="cb10-3"><a href="#cb10-3"></a>    indicators_list <span class="op">=</span> pd.read_csv(<span class="st">'data_clean/indicators.csv'</span>, dtype<span class="op">=</span>{<span class="st">'证券代码'</span>: <span class="bu">str</span>})</span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb10-5"><a href="#cb10-5"></a>    <span class="bu">print</span>(<span class="st">"读取文件失败："</span>, e)</span>
-<span id="cb10-6"><a href="#cb10-6"></a></span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="co"># 需要缩尾处理的列</span></span>
-<span id="cb10-8"><a href="#cb10-8"></a>winsor_cols <span class="op">=</span> [<span class="st">'Lev'</span>, <span class="st">'SL'</span>, <span class="st">'LL'</span>, <span class="st">'SDR'</span>, <span class="st">'Cash'</span>, <span class="st">'ROA'</span>, <span class="st">'ROE'</span>, </span>
-<span id="cb10-9"><a href="#cb10-9"></a>               <span class="st">'SLoan'</span>, <span class="st">'LLoan'</span>, <span class="st">'Top1'</span>, <span class="st">'HHI5'</span>, <span class="st">'Size'</span>, <span class="st">'Age'</span>]</span>
-<span id="cb10-10"><a href="#cb10-10"></a></span>
-<span id="cb10-11"><a href="#cb10-11"></a><span class="co"># 缩尾处理</span></span>
-<span id="cb10-12"><a href="#cb10-12"></a><span class="cf">for</span> col <span class="kw">in</span> winsor_cols:</span>
-<span id="cb10-13"><a href="#cb10-13"></a>    <span class="cf">if</span> col <span class="kw">in</span> indicators_list.columns:</span>
-<span id="cb10-14"><a href="#cb10-14"></a>        <span class="cf">try</span>:</span>
-<span id="cb10-15"><a href="#cb10-15"></a>            lower <span class="op">=</span> indicators_list[col].quantile(<span class="fl">0.01</span>)</span>
-<span id="cb10-16"><a href="#cb10-16"></a>            upper <span class="op">=</span> indicators_list[col].quantile(<span class="fl">0.99</span>)</span>
-<span id="cb10-17"><a href="#cb10-17"></a>            indicators_list[col] <span class="op">=</span> indicators_list[col].clip(lower, upper)</span>
-<span id="cb10-18"><a href="#cb10-18"></a>        <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb10-19"><a href="#cb10-19"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss"> 缩尾处理失败，原因：</span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb10-20"><a href="#cb10-20"></a>    <span class="cf">else</span>:</span>
-<span id="cb10-21"><a href="#cb10-21"></a>        <span class="bu">print</span>(<span class="ss">f"未找到列：</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">，无法缩尾处理"</span>)</span>
-<span id="cb10-22"><a href="#cb10-22"></a></span>
-<span id="cb10-23"><a href="#cb10-23"></a><span class="co"># 打印结果</span></span>
-<span id="cb10-24"><a href="#cb10-24"></a><span class="bu">print</span>(indicators_list[winsor_cols].head(<span class="dv">100</span>))</span>
-<span id="cb10-25"><a href="#cb10-25"></a></span>
-<span id="cb10-26"><a href="#cb10-26"></a><span class="co"># 保存缩尾处理后的数据</span></span>
-<span id="cb10-27"><a href="#cb10-27"></a>indicators_list.to_csv(<span class="st">'data_clean/indicators_winsorized.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取数据</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    indicators_list <span class="op">=</span> pd.read_csv(<span class="st">'data_clean/indicators.csv'</span>, dtype<span class="op">=</span>{<span class="st">'证券代码'</span>: <span class="bu">str</span>})</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"读取文件失败："</span>, e)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 需要缩尾处理的列</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>winsor_cols <span class="op">=</span> [<span class="st">'Lev'</span>, <span class="st">'SL'</span>, <span class="st">'LL'</span>, <span class="st">'SDR'</span>, <span class="st">'Cash'</span>, <span class="st">'ROA'</span>, <span class="st">'ROE'</span>, </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>               <span class="st">'SLoan'</span>, <span class="st">'LLoan'</span>, <span class="st">'Top1'</span>, <span class="st">'HHI5'</span>, <span class="st">'Size'</span>, <span class="st">'Age'</span>]</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 缩尾处理</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> winsor_cols:</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> col <span class="kw">in</span> indicators_list.columns:</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>            lower <span class="op">=</span> indicators_list[col].quantile(<span class="fl">0.01</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>            upper <span class="op">=</span> indicators_list[col].quantile(<span class="fl">0.99</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>            indicators_list[col] <span class="op">=</span> indicators_list[col].clip(lower, upper)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss"> 缩尾处理失败，原因：</span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"未找到列：</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">，无法缩尾处理"</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 打印结果</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(indicators_list[winsor_cols].head(<span class="dv">100</span>))</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存缩尾处理后的数据</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>indicators_list.to_csv(<span class="st">'data_clean/indicators_winsorized.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         Lev        SL        LL       SDR      Cash       ROA       ROE  \
 0   0.929510       NaN       NaN       NaN  0.113418  0.007535  0.106893   
@@ -1433,37 +1433,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="step-3计算各个指标各个年度的-平均值中位数标准差最小值-和-最大值" class="level5" data-number="54.3.0.1.3">
 <h5 data-number="54.3.0.1.3" class="anchored" data-anchor-id="step-3计算各个指标各个年度的-平均值中位数标准差最小值-和-最大值"><span class="header-section-number">54.3.0.1.3</span> Step 3:计算各个指标各个年度的&nbsp;平均值，中位数，标准差，最小值&nbsp;和&nbsp;最大值</h5>
 <div id="ff638af3" class="cell" data-execution_count="49">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="im">import</span> os</span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="co"># 读取已缩尾处理的数据</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a>indicators_list_stats <span class="op">=</span> pd.read_csv(<span class="st">'data_clean/indicators_winsorized.csv'</span>, dtype<span class="op">=</span>{<span class="st">'证券代码'</span>: <span class="bu">str</span>})</span>
-<span id="cb12-5"><a href="#cb12-5"></a></span>
-<span id="cb12-6"><a href="#cb12-6"></a><span class="co"># 需要统计的列</span></span>
-<span id="cb12-7"><a href="#cb12-7"></a>stat_cols <span class="op">=</span> [<span class="st">'Lev'</span>, <span class="st">'SL'</span>, <span class="st">'LL'</span>, <span class="st">'SDR'</span>, <span class="st">'Cash'</span>, <span class="st">'ROA'</span>, <span class="st">'ROE'</span>,</span>
-<span id="cb12-8"><a href="#cb12-8"></a>             <span class="st">'SLoan'</span>, <span class="st">'LLoan'</span>, <span class="st">'Top1'</span>, <span class="st">'HHI5'</span>, <span class="st">'Size'</span>, <span class="st">'Age'</span>]</span>
-<span id="cb12-9"><a href="#cb12-9"></a><span class="co"># 确保需要统计的列为数值类型</span></span>
-<span id="cb12-10"><a href="#cb12-10"></a><span class="cf">for</span> col <span class="kw">in</span> stat_cols:</span>
-<span id="cb12-11"><a href="#cb12-11"></a>    <span class="cf">if</span> col <span class="kw">in</span> indicators_list_stats.columns:</span>
-<span id="cb12-12"><a href="#cb12-12"></a>        indicators_list_stats[col] <span class="op">=</span> pd.to_numeric(indicators_list_stats[col], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
-<span id="cb12-13"><a href="#cb12-13"></a></span>
-<span id="cb12-14"><a href="#cb12-14"></a><span class="co"># 按年度分组，计算各项统计量</span></span>
-<span id="cb12-15"><a href="#cb12-15"></a>stats <span class="op">=</span> indicators_list_stats.groupby(<span class="st">'时间'</span>)[stat_cols].agg([<span class="st">'mean'</span>, <span class="st">'median'</span>, <span class="st">'std'</span>, <span class="st">'min'</span>, <span class="st">'max'</span>])</span>
-<span id="cb12-16"><a href="#cb12-16"></a></span>
-<span id="cb12-17"><a href="#cb12-17"></a><span class="co"># 展示前几行</span></span>
-<span id="cb12-18"><a href="#cb12-18"></a><span class="bu">print</span>(stats.head())</span>
-<span id="cb12-19"><a href="#cb12-19"></a></span>
-<span id="cb12-20"><a href="#cb12-20"></a><span class="co"># 创建输出文件夹</span></span>
-<span id="cb12-21"><a href="#cb12-21"></a>output_dir <span class="op">=</span> <span class="st">'output'</span></span>
-<span id="cb12-22"><a href="#cb12-22"></a>os.makedirs(output_dir, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb12-23"><a href="#cb12-23"></a></span>
-<span id="cb12-24"><a href="#cb12-24"></a><span class="co"># 按指标分别保存表格</span></span>
-<span id="cb12-25"><a href="#cb12-25"></a><span class="cf">for</span> col <span class="kw">in</span> stat_cols:</span>
-<span id="cb12-26"><a href="#cb12-26"></a>    <span class="cf">if</span> col <span class="kw">in</span> stats.columns.levels[<span class="dv">0</span>]:  <span class="co"># 检查指标是否存在于统计结果中</span></span>
-<span id="cb12-27"><a href="#cb12-27"></a>        stat_table <span class="op">=</span> stats[col].reset_index()  <span class="co"># 重置索引，保留时间列</span></span>
-<span id="cb12-28"><a href="#cb12-28"></a>        output_path <span class="op">=</span> os.path.join(output_dir, <span class="ss">f'</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">_stats.csv'</span>)</span>
-<span id="cb12-29"><a href="#cb12-29"></a>        stat_table.to_csv(output_path, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb12-30"><a href="#cb12-30"></a>        <span class="bu">print</span>(<span class="ss">f"Saved </span><span class="sc">{</span>col<span class="sc">}</span><span class="ss"> statistics to </span><span class="sc">{</span>output_path<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb12-31"><a href="#cb12-31"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取已缩尾处理的数据</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>indicators_list_stats <span class="op">=</span> pd.read_csv(<span class="st">'data_clean/indicators_winsorized.csv'</span>, dtype<span class="op">=</span>{<span class="st">'证券代码'</span>: <span class="bu">str</span>})</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 需要统计的列</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>stat_cols <span class="op">=</span> [<span class="st">'Lev'</span>, <span class="st">'SL'</span>, <span class="st">'LL'</span>, <span class="st">'SDR'</span>, <span class="st">'Cash'</span>, <span class="st">'ROA'</span>, <span class="st">'ROE'</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>             <span class="st">'SLoan'</span>, <span class="st">'LLoan'</span>, <span class="st">'Top1'</span>, <span class="st">'HHI5'</span>, <span class="st">'Size'</span>, <span class="st">'Age'</span>]</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 确保需要统计的列为数值类型</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> stat_cols:</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> col <span class="kw">in</span> indicators_list_stats.columns:</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        indicators_list_stats[col] <span class="op">=</span> pd.to_numeric(indicators_list_stats[col], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 按年度分组，计算各项统计量</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>stats <span class="op">=</span> indicators_list_stats.groupby(<span class="st">'时间'</span>)[stat_cols].agg([<span class="st">'mean'</span>, <span class="st">'median'</span>, <span class="st">'std'</span>, <span class="st">'min'</span>, <span class="st">'max'</span>])</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 展示前几行</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(stats.head())</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建输出文件夹</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>output_dir <span class="op">=</span> <span class="st">'output'</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>os.makedirs(output_dir, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 按指标分别保存表格</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> stat_cols:</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> col <span class="kw">in</span> stats.columns.levels[<span class="dv">0</span>]:  <span class="co"># 检查指标是否存在于统计结果中</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>        stat_table <span class="op">=</span> stats[col].reset_index()  <span class="co"># 重置索引，保留时间列</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>        output_path <span class="op">=</span> os.path.join(output_dir, <span class="ss">f'</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">_stats.csv'</span>)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>        stat_table.to_csv(output_path, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Saved </span><span class="sc">{</span>col<span class="sc">}</span><span class="ss"> statistics to </span><span class="sc">{</span>output_path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           Lev                                                SL            \
           mean    median       std       min       max      mean    median   
@@ -1516,24 +1516,24 @@ Saved Age statistics to output/Age_stats.csv</code></pre>
 <li>B1. 横轴为&nbsp;年份，纵轴为&nbsp;Lev&nbsp;的均值和中位数</li>
 </ul>
 <div id="b0aed832" class="cell" data-execution_count="69">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb14-2"><a href="#cb14-2"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'Heiti SC'</span>, <span class="st">'PingFang SC'</span>, <span class="st">'Arial Unicode MS'</span>]</span>
-<span id="cb14-3"><a href="#cb14-3"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb14-4"><a href="#cb14-4"></a></span>
-<span id="cb14-5"><a href="#cb14-5"></a><span class="co"># 读取 Lev_stats 数据</span></span>
-<span id="cb14-6"><a href="#cb14-6"></a>lev_stats <span class="op">=</span> pd.read_csv(<span class="st">'output/Lev_stats.csv'</span>)</span>
-<span id="cb14-7"><a href="#cb14-7"></a></span>
-<span id="cb14-8"><a href="#cb14-8"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb14-9"><a href="#cb14-9"></a>plt.plot(lev_stats[<span class="st">'时间'</span>], lev_stats[<span class="st">'mean'</span>], label<span class="op">=</span><span class="st">'均值'</span>, marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
-<span id="cb14-10"><a href="#cb14-10"></a>plt.plot(lev_stats[<span class="st">'时间'</span>], lev_stats[<span class="st">'median'</span>], label<span class="op">=</span><span class="st">'中位数'</span>, marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, color<span class="op">=</span><span class="st">'orange'</span>)</span>
-<span id="cb14-11"><a href="#cb14-11"></a></span>
-<span id="cb14-12"><a href="#cb14-12"></a>plt.title(<span class="st">'Lev 时序图(2020-2024)'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb14-13"><a href="#cb14-13"></a>plt.xlabel(<span class="st">'年份'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb14-14"><a href="#cb14-14"></a>plt.ylabel(<span class="st">'Lev 值'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb14-15"><a href="#cb14-15"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb14-16"><a href="#cb14-16"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb14-17"><a href="#cb14-17"></a>plt.savefig(<span class="st">'output/Lev_时序图.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
-<span id="cb14-18"><a href="#cb14-18"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'Heiti SC'</span>, <span class="st">'PingFang SC'</span>, <span class="st">'Arial Unicode MS'</span>]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取 Lev_stats 数据</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>lev_stats <span class="op">=</span> pd.read_csv(<span class="st">'output/Lev_stats.csv'</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>plt.plot(lev_stats[<span class="st">'时间'</span>], lev_stats[<span class="st">'mean'</span>], label<span class="op">=</span><span class="st">'均值'</span>, marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>plt.plot(lev_stats[<span class="st">'时间'</span>], lev_stats[<span class="st">'median'</span>], label<span class="op">=</span><span class="st">'中位数'</span>, marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, color<span class="op">=</span><span class="st">'orange'</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Lev 时序图(2020-2024)'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'年份'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Lev 值'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'output/Lev_时序图.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1546,37 +1546,37 @@ Saved Age statistics to output/Age_stats.csv</code></pre>
 <li>B2. 横轴为&nbsp;年份，纵轴为&nbsp;ROA&nbsp;和&nbsp;Cash&nbsp;的均值</li>
 </ul>
 <div id="35faaca2" class="cell" data-execution_count="70">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># 设置中文字体（适配Mac）</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'Heiti SC'</span>, <span class="st">'PingFang SC'</span>, <span class="st">'Arial Unicode MS'</span>]</span>
-<span id="cb15-3"><a href="#cb15-3"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a></span>
-<span id="cb15-5"><a href="#cb15-5"></a><span class="co"># 读取数据</span></span>
-<span id="cb15-6"><a href="#cb15-6"></a>roa_stats <span class="op">=</span> pd.read_csv(<span class="st">'output/ROA_stats.csv'</span>)</span>
-<span id="cb15-7"><a href="#cb15-7"></a>cash_stats <span class="op">=</span> pd.read_csv(<span class="st">'output/Cash_stats.csv'</span>)</span>
-<span id="cb15-8"><a href="#cb15-8"></a></span>
-<span id="cb15-9"><a href="#cb15-9"></a><span class="co"># 合并年份，确保年份一致</span></span>
-<span id="cb15-10"><a href="#cb15-10"></a>years <span class="op">=</span> roa_stats[<span class="st">'时间'</span>]</span>
-<span id="cb15-11"><a href="#cb15-11"></a></span>
-<span id="cb15-12"><a href="#cb15-12"></a>fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb15-13"><a href="#cb15-13"></a></span>
-<span id="cb15-14"><a href="#cb15-14"></a><span class="co"># 绘制ROA均值</span></span>
-<span id="cb15-15"><a href="#cb15-15"></a>ax1.plot(years, roa_stats[<span class="st">'mean'</span>], color<span class="op">=</span><span class="st">'blue'</span>, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'ROA均值'</span>)</span>
-<span id="cb15-16"><a href="#cb15-16"></a>ax1.set_xlabel(<span class="st">'年份'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb15-17"><a href="#cb15-17"></a>ax1.set_ylabel(<span class="st">'ROA均值'</span>, color<span class="op">=</span><span class="st">'blue'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb15-18"><a href="#cb15-18"></a>ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelcolor<span class="op">=</span><span class="st">'blue'</span>)</span>
-<span id="cb15-19"><a href="#cb15-19"></a></span>
-<span id="cb15-20"><a href="#cb15-20"></a><span class="co"># 创建第二个y轴，绘制Cash均值</span></span>
-<span id="cb15-21"><a href="#cb15-21"></a>ax2 <span class="op">=</span> ax1.twinx()</span>
-<span id="cb15-22"><a href="#cb15-22"></a>ax2.plot(years, cash_stats[<span class="st">'mean'</span>], color<span class="op">=</span><span class="st">'green'</span>, marker<span class="op">=</span><span class="st">'s'</span>, label<span class="op">=</span><span class="st">'Cash均值'</span>)</span>
-<span id="cb15-23"><a href="#cb15-23"></a>ax2.set_ylabel(<span class="st">'Cash均值'</span>, color<span class="op">=</span><span class="st">'green'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb15-24"><a href="#cb15-24"></a>ax2.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelcolor<span class="op">=</span><span class="st">'green'</span>)</span>
-<span id="cb15-25"><a href="#cb15-25"></a></span>
-<span id="cb15-26"><a href="#cb15-26"></a><span class="co"># 标题与图例</span></span>
-<span id="cb15-27"><a href="#cb15-27"></a>plt.title(<span class="st">'ROA与Cash均值时序图(2020-2024)'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb15-28"><a href="#cb15-28"></a>fig.tight_layout()</span>
-<span id="cb15-29"><a href="#cb15-29"></a>plt.grid(<span class="va">True</span>, axis<span class="op">=</span><span class="st">'x'</span>)</span>
-<span id="cb15-30"><a href="#cb15-30"></a>plt.savefig(<span class="st">'output/ROA_Cash_时序图.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
-<span id="cb15-31"><a href="#cb15-31"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置中文字体（适配Mac）</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'Heiti SC'</span>, <span class="st">'PingFang SC'</span>, <span class="st">'Arial Unicode MS'</span>]</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取数据</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>roa_stats <span class="op">=</span> pd.read_csv(<span class="st">'output/ROA_stats.csv'</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>cash_stats <span class="op">=</span> pd.read_csv(<span class="st">'output/Cash_stats.csv'</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 合并年份，确保年份一致</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> roa_stats[<span class="st">'时间'</span>]</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制ROA均值</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>ax1.plot(years, roa_stats[<span class="st">'mean'</span>], color<span class="op">=</span><span class="st">'blue'</span>, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'ROA均值'</span>)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'年份'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'ROA均值'</span>, color<span class="op">=</span><span class="st">'blue'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelcolor<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建第二个y轴，绘制Cash均值</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> ax1.twinx()</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>ax2.plot(years, cash_stats[<span class="st">'mean'</span>], color<span class="op">=</span><span class="st">'green'</span>, marker<span class="op">=</span><span class="st">'s'</span>, label<span class="op">=</span><span class="st">'Cash均值'</span>)</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">'Cash均值'</span>, color<span class="op">=</span><span class="st">'green'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>ax2.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelcolor<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 标题与图例</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'ROA与Cash均值时序图(2020-2024)'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, axis<span class="op">=</span><span class="st">'x'</span>)</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'output/ROA_Cash_时序图.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1590,58 +1590,58 @@ Saved Age statistics to output/Age_stats.csv</code></pre>
 <h4 data-number="54.3.0.3" class="anchored" data-anchor-id="c.-绘制时序图并作简要分析"><span class="header-section-number">54.3.0.3</span> C. 绘制时序图并作简要分析：</h4>
 <p><strong>待分析的行业：</strong>&nbsp;制造业 (C)，电力、热力、燃气及水生产和供应业 (D)，交通运输业 (G)，建筑业 (E)，房地产业 (K)，批发和零售业 (F) 以及 金融业 (J)</p>
 <div id="2e302b37" class="cell" data-execution_count="71">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>industry_group <span class="op">=</span> {</span>
-<span id="cb16-2"><a href="#cb16-2"></a>    <span class="st">'C'</span>: <span class="st">'制造业'</span>,</span>
-<span id="cb16-3"><a href="#cb16-3"></a>    <span class="st">'D'</span>: <span class="st">'电力、热力、燃气及水生产和供应业'</span>,</span>
-<span id="cb16-4"><a href="#cb16-4"></a>    <span class="st">'G'</span>: <span class="st">'交通运输业'</span>,</span>
-<span id="cb16-5"><a href="#cb16-5"></a>    <span class="st">'E'</span>: <span class="st">'建筑业'</span>,</span>
-<span id="cb16-6"><a href="#cb16-6"></a>    <span class="st">'K'</span>: <span class="st">'房地产业'</span>,</span>
-<span id="cb16-7"><a href="#cb16-7"></a>    <span class="st">'F'</span>: <span class="st">'批发和零售业'</span>,</span>
-<span id="cb16-8"><a href="#cb16-8"></a>    <span class="st">'J'</span>: <span class="st">'金融业'</span></span>
-<span id="cb16-9"><a href="#cb16-9"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>industry_group <span class="op">=</span> {</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'C'</span>: <span class="st">'制造业'</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'D'</span>: <span class="st">'电力、热力、燃气及水生产和供应业'</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'G'</span>: <span class="st">'交通运输业'</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'E'</span>: <span class="st">'建筑业'</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'K'</span>: <span class="st">'房地产业'</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'F'</span>: <span class="st">'批发和零售业'</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'J'</span>: <span class="st">'金融业'</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><strong>算数平均负债率时序图</strong>：绘制上述行业在自 2000 年至今各个年度的&nbsp;年平均负债率 (Lev)&nbsp;的时序图</li>
 </ul>
 <div id="287e0815" class="cell" data-execution_count="72">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="im">import</span> re</span>
-<span id="cb17-4"><a href="#cb17-4"></a></span>
-<span id="cb17-5"><a href="#cb17-5"></a><span class="co"># 提取行业代码中的字母部分</span></span>
-<span id="cb17-6"><a href="#cb17-6"></a>indicators[<span class="st">'行业字母'</span>] <span class="op">=</span> indicators[<span class="st">'行业代码'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.extract(<span class="vs">r'([A-Z])'</span>)</span>
-<span id="cb17-7"><a href="#cb17-7"></a></span>
-<span id="cb17-8"><a href="#cb17-8"></a><span class="co"># 只保留属于industry_group的行业</span></span>
-<span id="cb17-9"><a href="#cb17-9"></a>industry_arlev_by_year <span class="op">=</span> indicators[indicators[<span class="st">'行业字母'</span>].isin(industry_group.keys())].copy()</span>
-<span id="cb17-10"><a href="#cb17-10"></a></span>
-<span id="cb17-11"><a href="#cb17-11"></a><span class="co"># 统计各行业各年度的年平均Lev值</span></span>
-<span id="cb17-12"><a href="#cb17-12"></a>industry_lev_stats <span class="op">=</span> (</span>
-<span id="cb17-13"><a href="#cb17-13"></a>    industry_arlev_by_year</span>
-<span id="cb17-14"><a href="#cb17-14"></a>    .groupby([<span class="st">'时间'</span>, <span class="st">'行业字母'</span>])[<span class="st">'Lev'</span>]</span>
-<span id="cb17-15"><a href="#cb17-15"></a>    .mean()</span>
-<span id="cb17-16"><a href="#cb17-16"></a>    .reset_index()</span>
-<span id="cb17-17"><a href="#cb17-17"></a>)</span>
-<span id="cb17-18"><a href="#cb17-18"></a></span>
-<span id="cb17-19"><a href="#cb17-19"></a><span class="co"># 行业字母转中文</span></span>
-<span id="cb17-20"><a href="#cb17-20"></a>industry_lev_stats[<span class="st">'行业名称'</span>] <span class="op">=</span> industry_lev_stats[<span class="st">'行业字母'</span>].<span class="bu">map</span>(industry_group)</span>
-<span id="cb17-21"><a href="#cb17-21"></a></span>
-<span id="cb17-22"><a href="#cb17-22"></a><span class="co"># 保存结果</span></span>
-<span id="cb17-23"><a href="#cb17-23"></a>industry_lev_stats.to_csv(<span class="st">'output/industry_arlev_by_year.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb17-24"><a href="#cb17-24"></a></span>
-<span id="cb17-25"><a href="#cb17-25"></a><span class="co"># 绘制时序图</span></span>
-<span id="cb17-26"><a href="#cb17-26"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">7</span>))</span>
-<span id="cb17-27"><a href="#cb17-27"></a><span class="cf">for</span> code, name <span class="kw">in</span> industry_group.items():</span>
-<span id="cb17-28"><a href="#cb17-28"></a>    data <span class="op">=</span> industry_lev_stats[industry_lev_stats[<span class="st">'行业字母'</span>] <span class="op">==</span> code]</span>
-<span id="cb17-29"><a href="#cb17-29"></a>    plt.plot(data[<span class="st">'时间'</span>], data[<span class="st">'Lev'</span>], marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span>name)</span>
-<span id="cb17-30"><a href="#cb17-30"></a></span>
-<span id="cb17-31"><a href="#cb17-31"></a>plt.title(<span class="st">'各行业年平均Lev时序图(2020-2024)'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb17-32"><a href="#cb17-32"></a>plt.xlabel(<span class="st">'年份'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb17-33"><a href="#cb17-33"></a>plt.ylabel(<span class="st">'年平均Lev值'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb17-34"><a href="#cb17-34"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb17-35"><a href="#cb17-35"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb17-36"><a href="#cb17-36"></a>plt.tight_layout()</span>
-<span id="cb17-37"><a href="#cb17-37"></a>plt.savefig(<span class="st">'output/各行业年平均Lev时序图.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
-<span id="cb17-38"><a href="#cb17-38"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 提取行业代码中的字母部分</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>indicators[<span class="st">'行业字母'</span>] <span class="op">=</span> indicators[<span class="st">'行业代码'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.extract(<span class="vs">r'([A-Z])'</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 只保留属于industry_group的行业</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>industry_arlev_by_year <span class="op">=</span> indicators[indicators[<span class="st">'行业字母'</span>].isin(industry_group.keys())].copy()</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 统计各行业各年度的年平均Lev值</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>industry_lev_stats <span class="op">=</span> (</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    industry_arlev_by_year</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    .groupby([<span class="st">'时间'</span>, <span class="st">'行业字母'</span>])[<span class="st">'Lev'</span>]</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    .mean()</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    .reset_index()</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 行业字母转中文</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>industry_lev_stats[<span class="st">'行业名称'</span>] <span class="op">=</span> industry_lev_stats[<span class="st">'行业字母'</span>].<span class="bu">map</span>(industry_group)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存结果</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>industry_lev_stats.to_csv(<span class="st">'output/industry_arlev_by_year.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制时序图</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">7</span>))</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> code, name <span class="kw">in</span> industry_group.items():</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> industry_lev_stats[industry_lev_stats[<span class="st">'行业字母'</span>] <span class="op">==</span> code]</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>    plt.plot(data[<span class="st">'时间'</span>], data[<span class="st">'Lev'</span>], marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span>name)</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'各行业年平均Lev时序图(2020-2024)'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'年份'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'年平均Lev值'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'output/各行业年平均Lev时序图.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1654,44 +1654,44 @@ Saved Age statistics to output/Age_stats.csv</code></pre>
 <li><strong>加权平均负债率时序图：</strong>绘制上述行业在自 2000 年至今各个年度的&nbsp;年加权平均负债率 (Lev)&nbsp;的时序图，权重选择行业内每家公司的总资产</li>
 </ul>
 <div id="61453a79" class="cell" data-execution_count="73">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># 读取已缩尾处理的数据</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>indicators_winsorized <span class="op">=</span> pd.read_csv(<span class="st">'data_clean/indicators_winsorized.csv'</span>, dtype<span class="op">=</span>{<span class="st">'证券代码'</span>: <span class="bu">str</span>})</span>
-<span id="cb18-3"><a href="#cb18-3"></a></span>
-<span id="cb18-4"><a href="#cb18-4"></a><span class="co"># 提取行业代码中的字母部分</span></span>
-<span id="cb18-5"><a href="#cb18-5"></a>indicators_winsorized[<span class="st">'行业字母'</span>] <span class="op">=</span> indicators_winsorized[<span class="st">'行业代码'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.extract(<span class="vs">r'([A-Z])'</span>)</span>
-<span id="cb18-6"><a href="#cb18-6"></a></span>
-<span id="cb18-7"><a href="#cb18-7"></a>filtered_data <span class="op">=</span> indicators_winsorized[</span>
-<span id="cb18-8"><a href="#cb18-8"></a>    (indicators_winsorized[<span class="st">'行业字母'</span>].isin(industry_group.keys())) <span class="op">&amp;</span></span>
-<span id="cb18-9"><a href="#cb18-9"></a>    (indicators_winsorized[<span class="st">'时间'</span>] <span class="op">&gt;=</span> <span class="dv">2000</span>) <span class="op">&amp;</span> (indicators_winsorized[<span class="st">'时间'</span>] <span class="op">&lt;=</span> <span class="dv">2024</span>)</span>
-<span id="cb18-10"><a href="#cb18-10"></a>]</span>
-<span id="cb18-11"><a href="#cb18-11"></a></span>
-<span id="cb18-12"><a href="#cb18-12"></a><span class="co"># 计算加权平均负债率 (Lev)，权重为总资产</span></span>
-<span id="cb18-13"><a href="#cb18-13"></a>weighted_lev <span class="op">=</span> (</span>
-<span id="cb18-14"><a href="#cb18-14"></a>    filtered_data.groupby([<span class="st">'时间'</span>, <span class="st">'行业字母'</span>])</span>
-<span id="cb18-15"><a href="#cb18-15"></a>    .<span class="bu">apply</span>(<span class="kw">lambda</span> x: (x[<span class="st">'Lev'</span>] <span class="op">*</span> x[<span class="st">'总资产'</span>]).<span class="bu">sum</span>() <span class="op">/</span> x[<span class="st">'总资产'</span>].<span class="bu">sum</span>())</span>
-<span id="cb18-16"><a href="#cb18-16"></a>    .reset_index(name<span class="op">=</span><span class="st">'加权平均Lev'</span>)</span>
-<span id="cb18-17"><a href="#cb18-17"></a>)</span>
-<span id="cb18-18"><a href="#cb18-18"></a></span>
-<span id="cb18-19"><a href="#cb18-19"></a><span class="co"># 行业字母转中文</span></span>
-<span id="cb18-20"><a href="#cb18-20"></a>weighted_lev[<span class="st">'行业名称'</span>] <span class="op">=</span> weighted_lev[<span class="st">'行业字母'</span>].<span class="bu">map</span>(industry_group)</span>
-<span id="cb18-21"><a href="#cb18-21"></a></span>
-<span id="cb18-22"><a href="#cb18-22"></a><span class="co"># 保存结果</span></span>
-<span id="cb18-23"><a href="#cb18-23"></a>weighted_lev.to_csv(<span class="st">'output/industry_weightedlev_by_year.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb18-24"><a href="#cb18-24"></a></span>
-<span id="cb18-25"><a href="#cb18-25"></a><span class="co"># 绘制加权平均负债率时序图</span></span>
-<span id="cb18-26"><a href="#cb18-26"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">7</span>))</span>
-<span id="cb18-27"><a href="#cb18-27"></a><span class="cf">for</span> code, name <span class="kw">in</span> industry_group.items():</span>
-<span id="cb18-28"><a href="#cb18-28"></a>    data <span class="op">=</span> weighted_lev[weighted_lev[<span class="st">'行业字母'</span>] <span class="op">==</span> code]</span>
-<span id="cb18-29"><a href="#cb18-29"></a>    plt.plot(data[<span class="st">'时间'</span>], data[<span class="st">'加权平均Lev'</span>], marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span>name)</span>
-<span id="cb18-30"><a href="#cb18-30"></a></span>
-<span id="cb18-31"><a href="#cb18-31"></a>plt.title(<span class="st">'各行业加权平均Lev时序图 (2000-2024)'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb18-32"><a href="#cb18-32"></a>plt.xlabel(<span class="st">'年份'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb18-33"><a href="#cb18-33"></a>plt.ylabel(<span class="st">'加权平均Lev值'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb18-34"><a href="#cb18-34"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb18-35"><a href="#cb18-35"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb18-36"><a href="#cb18-36"></a>plt.tight_layout()</span>
-<span id="cb18-37"><a href="#cb18-37"></a>plt.savefig(<span class="st">'output/各行业加权平均Lev时序图.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
-<span id="cb18-38"><a href="#cb18-38"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取已缩尾处理的数据</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>indicators_winsorized <span class="op">=</span> pd.read_csv(<span class="st">'data_clean/indicators_winsorized.csv'</span>, dtype<span class="op">=</span>{<span class="st">'证券代码'</span>: <span class="bu">str</span>})</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 提取行业代码中的字母部分</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>indicators_winsorized[<span class="st">'行业字母'</span>] <span class="op">=</span> indicators_winsorized[<span class="st">'行业代码'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.extract(<span class="vs">r'([A-Z])'</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="op">=</span> indicators_winsorized[</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    (indicators_winsorized[<span class="st">'行业字母'</span>].isin(industry_group.keys())) <span class="op">&amp;</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    (indicators_winsorized[<span class="st">'时间'</span>] <span class="op">&gt;=</span> <span class="dv">2000</span>) <span class="op">&amp;</span> (indicators_winsorized[<span class="st">'时间'</span>] <span class="op">&lt;=</span> <span class="dv">2024</span>)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算加权平均负债率 (Lev)，权重为总资产</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>weighted_lev <span class="op">=</span> (</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    filtered_data.groupby([<span class="st">'时间'</span>, <span class="st">'行业字母'</span>])</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">apply</span>(<span class="kw">lambda</span> x: (x[<span class="st">'Lev'</span>] <span class="op">*</span> x[<span class="st">'总资产'</span>]).<span class="bu">sum</span>() <span class="op">/</span> x[<span class="st">'总资产'</span>].<span class="bu">sum</span>())</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    .reset_index(name<span class="op">=</span><span class="st">'加权平均Lev'</span>)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 行业字母转中文</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>weighted_lev[<span class="st">'行业名称'</span>] <span class="op">=</span> weighted_lev[<span class="st">'行业字母'</span>].<span class="bu">map</span>(industry_group)</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存结果</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>weighted_lev.to_csv(<span class="st">'output/industry_weightedlev_by_year.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制加权平均负债率时序图</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">7</span>))</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> code, name <span class="kw">in</span> industry_group.items():</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> weighted_lev[weighted_lev[<span class="st">'行业字母'</span>] <span class="op">==</span> code]</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>    plt.plot(data[<span class="st">'时间'</span>], data[<span class="st">'加权平均Lev'</span>], marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span>name)</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'各行业加权平均Lev时序图 (2000-2024)'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'年份'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'加权平均Lev值'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'output/各行业加权平均Lev时序图.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1708,47 +1708,47 @@ Saved Age statistics to output/Age_stats.csv</code></pre>
 </ul></li>
 </ul>
 <div id="cd23ff95" class="cell" data-execution_count="77">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># 读取缩尾处理后的数据</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a>indicators <span class="op">=</span> pd.read_csv(<span class="st">'data_clean/indicators_winsorized.csv'</span>, dtype<span class="op">=</span>{<span class="st">'证券代码'</span>: <span class="bu">str</span>})</span>
-<span id="cb19-3"><a href="#cb19-3"></a></span>
-<span id="cb19-4"><a href="#cb19-4"></a><span class="co"># 需要的年份</span></span>
-<span id="cb19-5"><a href="#cb19-5"></a>years <span class="op">=</span> [<span class="dv">2001</span>, <span class="dv">2003</span>, <span class="dv">2005</span>, <span class="dv">2007</span>, <span class="dv">2009</span>, <span class="dv">2011</span>, <span class="dv">2013</span>, <span class="dv">2015</span>, <span class="dv">2017</span>, <span class="dv">2019</span>, <span class="dv">2021</span>, <span class="dv">2023</span>]</span>
-<span id="cb19-6"><a href="#cb19-6"></a></span>
-<span id="cb19-7"><a href="#cb19-7"></a><span class="co"># 提取行业代码中的字母部分</span></span>
-<span id="cb19-8"><a href="#cb19-8"></a>indicators[<span class="st">'行业字母'</span>] <span class="op">=</span> indicators[<span class="st">'行业代码'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.extract(<span class="vs">r'([A-Z])'</span>)</span>
-<span id="cb19-9"><a href="#cb19-9"></a></span>
-<span id="cb19-10"><a href="#cb19-10"></a><span class="co"># 只保留指定行业和年份</span></span>
-<span id="cb19-11"><a href="#cb19-11"></a>filtered <span class="op">=</span> indicators[</span>
-<span id="cb19-12"><a href="#cb19-12"></a>    (indicators[<span class="st">'行业字母'</span>].isin(industry_group.keys())) <span class="op">&amp;</span></span>
-<span id="cb19-13"><a href="#cb19-13"></a>    (indicators[<span class="st">'时间'</span>].isin(years))</span>
-<span id="cb19-14"><a href="#cb19-14"></a>]</span>
-<span id="cb19-15"><a href="#cb19-15"></a></span>
-<span id="cb19-16"><a href="#cb19-16"></a><span class="co"># 变量列表</span></span>
-<span id="cb19-17"><a href="#cb19-17"></a>vars_to_show <span class="op">=</span> [<span class="st">'SLoan'</span>, <span class="st">'LLoan'</span>, <span class="st">'Lev'</span>, <span class="st">'Cash'</span>, <span class="st">'ROA'</span>, <span class="st">'ROE'</span>]</span>
-<span id="cb19-18"><a href="#cb19-18"></a></span>
-<span id="cb19-19"><a href="#cb19-19"></a><span class="co"># 分组聚合</span></span>
-<span id="cb19-20"><a href="#cb19-20"></a>result <span class="op">=</span> (</span>
-<span id="cb19-21"><a href="#cb19-21"></a>    filtered.groupby([<span class="st">'时间'</span>, <span class="st">'行业字母'</span>])[vars_to_show]</span>
-<span id="cb19-22"><a href="#cb19-22"></a>    .mean()</span>
-<span id="cb19-23"><a href="#cb19-23"></a>    .reset_index()</span>
-<span id="cb19-24"><a href="#cb19-24"></a>)</span>
-<span id="cb19-25"><a href="#cb19-25"></a></span>
-<span id="cb19-26"><a href="#cb19-26"></a><span class="co"># 行业字母转中文</span></span>
-<span id="cb19-27"><a href="#cb19-27"></a>result[<span class="st">'行业名称'</span>] <span class="op">=</span> result[<span class="st">'行业字母'</span>].<span class="bu">map</span>(industry_group)</span>
-<span id="cb19-28"><a href="#cb19-28"></a></span>
-<span id="cb19-29"><a href="#cb19-29"></a><span class="co"># 调整列顺序</span></span>
-<span id="cb19-30"><a href="#cb19-30"></a>result <span class="op">=</span> result[[<span class="st">'时间'</span>,<span class="st">'行业名称'</span>] <span class="op">+</span> vars_to_show]</span>
-<span id="cb19-31"><a href="#cb19-31"></a></span>
-<span id="cb19-32"><a href="#cb19-32"></a><span class="co"># 按行业分别保存</span></span>
-<span id="cb19-33"><a href="#cb19-33"></a><span class="cf">for</span> name <span class="kw">in</span> result[<span class="st">'行业名称'</span>].unique():</span>
-<span id="cb19-34"><a href="#cb19-34"></a>    df_ind <span class="op">=</span> result[result[<span class="st">'行业名称'</span>] <span class="op">==</span> name]</span>
-<span id="cb19-35"><a href="#cb19-35"></a>    df_ind.to_csv(<span class="ss">f'output/</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">_年度指标分析.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb19-36"><a href="#cb19-36"></a></span>
-<span id="cb19-37"><a href="#cb19-37"></a><span class="co"># 总表也保存</span></span>
-<span id="cb19-38"><a href="#cb19-38"></a>result.to_csv(<span class="st">'output/行业年度均值列表.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb19-39"><a href="#cb19-39"></a></span>
-<span id="cb19-40"><a href="#cb19-40"></a><span class="co"># 展示前几行</span></span>
-<span id="cb19-41"><a href="#cb19-41"></a><span class="bu">print</span>(result.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取缩尾处理后的数据</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>indicators <span class="op">=</span> pd.read_csv(<span class="st">'data_clean/indicators_winsorized.csv'</span>, dtype<span class="op">=</span>{<span class="st">'证券代码'</span>: <span class="bu">str</span>})</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 需要的年份</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> [<span class="dv">2001</span>, <span class="dv">2003</span>, <span class="dv">2005</span>, <span class="dv">2007</span>, <span class="dv">2009</span>, <span class="dv">2011</span>, <span class="dv">2013</span>, <span class="dv">2015</span>, <span class="dv">2017</span>, <span class="dv">2019</span>, <span class="dv">2021</span>, <span class="dv">2023</span>]</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 提取行业代码中的字母部分</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>indicators[<span class="st">'行业字母'</span>] <span class="op">=</span> indicators[<span class="st">'行业代码'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.extract(<span class="vs">r'([A-Z])'</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 只保留指定行业和年份</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>filtered <span class="op">=</span> indicators[</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    (indicators[<span class="st">'行业字母'</span>].isin(industry_group.keys())) <span class="op">&amp;</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    (indicators[<span class="st">'时间'</span>].isin(years))</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 变量列表</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>vars_to_show <span class="op">=</span> [<span class="st">'SLoan'</span>, <span class="st">'LLoan'</span>, <span class="st">'Lev'</span>, <span class="st">'Cash'</span>, <span class="st">'ROA'</span>, <span class="st">'ROE'</span>]</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 分组聚合</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> (</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>    filtered.groupby([<span class="st">'时间'</span>, <span class="st">'行业字母'</span>])[vars_to_show]</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>    .mean()</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>    .reset_index()</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 行业字母转中文</span></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>result[<span class="st">'行业名称'</span>] <span class="op">=</span> result[<span class="st">'行业字母'</span>].<span class="bu">map</span>(industry_group)</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 调整列顺序</span></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> result[[<span class="st">'时间'</span>,<span class="st">'行业名称'</span>] <span class="op">+</span> vars_to_show]</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a><span class="co"># 按行业分别保存</span></span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> result[<span class="st">'行业名称'</span>].unique():</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>    df_ind <span class="op">=</span> result[result[<span class="st">'行业名称'</span>] <span class="op">==</span> name]</span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>    df_ind.to_csv(<span class="ss">f'output/</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">_年度指标分析.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a><span class="co"># 总表也保存</span></span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>result.to_csv(<span class="st">'output/行业年度均值列表.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a><span class="co"># 展示前几行</span></span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     时间              行业名称     SLoan     LLoan       Lev      Cash       ROA  \
 0  2001               制造业  0.172146  0.053447  0.442680  0.182836  0.018141   
@@ -1775,28 +1775,28 @@ Saved Age statistics to output/Age_stats.csv</code></pre>
 </ul></li>
 </ul>
 <div id="463e6e2e" class="cell" data-execution_count="78">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># 读取缩尾处理后的数据</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>indicators <span class="op">=</span> pd.read_csv(<span class="st">'data_clean/indicators_winsorized.csv'</span>, dtype<span class="op">=</span>{<span class="st">'证券代码'</span>: <span class="bu">str</span>})</span>
-<span id="cb21-3"><a href="#cb21-3"></a></span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="co"># 指定年份</span></span>
-<span id="cb21-5"><a href="#cb21-5"></a>years <span class="op">=</span> [<span class="dv">2001</span>, <span class="dv">2003</span>, <span class="dv">2005</span>, <span class="dv">2007</span>, <span class="dv">2009</span>, <span class="dv">2011</span>, <span class="dv">2013</span>, <span class="dv">2015</span>, <span class="dv">2017</span>, <span class="dv">2019</span>, <span class="dv">2021</span>, <span class="dv">2023</span>]</span>
-<span id="cb21-6"><a href="#cb21-6"></a></span>
-<span id="cb21-7"><a href="#cb21-7"></a><span class="co"># 只保留指定年份的数据，且Top1非缺失</span></span>
-<span id="cb21-8"><a href="#cb21-8"></a>filtered <span class="op">=</span> indicators[indicators[<span class="st">'时间'</span>].isin(years) <span class="op">&amp;</span> indicators[<span class="st">'Top1'</span>].notna()]</span>
-<span id="cb21-9"><a href="#cb21-9"></a></span>
-<span id="cb21-10"><a href="#cb21-10"></a><span class="co"># 按年份准备数据</span></span>
-<span id="cb21-11"><a href="#cb21-11"></a>data <span class="op">=</span> [filtered[filtered[<span class="st">'时间'</span>] <span class="op">==</span> year][<span class="st">'Top1'</span>] <span class="cf">for</span> year <span class="kw">in</span> years]</span>
-<span id="cb21-12"><a href="#cb21-12"></a></span>
-<span id="cb21-13"><a href="#cb21-13"></a><span class="co"># 绘制箱线图</span></span>
-<span id="cb21-14"><a href="#cb21-14"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">7</span>))</span>
-<span id="cb21-15"><a href="#cb21-15"></a>plt.boxplot(data, labels<span class="op">=</span>years, patch_artist<span class="op">=</span><span class="va">True</span>, showmeans<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb21-16"><a href="#cb21-16"></a>plt.xlabel(<span class="st">'年份'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb21-17"><a href="#cb21-17"></a>plt.ylabel(<span class="st">'Top1（第一大股东持股比例）'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb21-18"><a href="#cb21-18"></a>plt.title(<span class="st">'不同年份Top1箱线图'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb21-19"><a href="#cb21-19"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>)</span>
-<span id="cb21-20"><a href="#cb21-20"></a>plt.tight_layout()</span>
-<span id="cb21-21"><a href="#cb21-21"></a>plt.savefig(<span class="st">'output/Top1_年份箱线图.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
-<span id="cb21-22"><a href="#cb21-22"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取缩尾处理后的数据</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>indicators <span class="op">=</span> pd.read_csv(<span class="st">'data_clean/indicators_winsorized.csv'</span>, dtype<span class="op">=</span>{<span class="st">'证券代码'</span>: <span class="bu">str</span>})</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 指定年份</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> [<span class="dv">2001</span>, <span class="dv">2003</span>, <span class="dv">2005</span>, <span class="dv">2007</span>, <span class="dv">2009</span>, <span class="dv">2011</span>, <span class="dv">2013</span>, <span class="dv">2015</span>, <span class="dv">2017</span>, <span class="dv">2019</span>, <span class="dv">2021</span>, <span class="dv">2023</span>]</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 只保留指定年份的数据，且Top1非缺失</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>filtered <span class="op">=</span> indicators[indicators[<span class="st">'时间'</span>].isin(years) <span class="op">&amp;</span> indicators[<span class="st">'Top1'</span>].notna()]</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 按年份准备数据</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [filtered[filtered[<span class="st">'时间'</span>] <span class="op">==</span> year][<span class="st">'Top1'</span>] <span class="cf">for</span> year <span class="kw">in</span> years]</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制箱线图</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">7</span>))</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>plt.boxplot(data, labels<span class="op">=</span>years, patch_artist<span class="op">=</span><span class="va">True</span>, showmeans<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'年份'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Top1（第一大股东持股比例）'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'不同年份Top1箱线图'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>)</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'output/Top1_年份箱线图.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1902,7 +1902,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

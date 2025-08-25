@@ -160,7 +160,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -168,7 +168,7 @@ window.Quarto = {
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -750,13 +750,13 @@ window.Quarto = {
 <h3 data-number="39.3.1" class="anchored" data-anchor-id="如何实现随机分组"><span class="header-section-number">39.3.1</span> 如何实现随机分组？</h3>
 <p>在业务系统中，常见做法有按照用户 ID 尾号、系统随机数等方式分配用户，也可以利用 Python 中的 <code>numpy</code> 包提供的随机抽样函数直接实现。</p>
 <p>下面是 Python 的实现方式示例：</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># 模拟 1000 位顾客</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'customer_id'</span>: np.arange(<span class="dv">1000</span>)})</span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="co"># 随机分配到实验组(B)或对照组(A)</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a>df[<span class="st">'group'</span>] <span class="op">=</span> np.random.choice([<span class="st">'A'</span>, <span class="st">'B'</span>], size<span class="op">=</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 模拟 1000 位顾客</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'customer_id'</span>: np.arange(<span class="dv">1000</span>)})</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 随机分配到实验组(B)或对照组(A)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'group'</span>] <span class="op">=</span> np.random.choice([<span class="st">'A'</span>, <span class="st">'B'</span>], size<span class="op">=</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="分层随机分组" class="level3" data-number="39.3.2">
 <h3 data-number="39.3.2" class="anchored" data-anchor-id="分层随机分组"><span class="header-section-number">39.3.2</span> 分层随机分组</h3>
@@ -767,13 +767,13 @@ window.Quarto = {
 <li>当样本量较小，且样本在各个组别中的分布很不均匀时，分层随机分组可以保证各组抽样的代表性 (抽样的相对比例保持一致)</li>
 </ul>
 <p>Python 实现举例：</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># 以性别为分层变量</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>df[<span class="st">'gender'</span>] <span class="op">=</span> np.random.choice([<span class="st">'male'</span>, <span class="st">'female'</span>], size<span class="op">=</span><span class="dv">1000</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a>df[<span class="st">'group'</span>] <span class="op">=</span> (</span>
-<span id="cb2-4"><a href="#cb2-4"></a>    df.groupby(<span class="st">'gender'</span>)[<span class="st">'customer_id'</span>]</span>
-<span id="cb2-5"><a href="#cb2-5"></a>      .transform(<span class="kw">lambda</span> x: np.random.choice([<span class="st">'A'</span>, <span class="st">'B'</span>], </span>
-<span id="cb2-6"><a href="#cb2-6"></a>      size<span class="op">=</span><span class="bu">len</span>(x)))</span>
-<span id="cb2-7"><a href="#cb2-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 以性别为分层变量</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'gender'</span>] <span class="op">=</span> np.random.choice([<span class="st">'male'</span>, <span class="st">'female'</span>], size<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'group'</span>] <span class="op">=</span> (</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    df.groupby(<span class="st">'gender'</span>)[<span class="st">'customer_id'</span>]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>      .transform(<span class="kw">lambda</span> x: np.random.choice([<span class="st">'A'</span>, <span class="st">'B'</span>], </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      size<span class="op">=</span><span class="bu">len</span>(x)))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="核心指标及多指标综合评价" class="level2" data-number="39.4">
@@ -825,9 +825,9 @@ s_p^2 = \frac{(n_A - 1)s_A^2 + (n_B - 1)s_B^2}{n_A + n_B - 2}
   \]</span></p>
 <p>自由度采用 Satterthwaite 近似法计算。详见：<a href="https://en.wikipedia.org/wiki/Welch%27s_t-test">Welch’s t-test (Wikipedia)</a>。</p></li>
 <li><p>Python 代码为：</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> scipy.stats</span>
-<span id="cb3-2"><a href="#cb3-2"></a>scipy.stats.ttest_ind(a, b, equal_var<span class="op">=</span><span class="va">True</span>)  <span class="co"># 同方差</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>scipy.stats.ttest_ind(a, b, equal_var<span class="op">=</span><span class="va">False</span>) <span class="co"># 异方差</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>scipy.stats.ttest_ind(a, b, equal_var<span class="op">=</span><span class="va">True</span>)  <span class="co"># 同方差</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>scipy.stats.ttest_ind(a, b, equal_var<span class="op">=</span><span class="va">False</span>) <span class="co"># 异方差</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </section>
 <section id="非参数检验mann-whitney-u-检验" class="level3" data-number="39.5.2">
@@ -841,9 +841,9 @@ U_A = n_A n_B + \frac{n_A(n_A+1)}{2} - R_A
 \]</span></p>
 <p>其中，<span class="math inline">\(R_A\)</span> 为对照组所有样本的秩次之和，<span class="math inline">\(n_A\)</span>、<span class="math inline">\(n_B\)</span> 分别为组容量。详情参见：<a href="https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test">Mann-Whitney U test (Wikipedia)</a>。</p>
 <p>Python 代码为：</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> scipy.stats</span>
-<span id="cb4-2"><a href="#cb4-2"></a>scipy.stats.mannwhitneyu(a, b, alternative<span class="op">=</span><span class="st">'two-sided'</span>)  <span class="co"># 双尾检验</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a>scipy.stats.mannwhitneyu(a, b, alternative<span class="op">=</span><span class="st">'greater'</span>)   <span class="co"># 单尾检验</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>scipy.stats.mannwhitneyu(a, b, alternative<span class="op">=</span><span class="st">'two-sided'</span>)  <span class="co"># 双尾检验</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>scipy.stats.mannwhitneyu(a, b, alternative<span class="op">=</span><span class="st">'greater'</span>)   <span class="co"># 单尾检验</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </section>
 <section id="转化率比例的-z-检验" class="level3" data-number="39.5.3">
@@ -862,10 +862,10 @@ p = \frac{n_A p_A + n_B p_B}{n_A + n_B}
 <p><span class="math inline">\(p_A, p_B\)</span>：两组的转化率</p></li>
 <li><p><strong>原理说明</strong>：Z 检验通过构建标准正态分布下的比较区间，评估比例差异是否显著。</p></li>
 <li><p>python 代码为：</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb5-2"><a href="#cb5-2"></a>sm.stats.proportions_ztest(</span>
-<span id="cb5-3"><a href="#cb5-3"></a>  count<span class="op">=</span>[success_A, success_B], </span>
-<span id="cb5-4"><a href="#cb5-4"></a>  nobs<span class="op">=</span>[n_A, n_B])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sm.stats.proportions_ztest(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  count<span class="op">=</span>[success_A, success_B], </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  nobs<span class="op">=</span>[n_A, n_B])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </section>
 <section id="显著性水平p-值" class="level3" data-number="39.5.4">
@@ -916,9 +916,9 @@ p = \frac{n_A p_A + n_B p_B}{n_A + n_B}
 <li><p><span class="math inline">\(s_A, s_B\)</span>：两组样本的标准差</p></li>
 <li><p><span class="math inline">\(d\)</span>：期望的最小效应的大小（即两组均值差异）</p></li>
 <li><p><strong>Python 实现</strong>：</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>  <span class="im">import</span> statsmodels.stats.api <span class="im">as</span> sms</span>
-<span id="cb6-2"><a href="#cb6-2"></a>  effect_size <span class="op">=</span> sms.proportion_effectsize(p1, p2)  <span class="co"># 计算效应大小</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>  n <span class="op">=</span> sms.NormalIndPower().solve_power(effect_size<span class="op">=</span>effect_size, alpha<span class="op">=</span><span class="fl">0.05</span>, power<span class="op">=</span><span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> statsmodels.stats.api <span class="im">as</span> sms</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  effect_size <span class="op">=</span> sms.proportion_effectsize(p1, p2)  <span class="co"># 计算效应大小</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  n <span class="op">=</span> sms.NormalIndPower().solve_power(effect_size<span class="op">=</span>effect_size, alpha<span class="op">=</span><span class="fl">0.05</span>, power<span class="op">=</span><span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </section>
 <section id="python-实操咖啡店促销方案" class="level2" data-number="39.7">
@@ -942,31 +942,31 @@ p = \frac{n_A p_A + n_B p_B}{n_A + n_B}
 <section id="数据模拟与分组" class="level3" data-number="39.7.2">
 <h3 data-number="39.7.2" class="anchored" data-anchor-id="数据模拟与分组"><span class="header-section-number">39.7.2</span> 数据模拟与分组</h3>
 <div id="698df8eb" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb7-6"><a href="#cb7-6"></a></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="co"># 固定随机数种子，确保结果可复现</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb7-9"><a href="#cb7-9"></a></span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="co"># 假定实验组与对照组各 500 人</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a>n_A, n_B <span class="op">=</span> <span class="dv">500</span>, <span class="dv">500</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a></span>
-<span id="cb7-13"><a href="#cb7-13"></a><span class="co"># 设定两组消费金额均值和标准差（单位：元）</span></span>
-<span id="cb7-14"><a href="#cb7-14"></a>mean_A, std_A <span class="op">=</span> <span class="dv">38</span>, <span class="dv">8</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a>mean_B, std_B <span class="op">=</span> <span class="dv">41</span>, <span class="dv">9</span></span>
-<span id="cb7-16"><a href="#cb7-16"></a></span>
-<span id="cb7-17"><a href="#cb7-17"></a><span class="co"># 生成两组消费金额数据（正态分布）</span></span>
-<span id="cb7-18"><a href="#cb7-18"></a>amount_A <span class="op">=</span> np.random.normal(loc<span class="op">=</span>mean_A, scale<span class="op">=</span>std_A, size<span class="op">=</span>n_A)</span>
-<span id="cb7-19"><a href="#cb7-19"></a>amount_B <span class="op">=</span> np.random.normal(loc<span class="op">=</span>mean_B, scale<span class="op">=</span>std_B, size<span class="op">=</span>n_B)</span>
-<span id="cb7-20"><a href="#cb7-20"></a></span>
-<span id="cb7-21"><a href="#cb7-21"></a><span class="co"># 组装数据为 DataFrame</span></span>
-<span id="cb7-22"><a href="#cb7-22"></a>df <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb7-23"><a href="#cb7-23"></a>    <span class="st">'amount'</span>: np.concatenate([amount_A, amount_B]),</span>
-<span id="cb7-24"><a href="#cb7-24"></a>    <span class="st">'group'</span>: [<span class="st">'A'</span>]<span class="op">*</span>n_A <span class="op">+</span> [<span class="st">'B'</span>]<span class="op">*</span>n_B</span>
-<span id="cb7-25"><a href="#cb7-25"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 固定随机数种子，确保结果可复现</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 假定实验组与对照组各 500 人</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>n_A, n_B <span class="op">=</span> <span class="dv">500</span>, <span class="dv">500</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 设定两组消费金额均值和标准差（单位：元）</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>mean_A, std_A <span class="op">=</span> <span class="dv">38</span>, <span class="dv">8</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>mean_B, std_B <span class="op">=</span> <span class="dv">41</span>, <span class="dv">9</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 生成两组消费金额数据（正态分布）</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>amount_A <span class="op">=</span> np.random.normal(loc<span class="op">=</span>mean_A, scale<span class="op">=</span>std_A, size<span class="op">=</span>n_A)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>amount_B <span class="op">=</span> np.random.normal(loc<span class="op">=</span>mean_B, scale<span class="op">=</span>std_B, size<span class="op">=</span>n_B)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 组装数据为 DataFrame</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">'amount'</span>: np.concatenate([amount_A, amount_B]),</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">'group'</span>: [<span class="st">'A'</span>]<span class="op">*</span>n_A <span class="op">+</span> [<span class="st">'B'</span>]<span class="op">*</span>n_B</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="数据可视化与描述统计" class="level3" data-number="39.7.3">
@@ -974,11 +974,11 @@ p = \frac{n_A p_A + n_B p_B}{n_A + n_B}
 <section id="描述统计" class="level4" data-number="39.7.3.1">
 <h4 data-number="39.7.3.1" class="anchored" data-anchor-id="描述统计"><span class="header-section-number">39.7.3.1</span> 描述统计</h4>
 <div id="83748926" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="co"># 分组描述统计</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>stats <span class="op">=</span> [<span class="st">'mean'</span>, <span class="st">'std'</span>, <span class="st">'count'</span>, <span class="st">'min'</span>, <span class="st">'max'</span>]</span>
-<span id="cb8-4"><a href="#cb8-4"></a>summary <span class="op">=</span> df.groupby(<span class="st">'group'</span>)[<span class="st">'amount'</span>].agg(stats)</span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="bu">print</span>(summary.<span class="bu">round</span>(<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 分组描述统计</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>stats <span class="op">=</span> [<span class="st">'mean'</span>, <span class="st">'std'</span>, <span class="st">'count'</span>, <span class="st">'min'</span>, <span class="st">'max'</span>]</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> df.groupby(<span class="st">'group'</span>)[<span class="st">'amount'</span>].agg(stats)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(summary.<span class="bu">round</span>(<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       mean  std  count   min   max
 group                              
@@ -990,17 +990,17 @@ B      41.3  8.8    500  16.7  64.7</code></pre>
 <section id="消费金额分布对比" class="level4" data-number="39.7.3.2">
 <h4 data-number="39.7.3.2" class="anchored" data-anchor-id="消费金额分布对比"><span class="header-section-number">39.7.3.2</span> 2. 消费金额分布对比</h4>
 <div id="778e01d1" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># 绘制实验组与对照组的消费金额密度函数图</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
-<span id="cb10-3"><a href="#cb10-3"></a>sns.kdeplot(amount_A, label<span class="op">=</span><span class="st">'Group A'</span>, color<span class="op">=</span><span class="st">'blue'</span>, fill<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb10-4"><a href="#cb10-4"></a>sns.kdeplot(amount_B, label<span class="op">=</span><span class="st">'Group B'</span>, color<span class="op">=</span><span class="st">'orange'</span>, fill<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb10-5"><a href="#cb10-5"></a>plt.title(<span class="st">'Density Plot of Amount by Group'</span>)</span>
-<span id="cb10-6"><a href="#cb10-6"></a>plt.xlabel(<span class="st">'Amount (RMB)'</span>)</span>
-<span id="cb10-7"><a href="#cb10-7"></a>plt.ylabel(<span class="st">'Density'</span>)</span>
-<span id="cb10-8"><a href="#cb10-8"></a>plt.legend(title<span class="op">=</span><span class="st">'Group'</span>)</span>
-<span id="cb10-9"><a href="#cb10-9"></a>plt.grid(alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
-<span id="cb10-10"><a href="#cb10-10"></a><span class="co"># 注释：两组的消费金额分布密度对比</span></span>
-<span id="cb10-11"><a href="#cb10-11"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制实验组与对照组的消费金额密度函数图</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>sns.kdeplot(amount_A, label<span class="op">=</span><span class="st">'Group A'</span>, color<span class="op">=</span><span class="st">'blue'</span>, fill<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>sns.kdeplot(amount_B, label<span class="op">=</span><span class="st">'Group B'</span>, color<span class="op">=</span><span class="st">'orange'</span>, fill<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Density Plot of Amount by Group'</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Amount (RMB)'</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Density'</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>plt.legend(title<span class="op">=</span><span class="st">'Group'</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>plt.grid(alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 注释：两组的消费金额分布密度对比</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1013,16 +1013,16 @@ B      41.3  8.8    500  16.7  64.7</code></pre>
 <section id="箱线图" class="level4" data-number="39.7.3.3">
 <h4 data-number="39.7.3.3" class="anchored" data-anchor-id="箱线图"><span class="header-section-number">39.7.3.3</span> 3. 箱线图</h4>
 <div id="4839e2b2" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a></span>
-<span id="cb11-2"><a href="#cb11-2"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'SimHei'</span>]  <span class="co"># 设置中文字体为黑体</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span>    <span class="co"># 正常显示负号</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a></span>
-<span id="cb11-5"><a href="#cb11-5"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
-<span id="cb11-6"><a href="#cb11-6"></a>sns.boxplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">'group'</span>, y<span class="op">=</span><span class="st">'amount'</span>)</span>
-<span id="cb11-7"><a href="#cb11-7"></a>plt.title(<span class="st">'消费金额组间分布对比（箱线图）'</span>)</span>
-<span id="cb11-8"><a href="#cb11-8"></a>plt.xlabel(<span class="st">'组别'</span>)</span>
-<span id="cb11-9"><a href="#cb11-9"></a>plt.ylabel(<span class="st">'消费金额（元）'</span>)</span>
-<span id="cb11-10"><a href="#cb11-10"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'SimHei'</span>]  <span class="co"># 设置中文字体为黑体</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span>    <span class="co"># 正常显示负号</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">'group'</span>, y<span class="op">=</span><span class="st">'amount'</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'消费金额组间分布对比（箱线图）'</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'组别'</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'消费金额（元）'</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1038,23 +1038,23 @@ B      41.3  8.8    500  16.7  64.7</code></pre>
 <section id="独立样本-t-检验" class="level4" data-number="39.7.4.1">
 <h4 data-number="39.7.4.1" class="anchored" data-anchor-id="独立样本-t-检验"><span class="header-section-number">39.7.4.1</span> 独立样本 t 检验</h4>
 <div id="044659d6" class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="im">from</span> scipy.stats <span class="im">import</span> ttest_ind</span>
-<span id="cb12-3"><a href="#cb12-3"></a></span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="co"># 拆分两组数据</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a>amount_A <span class="op">=</span> df[df[<span class="st">'group'</span>] <span class="op">==</span> <span class="st">'A'</span>][<span class="st">'amount'</span>]</span>
-<span id="cb12-6"><a href="#cb12-6"></a>amount_B <span class="op">=</span> df[df[<span class="st">'group'</span>] <span class="op">==</span> <span class="st">'B'</span>][<span class="st">'amount'</span>]</span>
-<span id="cb12-7"><a href="#cb12-7"></a></span>
-<span id="cb12-8"><a href="#cb12-8"></a><span class="co"># 检验方差齐性</span></span>
-<span id="cb12-9"><a href="#cb12-9"></a><span class="im">from</span> scipy.stats <span class="im">import</span> levene</span>
-<span id="cb12-10"><a href="#cb12-10"></a>stat_levene, p_levene <span class="op">=</span> levene(amount_A, amount_B)</span>
-<span id="cb12-11"><a href="#cb12-11"></a><span class="bu">print</span>(<span class="ss">f'Levene 检验 P 值：</span><span class="sc">{</span>p_levene<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
-<span id="cb12-12"><a href="#cb12-12"></a></span>
-<span id="cb12-13"><a href="#cb12-13"></a><span class="co"># 执行 t 检验（自动检测方差是否齐性）</span></span>
-<span id="cb12-14"><a href="#cb12-14"></a>equal_var <span class="op">=</span> p_levene <span class="op">&gt;</span> <span class="fl">0.05</span></span>
-<span id="cb12-15"><a href="#cb12-15"></a>t_stat, p_value <span class="op">=</span> ttest_ind(amount_A, amount_B, </span>
-<span id="cb12-16"><a href="#cb12-16"></a>                            equal_var<span class="op">=</span>equal_var)</span>
-<span id="cb12-17"><a href="#cb12-17"></a><span class="bu">print</span>(<span class="ss">f't 检验 P 值：</span><span class="sc">{</span>p_value<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> ttest_ind</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 拆分两组数据</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>amount_A <span class="op">=</span> df[df[<span class="st">'group'</span>] <span class="op">==</span> <span class="st">'A'</span>][<span class="st">'amount'</span>]</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>amount_B <span class="op">=</span> df[df[<span class="st">'group'</span>] <span class="op">==</span> <span class="st">'B'</span>][<span class="st">'amount'</span>]</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 检验方差齐性</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> levene</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>stat_levene, p_levene <span class="op">=</span> levene(amount_A, amount_B)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Levene 检验 P 值：</span><span class="sc">{</span>p_levene<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 执行 t 检验（自动检测方差是否齐性）</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>equal_var <span class="op">=</span> p_levene <span class="op">&gt;</span> <span class="fl">0.05</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>t_stat, p_value <span class="op">=</span> ttest_ind(amount_A, amount_B, </span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>                            equal_var<span class="op">=</span>equal_var)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f't 检验 P 值：</span><span class="sc">{</span>p_value<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Levene 检验 P 值：0.0146
 t 检验 P 值：0.0000</code></pre>
@@ -1064,12 +1064,12 @@ t 检验 P 值：0.0000</code></pre>
 <section id="mann-whitney-u-检验非参数" class="level4" data-number="39.7.4.2">
 <h4 data-number="39.7.4.2" class="anchored" data-anchor-id="mann-whitney-u-检验非参数"><span class="header-section-number">39.7.4.2</span> Mann-Whitney U 检验（非参数）</h4>
 <div id="9f58d7dd" class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="im">from</span> scipy.stats <span class="im">import</span> mannwhitneyu</span>
-<span id="cb14-3"><a href="#cb14-3"></a></span>
-<span id="cb14-4"><a href="#cb14-4"></a>u_stat, p_mw <span class="op">=</span> mannwhitneyu(amount_A, amount_B, </span>
-<span id="cb14-5"><a href="#cb14-5"></a>                            alternative<span class="op">=</span><span class="st">'two-sided'</span>)</span>
-<span id="cb14-6"><a href="#cb14-6"></a><span class="bu">print</span>(<span class="ss">f'Mann-Whitney U 检验 P 值：</span><span class="sc">{</span>p_mw<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> mannwhitneyu</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>u_stat, p_mw <span class="op">=</span> mannwhitneyu(amount_A, amount_B, </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                            alternative<span class="op">=</span><span class="st">'two-sided'</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Mann-Whitney U 检验 P 值：</span><span class="sc">{</span>p_mw<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Mann-Whitney U 检验 P 值：0.0000</code></pre>
 </div>
@@ -1080,29 +1080,29 @@ t 检验 P 值：0.0000</code></pre>
 <h3 data-number="39.7.5" class="anchored" data-anchor-id="功效分析"><span class="header-section-number">39.7.5</span> 功效分析</h3>
 <p>计算所需样本量，以保证检验的敏感性和可靠性。</p>
 <div id="3b0b6113" class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># 安装 statsmodels（如未安装）</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="co"># %pip install statsmodels</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a></span>
-<span id="cb16-4"><a href="#cb16-4"></a><span class="im">from</span> statsmodels.stats.power <span class="im">import</span> TTestIndPower</span>
-<span id="cb16-5"><a href="#cb16-5"></a></span>
-<span id="cb16-6"><a href="#cb16-6"></a><span class="co"># 计算效应量（Cohen's d）</span></span>
-<span id="cb16-7"><a href="#cb16-7"></a>effect_size <span class="op">=</span> (mean_B <span class="op">-</span> mean_A) <span class="op">/</span> np.sqrt((std_A <span class="op">**</span> <span class="dv">2</span> <span class="op">+</span> std_B <span class="op">**</span> <span class="dv">2</span>) <span class="op">/</span> <span class="dv">2</span>)</span>
-<span id="cb16-8"><a href="#cb16-8"></a></span>
-<span id="cb16-9"><a href="#cb16-9"></a><span class="co"># 计算当前样本量下的检验功效（power）</span></span>
-<span id="cb16-10"><a href="#cb16-10"></a>analysis <span class="op">=</span> TTestIndPower()</span>
-<span id="cb16-11"><a href="#cb16-11"></a>power <span class="op">=</span> analysis.power(effect_size<span class="op">=</span>effect_size, </span>
-<span id="cb16-12"><a href="#cb16-12"></a>                       nobs1<span class="op">=</span>n_A, </span>
-<span id="cb16-13"><a href="#cb16-13"></a>                       ratio<span class="op">=</span>n_B<span class="op">/</span>n_A, </span>
-<span id="cb16-14"><a href="#cb16-14"></a>                       alpha<span class="op">=</span><span class="fl">0.05</span>, </span>
-<span id="cb16-15"><a href="#cb16-15"></a>                       alternative<span class="op">=</span><span class="st">'two-sided'</span>)</span>
-<span id="cb16-16"><a href="#cb16-16"></a><span class="bu">print</span>(<span class="ss">f'当前样本量下的检验功效（power）：</span><span class="sc">{</span>power<span class="sc">:.3f}</span><span class="ss">'</span>)</span>
-<span id="cb16-17"><a href="#cb16-17"></a></span>
-<span id="cb16-18"><a href="#cb16-18"></a><span class="co"># 计算达到 0.8 检验功效所需的单组样本量</span></span>
-<span id="cb16-19"><a href="#cb16-19"></a>required_n <span class="op">=</span> analysis.solve_power(effect_size<span class="op">=</span>effect_size, </span>
-<span id="cb16-20"><a href="#cb16-20"></a>                                  power<span class="op">=</span><span class="fl">0.8</span>, alpha<span class="op">=</span><span class="fl">0.05</span>, </span>
-<span id="cb16-21"><a href="#cb16-21"></a>                                  ratio<span class="op">=</span><span class="dv">1</span>, </span>
-<span id="cb16-22"><a href="#cb16-22"></a>                                  alternative<span class="op">=</span><span class="st">'two-sided'</span>)</span>
-<span id="cb16-23"><a href="#cb16-23"></a><span class="bu">print</span>(<span class="ss">f'达到 0.8 检验功效所需的每组样本量：</span><span class="sc">{</span><span class="bu">int</span>(np.ceil(required_n))<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 安装 statsmodels（如未安装）</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># %pip install statsmodels</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.stats.power <span class="im">import</span> TTestIndPower</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算效应量（Cohen's d）</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>effect_size <span class="op">=</span> (mean_B <span class="op">-</span> mean_A) <span class="op">/</span> np.sqrt((std_A <span class="op">**</span> <span class="dv">2</span> <span class="op">+</span> std_B <span class="op">**</span> <span class="dv">2</span>) <span class="op">/</span> <span class="dv">2</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算当前样本量下的检验功效（power）</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>analysis <span class="op">=</span> TTestIndPower()</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>power <span class="op">=</span> analysis.power(effect_size<span class="op">=</span>effect_size, </span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>                       nobs1<span class="op">=</span>n_A, </span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>                       ratio<span class="op">=</span>n_B<span class="op">/</span>n_A, </span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>                       alpha<span class="op">=</span><span class="fl">0.05</span>, </span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>                       alternative<span class="op">=</span><span class="st">'two-sided'</span>)</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'当前样本量下的检验功效（power）：</span><span class="sc">{</span>power<span class="sc">:.3f}</span><span class="ss">'</span>)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算达到 0.8 检验功效所需的单组样本量</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>required_n <span class="op">=</span> analysis.solve_power(effect_size<span class="op">=</span>effect_size, </span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>                                  power<span class="op">=</span><span class="fl">0.8</span>, alpha<span class="op">=</span><span class="fl">0.05</span>, </span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>                                  ratio<span class="op">=</span><span class="dv">1</span>, </span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>                                  alternative<span class="op">=</span><span class="st">'two-sided'</span>)</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'达到 0.8 检验功效所需的每组样本量：</span><span class="sc">{</span><span class="bu">int</span>(np.ceil(required_n))<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>当前样本量下的检验功效（power）：1.000
 达到 0.8 检验功效所需的每组样本量：128</code></pre>
@@ -1265,7 +1265,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

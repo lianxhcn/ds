@@ -14,7 +14,7 @@ book:
   sidebar: 
     title: "<a href='/index.html'>DS</a>"  # !important, 否则主页链返回链接会出错
     logo: images/ds-book-logo-40.png
-    logo-href: https://book.lianxh.cn/ds/index.html
+    logo-href: https://lianxhcn.github.io/ds/
     style: floating  #docked
     search: true
     tools:
@@ -23,7 +23,7 @@ book:
       - icon: camera-video-fill
         href: https://lianxh-class.cn/
       - icon: github
-        href: https://github.com/arlionn/ds
+        href: https://github.com/lianxhcn/ds
 
   page-footer:
     center: |
@@ -31,7 +31,7 @@ book:
     right: |
       Support: <a href="https://quarto.org/">Quarto</a>
   favicon: images/ds-book-logo-40.png   # URL logo
-  site-url: https://book.lianxh.cn/ds/index.html # 主页地址, 否则点击右上角链接会乱码
+  site-url: https://lianxhcn.github.io/ds/ # 主页地址, 否则点击右上角链接会乱码
   editor: source    # 始终采用源代码模式编辑
 
 #----------------------- Chapters ---------------
@@ -122,7 +122,7 @@ format:
     highlight: true         # 代码高亮
     highlight-style: atom-one  # 语法高亮, atom-one, breezy, github, tango, solarized-light
     code-fold: false              # （可选）代码默认不折叠
-    code-line-numbers: true      # （可选）关闭行号
+    code-line-numbers: false      # （可选）关闭行号
     code-overflow: wrap        # 控制长代码的换行
 #    html-table-processing: none    
     css: styles.css

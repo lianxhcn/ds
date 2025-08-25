@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -628,13 +628,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>在 Python 数据分析和科学计算项目中，文件路径的设置是最容易被初学者忽视但又至关重要的一个环节。路径的写法直接关系到数据能否顺利读取、结果能否正确保存、代码能否方便迁移和团队协作。</p>
 <p>假设有如下常见的项目结构：</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource dos number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>project/</span>
-<span id="cb1-2"><a href="#cb1-2"></a>├── data/</span>
-<span id="cb1-3"><a href="#cb1-3"></a>│    └── train.csv</span>
-<span id="cb1-4"><a href="#cb1-4"></a>├── scripts/</span>
-<span id="cb1-5"><a href="#cb1-5"></a>│    └── 02_regress.ipynb</span>
-<span id="cb1-6"><a href="#cb1-6"></a>├── 01_data_clean.ipynb</span>
-<span id="cb1-7"><a href="#cb1-7"></a>└── README.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="dos"><code>project/
+├── data/
+│    └── train.csv
+├── scripts/
+│    └── 02_regress.ipynb
+├── 01_data_clean.ipynb
+└── README.md</code></pre>
 <section id="路径的基本类型" class="level2" data-number="14.1">
 <h2 data-number="14.1" class="anchored" data-anchor-id="路径的基本类型"><span class="header-section-number">14.1</span> 路径的基本类型</h2>
 <ul>
@@ -652,8 +652,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="当前工作目录" class="level3" data-number="14.1.2">
 <h3 data-number="14.1.2" class="anchored" data-anchor-id="当前工作目录"><span class="header-section-number">14.1.2</span> 当前工作目录</h3>
 <p>Python 在读取文件时，所有相对路径都是以<strong>当前工作目录</strong>为基准。 你可以用如下代码查看：</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> os</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="bu">print</span>(os.getcwd())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(os.getcwd())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>如果你在 <code>project/</code> 目录下打开并运行 <code>.ipynb</code> 或 <code>.py</code> 文件，那么：</p>
 <ul>
 <li><code>data/train.csv</code></li>
@@ -669,10 +669,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>路径写法应为 <code>../data/train.csv</code> 表示从 <code>scripts/</code> 目录返回上一层（即 <code>project/</code>），再进入 <code>data/</code>。</li>
 </ul>
 <p>例子：</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-2"><a href="#cb3-2"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../data/train.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../data/train.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>如果在 <code>project/</code> 目录下运行 <code>01_data_clean.ipynb</code>：</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data/train.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data/train.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="路径设置方法" class="level2" data-number="14.3">
 <h2 data-number="14.3" class="anchored" data-anchor-id="路径设置方法"><span class="header-section-number">14.3</span> 路径设置方法</h2>
@@ -685,11 +685,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="动态拼接路径的安全写法" class="level3" data-number="14.3.1">
 <h3 data-number="14.3.1" class="anchored" data-anchor-id="动态拼接路径的安全写法"><span class="header-section-number">14.3.1</span> 动态拼接路径的安全写法</h3>
 <p>Python 推荐用 <code>os.path.join()</code> 或 <code>pathlib.Path</code> 自动拼接路径，增强可移植性：</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> os</span>
-<span id="cb5-2"><a href="#cb5-2"></a>path <span class="op">=</span> os.path.join(<span class="st">'data'</span>, <span class="st">'train.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> os.path.join(<span class="st">'data'</span>, <span class="st">'train.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>或用 <code>pathlib</code>：</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb6-2"><a href="#cb6-2"></a>path <span class="op">=</span> Path(<span class="st">'data'</span>) <span class="op">/</span> <span class="st">'train.csv'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> Path(<span class="st">'data'</span>) <span class="op">/</span> <span class="st">'train.csv'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="jupyter-notebookvs-code-下的路径问题" class="level3" data-number="14.3.2">
 <h3 data-number="14.3.2" class="anchored" data-anchor-id="jupyter-notebookvs-code-下的路径问题"><span class="header-section-number">14.3.2</span> Jupyter Notebook、VS Code 下的路径问题</h3>
@@ -705,19 +705,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="批量读取目录下文件" class="level3" data-number="14.4.1">
 <h3 data-number="14.4.1" class="anchored" data-anchor-id="批量读取目录下文件"><span class="header-section-number">14.4.1</span> 批量读取目录下文件</h3>
 <p>如果要读取 <code>data/</code> 目录下所有 csv 文件：</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> glob</span>
-<span id="cb7-2"><a href="#cb7-2"></a>files <span class="op">=</span> glob.glob(<span class="st">'data/*.csv'</span>)</span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="cf">for</span> f <span class="kw">in</span> files:</span>
-<span id="cb7-4"><a href="#cb7-4"></a>    <span class="bu">print</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> glob.glob(<span class="st">'data/*.csv'</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> files:</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="数据导入与结果保存范例" class="level3" data-number="14.4.2">
 <h3 data-number="14.4.2" class="anchored" data-anchor-id="数据导入与结果保存范例"><span class="header-section-number">14.4.2</span> 数据导入与结果保存范例</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb8-2"><a href="#cb8-2"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data/train.csv'</span>)          <span class="co"># 项目主目录下执行</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../data/train.csv'</span>)       <span class="co"># scripts 子目录下执行</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="co"># 保存分析结果到 output 文件夹</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a>df.to_csv(<span class="st">'output/result.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data/train.csv'</span>)          <span class="co"># 项目主目录下执行</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../data/train.csv'</span>)       <span class="co"># scripts 子目录下执行</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存分析结果到 output 文件夹</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>df.to_csv(<span class="st">'output/result.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="路径设置最佳实践" class="level2" data-number="14.5">
@@ -833,7 +833,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

@@ -160,7 +160,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -168,7 +168,7 @@ window.Quarto = {
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -667,19 +667,19 @@ P(L~|~{\rm features}) = \frac{P({\rm features}~|~L)P(L)}{P({\rm features})}
 <p>This is where the “naive” in “naive Bayes” comes in: if we make very naive assumptions about the generative model for each label, we can find a rough approximation of the generative model for each class, and then proceed with the Bayesian classification. Different types of naive Bayes classifiers rest on different naive assumptions about the data, and we will examine a few of these in the following sections.</p>
 <p>We begin with the standard imports:</p>
 <div id="cell-5" class="cell" data-editable="true" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> seaborn <span class="im">as</span> sns<span class="op">;</span> sns.<span class="bu">set</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns<span class="op">;</span> sns.<span class="bu">set</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="gaussian-naive-bayes" class="level2" data-number="40.2">
 <h2 data-number="40.2" class="anchored" data-anchor-id="gaussian-naive-bayes"><span class="header-section-number">40.2</span> Gaussian Naive Bayes</h2>
 <p>Perhaps the easiest naive Bayes classifier to understand is Gaussian naive Bayes. In this classifier, the assumption is that <em>data from each label is drawn from a simple Gaussian distribution</em>. Imagine that you have the following data:</p>
 <div id="cell-7" class="cell" data-editable="true" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_blobs</span>
-<span id="cb2-2"><a href="#cb2-2"></a>X, y <span class="op">=</span> make_blobs(<span class="dv">100</span>, <span class="dv">2</span>, centers<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">2</span>, cluster_std<span class="op">=</span><span class="fl">1.5</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>y, s<span class="op">=</span><span class="dv">50</span>, cmap<span class="op">=</span><span class="st">'RdBu'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_blobs</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> make_blobs(<span class="dv">100</span>, <span class="dv">2</span>, centers<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">2</span>, cluster_std<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>y, s<span class="op">=</span><span class="dv">50</span>, cmap<span class="op">=</span><span class="st">'RdBu'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -693,22 +693,22 @@ P(L~|~{\rm features}) = \frac{P({\rm features}~|~L)P(L)}{P({\rm features})}
 <p>The ellipses here represent the Gaussian generative model for each label, with larger probability toward the center of the ellipses. With this generative model in place for each class, we have a simple recipe to compute the likelihood <span class="math inline">\(P({\rm features}~|~L_1)\)</span> for any data point, and thus we can quickly compute the posterior ratio and determine which label is the most probable for a given point.</p>
 <p>This procedure is implemented in Scikit-Learn’s <code>sklearn.naive_bayes.GaussianNB</code> estimator:</p>
 <div id="cell-11" class="cell" data-editable="true" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">from</span> sklearn.naive_bayes <span class="im">import</span> GaussianNB</span>
-<span id="cb3-2"><a href="#cb3-2"></a>model <span class="op">=</span> GaussianNB()</span>
-<span id="cb3-3"><a href="#cb3-3"></a>model.fit(X, y)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.naive_bayes <span class="im">import</span> GaussianNB</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> GaussianNB()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>model.fit(X, y)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now let’s generate some new data and predict the label:</p>
 <div id="cell-13" class="cell" data-editable="true" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>rng <span class="op">=</span> np.random.RandomState(<span class="dv">0</span>)</span>
-<span id="cb4-2"><a href="#cb4-2"></a>Xnew <span class="op">=</span> [<span class="op">-</span><span class="dv">6</span>, <span class="op">-</span><span class="dv">14</span>] <span class="op">+</span> [<span class="dv">14</span>, <span class="dv">18</span>] <span class="op">*</span> rng.rand(<span class="dv">2000</span>, <span class="dv">2</span>)</span>
-<span id="cb4-3"><a href="#cb4-3"></a>ynew <span class="op">=</span> model.predict(Xnew)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.RandomState(<span class="dv">0</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Xnew <span class="op">=</span> [<span class="op">-</span><span class="dv">6</span>, <span class="op">-</span><span class="dv">14</span>] <span class="op">+</span> [<span class="dv">14</span>, <span class="dv">18</span>] <span class="op">*</span> rng.rand(<span class="dv">2000</span>, <span class="dv">2</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>ynew <span class="op">=</span> model.predict(Xnew)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we can plot this new data to get an idea of where the decision boundary is:</p>
 <div id="cell-15" class="cell" data-editable="true" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>y, s<span class="op">=</span><span class="dv">50</span>, cmap<span class="op">=</span><span class="st">'RdBu'</span>)</span>
-<span id="cb5-2"><a href="#cb5-2"></a>lim <span class="op">=</span> plt.axis()</span>
-<span id="cb5-3"><a href="#cb5-3"></a>plt.scatter(Xnew[:, <span class="dv">0</span>], Xnew[:, <span class="dv">1</span>], c<span class="op">=</span>ynew, s<span class="op">=</span><span class="dv">20</span>, cmap<span class="op">=</span><span class="st">'RdBu'</span>, alpha<span class="op">=</span><span class="fl">0.1</span>)</span>
-<span id="cb5-4"><a href="#cb5-4"></a>plt.axis(lim)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>y, s<span class="op">=</span><span class="dv">50</span>, cmap<span class="op">=</span><span class="st">'RdBu'</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>lim <span class="op">=</span> plt.axis()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(Xnew[:, <span class="dv">0</span>], Xnew[:, <span class="dv">1</span>], c<span class="op">=</span>ynew, s<span class="op">=</span><span class="dv">20</span>, cmap<span class="op">=</span><span class="st">'RdBu'</span>, alpha<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.axis(lim)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -720,8 +720,8 @@ P(L~|~{\rm features}) = \frac{P({\rm features}~|~L)P(L)}{P({\rm features})}
 <p>We see a slightly curved boundary in the classifications—in general, the boundary in Gaussian naive Bayes is quadratic.</p>
 <p>A nice piece of this Bayesian formalism is that it naturally allows for probabilistic classification, which we can compute using the <code>predict_proba</code> method:</p>
 <div id="cell-17" class="cell" data-editable="true" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>yprob <span class="op">=</span> model.predict_proba(Xnew)</span>
-<span id="cb6-2"><a href="#cb6-2"></a>yprob[<span class="op">-</span><span class="dv">8</span>:].<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>yprob <span class="op">=</span> model.predict_proba(Xnew)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>yprob[<span class="op">-</span><span class="dv">8</span>:].<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>array([[ 0.89,  0.11],
        [ 1.  ,  0.  ],
@@ -745,10 +745,10 @@ P(L~|~{\rm features}) = \frac{P({\rm features}~|~L)P(L)}{P({\rm features})}
 <p>One place where multinomial naive Bayes is often used is in text classification, where the features are related to word counts or frequencies within the documents to be classified. We discussed the extraction of such features from text in <a href="05.04-Feature-Engineering.ipynb">Feature Engineering</a>; here we will use the sparse word count features from the 20 Newsgroups corpus to show how we might classify these short documents into categories.</p>
 <p>Let’s download the data and take a look at the target names:</p>
 <div id="cell-21" class="cell" data-editable="true" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> fetch_20newsgroups</span>
-<span id="cb8-2"><a href="#cb8-2"></a></span>
-<span id="cb8-3"><a href="#cb8-3"></a>data <span class="op">=</span> fetch_20newsgroups()</span>
-<span id="cb8-4"><a href="#cb8-4"></a>data.target_names</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> fetch_20newsgroups</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> fetch_20newsgroups()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>data.target_names</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>['alt.atheism',
  'comp.graphics',
@@ -774,14 +774,14 @@ P(L~|~{\rm features}) = \frac{P({\rm features}~|~L)P(L)}{P({\rm features})}
 </div>
 <p>For simplicity here, we will select just a few of these categories, and download the training and testing set:</p>
 <div id="cell-23" class="cell" data-editable="true" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>categories <span class="op">=</span> [<span class="st">'talk.religion.misc'</span>, <span class="st">'soc.religion.christian'</span>,</span>
-<span id="cb10-2"><a href="#cb10-2"></a>              <span class="st">'sci.space'</span>, <span class="st">'comp.graphics'</span>]</span>
-<span id="cb10-3"><a href="#cb10-3"></a>train <span class="op">=</span> fetch_20newsgroups(subset<span class="op">=</span><span class="st">'train'</span>, categories<span class="op">=</span>categories)</span>
-<span id="cb10-4"><a href="#cb10-4"></a>test <span class="op">=</span> fetch_20newsgroups(subset<span class="op">=</span><span class="st">'test'</span>, categories<span class="op">=</span>categories)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> [<span class="st">'talk.religion.misc'</span>, <span class="st">'soc.religion.christian'</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>              <span class="st">'sci.space'</span>, <span class="st">'comp.graphics'</span>]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>train <span class="op">=</span> fetch_20newsgroups(subset<span class="op">=</span><span class="st">'train'</span>, categories<span class="op">=</span>categories)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>test <span class="op">=</span> fetch_20newsgroups(subset<span class="op">=</span><span class="st">'test'</span>, categories<span class="op">=</span>categories)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here is a representative entry from the data:</p>
 <div id="cell-25" class="cell" data-editable="true" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="bu">print</span>(train.data[<span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(train.data[<span class="dv">5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>From: dmcgee@uluhe.soest.hawaii.edu (Don McGee)
 Subject: Federal Hearing
@@ -805,25 +805,25 @@ then mail to Federal Communications Commission 1919 H Street Washington DC
 </div>
 <p>In order to use this data for machine learning, we need to be able to convert the content of each string into a vector of numbers. For this we will use the TF-IDF vectorizer (discussed in <a href="05.04-Feature-Engineering.ipynb">Feature Engineering</a>), and create a pipeline that attaches it to a multinomial naive Bayes classifier:</p>
 <div id="cell-27" class="cell" data-editable="true" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> TfidfVectorizer</span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="im">from</span> sklearn.naive_bayes <span class="im">import</span> MultinomialNB</span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
-<span id="cb13-4"><a href="#cb13-4"></a></span>
-<span id="cb13-5"><a href="#cb13-5"></a>model <span class="op">=</span> make_pipeline(TfidfVectorizer(), MultinomialNB())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> TfidfVectorizer</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.naive_bayes <span class="im">import</span> MultinomialNB</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> make_pipeline(TfidfVectorizer(), MultinomialNB())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>With this pipeline, we can apply the model to the training data, and predict labels for the test data:</p>
 <div id="cell-29" class="cell" data-editable="true" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>model.fit(train.data, train.target)</span>
-<span id="cb14-2"><a href="#cb14-2"></a>labels <span class="op">=</span> model.predict(test.data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>model.fit(train.data, train.target)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> model.predict(test.data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now that we have predicted the labels for the test data, we can evaluate them to learn about the performance of the estimator. For example, here is the confusion matrix between the true and predicted labels for the test data:</p>
 <div id="cell-31" class="cell" data-editable="true" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
-<span id="cb15-2"><a href="#cb15-2"></a>mat <span class="op">=</span> confusion_matrix(test.target, labels)</span>
-<span id="cb15-3"><a href="#cb15-3"></a>sns.heatmap(mat.T, square<span class="op">=</span><span class="va">True</span>, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'d'</span>, cbar<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb15-4"><a href="#cb15-4"></a>            xticklabels<span class="op">=</span>train.target_names, yticklabels<span class="op">=</span>train.target_names)</span>
-<span id="cb15-5"><a href="#cb15-5"></a>plt.xlabel(<span class="st">'true label'</span>)</span>
-<span id="cb15-6"><a href="#cb15-6"></a>plt.ylabel(<span class="st">'predicted label'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>mat <span class="op">=</span> confusion_matrix(test.target, labels)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>sns.heatmap(mat.T, square<span class="op">=</span><span class="va">True</span>, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'d'</span>, cbar<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>            xticklabels<span class="op">=</span>train.target_names, yticklabels<span class="op">=</span>train.target_names)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'true label'</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'predicted label'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -835,25 +835,25 @@ then mail to Federal Communications Commission 1919 H Street Washington DC
 <p>Evidently, even this very simple classifier can successfully separate space talk from computer talk, but it gets confused between talk about religion and talk about Christianity. This is perhaps an expected area of confusion!</p>
 <p>The very cool thing here is that we now have the tools to determine the category for <em>any</em> string, using the <code>predict()</code> method of this pipeline. Here’s a quick utility function that will return the prediction for a single string:</p>
 <div id="cell-33" class="cell" data-editable="true" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">def</span> predict_category(s, train<span class="op">=</span>train, model<span class="op">=</span>model):</span>
-<span id="cb16-2"><a href="#cb16-2"></a>    pred <span class="op">=</span> model.predict([s])</span>
-<span id="cb16-3"><a href="#cb16-3"></a>    <span class="cf">return</span> train.target_names[pred[<span class="dv">0</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> predict_category(s, train<span class="op">=</span>train, model<span class="op">=</span>model):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    pred <span class="op">=</span> model.predict([s])</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> train.target_names[pred[<span class="dv">0</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s try it out:</p>
 <div id="cell-35" class="cell" data-editable="true" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>predict_category(<span class="st">'sending a payload to the ISS'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>predict_category(<span class="st">'sending a payload to the ISS'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>'sci.space'</code></pre>
 </div>
 </div>
 <div id="cell-36" class="cell" data-editable="true" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>predict_category(<span class="st">'discussing islam vs atheism'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>predict_category(<span class="st">'discussing islam vs atheism'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>'soc.religion.christian'</code></pre>
 </div>
 </div>
 <div id="cell-37" class="cell" data-editable="true" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>predict_category(<span class="st">'determining the screen resolution'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>predict_category(<span class="st">'determining the screen resolution'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>'comp.graphics'</code></pre>
 </div>
@@ -976,7 +976,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

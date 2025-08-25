@@ -160,7 +160,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -168,7 +168,7 @@ window.Quarto = {
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -811,66 +811,66 @@ u_t &amp; =v_t \sqrt{1+a_1 u_{t-1}^2} \quad v_t \sim \operatorname{IID} N(0,1)
 \]</span></p>
 <p>其中，（a）－（c）图分别对应 <span class="math inline">\(a_1=0, a_1=0.3\)</span> 和 <span class="math inline">\(a_1=0.5\)</span> 。可见，<span class="math inline">\(a_1\)</span> 值越大波动的自相关性（波动的持续性）越强。这一特征在 <span class="math inline">\(y_t^2\)</span> 序列中表现得更加显著。</p>
 <div id="cell-8" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># 设置随机种子以保证可重复性</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>np.random.seed(<span class="dv">405</span>)</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># 参数设置</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>T <span class="op">=</span> <span class="dv">200</span>             <span class="co"># 时间序列长度</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a>rho <span class="op">=</span> <span class="fl">0.8</span>           <span class="co"># y_t 的自回归系数</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a>a1_values <span class="op">=</span> [<span class="fl">0.0</span>, <span class="fl">0.3</span>, <span class="fl">0.6</span>]  <span class="co"># 三个不同的 a1 值</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="co"># 初始化三个序列</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a>y1 <span class="op">=</span> np.zeros(T)</span>
-<span id="cb1-14"><a href="#cb1-14"></a>y2 <span class="op">=</span> np.zeros(T)</span>
-<span id="cb1-15"><a href="#cb1-15"></a>y3 <span class="op">=</span> np.zeros(T)</span>
-<span id="cb1-16"><a href="#cb1-16"></a></span>
-<span id="cb1-17"><a href="#cb1-17"></a><span class="co"># 准备绘图</span></span>
-<span id="cb1-18"><a href="#cb1-18"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb1-19"><a href="#cb1-19"></a>fig.suptitle(<span class="vs">r"ARCH-like Process Simulation: $y_t = 0.8 y_{t-1} + u_t$, $u_t = v_t \sqrt{1 + a_1 u_{t-1}^2}$"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb1-20"><a href="#cb1-20"></a></span>
-<span id="cb1-21"><a href="#cb1-21"></a><span class="co"># 遍历每个 a1 取值，进行模拟与绘图</span></span>
-<span id="cb1-22"><a href="#cb1-22"></a><span class="cf">for</span> i, a1 <span class="kw">in</span> <span class="bu">enumerate</span>(a1_values):</span>
-<span id="cb1-23"><a href="#cb1-23"></a>    y <span class="op">=</span> np.zeros(T)</span>
-<span id="cb1-24"><a href="#cb1-24"></a>    u <span class="op">=</span> np.zeros(T)</span>
-<span id="cb1-25"><a href="#cb1-25"></a>    v <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, T)</span>
-<span id="cb1-26"><a href="#cb1-26"></a></span>
-<span id="cb1-27"><a href="#cb1-27"></a>    <span class="co"># 初始化前两个值</span></span>
-<span id="cb1-28"><a href="#cb1-28"></a>    y[<span class="dv">0</span>] <span class="op">=</span> v[<span class="dv">0</span>]</span>
-<span id="cb1-29"><a href="#cb1-29"></a>    u[<span class="dv">0</span>] <span class="op">=</span> v[<span class="dv">0</span>]</span>
-<span id="cb1-30"><a href="#cb1-30"></a></span>
-<span id="cb1-31"><a href="#cb1-31"></a>    <span class="co"># 生成序列</span></span>
-<span id="cb1-32"><a href="#cb1-32"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, T):</span>
-<span id="cb1-33"><a href="#cb1-33"></a>        u[t] <span class="op">=</span> v[t] <span class="op">*</span> np.sqrt(<span class="dv">1</span> <span class="op">+</span> a1 <span class="op">*</span> u[t<span class="op">-</span><span class="dv">1</span>]<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb1-34"><a href="#cb1-34"></a>        y[t] <span class="op">=</span> rho <span class="op">*</span> y[t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> u[t]</span>
-<span id="cb1-35"><a href="#cb1-35"></a></span>
-<span id="cb1-36"><a href="#cb1-36"></a>    <span class="co"># 将生成的序列赋值给对应的变量</span></span>
-<span id="cb1-37"><a href="#cb1-37"></a>    <span class="cf">if</span> i <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb1-38"><a href="#cb1-38"></a>        y1 <span class="op">=</span> y</span>
-<span id="cb1-39"><a href="#cb1-39"></a>    <span class="cf">elif</span> i <span class="op">==</span> <span class="dv">1</span>:</span>
-<span id="cb1-40"><a href="#cb1-40"></a>        y2 <span class="op">=</span> y</span>
-<span id="cb1-41"><a href="#cb1-41"></a>    <span class="cf">elif</span> i <span class="op">==</span> <span class="dv">2</span>:</span>
-<span id="cb1-42"><a href="#cb1-42"></a>        y3 <span class="op">=</span> y</span>
-<span id="cb1-43"><a href="#cb1-43"></a></span>
-<span id="cb1-44"><a href="#cb1-44"></a>    <span class="co"># 绘制 y_t 图像</span></span>
-<span id="cb1-45"><a href="#cb1-45"></a>    axes[i, <span class="dv">0</span>].plot(y, color<span class="op">=</span><span class="st">'steelblue'</span>)</span>
-<span id="cb1-46"><a href="#cb1-46"></a>    axes[i, <span class="dv">0</span>].set_ylabel(<span class="vs">r"$y_t$"</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb1-47"><a href="#cb1-47"></a>    axes[i, <span class="dv">0</span>].set_ylim(<span class="op">-</span><span class="dv">6</span>, <span class="dv">6</span>)</span>
-<span id="cb1-48"><a href="#cb1-48"></a>    axes[i, <span class="dv">0</span>].set_title(<span class="ss">f"(a</span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">) $a_1$ = </span><span class="sc">{</span>a1<span class="sc">}</span><span class="ss">"</span>, loc<span class="op">=</span><span class="st">'left'</span>)</span>
-<span id="cb1-49"><a href="#cb1-49"></a></span>
-<span id="cb1-50"><a href="#cb1-50"></a>    <span class="co"># 绘制 y_t^2 图像</span></span>
-<span id="cb1-51"><a href="#cb1-51"></a>    axes[i, <span class="dv">1</span>].plot(y<span class="op">**</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">'darkorange'</span>)</span>
-<span id="cb1-52"><a href="#cb1-52"></a>    axes[i, <span class="dv">1</span>].set_ylabel(<span class="vs">r"$y_t^2$"</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb1-53"><a href="#cb1-53"></a>    axes[i, <span class="dv">1</span>].set_ylim(<span class="dv">0</span>, <span class="dv">50</span>)</span>
-<span id="cb1-54"><a href="#cb1-54"></a>    axes[i, <span class="dv">1</span>].set_title(<span class="ss">f"(b</span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">)"</span>, loc<span class="op">=</span><span class="st">'left'</span>)</span>
-<span id="cb1-55"><a href="#cb1-55"></a></span>
-<span id="cb1-56"><a href="#cb1-56"></a><span class="co"># 美化图形</span></span>
-<span id="cb1-57"><a href="#cb1-57"></a>axes[<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>].set_xlabel(<span class="st">"Time"</span>)</span>
-<span id="cb1-58"><a href="#cb1-58"></a>axes[<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>].set_xlabel(<span class="st">"Time"</span>)</span>
-<span id="cb1-59"><a href="#cb1-59"></a>plt.tight_layout(rect<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.95</span>])</span>
-<span id="cb1-60"><a href="#cb1-60"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置随机种子以保证可重复性</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">405</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 参数设置</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">200</span>             <span class="co"># 时间序列长度</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>rho <span class="op">=</span> <span class="fl">0.8</span>           <span class="co"># y_t 的自回归系数</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>a1_values <span class="op">=</span> [<span class="fl">0.0</span>, <span class="fl">0.3</span>, <span class="fl">0.6</span>]  <span class="co"># 三个不同的 a1 值</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 初始化三个序列</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>y1 <span class="op">=</span> np.zeros(T)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>y2 <span class="op">=</span> np.zeros(T)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>y3 <span class="op">=</span> np.zeros(T)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 准备绘图</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="vs">r"ARCH-like Process Simulation: $y_t = 0.8 y_{t-1} + u_t$, $u_t = v_t \sqrt{1 + a_1 u_{t-1}^2}$"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 遍历每个 a1 取值，进行模拟与绘图</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, a1 <span class="kw">in</span> <span class="bu">enumerate</span>(a1_values):</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> np.zeros(T)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> np.zeros(T)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    v <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, T)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 初始化前两个值</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    y[<span class="dv">0</span>] <span class="op">=</span> v[<span class="dv">0</span>]</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    u[<span class="dv">0</span>] <span class="op">=</span> v[<span class="dv">0</span>]</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 生成序列</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, T):</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        u[t] <span class="op">=</span> v[t] <span class="op">*</span> np.sqrt(<span class="dv">1</span> <span class="op">+</span> a1 <span class="op">*</span> u[t<span class="op">-</span><span class="dv">1</span>]<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        y[t] <span class="op">=</span> rho <span class="op">*</span> y[t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> u[t]</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 将生成的序列赋值给对应的变量</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>        y1 <span class="op">=</span> y</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> i <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        y2 <span class="op">=</span> y</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> i <span class="op">==</span> <span class="dv">2</span>:</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        y3 <span class="op">=</span> y</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 绘制 y_t 图像</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    axes[i, <span class="dv">0</span>].plot(y, color<span class="op">=</span><span class="st">'steelblue'</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    axes[i, <span class="dv">0</span>].set_ylabel(<span class="vs">r"$y_t$"</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    axes[i, <span class="dv">0</span>].set_ylim(<span class="op">-</span><span class="dv">6</span>, <span class="dv">6</span>)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    axes[i, <span class="dv">0</span>].set_title(<span class="ss">f"(a</span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">) $a_1$ = </span><span class="sc">{</span>a1<span class="sc">}</span><span class="ss">"</span>, loc<span class="op">=</span><span class="st">'left'</span>)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 绘制 y_t^2 图像</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    axes[i, <span class="dv">1</span>].plot(y<span class="op">**</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">'darkorange'</span>)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    axes[i, <span class="dv">1</span>].set_ylabel(<span class="vs">r"$y_t^2$"</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    axes[i, <span class="dv">1</span>].set_ylim(<span class="dv">0</span>, <span class="dv">50</span>)</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    axes[i, <span class="dv">1</span>].set_title(<span class="ss">f"(b</span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">)"</span>, loc<span class="op">=</span><span class="st">'left'</span>)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="co"># 美化图形</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>axes[<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>].set_xlabel(<span class="st">"Time"</span>)</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>axes[<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>].set_xlabel(<span class="st">"Time"</span>)</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>plt.tight_layout(rect<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.95</span>])</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -880,39 +880,39 @@ u_t &amp; =v_t \sqrt{1+a_1 u_{t-1}^2} \quad v_t \sim \operatorname{IID} N(0,1)
 </div>
 </div>
 <div id="cell-9" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
-<span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-5"><a href="#cb2-5"></a></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="co"># 准备绘图</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">5</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-8"><a href="#cb2-8"></a>fig.suptitle(<span class="st">"Density Plots with Normal Distribution"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb2-9"><a href="#cb2-9"></a></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="co"># 数据列表</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>data_list <span class="op">=</span> [y1, y2, y3]</span>
-<span id="cb2-12"><a href="#cb2-12"></a>titles <span class="op">=</span> [<span class="st">"y1 Density"</span>, <span class="st">"y2 Density"</span>, <span class="st">"y3 Density"</span>]</span>
-<span id="cb2-13"><a href="#cb2-13"></a></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="co"># 遍历每个数据集</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="cf">for</span> i, (data, title) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(data_list, titles)):</span>
-<span id="cb2-16"><a href="#cb2-16"></a>    <span class="co"># 计算密度</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a>    density, bins, _ <span class="op">=</span> axes[i].hist(data, bins<span class="op">=</span><span class="dv">30</span>, density<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, color<span class="op">=</span><span class="st">'steelblue'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb2-18"><a href="#cb2-18"></a>    </span>
-<span id="cb2-19"><a href="#cb2-19"></a>    <span class="co"># 计算正态分布曲线</span></span>
-<span id="cb2-20"><a href="#cb2-20"></a>    mu, std <span class="op">=</span> np.mean(data), np.std(data)</span>
-<span id="cb2-21"><a href="#cb2-21"></a>    x <span class="op">=</span> np.linspace(<span class="bu">min</span>(data), <span class="bu">max</span>(data), <span class="dv">1000</span>)</span>
-<span id="cb2-22"><a href="#cb2-22"></a>    p <span class="op">=</span> norm.pdf(x, mu, std)</span>
-<span id="cb2-23"><a href="#cb2-23"></a>    </span>
-<span id="cb2-24"><a href="#cb2-24"></a>    <span class="co"># 绘制正态分布曲线</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a>    axes[i].plot(x, p, <span class="st">'r'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f"Normal Curve</span><span class="ch">\n</span><span class="ss">$\mu=</span><span class="sc">{</span>mu<span class="sc">:.2f}</span><span class="ss">$, $\sigma=</span><span class="sc">{</span>std<span class="sc">:.2f}</span><span class="ss">$"</span>)</span>
-<span id="cb2-26"><a href="#cb2-26"></a>    axes[i].set_title(title, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb2-27"><a href="#cb2-27"></a>    axes[i].set_xlim(<span class="op">-</span><span class="dv">6</span>, <span class="op">+</span><span class="dv">6</span>)</span>
-<span id="cb2-28"><a href="#cb2-28"></a>    axes[i].legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb2-29"><a href="#cb2-29"></a>    axes[i].grid(alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb2-30"><a href="#cb2-30"></a></span>
-<span id="cb2-31"><a href="#cb2-31"></a><span class="co"># 美化图形</span></span>
-<span id="cb2-32"><a href="#cb2-32"></a>plt.tight_layout(rect<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.95</span>])</span>
-<span id="cb2-33"><a href="#cb2-33"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 准备绘图</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">5</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Density Plots with Normal Distribution"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 数据列表</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>data_list <span class="op">=</span> [y1, y2, y3]</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>titles <span class="op">=</span> [<span class="st">"y1 Density"</span>, <span class="st">"y2 Density"</span>, <span class="st">"y3 Density"</span>]</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 遍历每个数据集</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (data, title) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(data_list, titles)):</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 计算密度</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    density, bins, _ <span class="op">=</span> axes[i].hist(data, bins<span class="op">=</span><span class="dv">30</span>, density<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, color<span class="op">=</span><span class="st">'steelblue'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 计算正态分布曲线</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    mu, std <span class="op">=</span> np.mean(data), np.std(data)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.linspace(<span class="bu">min</span>(data), <span class="bu">max</span>(data), <span class="dv">1000</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> norm.pdf(x, mu, std)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 绘制正态分布曲线</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    axes[i].plot(x, p, <span class="st">'r'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f"Normal Curve</span><span class="ch">\n</span><span class="ss">$\mu=</span><span class="sc">{</span>mu<span class="sc">:.2f}</span><span class="ss">$, $\sigma=</span><span class="sc">{</span>std<span class="sc">:.2f}</span><span class="ss">$"</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    axes[i].set_title(title, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    axes[i].set_xlim(<span class="op">-</span><span class="dv">6</span>, <span class="op">+</span><span class="dv">6</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    axes[i].legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    axes[i].grid(alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 美化图形</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>plt.tight_layout(rect<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.95</span>])</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>&lt;&gt;:25: SyntaxWarning: invalid escape sequence '\m'
 &lt;&gt;:25: SyntaxWarning: invalid escape sequence '\s'
@@ -943,52 +943,52 @@ y_t=\beta_0+\beta_1 y_{t-1}+u_t
 LM=T \cdot R^2 \sim \chi^2(p)
 \]</span> 其中，<span class="math inline">\(R^2\)</span> 为 OLS 估计的残差平方和的决定系数，<span class="math inline">\(T\)</span> 为样本容量，<span class="math inline">\(p\)</span> 为滞后阶数。LM 检验的结果如下：</p>
 <div id="cell-12" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="im">from</span> arch <span class="im">import</span> arch_model</span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co"># 定义函数：估计 ARCH(p) 和 GARCH(1,1) 模型</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="kw">def</span> estimate_models(data, p<span class="op">=</span><span class="dv">1</span>):</span>
-<span id="cb4-6"><a href="#cb4-6"></a>    <span class="co"># 确保输入是 pandas Series 且为零均值</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(data, pd.Series):</span>
-<span id="cb4-8"><a href="#cb4-8"></a>        data <span class="op">=</span> pd.Series(data)</span>
-<span id="cb4-9"><a href="#cb4-9"></a>    data <span class="op">=</span> data <span class="op">-</span> data.mean()</span>
-<span id="cb4-10"><a href="#cb4-10"></a></span>
-<span id="cb4-11"><a href="#cb4-11"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Estimating models for data with length </span><span class="sc">{</span><span class="bu">len</span>(data)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb4-12"><a href="#cb4-12"></a></span>
-<span id="cb4-13"><a href="#cb4-13"></a>    <span class="co"># ARCH(p) 模型估计</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a>    <span class="cf">try</span>:</span>
-<span id="cb4-15"><a href="#cb4-15"></a>        arch_model_instance <span class="op">=</span> arch_model(data, mean<span class="op">=</span><span class="st">"Zero"</span>, vol<span class="op">=</span><span class="st">"ARCH"</span>, p<span class="op">=</span>p)</span>
-<span id="cb4-16"><a href="#cb4-16"></a>        arch_fitted <span class="op">=</span> arch_model_instance.fit(disp<span class="op">=</span><span class="st">"off"</span>)</span>
-<span id="cb4-17"><a href="#cb4-17"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">ARCH(</span><span class="sc">{</span>p<span class="sc">}</span><span class="ss">) Model Summary:"</span>)</span>
-<span id="cb4-18"><a href="#cb4-18"></a>        <span class="bu">print</span>(arch_fitted.summary())</span>
-<span id="cb4-19"><a href="#cb4-19"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb4-20"><a href="#cb4-20"></a>        <span class="bu">print</span>(<span class="ss">f"ARCH(</span><span class="sc">{</span>p<span class="sc">}</span><span class="ss">) model failed: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb4-21"><a href="#cb4-21"></a>        arch_fitted <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb4-22"><a href="#cb4-22"></a></span>
-<span id="cb4-23"><a href="#cb4-23"></a>    <span class="co"># GARCH(1,1) 模型估计</span></span>
-<span id="cb4-24"><a href="#cb4-24"></a>    <span class="cf">try</span>:</span>
-<span id="cb4-25"><a href="#cb4-25"></a>        garch_model_instance <span class="op">=</span> arch_model(data, mean<span class="op">=</span><span class="st">"Zero"</span>, vol<span class="op">=</span><span class="st">"GARCH"</span>, p<span class="op">=</span><span class="dv">1</span>, q<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb4-26"><a href="#cb4-26"></a>        garch_fitted <span class="op">=</span> garch_model_instance.fit(disp<span class="op">=</span><span class="st">"off"</span>)</span>
-<span id="cb4-27"><a href="#cb4-27"></a>        <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">GARCH(1,1) Model Summary:"</span>)</span>
-<span id="cb4-28"><a href="#cb4-28"></a>        <span class="bu">print</span>(garch_fitted.summary())</span>
-<span id="cb4-29"><a href="#cb4-29"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb4-30"><a href="#cb4-30"></a>        <span class="bu">print</span>(<span class="ss">f"GARCH(1,1) model failed: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb4-31"><a href="#cb4-31"></a>        garch_fitted <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb4-32"><a href="#cb4-32"></a></span>
-<span id="cb4-33"><a href="#cb4-33"></a>    <span class="cf">return</span> arch_fitted, garch_fitted</span>
-<span id="cb4-34"><a href="#cb4-34"></a></span>
-<span id="cb4-35"><a href="#cb4-35"></a><span class="co"># 示例使用（假设 y1, y2, y3 是已定义的 pandas Series）</span></span>
-<span id="cb4-36"><a href="#cb4-36"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="cb4-37"><a href="#cb4-37"></a>    p <span class="op">=</span> <span class="dv">1</span>  <span class="co"># ARCH(p) 模型的阶数</span></span>
-<span id="cb4-38"><a href="#cb4-38"></a></span>
-<span id="cb4-39"><a href="#cb4-39"></a>    <span class="bu">print</span>(<span class="st">"=== Results for y1 ==="</span>)</span>
-<span id="cb4-40"><a href="#cb4-40"></a>    arch_y1, garch_y1 <span class="op">=</span> estimate_models(y1, p)</span>
-<span id="cb4-41"><a href="#cb4-41"></a></span>
-<span id="cb4-42"><a href="#cb4-42"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== Results for y2 ==="</span>)</span>
-<span id="cb4-43"><a href="#cb4-43"></a>    arch_y2, garch_y2 <span class="op">=</span> estimate_models(y2, p)</span>
-<span id="cb4-44"><a href="#cb4-44"></a></span>
-<span id="cb4-45"><a href="#cb4-45"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== Results for y3 ==="</span>)</span>
-<span id="cb4-46"><a href="#cb4-46"></a>    arch_y3, garch_y3 <span class="op">=</span> estimate_models(y3, p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> arch <span class="im">import</span> arch_model</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义函数：估计 ARCH(p) 和 GARCH(1,1) 模型</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> estimate_models(data, p<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 确保输入是 pandas Series 且为零均值</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(data, pd.Series):</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> pd.Series(data)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> data <span class="op">-</span> data.mean()</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Estimating models for data with length </span><span class="sc">{</span><span class="bu">len</span>(data)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ARCH(p) 模型估计</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        arch_model_instance <span class="op">=</span> arch_model(data, mean<span class="op">=</span><span class="st">"Zero"</span>, vol<span class="op">=</span><span class="st">"ARCH"</span>, p<span class="op">=</span>p)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        arch_fitted <span class="op">=</span> arch_model_instance.fit(disp<span class="op">=</span><span class="st">"off"</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">ARCH(</span><span class="sc">{</span>p<span class="sc">}</span><span class="ss">) Model Summary:"</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(arch_fitted.summary())</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"ARCH(</span><span class="sc">{</span>p<span class="sc">}</span><span class="ss">) model failed: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        arch_fitted <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># GARCH(1,1) 模型估计</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>        garch_model_instance <span class="op">=</span> arch_model(data, mean<span class="op">=</span><span class="st">"Zero"</span>, vol<span class="op">=</span><span class="st">"GARCH"</span>, p<span class="op">=</span><span class="dv">1</span>, q<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        garch_fitted <span class="op">=</span> garch_model_instance.fit(disp<span class="op">=</span><span class="st">"off"</span>)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">GARCH(1,1) Model Summary:"</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(garch_fitted.summary())</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"GARCH(1,1) model failed: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        garch_fitted <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> arch_fitted, garch_fitted</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 示例使用（假设 y1, y2, y3 是已定义的 pandas Series）</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> <span class="dv">1</span>  <span class="co"># ARCH(p) 模型的阶数</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"=== Results for y1 ==="</span>)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    arch_y1, garch_y1 <span class="op">=</span> estimate_models(y1, p)</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== Results for y2 ==="</span>)</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    arch_y2, garch_y2 <span class="op">=</span> estimate_models(y2, p)</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== Results for y3 ==="</span>)</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    arch_y3, garch_y3 <span class="op">=</span> estimate_models(y3, p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== Results for y1 ===
 
@@ -1137,29 +1137,29 @@ Covariance estimator: robust</code></pre>
 <section id="实例比亚迪汽车" class="level2" data-number="38.4">
 <h2 data-number="38.4" class="anchored" data-anchor-id="实例比亚迪汽车"><span class="header-section-number">38.4</span> 实例：比亚迪汽车</h2>
 <div id="cell-15" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="im">import</span> akshare <span class="im">as</span> ak</span>
-<span id="cb6-3"><a href="#cb6-3"></a></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="co"># 获取比亚迪（002594）股票的前复权日线行情数据</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a>byd_stock_data <span class="op">=</span> ak.stock_zh_a_hist(</span>
-<span id="cb6-6"><a href="#cb6-6"></a>    symbol<span class="op">=</span><span class="st">"002594"</span>,      <span class="co"># 股票代码</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a>    period<span class="op">=</span><span class="st">"daily"</span>,       <span class="co"># 日频率</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a>    start_date<span class="op">=</span><span class="st">"20021128"</span>,<span class="co"># 起始日期（比亚迪上市时间）</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a>    adjust<span class="op">=</span><span class="st">"qfq"</span>          <span class="co"># 复权类型：前复权</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a>)</span>
-<span id="cb6-11"><a href="#cb6-11"></a></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="co"># 删除不需要的列（如果存在）</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a>cols_to_drop <span class="op">=</span> [<span class="st">"开盘"</span>, <span class="st">"收盘"</span>, <span class="st">"最高"</span>, <span class="st">"最低"</span>, <span class="st">"换手率"</span>]</span>
-<span id="cb6-14"><a href="#cb6-14"></a>byd_stock_data <span class="op">=</span> byd_stock_data.drop(columns<span class="op">=</span>[col <span class="cf">for</span> col <span class="kw">in</span> cols_to_drop <span class="cf">if</span> col <span class="kw">in</span> byd_stock_data.columns])</span>
-<span id="cb6-15"><a href="#cb6-15"></a></span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="co"># 将“日期”列转换为 datetime 类型</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a>byd_stock_data[<span class="st">"日期"</span>] <span class="op">=</span> pd.to_datetime(byd_stock_data[<span class="st">"日期"</span>])</span>
-<span id="cb6-18"><a href="#cb6-18"></a></span>
-<span id="cb6-19"><a href="#cb6-19"></a><span class="co"># 可选：将日期设置为索引</span></span>
-<span id="cb6-20"><a href="#cb6-20"></a>byd_stock_data.set_index(<span class="st">"日期"</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb6-21"><a href="#cb6-21"></a></span>
-<span id="cb6-22"><a href="#cb6-22"></a><span class="co"># 查看前几行数据</span></span>
-<span id="cb6-23"><a href="#cb6-23"></a><span class="bu">print</span>(byd_stock_data.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> akshare <span class="im">as</span> ak</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取比亚迪（002594）股票的前复权日线行情数据</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>byd_stock_data <span class="op">=</span> ak.stock_zh_a_hist(</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    symbol<span class="op">=</span><span class="st">"002594"</span>,      <span class="co"># 股票代码</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    period<span class="op">=</span><span class="st">"daily"</span>,       <span class="co"># 日频率</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    start_date<span class="op">=</span><span class="st">"20021128"</span>,<span class="co"># 起始日期（比亚迪上市时间）</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    adjust<span class="op">=</span><span class="st">"qfq"</span>          <span class="co"># 复权类型：前复权</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 删除不需要的列（如果存在）</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>cols_to_drop <span class="op">=</span> [<span class="st">"开盘"</span>, <span class="st">"收盘"</span>, <span class="st">"最高"</span>, <span class="st">"最低"</span>, <span class="st">"换手率"</span>]</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>byd_stock_data <span class="op">=</span> byd_stock_data.drop(columns<span class="op">=</span>[col <span class="cf">for</span> col <span class="kw">in</span> cols_to_drop <span class="cf">if</span> col <span class="kw">in</span> byd_stock_data.columns])</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 将“日期”列转换为 datetime 类型</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>byd_stock_data[<span class="st">"日期"</span>] <span class="op">=</span> pd.to_datetime(byd_stock_data[<span class="st">"日期"</span>])</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 可选：将日期设置为索引</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>byd_stock_data.set_index(<span class="st">"日期"</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 查看前几行数据</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(byd_stock_data.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              股票代码     成交量           成交额     振幅    涨跌幅   涨跌额
 日期                                                          
@@ -1171,38 +1171,38 @@ Covariance estimator: robust</code></pre>
 </div>
 </div>
 <div id="cell-16" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># 收盘价时序图</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="im">import</span> akshare <span class="im">as</span> ak</span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="im">from</span> matplotlib <span class="im">import</span> rcParams</span>
-<span id="cb8-7"><a href="#cb8-7"></a></span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="co"># 添加中文支持</span></span>
-<span id="cb8-9"><a href="#cb8-9"></a>rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'SimHei'</span>]  <span class="co"># 设置字体为黑体</span></span>
-<span id="cb8-10"><a href="#cb8-10"></a>rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span>   <span class="co"># 解决负号显示问题</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a></span>
-<span id="cb8-12"><a href="#cb8-12"></a><span class="co"># 获取比亚迪（002594）股票的前复权日线行情数据</span></span>
-<span id="cb8-13"><a href="#cb8-13"></a>byd_stock_data <span class="op">=</span> ak.stock_zh_a_hist(</span>
-<span id="cb8-14"><a href="#cb8-14"></a>    symbol<span class="op">=</span><span class="st">"002594"</span>,</span>
-<span id="cb8-15"><a href="#cb8-15"></a>    period<span class="op">=</span><span class="st">"daily"</span>,</span>
-<span id="cb8-16"><a href="#cb8-16"></a>    start_date<span class="op">=</span><span class="st">"20021128"</span>,</span>
-<span id="cb8-17"><a href="#cb8-17"></a>    adjust<span class="op">=</span><span class="st">"qfq"</span></span>
-<span id="cb8-18"><a href="#cb8-18"></a>)</span>
-<span id="cb8-19"><a href="#cb8-19"></a></span>
-<span id="cb8-20"><a href="#cb8-20"></a><span class="co"># 保留日期和收盘价列，并转换日期为 datetime 类型</span></span>
-<span id="cb8-21"><a href="#cb8-21"></a>byd_stock_data[<span class="st">"日期"</span>] <span class="op">=</span> pd.to_datetime(byd_stock_data[<span class="st">"日期"</span>])</span>
-<span id="cb8-22"><a href="#cb8-22"></a>byd_stock_data.set_index(<span class="st">"日期"</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb8-23"><a href="#cb8-23"></a></span>
-<span id="cb8-24"><a href="#cb8-24"></a><span class="co"># 绘图：收盘价时序图</span></span>
-<span id="cb8-25"><a href="#cb8-25"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
-<span id="cb8-26"><a href="#cb8-26"></a>plt.plot(byd_stock_data[<span class="st">"收盘"</span>], color<span class="op">=</span><span class="st">'steelblue'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb8-27"><a href="#cb8-27"></a>plt.title(<span class="st">"比亚迪（002594）前复权收盘价时序图"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb8-28"><a href="#cb8-28"></a>plt.xlabel(<span class="st">"日期"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb8-29"><a href="#cb8-29"></a>plt.ylabel(<span class="st">"收盘价（元）"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb8-30"><a href="#cb8-30"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb8-31"><a href="#cb8-31"></a>plt.tight_layout()</span>
-<span id="cb8-32"><a href="#cb8-32"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 收盘价时序图</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> akshare <span class="im">as</span> ak</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> rcParams</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加中文支持</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'SimHei'</span>]  <span class="co"># 设置字体为黑体</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span>   <span class="co"># 解决负号显示问题</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取比亚迪（002594）股票的前复权日线行情数据</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>byd_stock_data <span class="op">=</span> ak.stock_zh_a_hist(</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    symbol<span class="op">=</span><span class="st">"002594"</span>,</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    period<span class="op">=</span><span class="st">"daily"</span>,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    start_date<span class="op">=</span><span class="st">"20021128"</span>,</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    adjust<span class="op">=</span><span class="st">"qfq"</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 保留日期和收盘价列，并转换日期为 datetime 类型</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>byd_stock_data[<span class="st">"日期"</span>] <span class="op">=</span> pd.to_datetime(byd_stock_data[<span class="st">"日期"</span>])</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>byd_stock_data.set_index(<span class="st">"日期"</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图：收盘价时序图</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>plt.plot(byd_stock_data[<span class="st">"收盘"</span>], color<span class="op">=</span><span class="st">'steelblue'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"比亚迪（002594）前复权收盘价时序图"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"日期"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"收盘价（元）"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1212,25 +1212,25 @@ Covariance estimator: robust</code></pre>
 </div>
 </div>
 <div id="cell-17" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># 设置时间范围</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>start_date <span class="op">=</span> <span class="st">"2015-01-01"</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a>end_date <span class="op">=</span> <span class="st">"2021-12-31"</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="co"># 筛选指定时间范围内的数据</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a>byd_stock_data_filtered <span class="op">=</span> byd_stock_data.loc[start_date:end_date]</span>
-<span id="cb9-7"><a href="#cb9-7"></a></span>
-<span id="cb9-8"><a href="#cb9-8"></a><span class="co"># 计算日收益率</span></span>
-<span id="cb9-9"><a href="#cb9-9"></a>byd_stock_data_filtered[<span class="st">'日收益率'</span>] <span class="op">=</span> byd_stock_data_filtered[<span class="st">'收盘'</span>].pct_change() <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb9-10"><a href="#cb9-10"></a></span>
-<span id="cb9-11"><a href="#cb9-11"></a><span class="co"># 绘制收益率趋势图</span></span>
-<span id="cb9-12"><a href="#cb9-12"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
-<span id="cb9-13"><a href="#cb9-13"></a>plt.plot(byd_stock_data_filtered.index, byd_stock_data_filtered[<span class="st">'日收益率'</span>], color<span class="op">=</span><span class="st">'steelblue'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb9-14"><a href="#cb9-14"></a>plt.title(<span class="st">"比亚迪（002594）日收益率趋势图"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb9-15"><a href="#cb9-15"></a>plt.xlabel(<span class="st">"日期"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb9-16"><a href="#cb9-16"></a>plt.ylabel(<span class="st">"日收益率（%）"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb9-17"><a href="#cb9-17"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb9-18"><a href="#cb9-18"></a>plt.tight_layout()</span>
-<span id="cb9-19"><a href="#cb9-19"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置时间范围</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>start_date <span class="op">=</span> <span class="st">"2015-01-01"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>end_date <span class="op">=</span> <span class="st">"2021-12-31"</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 筛选指定时间范围内的数据</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>byd_stock_data_filtered <span class="op">=</span> byd_stock_data.loc[start_date:end_date]</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算日收益率</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>byd_stock_data_filtered[<span class="st">'日收益率'</span>] <span class="op">=</span> byd_stock_data_filtered[<span class="st">'收盘'</span>].pct_change() <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制收益率趋势图</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>plt.plot(byd_stock_data_filtered.index, byd_stock_data_filtered[<span class="st">'日收益率'</span>], color<span class="op">=</span><span class="st">'steelblue'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"比亚迪（002594）日收益率趋势图"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"日期"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"日收益率（%）"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1240,15 +1240,15 @@ Covariance estimator: robust</code></pre>
 </div>
 </div>
 <div id="cell-18" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># 绘制日收益率平方的时序图</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
-<span id="cb10-3"><a href="#cb10-3"></a>plt.plot(byd_stock_data_filtered.index, byd_stock_data_filtered[<span class="st">'日收益率'</span>]<span class="op">**</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">'darkorange'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb10-4"><a href="#cb10-4"></a>plt.title(<span class="st">"比亚迪（002594）日收益率平方时序图"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb10-5"><a href="#cb10-5"></a>plt.xlabel(<span class="st">"日期"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb10-6"><a href="#cb10-6"></a>plt.ylabel(<span class="st">"日收益率平方"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb10-7"><a href="#cb10-7"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb10-8"><a href="#cb10-8"></a>plt.tight_layout()</span>
-<span id="cb10-9"><a href="#cb10-9"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制日收益率平方的时序图</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.plot(byd_stock_data_filtered.index, byd_stock_data_filtered[<span class="st">'日收益率'</span>]<span class="op">**</span><span class="dv">2</span>, color<span class="op">=</span><span class="st">'darkorange'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"比亚迪（002594）日收益率平方时序图"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"日期"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"日收益率平方"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1361,7 +1361,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

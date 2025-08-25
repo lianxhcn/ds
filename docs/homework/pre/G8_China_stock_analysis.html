@@ -134,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -142,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -636,52 +636,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>作业描述：<br>
 编写一个 Python 脚本，自动下载中国股票市场的概览数据，并进行简单的统计分析和可视化。</p>
 <div id="5f890682-32c7-4f34-b2a0-2339dff60c4e" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> requests</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> json,time,os,re</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> random</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json,time,os,re</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="t3-1.1下载深交所数据" class="level2" data-number="48.3">
 <h2 data-number="48.3" class="anchored" data-anchor-id="t3-1.1下载深交所数据"><span class="header-section-number">48.3</span> T3-1.1：下载深交所数据</h2>
 <p>数据来源：https://www.szse.cn/market/stock/indicator/index.html</p>
 <div id="ded7cd1d-b50a-409b-9257-e5ba95ad70e8" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">def</span> getSZ(idx,tabName):</span>
-<span id="cb2-2"><a href="#cb2-2"></a>    <span class="cf">for</span> year <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2008</span>,<span class="dv">2026</span>):</span>
-<span id="cb2-3"><a href="#cb2-3"></a>        <span class="cf">if</span> (year <span class="op">&gt;</span> <span class="dv">2021</span> <span class="kw">and</span> tabName <span class="op">==</span> <span class="st">'中小板'</span>) <span class="kw">or</span> (tabName <span class="op">==</span> <span class="st">'主板'</span> <span class="kw">and</span> year<span class="op">==</span><span class="dv">2008</span>) <span class="kw">or</span> (tabName <span class="op">==</span> <span class="st">'创业板'</span> <span class="kw">and</span> year <span class="kw">in</span> [<span class="dv">2008</span>,<span class="dv">2009</span>]):</span>
-<span id="cb2-4"><a href="#cb2-4"></a>            <span class="cf">continue</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>        <span class="cf">if</span> <span class="kw">not</span> os.path.exists(<span class="ss">f'./上市公司总数/深圳_</span><span class="sc">{</span>tabName<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json'</span>):</span>
-<span id="cb2-6"><a href="#cb2-6"></a>            url <span class="op">=</span> <span class="ss">f"https://www.szse.cn/api/report/ShowReport/data?SHOWTYPE=JSON&amp;CATALOGID=1803_after&amp;TABKEY=tab</span><span class="sc">{</span>idx<span class="sc">}</span><span class="ss">&amp;txtQueryDate=</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">-04-26&amp;random=</span><span class="sc">{</span>random<span class="sc">.</span>random()<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>            headers <span class="op">=</span> {</span>
-<span id="cb2-8"><a href="#cb2-8"></a>            <span class="st">"Accept"</span>: <span class="st">"application/json, text/javascript, */*; q=0.01"</span>,</span>
-<span id="cb2-9"><a href="#cb2-9"></a>            <span class="st">"Accept-Encoding"</span>: <span class="st">"gzip, deflate, br, zstd"</span>,</span>
-<span id="cb2-10"><a href="#cb2-10"></a>            <span class="st">"Accept-Language"</span>: <span class="st">"zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7"</span>,</span>
-<span id="cb2-11"><a href="#cb2-11"></a>            <span class="st">"Cache-Control"</span>: <span class="st">"no-cache"</span>,</span>
-<span id="cb2-12"><a href="#cb2-12"></a>            <span class="st">"Content-Type"</span>: <span class="st">"application/json"</span>,</span>
-<span id="cb2-13"><a href="#cb2-13"></a>            <span class="st">"Host"</span>: <span class="st">"www.szse.cn"</span>,</span>
-<span id="cb2-14"><a href="#cb2-14"></a>            <span class="st">"Pragma"</span>: <span class="st">"no-cache"</span>,</span>
-<span id="cb2-15"><a href="#cb2-15"></a>            <span class="st">"Referer"</span>: <span class="st">"https://www.szse.cn/market/stock/indicator/index.html"</span>,</span>
-<span id="cb2-16"><a href="#cb2-16"></a>            <span class="st">"Sec-Fetch-Dest"</span>: <span class="st">"empty"</span>,</span>
-<span id="cb2-17"><a href="#cb2-17"></a>            <span class="st">"Sec-Fetch-Mode"</span>: <span class="st">"cors"</span>,</span>
-<span id="cb2-18"><a href="#cb2-18"></a>            <span class="st">"Sec-Fetch-Site"</span>: <span class="st">"same-origin"</span>,</span>
-<span id="cb2-19"><a href="#cb2-19"></a>            <span class="st">"User-Agent"</span>: <span class="st">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"</span>,</span>
-<span id="cb2-20"><a href="#cb2-20"></a>            <span class="st">"X-Request-Type"</span>: <span class="st">"ajax"</span>,</span>
-<span id="cb2-21"><a href="#cb2-21"></a>            <span class="st">"X-Requested-With"</span>: <span class="st">"XMLHttpRequest"</span>,</span>
-<span id="cb2-22"><a href="#cb2-22"></a>            <span class="st">"sec-ch-ua"</span>: <span class="st">"</span><span class="ch">\"</span><span class="st">Chromium</span><span class="ch">\"</span><span class="st">;v=</span><span class="ch">\"</span><span class="st">136</span><span class="ch">\"</span><span class="st">, </span><span class="ch">\"</span><span class="st">Google Chrome</span><span class="ch">\"</span><span class="st">;v=</span><span class="ch">\"</span><span class="st">136</span><span class="ch">\"</span><span class="st">, </span><span class="ch">\"</span><span class="st">Not.A/Brand</span><span class="ch">\"</span><span class="st">;v=</span><span class="ch">\"</span><span class="st">99</span><span class="ch">\"</span><span class="st">"</span>,</span>
-<span id="cb2-23"><a href="#cb2-23"></a>            <span class="st">"sec-ch-ua-mobile"</span>: <span class="st">"?0"</span>,</span>
-<span id="cb2-24"><a href="#cb2-24"></a>            <span class="st">"sec-ch-ua-platform"</span>: <span class="st">"Windows"</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a>            }</span>
-<span id="cb2-26"><a href="#cb2-26"></a>            response <span class="op">=</span> requests.get(url,headers<span class="op">=</span>headers).json()</span>
-<span id="cb2-27"><a href="#cb2-27"></a>            <span class="cf">with</span> <span class="bu">open</span>(<span class="ss">f'./上市公司总数/深圳_</span><span class="sc">{</span>tabName<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json'</span>,<span class="st">'w'</span>,encoding<span class="op">=</span><span class="st">'utf-8'</span>) <span class="im">as</span> f:</span>
-<span id="cb2-28"><a href="#cb2-28"></a>                json.dump(response,f,indent<span class="op">=</span><span class="dv">4</span>,ensure_ascii<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb2-29"><a href="#cb2-29"></a>            <span class="bu">print</span>(<span class="ss">f'./上市公司总数/深圳_</span><span class="sc">{</span>tabName<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json done..'</span>)</span>
-<span id="cb2-30"><a href="#cb2-30"></a>        <span class="cf">else</span>:</span>
-<span id="cb2-31"><a href="#cb2-31"></a>            <span class="bu">print</span>(<span class="ss">f'./上市公司总数/深圳_</span><span class="sc">{</span>tabName<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json existed..'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> getSZ(idx,tabName):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> year <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2008</span>,<span class="dv">2026</span>):</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (year <span class="op">&gt;</span> <span class="dv">2021</span> <span class="kw">and</span> tabName <span class="op">==</span> <span class="st">'中小板'</span>) <span class="kw">or</span> (tabName <span class="op">==</span> <span class="st">'主板'</span> <span class="kw">and</span> year<span class="op">==</span><span class="dv">2008</span>) <span class="kw">or</span> (tabName <span class="op">==</span> <span class="st">'创业板'</span> <span class="kw">and</span> year <span class="kw">in</span> [<span class="dv">2008</span>,<span class="dv">2009</span>]):</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> os.path.exists(<span class="ss">f'./上市公司总数/深圳_</span><span class="sc">{</span>tabName<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json'</span>):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            url <span class="op">=</span> <span class="ss">f"https://www.szse.cn/api/report/ShowReport/data?SHOWTYPE=JSON&amp;CATALOGID=1803_after&amp;TABKEY=tab</span><span class="sc">{</span>idx<span class="sc">}</span><span class="ss">&amp;txtQueryDate=</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">-04-26&amp;random=</span><span class="sc">{</span>random<span class="sc">.</span>random()<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            headers <span class="op">=</span> {</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Accept"</span>: <span class="st">"application/json, text/javascript, */*; q=0.01"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Accept-Encoding"</span>: <span class="st">"gzip, deflate, br, zstd"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Accept-Language"</span>: <span class="st">"zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7"</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Cache-Control"</span>: <span class="st">"no-cache"</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Content-Type"</span>: <span class="st">"application/json"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Host"</span>: <span class="st">"www.szse.cn"</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Pragma"</span>: <span class="st">"no-cache"</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Referer"</span>: <span class="st">"https://www.szse.cn/market/stock/indicator/index.html"</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Sec-Fetch-Dest"</span>: <span class="st">"empty"</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Sec-Fetch-Mode"</span>: <span class="st">"cors"</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Sec-Fetch-Site"</span>: <span class="st">"same-origin"</span>,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">"User-Agent"</span>: <span class="st">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>            <span class="st">"X-Request-Type"</span>: <span class="st">"ajax"</span>,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>            <span class="st">"X-Requested-With"</span>: <span class="st">"XMLHttpRequest"</span>,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>            <span class="st">"sec-ch-ua"</span>: <span class="st">"</span><span class="ch">\"</span><span class="st">Chromium</span><span class="ch">\"</span><span class="st">;v=</span><span class="ch">\"</span><span class="st">136</span><span class="ch">\"</span><span class="st">, </span><span class="ch">\"</span><span class="st">Google Chrome</span><span class="ch">\"</span><span class="st">;v=</span><span class="ch">\"</span><span class="st">136</span><span class="ch">\"</span><span class="st">, </span><span class="ch">\"</span><span class="st">Not.A/Brand</span><span class="ch">\"</span><span class="st">;v=</span><span class="ch">\"</span><span class="st">99</span><span class="ch">\"</span><span class="st">"</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>            <span class="st">"sec-ch-ua-mobile"</span>: <span class="st">"?0"</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>            <span class="st">"sec-ch-ua-platform"</span>: <span class="st">"Windows"</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>            response <span class="op">=</span> requests.get(url,headers<span class="op">=</span>headers).json()</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>            <span class="cf">with</span> <span class="bu">open</span>(<span class="ss">f'./上市公司总数/深圳_</span><span class="sc">{</span>tabName<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json'</span>,<span class="st">'w'</span>,encoding<span class="op">=</span><span class="st">'utf-8'</span>) <span class="im">as</span> f:</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>                json.dump(response,f,indent<span class="op">=</span><span class="dv">4</span>,ensure_ascii<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f'./上市公司总数/深圳_</span><span class="sc">{</span>tabName<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json done..'</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f'./上市公司总数/深圳_</span><span class="sc">{</span>tabName<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json existed..'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="a8714a07-f387-4bc1-9a9d-04814f4b3dad" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>getSZ(<span class="dv">2</span>,<span class="st">"主板"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2"></a>getSZ(<span class="dv">3</span>,<span class="st">'中小板'</span>)</span>
-<span id="cb3-3"><a href="#cb3-3"></a>getSZ(<span class="dv">4</span>,<span class="st">"创业板"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>getSZ(<span class="dv">2</span>,<span class="st">"主板"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>getSZ(<span class="dv">3</span>,<span class="st">'中小板'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>getSZ(<span class="dv">4</span>,<span class="st">"创业板"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>./上市公司总数/深圳_主板_2009.json existed..
 ./上市公司总数/深圳_主板_2010.json existed..
@@ -737,35 +737,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="48.4" class="anchored" data-anchor-id="t3-1.2下载上交所数据"><span class="header-section-number">48.4</span> T3-1.2：下载上交所数据</h2>
 <p>数据来源：https://www.sse.com.cn/market/view/</p>
 <div id="2c225fc7-2f23-4646-8d4b-8336dcd95f76" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">def</span> getSH():</span>
-<span id="cb5-2"><a href="#cb5-2"></a>    <span class="cf">for</span> year <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1999</span>,<span class="dv">2026</span>):</span>
-<span id="cb5-3"><a href="#cb5-3"></a>        <span class="cf">if</span> <span class="kw">not</span> os.path.exists(<span class="ss">f'./上市公司总数/上海_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json'</span>):</span>
-<span id="cb5-4"><a href="#cb5-4"></a>            url <span class="op">=</span> <span class="ss">f"https://query.sse.com.cn/commonQuery.do?jsonCallBack=jsonpCallback9178123</span><span class="sc">{</span>random<span class="sc">.</span>randint(<span class="dv">1</span>,<span class="dv">9</span>)<span class="sc">}</span><span class="ss">&amp;isPagination=false&amp;sqlId=COMMON_SSE_SJ_SCGM_C&amp;TRADE_DATE=</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">-04-01&amp;_=</span><span class="sc">{</span><span class="bu">int</span>(time.time()<span class="op">*</span><span class="dv">1000</span>)<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>            headers <span class="op">=</span> {</span>
-<span id="cb5-6"><a href="#cb5-6"></a>                <span class="st">"accept"</span>: <span class="st">"*/*"</span>,</span>
-<span id="cb5-7"><a href="#cb5-7"></a>                <span class="st">"accept-encoding"</span>: <span class="st">"gzip, deflate, br, zstd"</span>,</span>
-<span id="cb5-8"><a href="#cb5-8"></a>                <span class="st">"accept-language"</span>: <span class="st">"zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7"</span>,</span>
-<span id="cb5-9"><a href="#cb5-9"></a>                <span class="st">"cache-control"</span>: <span class="st">"no-cache"</span>,</span>
-<span id="cb5-10"><a href="#cb5-10"></a>                <span class="st">"connection"</span>: <span class="st">"keep-alive"</span>,</span>
-<span id="cb5-11"><a href="#cb5-11"></a>                <span class="st">"cookie"</span>: <span class="st">"gdp_user_id=gioenc-7ad16db8%2Cab74%2C567c%2C894g%2C49dg262gc899; ba17301551dcbaf9_gdp_session_id=7afc67b1-5607-46e3-b50c-d467c7a2f80b; ba17301551dcbaf9_gdp_session_id_sent=7afc67b1-5607-46e3-b50c-d467c7a2f80b; ba17301551dcbaf9_gdp_sequence_ids={</span><span class="sc">%22g</span><span class="st">lobalKey%22:80%2C%22VISIT%22:3%2C%22PAGE%22:11%2C%22VIEW_CLICK%22:68}"</span>,</span>
-<span id="cb5-12"><a href="#cb5-12"></a>                <span class="st">"host"</span>: <span class="st">"query.sse.com.cn"</span>,</span>
-<span id="cb5-13"><a href="#cb5-13"></a>                <span class="st">"pragma"</span>: <span class="st">"no-cache"</span>,</span>
-<span id="cb5-14"><a href="#cb5-14"></a>                <span class="st">"referer"</span>: <span class="st">"https://www.sse.com.cn/"</span>,</span>
-<span id="cb5-15"><a href="#cb5-15"></a>                <span class="st">"sec-ch-ua"</span>: <span class="st">"</span><span class="ch">\"</span><span class="st">Chromium</span><span class="ch">\"</span><span class="st">;v=</span><span class="ch">\"</span><span class="st">136</span><span class="ch">\"</span><span class="st">, </span><span class="ch">\"</span><span class="st">Google Chrome</span><span class="ch">\"</span><span class="st">;v=</span><span class="ch">\"</span><span class="st">136</span><span class="ch">\"</span><span class="st">, </span><span class="ch">\"</span><span class="st">Not.A/Brand</span><span class="ch">\"</span><span class="st">;v=</span><span class="ch">\"</span><span class="st">99</span><span class="ch">\"</span><span class="st">"</span>,</span>
-<span id="cb5-16"><a href="#cb5-16"></a>                <span class="st">"sec-ch-ua-mobile"</span>: <span class="st">"?0"</span>,</span>
-<span id="cb5-17"><a href="#cb5-17"></a>                <span class="st">"sec-ch-ua-platform"</span>: <span class="st">"Windows"</span>,</span>
-<span id="cb5-18"><a href="#cb5-18"></a>                <span class="st">"sec-fetch-dest"</span>: <span class="st">"script"</span>,</span>
-<span id="cb5-19"><a href="#cb5-19"></a>                <span class="st">"sec-fetch-mode"</span>: <span class="st">"no-cors"</span>,</span>
-<span id="cb5-20"><a href="#cb5-20"></a>                <span class="st">"sec-fetch-site"</span>: <span class="st">"same-site"</span>,</span>
-<span id="cb5-21"><a href="#cb5-21"></a>                <span class="st">"user-agent"</span>: <span class="st">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"</span></span>
-<span id="cb5-22"><a href="#cb5-22"></a>            }</span>
-<span id="cb5-23"><a href="#cb5-23"></a>            response <span class="op">=</span> requests.get(url,headers<span class="op">=</span>headers).text</span>
-<span id="cb5-24"><a href="#cb5-24"></a>            res <span class="op">=</span> json.loads(re.findall(<span class="st">"\((\{.*})\)"</span>,response)[<span class="dv">0</span>])</span>
-<span id="cb5-25"><a href="#cb5-25"></a>            <span class="cf">with</span> <span class="bu">open</span>(<span class="ss">f'./上市公司总数/上海_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json'</span>,<span class="st">'w'</span>,encoding<span class="op">=</span><span class="st">'utf-8'</span>) <span class="im">as</span> f:</span>
-<span id="cb5-26"><a href="#cb5-26"></a>                json.dump(res,f,indent<span class="op">=</span><span class="dv">4</span>,ensure_ascii<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb5-27"><a href="#cb5-27"></a>            <span class="bu">print</span>(<span class="ss">f'./上市公司总数/上海_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json done..'</span>)</span>
-<span id="cb5-28"><a href="#cb5-28"></a>        <span class="cf">else</span>:</span>
-<span id="cb5-29"><a href="#cb5-29"></a>            <span class="bu">print</span>(<span class="ss">f'./上市公司总数/上海_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json existed..'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> getSH():</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> year <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1999</span>,<span class="dv">2026</span>):</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> os.path.exists(<span class="ss">f'./上市公司总数/上海_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json'</span>):</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>            url <span class="op">=</span> <span class="ss">f"https://query.sse.com.cn/commonQuery.do?jsonCallBack=jsonpCallback9178123</span><span class="sc">{</span>random<span class="sc">.</span>randint(<span class="dv">1</span>,<span class="dv">9</span>)<span class="sc">}</span><span class="ss">&amp;isPagination=false&amp;sqlId=COMMON_SSE_SJ_SCGM_C&amp;TRADE_DATE=</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">-04-01&amp;_=</span><span class="sc">{</span><span class="bu">int</span>(time.time()<span class="op">*</span><span class="dv">1000</span>)<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>            headers <span class="op">=</span> {</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                <span class="st">"accept"</span>: <span class="st">"*/*"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                <span class="st">"accept-encoding"</span>: <span class="st">"gzip, deflate, br, zstd"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">"accept-language"</span>: <span class="st">"zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                <span class="st">"cache-control"</span>: <span class="st">"no-cache"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">"connection"</span>: <span class="st">"keep-alive"</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                <span class="st">"cookie"</span>: <span class="st">"gdp_user_id=gioenc-7ad16db8%2Cab74%2C567c%2C894g%2C49dg262gc899; ba17301551dcbaf9_gdp_session_id=7afc67b1-5607-46e3-b50c-d467c7a2f80b; ba17301551dcbaf9_gdp_session_id_sent=7afc67b1-5607-46e3-b50c-d467c7a2f80b; ba17301551dcbaf9_gdp_sequence_ids={</span><span class="sc">%22g</span><span class="st">lobalKey%22:80%2C%22VISIT%22:3%2C%22PAGE%22:11%2C%22VIEW_CLICK%22:68}"</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>                <span class="st">"host"</span>: <span class="st">"query.sse.com.cn"</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>                <span class="st">"pragma"</span>: <span class="st">"no-cache"</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>                <span class="st">"referer"</span>: <span class="st">"https://www.sse.com.cn/"</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>                <span class="st">"sec-ch-ua"</span>: <span class="st">"</span><span class="ch">\"</span><span class="st">Chromium</span><span class="ch">\"</span><span class="st">;v=</span><span class="ch">\"</span><span class="st">136</span><span class="ch">\"</span><span class="st">, </span><span class="ch">\"</span><span class="st">Google Chrome</span><span class="ch">\"</span><span class="st">;v=</span><span class="ch">\"</span><span class="st">136</span><span class="ch">\"</span><span class="st">, </span><span class="ch">\"</span><span class="st">Not.A/Brand</span><span class="ch">\"</span><span class="st">;v=</span><span class="ch">\"</span><span class="st">99</span><span class="ch">\"</span><span class="st">"</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>                <span class="st">"sec-ch-ua-mobile"</span>: <span class="st">"?0"</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>                <span class="st">"sec-ch-ua-platform"</span>: <span class="st">"Windows"</span>,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>                <span class="st">"sec-fetch-dest"</span>: <span class="st">"script"</span>,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>                <span class="st">"sec-fetch-mode"</span>: <span class="st">"no-cors"</span>,</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>                <span class="st">"sec-fetch-site"</span>: <span class="st">"same-site"</span>,</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>                <span class="st">"user-agent"</span>: <span class="st">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>            response <span class="op">=</span> requests.get(url,headers<span class="op">=</span>headers).text</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>            res <span class="op">=</span> json.loads(re.findall(<span class="st">"\((\{.*})\)"</span>,response)[<span class="dv">0</span>])</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">with</span> <span class="bu">open</span>(<span class="ss">f'./上市公司总数/上海_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json'</span>,<span class="st">'w'</span>,encoding<span class="op">=</span><span class="st">'utf-8'</span>) <span class="im">as</span> f:</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>                json.dump(res,f,indent<span class="op">=</span><span class="dv">4</span>,ensure_ascii<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f'./上市公司总数/上海_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json done..'</span>)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f'./上市公司总数/上海_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json existed..'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>&lt;&gt;:24: SyntaxWarning: invalid escape sequence '\('
 &lt;&gt;:24: SyntaxWarning: invalid escape sequence '\('
@@ -774,7 +774,7 @@ C:\Users\xiaor\AppData\Local\Temp\ipykernel_4016\1144392208.py:24: SyntaxWarning
 </div>
 </div>
 <div id="a486f220-194a-4b46-94c2-75741c83ba04" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>getSH()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>getSH()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>./上市公司总数/上海_1999.json existed..
 ./上市公司总数/上海_2000.json existed..
@@ -810,42 +810,42 @@ C:\Users\xiaor\AppData\Local\Temp\ipykernel_4016\1144392208.py:24: SyntaxWarning
 <h2 data-number="48.5" class="anchored" data-anchor-id="t3-1.3下载北交所数据"><span class="header-section-number">48.5</span> T3-1.3：下载北交所数据</h2>
 <p>数据来源：https://www.bse.cn/static/statisticdata.html</p>
 <div id="76c4ce5c-1759-4dbc-99cd-6b8785cdfe98" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">def</span> getBJ():</span>
-<span id="cb9-2"><a href="#cb9-2"></a>    <span class="cf">for</span> year <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2022</span>,<span class="dv">2026</span>):</span>
-<span id="cb9-3"><a href="#cb9-3"></a>        <span class="cf">if</span> <span class="kw">not</span> os.path.exists(<span class="ss">f'./上市公司总数/北交所_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json'</span>):</span>
-<span id="cb9-4"><a href="#cb9-4"></a>            url <span class="op">=</span> <span class="st">"https://www.bse.cn/marketStatController/dailyReport.do?callback=jQuery331_1748198810903"</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a>            headers <span class="op">=</span> {</span>
-<span id="cb9-6"><a href="#cb9-6"></a>                <span class="st">"Accept"</span>: <span class="st">"text/javascript, application/javascript, application/ecmascript, application/x-ecmascript, */*; q=0.01"</span>,</span>
-<span id="cb9-7"><a href="#cb9-7"></a>                <span class="st">"Accept-Encoding"</span>: <span class="st">"gzip, deflate, br, zstd"</span>,</span>
-<span id="cb9-8"><a href="#cb9-8"></a>                <span class="st">"Accept-Language"</span>: <span class="st">"zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7"</span>,</span>
-<span id="cb9-9"><a href="#cb9-9"></a>                <span class="st">"Cache-Control"</span>: <span class="st">"no-cache"</span>,</span>
-<span id="cb9-10"><a href="#cb9-10"></a>                <span class="st">"Connection"</span>: <span class="st">"keep-alive"</span>,</span>
-<span id="cb9-11"><a href="#cb9-11"></a>                <span class="st">"Content-Length"</span>: <span class="st">"15"</span>,</span>
-<span id="cb9-12"><a href="#cb9-12"></a>                <span class="st">"Content-Type"</span>: <span class="st">"application/x-www-form-urlencoded; charset=UTF-8"</span>,</span>
-<span id="cb9-13"><a href="#cb9-13"></a>                <span class="st">"Cookie"</span>: <span class="st">"Hm_lvt_ef6193a308904a92936b38108b93bd7f=1748198764; HMACCOUNT=22BC53625476F081; Hm_lpvt_ef6193a308904a92936b38108b93bd7f=1748198811; C3VK=ae7d82"</span>,</span>
-<span id="cb9-14"><a href="#cb9-14"></a>                <span class="st">"Host"</span>: <span class="st">"www.bse.cn"</span>,</span>
-<span id="cb9-15"><a href="#cb9-15"></a>                <span class="st">"Origin"</span>: <span class="st">"https://www.bse.cn"</span>,</span>
-<span id="cb9-16"><a href="#cb9-16"></a>                <span class="st">"Pragma"</span>: <span class="st">"no-cache"</span>,</span>
-<span id="cb9-17"><a href="#cb9-17"></a>                <span class="st">"Referer"</span>: <span class="st">"https://www.bse.cn/static/statisticdata.html"</span>,</span>
-<span id="cb9-18"><a href="#cb9-18"></a>                <span class="st">"Sec-Fetch-Dest"</span>: <span class="st">"empty"</span>,</span>
-<span id="cb9-19"><a href="#cb9-19"></a>                <span class="st">"Sec-Fetch-Mode"</span>: <span class="st">"cors"</span>,</span>
-<span id="cb9-20"><a href="#cb9-20"></a>                <span class="st">"Sec-Fetch-Site"</span>: <span class="st">"same-origin"</span>,</span>
-<span id="cb9-21"><a href="#cb9-21"></a>                <span class="st">"User-Agent"</span>: <span class="st">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"</span>,</span>
-<span id="cb9-22"><a href="#cb9-22"></a>                <span class="st">"X-Requested-With"</span>: <span class="st">"XMLHttpRequest"</span>,</span>
-<span id="cb9-23"><a href="#cb9-23"></a>                <span class="st">"sec-ch-ua"</span>: <span class="st">"</span><span class="ch">\"</span><span class="st">Chromium</span><span class="ch">\"</span><span class="st">;v=</span><span class="ch">\"</span><span class="st">136</span><span class="ch">\"</span><span class="st">, </span><span class="ch">\"</span><span class="st">Google Chrome</span><span class="ch">\"</span><span class="st">;v=</span><span class="ch">\"</span><span class="st">136</span><span class="ch">\"</span><span class="st">, </span><span class="ch">\"</span><span class="st">Not.A/Brand</span><span class="ch">\"</span><span class="st">;v=</span><span class="ch">\"</span><span class="st">99</span><span class="ch">\"</span><span class="st">"</span>,</span>
-<span id="cb9-24"><a href="#cb9-24"></a>                <span class="st">"sec-ch-ua-mobile"</span>: <span class="st">"?0"</span>,</span>
-<span id="cb9-25"><a href="#cb9-25"></a>                <span class="st">"sec-ch-ua-platform"</span>: <span class="st">"Windows"</span></span>
-<span id="cb9-26"><a href="#cb9-26"></a>            }</span>
-<span id="cb9-27"><a href="#cb9-27"></a>            payload <span class="op">=</span> {</span>
-<span id="cb9-28"><a href="#cb9-28"></a>                <span class="st">'HQJSRQ'</span>: <span class="ss">f"</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">0523"</span></span>
-<span id="cb9-29"><a href="#cb9-29"></a>            }</span>
-<span id="cb9-30"><a href="#cb9-30"></a>            response <span class="op">=</span> requests.post(url,headers<span class="op">=</span>headers,data<span class="op">=</span>payload).text</span>
-<span id="cb9-31"><a href="#cb9-31"></a>            res <span class="op">=</span> json.loads(re.findall(<span class="st">'\((.*)\)'</span>,response)[<span class="dv">0</span>])</span>
-<span id="cb9-32"><a href="#cb9-32"></a>            <span class="cf">with</span> <span class="bu">open</span>(<span class="ss">f'./上市公司总数/北交所_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json'</span>,<span class="st">'w'</span>,encoding<span class="op">=</span><span class="st">'utf-8'</span>) <span class="im">as</span> f:</span>
-<span id="cb9-33"><a href="#cb9-33"></a>                json.dump(res,f,indent<span class="op">=</span><span class="dv">4</span>,ensure_ascii<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb9-34"><a href="#cb9-34"></a>            <span class="bu">print</span>(<span class="ss">f'./上市公司总数/北交所_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json done..'</span>)</span>
-<span id="cb9-35"><a href="#cb9-35"></a>        <span class="cf">else</span>:</span>
-<span id="cb9-36"><a href="#cb9-36"></a>            <span class="bu">print</span>(<span class="ss">f'./上市公司总数/北交所_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json existed..'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> getBJ():</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> year <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2022</span>,<span class="dv">2026</span>):</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> os.path.exists(<span class="ss">f'./上市公司总数/北交所_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json'</span>):</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>            url <span class="op">=</span> <span class="st">"https://www.bse.cn/marketStatController/dailyReport.do?callback=jQuery331_1748198810903"</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>            headers <span class="op">=</span> {</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Accept"</span>: <span class="st">"text/javascript, application/javascript, application/ecmascript, application/x-ecmascript, */*; q=0.01"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Accept-Encoding"</span>: <span class="st">"gzip, deflate, br, zstd"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Accept-Language"</span>: <span class="st">"zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7"</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Cache-Control"</span>: <span class="st">"no-cache"</span>,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Connection"</span>: <span class="st">"keep-alive"</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Content-Length"</span>: <span class="st">"15"</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Content-Type"</span>: <span class="st">"application/x-www-form-urlencoded; charset=UTF-8"</span>,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Cookie"</span>: <span class="st">"Hm_lvt_ef6193a308904a92936b38108b93bd7f=1748198764; HMACCOUNT=22BC53625476F081; Hm_lpvt_ef6193a308904a92936b38108b93bd7f=1748198811; C3VK=ae7d82"</span>,</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Host"</span>: <span class="st">"www.bse.cn"</span>,</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Origin"</span>: <span class="st">"https://www.bse.cn"</span>,</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Pragma"</span>: <span class="st">"no-cache"</span>,</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Referer"</span>: <span class="st">"https://www.bse.cn/static/statisticdata.html"</span>,</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Sec-Fetch-Dest"</span>: <span class="st">"empty"</span>,</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Sec-Fetch-Mode"</span>: <span class="st">"cors"</span>,</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Sec-Fetch-Site"</span>: <span class="st">"same-origin"</span>,</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>                <span class="st">"User-Agent"</span>: <span class="st">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"</span>,</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>                <span class="st">"X-Requested-With"</span>: <span class="st">"XMLHttpRequest"</span>,</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>                <span class="st">"sec-ch-ua"</span>: <span class="st">"</span><span class="ch">\"</span><span class="st">Chromium</span><span class="ch">\"</span><span class="st">;v=</span><span class="ch">\"</span><span class="st">136</span><span class="ch">\"</span><span class="st">, </span><span class="ch">\"</span><span class="st">Google Chrome</span><span class="ch">\"</span><span class="st">;v=</span><span class="ch">\"</span><span class="st">136</span><span class="ch">\"</span><span class="st">, </span><span class="ch">\"</span><span class="st">Not.A/Brand</span><span class="ch">\"</span><span class="st">;v=</span><span class="ch">\"</span><span class="st">99</span><span class="ch">\"</span><span class="st">"</span>,</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>                <span class="st">"sec-ch-ua-mobile"</span>: <span class="st">"?0"</span>,</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>                <span class="st">"sec-ch-ua-platform"</span>: <span class="st">"Windows"</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>            payload <span class="op">=</span> {</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>                <span class="st">'HQJSRQ'</span>: <span class="ss">f"</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">0523"</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>            response <span class="op">=</span> requests.post(url,headers<span class="op">=</span>headers,data<span class="op">=</span>payload).text</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>            res <span class="op">=</span> json.loads(re.findall(<span class="st">'\((.*)\)'</span>,response)[<span class="dv">0</span>])</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>            <span class="cf">with</span> <span class="bu">open</span>(<span class="ss">f'./上市公司总数/北交所_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json'</span>,<span class="st">'w'</span>,encoding<span class="op">=</span><span class="st">'utf-8'</span>) <span class="im">as</span> f:</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>                json.dump(res,f,indent<span class="op">=</span><span class="dv">4</span>,ensure_ascii<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f'./上市公司总数/北交所_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json done..'</span>)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f'./上市公司总数/北交所_</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.json existed..'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>&lt;&gt;:31: SyntaxWarning: invalid escape sequence '\('
 &lt;&gt;:31: SyntaxWarning: invalid escape sequence '\('
@@ -854,7 +854,7 @@ C:\Users\xiaor\AppData\Local\Temp\ipykernel_4016\1700096796.py:31: SyntaxWarning
 </div>
 </div>
 <div id="b8aa86f5-606e-4a3d-b67b-ea641e1d191e" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>getBJ()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>getBJ()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>./上市公司总数/北交所_2022.json existed..
 ./上市公司总数/北交所_2023.json existed..
@@ -866,42 +866,42 @@ C:\Users\xiaor\AppData\Local\Temp\ipykernel_4016\1700096796.py:31: SyntaxWarning
 <section id="t3-2.1上市公司数量统计和可视化" class="level2" data-number="48.6">
 <h2 data-number="48.6" class="anchored" data-anchor-id="t3-2.1上市公司数量统计和可视化"><span class="header-section-number">48.6</span> T3-2.1：上市公司数量统计和可视化</h2>
 <div id="ae10f0f7-834a-4f58-8569-8fb1ccb8b96f" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>datalist <span class="op">=</span> []</span>
-<span id="cb13-2"><a href="#cb13-2"></a>files <span class="op">=</span> os.listdir(<span class="st">'上市公司总数'</span>)</span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="cf">for</span> <span class="bu">file</span> <span class="kw">in</span> files:</span>
-<span id="cb13-4"><a href="#cb13-4"></a>    <span class="cf">if</span> <span class="bu">file</span>.startswith(<span class="st">'.'</span>):</span>
-<span id="cb13-5"><a href="#cb13-5"></a>        <span class="cf">continue</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="ss">f'./上市公司总数/</span><span class="sc">{</span><span class="bu">file</span><span class="sc">}</span><span class="ss">'</span>,<span class="st">'r'</span>,encoding<span class="op">=</span><span class="st">'utf-8'</span>) <span class="im">as</span> f:</span>
-<span id="cb13-7"><a href="#cb13-7"></a>        obj <span class="op">=</span> json.load(f)</span>
-<span id="cb13-8"><a href="#cb13-8"></a>    year <span class="op">=</span> <span class="bu">file</span>.split(<span class="st">'_'</span>)[<span class="op">-</span><span class="dv">1</span>].split(<span class="st">'.'</span>)[<span class="dv">0</span>]</span>
-<span id="cb13-9"><a href="#cb13-9"></a>    <span class="cf">if</span> <span class="bu">file</span>.startswith(<span class="st">'深圳'</span>):</span>
-<span id="cb13-10"><a href="#cb13-10"></a>        tabName <span class="op">=</span> <span class="bu">file</span>.split(<span class="st">'_'</span>)[<span class="dv">1</span>]</span>
-<span id="cb13-11"><a href="#cb13-11"></a>        <span class="cf">if</span> tabName <span class="op">==</span> <span class="st">'主板'</span>:</span>
-<span id="cb13-12"><a href="#cb13-12"></a>            num <span class="op">=</span> obj[<span class="dv">1</span>][<span class="st">"data"</span>][<span class="dv">1</span>][<span class="st">"today"</span>].replace(<span class="st">','</span>,<span class="st">''</span>)</span>
-<span id="cb13-13"><a href="#cb13-13"></a>        <span class="cf">elif</span> tabName <span class="op">==</span> <span class="st">'中小板'</span>:</span>
-<span id="cb13-14"><a href="#cb13-14"></a>            num <span class="op">=</span> obj[<span class="dv">2</span>][<span class="st">"data"</span>][<span class="dv">1</span>][<span class="st">"today"</span>].replace(<span class="st">','</span>,<span class="st">''</span>)</span>
-<span id="cb13-15"><a href="#cb13-15"></a>        <span class="cf">else</span>:</span>
-<span id="cb13-16"><a href="#cb13-16"></a>            <span class="bu">print</span>(<span class="bu">file</span>)</span>
-<span id="cb13-17"><a href="#cb13-17"></a>            num <span class="op">=</span> obj[<span class="op">-</span><span class="dv">1</span>][<span class="st">"data"</span>][<span class="dv">1</span>][<span class="st">"today"</span>].replace(<span class="st">','</span>,<span class="st">''</span>)</span>
-<span id="cb13-18"><a href="#cb13-18"></a>        year <span class="op">=</span> <span class="bu">file</span>.split(<span class="st">'_'</span>)[<span class="dv">2</span>].split(<span class="st">'.'</span>)[<span class="dv">0</span>]</span>
-<span id="cb13-19"><a href="#cb13-19"></a>        datalist.append([<span class="st">'深圳'</span>,year,tabName,num])</span>
-<span id="cb13-20"><a href="#cb13-20"></a>    <span class="cf">elif</span> <span class="bu">file</span>.startswith(<span class="st">'上海'</span>): </span>
-<span id="cb13-21"><a href="#cb13-21"></a>        results <span class="op">=</span> obj[<span class="st">'result'</span>]</span>
-<span id="cb13-22"><a href="#cb13-22"></a>        <span class="cf">for</span> result <span class="kw">in</span> results:</span>
-<span id="cb13-23"><a href="#cb13-23"></a>            <span class="cf">if</span> result[<span class="st">'PRODUCT_NAME'</span>] <span class="kw">in</span> [<span class="st">'股票'</span>,<span class="st">'主板A'</span>,<span class="st">'主板B'</span>,<span class="st">"科创板"</span>]:</span>
-<span id="cb13-24"><a href="#cb13-24"></a>                tabName <span class="op">=</span> result[<span class="st">'PRODUCT_NAME'</span>]</span>
-<span id="cb13-25"><a href="#cb13-25"></a>                num <span class="op">=</span> result[<span class="st">'SECURITY_NUM'</span>]</span>
-<span id="cb13-26"><a href="#cb13-26"></a>                datalist.append([<span class="st">'上海'</span>,year,tabName,num])</span>
-<span id="cb13-27"><a href="#cb13-27"></a>    <span class="cf">elif</span> <span class="bu">file</span>.startswith(<span class="st">'北交所'</span>):</span>
-<span id="cb13-28"><a href="#cb13-28"></a>        <span class="cf">for</span> item <span class="kw">in</span> obj:</span>
-<span id="cb13-29"><a href="#cb13-29"></a>            <span class="cf">if</span> item[<span class="st">'xxzrlx'</span>] <span class="op">==</span> <span class="st">'B'</span>:</span>
-<span id="cb13-30"><a href="#cb13-30"></a>                num <span class="op">=</span> item[<span class="st">'gpgsjs'</span>]</span>
-<span id="cb13-31"><a href="#cb13-31"></a>                datalist.append([<span class="st">'北交所'</span>,year,<span class="st">"股票数据"</span>,num])</span>
-<span id="cb13-32"><a href="#cb13-32"></a>df <span class="op">=</span> pd.DataFrame(datalist,columns<span class="op">=</span>[<span class="st">'exchange'</span>,<span class="st">'year'</span>,<span class="st">'tab'</span>,<span class="st">'num'</span>])</span>
-<span id="cb13-33"><a href="#cb13-33"></a><span class="co"># 数据类型转化</span></span>
-<span id="cb13-34"><a href="#cb13-34"></a>df[<span class="st">'num'</span>] <span class="op">=</span> df[<span class="st">'num'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x : <span class="bu">int</span>(<span class="bu">float</span>(x)))</span>
-<span id="cb13-35"><a href="#cb13-35"></a>df[<span class="st">'year'</span>] <span class="op">=</span> df[<span class="st">'year'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x : <span class="bu">int</span>(x))</span>
-<span id="cb13-36"><a href="#cb13-36"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>datalist <span class="op">=</span> []</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> os.listdir(<span class="st">'上市公司总数'</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="bu">file</span> <span class="kw">in</span> files:</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">file</span>.startswith(<span class="st">'.'</span>):</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="ss">f'./上市公司总数/</span><span class="sc">{</span><span class="bu">file</span><span class="sc">}</span><span class="ss">'</span>,<span class="st">'r'</span>,encoding<span class="op">=</span><span class="st">'utf-8'</span>) <span class="im">as</span> f:</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        obj <span class="op">=</span> json.load(f)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    year <span class="op">=</span> <span class="bu">file</span>.split(<span class="st">'_'</span>)[<span class="op">-</span><span class="dv">1</span>].split(<span class="st">'.'</span>)[<span class="dv">0</span>]</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">file</span>.startswith(<span class="st">'深圳'</span>):</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>        tabName <span class="op">=</span> <span class="bu">file</span>.split(<span class="st">'_'</span>)[<span class="dv">1</span>]</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> tabName <span class="op">==</span> <span class="st">'主板'</span>:</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>            num <span class="op">=</span> obj[<span class="dv">1</span>][<span class="st">"data"</span>][<span class="dv">1</span>][<span class="st">"today"</span>].replace(<span class="st">','</span>,<span class="st">''</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> tabName <span class="op">==</span> <span class="st">'中小板'</span>:</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>            num <span class="op">=</span> obj[<span class="dv">2</span>][<span class="st">"data"</span>][<span class="dv">1</span>][<span class="st">"today"</span>].replace(<span class="st">','</span>,<span class="st">''</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="bu">file</span>)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>            num <span class="op">=</span> obj[<span class="op">-</span><span class="dv">1</span>][<span class="st">"data"</span>][<span class="dv">1</span>][<span class="st">"today"</span>].replace(<span class="st">','</span>,<span class="st">''</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>        year <span class="op">=</span> <span class="bu">file</span>.split(<span class="st">'_'</span>)[<span class="dv">2</span>].split(<span class="st">'.'</span>)[<span class="dv">0</span>]</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>        datalist.append([<span class="st">'深圳'</span>,year,tabName,num])</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="bu">file</span>.startswith(<span class="st">'上海'</span>): </span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>        results <span class="op">=</span> obj[<span class="st">'result'</span>]</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> result <span class="kw">in</span> results:</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> result[<span class="st">'PRODUCT_NAME'</span>] <span class="kw">in</span> [<span class="st">'股票'</span>,<span class="st">'主板A'</span>,<span class="st">'主板B'</span>,<span class="st">"科创板"</span>]:</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>                tabName <span class="op">=</span> result[<span class="st">'PRODUCT_NAME'</span>]</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>                num <span class="op">=</span> result[<span class="st">'SECURITY_NUM'</span>]</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>                datalist.append([<span class="st">'上海'</span>,year,tabName,num])</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="bu">file</span>.startswith(<span class="st">'北交所'</span>):</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> item <span class="kw">in</span> obj:</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> item[<span class="st">'xxzrlx'</span>] <span class="op">==</span> <span class="st">'B'</span>:</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>                num <span class="op">=</span> item[<span class="st">'gpgsjs'</span>]</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>                datalist.append([<span class="st">'北交所'</span>,year,<span class="st">"股票数据"</span>,num])</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(datalist,columns<span class="op">=</span>[<span class="st">'exchange'</span>,<span class="st">'year'</span>,<span class="st">'tab'</span>,<span class="st">'num'</span>])</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="co"># 数据类型转化</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'num'</span>] <span class="op">=</span> df[<span class="st">'num'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x : <span class="bu">int</span>(<span class="bu">float</span>(x)))</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'year'</span>] <span class="op">=</span> df[<span class="st">'year'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x : <span class="bu">int</span>(x))</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>深圳_创业板_2010.json
 深圳_创业板_2011.json
@@ -1020,73 +1020,73 @@ C:\Users\xiaor\AppData\Local\Temp\ipykernel_4016\1700096796.py:31: SyntaxWarning
 </div>
 </div>
 <div id="0de10bb7-351b-4ddb-bca2-60c6a0254875" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb15-4"><a href="#cb15-4"></a></span>
-<span id="cb15-5"><a href="#cb15-5"></a><span class="co"># 设置主题样式</span></span>
-<span id="cb15-6"><a href="#cb15-6"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
-<span id="cb15-7"><a href="#cb15-7"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'SimHei'</span>]  <span class="co"># 设置中文字体</span></span>
-<span id="cb15-8"><a href="#cb15-8"></a></span>
-<span id="cb15-9"><a href="#cb15-9"></a><span class="co"># 数据预处理</span></span>
-<span id="cb15-10"><a href="#cb15-10"></a><span class="co"># 去除"股票"类别（保留具体板块数据）</span></span>
-<span id="cb15-11"><a href="#cb15-11"></a>df_clean <span class="op">=</span> df[df[<span class="st">'tab'</span>] <span class="op">!=</span> <span class="st">'股票'</span>].copy()</span>
-<span id="cb15-12"><a href="#cb15-12"></a></span>
-<span id="cb15-13"><a href="#cb15-13"></a><span class="co"># 合并上海主板A/B</span></span>
-<span id="cb15-14"><a href="#cb15-14"></a>df_clean[<span class="st">'tab'</span>] <span class="op">=</span> df_clean[<span class="st">'tab'</span>].replace({<span class="st">'主板A'</span>: <span class="st">'主板'</span>, <span class="st">'主板B'</span>: <span class="st">'主板'</span>})</span>
-<span id="cb15-15"><a href="#cb15-15"></a></span>
-<span id="cb15-16"><a href="#cb15-16"></a><span class="co"># 按交易所+年份+板块分组汇总</span></span>
-<span id="cb15-17"><a href="#cb15-17"></a>df_grouped <span class="op">=</span> df_clean.groupby([<span class="st">'exchange'</span>, <span class="st">'year'</span>, <span class="st">'tab'</span>])[<span class="st">'num'</span>].<span class="bu">sum</span>().reset_index()</span>
-<span id="cb15-18"><a href="#cb15-18"></a></span>
-<span id="cb15-19"><a href="#cb15-19"></a><span class="co"># 定义通用绘图函数</span></span>
-<span id="cb15-20"><a href="#cb15-20"></a><span class="kw">def</span> plot_exchange(data, exchange_name):</span>
-<span id="cb15-21"><a href="#cb15-21"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb15-22"><a href="#cb15-22"></a>    tabs <span class="op">=</span> data[<span class="st">'tab'</span>].unique()</span>
-<span id="cb15-23"><a href="#cb15-23"></a>    </span>
-<span id="cb15-24"><a href="#cb15-24"></a>    <span class="cf">for</span> tab <span class="kw">in</span> tabs:</span>
-<span id="cb15-25"><a href="#cb15-25"></a>        subset <span class="op">=</span> data[data[<span class="st">'tab'</span>] <span class="op">==</span> tab].sort_values(<span class="st">'year'</span>)</span>
-<span id="cb15-26"><a href="#cb15-26"></a>        plt.plot(subset[<span class="st">'year'</span>], subset[<span class="st">'num'</span>], </span>
-<span id="cb15-27"><a href="#cb15-27"></a>                 marker<span class="op">=</span><span class="st">'o'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, markersize<span class="op">=</span><span class="dv">8</span>, label<span class="op">=</span>tab)</span>
-<span id="cb15-28"><a href="#cb15-28"></a>    </span>
-<span id="cb15-29"><a href="#cb15-29"></a>    plt.title(<span class="ss">f'</span><span class="sc">{</span>exchange_name<span class="sc">}</span><span class="ss">上市公司数量年度趋势'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb15-30"><a href="#cb15-30"></a>    plt.xlabel(<span class="st">'年份'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb15-31"><a href="#cb15-31"></a>    plt.ylabel(<span class="st">'上市公司数量'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb15-32"><a href="#cb15-32"></a>    plt.xticks(data[<span class="st">'year'</span>].unique().astype(<span class="bu">int</span>))  <span class="co"># 确保年份显示为整数</span></span>
-<span id="cb15-33"><a href="#cb15-33"></a>    plt.legend(title<span class="op">=</span><span class="st">'板块分类'</span>)</span>
-<span id="cb15-34"><a href="#cb15-34"></a>    plt.tight_layout()</span>
-<span id="cb15-35"><a href="#cb15-35"></a>    plt.show()</span>
-<span id="cb15-36"><a href="#cb15-36"></a></span>
-<span id="cb15-37"><a href="#cb15-37"></a><span class="co"># 深圳交易所可视化</span></span>
-<span id="cb15-38"><a href="#cb15-38"></a>shenzhen <span class="op">=</span> df_grouped[df_grouped[<span class="st">'exchange'</span>] <span class="op">==</span> <span class="st">'深圳'</span>]</span>
-<span id="cb15-39"><a href="#cb15-39"></a>plot_exchange(shenzhen, <span class="st">'深圳交易所'</span>)</span>
-<span id="cb15-40"><a href="#cb15-40"></a></span>
-<span id="cb15-41"><a href="#cb15-41"></a><span class="co"># 上海交易所可视化</span></span>
-<span id="cb15-42"><a href="#cb15-42"></a>shanghai <span class="op">=</span> df_grouped[df_grouped[<span class="st">'exchange'</span>] <span class="op">==</span> <span class="st">'上海'</span>]</span>
-<span id="cb15-43"><a href="#cb15-43"></a>plot_exchange(shanghai, <span class="st">'上海交易所'</span>)</span>
-<span id="cb15-44"><a href="#cb15-44"></a></span>
-<span id="cb15-45"><a href="#cb15-45"></a><span class="co"># 北交所可视化</span></span>
-<span id="cb15-46"><a href="#cb15-46"></a>beijing <span class="op">=</span> df_grouped[df_grouped[<span class="st">'exchange'</span>] <span class="op">==</span> <span class="st">'北交所'</span>]</span>
-<span id="cb15-47"><a href="#cb15-47"></a><span class="cf">if</span> <span class="kw">not</span> beijing.empty:</span>
-<span id="cb15-48"><a href="#cb15-48"></a>    plot_exchange(beijing, <span class="st">'北交所'</span>)</span>
-<span id="cb15-49"><a href="#cb15-49"></a><span class="cf">else</span>:</span>
-<span id="cb15-50"><a href="#cb15-50"></a>    <span class="bu">print</span>(<span class="st">"注意：数据中未发现北交所相关记录，请检查exchange字段取值"</span>)</span>
-<span id="cb15-51"><a href="#cb15-51"></a></span>
-<span id="cb15-52"><a href="#cb15-52"></a><span class="co"># 绘制堆叠面积图展示板块构成</span></span>
-<span id="cb15-53"><a href="#cb15-53"></a><span class="kw">def</span> plot_stacked_area(data, exchange_name):</span>
-<span id="cb15-54"><a href="#cb15-54"></a>    pivot_df <span class="op">=</span> data.pivot(index<span class="op">=</span><span class="st">'year'</span>, columns<span class="op">=</span><span class="st">'tab'</span>, values<span class="op">=</span><span class="st">'num'</span>)</span>
-<span id="cb15-55"><a href="#cb15-55"></a>    </span>
-<span id="cb15-56"><a href="#cb15-56"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb15-57"><a href="#cb15-57"></a>    pivot_df.plot.area(alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb15-58"><a href="#cb15-58"></a>    plt.title(<span class="ss">f'</span><span class="sc">{</span>exchange_name<span class="sc">}</span><span class="ss">各板块构成变化'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb15-59"><a href="#cb15-59"></a>    plt.xlabel(<span class="st">'年份'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb15-60"><a href="#cb15-60"></a>    plt.ylabel(<span class="st">'上市公司数量'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb15-61"><a href="#cb15-61"></a>    plt.xticks(pivot_df.index.astype(<span class="bu">int</span>),rotation<span class="op">=</span><span class="dv">90</span>)</span>
-<span id="cb15-62"><a href="#cb15-62"></a>    plt.legend(title<span class="op">=</span><span class="st">'板块分类'</span>)</span>
-<span id="cb15-63"><a href="#cb15-63"></a>    plt.tight_layout()</span>
-<span id="cb15-64"><a href="#cb15-64"></a>    plt.show()</span>
-<span id="cb15-65"><a href="#cb15-65"></a></span>
-<span id="cb15-66"><a href="#cb15-66"></a><span class="co"># 深圳堆叠图示例</span></span>
-<span id="cb15-67"><a href="#cb15-67"></a>plot_stacked_area(shenzhen, <span class="st">'深圳交易所'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置主题样式</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'SimHei'</span>]  <span class="co"># 设置中文字体</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 数据预处理</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 去除"股票"类别（保留具体板块数据）</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>df_clean <span class="op">=</span> df[df[<span class="st">'tab'</span>] <span class="op">!=</span> <span class="st">'股票'</span>].copy()</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 合并上海主板A/B</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>df_clean[<span class="st">'tab'</span>] <span class="op">=</span> df_clean[<span class="st">'tab'</span>].replace({<span class="st">'主板A'</span>: <span class="st">'主板'</span>, <span class="st">'主板B'</span>: <span class="st">'主板'</span>})</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 按交易所+年份+板块分组汇总</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>df_grouped <span class="op">=</span> df_clean.groupby([<span class="st">'exchange'</span>, <span class="st">'year'</span>, <span class="st">'tab'</span>])[<span class="st">'num'</span>].<span class="bu">sum</span>().reset_index()</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义通用绘图函数</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_exchange(data, exchange_name):</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    tabs <span class="op">=</span> data[<span class="st">'tab'</span>].unique()</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> tab <span class="kw">in</span> tabs:</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>        subset <span class="op">=</span> data[data[<span class="st">'tab'</span>] <span class="op">==</span> tab].sort_values(<span class="st">'year'</span>)</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>        plt.plot(subset[<span class="st">'year'</span>], subset[<span class="st">'num'</span>], </span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>                 marker<span class="op">=</span><span class="st">'o'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, markersize<span class="op">=</span><span class="dv">8</span>, label<span class="op">=</span>tab)</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="ss">f'</span><span class="sc">{</span>exchange_name<span class="sc">}</span><span class="ss">上市公司数量年度趋势'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'年份'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'上市公司数量'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>    plt.xticks(data[<span class="st">'year'</span>].unique().astype(<span class="bu">int</span>))  <span class="co"># 确保年份显示为整数</span></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>    plt.legend(title<span class="op">=</span><span class="st">'板块分类'</span>)</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a><span class="co"># 深圳交易所可视化</span></span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>shenzhen <span class="op">=</span> df_grouped[df_grouped[<span class="st">'exchange'</span>] <span class="op">==</span> <span class="st">'深圳'</span>]</span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>plot_exchange(shenzhen, <span class="st">'深圳交易所'</span>)</span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a><span class="co"># 上海交易所可视化</span></span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>shanghai <span class="op">=</span> df_grouped[df_grouped[<span class="st">'exchange'</span>] <span class="op">==</span> <span class="st">'上海'</span>]</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>plot_exchange(shanghai, <span class="st">'上海交易所'</span>)</span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a><span class="co"># 北交所可视化</span></span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>beijing <span class="op">=</span> df_grouped[df_grouped[<span class="st">'exchange'</span>] <span class="op">==</span> <span class="st">'北交所'</span>]</span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> beijing.empty:</span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>    plot_exchange(beijing, <span class="st">'北交所'</span>)</span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"注意：数据中未发现北交所相关记录，请检查exchange字段取值"</span>)</span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制堆叠面积图展示板块构成</span></span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_stacked_area(data, exchange_name):</span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>    pivot_df <span class="op">=</span> data.pivot(index<span class="op">=</span><span class="st">'year'</span>, columns<span class="op">=</span><span class="st">'tab'</span>, values<span class="op">=</span><span class="st">'num'</span>)</span>
+<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a>    pivot_df.plot.area(alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="ss">f'</span><span class="sc">{</span>exchange_name<span class="sc">}</span><span class="ss">各板块构成变化'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'年份'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'上市公司数量'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a>    plt.xticks(pivot_df.index.astype(<span class="bu">int</span>),rotation<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a>    plt.legend(title<span class="op">=</span><span class="st">'板块分类'</span>)</span>
+<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a><span class="co"># 深圳堆叠图示例</span></span>
+<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a>plot_stacked_area(shenzhen, <span class="st">'深圳交易所'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1123,8 +1123,8 @@ C:\Users\xiaor\AppData\Local\Temp\ipykernel_4016\1700096796.py:31: SyntaxWarning
 <section id="t3-2.2上市公司行业统计和可视化" class="level2" data-number="48.7">
 <h2 data-number="48.7" class="anchored" data-anchor-id="t3-2.2上市公司行业统计和可视化"><span class="header-section-number">48.7</span> T3-2.2：上市公司行业统计和可视化</h2>
 <div id="8ee30122-920a-499e-9424-9317b322e852" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>industry_sz <span class="op">=</span> pd.read_excel(<span class="st">'./行业统计/深交所.xlsx'</span>)</span>
-<span id="cb17-2"><a href="#cb17-2"></a>industry_sz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>industry_sz <span class="op">=</span> pd.read_excel(<span class="st">'./行业统计/深交所.xlsx'</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>industry_sz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 
@@ -1413,11 +1413,11 @@ C:\Users\xiaor\AppData\Local\Temp\ipykernel_4016\1700096796.py:31: SyntaxWarning
 </div>
 </div>
 <div id="12745452-bd29-48b2-8408-d6e10e2db1cd" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'./行业统计/上交所.json'</span>,<span class="st">'r'</span>,encoding<span class="op">=</span><span class="st">'utf-8'</span>) <span class="im">as</span> f:</span>
-<span id="cb18-2"><a href="#cb18-2"></a>    obj <span class="op">=</span> json.load(f)[<span class="st">"result"</span>]</span>
-<span id="cb18-3"><a href="#cb18-3"></a>industry_sh <span class="op">=</span> pd.DataFrame(obj)</span>
-<span id="cb18-4"><a href="#cb18-4"></a>industry_sh[<span class="st">'LIST_NUM'</span>] <span class="op">=</span> industry_sh[<span class="st">'LIST_NUM'</span>].astype(<span class="bu">int</span>)</span>
-<span id="cb18-5"><a href="#cb18-5"></a>industry_sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'./行业统计/上交所.json'</span>,<span class="st">'r'</span>,encoding<span class="op">=</span><span class="st">'utf-8'</span>) <span class="im">as</span> f:</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    obj <span class="op">=</span> json.load(f)[<span class="st">"result"</span>]</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>industry_sh <span class="op">=</span> pd.DataFrame(obj)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>industry_sh[<span class="st">'LIST_NUM'</span>] <span class="op">=</span> industry_sh[<span class="st">'LIST_NUM'</span>].astype(<span class="bu">int</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>industry_sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
 
@@ -1566,8 +1566,8 @@ C:\Users\xiaor\AppData\Local\Temp\ipykernel_4016\1700096796.py:31: SyntaxWarning
 </div>
 </div>
 <div id="06816fa5-d88c-4a29-b7c6-61a4323feecb" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>industry_bj <span class="op">=</span> pd.read_csv(<span class="st">'./行业统计/北交所.csv'</span>)</span>
-<span id="cb19-2"><a href="#cb19-2"></a>industry_bj</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>industry_bj <span class="op">=</span> pd.read_csv(<span class="st">'./行业统计/北交所.csv'</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>industry_bj</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <div>
 
@@ -1692,156 +1692,156 @@ C:\Users\xiaor\AppData\Local\Temp\ipykernel_4016\1700096796.py:31: SyntaxWarning
 </div>
 </div>
 <div id="b1f2e5b0-30ab-4935-b478-053cdd644ebf" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb20-3"><a href="#cb20-3"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb20-4"><a href="#cb20-4"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
-<span id="cb20-5"><a href="#cb20-5"></a></span>
-<span id="cb20-6"><a href="#cb20-6"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'SimHei'</span>]  <span class="co"># 设置中文字体</span></span>
-<span id="cb20-7"><a href="#cb20-7"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span>  <span class="co"># 解决负号显示问题</span></span>
-<span id="cb20-8"><a href="#cb20-8"></a></span>
-<span id="cb20-9"><a href="#cb20-9"></a><span class="co"># =====================</span></span>
-<span id="cb20-10"><a href="#cb20-10"></a><span class="co"># 数据处理部分</span></span>
-<span id="cb20-11"><a href="#cb20-11"></a><span class="co"># =====================</span></span>
-<span id="cb20-12"><a href="#cb20-12"></a></span>
-<span id="cb20-13"><a href="#cb20-13"></a><span class="co"># 深圳交易所处理（已有聚合数据）</span></span>
-<span id="cb20-14"><a href="#cb20-14"></a>sz_industry <span class="op">=</span> industry_sz[[<span class="st">'行业名称'</span>, <span class="st">'上市公司家数(家)'</span>]].sort_values(<span class="st">'上市公司家数(家)'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb20-15"><a href="#cb20-15"></a>sz_industry <span class="op">=</span> sz_industry[sz_industry[<span class="st">'行业名称'</span>] <span class="op">!=</span> <span class="st">'总计'</span>] </span>
-<span id="cb20-16"><a href="#cb20-16"></a></span>
-<span id="cb20-17"><a href="#cb20-17"></a><span class="co"># 上海交易所处理</span></span>
-<span id="cb20-18"><a href="#cb20-18"></a>industry_sh[<span class="st">'trade_year'</span>] <span class="op">=</span> industry_sh[<span class="st">'TRADE_DATE'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>[:<span class="dv">4</span>]</span>
-<span id="cb20-19"><a href="#cb20-19"></a>latest_year_sh <span class="op">=</span> industry_sh[<span class="st">'trade_year'</span>].<span class="bu">max</span>()</span>
-<span id="cb20-20"><a href="#cb20-20"></a>sh_industry <span class="op">=</span> industry_sh[industry_sh[<span class="st">'trade_year'</span>] <span class="op">==</span> latest_year_sh][[<span class="st">'CSRC_NAME'</span>, <span class="st">'LIST_NUM'</span>]].sort_values(<span class="st">'LIST_NUM'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb20-21"><a href="#cb20-21"></a><span class="co"># 北交所处理</span></span>
-<span id="cb20-22"><a href="#cb20-22"></a><span class="co"># 提取上市年份并筛选最新年度</span></span>
-<span id="cb20-23"><a href="#cb20-23"></a>industry_bj[<span class="st">'list_year'</span>] <span class="op">=</span> industry_bj[<span class="st">'list_date'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>[:<span class="dv">4</span>]</span>
-<span id="cb20-24"><a href="#cb20-24"></a>latest_year_bj <span class="op">=</span> industry_bj[<span class="st">'list_year'</span>].<span class="bu">max</span>()</span>
-<span id="cb20-25"><a href="#cb20-25"></a>bj_industry <span class="op">=</span> pd.DataFrame(industry_bj.groupby([<span class="st">'industry'</span>])[<span class="st">'industry'</span>].count().sort_values(ascending<span class="op">=</span><span class="va">False</span>))</span>
-<span id="cb20-26"><a href="#cb20-26"></a>bj_industry.columns <span class="op">=</span> [<span class="st">'count'</span>]</span>
-<span id="cb20-27"><a href="#cb20-27"></a>bj_industry <span class="op">=</span> bj_industry.reset_index()</span>
-<span id="cb20-28"><a href="#cb20-28"></a><span class="co"># =====================</span></span>
-<span id="cb20-29"><a href="#cb20-29"></a><span class="co"># 可视化部分</span></span>
-<span id="cb20-30"><a href="#cb20-30"></a><span class="co"># =====================</span></span>
-<span id="cb20-31"><a href="#cb20-31"></a></span>
-<span id="cb20-32"><a href="#cb20-32"></a><span class="kw">def</span> plot_industry_distribution(data, title, xlabel):</span>
-<span id="cb20-33"><a href="#cb20-33"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">12</span>))</span>
-<span id="cb20-34"><a href="#cb20-34"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(data, pd.DataFrame):</span>
-<span id="cb20-35"><a href="#cb20-35"></a>        <span class="cf">if</span> <span class="st">'count'</span> <span class="kw">in</span> data.columns:</span>
-<span id="cb20-36"><a href="#cb20-36"></a>            sns.barplot(y<span class="op">=</span><span class="st">'industry'</span>, x<span class="op">=</span><span class="st">'count'</span>, data<span class="op">=</span>data, palette<span class="op">=</span><span class="st">'viridis'</span>)</span>
-<span id="cb20-37"><a href="#cb20-37"></a>        <span class="cf">else</span>:</span>
-<span id="cb20-38"><a href="#cb20-38"></a>            sns.barplot(y<span class="op">=</span>data.columns[<span class="dv">0</span>], x<span class="op">=</span>data.columns[<span class="dv">1</span>], data<span class="op">=</span>data, palette<span class="op">=</span><span class="st">'viridis'</span>)</span>
-<span id="cb20-39"><a href="#cb20-39"></a>    plt.title(<span class="ss">f'</span><span class="sc">{</span>title<span class="sc">}</span><span class="ss">（</span><span class="sc">{</span>latest_year_sh<span class="sc">}</span><span class="ss">年）'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb20-40"><a href="#cb20-40"></a>    plt.xlabel(xlabel, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb20-41"><a href="#cb20-41"></a>    plt.ylabel(<span class="st">'行业分类'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb20-42"><a href="#cb20-42"></a>    plt.tight_layout()</span>
-<span id="cb20-43"><a href="#cb20-43"></a>    plt.show()</span>
-<span id="cb20-44"><a href="#cb20-44"></a></span>
-<span id="cb20-45"><a href="#cb20-45"></a><span class="kw">def</span> process_top10(data, name_col<span class="op">=</span><span class="st">'行业名称'</span>, count_col<span class="op">=</span><span class="st">'上市公司家数(家)'</span>):</span>
-<span id="cb20-46"><a href="#cb20-46"></a>    <span class="co"># 确保数据已排序</span></span>
-<span id="cb20-47"><a href="#cb20-47"></a>    data_sorted <span class="op">=</span> data.sort_values(count_col, ascending<span class="op">=</span><span class="va">False</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb20-48"><a href="#cb20-48"></a>    </span>
-<span id="cb20-49"><a href="#cb20-49"></a>    <span class="co"># 提取前10</span></span>
-<span id="cb20-50"><a href="#cb20-50"></a>    top10 <span class="op">=</span> data_sorted.head(<span class="dv">10</span>).copy()</span>
-<span id="cb20-51"><a href="#cb20-51"></a>    </span>
-<span id="cb20-52"><a href="#cb20-52"></a>    <span class="co"># 计算其他类总和</span></span>
-<span id="cb20-53"><a href="#cb20-53"></a>    other_count <span class="op">=</span> data_sorted[count_col][<span class="dv">10</span>:].<span class="bu">sum</span>()</span>
-<span id="cb20-54"><a href="#cb20-54"></a>    </span>
-<span id="cb20-55"><a href="#cb20-55"></a>    <span class="co"># 创建其他行</span></span>
-<span id="cb20-56"><a href="#cb20-56"></a>    other_row <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb20-57"><a href="#cb20-57"></a>        name_col: [<span class="st">'其他'</span>],</span>
-<span id="cb20-58"><a href="#cb20-58"></a>        count_col: [other_count]</span>
-<span id="cb20-59"><a href="#cb20-59"></a>    })</span>
-<span id="cb20-60"><a href="#cb20-60"></a>    </span>
-<span id="cb20-61"><a href="#cb20-61"></a>    <span class="co"># 合并数据</span></span>
-<span id="cb20-62"><a href="#cb20-62"></a>    processed <span class="op">=</span> pd.concat([top10, other_row], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb20-63"><a href="#cb20-63"></a>    <span class="cf">return</span> processed</span>
-<span id="cb20-64"><a href="#cb20-64"></a></span>
-<span id="cb20-65"><a href="#cb20-65"></a><span class="co"># 处理各交易所数据</span></span>
-<span id="cb20-66"><a href="#cb20-66"></a>sz_top10 <span class="op">=</span> process_top10(sz_industry, <span class="st">'行业名称'</span>, <span class="st">'上市公司家数(家)'</span>)</span>
-<span id="cb20-67"><a href="#cb20-67"></a>sh_top10 <span class="op">=</span> process_top10(sh_industry, <span class="st">'CSRC_NAME'</span>, <span class="st">'LIST_NUM'</span>).rename(</span>
-<span id="cb20-68"><a href="#cb20-68"></a>    columns<span class="op">=</span>{<span class="st">'CSRC_NAME'</span>:<span class="st">'行业名称'</span>, <span class="st">'LIST_NUM'</span>:<span class="st">'公司数量'</span>})</span>
-<span id="cb20-69"><a href="#cb20-69"></a>bj_top10 <span class="op">=</span> process_top10(bj_industry, <span class="st">'industry'</span>, <span class="st">'count'</span>).rename(</span>
-<span id="cb20-70"><a href="#cb20-70"></a>    columns<span class="op">=</span>{<span class="st">'industry'</span>:<span class="st">'行业名称'</span>, <span class="st">'count'</span>:<span class="st">'公司数量'</span>})</span>
-<span id="cb20-71"><a href="#cb20-71"></a></span>
-<span id="cb20-72"><a href="#cb20-72"></a><span class="co"># =====================</span></span>
-<span id="cb20-73"><a href="#cb20-73"></a><span class="co"># 饼图可视化函数</span></span>
-<span id="cb20-74"><a href="#cb20-74"></a><span class="co"># =====================</span></span>
-<span id="cb20-75"><a href="#cb20-75"></a><span class="kw">def</span> plot_pie(data, title, year):</span>
-<span id="cb20-76"><a href="#cb20-76"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>))</span>
-<span id="cb20-77"><a href="#cb20-77"></a>    </span>
-<span id="cb20-78"><a href="#cb20-78"></a>    <span class="co"># 准备数据</span></span>
-<span id="cb20-79"><a href="#cb20-79"></a>    labels <span class="op">=</span> data.iloc[:, <span class="dv">0</span>]</span>
-<span id="cb20-80"><a href="#cb20-80"></a>    sizes <span class="op">=</span> data.iloc[:, <span class="dv">1</span>]</span>
-<span id="cb20-81"><a href="#cb20-81"></a>    </span>
-<span id="cb20-82"><a href="#cb20-82"></a>    <span class="co"># 绘制饼图</span></span>
-<span id="cb20-83"><a href="#cb20-83"></a>    wedges, texts, autotexts <span class="op">=</span> plt.pie(</span>
-<span id="cb20-84"><a href="#cb20-84"></a>        sizes, </span>
-<span id="cb20-85"><a href="#cb20-85"></a>        labels<span class="op">=</span>labels,</span>
-<span id="cb20-86"><a href="#cb20-86"></a>        autopct<span class="op">=</span><span class="st">'</span><span class="sc">%1.1f%%</span><span class="st">'</span>,</span>
-<span id="cb20-87"><a href="#cb20-87"></a>        startangle<span class="op">=</span><span class="dv">140</span>,</span>
-<span id="cb20-88"><a href="#cb20-88"></a>        pctdistance<span class="op">=</span><span class="fl">0.85</span>,</span>
-<span id="cb20-89"><a href="#cb20-89"></a>        textprops<span class="op">=</span>{<span class="st">'fontsize'</span>:<span class="dv">10</span>}</span>
-<span id="cb20-90"><a href="#cb20-90"></a>    )</span>
-<span id="cb20-91"><a href="#cb20-91"></a>    </span>
-<span id="cb20-92"><a href="#cb20-92"></a>    <span class="co"># 美化标签</span></span>
-<span id="cb20-93"><a href="#cb20-93"></a>    plt.setp(autotexts, size<span class="op">=</span><span class="dv">10</span>, weight<span class="op">=</span><span class="st">"bold"</span>)</span>
-<span id="cb20-94"><a href="#cb20-94"></a>    plt.title(<span class="ss">f'</span><span class="sc">{</span>title<span class="sc">}</span><span class="ss">（</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">年）'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, pad<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb20-95"><a href="#cb20-95"></a>    </span>
-<span id="cb20-96"><a href="#cb20-96"></a>    <span class="co"># 添加中心空白</span></span>
-<span id="cb20-97"><a href="#cb20-97"></a>    centre_circle <span class="op">=</span> plt.Circle((<span class="dv">0</span>,<span class="dv">0</span>),<span class="fl">0.70</span>,fc<span class="op">=</span><span class="st">'white'</span>)</span>
-<span id="cb20-98"><a href="#cb20-98"></a>    plt.gcf().gca().add_artist(centre_circle)</span>
-<span id="cb20-99"><a href="#cb20-99"></a>    </span>
-<span id="cb20-100"><a href="#cb20-100"></a>    plt.axis(<span class="st">'equal'</span>)</span>
-<span id="cb20-101"><a href="#cb20-101"></a>    plt.tight_layout()</span>
-<span id="cb20-102"><a href="#cb20-102"></a>    plt.show()</span>
-<span id="cb20-103"><a href="#cb20-103"></a></span>
-<span id="cb20-104"><a href="#cb20-104"></a><span class="co"># 绘制深圳饼图</span></span>
-<span id="cb20-105"><a href="#cb20-105"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">深圳交易所行业分布（前10+其他）:"</span>)</span>
-<span id="cb20-106"><a href="#cb20-106"></a>plot_pie(sz_top10, <span class="st">'深圳交易所上市公司行业分布'</span>, latest_year_sh)</span>
-<span id="cb20-107"><a href="#cb20-107"></a></span>
-<span id="cb20-108"><a href="#cb20-108"></a><span class="co"># 绘制上海饼图</span></span>
-<span id="cb20-109"><a href="#cb20-109"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">上海交易所行业分布（前10+其他）:"</span>)</span>
-<span id="cb20-110"><a href="#cb20-110"></a>plot_pie(sh_top10, <span class="st">'上海交易所上市公司行业分布'</span>, latest_year_sh)</span>
-<span id="cb20-111"><a href="#cb20-111"></a></span>
-<span id="cb20-112"><a href="#cb20-112"></a><span class="co"># 绘制北交所饼图</span></span>
-<span id="cb20-113"><a href="#cb20-113"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">北交所行业分布（前10+其他）:"</span>)</span>
-<span id="cb20-114"><a href="#cb20-114"></a>plot_pie(bj_top10, <span class="st">'北交所上市公司行业分布'</span>, latest_year_bj)</span>
-<span id="cb20-115"><a href="#cb20-115"></a></span>
-<span id="cb20-116"><a href="#cb20-116"></a><span class="co"># 输出处理后的数据</span></span>
-<span id="cb20-117"><a href="#cb20-117"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">深圳前10+其他数据："</span>)</span>
-<span id="cb20-118"><a href="#cb20-118"></a><span class="bu">print</span>(sz_top10)</span>
-<span id="cb20-119"><a href="#cb20-119"></a></span>
-<span id="cb20-120"><a href="#cb20-120"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">上海前10+其他数据："</span>)</span>
-<span id="cb20-121"><a href="#cb20-121"></a><span class="bu">print</span>(sh_top10)</span>
-<span id="cb20-122"><a href="#cb20-122"></a></span>
-<span id="cb20-123"><a href="#cb20-123"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">北交所前10+其他数据："</span>)</span>
-<span id="cb20-124"><a href="#cb20-124"></a><span class="bu">print</span>(bj_top10)</span>
-<span id="cb20-125"><a href="#cb20-125"></a></span>
-<span id="cb20-126"><a href="#cb20-126"></a>    </span>
-<span id="cb20-127"><a href="#cb20-127"></a>    </span>
-<span id="cb20-128"><a href="#cb20-128"></a><span class="co"># 绘制深圳交易所行业分布</span></span>
-<span id="cb20-129"><a href="#cb20-129"></a><span class="bu">print</span>(<span class="st">"深圳交易所行业分布："</span>)</span>
-<span id="cb20-130"><a href="#cb20-130"></a>plot_industry_distribution(sz_industry, <span class="st">'深圳交易所上市公司行业分布'</span>, <span class="st">'上市公司数量（家）'</span>)</span>
-<span id="cb20-131"><a href="#cb20-131"></a></span>
-<span id="cb20-132"><a href="#cb20-132"></a><span class="co"># 绘制上海交易所行业分布</span></span>
-<span id="cb20-133"><a href="#cb20-133"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">上海交易所行业分布："</span>)</span>
-<span id="cb20-134"><a href="#cb20-134"></a>plot_industry_distribution(sh_industry, <span class="st">'上海交易所上市公司行业分布'</span>, <span class="st">'上市公司数量（家）'</span>)</span>
-<span id="cb20-135"><a href="#cb20-135"></a></span>
-<span id="cb20-136"><a href="#cb20-136"></a><span class="co"># 绘制北交所行业分布</span></span>
-<span id="cb20-137"><a href="#cb20-137"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">北交所行业分布："</span>)</span>
-<span id="cb20-138"><a href="#cb20-138"></a>plot_industry_distribution(bj_industry, <span class="st">'北交所上市公司行业分布'</span>, <span class="st">'上市公司数量（家）'</span>)</span>
-<span id="cb20-139"><a href="#cb20-139"></a></span>
-<span id="cb20-140"><a href="#cb20-140"></a><span class="co"># =====================</span></span>
-<span id="cb20-141"><a href="#cb20-141"></a><span class="co"># 数据表格输出</span></span>
-<span id="cb20-142"><a href="#cb20-142"></a><span class="co"># =====================</span></span>
-<span id="cb20-143"><a href="#cb20-143"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">深圳交易所行业分布数据："</span>)</span>
-<span id="cb20-144"><a href="#cb20-144"></a><span class="bu">print</span>(sz_industry.head(<span class="dv">10</span>))</span>
-<span id="cb20-145"><a href="#cb20-145"></a></span>
-<span id="cb20-146"><a href="#cb20-146"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">上海交易所行业分布数据："</span>)</span>
-<span id="cb20-147"><a href="#cb20-147"></a><span class="bu">print</span>(sh_industry.head(<span class="dv">10</span>))</span>
-<span id="cb20-148"><a href="#cb20-148"></a></span>
-<span id="cb20-149"><a href="#cb20-149"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">北交所行业分布数据："</span>)</span>
-<span id="cb20-150"><a href="#cb20-150"></a><span class="bu">print</span>(bj_industry.head(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'SimHei'</span>]  <span class="co"># 设置中文字体</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span>  <span class="co"># 解决负号显示问题</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co"># =====================</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 数据处理部分</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co"># =====================</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 深圳交易所处理（已有聚合数据）</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>sz_industry <span class="op">=</span> industry_sz[[<span class="st">'行业名称'</span>, <span class="st">'上市公司家数(家)'</span>]].sort_values(<span class="st">'上市公司家数(家)'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>sz_industry <span class="op">=</span> sz_industry[sz_industry[<span class="st">'行业名称'</span>] <span class="op">!=</span> <span class="st">'总计'</span>] </span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 上海交易所处理</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>industry_sh[<span class="st">'trade_year'</span>] <span class="op">=</span> industry_sh[<span class="st">'TRADE_DATE'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>[:<span class="dv">4</span>]</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>latest_year_sh <span class="op">=</span> industry_sh[<span class="st">'trade_year'</span>].<span class="bu">max</span>()</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>sh_industry <span class="op">=</span> industry_sh[industry_sh[<span class="st">'trade_year'</span>] <span class="op">==</span> latest_year_sh][[<span class="st">'CSRC_NAME'</span>, <span class="st">'LIST_NUM'</span>]].sort_values(<span class="st">'LIST_NUM'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 北交所处理</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 提取上市年份并筛选最新年度</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>industry_bj[<span class="st">'list_year'</span>] <span class="op">=</span> industry_bj[<span class="st">'list_date'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>[:<span class="dv">4</span>]</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>latest_year_bj <span class="op">=</span> industry_bj[<span class="st">'list_year'</span>].<span class="bu">max</span>()</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>bj_industry <span class="op">=</span> pd.DataFrame(industry_bj.groupby([<span class="st">'industry'</span>])[<span class="st">'industry'</span>].count().sort_values(ascending<span class="op">=</span><span class="va">False</span>))</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>bj_industry.columns <span class="op">=</span> [<span class="st">'count'</span>]</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>bj_industry <span class="op">=</span> bj_industry.reset_index()</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a><span class="co"># =====================</span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 可视化部分</span></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a><span class="co"># =====================</span></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_industry_distribution(data, title, xlabel):</span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">12</span>))</span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(data, pd.DataFrame):</span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="st">'count'</span> <span class="kw">in</span> data.columns:</span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>            sns.barplot(y<span class="op">=</span><span class="st">'industry'</span>, x<span class="op">=</span><span class="st">'count'</span>, data<span class="op">=</span>data, palette<span class="op">=</span><span class="st">'viridis'</span>)</span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>            sns.barplot(y<span class="op">=</span>data.columns[<span class="dv">0</span>], x<span class="op">=</span>data.columns[<span class="dv">1</span>], data<span class="op">=</span>data, palette<span class="op">=</span><span class="st">'viridis'</span>)</span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="ss">f'</span><span class="sc">{</span>title<span class="sc">}</span><span class="ss">（</span><span class="sc">{</span>latest_year_sh<span class="sc">}</span><span class="ss">年）'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(xlabel, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'行业分类'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process_top10(data, name_col<span class="op">=</span><span class="st">'行业名称'</span>, count_col<span class="op">=</span><span class="st">'上市公司家数(家)'</span>):</span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 确保数据已排序</span></span>
+<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a>    data_sorted <span class="op">=</span> data.sort_values(count_col, ascending<span class="op">=</span><span class="va">False</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 提取前10</span></span>
+<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a>    top10 <span class="op">=</span> data_sorted.head(<span class="dv">10</span>).copy()</span>
+<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 计算其他类总和</span></span>
+<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a>    other_count <span class="op">=</span> data_sorted[count_col][<span class="dv">10</span>:].<span class="bu">sum</span>()</span>
+<span id="cb20-54"><a href="#cb20-54" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-55"><a href="#cb20-55" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 创建其他行</span></span>
+<span id="cb20-56"><a href="#cb20-56" aria-hidden="true" tabindex="-1"></a>    other_row <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb20-57"><a href="#cb20-57" aria-hidden="true" tabindex="-1"></a>        name_col: [<span class="st">'其他'</span>],</span>
+<span id="cb20-58"><a href="#cb20-58" aria-hidden="true" tabindex="-1"></a>        count_col: [other_count]</span>
+<span id="cb20-59"><a href="#cb20-59" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb20-60"><a href="#cb20-60" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-61"><a href="#cb20-61" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 合并数据</span></span>
+<span id="cb20-62"><a href="#cb20-62" aria-hidden="true" tabindex="-1"></a>    processed <span class="op">=</span> pd.concat([top10, other_row], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb20-63"><a href="#cb20-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> processed</span>
+<span id="cb20-64"><a href="#cb20-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-65"><a href="#cb20-65" aria-hidden="true" tabindex="-1"></a><span class="co"># 处理各交易所数据</span></span>
+<span id="cb20-66"><a href="#cb20-66" aria-hidden="true" tabindex="-1"></a>sz_top10 <span class="op">=</span> process_top10(sz_industry, <span class="st">'行业名称'</span>, <span class="st">'上市公司家数(家)'</span>)</span>
+<span id="cb20-67"><a href="#cb20-67" aria-hidden="true" tabindex="-1"></a>sh_top10 <span class="op">=</span> process_top10(sh_industry, <span class="st">'CSRC_NAME'</span>, <span class="st">'LIST_NUM'</span>).rename(</span>
+<span id="cb20-68"><a href="#cb20-68" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>{<span class="st">'CSRC_NAME'</span>:<span class="st">'行业名称'</span>, <span class="st">'LIST_NUM'</span>:<span class="st">'公司数量'</span>})</span>
+<span id="cb20-69"><a href="#cb20-69" aria-hidden="true" tabindex="-1"></a>bj_top10 <span class="op">=</span> process_top10(bj_industry, <span class="st">'industry'</span>, <span class="st">'count'</span>).rename(</span>
+<span id="cb20-70"><a href="#cb20-70" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>{<span class="st">'industry'</span>:<span class="st">'行业名称'</span>, <span class="st">'count'</span>:<span class="st">'公司数量'</span>})</span>
+<span id="cb20-71"><a href="#cb20-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-72"><a href="#cb20-72" aria-hidden="true" tabindex="-1"></a><span class="co"># =====================</span></span>
+<span id="cb20-73"><a href="#cb20-73" aria-hidden="true" tabindex="-1"></a><span class="co"># 饼图可视化函数</span></span>
+<span id="cb20-74"><a href="#cb20-74" aria-hidden="true" tabindex="-1"></a><span class="co"># =====================</span></span>
+<span id="cb20-75"><a href="#cb20-75" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_pie(data, title, year):</span>
+<span id="cb20-76"><a href="#cb20-76" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>))</span>
+<span id="cb20-77"><a href="#cb20-77" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-78"><a href="#cb20-78" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 准备数据</span></span>
+<span id="cb20-79"><a href="#cb20-79" aria-hidden="true" tabindex="-1"></a>    labels <span class="op">=</span> data.iloc[:, <span class="dv">0</span>]</span>
+<span id="cb20-80"><a href="#cb20-80" aria-hidden="true" tabindex="-1"></a>    sizes <span class="op">=</span> data.iloc[:, <span class="dv">1</span>]</span>
+<span id="cb20-81"><a href="#cb20-81" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-82"><a href="#cb20-82" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 绘制饼图</span></span>
+<span id="cb20-83"><a href="#cb20-83" aria-hidden="true" tabindex="-1"></a>    wedges, texts, autotexts <span class="op">=</span> plt.pie(</span>
+<span id="cb20-84"><a href="#cb20-84" aria-hidden="true" tabindex="-1"></a>        sizes, </span>
+<span id="cb20-85"><a href="#cb20-85" aria-hidden="true" tabindex="-1"></a>        labels<span class="op">=</span>labels,</span>
+<span id="cb20-86"><a href="#cb20-86" aria-hidden="true" tabindex="-1"></a>        autopct<span class="op">=</span><span class="st">'</span><span class="sc">%1.1f%%</span><span class="st">'</span>,</span>
+<span id="cb20-87"><a href="#cb20-87" aria-hidden="true" tabindex="-1"></a>        startangle<span class="op">=</span><span class="dv">140</span>,</span>
+<span id="cb20-88"><a href="#cb20-88" aria-hidden="true" tabindex="-1"></a>        pctdistance<span class="op">=</span><span class="fl">0.85</span>,</span>
+<span id="cb20-89"><a href="#cb20-89" aria-hidden="true" tabindex="-1"></a>        textprops<span class="op">=</span>{<span class="st">'fontsize'</span>:<span class="dv">10</span>}</span>
+<span id="cb20-90"><a href="#cb20-90" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb20-91"><a href="#cb20-91" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-92"><a href="#cb20-92" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 美化标签</span></span>
+<span id="cb20-93"><a href="#cb20-93" aria-hidden="true" tabindex="-1"></a>    plt.setp(autotexts, size<span class="op">=</span><span class="dv">10</span>, weight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb20-94"><a href="#cb20-94" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="ss">f'</span><span class="sc">{</span>title<span class="sc">}</span><span class="ss">（</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">年）'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, pad<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb20-95"><a href="#cb20-95" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-96"><a href="#cb20-96" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 添加中心空白</span></span>
+<span id="cb20-97"><a href="#cb20-97" aria-hidden="true" tabindex="-1"></a>    centre_circle <span class="op">=</span> plt.Circle((<span class="dv">0</span>,<span class="dv">0</span>),<span class="fl">0.70</span>,fc<span class="op">=</span><span class="st">'white'</span>)</span>
+<span id="cb20-98"><a href="#cb20-98" aria-hidden="true" tabindex="-1"></a>    plt.gcf().gca().add_artist(centre_circle)</span>
+<span id="cb20-99"><a href="#cb20-99" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-100"><a href="#cb20-100" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'equal'</span>)</span>
+<span id="cb20-101"><a href="#cb20-101" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb20-102"><a href="#cb20-102" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb20-103"><a href="#cb20-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-104"><a href="#cb20-104" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制深圳饼图</span></span>
+<span id="cb20-105"><a href="#cb20-105" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">深圳交易所行业分布（前10+其他）:"</span>)</span>
+<span id="cb20-106"><a href="#cb20-106" aria-hidden="true" tabindex="-1"></a>plot_pie(sz_top10, <span class="st">'深圳交易所上市公司行业分布'</span>, latest_year_sh)</span>
+<span id="cb20-107"><a href="#cb20-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-108"><a href="#cb20-108" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制上海饼图</span></span>
+<span id="cb20-109"><a href="#cb20-109" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">上海交易所行业分布（前10+其他）:"</span>)</span>
+<span id="cb20-110"><a href="#cb20-110" aria-hidden="true" tabindex="-1"></a>plot_pie(sh_top10, <span class="st">'上海交易所上市公司行业分布'</span>, latest_year_sh)</span>
+<span id="cb20-111"><a href="#cb20-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-112"><a href="#cb20-112" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制北交所饼图</span></span>
+<span id="cb20-113"><a href="#cb20-113" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">北交所行业分布（前10+其他）:"</span>)</span>
+<span id="cb20-114"><a href="#cb20-114" aria-hidden="true" tabindex="-1"></a>plot_pie(bj_top10, <span class="st">'北交所上市公司行业分布'</span>, latest_year_bj)</span>
+<span id="cb20-115"><a href="#cb20-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-116"><a href="#cb20-116" aria-hidden="true" tabindex="-1"></a><span class="co"># 输出处理后的数据</span></span>
+<span id="cb20-117"><a href="#cb20-117" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">深圳前10+其他数据："</span>)</span>
+<span id="cb20-118"><a href="#cb20-118" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sz_top10)</span>
+<span id="cb20-119"><a href="#cb20-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-120"><a href="#cb20-120" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">上海前10+其他数据："</span>)</span>
+<span id="cb20-121"><a href="#cb20-121" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sh_top10)</span>
+<span id="cb20-122"><a href="#cb20-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-123"><a href="#cb20-123" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">北交所前10+其他数据："</span>)</span>
+<span id="cb20-124"><a href="#cb20-124" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(bj_top10)</span>
+<span id="cb20-125"><a href="#cb20-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-126"><a href="#cb20-126" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-127"><a href="#cb20-127" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-128"><a href="#cb20-128" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制深圳交易所行业分布</span></span>
+<span id="cb20-129"><a href="#cb20-129" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"深圳交易所行业分布："</span>)</span>
+<span id="cb20-130"><a href="#cb20-130" aria-hidden="true" tabindex="-1"></a>plot_industry_distribution(sz_industry, <span class="st">'深圳交易所上市公司行业分布'</span>, <span class="st">'上市公司数量（家）'</span>)</span>
+<span id="cb20-131"><a href="#cb20-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-132"><a href="#cb20-132" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制上海交易所行业分布</span></span>
+<span id="cb20-133"><a href="#cb20-133" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">上海交易所行业分布："</span>)</span>
+<span id="cb20-134"><a href="#cb20-134" aria-hidden="true" tabindex="-1"></a>plot_industry_distribution(sh_industry, <span class="st">'上海交易所上市公司行业分布'</span>, <span class="st">'上市公司数量（家）'</span>)</span>
+<span id="cb20-135"><a href="#cb20-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-136"><a href="#cb20-136" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制北交所行业分布</span></span>
+<span id="cb20-137"><a href="#cb20-137" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">北交所行业分布："</span>)</span>
+<span id="cb20-138"><a href="#cb20-138" aria-hidden="true" tabindex="-1"></a>plot_industry_distribution(bj_industry, <span class="st">'北交所上市公司行业分布'</span>, <span class="st">'上市公司数量（家）'</span>)</span>
+<span id="cb20-139"><a href="#cb20-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-140"><a href="#cb20-140" aria-hidden="true" tabindex="-1"></a><span class="co"># =====================</span></span>
+<span id="cb20-141"><a href="#cb20-141" aria-hidden="true" tabindex="-1"></a><span class="co"># 数据表格输出</span></span>
+<span id="cb20-142"><a href="#cb20-142" aria-hidden="true" tabindex="-1"></a><span class="co"># =====================</span></span>
+<span id="cb20-143"><a href="#cb20-143" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">深圳交易所行业分布数据："</span>)</span>
+<span id="cb20-144"><a href="#cb20-144" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sz_industry.head(<span class="dv">10</span>))</span>
+<span id="cb20-145"><a href="#cb20-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-146"><a href="#cb20-146" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">上海交易所行业分布数据："</span>)</span>
+<span id="cb20-147"><a href="#cb20-147" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sh_industry.head(<span class="dv">10</span>))</span>
+<span id="cb20-148"><a href="#cb20-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-149"><a href="#cb20-149" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">北交所行业分布数据："</span>)</span>
+<span id="cb20-150"><a href="#cb20-150" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(bj_industry.head(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 深圳交易所行业分布（前10+其他）:</code></pre>
@@ -2107,7 +2107,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

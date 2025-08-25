@@ -134,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -142,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -681,46 +681,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <p>由于 Jupyter Notebook 对 Python 的支持一直非常好，因此在 Jupyter Notebook 中编写和运行 Python 代码非常顺畅。比如，你可以运行或修改上图中的代码：</p>
 <div id="2ebf36e8" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1"></a># 绘制一幅简单的函数图</span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a>import numpy <span class="kw">as</span> np</span>
-<span id="cb1-4"><a href="#cb1-4"></a>import matplotlib.pyplot <span class="kw">as</span> plt</span>
-<span id="cb1-5"><a href="#cb1-5"></a></span>
-<span id="cb1-6"><a href="#cb1-6"></a>x = np.linspace(-10, 10, 200)</span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="fu">y</span> = x ** 2</span>
-<span id="cb1-8"><a href="#cb1-8"></a></span>
-<span id="cb1-9"><a href="#cb1-9"></a>plt.figure(figsize=(3, 2.5))</span>
-<span id="cb1-10"><a href="#cb1-10"></a>plt.plot(x, <span class="fu">y</span>)</span>
-<span id="cb1-11"><a href="#cb1-11"></a>plt.<span class="bn">title</span>(<span class="st">"y = x^2"</span>)</span>
-<span id="cb1-12"><a href="#cb1-12"></a>plt.<span class="kw">xlabel</span>(<span class="st">"x"</span>)</span>
-<span id="cb1-13"><a href="#cb1-13"></a>plt.<span class="kw">ylabel</span>(<span class="st">"y"</span>)</span>
-<span id="cb1-14"><a href="#cb1-14"></a>plt.<span class="bn">grid</span>(True)</span>
-<span id="cb1-15"><a href="#cb1-15"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a># 绘制一幅简单的函数图</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>import numpy <span class="kw">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>import matplotlib.pyplot <span class="kw">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>x = np.linspace(-10, 10, 200)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">y</span> = x ** 2</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize=(3, 2.5))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.plot(x, <span class="fu">y</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.<span class="bn">title</span>(<span class="st">"y = x^2"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.<span class="kw">xlabel</span>(<span class="st">"x"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.<span class="kw">ylabel</span>(<span class="st">"y"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.<span class="bn">grid</span>(True)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="运行-stata-代码" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="运行-stata-代码"><span class="header-section-number">5.3</span> 运行 Stata 代码</h2>
 <p>多数情况下，你能在 dofile 或 Stata 命令窗口中运行的代码，都可以在 Jupyter Notebook 中运行。以下是一个简单的 Stata 代码示例，比如：</p>
 <div id="cb51e628" class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1"></a>dis <span class="st">"nbstata is so NB"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dis <span class="st">"nbstata is so NB"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>nbstata is so NB</code></pre>
 </div>
 </div>
 <p>再看一个更完整的例子：使用 Stata 自带的 <code>sysuse auto</code> 数据集，绘制汽车价格与重量的散点图，并把图形保存到当前工作路径下。</p>
 <div id="c412200b" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>cd <span class="st">"D:/temp"</span>  <span class="co">// 设置工作目录，酌情修改或忽略此行</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="co">// 安装绘图模板</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a>net install scheme_scientific.pkg, from(http:<span class="co">//fmwww.bc.edu/RePEc/bocode/s)</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="kw">set</span> <span class="dv">scheme</span> scientific</span>
-<span id="cb4-6"><a href="#cb4-6"></a></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="kw">sysuse</span> <span class="st">"auto.dta"</span>, <span class="kw">clear</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="ot">list</span> price <span class="kw">weight</span> mpg <span class="kw">in</span> 1/3, <span class="kw">clean</span> </span>
-<span id="cb4-10"><a href="#cb4-10"></a></span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="kw">scatter</span> price <span class="kw">weight</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="kw">graph</span> <span class="kw">export</span> <span class="st">"scatter_price_weight.png"</span>, <span class="kw">replace</span> <span class="kw">width</span>(700)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>cd <span class="st">"D:/temp"</span>  <span class="co">// 设置工作目录，酌情修改或忽略此行</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">// 安装绘图模板</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>net install scheme_scientific.pkg, from(http:<span class="co">//fmwww.bc.edu/RePEc/bocode/s)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span> <span class="dv">scheme</span> scientific</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">sysuse</span> <span class="st">"auto.dta"</span>, <span class="kw">clear</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span> price <span class="kw">weight</span> mpg <span class="kw">in</span> 1/3, <span class="kw">clean</span> </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">scatter</span> price <span class="kw">weight</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">export</span> <span class="st">"scatter_price_weight.png"</span>, <span class="kw">replace</span> <span class="kw">width</span>(700)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>D:\temp
 checking scheme_scientific consistency and verifying not already installed...
@@ -819,20 +819,20 @@ file scatter_price_weight.png written in PNG format</code></pre>
 <p>我设置的图片默认尺寸比较大，如需调整，可以使用 <code>nbstata</code> 的 <a href="https://hugetim.github.io/nbstata/user_guide.html">魔法命令</a> 设置图片尺寸。</p>
 <p>需要注意的是，魔法命令需要以 <code>%</code> 或 <code>%%</code> 开够，且只有放在代码块的第一行才会被识别为魔法命令。因此，我通常会让魔法命令独占一行：</p>
 <div id="2f96ba3c" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1"></a>%<span class="kw">set</span> graph_width = 5.0in   <span class="co">// 将图形宽度设置为 5.0 英寸</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>%<span class="kw">set</span> graph_width = 5.0in   <span class="co">// 将图形宽度设置为 5.0 英寸</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>graph size was (7.0in, 5.0in), is now (5.0in, 5.0in).</code></pre>
 </div>
 </div>
 <div id="edb63eb9" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1"></a>%<span class="kw">set</span> graph_height = 4.0in  <span class="co">// 将图形高度设置为 4.0 英寸</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>%<span class="kw">set</span> graph_height = 4.0in  <span class="co">// 将图形高度设置为 4.0 英寸</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>graph size was (5.0in, 5.0in), is now (5.0in, 4.0in).</code></pre>
 </div>
 </div>
 <p>执行完上述两行命令后，再绘制的图形就会按照指定的宽度和高度显示了：</p>
 <div id="8037da3b" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">scatter</span> price <span class="kw">weight</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">scatter</span> price <span class="kw">weight</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -847,7 +847,7 @@ file scatter_price_weight.png written in PNG format</code></pre>
 <li><code>%head</code> 可以查看数据集的前 5 行，或者指定行数。我猜是借用了 Python 中的 <code>head()</code> 函数。</li>
 </ul>
 <div id="db13b79b" class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1"></a>%status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>%status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    System information
       Python version         3.12.7
@@ -868,7 +868,7 @@ file scatter_price_weight.png written in PNG format</code></pre>
 </div>
 </div>
 <div id="822f13b8" class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource stata number-lines code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1"></a>%<span class="fu">head</span> price <span class="kw">weight</span> mpg make foreign</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>%<span class="fu">head</span> price <span class="kw">weight</span> mpg make foreign</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -962,14 +962,14 @@ file scatter_price_weight.png written in PNG format</code></pre>
 </ul></li>
 </ul>
 <p>完成上述设定后，VScode 的文件目录结构如下：</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># 目录结构</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="ex">D:/FinData/Proj_Maotai</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="ex">├──</span> codes</span>
-<span id="cb14-4"><a href="#cb14-4"></a><span class="ex">├──</span> data</span>
-<span id="cb14-5"><a href="#cb14-5"></a><span class="ex">├──</span> doc</span>
-<span id="cb14-6"><a href="#cb14-6"></a><span class="ex">├──</span> output</span>
-<span id="cb14-7"><a href="#cb14-7"></a><span class="ex">├──</span> README.md</span>
-<span id="cb14-8"><a href="#cb14-8"></a><span class="ex">└──</span> data_clean.ipynb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 目录结构</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">D:/FinData/Proj_Maotai</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> codes</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> data</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> doc</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> output</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> README.md</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> data_clean.ipynb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1062,15 +1062,15 @@ file scatter_price_weight.png written in PNG format</code></pre>
 <h4 data-number="5.7.1.1" class="anchored" data-anchor-id="方法-1借助-quarto-插件"><span class="header-section-number">5.7.1.1</span> 方法 1：借助 quarto 插件</h4>
 <p>如果已经安装了 <a href="https://quarto.org">Quarto</a>，并在 VScode 中安装了 Quarto 插件，你可以直接在 VScode 中使用 Quarto 导出 HTML。</p>
 <p>首先，在 <code>.ipynb</code> 文件的顶部新增一个 Markdown 代码块，并填入以下 YAML 头信息：</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1"></a><span class="pp">---</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"这是我的笔记"</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb15-5"><a href="#cb15-5"></a><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb15-6"><a href="#cb15-6"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"这是我的笔记"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>然后，按快捷键 <code>Ctrl + ~</code> 打开终端，运行以下命令：</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1"></a><span class="bu">cd</span> path_name_of_your_notebook</span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="ex">quarto</span> render your_notebook.ipynb <span class="at">--to</span> html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> path_name_of_your_notebook</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render your_notebook.ipynb <span class="at">--to</span> html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>输出的 HTML 文件将保存在当前目录下，支持目录和章节编号和 <code>:::.callout</code> 等样式。</p>
 </section>
 <section id="方法-2使用-jupyter-notebook-的导出功能" class="level4" data-number="5.7.1.2">
@@ -1095,10 +1095,10 @@ file scatter_price_weight.png written in PNG format</code></pre>
 <p>Jupyter 和 Quarto 在导出 Markdown、Word、PDF 时都会调用 Pandoc。</p>
 <ul>
 <li><p><strong>推荐安装方式（适用于 Anaconda 用户）</strong>：</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge pandoc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge pandoc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>或者前往官网下载安装包（Windows/macOS/Linux 均支持）： <a href="https://pandoc.org/install">https://pandoc.org/install</a></p></li>
 <li><p>安装完成后，<strong>你可以在终端中输入以下命令测试是否成功</strong>：</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1"></a><span class="ex">pandoc</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </section>
 <section id="安装-tex-live用于导出-pdf" class="level3" data-number="5.7.3">
@@ -1109,7 +1109,7 @@ file scatter_price_weight.png written in PNG format</code></pre>
 <li><p>安装过程中可选择 “完整版” 或 “Typical full installation”；</p></li>
 <li><p>安装完成后，<strong>务必重启 VS Code 和终端</strong>；</p></li>
 <li><p>然后在终端中测试：</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1"></a><span class="ex">pdflatex</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pdflatex</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </section>
 <section id="如何打开终端" class="level3" data-number="5.7.4">
@@ -1131,9 +1131,9 @@ file scatter_price_weight.png written in PNG format</code></pre>
 <ul>
 <li><p>在 VS Code 中点击右上角「导出（Export）」按钮；</p></li>
 <li><p>或在终端中运行：</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1"></a><span class="ex">jupyter</span> nbconvert your_notebook.ipynb <span class="at">--to</span> pdf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> nbconvert your_notebook.ipynb <span class="at">--to</span> pdf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>或使用 Quarto（如果你已安装）：</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1"></a><span class="ex">quarto</span> render your_notebook.ipynb <span class="at">--to</span> pdf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render your_notebook.ipynb <span class="at">--to</span> pdf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 <p>完成上述安装和设定后，即可顺利将 Notebook 文档导出为 PDF、HTML、Word 等多种格式，满足教学、写作和发布的常见需求。</p>
 </section>
@@ -1149,16 +1149,16 @@ file scatter_price_weight.png written in PNG format</code></pre>
 <section id="示例命令" class="level4" data-number="5.7.6.1">
 <h4 data-number="5.7.6.1" class="anchored" data-anchor-id="示例命令"><span class="header-section-number">5.7.6.1</span> 示例命令：</h4>
 <p>将 <code>.ipynb</code> 或 <code>.qmd</code> 导出为 PDF：</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1"></a><span class="ex">quarto</span> render your_notebook.ipynb <span class="at">--to</span> pdf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render your_notebook.ipynb <span class="at">--to</span> pdf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>将多个文档组织为电子书结构（在 <code>_quarto.yml</code> 中设置章节）：</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1"></a><span class="ex">quarto</span> render</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="安装方式" class="level4" data-number="5.7.6.2">
 <h4 data-number="5.7.6.2" class="anchored" data-anchor-id="安装方式"><span class="header-section-number">5.7.6.2</span> 安装方式：</h4>
 <ul>
 <li><p>可从官网下载安装：<a href="https://quarto.org/download">https://quarto.org/download</a></p></li>
 <li><p>安装完成后，在终端中测试：</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1"></a><span class="ex">quarto</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 <p>Quarto 完全兼容你现有的 VS Code 工作流，安装 Quarto 插件后即可直接在 VS Code 中预览、渲染和发布。对于希望构建专业文档的用户，Quarto 是目前最值得推荐的方案。</p>
 </section>
@@ -1183,15 +1183,15 @@ file scatter_price_weight.png written in PNG format</code></pre>
 </div>
 <div class="callout-body-container callout-body">
 <p>请帮我在 Windows 系统上为一个数据分析项目生成标准的项目结构。 项目的根目录是 D:/FinData/Proj_Maotai，请在该路径下创建以下结构：</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1"></a><span class="ex">D:/FinData/Proj_Maotai</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="ex">├──</span> codes             <span class="co"># 用于存放脚本代码</span></span>
-<span id="cb25-3"><a href="#cb25-3"></a><span class="ex">├──</span> data              <span class="co"># 原始数据或处理后的数据</span></span>
-<span id="cb25-4"><a href="#cb25-4"></a><span class="ex">├──</span> doc               <span class="co"># 项目文档与说明资料</span></span>
-<span id="cb25-5"><a href="#cb25-5"></a><span class="ex">├──</span> output            <span class="co"># 图表、模型结果、分析报告等输出文件</span></span>
-<span id="cb25-6"><a href="#cb25-6"></a><span class="ex">├──</span> README.md         <span class="co"># 项目说明文件，简要介绍项目目的与结构</span></span>
-<span id="cb25-7"><a href="#cb25-7"></a><span class="ex">├──</span> 01_data_clean.ipynb       <span class="co"># 数据清洗与预处理</span></span>
-<span id="cb25-8"><a href="#cb25-8"></a><span class="ex">├──</span> 02_EDA.ipynb              <span class="co"># 探索性数据分析</span></span>
-<span id="cb25-9"><a href="#cb25-9"></a><span class="ex">└──</span> 03_regression.ipynb       <span class="co"># 回归分析与建模</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">D:/FinData/Proj_Maotai</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> codes             <span class="co"># 用于存放脚本代码</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> data              <span class="co"># 原始数据或处理后的数据</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> doc               <span class="co"># 项目文档与说明资料</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> output            <span class="co"># 图表、模型结果、分析报告等输出文件</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> README.md         <span class="co"># 项目说明文件，简要介绍项目目的与结构</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> 01_data_clean.ipynb       <span class="co"># 数据清洗与预处理</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> 02_EDA.ipynb              <span class="co"># 探索性数据分析</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> 03_regression.ipynb       <span class="co"># 回归分析与建模</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>请提供 Python 代码，以便我在写 Jupyter Notebook 中运行。 请确保必要的 <code>.ipynb</code> 文件和 <code>README.md</code> 都被自动生成。如果文件已存在，请保留原文件不覆盖。 你可以默认这些 <code>.ipynb</code> 文件为空白，也可以加一两行注释。</p>
 </div>
 </div>
@@ -1305,7 +1305,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

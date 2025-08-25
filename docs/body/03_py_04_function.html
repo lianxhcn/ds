@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -618,20 +618,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>我们之前已经频繁的使用到了函数。</p>
 <p>函数是一个带有输入和输出的能够完成特定功能的代码块。比如，在某段程序中我们可能需要频繁的使用某一功能，比如，我们可能需要频繁的计算正态分布的密度函数，虽然我们可以使用：</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>pi<span class="op">=</span><span class="fl">3.141592654</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>e<span class="op">=</span><span class="fl">2.718</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>sigma<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a>mu<span class="op">=</span><span class="dv">0</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>f<span class="op">=</span><span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span>pi)<span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>sigma)<span class="op">*</span>e<span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">^</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pi<span class="op">=</span><span class="fl">3.141592654</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>e<span class="op">=</span><span class="fl">2.718</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>sigma<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>mu<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>f<span class="op">=</span><span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span>pi)<span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>sigma)<span class="op">*</span>e<span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">^</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>进行计算，但是以上计算公式仍然十分复杂，每次碰到都输入不仅麻烦，而且容易犯错。更方便的做法时将以上语句写成一个<strong>函数</strong>（<strong>function</strong>）。</p>
 <p>在Python中，函数可以方便的使用def来定义，比如，上面计算正态分布的密度函数的函数可以写为：</p>
 <div id="cell-1" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">def</span> normden(x,mu,sigma):</span>
-<span id="cb2-2"><a href="#cb2-2"></a>    pi<span class="op">=</span><span class="fl">3.141592654</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>    e<span class="op">=</span><span class="fl">2.718</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>    f<span class="op">=</span><span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span>pi)<span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>sigma)<span class="op">*</span>e<span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb2-5"><a href="#cb2-5"></a>    <span class="cf">return</span> f</span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="bu">print</span>(normden(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normden(x,mu,sigma):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    pi<span class="op">=</span><span class="fl">3.141592654</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    e<span class="op">=</span><span class="fl">2.718</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span><span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span>pi)<span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>sigma)<span class="op">*</span>e<span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(normden(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.39894228037538715</code></pre>
 </div>
@@ -640,34 +640,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>在函数的最后，有一个return语句，该语句用以给出函数的返回值：在本例中就是我们计算得到的密度函数值。</p>
 <p>注意如果需要函数有返回值，必须加入return语句，如果不加，函数默认返回None：</p>
 <div id="cell-3" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">def</span> normden(x,mu,sigma):</span>
-<span id="cb4-2"><a href="#cb4-2"></a>    pi<span class="op">=</span><span class="fl">3.141592654</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a>    e<span class="op">=</span><span class="fl">2.718</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a>    f<span class="op">=</span><span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span>pi)<span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>sigma)<span class="op">*</span>e<span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb4-5"><a href="#cb4-5"></a>    <span class="co"># return f</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="bu">print</span>(normden(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normden(x,mu,sigma):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    pi<span class="op">=</span><span class="fl">3.141592654</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    e<span class="op">=</span><span class="fl">2.718</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span><span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span>pi)<span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>sigma)<span class="op">*</span>e<span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># return f</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(normden(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>None</code></pre>
 </div>
 </div>
 <p>此外需要注意的时，在调用函数时必须按照声明函数时的参数顺序传入参数，比如在上例中，normden(0,0,1)即对于期望为0，标准差为1的正态分布，计算x=0处的密度函数值，不能将顺序搞错。从而以下调用方式：</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>normden(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>normden(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>必然是错的，因为标准差不可能为0。</p>
 <p>有时对于一个足够复杂的函数，可能会有很多参数值需要传入，而有些参数是允许有默认值的，即使用函数时如果不需要改动可以不改动。此时，我们可以可以在声明函数时就给出默认值，比如，在上例中，如果我们默认计算标准正态分布（期望为0、标注差为1）的密度函数，可以这样写：</p>
 <div id="cell-5" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">def</span> normden(x,mu<span class="op">=</span><span class="dv">0</span>,sigma<span class="op">=</span><span class="dv">1</span>):</span>
-<span id="cb7-2"><a href="#cb7-2"></a>    pi<span class="op">=</span><span class="fl">3.141592654</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>    e<span class="op">=</span><span class="fl">2.718</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>    f<span class="op">=</span><span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span>pi)<span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>sigma)<span class="op">*</span>e<span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb7-5"><a href="#cb7-5"></a>    <span class="cf">return</span> f</span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="bu">print</span>(normden(<span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normden(x,mu<span class="op">=</span><span class="dv">0</span>,sigma<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    pi<span class="op">=</span><span class="fl">3.141592654</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    e<span class="op">=</span><span class="fl">2.718</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span><span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span>pi)<span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>sigma)<span class="op">*</span>e<span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(normden(<span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.39894228037538715</code></pre>
 </div>
 </div>
 <p>如果需要指明mu或者sigma的值，只需要在调用时声明即可，比如：</p>
 <div id="cell-7" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="bu">print</span>(normden(<span class="dv">0</span>,sigma<span class="op">=</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(normden(<span class="dv">0</span>,sigma<span class="op">=</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.19947114018769357</code></pre>
 </div>
@@ -675,13 +675,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>就计算了标准差为2、期望为0的正态分布的密度函数值。</p>
 <p>此外，我们之前提到过，为代码加注释是非常好的习惯，在Python中，由于自定义的函数有可能被其他人使用，而其他人不一定会看源代码，因而注释可能不会被看到。Python提供了一种非常方便的方法，即<strong>文档字符串</strong>（<strong>docstring</strong>），这个字符串仅仅是在函数体内、放在函数开头、不赋值给任何变量的字符串：</p>
 <div id="cell-9" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">def</span> normden(x,mu<span class="op">=</span><span class="dv">0</span>,sigma<span class="op">=</span><span class="dv">1</span>):</span>
-<span id="cb11-2"><a href="#cb11-2"></a>    <span class="co">"Function computing the density function of normal distribution with expection mu and variance sigma at x."</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a>    pi<span class="op">=</span><span class="fl">3.141592654</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a>    e<span class="op">=</span><span class="fl">2.718</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a>    f<span class="op">=</span><span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span>pi)<span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>sigma)<span class="op">*</span>e<span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb11-6"><a href="#cb11-6"></a>    <span class="cf">return</span> f</span>
-<span id="cb11-7"><a href="#cb11-7"></a><span class="bu">print</span>(normden.__doc__)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normden(x,mu<span class="op">=</span><span class="dv">0</span>,sigma<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"Function computing the density function of normal distribution with expection mu and variance sigma at x."</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    pi<span class="op">=</span><span class="fl">3.141592654</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    e<span class="op">=</span><span class="fl">2.718</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span><span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span>pi)<span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>sigma)<span class="op">*</span>e<span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(normden.__doc__)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Function computing the density function of normal distribution with expection mu and variance sigma at x.</code></pre>
 </div>
@@ -692,15 +692,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>在创建函数时，必须注意变量的作用域问题。</p>
 <p>作用域即变量的作用范围。比如，我们在normden()函数中定义了两个变量：pi和e，但是由于这两个变量是在函数体内定义的，因而外界无法使用这两个变量：</p>
 <div id="cell-12" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">def</span> normden(x,mu<span class="op">=</span><span class="dv">0</span>,sigma<span class="op">=</span><span class="dv">1</span>):</span>
-<span id="cb13-2"><a href="#cb13-2"></a>    pi<span class="op">=</span><span class="fl">3.141592654</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a>    e<span class="op">=</span><span class="fl">2.718</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a>    f<span class="op">=</span><span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span>pi)<span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>sigma)<span class="op">*</span>e<span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb13-5"><a href="#cb13-5"></a>    <span class="cf">return</span> f</span>
-<span id="cb13-6"><a href="#cb13-6"></a><span class="cf">try</span>:</span>
-<span id="cb13-7"><a href="#cb13-7"></a>    <span class="bu">print</span>(pi)</span>
-<span id="cb13-8"><a href="#cb13-8"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb13-9"><a href="#cb13-9"></a>    <span class="bu">print</span>(<span class="st">"错误："</span>,e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normden(x,mu<span class="op">=</span><span class="dv">0</span>,sigma<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    pi<span class="op">=</span><span class="fl">3.141592654</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    e<span class="op">=</span><span class="fl">2.718</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span><span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span>pi)<span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>sigma)<span class="op">*</span>e<span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(pi)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"错误："</span>,e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>错误： name 'pi' is not defined</code></pre>
 </div>
@@ -708,17 +708,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>可见程序出错，并提示pi这个变量没有定义。</p>
 <p>然而反过来，被定义在函数体外的变量，可以被函数所使用，比如，如果我们写成：</p>
 <div id="cell-14" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>pi<span class="op">=</span><span class="fl">3.141592654</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>e<span class="op">=</span><span class="fl">2.718</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="kw">def</span> normden(x,mu<span class="op">=</span><span class="dv">0</span>,sigma<span class="op">=</span><span class="dv">1</span>):</span>
-<span id="cb15-4"><a href="#cb15-4"></a>    f<span class="op">=</span><span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span>pi)<span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>sigma)<span class="op">*</span>e<span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb15-5"><a href="#cb15-5"></a>    <span class="bu">print</span>(<span class="st">"函数体内，pi="</span>,pi)</span>
-<span id="cb15-6"><a href="#cb15-6"></a>    <span class="cf">return</span> f</span>
-<span id="cb15-7"><a href="#cb15-7"></a><span class="cf">try</span>:</span>
-<span id="cb15-8"><a href="#cb15-8"></a>    <span class="bu">print</span>(<span class="st">"函数体外，pi="</span>,pi)</span>
-<span id="cb15-9"><a href="#cb15-9"></a>    <span class="bu">print</span>(normden(<span class="dv">0</span>))</span>
-<span id="cb15-10"><a href="#cb15-10"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb15-11"><a href="#cb15-11"></a>    <span class="bu">print</span>(<span class="st">"错误："</span>,e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pi<span class="op">=</span><span class="fl">3.141592654</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>e<span class="op">=</span><span class="fl">2.718</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normden(x,mu<span class="op">=</span><span class="dv">0</span>,sigma<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span><span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span>pi)<span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>sigma)<span class="op">*</span>e<span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"函数体内，pi="</span>,pi)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"函数体外，pi="</span>,pi)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(normden(<span class="dv">0</span>))</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"错误："</span>,e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>函数体外，pi= 3.141592654
 函数体内，pi= 3.141592654
@@ -727,19 +727,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>不过，如果在函数体内重新定义了pi，则会按照函数体内的定义：</p>
 <div id="cell-16" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>pi<span class="op">=</span><span class="dv">4</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a>e<span class="op">=</span><span class="fl">2.718</span></span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="kw">def</span> normden(x,mu<span class="op">=</span><span class="dv">0</span>,sigma<span class="op">=</span><span class="dv">1</span>):</span>
-<span id="cb17-4"><a href="#cb17-4"></a>    pi<span class="op">=</span><span class="fl">3.141592654</span></span>
-<span id="cb17-5"><a href="#cb17-5"></a>    e<span class="op">=</span><span class="fl">2.718</span></span>
-<span id="cb17-6"><a href="#cb17-6"></a>    f<span class="op">=</span><span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span>pi)<span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>sigma)<span class="op">*</span>e<span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb17-7"><a href="#cb17-7"></a>    <span class="bu">print</span>(<span class="st">"函数体内，pi="</span>,pi)</span>
-<span id="cb17-8"><a href="#cb17-8"></a>    <span class="cf">return</span> f</span>
-<span id="cb17-9"><a href="#cb17-9"></a><span class="cf">try</span>:</span>
-<span id="cb17-10"><a href="#cb17-10"></a>    <span class="bu">print</span>(<span class="st">"函数体外，pi="</span>,pi)</span>
-<span id="cb17-11"><a href="#cb17-11"></a>    <span class="bu">print</span>(normden(<span class="dv">0</span>))</span>
-<span id="cb17-12"><a href="#cb17-12"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb17-13"><a href="#cb17-13"></a>    <span class="bu">print</span>(<span class="st">"错误："</span>,e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pi<span class="op">=</span><span class="dv">4</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>e<span class="op">=</span><span class="fl">2.718</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normden(x,mu<span class="op">=</span><span class="dv">0</span>,sigma<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    pi<span class="op">=</span><span class="fl">3.141592654</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    e<span class="op">=</span><span class="fl">2.718</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span><span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span>pi)<span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>sigma)<span class="op">*</span>e<span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"函数体内，pi="</span>,pi)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"函数体外，pi="</span>,pi)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(normden(<span class="dv">0</span>))</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"错误："</span>,e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>函数体外，pi= 4
 函数体内，pi= 3.141592654
@@ -752,42 +752,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>函数虽然好用，但是有一个缺点是，有时语句非常简单，但是我们还需要写def、return等语句。</p>
 <p>Python提供了一个语法糖，即lambda表达式，可以让我们很方便的在一行以内定义一个函数。比如刚刚计算标准正态分布的密度函数的函数可以定义为：</p>
 <div id="cell-18" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>stdnormden<span class="op">=</span><span class="kw">lambda</span> x: <span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span><span class="fl">3.141592654</span>)<span class="op">**</span><span class="fl">0.5</span>)<span class="op">*</span><span class="fl">2.718</span><span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span><span class="dv">2</span>)</span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="bu">print</span>(stdnormden(<span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>stdnormden<span class="op">=</span><span class="kw">lambda</span> x: <span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span><span class="fl">3.141592654</span>)<span class="op">**</span><span class="fl">0.5</span>)<span class="op">*</span><span class="fl">2.718</span><span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(stdnormden(<span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.39894228037538715</code></pre>
 </div>
 </div>
 <p>当然，简单的代价是损失方便性，上面的lambda表达式虽然定义了标准正态分布的密度函数，但是并没有定义一般意义的正态分布的密度函数，如果需要传入额外的变量，可以使用：</p>
 <div id="cell-20" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>normden<span class="op">=</span><span class="kw">lambda</span> x, mu, sigma: <span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span><span class="fl">3.141592654</span>)<span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>sigma)<span class="op">*</span><span class="fl">2.718</span><span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>((x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="bu">print</span>(normden(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>normden<span class="op">=</span><span class="kw">lambda</span> x, mu, sigma: <span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span><span class="fl">3.141592654</span>)<span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>sigma)<span class="op">*</span><span class="fl">2.718</span><span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>((x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(normden(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.19947114018769357</code></pre>
 </div>
 </div>
 <p>在这里，我们不妨回忆一下上一节中有关列表排序的内容，比如对于列表</p>
 <div id="cell-22" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>player_list<span class="op">=</span>[(<span class="st">'Messi'</span>, <span class="dv">10</span>), (<span class="st">'Xavi'</span>, <span class="dv">6</span>), (<span class="st">'ter Stegen'</span>, <span class="dv">1</span>), (<span class="st">'Busquets'</span>, <span class="dv">5</span>), (<span class="st">'Pique'</span>, <span class="dv">3</span>), (<span class="st">'Suárez'</span>, <span class="dv">9</span>)]</span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="bu">print</span>(player_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>player_list<span class="op">=</span>[(<span class="st">'Messi'</span>, <span class="dv">10</span>), (<span class="st">'Xavi'</span>, <span class="dv">6</span>), (<span class="st">'ter Stegen'</span>, <span class="dv">1</span>), (<span class="st">'Busquets'</span>, <span class="dv">5</span>), (<span class="st">'Pique'</span>, <span class="dv">3</span>), (<span class="st">'Suárez'</span>, <span class="dv">9</span>)]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(player_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[('Messi', 10), ('Xavi', 6), ('ter Stegen', 1), ('Busquets', 5), ('Pique', 3), ('Suárez', 9)]</code></pre>
 </div>
 </div>
 <p>现在该列表的每个元素是一个元组，我们希望的是对每个元组的第二个元素排序。而列表的sort()函数中，key是一个参数，当这个参数不传入任何东西时，默认按照元素值进行排序；但是key参数允许传入一个函数，在进行排序时，先将每个元素带入到key的函数中，计算返回值，再根据返回值排序。比如：</p>
 <div id="cell-24" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">def</span> sort_list_by_2(t):</span>
-<span id="cb25-2"><a href="#cb25-2"></a>    <span class="cf">return</span> t[<span class="dv">1</span>]</span>
-<span id="cb25-3"><a href="#cb25-3"></a>player_list.sort(key<span class="op">=</span>sort_list_by_2)</span>
-<span id="cb25-4"><a href="#cb25-4"></a><span class="bu">print</span>(player_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sort_list_by_2(t):</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> t[<span class="dv">1</span>]</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>player_list.sort(key<span class="op">=</span>sort_list_by_2)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(player_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[('ter Stegen', 1), ('Pique', 3), ('Busquets', 5), ('Xavi', 6), ('Suárez', 9), ('Messi', 10)]</code></pre>
 </div>
 </div>
 <p>或者，我们可以使用lambda表达式写成更加简洁的形式：</p>
 <div id="cell-26" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>player_list.sort(key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">1</span>],reverse<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb27-2"><a href="#cb27-2"></a><span class="bu">print</span>(player_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>player_list.sort(key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">1</span>],reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(player_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[('Messi', 10), ('Suárez', 9), ('Xavi', 6), ('Busquets', 5), ('Pique', 3), ('ter Stegen', 1)]</code></pre>
 </div>
@@ -798,15 +798,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>可能有心的读者已经注意到了，函数是可以通过等号赋予某一个变量的，甚至可以传入另外一个函数。</p>
 <p>实际上在Python中也吸收了函数式编程的一些特点，函数也是“一等公民”，跟数字、字符串一样，也可以传给一个变量、当做参数传入给另外一个函数。比如：</p>
 <div id="cell-28" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a><span class="kw">def</span> normden(x,mu<span class="op">=</span><span class="dv">0</span>,sigma<span class="op">=</span><span class="dv">1</span>):</span>
-<span id="cb29-2"><a href="#cb29-2"></a>    pi<span class="op">=</span><span class="fl">3.141592654</span></span>
-<span id="cb29-3"><a href="#cb29-3"></a>    e<span class="op">=</span><span class="fl">2.718</span></span>
-<span id="cb29-4"><a href="#cb29-4"></a>    f<span class="op">=</span><span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span>pi)<span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>sigma)<span class="op">*</span>e<span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb29-5"><a href="#cb29-5"></a>    <span class="cf">return</span> f</span>
-<span id="cb29-6"><a href="#cb29-6"></a></span>
-<span id="cb29-7"><a href="#cb29-7"></a>normden2<span class="op">=</span>normden</span>
-<span id="cb29-8"><a href="#cb29-8"></a><span class="bu">print</span>(normden2(<span class="dv">0</span>))</span>
-<span id="cb29-9"><a href="#cb29-9"></a><span class="bu">print</span>(normden2 <span class="kw">is</span> normden)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normden(x,mu<span class="op">=</span><span class="dv">0</span>,sigma<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    pi<span class="op">=</span><span class="fl">3.141592654</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    e<span class="op">=</span><span class="fl">2.718</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span><span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span>pi)<span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>sigma)<span class="op">*</span>e<span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>normden2<span class="op">=</span>normden</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(normden2(<span class="dv">0</span>))</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(normden2 <span class="kw">is</span> normden)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.39894228037538715
 True</code></pre>
@@ -816,16 +816,16 @@ True</code></pre>
 <p>此外，我们还是用is关键字判断两者是否指代一个对象，发现两者实际上指代的同一个对象，是完全等价的。</p>
 <p>以下展示了将函数作为参数传递给另外一个函数：</p>
 <div id="cell-30" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a><span class="kw">def</span> normden(x,mu<span class="op">=</span><span class="dv">0</span>,sigma<span class="op">=</span><span class="dv">1</span>):</span>
-<span id="cb31-2"><a href="#cb31-2"></a>    pi<span class="op">=</span><span class="fl">3.141592654</span></span>
-<span id="cb31-3"><a href="#cb31-3"></a>    e<span class="op">=</span><span class="fl">2.718</span></span>
-<span id="cb31-4"><a href="#cb31-4"></a>    f<span class="op">=</span><span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span>pi)<span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>sigma)<span class="op">*</span>e<span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb31-5"><a href="#cb31-5"></a>    <span class="cf">return</span> f</span>
-<span id="cb31-6"><a href="#cb31-6"></a></span>
-<span id="cb31-7"><a href="#cb31-7"></a><span class="kw">def</span> den2(f,x):</span>
-<span id="cb31-8"><a href="#cb31-8"></a>    <span class="cf">return</span> f(x)<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb31-9"><a href="#cb31-9"></a></span>
-<span id="cb31-10"><a href="#cb31-10"></a><span class="bu">print</span>(den2(normden,<span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normden(x,mu<span class="op">=</span><span class="dv">0</span>,sigma<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    pi<span class="op">=</span><span class="fl">3.141592654</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    e<span class="op">=</span><span class="fl">2.718</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span><span class="dv">1</span><span class="op">/</span>((<span class="dv">2</span><span class="op">*</span>pi)<span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>sigma)<span class="op">*</span>e<span class="op">**</span>(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> den2(f,x):</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f(x)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(den2(normden,<span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.159154943071114</code></pre>
 </div>
@@ -837,24 +837,24 @@ True</code></pre>
 <p><strong>递归</strong>（<strong>recursion</strong>）是函数是函数值编程一个非常有意思的应用，即一个函数调用其本身。</p>
 <p>比如，为了计算阶乘，我们通常会使用循环：</p>
 <div id="cell-32" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a><span class="kw">def</span> factorial(n):</span>
-<span id="cb33-2"><a href="#cb33-2"></a>    frcn<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb33-3"><a href="#cb33-3"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb33-4"><a href="#cb33-4"></a>        frcn<span class="op">*=</span>(i<span class="op">+</span><span class="dv">1</span>)</span>
-<span id="cb33-5"><a href="#cb33-5"></a>    <span class="cf">return</span> frcn</span>
-<span id="cb33-6"><a href="#cb33-6"></a><span class="bu">print</span>(factorial(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> factorial(n):</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    frcn<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>        frcn<span class="op">*=</span>(i<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> frcn</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(factorial(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>120</code></pre>
 </div>
 </div>
 <p>如果使用递归的思路，我们可以这么写：</p>
 <div id="cell-34" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a><span class="kw">def</span> factorial(n):</span>
-<span id="cb35-2"><a href="#cb35-2"></a>    <span class="cf">if</span> n<span class="op">==</span><span class="dv">1</span>:</span>
-<span id="cb35-3"><a href="#cb35-3"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
-<span id="cb35-4"><a href="#cb35-4"></a>    <span class="cf">else</span>:</span>
-<span id="cb35-5"><a href="#cb35-5"></a>        <span class="cf">return</span> n<span class="op">*</span>factorial(n<span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb35-6"><a href="#cb35-6"></a><span class="bu">print</span>(factorial(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> factorial(n):</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n<span class="op">==</span><span class="dv">1</span>:</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n<span class="op">*</span>factorial(n<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(factorial(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>120</code></pre>
 </div>
@@ -870,23 +870,23 @@ True</code></pre>
 </ol>
 <p>接下来我们展示了一个二分查找的例子，可以证明，以下的二分查找比线性查找更加快速。</p>
 <div id="cell-37" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>player_list<span class="op">=</span>[(<span class="st">'Messi'</span>, <span class="dv">10</span>), (<span class="st">'Xavi'</span>, <span class="dv">6</span>), (<span class="st">'ter Stegen'</span>, <span class="dv">1</span>), (<span class="st">'Busquets'</span>, <span class="dv">5</span>), (<span class="st">'Pique'</span>, <span class="dv">3</span>), (<span class="st">'Suárez'</span>, <span class="dv">9</span>)]</span>
-<span id="cb37-2"><a href="#cb37-2"></a>player_list.sort(key<span class="op">=</span><span class="kw">lambda</span> x:x[<span class="dv">1</span>])</span>
-<span id="cb37-3"><a href="#cb37-3"></a><span class="kw">def</span> search(num,name_list):</span>
-<span id="cb37-4"><a href="#cb37-4"></a>    l<span class="op">=</span><span class="bu">len</span>(name_list)</span>
-<span id="cb37-5"><a href="#cb37-5"></a>    <span class="cf">if</span> l<span class="op">==</span><span class="dv">1</span>:</span>
-<span id="cb37-6"><a href="#cb37-6"></a>        <span class="cf">if</span> name_list[<span class="dv">0</span>][<span class="dv">1</span>]<span class="op">==</span>num:</span>
-<span id="cb37-7"><a href="#cb37-7"></a>            <span class="cf">return</span> name_list[<span class="dv">0</span>][<span class="dv">0</span>]</span>
-<span id="cb37-8"><a href="#cb37-8"></a>        <span class="cf">else</span>:</span>
-<span id="cb37-9"><a href="#cb37-9"></a>            <span class="cf">return</span> <span class="va">None</span></span>
-<span id="cb37-10"><a href="#cb37-10"></a>    <span class="cf">else</span>:</span>
-<span id="cb37-11"><a href="#cb37-11"></a>        l2<span class="op">=</span>l<span class="op">//</span><span class="dv">2</span></span>
-<span id="cb37-12"><a href="#cb37-12"></a>        <span class="cf">if</span> name_list[l2<span class="op">-</span><span class="dv">1</span>][<span class="dv">1</span>]<span class="op">&lt;</span>num:</span>
-<span id="cb37-13"><a href="#cb37-13"></a>            <span class="cf">return</span> search(num,name_list[l2:])</span>
-<span id="cb37-14"><a href="#cb37-14"></a>        <span class="cf">else</span>:</span>
-<span id="cb37-15"><a href="#cb37-15"></a>            <span class="cf">return</span> search(num,name_list[<span class="dv">0</span>:l2])</span>
-<span id="cb37-16"><a href="#cb37-16"></a><span class="bu">print</span>(search(<span class="dv">10</span>, player_list))</span>
-<span id="cb37-17"><a href="#cb37-17"></a><span class="bu">print</span>(search(<span class="dv">11</span>, player_list))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>player_list<span class="op">=</span>[(<span class="st">'Messi'</span>, <span class="dv">10</span>), (<span class="st">'Xavi'</span>, <span class="dv">6</span>), (<span class="st">'ter Stegen'</span>, <span class="dv">1</span>), (<span class="st">'Busquets'</span>, <span class="dv">5</span>), (<span class="st">'Pique'</span>, <span class="dv">3</span>), (<span class="st">'Suárez'</span>, <span class="dv">9</span>)]</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>player_list.sort(key<span class="op">=</span><span class="kw">lambda</span> x:x[<span class="dv">1</span>])</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> search(num,name_list):</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    l<span class="op">=</span><span class="bu">len</span>(name_list)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> l<span class="op">==</span><span class="dv">1</span>:</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> name_list[<span class="dv">0</span>][<span class="dv">1</span>]<span class="op">==</span>num:</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> name_list[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>        l2<span class="op">=</span>l<span class="op">//</span><span class="dv">2</span></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> name_list[l2<span class="op">-</span><span class="dv">1</span>][<span class="dv">1</span>]<span class="op">&lt;</span>num:</span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> search(num,name_list[l2:])</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> search(num,name_list[<span class="dv">0</span>:l2])</span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(search(<span class="dv">10</span>, player_list))</span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(search(<span class="dv">11</span>, player_list))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Messi
 None</code></pre>
@@ -899,12 +899,12 @@ None</code></pre>
 <p>其中，map(func, list)函数接受一个函数func和一个列表list，其作用是将函数func作用与list的每一个元素中。</p>
 <p>值得注意的是，map()语句之后，计算并不会立即执行，而是会返回一个可迭代的对象，等到需要计算值时才进行计算，比如：</p>
 <div id="cell-39" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a>num_list<span class="op">=</span><span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span>))</span>
-<span id="cb39-2"><a href="#cb39-2"></a><span class="bu">print</span>(num_list)</span>
-<span id="cb39-3"><a href="#cb39-3"></a>num_sq_list<span class="op">=</span><span class="bu">map</span>(<span class="kw">lambda</span> x: x<span class="op">**</span><span class="dv">2</span>, num_list)</span>
-<span id="cb39-4"><a href="#cb39-4"></a><span class="bu">print</span>(num_sq_list)</span>
-<span id="cb39-5"><a href="#cb39-5"></a>num_sq_list<span class="op">=</span><span class="bu">list</span>(num_sq_list)</span>
-<span id="cb39-6"><a href="#cb39-6"></a><span class="bu">print</span>(num_sq_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>num_list<span class="op">=</span><span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span>))</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(num_list)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>num_sq_list<span class="op">=</span><span class="bu">map</span>(<span class="kw">lambda</span> x: x<span class="op">**</span><span class="dv">2</span>, num_list)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(num_sq_list)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>num_sq_list<span class="op">=</span><span class="bu">list</span>(num_sq_list)</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(num_sq_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 &lt;map object at 0x7fb8acf3be48&gt;
@@ -922,42 +922,42 @@ None</code></pre>
 </ul>
 <p>比如，以下使用reduce() 函数计算了一个列表的和：</p>
 <div id="cell-41" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a><span class="im">from</span> functools <span class="im">import</span> <span class="bu">reduce</span></span>
-<span id="cb41-2"><a href="#cb41-2"></a></span>
-<span id="cb41-3"><a href="#cb41-3"></a>num_list<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">9</span>]</span>
-<span id="cb41-4"><a href="#cb41-4"></a>sums<span class="op">=</span><span class="bu">reduce</span>(<span class="kw">lambda</span> x, y: x<span class="op">+</span>y, num_list)</span>
-<span id="cb41-5"><a href="#cb41-5"></a><span class="bu">print</span>(sums)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> <span class="bu">reduce</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>num_list<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">9</span>]</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>sums<span class="op">=</span><span class="bu">reduce</span>(<span class="kw">lambda</span> x, y: x<span class="op">+</span>y, num_list)</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sums)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>27</code></pre>
 </div>
 </div>
 <p>以下使用reduce() 函数计算了一个列表的最大值：</p>
 <div id="cell-43" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a><span class="im">from</span> functools <span class="im">import</span> <span class="bu">reduce</span></span>
-<span id="cb43-2"><a href="#cb43-2"></a></span>
-<span id="cb43-3"><a href="#cb43-3"></a>num_list<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">9</span>]</span>
-<span id="cb43-4"><a href="#cb43-4"></a>sums<span class="op">=</span><span class="bu">reduce</span>(<span class="kw">lambda</span> x, y: <span class="bu">max</span>(x,y), num_list)</span>
-<span id="cb43-5"><a href="#cb43-5"></a><span class="bu">print</span>(sums)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> <span class="bu">reduce</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>num_list<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">9</span>]</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>sums<span class="op">=</span><span class="bu">reduce</span>(<span class="kw">lambda</span> x, y: <span class="bu">max</span>(x,y), num_list)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sums)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>9</code></pre>
 </div>
 </div>
 <p>以下使用reduce() 函数计算了0…9的平方和：</p>
 <div id="cell-45" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a>num_list<span class="op">=</span><span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span>))</span>
-<span id="cb45-2"><a href="#cb45-2"></a>num_sq_list<span class="op">=</span><span class="bu">map</span>(<span class="kw">lambda</span> x: x<span class="op">**</span><span class="dv">2</span>, num_list)</span>
-<span id="cb45-3"><a href="#cb45-3"></a>sum_sq<span class="op">=</span><span class="bu">reduce</span>(<span class="kw">lambda</span> x,y:x<span class="op">+</span>y, num_sq_list)</span>
-<span id="cb45-4"><a href="#cb45-4"></a><span class="bu">print</span>(sum_sq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>num_list<span class="op">=</span><span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span>))</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>num_sq_list<span class="op">=</span><span class="bu">map</span>(<span class="kw">lambda</span> x: x<span class="op">**</span><span class="dv">2</span>, num_list)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>sum_sq<span class="op">=</span><span class="bu">reduce</span>(<span class="kw">lambda</span> x,y:x<span class="op">+</span>y, num_sq_list)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sum_sq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>285</code></pre>
 </div>
 </div>
 <p>以下则挑出了所有1,…,9的平方中的所有的能被3整除的数：</p>
 <div id="cell-47" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a>num_list<span class="op">=</span><span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span>))</span>
-<span id="cb47-2"><a href="#cb47-2"></a>num_sq_list<span class="op">=</span><span class="bu">map</span>(<span class="kw">lambda</span> x: x<span class="op">**</span><span class="dv">2</span>, num_list)</span>
-<span id="cb47-3"><a href="#cb47-3"></a>sub_sq<span class="op">=</span><span class="bu">filter</span>(<span class="kw">lambda</span> x:x<span class="op">%</span><span class="dv">3</span><span class="op">==</span><span class="dv">0</span>, num_sq_list)</span>
-<span id="cb47-4"><a href="#cb47-4"></a><span class="bu">print</span>(<span class="bu">list</span>(sub_sq))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>num_list<span class="op">=</span><span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span>))</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>num_sq_list<span class="op">=</span><span class="bu">map</span>(<span class="kw">lambda</span> x: x<span class="op">**</span><span class="dv">2</span>, num_list)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>sub_sq<span class="op">=</span><span class="bu">filter</span>(<span class="kw">lambda</span> x:x<span class="op">%</span><span class="dv">3</span><span class="op">==</span><span class="dv">0</span>, num_sq_list)</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(sub_sq))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[0, 9, 36, 81]</code></pre>
 </div>
@@ -967,18 +967,18 @@ None</code></pre>
 <section id="模块" class="level1" data-number="19">
 <h1 data-number="19"><span class="header-section-number">19</span> 模块</h1>
 <p>注意我们在使用reduce()函数时，多加了一句：</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1"></a><span class="im">from</span> functools <span class="im">import</span> <span class="bu">reduce</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> <span class="bu">reduce</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>原因是由于reduce()并非Python內建的函数，需要从functools这个模块中调用。functools这个模块是Python自带的，无需安装。</p>
 <p>在Python中，<strong>模块</strong>（<strong>module</strong>）通常是一个Python文件，在该文件中定义了很多函数、类、常数等供我们使用。</p>
 <p>而<strong>包</strong>（<strong>package</strong>）是一个目录，包中可以有很多的模块。</p>
 <p>我们之前曾经讲过，使用类似“pip install bs4”之类的命令安装包，安装好之后就可以供我们在Python程序中调用。</p>
 <p>如果需要使用某个模块，可以直接使用“import”命令。比如，我们经常使用的带有一些数学函数的math模块：</p>
 <div id="cell-49" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a><span class="im">import</span> math</span>
-<span id="cb50-2"><a href="#cb50-2"></a><span class="bu">print</span>(<span class="st">"e:"</span>, math.e)</span>
-<span id="cb50-3"><a href="#cb50-3"></a><span class="bu">print</span>(<span class="st">"pi:"</span>, math.pi)</span>
-<span id="cb50-4"><a href="#cb50-4"></a><span class="bu">print</span>(<span class="st">"sin(1):"</span>, math.sin(<span class="dv">1</span>))</span>
-<span id="cb50-5"><a href="#cb50-5"></a><span class="bu">print</span>(<span class="st">"log(2):"</span>, math.log(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"e:"</span>, math.e)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"pi:"</span>, math.pi)</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"sin(1):"</span>, math.sin(<span class="dv">1</span>))</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"log(2):"</span>, math.log(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>e: 2.718281828459045
 pi: 3.141592653589793
@@ -988,13 +988,13 @@ log(2): 0.6931471805599453</code></pre>
 </div>
 <p>注意在上面我们在使用math模块中的元素时，都加了math.的前缀，这是由于Python中的命名空间导致的，为了防止在不同的地方定义了相同的函数名等。比如：</p>
 <div id="cell-51" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1"></a><span class="im">import</span> math</span>
-<span id="cb52-2"><a href="#cb52-2"></a>e<span class="op">=</span><span class="dv">3</span></span>
-<span id="cb52-3"><a href="#cb52-3"></a>pi<span class="op">=</span><span class="dv">4</span></span>
-<span id="cb52-4"><a href="#cb52-4"></a><span class="bu">print</span>(<span class="st">"e in math:"</span>, math.e)</span>
-<span id="cb52-5"><a href="#cb52-5"></a><span class="bu">print</span>(<span class="st">"e:"</span>, e)</span>
-<span id="cb52-6"><a href="#cb52-6"></a><span class="bu">print</span>(<span class="st">"pi in math:"</span>, math.pi)</span>
-<span id="cb52-7"><a href="#cb52-7"></a><span class="bu">print</span>(<span class="st">"pi:"</span>, pi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>e<span class="op">=</span><span class="dv">3</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>pi<span class="op">=</span><span class="dv">4</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"e in math:"</span>, math.e)</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"e:"</span>, e)</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"pi in math:"</span>, math.pi)</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"pi:"</span>, pi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>e in math: 2.718281828459045
 e: 3
@@ -1005,16 +1005,16 @@ pi: 4</code></pre>
 <p>为了防止混乱，特地使用math.前缀作为区分。</p>
 <p>如果需要同时导入多个模块，可以直接用逗号隔开，比如以下程序我们使用梯形公式计算了标准正态分布函数从-1.96到1.96的数值积分：</p>
 <div id="cell-53" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1"></a><span class="im">import</span> math,functools</span>
-<span id="cb54-2"><a href="#cb54-2"></a><span class="kw">def</span> normden(x,mu<span class="op">=</span><span class="dv">0</span>,sigma<span class="op">=</span><span class="dv">1</span>):</span>
-<span id="cb54-3"><a href="#cb54-3"></a>    f<span class="op">=</span><span class="dv">1</span><span class="op">/</span>(math.sqrt(<span class="dv">2</span><span class="op">*</span>math.pi)<span class="op">*</span>sigma)<span class="op">*</span>math.exp(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb54-4"><a href="#cb54-4"></a>    <span class="cf">return</span> f</span>
-<span id="cb54-5"><a href="#cb54-5"></a></span>
-<span id="cb54-6"><a href="#cb54-6"></a>N<span class="op">=</span><span class="dv">1000</span></span>
-<span id="cb54-7"><a href="#cb54-7"></a>x<span class="op">=</span>[<span class="op">-</span><span class="fl">1.96</span><span class="op">+</span>(<span class="fl">1.96</span><span class="op">*</span><span class="dv">2</span>)<span class="op">/</span>N<span class="op">*</span>i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N)]</span>
-<span id="cb54-8"><a href="#cb54-8"></a><span class="co"># print(x)</span></span>
-<span id="cb54-9"><a href="#cb54-9"></a>integral<span class="op">=</span>functools.<span class="bu">reduce</span>(<span class="kw">lambda</span> a,b: a<span class="op">+</span>b, <span class="bu">map</span>(<span class="kw">lambda</span> z: normden(z)<span class="op">*</span>(<span class="fl">1.96</span><span class="op">*</span><span class="dv">2</span>)<span class="op">/</span>N, x))</span>
-<span id="cb54-10"><a href="#cb54-10"></a><span class="bu">print</span>(<span class="st">"integral="</span>, integral)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math,functools</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normden(x,mu<span class="op">=</span><span class="dv">0</span>,sigma<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    f<span class="op">=</span><span class="dv">1</span><span class="op">/</span>(math.sqrt(<span class="dv">2</span><span class="op">*</span>math.pi)<span class="op">*</span>sigma)<span class="op">*</span>math.exp(<span class="op">-</span><span class="dv">1</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>N<span class="op">=</span><span class="dv">1000</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>[<span class="op">-</span><span class="fl">1.96</span><span class="op">+</span>(<span class="fl">1.96</span><span class="op">*</span><span class="dv">2</span>)<span class="op">/</span>N<span class="op">*</span>i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N)]</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="co"># print(x)</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>integral<span class="op">=</span>functools.<span class="bu">reduce</span>(<span class="kw">lambda</span> a,b: a<span class="op">+</span>b, <span class="bu">map</span>(<span class="kw">lambda</span> z: normden(z)<span class="op">*</span>(<span class="fl">1.96</span><span class="op">*</span><span class="dv">2</span>)<span class="op">/</span>N, x))</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"integral="</span>, integral)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>integral= 0.9500039163481592</code></pre>
 </div>
@@ -1023,10 +1023,10 @@ pi: 4</code></pre>
 <p>当然，我们也看到了，可以直接使用： from … import … 的语法来导入模块中的某一个元素，比如from functools import reduce就从functools模块中导入了reduce函数，且reduce函数使用时不需要再加functools.前缀。</p>
 <p>当然，不需要前缀的代价是要小心不要覆盖已经导入的东西，比如：</p>
 <div id="cell-55" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1"></a><span class="im">from</span> math <span class="im">import</span> pi</span>
-<span id="cb56-2"><a href="#cb56-2"></a><span class="bu">print</span>(pi)</span>
-<span id="cb56-3"><a href="#cb56-3"></a>pi<span class="op">=</span><span class="dv">4</span></span>
-<span id="cb56-4"><a href="#cb56-4"></a><span class="bu">print</span>(pi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> pi</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pi)</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>pi<span class="op">=</span><span class="dv">4</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>3.141592653589793
 4</code></pre>
@@ -1034,13 +1034,13 @@ pi: 4</code></pre>
 </div>
 <p>此外，import 语句还可以为导入的东西起别名，比如 import math as m，以后就可以使用m.sin()、m.e、m.pi、m.log()、m.exp()等替代math.sin() 等等。</p>
 <div id="cell-57" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1"></a><span class="im">import</span> math <span class="im">as</span> m</span>
-<span id="cb58-2"><a href="#cb58-2"></a>e<span class="op">=</span><span class="dv">3</span></span>
-<span id="cb58-3"><a href="#cb58-3"></a>pi<span class="op">=</span><span class="dv">4</span></span>
-<span id="cb58-4"><a href="#cb58-4"></a><span class="bu">print</span>(<span class="st">"e in math:"</span>, m.e)</span>
-<span id="cb58-5"><a href="#cb58-5"></a><span class="bu">print</span>(<span class="st">"e:"</span>, e)</span>
-<span id="cb58-6"><a href="#cb58-6"></a><span class="bu">print</span>(<span class="st">"pi in math:"</span>, m.pi)</span>
-<span id="cb58-7"><a href="#cb58-7"></a><span class="bu">print</span>(<span class="st">"pi:"</span>, pi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math <span class="im">as</span> m</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>e<span class="op">=</span><span class="dv">3</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>pi<span class="op">=</span><span class="dv">4</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"e in math:"</span>, m.e)</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"e:"</span>, e)</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"pi in math:"</span>, m.pi)</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"pi:"</span>, pi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>e in math: 2.718281828459045
 e: 3
@@ -1143,7 +1143,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

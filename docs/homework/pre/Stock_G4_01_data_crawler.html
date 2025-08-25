@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -613,208 +613,208 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>最后产出文件：data/data_raw.csv</li>
 </ul>
 <div id="10227de2" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># 引用库</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="im">from</span> selenium.webdriver.chrome.options <span class="im">import</span> Options</span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="im">import</span> os</span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="im">import</span> time</span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="im">import</span> random</span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="im">import</span> requests</span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="im">import</span> os</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 引用库</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> selenium <span class="im">import</span> webdriver</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> selenium.webdriver.chrome.options <span class="im">import</span> Options</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol type="1">
 <li>api爬取中国a股的所有股票</li>
 </ol>
 <div id="119eef99" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># stock_api_crawler.py</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">class</span> StockAPICrawler:</span>
-<span id="cb2-4"><a href="#cb2-4"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
-<span id="cb2-5"><a href="#cb2-5"></a>        <span class="va">self</span>.BASE_URL <span class="op">=</span> <span class="st">"https://quote.eastmoney.com"</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>        <span class="va">self</span>.LIST_API <span class="op">=</span> <span class="st">"https://push2.eastmoney.com/api/qt/clist/get"</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>        <span class="va">self</span>.DETAIL_API <span class="op">=</span> <span class="st">"https://push2.eastmoney.com/api/qt/stock/get"</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>        <span class="co"># 获取当前工作目录（Jupyter环境下无__file__，用cwd）</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>        script_dir <span class="op">=</span> os.getcwd()</span>
-<span id="cb2-10"><a href="#cb2-10"></a>        <span class="co"># 获取父目录路径</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>        parent_dir <span class="op">=</span> os.path.dirname(script_dir)</span>
-<span id="cb2-12"><a href="#cb2-12"></a>        <span class="co"># 构建data文件夹路径（从父目录进入data）</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a>        <span class="va">self</span>.data_dir <span class="op">=</span> os.path.join(parent_dir, <span class="st">"data"</span>)</span>
-<span id="cb2-14"><a href="#cb2-14"></a>        os.makedirs(<span class="va">self</span>.data_dir, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-15"><a href="#cb2-15"></a>        <span class="co"># 数据文件路径</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a>        <span class="va">self</span>.api_data_path <span class="op">=</span> os.path.join(<span class="va">self</span>.data_dir, <span class="st">"api_data.csv"</span>)</span>
-<span id="cb2-17"><a href="#cb2-17"></a>        </span>
-<span id="cb2-18"><a href="#cb2-18"></a>        <span class="va">self</span>.HEADERS <span class="op">=</span> {</span>
-<span id="cb2-19"><a href="#cb2-19"></a>            <span class="st">"User-Agent"</span>: <span class="st">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"</span>,</span>
-<span id="cb2-20"><a href="#cb2-20"></a>            <span class="st">"Referer"</span>: <span class="st">"https://quote.eastmoney.com/"</span>,</span>
-<span id="cb2-21"><a href="#cb2-21"></a>            <span class="st">"Accept"</span>: <span class="st">"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8"</span>,</span>
-<span id="cb2-22"><a href="#cb2-22"></a>            <span class="st">"Accept-Language"</span>: <span class="st">"zh-CN,zh;q=0.9"</span>,</span>
-<span id="cb2-23"><a href="#cb2-23"></a>            <span class="st">"Connection"</span>: <span class="st">"keep-alive"</span>,</span>
-<span id="cb2-24"><a href="#cb2-24"></a>        }</span>
-<span id="cb2-25"><a href="#cb2-25"></a>        </span>
-<span id="cb2-26"><a href="#cb2-26"></a>        <span class="va">self</span>.LIST_PARAMS <span class="op">=</span> {</span>
-<span id="cb2-27"><a href="#cb2-27"></a>            <span class="st">"pn"</span>: <span class="dv">1</span>,</span>
-<span id="cb2-28"><a href="#cb2-28"></a>            <span class="st">"pz"</span>: <span class="dv">100</span>,</span>
-<span id="cb2-29"><a href="#cb2-29"></a>            <span class="st">"po"</span>: <span class="dv">1</span>,</span>
-<span id="cb2-30"><a href="#cb2-30"></a>            <span class="st">"np"</span>: <span class="dv">1</span>,</span>
-<span id="cb2-31"><a href="#cb2-31"></a>            <span class="st">"ut"</span>: <span class="st">"bd1d9ddb04089700cf9c27f6f742625"</span>,</span>
-<span id="cb2-32"><a href="#cb2-32"></a>            <span class="st">"fltt"</span>: <span class="dv">2</span>,</span>
-<span id="cb2-33"><a href="#cb2-33"></a>            <span class="st">"invt"</span>: <span class="dv">2</span>,</span>
-<span id="cb2-34"><a href="#cb2-34"></a>            <span class="st">"fid"</span>: <span class="st">"f3"</span>,</span>
-<span id="cb2-35"><a href="#cb2-35"></a>            <span class="st">"fs"</span>: <span class="st">"m:0 t:6,m:0 t:80,m:1 t:2,m:1 t:23,m:0 t:81 s:2048"</span>,</span>
-<span id="cb2-36"><a href="#cb2-36"></a>            <span class="st">"fields"</span>: <span class="st">"f2,f12,f13,f14,f189"</span>,</span>
-<span id="cb2-37"><a href="#cb2-37"></a>            <span class="st">"_"</span>: <span class="bu">int</span>(time.time() <span class="op">*</span> <span class="dv">1000</span>),</span>
-<span id="cb2-38"><a href="#cb2-38"></a>        }</span>
-<span id="cb2-39"><a href="#cb2-39"></a>        </span>
-<span id="cb2-40"><a href="#cb2-40"></a>        <span class="va">self</span>.chrome_options <span class="op">=</span> Options()</span>
-<span id="cb2-41"><a href="#cb2-41"></a>        <span class="va">self</span>.chrome_options.add_argument(<span class="st">"--headless"</span>)</span>
-<span id="cb2-42"><a href="#cb2-42"></a>        <span class="va">self</span>.chrome_options.add_argument(<span class="st">"--disable-gpu"</span>)</span>
-<span id="cb2-43"><a href="#cb2-43"></a>        <span class="va">self</span>.chrome_options.add_argument(<span class="st">"--no-sandbox"</span>)</span>
-<span id="cb2-44"><a href="#cb2-44"></a>        </span>
-<span id="cb2-45"><a href="#cb2-45"></a>        <span class="va">self</span>.session <span class="op">=</span> requests.Session()</span>
-<span id="cb2-46"><a href="#cb2-46"></a>        <span class="va">self</span>.session.headers.update(<span class="va">self</span>.HEADERS)</span>
-<span id="cb2-47"><a href="#cb2-47"></a>        <span class="va">self</span>._init_cookies()</span>
-<span id="cb2-48"><a href="#cb2-48"></a>    </span>
-<span id="cb2-49"><a href="#cb2-49"></a>    <span class="kw">def</span> _init_cookies(<span class="va">self</span>):</span>
-<span id="cb2-50"><a href="#cb2-50"></a>        <span class="cf">try</span>:</span>
-<span id="cb2-51"><a href="#cb2-51"></a>            <span class="va">self</span>.session.get(<span class="va">self</span>.BASE_URL, timeout<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb2-52"><a href="#cb2-52"></a>            <span class="bu">print</span>(<span class="st">"成功初始化Cookie"</span>)</span>
-<span id="cb2-53"><a href="#cb2-53"></a>        <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb2-54"><a href="#cb2-54"></a>            <span class="bu">print</span>(<span class="ss">f"初始化Cookie失败: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb2-55"><a href="#cb2-55"></a>    </span>
-<span id="cb2-56"><a href="#cb2-56"></a>    <span class="kw">def</span> _get_timestamp(<span class="va">self</span>):</span>
-<span id="cb2-57"><a href="#cb2-57"></a>        <span class="cf">return</span> <span class="bu">int</span>(time.time() <span class="op">*</span> <span class="dv">1000</span>)</span>
-<span id="cb2-58"><a href="#cb2-58"></a>    </span>
-<span id="cb2-59"><a href="#cb2-59"></a>    <span class="kw">def</span> _random_delay(<span class="va">self</span>):</span>
-<span id="cb2-60"><a href="#cb2-60"></a>        time.sleep(random.uniform(<span class="fl">1.5</span>, <span class="fl">2.5</span>))</span>
-<span id="cb2-61"><a href="#cb2-61"></a>    </span>
-<span id="cb2-62"><a href="#cb2-62"></a>    <span class="kw">def</span> _safe_request(<span class="va">self</span>, url, params<span class="op">=</span><span class="va">None</span>, method<span class="op">=</span><span class="st">"GET"</span>):</span>
-<span id="cb2-63"><a href="#cb2-63"></a>        <span class="cf">try</span>:</span>
-<span id="cb2-64"><a href="#cb2-64"></a>            response <span class="op">=</span> <span class="va">self</span>.session.request(method, url, params<span class="op">=</span>params, timeout<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb2-65"><a href="#cb2-65"></a>            response.raise_for_status()</span>
-<span id="cb2-66"><a href="#cb2-66"></a>            <span class="cf">if</span> <span class="st">"text/html"</span> <span class="kw">in</span> response.headers.get(<span class="st">"Content-Type"</span>, <span class="st">""</span>):</span>
-<span id="cb2-67"><a href="#cb2-67"></a>                <span class="cf">return</span> response.text</span>
-<span id="cb2-68"><a href="#cb2-68"></a>            <span class="cf">return</span> response.json()</span>
-<span id="cb2-69"><a href="#cb2-69"></a>        <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb2-70"><a href="#cb2-70"></a>            <span class="bu">print</span>(<span class="ss">f"请求失败: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb2-71"><a href="#cb2-71"></a>            <span class="cf">return</span> <span class="va">None</span></span>
-<span id="cb2-72"><a href="#cb2-72"></a>    </span>
-<span id="cb2-73"><a href="#cb2-73"></a>    <span class="kw">def</span> get_total_pages(<span class="va">self</span>):</span>
-<span id="cb2-74"><a href="#cb2-74"></a>        params <span class="op">=</span> <span class="va">self</span>.LIST_PARAMS.copy()</span>
-<span id="cb2-75"><a href="#cb2-75"></a>        params[<span class="st">"pn"</span>] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb2-76"><a href="#cb2-76"></a>        params[<span class="st">"pz"</span>] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb2-77"><a href="#cb2-77"></a>        data <span class="op">=</span> <span class="va">self</span>._safe_request(<span class="va">self</span>.LIST_API, params)</span>
-<span id="cb2-78"><a href="#cb2-78"></a>        <span class="cf">if</span> data <span class="kw">and</span> data.get(<span class="st">"data"</span>) <span class="kw">and</span> data[<span class="st">"data"</span>].get(<span class="st">"total"</span>):</span>
-<span id="cb2-79"><a href="#cb2-79"></a>            total <span class="op">=</span> data[<span class="st">"data"</span>][<span class="st">"total"</span>]</span>
-<span id="cb2-80"><a href="#cb2-80"></a>            <span class="cf">return</span> (total <span class="op">+</span> <span class="va">self</span>.LIST_PARAMS[<span class="st">"pz"</span>] <span class="op">-</span> <span class="dv">1</span>) <span class="op">//</span> <span class="va">self</span>.LIST_PARAMS[<span class="st">"pz"</span>]</span>
-<span id="cb2-81"><a href="#cb2-81"></a>        <span class="bu">print</span>(<span class="st">"警告：未获取到总页数，默认返回1页"</span>)</span>
-<span id="cb2-82"><a href="#cb2-82"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
-<span id="cb2-83"><a href="#cb2-83"></a>    </span>
-<span id="cb2-84"><a href="#cb2-84"></a>    <span class="kw">def</span> parse_stock_exchange(<span class="va">self</span>, stock_code, market_code):</span>
-<span id="cb2-85"><a href="#cb2-85"></a>        exchange <span class="op">=</span> <span class="st">"未知交易所"</span></span>
-<span id="cb2-86"><a href="#cb2-86"></a>        board <span class="op">=</span> <span class="st">"未知板块"</span></span>
-<span id="cb2-87"><a href="#cb2-87"></a>        <span class="cf">if</span> market_code <span class="op">==</span> <span class="dv">1</span>:</span>
-<span id="cb2-88"><a href="#cb2-88"></a>            exchange <span class="op">=</span> <span class="st">"上海交易所"</span></span>
-<span id="cb2-89"><a href="#cb2-89"></a>            board <span class="op">=</span> <span class="st">"科创板"</span> <span class="cf">if</span> stock_code.startswith(<span class="st">"688"</span>) <span class="cf">else</span> <span class="st">"主板"</span></span>
-<span id="cb2-90"><a href="#cb2-90"></a>        <span class="cf">else</span>:  <span class="co"># 深市或北交所</span></span>
-<span id="cb2-91"><a href="#cb2-91"></a>            <span class="cf">if</span> stock_code.startswith(<span class="st">"30"</span>):</span>
-<span id="cb2-92"><a href="#cb2-92"></a>                exchange <span class="op">=</span> <span class="st">"深圳交易所"</span></span>
-<span id="cb2-93"><a href="#cb2-93"></a>                board <span class="op">=</span> <span class="st">"创业板"</span></span>
-<span id="cb2-94"><a href="#cb2-94"></a>            <span class="cf">elif</span> stock_code.startswith(<span class="st">"0"</span>):</span>
-<span id="cb2-95"><a href="#cb2-95"></a>                exchange <span class="op">=</span> <span class="st">"深圳交易所"</span></span>
-<span id="cb2-96"><a href="#cb2-96"></a>                board <span class="op">=</span> <span class="st">"主板"</span></span>
-<span id="cb2-97"><a href="#cb2-97"></a>            <span class="cf">else</span>:</span>
-<span id="cb2-98"><a href="#cb2-98"></a>                exchange <span class="op">=</span> <span class="st">"北京交易所"</span></span>
-<span id="cb2-99"><a href="#cb2-99"></a>                board <span class="op">=</span> <span class="st">"北交所"</span></span>
-<span id="cb2-100"><a href="#cb2-100"></a>        <span class="cf">return</span> exchange, board</span>
-<span id="cb2-101"><a href="#cb2-101"></a>    </span>
-<span id="cb2-102"><a href="#cb2-102"></a>    <span class="kw">def</span> format_listing_date(<span class="va">self</span>, timestamp):</span>
-<span id="cb2-103"><a href="#cb2-103"></a>        <span class="cf">if</span> <span class="kw">not</span> timestamp <span class="kw">or</span> timestamp <span class="op">==</span> <span class="st">'-'</span>:</span>
-<span id="cb2-104"><a href="#cb2-104"></a>            <span class="cf">return</span> <span class="st">"未知日期"</span></span>
-<span id="cb2-105"><a href="#cb2-105"></a>        <span class="cf">return</span> <span class="bu">str</span>(timestamp)</span>
-<span id="cb2-106"><a href="#cb2-106"></a>    </span>
-<span id="cb2-107"><a href="#cb2-107"></a>    <span class="kw">def</span> get_stock_detail(<span class="va">self</span>, stock_code, market_code):</span>
-<span id="cb2-108"><a href="#cb2-108"></a>        secid <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>market_code<span class="sc">}</span><span class="ss">.</span><span class="sc">{</span>stock_code<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb2-109"><a href="#cb2-109"></a>        params <span class="op">=</span> {</span>
-<span id="cb2-110"><a href="#cb2-110"></a>            <span class="st">"ut"</span>: <span class="st">"fa5fd1943c7b386f1734de88e5951d5"</span>,</span>
-<span id="cb2-111"><a href="#cb2-111"></a>            <span class="st">"fields"</span>: <span class="st">"f189"</span>,</span>
-<span id="cb2-112"><a href="#cb2-112"></a>            <span class="st">"secid"</span>: secid,</span>
-<span id="cb2-113"><a href="#cb2-113"></a>            <span class="st">"_"</span>: <span class="va">self</span>._get_timestamp()</span>
-<span id="cb2-114"><a href="#cb2-114"></a>        }</span>
-<span id="cb2-115"><a href="#cb2-115"></a>        data <span class="op">=</span> <span class="va">self</span>._safe_request(<span class="va">self</span>.DETAIL_API, params)</span>
-<span id="cb2-116"><a href="#cb2-116"></a>        <span class="cf">return</span> data[<span class="st">"data"</span>].get(<span class="st">"f189"</span>, <span class="st">""</span>) <span class="cf">if</span> data <span class="kw">and</span> data.get(<span class="st">"data"</span>) <span class="cf">else</span> <span class="st">""</span></span>
-<span id="cb2-117"><a href="#cb2-117"></a>    </span>
-<span id="cb2-118"><a href="#cb2-118"></a>    <span class="kw">def</span> crawl_page(<span class="va">self</span>, page_num):</span>
-<span id="cb2-119"><a href="#cb2-119"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">爬取第 </span><span class="sc">{</span>page_num<span class="sc">}</span><span class="ss"> 页..."</span>)</span>
-<span id="cb2-120"><a href="#cb2-120"></a>        params <span class="op">=</span> <span class="va">self</span>.LIST_PARAMS.copy()</span>
-<span id="cb2-121"><a href="#cb2-121"></a>        params[<span class="st">"pn"</span>] <span class="op">=</span> page_num</span>
-<span id="cb2-122"><a href="#cb2-122"></a>        data <span class="op">=</span> <span class="va">self</span>._safe_request(<span class="va">self</span>.LIST_API, params)</span>
-<span id="cb2-123"><a href="#cb2-123"></a>        <span class="cf">if</span> <span class="kw">not</span> data <span class="kw">or</span> <span class="kw">not</span> data.get(<span class="st">"data"</span>) <span class="kw">or</span> <span class="kw">not</span> data[<span class="st">"data"</span>].get(<span class="st">"diff"</span>):</span>
-<span id="cb2-124"><a href="#cb2-124"></a>            <span class="bu">print</span>(<span class="ss">f"第 </span><span class="sc">{</span>page_num<span class="sc">}</span><span class="ss"> 页无数据"</span>)</span>
-<span id="cb2-125"><a href="#cb2-125"></a>            <span class="cf">return</span> []</span>
-<span id="cb2-126"><a href="#cb2-126"></a>        </span>
-<span id="cb2-127"><a href="#cb2-127"></a>        stock_list <span class="op">=</span> data[<span class="st">"data"</span>][<span class="st">"diff"</span>]</span>
-<span id="cb2-128"><a href="#cb2-128"></a>        <span class="bu">print</span>(<span class="ss">f"第 </span><span class="sc">{</span>page_num<span class="sc">}</span><span class="ss"> 页共有 </span><span class="sc">{</span><span class="bu">len</span>(stock_list)<span class="sc">}</span><span class="ss"> 只股票"</span>)</span>
-<span id="cb2-129"><a href="#cb2-129"></a>        stocks <span class="op">=</span> []</span>
-<span id="cb2-130"><a href="#cb2-130"></a>        </span>
-<span id="cb2-131"><a href="#cb2-131"></a>        <span class="cf">for</span> i, item <span class="kw">in</span> <span class="bu">enumerate</span>(stock_list):</span>
-<span id="cb2-132"><a href="#cb2-132"></a>            <span class="cf">try</span>:</span>
-<span id="cb2-133"><a href="#cb2-133"></a>                stock_code <span class="op">=</span> item.get(<span class="st">"f12"</span>, <span class="st">""</span>)</span>
-<span id="cb2-134"><a href="#cb2-134"></a>                market_code <span class="op">=</span> item.get(<span class="st">"f13"</span>, <span class="dv">0</span>)</span>
-<span id="cb2-135"><a href="#cb2-135"></a>                stock_name <span class="op">=</span> item.get(<span class="st">"f14"</span>, <span class="st">""</span>)</span>
-<span id="cb2-136"><a href="#cb2-136"></a>                stock_price <span class="op">=</span> item.get(<span class="st">"f2"</span>, <span class="st">""</span>)</span>
-<span id="cb2-137"><a href="#cb2-137"></a>                raw_list_time <span class="op">=</span> item.get(<span class="st">"f189"</span>, <span class="st">""</span>)</span>
-<span id="cb2-138"><a href="#cb2-138"></a>                </span>
-<span id="cb2-139"><a href="#cb2-139"></a>                listing_time <span class="op">=</span> <span class="va">self</span>.format_listing_date(<span class="va">self</span>.get_stock_detail(stock_code, market_code) <span class="kw">or</span> raw_list_time)</span>
-<span id="cb2-140"><a href="#cb2-140"></a>                exchange, board <span class="op">=</span> <span class="va">self</span>.parse_stock_exchange(stock_code, market_code)</span>
-<span id="cb2-141"><a href="#cb2-141"></a>                </span>
-<span id="cb2-142"><a href="#cb2-142"></a>                stocks.append({</span>
-<span id="cb2-143"><a href="#cb2-143"></a>                    <span class="st">"股票代码"</span>: stock_code,</span>
-<span id="cb2-144"><a href="#cb2-144"></a>                    <span class="st">"股票名称"</span>: stock_name,</span>
-<span id="cb2-145"><a href="#cb2-145"></a>                    <span class="st">"交易所"</span>: exchange,</span>
-<span id="cb2-146"><a href="#cb2-146"></a>                    <span class="st">"板块"</span>: board,</span>
-<span id="cb2-147"><a href="#cb2-147"></a>                    <span class="st">"上市时间"</span>: listing_time,</span>
-<span id="cb2-148"><a href="#cb2-148"></a>                    <span class="st">"最新价"</span>: stock_price</span>
-<span id="cb2-149"><a href="#cb2-149"></a>                })</span>
-<span id="cb2-150"><a href="#cb2-150"></a>                </span>
-<span id="cb2-151"><a href="#cb2-151"></a>                <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">/</span><span class="sc">{</span><span class="bu">len</span>(stock_list)<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>stock_name<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>stock_code<span class="sc">}</span><span class="ss">) | 上市时间: </span><span class="sc">{</span>listing_time<span class="sc">}</span><span class="ss"> | 最新价: </span><span class="sc">{</span>stock_price<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb2-152"><a href="#cb2-152"></a>                </span>
-<span id="cb2-153"><a href="#cb2-153"></a>            <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb2-154"><a href="#cb2-154"></a>                <span class="bu">print</span>(<span class="ss">f"解析失败: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb2-155"><a href="#cb2-155"></a>                <span class="cf">continue</span></span>
-<span id="cb2-156"><a href="#cb2-156"></a>        </span>
-<span id="cb2-157"><a href="#cb2-157"></a>        <span class="cf">return</span> stocks</span>
-<span id="cb2-158"><a href="#cb2-158"></a>    </span>
-<span id="cb2-159"><a href="#cb2-159"></a>    <span class="kw">def</span> save_to_csv(<span class="va">self</span>, data):</span>
-<span id="cb2-160"><a href="#cb2-160"></a>        <span class="cf">if</span> <span class="kw">not</span> data:</span>
-<span id="cb2-161"><a href="#cb2-161"></a>            <span class="bu">print</span>(<span class="st">"无数据可保存"</span>)</span>
-<span id="cb2-162"><a href="#cb2-162"></a>            <span class="cf">return</span></span>
-<span id="cb2-163"><a href="#cb2-163"></a>        </span>
-<span id="cb2-164"><a href="#cb2-164"></a>        df <span class="op">=</span> pd.DataFrame(data)</span>
-<span id="cb2-165"><a href="#cb2-165"></a>        columns <span class="op">=</span> [<span class="st">"股票代码"</span>, <span class="st">"股票名称"</span>, <span class="st">"交易所"</span>, <span class="st">"板块"</span>, <span class="st">"上市时间"</span>, <span class="st">"最新价"</span>]</span>
-<span id="cb2-166"><a href="#cb2-166"></a>        df[columns].to_csv(<span class="va">self</span>.api_data_path, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">"utf-8-sig"</span>)</span>
-<span id="cb2-167"><a href="#cb2-167"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">API数据已保存至: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>api_data_path<span class="sc">}</span><span class="ss">，共 </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">}</span><span class="ss"> 条记录"</span>)</span>
-<span id="cb2-168"><a href="#cb2-168"></a>    </span>
-<span id="cb2-169"><a href="#cb2-169"></a>    <span class="kw">def</span> crawl_all(<span class="va">self</span>, max_pages<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb2-170"><a href="#cb2-170"></a>        total_pages <span class="op">=</span> <span class="va">self</span>.get_total_pages()</span>
-<span id="cb2-171"><a href="#cb2-171"></a>        <span class="cf">if</span> max_pages:</span>
-<span id="cb2-172"><a href="#cb2-172"></a>            total_pages <span class="op">=</span> <span class="bu">min</span>(max_pages, total_pages)</span>
-<span id="cb2-173"><a href="#cb2-173"></a>            <span class="bu">print</span>(<span class="ss">f"限制爬取前 </span><span class="sc">{</span>total_pages<span class="sc">}</span><span class="ss"> 页"</span>)</span>
-<span id="cb2-174"><a href="#cb2-174"></a>        </span>
-<span id="cb2-175"><a href="#cb2-175"></a>        all_data <span class="op">=</span> []</span>
-<span id="cb2-176"><a href="#cb2-176"></a>        <span class="cf">for</span> page <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, total_pages <span class="op">+</span> <span class="dv">1</span>):</span>
-<span id="cb2-177"><a href="#cb2-177"></a>            page_data <span class="op">=</span> <span class="va">self</span>.crawl_page(page)</span>
-<span id="cb2-178"><a href="#cb2-178"></a>            all_data.extend(page_data)</span>
-<span id="cb2-179"><a href="#cb2-179"></a>            <span class="va">self</span>._random_delay()  <span class="co"># 每页之间延迟</span></span>
-<span id="cb2-180"><a href="#cb2-180"></a>        </span>
-<span id="cb2-181"><a href="#cb2-181"></a>        <span class="va">self</span>.save_to_csv(all_data)</span>
-<span id="cb2-182"><a href="#cb2-182"></a>        <span class="cf">return</span> all_data</span>
-<span id="cb2-183"><a href="#cb2-183"></a></span>
-<span id="cb2-184"><a href="#cb2-184"></a><span class="co"># 单独运行此文件时执行</span></span>
-<span id="cb2-185"><a href="#cb2-185"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="cb2-186"><a href="#cb2-186"></a>    crawler <span class="op">=</span> StockAPICrawler()</span>
-<span id="cb2-187"><a href="#cb2-187"></a>    crawler.crawl_all()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># stock_api_crawler.py</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> StockAPICrawler:</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.BASE_URL <span class="op">=</span> <span class="st">"https://quote.eastmoney.com"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.LIST_API <span class="op">=</span> <span class="st">"https://push2.eastmoney.com/api/qt/clist/get"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.DETAIL_API <span class="op">=</span> <span class="st">"https://push2.eastmoney.com/api/qt/stock/get"</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 获取当前工作目录（Jupyter环境下无__file__，用cwd）</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        script_dir <span class="op">=</span> os.getcwd()</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 获取父目录路径</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        parent_dir <span class="op">=</span> os.path.dirname(script_dir)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 构建data文件夹路径（从父目录进入data）</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.data_dir <span class="op">=</span> os.path.join(parent_dir, <span class="st">"data"</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        os.makedirs(<span class="va">self</span>.data_dir, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 数据文件路径</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.api_data_path <span class="op">=</span> os.path.join(<span class="va">self</span>.data_dir, <span class="st">"api_data.csv"</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.HEADERS <span class="op">=</span> {</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">"User-Agent"</span>: <span class="st">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Referer"</span>: <span class="st">"https://quote.eastmoney.com/"</span>,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Accept"</span>: <span class="st">"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8"</span>,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Accept-Language"</span>: <span class="st">"zh-CN,zh;q=0.9"</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Connection"</span>: <span class="st">"keep-alive"</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.LIST_PARAMS <span class="op">=</span> {</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>            <span class="st">"pn"</span>: <span class="dv">1</span>,</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>            <span class="st">"pz"</span>: <span class="dv">100</span>,</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>            <span class="st">"po"</span>: <span class="dv">1</span>,</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>            <span class="st">"np"</span>: <span class="dv">1</span>,</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>            <span class="st">"ut"</span>: <span class="st">"bd1d9ddb04089700cf9c27f6f742625"</span>,</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>            <span class="st">"fltt"</span>: <span class="dv">2</span>,</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>            <span class="st">"invt"</span>: <span class="dv">2</span>,</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>            <span class="st">"fid"</span>: <span class="st">"f3"</span>,</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>            <span class="st">"fs"</span>: <span class="st">"m:0 t:6,m:0 t:80,m:1 t:2,m:1 t:23,m:0 t:81 s:2048"</span>,</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>            <span class="st">"fields"</span>: <span class="st">"f2,f12,f13,f14,f189"</span>,</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>            <span class="st">"_"</span>: <span class="bu">int</span>(time.time() <span class="op">*</span> <span class="dv">1000</span>),</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.chrome_options <span class="op">=</span> Options()</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.chrome_options.add_argument(<span class="st">"--headless"</span>)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.chrome_options.add_argument(<span class="st">"--disable-gpu"</span>)</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.chrome_options.add_argument(<span class="st">"--no-sandbox"</span>)</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.session <span class="op">=</span> requests.Session()</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.session.headers.update(<span class="va">self</span>.HEADERS)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._init_cookies()</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _init_cookies(<span class="va">self</span>):</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.session.get(<span class="va">self</span>.BASE_URL, timeout<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"成功初始化Cookie"</span>)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"初始化Cookie失败: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _get_timestamp(<span class="va">self</span>):</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">int</span>(time.time() <span class="op">*</span> <span class="dv">1000</span>)</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _random_delay(<span class="va">self</span>):</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>        time.sleep(random.uniform(<span class="fl">1.5</span>, <span class="fl">2.5</span>))</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _safe_request(<span class="va">self</span>, url, params<span class="op">=</span><span class="va">None</span>, method<span class="op">=</span><span class="st">"GET"</span>):</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>            response <span class="op">=</span> <span class="va">self</span>.session.request(method, url, params<span class="op">=</span>params, timeout<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>            response.raise_for_status()</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="st">"text/html"</span> <span class="kw">in</span> response.headers.get(<span class="st">"Content-Type"</span>, <span class="st">""</span>):</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> response.text</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> response.json()</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"请求失败: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_total_pages(<span class="va">self</span>):</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>        params <span class="op">=</span> <span class="va">self</span>.LIST_PARAMS.copy()</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>        params[<span class="st">"pn"</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>        params[<span class="st">"pz"</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> <span class="va">self</span>._safe_request(<span class="va">self</span>.LIST_API, params)</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> data <span class="kw">and</span> data.get(<span class="st">"data"</span>) <span class="kw">and</span> data[<span class="st">"data"</span>].get(<span class="st">"total"</span>):</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>            total <span class="op">=</span> data[<span class="st">"data"</span>][<span class="st">"total"</span>]</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> (total <span class="op">+</span> <span class="va">self</span>.LIST_PARAMS[<span class="st">"pz"</span>] <span class="op">-</span> <span class="dv">1</span>) <span class="op">//</span> <span class="va">self</span>.LIST_PARAMS[<span class="st">"pz"</span>]</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"警告：未获取到总页数，默认返回1页"</span>)</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> parse_stock_exchange(<span class="va">self</span>, stock_code, market_code):</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>        exchange <span class="op">=</span> <span class="st">"未知交易所"</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>        board <span class="op">=</span> <span class="st">"未知板块"</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> market_code <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>            exchange <span class="op">=</span> <span class="st">"上海交易所"</span></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>            board <span class="op">=</span> <span class="st">"科创板"</span> <span class="cf">if</span> stock_code.startswith(<span class="st">"688"</span>) <span class="cf">else</span> <span class="st">"主板"</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:  <span class="co"># 深市或北交所</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> stock_code.startswith(<span class="st">"30"</span>):</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>                exchange <span class="op">=</span> <span class="st">"深圳交易所"</span></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>                board <span class="op">=</span> <span class="st">"创业板"</span></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> stock_code.startswith(<span class="st">"0"</span>):</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>                exchange <span class="op">=</span> <span class="st">"深圳交易所"</span></span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>                board <span class="op">=</span> <span class="st">"主板"</span></span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>                exchange <span class="op">=</span> <span class="st">"北京交易所"</span></span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>                board <span class="op">=</span> <span class="st">"北交所"</span></span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> exchange, board</span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> format_listing_date(<span class="va">self</span>, timestamp):</span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> timestamp <span class="kw">or</span> timestamp <span class="op">==</span> <span class="st">'-'</span>:</span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="st">"未知日期"</span></span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">str</span>(timestamp)</span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_stock_detail(<span class="va">self</span>, stock_code, market_code):</span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>        secid <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>market_code<span class="sc">}</span><span class="ss">.</span><span class="sc">{</span>stock_code<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>        params <span class="op">=</span> {</span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>            <span class="st">"ut"</span>: <span class="st">"fa5fd1943c7b386f1734de88e5951d5"</span>,</span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>            <span class="st">"fields"</span>: <span class="st">"f189"</span>,</span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>            <span class="st">"secid"</span>: secid,</span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a>            <span class="st">"_"</span>: <span class="va">self</span>._get_timestamp()</span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> <span class="va">self</span>._safe_request(<span class="va">self</span>.DETAIL_API, params)</span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> data[<span class="st">"data"</span>].get(<span class="st">"f189"</span>, <span class="st">""</span>) <span class="cf">if</span> data <span class="kw">and</span> data.get(<span class="st">"data"</span>) <span class="cf">else</span> <span class="st">""</span></span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> crawl_page(<span class="va">self</span>, page_num):</span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">爬取第 </span><span class="sc">{</span>page_num<span class="sc">}</span><span class="ss"> 页..."</span>)</span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a>        params <span class="op">=</span> <span class="va">self</span>.LIST_PARAMS.copy()</span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a>        params[<span class="st">"pn"</span>] <span class="op">=</span> page_num</span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> <span class="va">self</span>._safe_request(<span class="va">self</span>.LIST_API, params)</span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> data <span class="kw">or</span> <span class="kw">not</span> data.get(<span class="st">"data"</span>) <span class="kw">or</span> <span class="kw">not</span> data[<span class="st">"data"</span>].get(<span class="st">"diff"</span>):</span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"第 </span><span class="sc">{</span>page_num<span class="sc">}</span><span class="ss"> 页无数据"</span>)</span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> []</span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>        stock_list <span class="op">=</span> data[<span class="st">"data"</span>][<span class="st">"diff"</span>]</span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"第 </span><span class="sc">{</span>page_num<span class="sc">}</span><span class="ss"> 页共有 </span><span class="sc">{</span><span class="bu">len</span>(stock_list)<span class="sc">}</span><span class="ss"> 只股票"</span>)</span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>        stocks <span class="op">=</span> []</span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i, item <span class="kw">in</span> <span class="bu">enumerate</span>(stock_list):</span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a>            <span class="cf">try</span>:</span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a>                stock_code <span class="op">=</span> item.get(<span class="st">"f12"</span>, <span class="st">""</span>)</span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>                market_code <span class="op">=</span> item.get(<span class="st">"f13"</span>, <span class="dv">0</span>)</span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a>                stock_name <span class="op">=</span> item.get(<span class="st">"f14"</span>, <span class="st">""</span>)</span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a>                stock_price <span class="op">=</span> item.get(<span class="st">"f2"</span>, <span class="st">""</span>)</span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a>                raw_list_time <span class="op">=</span> item.get(<span class="st">"f189"</span>, <span class="st">""</span>)</span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a>                listing_time <span class="op">=</span> <span class="va">self</span>.format_listing_date(<span class="va">self</span>.get_stock_detail(stock_code, market_code) <span class="kw">or</span> raw_list_time)</span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a>                exchange, board <span class="op">=</span> <span class="va">self</span>.parse_stock_exchange(stock_code, market_code)</span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a>                stocks.append({</span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"股票代码"</span>: stock_code,</span>
+<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"股票名称"</span>: stock_name,</span>
+<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"交易所"</span>: exchange,</span>
+<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"板块"</span>: board,</span>
+<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"上市时间"</span>: listing_time,</span>
+<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"最新价"</span>: stock_price</span>
+<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a>                })</span>
+<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">/</span><span class="sc">{</span><span class="bu">len</span>(stock_list)<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>stock_name<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>stock_code<span class="sc">}</span><span class="ss">) | 上市时间: </span><span class="sc">{</span>listing_time<span class="sc">}</span><span class="ss"> | 最新价: </span><span class="sc">{</span>stock_price<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a>            <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f"解析失败: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a>                <span class="cf">continue</span></span>
+<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> stocks</span>
+<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> save_to_csv(<span class="va">self</span>, data):</span>
+<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> data:</span>
+<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"无数据可保存"</span>)</span>
+<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span></span>
+<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a>        df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a>        columns <span class="op">=</span> [<span class="st">"股票代码"</span>, <span class="st">"股票名称"</span>, <span class="st">"交易所"</span>, <span class="st">"板块"</span>, <span class="st">"上市时间"</span>, <span class="st">"最新价"</span>]</span>
+<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a>        df[columns].to_csv(<span class="va">self</span>.api_data_path, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">"utf-8-sig"</span>)</span>
+<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">API数据已保存至: </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>api_data_path<span class="sc">}</span><span class="ss">，共 </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">}</span><span class="ss"> 条记录"</span>)</span>
+<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> crawl_all(<span class="va">self</span>, max_pages<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a>        total_pages <span class="op">=</span> <span class="va">self</span>.get_total_pages()</span>
+<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> max_pages:</span>
+<span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a>            total_pages <span class="op">=</span> <span class="bu">min</span>(max_pages, total_pages)</span>
+<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"限制爬取前 </span><span class="sc">{</span>total_pages<span class="sc">}</span><span class="ss"> 页"</span>)</span>
+<span id="cb2-174"><a href="#cb2-174" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a>        all_data <span class="op">=</span> []</span>
+<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> page <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, total_pages <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a>            page_data <span class="op">=</span> <span class="va">self</span>.crawl_page(page)</span>
+<span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a>            all_data.extend(page_data)</span>
+<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>._random_delay()  <span class="co"># 每页之间延迟</span></span>
+<span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.save_to_csv(all_data)</span>
+<span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> all_data</span>
+<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a><span class="co"># 单独运行此文件时执行</span></span>
+<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb2-186"><a href="#cb2-186" aria-hidden="true" tabindex="-1"></a>    crawler <span class="op">=</span> StockAPICrawler()</span>
+<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a>    crawler.crawl_all()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>成功初始化Cookie
 
@@ -6736,84 +6736,84 @@ API数据已保存至: e:\work\YJS\作业\数据分析\Proj_china_stock_analysis
 </ul></li>
 </ul>
 <div id="f0060028" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># 比对目前还有多少股票没有行业数据，缺少的需要爬取</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">class</span> StockDataComparator:</span>
-<span id="cb4-3"><a href="#cb4-3"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
-<span id="cb4-4"><a href="#cb4-4"></a>        <span class="co"># 获取当前工作目录（Jupyter环境下无__file__，用cwd）</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a>        script_dir <span class="op">=</span> os.getcwd()</span>
-<span id="cb4-6"><a href="#cb4-6"></a>        <span class="co"># 获取父目录路径</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a>        parent_dir <span class="op">=</span> os.path.dirname(script_dir)</span>
-<span id="cb4-8"><a href="#cb4-8"></a>        <span class="co"># 构建data文件夹路径（从父目录进入data）</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a>        <span class="va">self</span>.data_dir <span class="op">=</span> os.path.join(parent_dir, <span class="st">"data"</span>)</span>
-<span id="cb4-10"><a href="#cb4-10"></a>        os.makedirs(<span class="va">self</span>.data_dir, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb4-11"><a href="#cb4-11"></a>        <span class="va">self</span>.api_data_path <span class="op">=</span> os.path.join(<span class="va">self</span>.data_dir, <span class="st">"api_data.csv"</span>)</span>
-<span id="cb4-12"><a href="#cb4-12"></a>        <span class="va">self</span>.industry_data_path <span class="op">=</span> os.path.join(<span class="va">self</span>.data_dir, <span class="st">"industry_data.csv"</span>)</span>
-<span id="cb4-13"><a href="#cb4-13"></a>        <span class="va">self</span>.missing_data_path <span class="op">=</span> os.path.join(<span class="va">self</span>.data_dir, <span class="st">"missing_industry.csv"</span>)</span>
-<span id="cb4-14"><a href="#cb4-14"></a>        </span>
-<span id="cb4-15"><a href="#cb4-15"></a>    <span class="kw">def</span> compare_data(<span class="va">self</span>):</span>
-<span id="cb4-16"><a href="#cb4-16"></a>        <span class="co">"""比对两个CSV文件，找出需要重新爬取的股票"""</span></span>
-<span id="cb4-17"><a href="#cb4-17"></a>        <span class="cf">if</span> <span class="kw">not</span> os.path.exists(<span class="va">self</span>.api_data_path):</span>
-<span id="cb4-18"><a href="#cb4-18"></a>            <span class="bu">print</span>(<span class="ss">f"错误：未找到 </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>api_data_path<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb4-19"><a href="#cb4-19"></a>            <span class="cf">return</span> <span class="va">None</span></span>
-<span id="cb4-20"><a href="#cb4-20"></a>        </span>
-<span id="cb4-21"><a href="#cb4-21"></a>        <span class="cf">if</span> <span class="kw">not</span> os.path.exists(<span class="va">self</span>.industry_data_path):</span>
-<span id="cb4-22"><a href="#cb4-22"></a>            <span class="bu">print</span>(<span class="ss">f"错误：未找到 </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>industry_data_path<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb4-23"><a href="#cb4-23"></a>            <span class="cf">return</span> <span class="va">None</span></span>
-<span id="cb4-24"><a href="#cb4-24"></a>        </span>
-<span id="cb4-25"><a href="#cb4-25"></a>        api_df <span class="op">=</span> pd.read_csv(<span class="va">self</span>.api_data_path, on_bad_lines<span class="op">=</span><span class="st">'skip'</span>)</span>
-<span id="cb4-26"><a href="#cb4-26"></a>        industry_df <span class="op">=</span> pd.read_csv(<span class="va">self</span>.industry_data_path, on_bad_lines<span class="op">=</span><span class="st">'skip'</span>)</span>
-<span id="cb4-27"><a href="#cb4-27"></a>        </span>
-<span id="cb4-28"><a href="#cb4-28"></a>        api_df[<span class="st">'股票代码'</span>] <span class="op">=</span> api_df[<span class="st">'股票代码'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">6</span>)</span>
-<span id="cb4-29"><a href="#cb4-29"></a>        industry_df[<span class="st">'股票代码'</span>] <span class="op">=</span> industry_df[<span class="st">'股票代码'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">6</span>)</span>
-<span id="cb4-30"><a href="#cb4-30"></a>        </span>
-<span id="cb4-31"><a href="#cb4-31"></a>        api_codes <span class="op">=</span> <span class="bu">set</span>(api_df[<span class="st">'股票代码'</span>])</span>
-<span id="cb4-32"><a href="#cb4-32"></a>        industry_codes <span class="op">=</span> <span class="bu">set</span>(industry_df[<span class="st">'股票代码'</span>])</span>
-<span id="cb4-33"><a href="#cb4-33"></a>        missing_codes <span class="op">=</span> api_codes <span class="op">-</span> industry_codes</span>
-<span id="cb4-34"><a href="#cb4-34"></a>        </span>
-<span id="cb4-35"><a href="#cb4-35"></a>        <span class="bu">print</span>(<span class="ss">f"API数据中共有 </span><span class="sc">{</span><span class="bu">len</span>(api_codes)<span class="sc">}</span><span class="ss"> 只股票"</span>)</span>
-<span id="cb4-36"><a href="#cb4-36"></a>        <span class="bu">print</span>(<span class="ss">f"行业数据中已有 </span><span class="sc">{</span><span class="bu">len</span>(industry_codes)<span class="sc">}</span><span class="ss"> 只股票"</span>)</span>
-<span id="cb4-37"><a href="#cb4-37"></a>        <span class="bu">print</span>(<span class="ss">f"缺失 </span><span class="sc">{</span><span class="bu">len</span>(missing_codes)<span class="sc">}</span><span class="ss"> 只股票的行业数据"</span>)</span>
-<span id="cb4-38"><a href="#cb4-38"></a>        </span>
-<span id="cb4-39"><a href="#cb4-39"></a>        <span class="co"># 先查找解析失败的股票代码</span></span>
-<span id="cb4-40"><a href="#cb4-40"></a>        failed_df <span class="op">=</span> industry_df[</span>
-<span id="cb4-41"><a href="#cb4-41"></a>            (industry_df[<span class="st">'东财行业'</span>] <span class="op">==</span> <span class="st">'解析失败'</span>) <span class="op">&amp;</span> </span>
-<span id="cb4-42"><a href="#cb4-42"></a>            (industry_df[<span class="st">'证监会行业'</span>] <span class="op">==</span> <span class="st">'解析失败'</span>)</span>
-<span id="cb4-43"><a href="#cb4-43"></a>        ]</span>
-<span id="cb4-44"><a href="#cb4-44"></a>        failed_codes <span class="op">=</span> <span class="bu">set</span>(failed_df[<span class="st">'股票代码'</span>])</span>
-<span id="cb4-45"><a href="#cb4-45"></a></span>
-<span id="cb4-46"><a href="#cb4-46"></a>        <span class="co"># 如果有解析失败的股票，则从industry_data中删除这些行并保存</span></span>
-<span id="cb4-47"><a href="#cb4-47"></a>        <span class="cf">if</span> failed_codes:</span>
-<span id="cb4-48"><a href="#cb4-48"></a>            cleaned_industry_df <span class="op">=</span> industry_df[<span class="op">~</span>industry_df[<span class="st">'股票代码'</span>].isin(failed_codes)]</span>
-<span id="cb4-49"><a href="#cb4-49"></a>            cleaned_industry_df.to_csv(<span class="va">self</span>.industry_data_path, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">"utf-8-sig"</span>)</span>
-<span id="cb4-50"><a href="#cb4-50"></a>            <span class="bu">print</span>(<span class="ss">f"已从 </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>industry_data_path<span class="sc">}</span><span class="ss"> 中删除 </span><span class="sc">{</span><span class="bu">len</span>(failed_codes)<span class="sc">}</span><span class="ss"> 条解析失败的股票数据"</span>)</span>
-<span id="cb4-51"><a href="#cb4-51"></a>        </span>
-<span id="cb4-52"><a href="#cb4-52"></a>        <span class="bu">print</span>(<span class="ss">f"有 </span><span class="sc">{</span><span class="bu">len</span>(failed_codes)<span class="sc">}</span><span class="ss"> 只股票的行业数据解析失败"</span>)</span>
-<span id="cb4-53"><a href="#cb4-53"></a>        </span>
-<span id="cb4-54"><a href="#cb4-54"></a>        codes_to_retry <span class="op">=</span> missing_codes.union(failed_codes)</span>
-<span id="cb4-55"><a href="#cb4-55"></a>        <span class="bu">print</span>(<span class="ss">f"总计需要重新爬取 </span><span class="sc">{</span><span class="bu">len</span>(codes_to_retry)<span class="sc">}</span><span class="ss"> 只股票"</span>)</span>
-<span id="cb4-56"><a href="#cb4-56"></a>        </span>
-<span id="cb4-57"><a href="#cb4-57"></a>        <span class="cf">if</span> codes_to_retry:</span>
-<span id="cb4-58"><a href="#cb4-58"></a>            retry_df <span class="op">=</span> api_df[api_df[<span class="st">'股票代码'</span>].isin(codes_to_retry)].copy()</span>
-<span id="cb4-59"><a href="#cb4-59"></a>            retry_df[<span class="st">'需要爬取'</span>] <span class="op">=</span> retry_df[<span class="st">'股票代码'</span>].<span class="bu">apply</span>(</span>
-<span id="cb4-60"><a href="#cb4-60"></a>                <span class="kw">lambda</span> x: <span class="st">'缺失数据'</span> <span class="cf">if</span> x <span class="kw">in</span> missing_codes <span class="cf">else</span> <span class="st">'解析失败'</span></span>
-<span id="cb4-61"><a href="#cb4-61"></a>            )</span>
-<span id="cb4-62"><a href="#cb4-62"></a>            retry_df.to_csv(<span class="va">self</span>.missing_data_path, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">"utf-8-sig"</span>)</span>
-<span id="cb4-63"><a href="#cb4-63"></a>            <span class="bu">print</span>(<span class="ss">f"需要重新爬取的股票已保存到 </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>missing_data_path<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb4-64"><a href="#cb4-64"></a>            </span>
-<span id="cb4-65"><a href="#cb4-65"></a>            exchange_counts <span class="op">=</span> retry_df[<span class="st">'交易所'</span>].value_counts()</span>
-<span id="cb4-66"><a href="#cb4-66"></a>            <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">按交易所统计："</span>)</span>
-<span id="cb4-67"><a href="#cb4-67"></a>            <span class="cf">for</span> exchange, count <span class="kw">in</span> exchange_counts.items():</span>
-<span id="cb4-68"><a href="#cb4-68"></a>                <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>exchange<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>count<span class="sc">}</span><span class="ss"> 只"</span>)</span>
-<span id="cb4-69"><a href="#cb4-69"></a>            </span>
-<span id="cb4-70"><a href="#cb4-70"></a>            <span class="cf">return</span> retry_df</span>
-<span id="cb4-71"><a href="#cb4-71"></a>        <span class="cf">else</span>:</span>
-<span id="cb4-72"><a href="#cb4-72"></a>            <span class="bu">print</span>(<span class="st">"所有股票的行业数据都已完整且正确"</span>)</span>
-<span id="cb4-73"><a href="#cb4-73"></a>            <span class="cf">return</span> <span class="va">None</span></span>
-<span id="cb4-74"><a href="#cb4-74"></a></span>
-<span id="cb4-75"><a href="#cb4-75"></a><span class="co"># 执行比对</span></span>
-<span id="cb4-76"><a href="#cb4-76"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="cb4-77"><a href="#cb4-77"></a>    comparator <span class="op">=</span> StockDataComparator()</span>
-<span id="cb4-78"><a href="#cb4-78"></a>    result_df <span class="op">=</span> comparator.compare_data()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 比对目前还有多少股票没有行业数据，缺少的需要爬取</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> StockDataComparator:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 获取当前工作目录（Jupyter环境下无__file__，用cwd）</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        script_dir <span class="op">=</span> os.getcwd()</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 获取父目录路径</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        parent_dir <span class="op">=</span> os.path.dirname(script_dir)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 构建data文件夹路径（从父目录进入data）</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.data_dir <span class="op">=</span> os.path.join(parent_dir, <span class="st">"data"</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        os.makedirs(<span class="va">self</span>.data_dir, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.api_data_path <span class="op">=</span> os.path.join(<span class="va">self</span>.data_dir, <span class="st">"api_data.csv"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.industry_data_path <span class="op">=</span> os.path.join(<span class="va">self</span>.data_dir, <span class="st">"industry_data.csv"</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.missing_data_path <span class="op">=</span> os.path.join(<span class="va">self</span>.data_dir, <span class="st">"missing_industry.csv"</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> compare_data(<span class="va">self</span>):</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""比对两个CSV文件，找出需要重新爬取的股票"""</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> os.path.exists(<span class="va">self</span>.api_data_path):</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"错误：未找到 </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>api_data_path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> os.path.exists(<span class="va">self</span>.industry_data_path):</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"错误：未找到 </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>industry_data_path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>        api_df <span class="op">=</span> pd.read_csv(<span class="va">self</span>.api_data_path, on_bad_lines<span class="op">=</span><span class="st">'skip'</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        industry_df <span class="op">=</span> pd.read_csv(<span class="va">self</span>.industry_data_path, on_bad_lines<span class="op">=</span><span class="st">'skip'</span>)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        api_df[<span class="st">'股票代码'</span>] <span class="op">=</span> api_df[<span class="st">'股票代码'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">6</span>)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        industry_df[<span class="st">'股票代码'</span>] <span class="op">=</span> industry_df[<span class="st">'股票代码'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">6</span>)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        api_codes <span class="op">=</span> <span class="bu">set</span>(api_df[<span class="st">'股票代码'</span>])</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        industry_codes <span class="op">=</span> <span class="bu">set</span>(industry_df[<span class="st">'股票代码'</span>])</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>        missing_codes <span class="op">=</span> api_codes <span class="op">-</span> industry_codes</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"API数据中共有 </span><span class="sc">{</span><span class="bu">len</span>(api_codes)<span class="sc">}</span><span class="ss"> 只股票"</span>)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"行业数据中已有 </span><span class="sc">{</span><span class="bu">len</span>(industry_codes)<span class="sc">}</span><span class="ss"> 只股票"</span>)</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"缺失 </span><span class="sc">{</span><span class="bu">len</span>(missing_codes)<span class="sc">}</span><span class="ss"> 只股票的行业数据"</span>)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 先查找解析失败的股票代码</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>        failed_df <span class="op">=</span> industry_df[</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>            (industry_df[<span class="st">'东财行业'</span>] <span class="op">==</span> <span class="st">'解析失败'</span>) <span class="op">&amp;</span> </span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>            (industry_df[<span class="st">'证监会行业'</span>] <span class="op">==</span> <span class="st">'解析失败'</span>)</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>        failed_codes <span class="op">=</span> <span class="bu">set</span>(failed_df[<span class="st">'股票代码'</span>])</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 如果有解析失败的股票，则从industry_data中删除这些行并保存</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> failed_codes:</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>            cleaned_industry_df <span class="op">=</span> industry_df[<span class="op">~</span>industry_df[<span class="st">'股票代码'</span>].isin(failed_codes)]</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>            cleaned_industry_df.to_csv(<span class="va">self</span>.industry_data_path, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">"utf-8-sig"</span>)</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"已从 </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>industry_data_path<span class="sc">}</span><span class="ss"> 中删除 </span><span class="sc">{</span><span class="bu">len</span>(failed_codes)<span class="sc">}</span><span class="ss"> 条解析失败的股票数据"</span>)</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"有 </span><span class="sc">{</span><span class="bu">len</span>(failed_codes)<span class="sc">}</span><span class="ss"> 只股票的行业数据解析失败"</span>)</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>        codes_to_retry <span class="op">=</span> missing_codes.union(failed_codes)</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"总计需要重新爬取 </span><span class="sc">{</span><span class="bu">len</span>(codes_to_retry)<span class="sc">}</span><span class="ss"> 只股票"</span>)</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> codes_to_retry:</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>            retry_df <span class="op">=</span> api_df[api_df[<span class="st">'股票代码'</span>].isin(codes_to_retry)].copy()</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>            retry_df[<span class="st">'需要爬取'</span>] <span class="op">=</span> retry_df[<span class="st">'股票代码'</span>].<span class="bu">apply</span>(</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>                <span class="kw">lambda</span> x: <span class="st">'缺失数据'</span> <span class="cf">if</span> x <span class="kw">in</span> missing_codes <span class="cf">else</span> <span class="st">'解析失败'</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>            retry_df.to_csv(<span class="va">self</span>.missing_data_path, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">"utf-8-sig"</span>)</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"需要重新爬取的股票已保存到 </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>missing_data_path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>            exchange_counts <span class="op">=</span> retry_df[<span class="st">'交易所'</span>].value_counts()</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">按交易所统计："</span>)</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> exchange, count <span class="kw">in</span> exchange_counts.items():</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>exchange<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>count<span class="sc">}</span><span class="ss"> 只"</span>)</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> retry_df</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"所有股票的行业数据都已完整且正确"</span>)</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="co"># 执行比对</span></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>    comparator <span class="op">=</span> StockDataComparator()</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>    result_df <span class="op">=</span> comparator.compare_data()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>API数据中共有 5720 只股票
 行业数据中已有 5720 只股票
@@ -6824,145 +6824,145 @@ API数据已保存至: e:\work\YJS\作业\数据分析\Proj_china_stock_analysis
 </div>
 </div>
 <div id="774a97ab" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># 从东方财富的网页抓取行业信息</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="kw">class</span> StockIndustryCrawler:</span>
-<span id="cb6-4"><a href="#cb6-4"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
-<span id="cb6-5"><a href="#cb6-5"></a>        <span class="va">self</span>.COMPANY_INFO_URL <span class="op">=</span> <span class="st">"https://emweb.securities.eastmoney.com/pc_hsf10/pages/index.html"</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a>        <span class="co"># 获取当前工作目录（Jupyter环境下无__file__，用cwd）</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a>        script_dir <span class="op">=</span> os.getcwd()</span>
-<span id="cb6-8"><a href="#cb6-8"></a>        <span class="co"># 获取父目录路径</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a>        parent_dir <span class="op">=</span> os.path.dirname(script_dir)</span>
-<span id="cb6-10"><a href="#cb6-10"></a>        <span class="co"># 构建data文件夹路径（从父目录进入data）</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a>        <span class="va">self</span>.data_dir <span class="op">=</span> os.path.join(parent_dir, <span class="st">"data"</span>)</span>
-<span id="cb6-12"><a href="#cb6-12"></a>        os.makedirs(<span class="va">self</span>.data_dir, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb6-13"><a href="#cb6-13"></a>        <span class="co"># 数据文件路径保持不变</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a>        <span class="va">self</span>.api_data_path <span class="op">=</span> os.path.join(<span class="va">self</span>.data_dir, <span class="st">"api_data.csv"</span>)</span>
-<span id="cb6-15"><a href="#cb6-15"></a>        <span class="va">self</span>.missing_data_path <span class="op">=</span> os.path.join(<span class="va">self</span>.data_dir, <span class="st">"missing_industry.csv"</span>)  <span class="co"># 待爬取的股票</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a>        <span class="va">self</span>.industry_data_path <span class="op">=</span> os.path.join(<span class="va">self</span>.data_dir, <span class="st">"industry_data.csv"</span>)    <span class="co"># 行业数据</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a>        </span>
-<span id="cb6-18"><a href="#cb6-18"></a>        <span class="co"># 浏览器配置</span></span>
-<span id="cb6-19"><a href="#cb6-19"></a>        <span class="va">self</span>.chrome_options <span class="op">=</span> webdriver.ChromeOptions()</span>
-<span id="cb6-20"><a href="#cb6-20"></a>        <span class="va">self</span>.chrome_options.add_argument(<span class="st">"--headless"</span>)</span>
-<span id="cb6-21"><a href="#cb6-21"></a>        <span class="va">self</span>.chrome_options.add_argument(<span class="st">"--disable-gpu"</span>)</span>
-<span id="cb6-22"><a href="#cb6-22"></a>        <span class="va">self</span>.chrome_options.add_argument(<span class="st">"--no-sandbox"</span>)</span>
-<span id="cb6-23"><a href="#cb6-23"></a>        <span class="va">self</span>.driver <span class="op">=</span> webdriver.Chrome(options<span class="op">=</span><span class="va">self</span>.chrome_options)</span>
-<span id="cb6-24"><a href="#cb6-24"></a>        </span>
-<span id="cb6-25"><a href="#cb6-25"></a>        <span class="co"># 市场代码映射</span></span>
-<span id="cb6-26"><a href="#cb6-26"></a>        <span class="va">self</span>.market_map <span class="op">=</span> {</span>
-<span id="cb6-27"><a href="#cb6-27"></a>            <span class="st">"上海交易所"</span>: <span class="dv">1</span>,</span>
-<span id="cb6-28"><a href="#cb6-28"></a>            <span class="st">"深圳交易所"</span>: <span class="dv">0</span>,</span>
-<span id="cb6-29"><a href="#cb6-29"></a>            <span class="st">"北京交易所"</span>: <span class="dv">2</span></span>
-<span id="cb6-30"><a href="#cb6-30"></a>        }</span>
-<span id="cb6-31"><a href="#cb6-31"></a>    </span>
-<span id="cb6-32"><a href="#cb6-32"></a>    <span class="kw">def</span> _random_delay(<span class="va">self</span>):</span>
-<span id="cb6-33"><a href="#cb6-33"></a>        <span class="co">"""随机延迟防反爬（2-4秒）"""</span></span>
-<span id="cb6-34"><a href="#cb6-34"></a>        time.sleep(random.uniform(<span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb6-35"><a href="#cb6-35"></a>    </span>
-<span id="cb6-36"><a href="#cb6-36"></a>    <span class="kw">def</span> parse_industry_from_html(<span class="va">self</span>, stock_code, market_code):</span>
-<span id="cb6-37"><a href="#cb6-37"></a>        <span class="co">"""从网页解析行业信息"""</span></span>
-<span id="cb6-38"><a href="#cb6-38"></a>        market_abbr <span class="op">=</span> {<span class="st">"0"</span>: <span class="st">"SZ"</span>, <span class="st">"1"</span>: <span class="st">"SH"</span>, <span class="st">"2"</span>: <span class="st">"BJ"</span>}.get(<span class="bu">str</span>(market_code), <span class="st">"SZ"</span>)</span>
-<span id="cb6-39"><a href="#cb6-39"></a>        url <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>COMPANY_INFO_URL<span class="sc">}</span><span class="ss">?type=web&amp;code=</span><span class="sc">{</span>market_abbr<span class="sc">}{</span>stock_code<span class="sc">}</span><span class="ss">#/gsgk"</span></span>
-<span id="cb6-40"><a href="#cb6-40"></a>        </span>
-<span id="cb6-41"><a href="#cb6-41"></a>        <span class="cf">try</span>:</span>
-<span id="cb6-42"><a href="#cb6-42"></a>            <span class="va">self</span>.driver.get(url)</span>
-<span id="cb6-43"><a href="#cb6-43"></a>            <span class="va">self</span>._random_delay()</span>
-<span id="cb6-44"><a href="#cb6-44"></a>            soup <span class="op">=</span> BeautifulSoup(<span class="va">self</span>.driver.page_source, <span class="st">"html.parser"</span>)</span>
-<span id="cb6-45"><a href="#cb6-45"></a>            </span>
-<span id="cb6-46"><a href="#cb6-46"></a>            <span class="co"># 解析行业信息</span></span>
-<span id="cb6-47"><a href="#cb6-47"></a>            east_money_industry <span class="op">=</span> soup.find(<span class="st">"th"</span>, string<span class="op">=</span><span class="st">"所属东财行业"</span>).find_next(<span class="st">"td"</span>).text.strip() <span class="cf">if</span> soup.find(<span class="st">"th"</span>, string<span class="op">=</span><span class="st">"所属东财行业"</span>) <span class="cf">else</span> <span class="st">"未找到"</span></span>
-<span id="cb6-48"><a href="#cb6-48"></a>            csrc_industry <span class="op">=</span> soup.find(<span class="st">"th"</span>, string<span class="op">=</span><span class="st">"所属证监会行业"</span>).find_next(<span class="st">"td"</span>).text.strip() <span class="cf">if</span> soup.find(<span class="st">"th"</span>, string<span class="op">=</span><span class="st">"所属证监会行业"</span>) <span class="cf">else</span> <span class="st">"未找到"</span></span>
-<span id="cb6-49"><a href="#cb6-49"></a>            </span>
-<span id="cb6-50"><a href="#cb6-50"></a>            <span class="cf">return</span> {</span>
-<span id="cb6-51"><a href="#cb6-51"></a>                <span class="st">"股票代码"</span>: stock_code,</span>
-<span id="cb6-52"><a href="#cb6-52"></a>                <span class="st">"东财行业"</span>: east_money_industry,</span>
-<span id="cb6-53"><a href="#cb6-53"></a>                <span class="st">"证监会行业"</span>: csrc_industry</span>
-<span id="cb6-54"><a href="#cb6-54"></a>            }</span>
-<span id="cb6-55"><a href="#cb6-55"></a>            </span>
-<span id="cb6-56"><a href="#cb6-56"></a>        <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb6-57"><a href="#cb6-57"></a>            <span class="bu">print</span>(<span class="ss">f"解析 </span><span class="sc">{</span>stock_code<span class="sc">}</span><span class="ss"> 行业信息失败: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb6-58"><a href="#cb6-58"></a>            <span class="cf">return</span> {</span>
-<span id="cb6-59"><a href="#cb6-59"></a>                <span class="st">"股票代码"</span>: stock_code,</span>
-<span id="cb6-60"><a href="#cb6-60"></a>                <span class="st">"东财行业"</span>: <span class="st">"解析失败"</span>,</span>
-<span id="cb6-61"><a href="#cb6-61"></a>                <span class="st">"证监会行业"</span>: <span class="st">"解析失败"</span></span>
-<span id="cb6-62"><a href="#cb6-62"></a>            }</span>
-<span id="cb6-63"><a href="#cb6-63"></a>    </span>
-<span id="cb6-64"><a href="#cb6-64"></a>    <span class="kw">def</span> load_missing_data(<span class="va">self</span>):</span>
-<span id="cb6-65"><a href="#cb6-65"></a>        <span class="co">"""加载missing_industry.csv中的股票数据"""</span></span>
-<span id="cb6-66"><a href="#cb6-66"></a>        <span class="cf">if</span> <span class="kw">not</span> os.path.exists(<span class="va">self</span>.missing_data_path):</span>
-<span id="cb6-67"><a href="#cb6-67"></a>            <span class="bu">print</span>(<span class="st">"错误：未找到待爬取的股票数据文件 (missing_industry.csv)"</span>)</span>
-<span id="cb6-68"><a href="#cb6-68"></a>            <span class="cf">return</span> <span class="va">None</span></span>
-<span id="cb6-69"><a href="#cb6-69"></a>        </span>
-<span id="cb6-70"><a href="#cb6-70"></a>        missing_df <span class="op">=</span> pd.read_csv(<span class="va">self</span>.missing_data_path, on_bad_lines<span class="op">=</span><span class="st">'skip'</span>)</span>
-<span id="cb6-71"><a href="#cb6-71"></a>        </span>
-<span id="cb6-72"><a href="#cb6-72"></a>        <span class="co"># 确保股票代码为字符串类型并补零到6位</span></span>
-<span id="cb6-73"><a href="#cb6-73"></a>        missing_df[<span class="st">'股票代码'</span>] <span class="op">=</span> missing_df[<span class="st">'股票代码'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">6</span>)</span>
-<span id="cb6-74"><a href="#cb6-74"></a>        </span>
-<span id="cb6-75"><a href="#cb6-75"></a>        <span class="co">#print(f"加载待爬取的股票数据：共 {len(missing_df)} 只股票")</span></span>
-<span id="cb6-76"><a href="#cb6-76"></a>        <span class="cf">return</span> missing_df</span>
-<span id="cb6-77"><a href="#cb6-77"></a>    </span>
-<span id="cb6-78"><a href="#cb6-78"></a>    <span class="kw">def</span> crawl_missing_industry_data(<span class="va">self</span>):</span>
-<span id="cb6-79"><a href="#cb6-79"></a>        <span class="co">"""从missing_industry.csv读取股票代码并爬取行业信息"""</span></span>
-<span id="cb6-80"><a href="#cb6-80"></a>        missing_df <span class="op">=</span> <span class="va">self</span>.load_missing_data()</span>
-<span id="cb6-81"><a href="#cb6-81"></a>        <span class="cf">if</span> missing_df <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> <span class="bu">len</span>(missing_df) <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb6-82"><a href="#cb6-82"></a>            <span class="bu">print</span>(<span class="st">"没有需要爬取的股票数据"</span>)</span>
-<span id="cb6-83"><a href="#cb6-83"></a>            <span class="cf">return</span></span>
-<span id="cb6-84"><a href="#cb6-84"></a>        </span>
-<span id="cb6-85"><a href="#cb6-85"></a>        <span class="co"># 检查已存在的行业数据，避免重复爬取</span></span>
-<span id="cb6-86"><a href="#cb6-86"></a>        existing_codes <span class="op">=</span> <span class="bu">set</span>()</span>
-<span id="cb6-87"><a href="#cb6-87"></a>        <span class="cf">if</span> os.path.exists(<span class="va">self</span>.industry_data_path):</span>
-<span id="cb6-88"><a href="#cb6-88"></a>            existing_df <span class="op">=</span> pd.read_csv(<span class="va">self</span>.industry_data_path, on_bad_lines<span class="op">=</span><span class="st">'skip'</span>)</span>
-<span id="cb6-89"><a href="#cb6-89"></a>            existing_codes <span class="op">=</span> <span class="bu">set</span>(existing_df[<span class="st">'股票代码'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">6</span>))</span>
-<span id="cb6-90"><a href="#cb6-90"></a>            <span class="bu">print</span>(<span class="ss">f"已存在 </span><span class="sc">{</span><span class="bu">len</span>(existing_codes)<span class="sc">}</span><span class="ss"> 只股票的行业数据"</span>)</span>
-<span id="cb6-91"><a href="#cb6-91"></a>        </span>
-<span id="cb6-92"><a href="#cb6-92"></a>        <span class="co"># 筛选出需要爬取的股票</span></span>
-<span id="cb6-93"><a href="#cb6-93"></a>        stocks_to_crawl <span class="op">=</span> missing_df[<span class="op">~</span>missing_df[<span class="st">'股票代码'</span>].isin(existing_codes)]</span>
-<span id="cb6-94"><a href="#cb6-94"></a>        total <span class="op">=</span> <span class="bu">len</span>(stocks_to_crawl)</span>
-<span id="cb6-95"><a href="#cb6-95"></a>        </span>
-<span id="cb6-96"><a href="#cb6-96"></a>        <span class="cf">if</span> total <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb6-97"><a href="#cb6-97"></a>            <span class="bu">print</span>(<span class="st">"所有待爬取的股票数据已存在"</span>)</span>
-<span id="cb6-98"><a href="#cb6-98"></a>            <span class="cf">return</span></span>
-<span id="cb6-99"><a href="#cb6-99"></a>        </span>
-<span id="cb6-100"><a href="#cb6-100"></a>        <span class="bu">print</span>(<span class="ss">f"开始爬取 </span><span class="sc">{</span>total<span class="sc">}</span><span class="ss"> 只股票的行业信息..."</span>)</span>
-<span id="cb6-101"><a href="#cb6-101"></a>        </span>
-<span id="cb6-102"><a href="#cb6-102"></a>        <span class="co"># 分批爬取，每10只保存一次</span></span>
-<span id="cb6-103"><a href="#cb6-103"></a>        batch_size <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb6-104"><a href="#cb6-104"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, total, batch_size):</span>
-<span id="cb6-105"><a href="#cb6-105"></a>            batch <span class="op">=</span> stocks_to_crawl.iloc[i:i<span class="op">+</span>batch_size]</span>
-<span id="cb6-106"><a href="#cb6-106"></a>            industry_list <span class="op">=</span> []</span>
-<span id="cb6-107"><a href="#cb6-107"></a>            </span>
-<span id="cb6-108"><a href="#cb6-108"></a>            <span class="cf">for</span> idx, row <span class="kw">in</span> batch.iterrows():</span>
-<span id="cb6-109"><a href="#cb6-109"></a>                stock_code <span class="op">=</span> row[<span class="st">'股票代码'</span>]</span>
-<span id="cb6-110"><a href="#cb6-110"></a>                exchange <span class="op">=</span> row[<span class="st">'交易所'</span>]</span>
-<span id="cb6-111"><a href="#cb6-111"></a>                market_code <span class="op">=</span> <span class="va">self</span>.market_map.get(exchange, <span class="dv">0</span>)</span>
-<span id="cb6-112"><a href="#cb6-112"></a>                <span class="bu">print</span>(<span class="ss">f"正在爬取 </span><span class="sc">{</span>i<span class="op">+</span>idx<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>total<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>stock_code<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>exchange<span class="sc">}</span><span class="ss">)"</span>)</span>
-<span id="cb6-113"><a href="#cb6-113"></a>                </span>
-<span id="cb6-114"><a href="#cb6-114"></a>                info <span class="op">=</span> <span class="va">self</span>.parse_industry_from_html(stock_code, market_code)</span>
-<span id="cb6-115"><a href="#cb6-115"></a>                industry_list.append(info)</span>
-<span id="cb6-116"><a href="#cb6-116"></a>            </span>
-<span id="cb6-117"><a href="#cb6-117"></a>            <span class="co"># 追加保存到industry_data.csv</span></span>
-<span id="cb6-118"><a href="#cb6-118"></a>            <span class="va">self</span>._append_to_industry_data(industry_list)</span>
-<span id="cb6-119"><a href="#cb6-119"></a>        </span>
-<span id="cb6-120"><a href="#cb6-120"></a>        <span class="bu">print</span>(<span class="ss">f"行业数据爬取完成，共添加 </span><span class="sc">{</span>total<span class="sc">}</span><span class="ss"> 条记录到 </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>industry_data_path<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb6-121"><a href="#cb6-121"></a>    </span>
-<span id="cb6-122"><a href="#cb6-122"></a>    <span class="kw">def</span> _append_to_industry_data(<span class="va">self</span>, data):</span>
-<span id="cb6-123"><a href="#cb6-123"></a>        <span class="co">"""追加数据到行业数据文件"""</span></span>
-<span id="cb6-124"><a href="#cb6-124"></a>        df <span class="op">=</span> pd.DataFrame(data)</span>
-<span id="cb6-125"><a href="#cb6-125"></a>        <span class="cf">if</span> <span class="kw">not</span> os.path.exists(<span class="va">self</span>.industry_data_path):</span>
-<span id="cb6-126"><a href="#cb6-126"></a>            df.to_csv(<span class="va">self</span>.industry_data_path, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">"utf-8-sig"</span>)</span>
-<span id="cb6-127"><a href="#cb6-127"></a>        <span class="cf">else</span>:</span>
-<span id="cb6-128"><a href="#cb6-128"></a>            df.to_csv(<span class="va">self</span>.industry_data_path, mode<span class="op">=</span><span class="st">"a"</span>, header<span class="op">=</span><span class="va">False</span>, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">"utf-8-sig"</span>)</span>
-<span id="cb6-129"><a href="#cb6-129"></a>    </span>
-<span id="cb6-130"><a href="#cb6-130"></a>    <span class="kw">def</span> close_browser(<span class="va">self</span>):</span>
-<span id="cb6-131"><a href="#cb6-131"></a>        <span class="co">"""关闭浏览器驱动"""</span></span>
-<span id="cb6-132"><a href="#cb6-132"></a>        <span class="va">self</span>.driver.quit()</span>
-<span id="cb6-133"><a href="#cb6-133"></a></span>
-<span id="cb6-134"><a href="#cb6-134"></a><span class="co"># 主程序入口</span></span>
-<span id="cb6-135"><a href="#cb6-135"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="cb6-136"><a href="#cb6-136"></a>    crawler <span class="op">=</span> StockIndustryCrawler()</span>
-<span id="cb6-137"><a href="#cb6-137"></a>    crawler.crawl_missing_industry_data()</span>
-<span id="cb6-138"><a href="#cb6-138"></a>    crawler.close_browser()</span>
-<span id="cb6-139"><a href="#cb6-139"></a>    <span class="bu">print</span>(<span class="st">"任务完成！"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 从东方财富的网页抓取行业信息</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> StockIndustryCrawler:</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.COMPANY_INFO_URL <span class="op">=</span> <span class="st">"https://emweb.securities.eastmoney.com/pc_hsf10/pages/index.html"</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 获取当前工作目录（Jupyter环境下无__file__，用cwd）</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        script_dir <span class="op">=</span> os.getcwd()</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 获取父目录路径</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        parent_dir <span class="op">=</span> os.path.dirname(script_dir)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 构建data文件夹路径（从父目录进入data）</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.data_dir <span class="op">=</span> os.path.join(parent_dir, <span class="st">"data"</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        os.makedirs(<span class="va">self</span>.data_dir, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 数据文件路径保持不变</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.api_data_path <span class="op">=</span> os.path.join(<span class="va">self</span>.data_dir, <span class="st">"api_data.csv"</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.missing_data_path <span class="op">=</span> os.path.join(<span class="va">self</span>.data_dir, <span class="st">"missing_industry.csv"</span>)  <span class="co"># 待爬取的股票</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.industry_data_path <span class="op">=</span> os.path.join(<span class="va">self</span>.data_dir, <span class="st">"industry_data.csv"</span>)    <span class="co"># 行业数据</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 浏览器配置</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.chrome_options <span class="op">=</span> webdriver.ChromeOptions()</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.chrome_options.add_argument(<span class="st">"--headless"</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.chrome_options.add_argument(<span class="st">"--disable-gpu"</span>)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.chrome_options.add_argument(<span class="st">"--no-sandbox"</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.driver <span class="op">=</span> webdriver.Chrome(options<span class="op">=</span><span class="va">self</span>.chrome_options)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 市场代码映射</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.market_map <span class="op">=</span> {</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>            <span class="st">"上海交易所"</span>: <span class="dv">1</span>,</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>            <span class="st">"深圳交易所"</span>: <span class="dv">0</span>,</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>            <span class="st">"北京交易所"</span>: <span class="dv">2</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _random_delay(<span class="va">self</span>):</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""随机延迟防反爬（2-4秒）"""</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>        time.sleep(random.uniform(<span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> parse_industry_from_html(<span class="va">self</span>, stock_code, market_code):</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""从网页解析行业信息"""</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>        market_abbr <span class="op">=</span> {<span class="st">"0"</span>: <span class="st">"SZ"</span>, <span class="st">"1"</span>: <span class="st">"SH"</span>, <span class="st">"2"</span>: <span class="st">"BJ"</span>}.get(<span class="bu">str</span>(market_code), <span class="st">"SZ"</span>)</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>        url <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>COMPANY_INFO_URL<span class="sc">}</span><span class="ss">?type=web&amp;code=</span><span class="sc">{</span>market_abbr<span class="sc">}{</span>stock_code<span class="sc">}</span><span class="ss">#/gsgk"</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.driver.get(url)</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>._random_delay()</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>            soup <span class="op">=</span> BeautifulSoup(<span class="va">self</span>.driver.page_source, <span class="st">"html.parser"</span>)</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>            <span class="co"># 解析行业信息</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>            east_money_industry <span class="op">=</span> soup.find(<span class="st">"th"</span>, string<span class="op">=</span><span class="st">"所属东财行业"</span>).find_next(<span class="st">"td"</span>).text.strip() <span class="cf">if</span> soup.find(<span class="st">"th"</span>, string<span class="op">=</span><span class="st">"所属东财行业"</span>) <span class="cf">else</span> <span class="st">"未找到"</span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>            csrc_industry <span class="op">=</span> soup.find(<span class="st">"th"</span>, string<span class="op">=</span><span class="st">"所属证监会行业"</span>).find_next(<span class="st">"td"</span>).text.strip() <span class="cf">if</span> soup.find(<span class="st">"th"</span>, string<span class="op">=</span><span class="st">"所属证监会行业"</span>) <span class="cf">else</span> <span class="st">"未找到"</span></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> {</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>                <span class="st">"股票代码"</span>: stock_code,</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>                <span class="st">"东财行业"</span>: east_money_industry,</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>                <span class="st">"证监会行业"</span>: csrc_industry</span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"解析 </span><span class="sc">{</span>stock_code<span class="sc">}</span><span class="ss"> 行业信息失败: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> {</span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>                <span class="st">"股票代码"</span>: stock_code,</span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>                <span class="st">"东财行业"</span>: <span class="st">"解析失败"</span>,</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>                <span class="st">"证监会行业"</span>: <span class="st">"解析失败"</span></span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> load_missing_data(<span class="va">self</span>):</span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""加载missing_industry.csv中的股票数据"""</span></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> os.path.exists(<span class="va">self</span>.missing_data_path):</span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"错误：未找到待爬取的股票数据文件 (missing_industry.csv)"</span>)</span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>        missing_df <span class="op">=</span> pd.read_csv(<span class="va">self</span>.missing_data_path, on_bad_lines<span class="op">=</span><span class="st">'skip'</span>)</span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 确保股票代码为字符串类型并补零到6位</span></span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>        missing_df[<span class="st">'股票代码'</span>] <span class="op">=</span> missing_df[<span class="st">'股票代码'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">6</span>)</span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>        <span class="co">#print(f"加载待爬取的股票数据：共 {len(missing_df)} 只股票")</span></span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> missing_df</span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> crawl_missing_industry_data(<span class="va">self</span>):</span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""从missing_industry.csv读取股票代码并爬取行业信息"""</span></span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>        missing_df <span class="op">=</span> <span class="va">self</span>.load_missing_data()</span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> missing_df <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> <span class="bu">len</span>(missing_df) <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"没有需要爬取的股票数据"</span>)</span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span></span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 检查已存在的行业数据，避免重复爬取</span></span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>        existing_codes <span class="op">=</span> <span class="bu">set</span>()</span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> os.path.exists(<span class="va">self</span>.industry_data_path):</span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>            existing_df <span class="op">=</span> pd.read_csv(<span class="va">self</span>.industry_data_path, on_bad_lines<span class="op">=</span><span class="st">'skip'</span>)</span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>            existing_codes <span class="op">=</span> <span class="bu">set</span>(existing_df[<span class="st">'股票代码'</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">6</span>))</span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"已存在 </span><span class="sc">{</span><span class="bu">len</span>(existing_codes)<span class="sc">}</span><span class="ss"> 只股票的行业数据"</span>)</span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 筛选出需要爬取的股票</span></span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>        stocks_to_crawl <span class="op">=</span> missing_df[<span class="op">~</span>missing_df[<span class="st">'股票代码'</span>].isin(existing_codes)]</span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>        total <span class="op">=</span> <span class="bu">len</span>(stocks_to_crawl)</span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> total <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"所有待爬取的股票数据已存在"</span>)</span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span></span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"开始爬取 </span><span class="sc">{</span>total<span class="sc">}</span><span class="ss"> 只股票的行业信息..."</span>)</span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 分批爬取，每10只保存一次</span></span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>        batch_size <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, total, batch_size):</span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>            batch <span class="op">=</span> stocks_to_crawl.iloc[i:i<span class="op">+</span>batch_size]</span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a>            industry_list <span class="op">=</span> []</span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> idx, row <span class="kw">in</span> batch.iterrows():</span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a>                stock_code <span class="op">=</span> row[<span class="st">'股票代码'</span>]</span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>                exchange <span class="op">=</span> row[<span class="st">'交易所'</span>]</span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a>                market_code <span class="op">=</span> <span class="va">self</span>.market_map.get(exchange, <span class="dv">0</span>)</span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f"正在爬取 </span><span class="sc">{</span>i<span class="op">+</span>idx<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>total<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>stock_code<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>exchange<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>                info <span class="op">=</span> <span class="va">self</span>.parse_industry_from_html(stock_code, market_code)</span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>                industry_list.append(info)</span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>            <span class="co"># 追加保存到industry_data.csv</span></span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>._append_to_industry_data(industry_list)</span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"行业数据爬取完成，共添加 </span><span class="sc">{</span>total<span class="sc">}</span><span class="ss"> 条记录到 </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>industry_data_path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _append_to_industry_data(<span class="va">self</span>, data):</span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""追加数据到行业数据文件"""</span></span>
+<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a>        df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> os.path.exists(<span class="va">self</span>.industry_data_path):</span>
+<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a>            df.to_csv(<span class="va">self</span>.industry_data_path, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">"utf-8-sig"</span>)</span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a>            df.to_csv(<span class="va">self</span>.industry_data_path, mode<span class="op">=</span><span class="st">"a"</span>, header<span class="op">=</span><span class="va">False</span>, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">"utf-8-sig"</span>)</span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> close_browser(<span class="va">self</span>):</span>
+<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""关闭浏览器驱动"""</span></span>
+<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.driver.quit()</span>
+<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a><span class="co"># 主程序入口</span></span>
+<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>    crawler <span class="op">=</span> StockIndustryCrawler()</span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>    crawler.crawl_missing_industry_data()</span>
+<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a>    crawler.close_browser()</span>
+<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"任务完成！"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>已存在 5720 只股票的行业数据
 所有待爬取的股票数据已存在
@@ -6973,63 +6973,63 @@ API数据已保存至: e:\work\YJS\作业\数据分析\Proj_china_stock_analysis
 <li>数据合并</li>
 </ol>
 <div id="c7d2ef9d" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># 获取当前工作目录（Jupyter环境下无__file__，用cwd）</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>script_dir <span class="op">=</span> os.getcwd()</span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="co"># 获取父目录路径</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a>parent_dir <span class="op">=</span> os.path.dirname(script_dir)</span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="co"># 构建data文件夹路径（从父目录进入data）</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a>data_dir <span class="op">=</span> os.path.join(parent_dir, <span class="st">"data"</span>)</span>
-<span id="cb8-7"><a href="#cb8-7"></a>os.makedirs(data_dir, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb8-8"><a href="#cb8-8"></a>        </span>
-<span id="cb8-9"><a href="#cb8-9"></a><span class="co"># 定义文件路径</span></span>
-<span id="cb8-10"><a href="#cb8-10"></a>api_data_path <span class="op">=</span> os.path.join(data_dir, <span class="st">"api_data.csv"</span>)</span>
-<span id="cb8-11"><a href="#cb8-11"></a>industry_data_path <span class="op">=</span> os.path.join(data_dir, <span class="st">"industry_data.csv"</span>)</span>
-<span id="cb8-12"><a href="#cb8-12"></a>output_path <span class="op">=</span> os.path.join(data_dir, <span class="st">"data_raw.csv"</span>)</span>
-<span id="cb8-13"><a href="#cb8-13"></a></span>
-<span id="cb8-14"><a href="#cb8-14"></a><span class="co"># 检查文件是否存在</span></span>
-<span id="cb8-15"><a href="#cb8-15"></a><span class="cf">if</span> <span class="kw">not</span> <span class="bu">all</span>([os.path.exists(path) <span class="cf">for</span> path <span class="kw">in</span> [api_data_path, industry_data_path]]):</span>
-<span id="cb8-16"><a href="#cb8-16"></a>    <span class="bu">print</span>(<span class="st">"错误：api_data.csv 或 industry_data.csv 不存在"</span>)</span>
-<span id="cb8-17"><a href="#cb8-17"></a>    exit(<span class="dv">1</span>)</span>
-<span id="cb8-18"><a href="#cb8-18"></a></span>
-<span id="cb8-19"><a href="#cb8-19"></a><span class="co"># 读取数据并去重</span></span>
-<span id="cb8-20"><a href="#cb8-20"></a>df_api <span class="op">=</span> pd.read_csv(api_data_path).drop_duplicates()</span>
-<span id="cb8-21"><a href="#cb8-21"></a>df_industry <span class="op">=</span> pd.read_csv(industry_data_path).drop_duplicates()</span>
-<span id="cb8-22"><a href="#cb8-22"></a></span>
-<span id="cb8-23"><a href="#cb8-23"></a><span class="bu">print</span>(<span class="ss">f"df_api去重后行数: </span><span class="sc">{</span><span class="bu">len</span>(df_api)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb8-24"><a href="#cb8-24"></a><span class="bu">print</span>(<span class="ss">f"df_industry去重后行数: </span><span class="sc">{</span><span class="bu">len</span>(df_industry)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb8-25"><a href="#cb8-25"></a></span>
-<span id="cb8-26"><a href="#cb8-26"></a><span class="co"># 数据清洗：确保股票代码为字符串类型并统一格式</span></span>
-<span id="cb8-27"><a href="#cb8-27"></a>df_api[<span class="st">"股票代码"</span>] <span class="op">=</span> df_api[<span class="st">"股票代码"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">6</span>)</span>
-<span id="cb8-28"><a href="#cb8-28"></a>df_industry[<span class="st">"股票代码"</span>] <span class="op">=</span> df_industry[<span class="st">"股票代码"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">6</span>)</span>
-<span id="cb8-29"><a href="#cb8-29"></a></span>
-<span id="cb8-30"><a href="#cb8-30"></a><span class="co"># 合并数据（内连接，仅保留两个表中都存在的股票代码）</span></span>
-<span id="cb8-31"><a href="#cb8-31"></a>merged_df <span class="op">=</span> pd.merge(</span>
-<span id="cb8-32"><a href="#cb8-32"></a>    df_api,</span>
-<span id="cb8-33"><a href="#cb8-33"></a>    df_industry,</span>
-<span id="cb8-34"><a href="#cb8-34"></a>    on<span class="op">=</span><span class="st">"股票代码"</span>,</span>
-<span id="cb8-35"><a href="#cb8-35"></a>    how<span class="op">=</span><span class="st">"inner"</span></span>
-<span id="cb8-36"><a href="#cb8-36"></a>)</span>
-<span id="cb8-37"><a href="#cb8-37"></a></span>
-<span id="cb8-38"><a href="#cb8-38"></a><span class="co"># 选择目标列（直接使用"证监会行业"）</span></span>
-<span id="cb8-39"><a href="#cb8-39"></a>merged_df <span class="op">=</span> merged_df.<span class="bu">filter</span>([</span>
-<span id="cb8-40"><a href="#cb8-40"></a>    <span class="st">"股票代码"</span>, <span class="st">"股票名称"</span>, <span class="st">"交易所"</span>, <span class="st">"板块"</span>,</span>
-<span id="cb8-41"><a href="#cb8-41"></a>    <span class="st">"上市时间"</span>, <span class="st">"最新价"</span>, <span class="st">"东财行业"</span>, <span class="st">"证监会行业"</span></span>
-<span id="cb8-42"><a href="#cb8-42"></a>])</span>
-<span id="cb8-43"><a href="#cb8-43"></a></span>
-<span id="cb8-44"><a href="#cb8-44"></a><span class="co"># 处理行业为空的情况（包括空值、无效格式等）</span></span>
-<span id="cb8-45"><a href="#cb8-45"></a><span class="kw">def</span> is_industry_empty(x):</span>
-<span id="cb8-46"><a href="#cb8-46"></a>    <span class="cf">return</span> pd.isnull(x) <span class="kw">or</span> <span class="bu">str</span>(x).strip() <span class="op">==</span> <span class="st">""</span> <span class="kw">or</span> <span class="bu">str</span>(x).strip() <span class="op">==</span> <span class="st">"解析失败"</span> <span class="kw">or</span> <span class="st">"-"</span> <span class="kw">not</span> <span class="kw">in</span> x</span>
-<span id="cb8-47"><a href="#cb8-47"></a></span>
-<span id="cb8-48"><a href="#cb8-48"></a><span class="co"># 检查"证监会行业"</span></span>
-<span id="cb8-49"><a href="#cb8-49"></a>merged_df[<span class="st">"行业为空"</span>] <span class="op">=</span> merged_df[<span class="st">"东财行业"</span>].<span class="bu">apply</span>(is_industry_empty) <span class="op">|</span> merged_df[<span class="st">"证监会行业"</span>].<span class="bu">apply</span>(is_industry_empty)</span>
-<span id="cb8-50"><a href="#cb8-50"></a>industry_empty_count <span class="op">=</span> merged_df[<span class="st">"行业为空"</span>].<span class="bu">sum</span>()</span>
-<span id="cb8-51"><a href="#cb8-51"></a></span>
-<span id="cb8-52"><a href="#cb8-52"></a><span class="co"># 保存结果</span></span>
-<span id="cb8-53"><a href="#cb8-53"></a>merged_df.to_csv(output_path, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">"utf-8-sig"</span>)</span>
-<span id="cb8-54"><a href="#cb8-54"></a></span>
-<span id="cb8-55"><a href="#cb8-55"></a><span class="co"># 输出统计结果</span></span>
-<span id="cb8-56"><a href="#cb8-56"></a><span class="bu">print</span>(<span class="ss">f"合并后数据总行数: </span><span class="sc">{</span><span class="bu">len</span>(merged_df)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb8-57"><a href="#cb8-57"></a><span class="bu">print</span>(<span class="ss">f"证监会行业为空的行数: </span><span class="sc">{</span>industry_empty_count<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取当前工作目录（Jupyter环境下无__file__，用cwd）</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>script_dir <span class="op">=</span> os.getcwd()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取父目录路径</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>parent_dir <span class="op">=</span> os.path.dirname(script_dir)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 构建data文件夹路径（从父目录进入data）</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>data_dir <span class="op">=</span> os.path.join(parent_dir, <span class="st">"data"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>os.makedirs(data_dir, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义文件路径</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>api_data_path <span class="op">=</span> os.path.join(data_dir, <span class="st">"api_data.csv"</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>industry_data_path <span class="op">=</span> os.path.join(data_dir, <span class="st">"industry_data.csv"</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>output_path <span class="op">=</span> os.path.join(data_dir, <span class="st">"data_raw.csv"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 检查文件是否存在</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> <span class="bu">all</span>([os.path.exists(path) <span class="cf">for</span> path <span class="kw">in</span> [api_data_path, industry_data_path]]):</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"错误：api_data.csv 或 industry_data.csv 不存在"</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    exit(<span class="dv">1</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取数据并去重</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>df_api <span class="op">=</span> pd.read_csv(api_data_path).drop_duplicates()</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>df_industry <span class="op">=</span> pd.read_csv(industry_data_path).drop_duplicates()</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"df_api去重后行数: </span><span class="sc">{</span><span class="bu">len</span>(df_api)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"df_industry去重后行数: </span><span class="sc">{</span><span class="bu">len</span>(df_industry)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 数据清洗：确保股票代码为字符串类型并统一格式</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>df_api[<span class="st">"股票代码"</span>] <span class="op">=</span> df_api[<span class="st">"股票代码"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">6</span>)</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>df_industry[<span class="st">"股票代码"</span>] <span class="op">=</span> df_industry[<span class="st">"股票代码"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.zfill(<span class="dv">6</span>)</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="co"># 合并数据（内连接，仅保留两个表中都存在的股票代码）</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>merged_df <span class="op">=</span> pd.merge(</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    df_api,</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    df_industry,</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    on<span class="op">=</span><span class="st">"股票代码"</span>,</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">"inner"</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="co"># 选择目标列（直接使用"证监会行业"）</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>merged_df <span class="op">=</span> merged_df.<span class="bu">filter</span>([</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    <span class="st">"股票代码"</span>, <span class="st">"股票名称"</span>, <span class="st">"交易所"</span>, <span class="st">"板块"</span>,</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    <span class="st">"上市时间"</span>, <span class="st">"最新价"</span>, <span class="st">"东财行业"</span>, <span class="st">"证监会行业"</span></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a><span class="co"># 处理行业为空的情况（包括空值、无效格式等）</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> is_industry_empty(x):</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.isnull(x) <span class="kw">or</span> <span class="bu">str</span>(x).strip() <span class="op">==</span> <span class="st">""</span> <span class="kw">or</span> <span class="bu">str</span>(x).strip() <span class="op">==</span> <span class="st">"解析失败"</span> <span class="kw">or</span> <span class="st">"-"</span> <span class="kw">not</span> <span class="kw">in</span> x</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a><span class="co"># 检查"证监会行业"</span></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>merged_df[<span class="st">"行业为空"</span>] <span class="op">=</span> merged_df[<span class="st">"东财行业"</span>].<span class="bu">apply</span>(is_industry_empty) <span class="op">|</span> merged_df[<span class="st">"证监会行业"</span>].<span class="bu">apply</span>(is_industry_empty)</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>industry_empty_count <span class="op">=</span> merged_df[<span class="st">"行业为空"</span>].<span class="bu">sum</span>()</span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存结果</span></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>merged_df.to_csv(output_path, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">"utf-8-sig"</span>)</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a><span class="co"># 输出统计结果</span></span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"合并后数据总行数: </span><span class="sc">{</span><span class="bu">len</span>(merged_df)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"证监会行业为空的行数: </span><span class="sc">{</span>industry_empty_count<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>df_api去重后行数: 5720
 df_industry去重后行数: 5720
@@ -7132,7 +7132,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

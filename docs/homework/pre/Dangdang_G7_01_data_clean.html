@@ -134,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -142,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -624,18 +624,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>清洗后的数据会自动存放到data_clean中</li>
 </ul>
 <div id="cell-2" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># 第一个单元格</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> os</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 第一个单元格</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="cell-3" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># 第二个单元格</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># 读取原始数据</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>df <span class="op">=</span> pd.read_excel(<span class="st">'data_raw/当当网Python书籍销量排行_原始数据.xlsx'</span>)</span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="bu">print</span>(<span class="st">"原始数据形状："</span>, df.shape)</span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">原始数据前5行："</span>)</span>
-<span id="cb2-6"><a href="#cb2-6"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 第二个单元格</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取原始数据</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_excel(<span class="st">'data_raw/当当网Python书籍销量排行_原始数据.xlsx'</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"原始数据形状："</span>, df.shape)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">原始数据前5行："</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>原始数据形状： (50, 8)
 
@@ -722,10 +722,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="cell-4" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># 第三个单元格</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="co"># 检查缺失值</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="bu">print</span>(<span class="st">"缺失值统计："</span>)</span>
-<span id="cb4-4"><a href="#cb4-4"></a>df.isnull().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 第三个单元格</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 检查缺失值</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"缺失值统计："</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>df.isnull().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>缺失值统计：</code></pre>
 </div>
@@ -742,59 +742,59 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div id="cell-5" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># 第四个单元格</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="co"># 数据清洗</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="co"># 1. 处理价格数据</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="kw">def</span> clean_price(price):</span>
-<span id="cb7-6"><a href="#cb7-6"></a>    <span class="co">"""清洗价格数据，去除¥符号并转换为浮点数"""</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a>    <span class="cf">if</span> pd.isna(price) <span class="kw">or</span> price <span class="op">==</span> <span class="st">'暂无'</span>:</span>
-<span id="cb7-8"><a href="#cb7-8"></a>        <span class="cf">return</span> np.nan</span>
-<span id="cb7-9"><a href="#cb7-9"></a>    <span class="cf">try</span>:</span>
-<span id="cb7-10"><a href="#cb7-10"></a>        <span class="co"># 移除¥符号和空白字符，转换为浮点数</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a>        <span class="cf">return</span> <span class="bu">float</span>(<span class="bu">str</span>(price).replace(<span class="st">'¥'</span>, <span class="st">''</span>).strip())</span>
-<span id="cb7-12"><a href="#cb7-12"></a>    <span class="cf">except</span>:</span>
-<span id="cb7-13"><a href="#cb7-13"></a>        <span class="cf">return</span> np.nan</span>
-<span id="cb7-14"><a href="#cb7-14"></a></span>
-<span id="cb7-15"><a href="#cb7-15"></a><span class="kw">def</span> clean_comments(comments):</span>
-<span id="cb7-16"><a href="#cb7-16"></a>    <span class="co">"""清洗评论数据，转换为整数"""</span></span>
-<span id="cb7-17"><a href="#cb7-17"></a>    <span class="cf">if</span> pd.isna(comments) <span class="kw">or</span> comments <span class="op">==</span> <span class="st">'暂无'</span>:</span>
-<span id="cb7-18"><a href="#cb7-18"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
-<span id="cb7-19"><a href="#cb7-19"></a>    <span class="cf">try</span>:</span>
-<span id="cb7-20"><a href="#cb7-20"></a>        <span class="co"># 移除可能的空白字符并转换为整数</span></span>
-<span id="cb7-21"><a href="#cb7-21"></a>        <span class="cf">return</span> <span class="bu">int</span>(<span class="bu">str</span>(comments).replace(<span class="st">'条评论'</span>, <span class="st">''</span>).strip())</span>
-<span id="cb7-22"><a href="#cb7-22"></a>    <span class="cf">except</span>:</span>
-<span id="cb7-23"><a href="#cb7-23"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
-<span id="cb7-24"><a href="#cb7-24"></a></span>
-<span id="cb7-25"><a href="#cb7-25"></a><span class="kw">def</span> clean_year(year):</span>
-<span id="cb7-26"><a href="#cb7-26"></a>    <span class="co">"""清洗出版年份，提取年份并转换为整数"""</span></span>
-<span id="cb7-27"><a href="#cb7-27"></a>    <span class="cf">if</span> pd.isna(year) <span class="kw">or</span> year <span class="op">==</span> <span class="st">'暂无'</span>:</span>
-<span id="cb7-28"><a href="#cb7-28"></a>        <span class="cf">return</span> np.nan</span>
-<span id="cb7-29"><a href="#cb7-29"></a>    <span class="cf">try</span>:</span>
-<span id="cb7-30"><a href="#cb7-30"></a>        <span class="co"># 假设年份格式为'YYYY-MM-DD'或'YYYY'，提取前4位</span></span>
-<span id="cb7-31"><a href="#cb7-31"></a>        <span class="cf">return</span> <span class="bu">int</span>(<span class="bu">str</span>(year)[:<span class="dv">4</span>])</span>
-<span id="cb7-32"><a href="#cb7-32"></a>    <span class="cf">except</span>:</span>
-<span id="cb7-33"><a href="#cb7-33"></a>        <span class="cf">return</span> np.nan</span>
-<span id="cb7-34"><a href="#cb7-34"></a></span>
-<span id="cb7-35"><a href="#cb7-35"></a><span class="co"># 应用清洗函数</span></span>
-<span id="cb7-36"><a href="#cb7-36"></a><span class="bu">print</span>(<span class="st">"处理价格数据..."</span>)</span>
-<span id="cb7-37"><a href="#cb7-37"></a>df[<span class="st">'original_price'</span>] <span class="op">=</span> df[<span class="st">'original_price'</span>].<span class="bu">apply</span>(clean_price)</span>
-<span id="cb7-38"><a href="#cb7-38"></a>df[<span class="st">'discounted_price'</span>] <span class="op">=</span> df[<span class="st">'discounted_price'</span>].<span class="bu">apply</span>(clean_price)</span>
-<span id="cb7-39"><a href="#cb7-39"></a></span>
-<span id="cb7-40"><a href="#cb7-40"></a><span class="bu">print</span>(<span class="st">"处理评论数据..."</span>)</span>
-<span id="cb7-41"><a href="#cb7-41"></a>df[<span class="st">'review_count'</span>] <span class="op">=</span> df[<span class="st">'review_count'</span>].<span class="bu">apply</span>(clean_comments)</span>
-<span id="cb7-42"><a href="#cb7-42"></a></span>
-<span id="cb7-43"><a href="#cb7-43"></a><span class="bu">print</span>(<span class="st">"处理出版年份..."</span>)</span>
-<span id="cb7-44"><a href="#cb7-44"></a>df[<span class="st">'year'</span>] <span class="op">=</span> df[<span class="st">'year'</span>].<span class="bu">apply</span>(clean_year)</span>
-<span id="cb7-45"><a href="#cb7-45"></a></span>
-<span id="cb7-46"><a href="#cb7-46"></a><span class="bu">print</span>(<span class="st">"删除重复数据..."</span>)</span>
-<span id="cb7-47"><a href="#cb7-47"></a>df <span class="op">=</span> df.drop_duplicates(subset<span class="op">=</span>[<span class="st">'title'</span>, <span class="st">'author'</span>, <span class="st">'publisher'</span>])</span>
-<span id="cb7-48"><a href="#cb7-48"></a></span>
-<span id="cb7-49"><a href="#cb7-49"></a><span class="co"># 重置索引</span></span>
-<span id="cb7-50"><a href="#cb7-50"></a>df <span class="op">=</span> df.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb7-51"><a href="#cb7-51"></a></span>
-<span id="cb7-52"><a href="#cb7-52"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">数据清洗完成！"</span>)</span>
-<span id="cb7-53"><a href="#cb7-53"></a><span class="bu">print</span>(<span class="ss">f"原始数据条数：</span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 第四个单元格</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 数据清洗</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 处理价格数据</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_price(price):</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""清洗价格数据，去除¥符号并转换为浮点数"""</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pd.isna(price) <span class="kw">or</span> price <span class="op">==</span> <span class="st">'暂无'</span>:</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.nan</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 移除¥符号和空白字符，转换为浮点数</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">float</span>(<span class="bu">str</span>(price).replace(<span class="st">'¥'</span>, <span class="st">''</span>).strip())</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.nan</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_comments(comments):</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""清洗评论数据，转换为整数"""</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pd.isna(comments) <span class="kw">or</span> comments <span class="op">==</span> <span class="st">'暂无'</span>:</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 移除可能的空白字符并转换为整数</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">int</span>(<span class="bu">str</span>(comments).replace(<span class="st">'条评论'</span>, <span class="st">''</span>).strip())</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_year(year):</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""清洗出版年份，提取年份并转换为整数"""</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pd.isna(year) <span class="kw">or</span> year <span class="op">==</span> <span class="st">'暂无'</span>:</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.nan</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 假设年份格式为'YYYY-MM-DD'或'YYYY'，提取前4位</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">int</span>(<span class="bu">str</span>(year)[:<span class="dv">4</span>])</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.nan</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 应用清洗函数</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"处理价格数据..."</span>)</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'original_price'</span>] <span class="op">=</span> df[<span class="st">'original_price'</span>].<span class="bu">apply</span>(clean_price)</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'discounted_price'</span>] <span class="op">=</span> df[<span class="st">'discounted_price'</span>].<span class="bu">apply</span>(clean_price)</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"处理评论数据..."</span>)</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'review_count'</span>] <span class="op">=</span> df[<span class="st">'review_count'</span>].<span class="bu">apply</span>(clean_comments)</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"处理出版年份..."</span>)</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'year'</span>] <span class="op">=</span> df[<span class="st">'year'</span>].<span class="bu">apply</span>(clean_year)</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"删除重复数据..."</span>)</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop_duplicates(subset<span class="op">=</span>[<span class="st">'title'</span>, <span class="st">'author'</span>, <span class="st">'publisher'</span>])</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="co"># 重置索引</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">数据清洗完成！"</span>)</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"原始数据条数：</span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>处理价格数据...
 处理评论数据...
@@ -806,16 +806,16 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div id="cell-6" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># 第五个单元格</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="co"># 查看清洗后的数据信息</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">清洗后的数据信息："</span>)</span>
-<span id="cb9-4"><a href="#cb9-4"></a>df.info()</span>
-<span id="cb9-5"><a href="#cb9-5"></a></span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">清洗后的数据样例："</span>)</span>
-<span id="cb9-7"><a href="#cb9-7"></a>df.head()</span>
-<span id="cb9-8"><a href="#cb9-8"></a></span>
-<span id="cb9-9"><a href="#cb9-9"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">清洗后的数据统计信息："</span>)</span>
-<span id="cb9-10"><a href="#cb9-10"></a>df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 第五个单元格</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 查看清洗后的数据信息</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">清洗后的数据信息："</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>df.info()</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">清洗后的数据样例："</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>df.head()</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">清洗后的数据统计信息："</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 清洗后的数据信息：
@@ -926,10 +926,10 @@ memory usage: 3.3+ KB
 </div>
 </div>
 <div id="cell-7" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># 第六个单元格</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="co"># 检查清洗后的缺失值</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="bu">print</span>(<span class="st">"清洗后的缺失值统计："</span>)</span>
-<span id="cb11-4"><a href="#cb11-4"></a>df.isnull().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 第六个单元格</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 检查清洗后的缺失值</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"清洗后的缺失值统计："</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>df.isnull().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>清洗后的缺失值统计：</code></pre>
 </div>
@@ -946,11 +946,11 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div id="cell-8" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># 第七个单元格</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="co"># 保存清洗后的数据</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a>output_path <span class="op">=</span> <span class="st">'data_clean/python_books_clean.xlsx'</span></span>
-<span id="cb14-4"><a href="#cb14-4"></a>df.to_excel(output_path, index<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb14-5"><a href="#cb14-5"></a><span class="bu">print</span>(<span class="ss">f"清洗后的数据已保存到：</span><span class="sc">{</span>output_path<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 第七个单元格</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存清洗后的数据</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>output_path <span class="op">=</span> <span class="st">'data_clean/python_books_clean.xlsx'</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>df.to_excel(output_path, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"清洗后的数据已保存到：</span><span class="sc">{</span>output_path<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>清洗后的数据已保存到：data_clean/python_books_clean.xlsx</code></pre>
 </div>
@@ -1052,7 +1052,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

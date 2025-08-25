@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -627,10 +627,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>随机森林属于 <em>集成方法</em>（ensemble method），也就是说它通过结合多个简单模型的结果来提升整体性能。令人惊讶的是，这种集成策略通常比单一模型效果更好：多数投票的结果往往优于任何一个单独模型！在后续内容中，我们将通过具体示例来说明这一点。</p>
 <p>首先，进行常规的库导入操作：</p>
 <div id="cell-4" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> seaborn <span class="im">as</span> sns<span class="op">;</span> sns.<span class="bu">set</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns<span class="op">;</span> sns.<span class="bu">set</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="随机森林的动机决策树" class="level2" data-number="41.1">
 <h2 data-number="41.1" class="anchored" data-anchor-id="随机森林的动机决策树"><span class="header-section-number">41.1</span> 随机森林的动机：决策树</h2>
@@ -646,11 +646,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="41.1.1" class="anchored" data-anchor-id="构建决策树"><span class="header-section-number">41.1.1</span> 构建决策树</h3>
 <p>来看一个二维数据示例，每个数据点都属于四个类别中的某一个：</p>
 <div id="cell-10" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_blobs</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a>X, y <span class="op">=</span> make_blobs(n_samples<span class="op">=</span><span class="dv">300</span>, centers<span class="op">=</span><span class="dv">4</span>,</span>
-<span id="cb2-4"><a href="#cb2-4"></a>                  random_state<span class="op">=</span><span class="dv">0</span>, cluster_std<span class="op">=</span><span class="fl">1.0</span>)</span>
-<span id="cb2-5"><a href="#cb2-5"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>y, s<span class="op">=</span><span class="dv">50</span>, cmap<span class="op">=</span><span class="st">'rainbow'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_blobs</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> make_blobs(n_samples<span class="op">=</span><span class="dv">300</span>, centers<span class="op">=</span><span class="dv">4</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                  random_state<span class="op">=</span><span class="dv">0</span>, cluster_std<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>y, s<span class="op">=</span><span class="dv">50</span>, cmap<span class="op">=</span><span class="st">'rainbow'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -664,40 +664,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>请注意，在第一次分裂后，上方的分支中的所有点都保持不变，因此无需对该分支继续细分。除了那些已经只包含单一类别（颜色）的节点外，每一层的每个区域都会再次沿着两个特征中的某一个进行分割。</p>
 <p>我们可以使用 Scikit-Learn 中的 <code>DecisionTreeClassifier</code> 估计量，将决策树拟合到我们的数据上，具体过程非常简单：</p>
 <div id="cell-15" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
-<span id="cb3-2"><a href="#cb3-2"></a>tree <span class="op">=</span> DecisionTreeClassifier().fit(X, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>tree <span class="op">=</span> DecisionTreeClassifier().fit(X, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>我们可以编写一个简单的工具函数，帮助我们直观地展示分类器的输出效果：</p>
 <div id="cell-17" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">def</span> visualize_classifier(model, X, y, ax<span class="op">=</span><span class="va">None</span>, cmap<span class="op">=</span><span class="st">'rainbow'</span>):</span>
-<span id="cb4-2"><a href="#cb4-2"></a>    ax <span class="op">=</span> ax <span class="kw">or</span> plt.gca()</span>
-<span id="cb4-3"><a href="#cb4-3"></a>    </span>
-<span id="cb4-4"><a href="#cb4-4"></a>    <span class="co"># Plot the training points</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a>    ax.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>y, s<span class="op">=</span><span class="dv">30</span>, cmap<span class="op">=</span>cmap,</span>
-<span id="cb4-6"><a href="#cb4-6"></a>               clim<span class="op">=</span>(y.<span class="bu">min</span>(), y.<span class="bu">max</span>()), zorder<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb4-7"><a href="#cb4-7"></a>    ax.axis(<span class="st">'tight'</span>)</span>
-<span id="cb4-8"><a href="#cb4-8"></a>    ax.axis(<span class="st">'off'</span>)</span>
-<span id="cb4-9"><a href="#cb4-9"></a>    xlim <span class="op">=</span> ax.get_xlim()</span>
-<span id="cb4-10"><a href="#cb4-10"></a>    ylim <span class="op">=</span> ax.get_ylim()</span>
-<span id="cb4-11"><a href="#cb4-11"></a>    </span>
-<span id="cb4-12"><a href="#cb4-12"></a>    <span class="co"># fit the estimator</span></span>
-<span id="cb4-13"><a href="#cb4-13"></a>    model.fit(X, y)</span>
-<span id="cb4-14"><a href="#cb4-14"></a>    xx, yy <span class="op">=</span> np.meshgrid(np.linspace(<span class="op">*</span>xlim, num<span class="op">=</span><span class="dv">200</span>),</span>
-<span id="cb4-15"><a href="#cb4-15"></a>                         np.linspace(<span class="op">*</span>ylim, num<span class="op">=</span><span class="dv">200</span>))</span>
-<span id="cb4-16"><a href="#cb4-16"></a>    Z <span class="op">=</span> model.predict(np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape)</span>
-<span id="cb4-17"><a href="#cb4-17"></a></span>
-<span id="cb4-18"><a href="#cb4-18"></a>    <span class="co"># Create a color plot with the results</span></span>
-<span id="cb4-19"><a href="#cb4-19"></a>    n_classes <span class="op">=</span> <span class="bu">len</span>(np.unique(y))</span>
-<span id="cb4-20"><a href="#cb4-20"></a>    contours <span class="op">=</span> ax.contourf(xx, yy, Z, alpha<span class="op">=</span><span class="fl">0.3</span>,</span>
-<span id="cb4-21"><a href="#cb4-21"></a>                           levels<span class="op">=</span>np.arange(n_classes <span class="op">+</span> <span class="dv">1</span>) <span class="op">-</span> <span class="fl">0.5</span>,</span>
-<span id="cb4-22"><a href="#cb4-22"></a>                           cmap<span class="op">=</span>cmap, clim<span class="op">=</span>(y.<span class="bu">min</span>(), y.<span class="bu">max</span>()),</span>
-<span id="cb4-23"><a href="#cb4-23"></a>                           zorder<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb4-24"><a href="#cb4-24"></a></span>
-<span id="cb4-25"><a href="#cb4-25"></a>    ax.<span class="bu">set</span>(xlim<span class="op">=</span>xlim, ylim<span class="op">=</span>ylim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> visualize_classifier(model, X, y, ax<span class="op">=</span><span class="va">None</span>, cmap<span class="op">=</span><span class="st">'rainbow'</span>):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> ax <span class="kw">or</span> plt.gca()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot the training points</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    ax.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>y, s<span class="op">=</span><span class="dv">30</span>, cmap<span class="op">=</span>cmap,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>               clim<span class="op">=</span>(y.<span class="bu">min</span>(), y.<span class="bu">max</span>()), zorder<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    ax.axis(<span class="st">'tight'</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    ax.axis(<span class="st">'off'</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    xlim <span class="op">=</span> ax.get_xlim()</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    ylim <span class="op">=</span> ax.get_ylim()</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># fit the estimator</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    model.fit(X, y)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    xx, yy <span class="op">=</span> np.meshgrid(np.linspace(<span class="op">*</span>xlim, num<span class="op">=</span><span class="dv">200</span>),</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>                         np.linspace(<span class="op">*</span>ylim, num<span class="op">=</span><span class="dv">200</span>))</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    Z <span class="op">=</span> model.predict(np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create a color plot with the results</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    n_classes <span class="op">=</span> <span class="bu">len</span>(np.unique(y))</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    contours <span class="op">=</span> ax.contourf(xx, yy, Z, alpha<span class="op">=</span><span class="fl">0.3</span>,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>                           levels<span class="op">=</span>np.arange(n_classes <span class="op">+</span> <span class="dv">1</span>) <span class="op">-</span> <span class="fl">0.5</span>,</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>                           cmap<span class="op">=</span>cmap, clim<span class="op">=</span>(y.<span class="bu">min</span>(), y.<span class="bu">max</span>()),</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>                           zorder<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    ax.<span class="bu">set</span>(xlim<span class="op">=</span>xlim, ylim<span class="op">=</span>ylim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>现在我们可以直观地观察决策树分类的效果：</p>
 <div id="cell-19" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>visualize_classifier(DecisionTreeClassifier(), X, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>visualize_classifier(DecisionTreeClassifier(), X, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -708,9 +708,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>如果你在本地运行本笔记本，可以使用 <a href="../body/06.00-Figure-Code.html#Helper-Code">在线附录</a> 中提供的 helpers 工具脚本，交互式地体验决策树构建的全过程。</p>
 <div id="cell-21" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># helpers_05_08 is found in the online appendix</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="im">import</span> helpers_05_08</span>
-<span id="cb6-3"><a href="#cb6-3"></a>helpers_05_08.plot_tree_interactive(X, y)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># helpers_05_08 is found in the online appendix</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> helpers_05_08</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>helpers_05_08.plot_tree_interactive(X, y)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -728,9 +728,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>可以看到，在某些区域（比如四个角落），两棵决策树的分类结果是一致的；而在其他区域（比如各个簇之间的过渡地带），两棵树的分类却截然不同。这里的关键现象是：分类结果不一致的地方，往往也是模型最不确定的地方。因此，如果我们能够结合两棵树的信息，或许就能得到更优的分类结果！</p>
 <p>如果你正在本地运行本笔记本，下面的函数可以让你交互式地展示在数据随机子集上训练的决策树拟合效果，非常适合直观体验模型的变化过程。</p>
 <div id="cell-27" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># helpers_05_08 is found in the online appendix</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="im">import</span> helpers_05_08</span>
-<span id="cb7-3"><a href="#cb7-3"></a>helpers_05_08.randomized_tree_interactive(X, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># helpers_05_08 is found in the online appendix</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> helpers_05_08</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>helpers_05_08.randomized_tree_interactive(X, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -748,15 +748,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>当我们将多个随机化的决策树集成起来时，这种方法就被称为<em>随机森林</em>（random forest）。</p>
 <p>在 Scikit-Learn 中，可以使用 <code>BaggingClassifier</code> 这个元估计器手动实现 bagging 分类，示例如下：</p>
 <div id="cell-30" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> BaggingClassifier</span>
-<span id="cb8-3"><a href="#cb8-3"></a></span>
-<span id="cb8-4"><a href="#cb8-4"></a>tree <span class="op">=</span> DecisionTreeClassifier()</span>
-<span id="cb8-5"><a href="#cb8-5"></a>bag <span class="op">=</span> BaggingClassifier(tree, n_estimators<span class="op">=</span><span class="dv">100</span>, max_samples<span class="op">=</span><span class="fl">0.8</span>,</span>
-<span id="cb8-6"><a href="#cb8-6"></a>                        random_state<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb8-7"><a href="#cb8-7"></a></span>
-<span id="cb8-8"><a href="#cb8-8"></a>bag.fit(X, y)</span>
-<span id="cb8-9"><a href="#cb8-9"></a>visualize_classifier(bag, X, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> BaggingClassifier</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>tree <span class="op">=</span> DecisionTreeClassifier()</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>bag <span class="op">=</span> BaggingClassifier(tree, n_estimators<span class="op">=</span><span class="dv">100</span>, max_samples<span class="op">=</span><span class="fl">0.8</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                        random_state<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>bag.fit(X, y)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>visualize_classifier(bag, X, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -769,10 +769,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>关于这些随机化策略的技术细节，可以参考 <a href="http://scikit-learn.org/stable/modules/ensemble.html#forest">Scikit-Learn 官方文档</a> 及相关参考资料。</p>
 <p>在 Scikit-Learn 中，经过优化的随机化决策树集成方法由 <code>RandomForestClassifier</code> 实现。它会自动处理所有的随机化细节。你只需指定基学习器的数量，模型就能高效（甚至可并行）地完成整个集成树的训练：</p>
 <div id="cell-32" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
-<span id="cb9-2"><a href="#cb9-2"></a></span>
-<span id="cb9-3"><a href="#cb9-3"></a>model <span class="op">=</span> RandomForestClassifier(n_estimators<span class="op">=</span><span class="dv">100</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb9-4"><a href="#cb9-4"></a>visualize_classifier(model, X, y)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> RandomForestClassifier(n_estimators<span class="op">=</span><span class="dv">100</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>visualize_classifier(model, X, y)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -788,18 +788,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>在前面的内容中，我们主要讨论了随机森林在分类问题中的应用。事实上，随机森林同样适用于回归任务（即预测连续变量，而非类别标签）。此时我们可以使用 <code>RandomForestRegressor</code> 估计器，其用法与分类时非常类似。</p>
 <p>下面我们来看一个具体例子，数据由快慢两种振荡信号叠加而成：</p>
 <div id="cell-35" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>rng <span class="op">=</span> np.random.RandomState(<span class="dv">42</span>)</span>
-<span id="cb10-2"><a href="#cb10-2"></a>x <span class="op">=</span> <span class="dv">10</span> <span class="op">*</span> rng.rand(<span class="dv">200</span>)</span>
-<span id="cb10-3"><a href="#cb10-3"></a></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="kw">def</span> model(x, sigma<span class="op">=</span><span class="fl">0.3</span>):</span>
-<span id="cb10-5"><a href="#cb10-5"></a>    fast_oscillation <span class="op">=</span> np.sin(<span class="dv">5</span> <span class="op">*</span> x)</span>
-<span id="cb10-6"><a href="#cb10-6"></a>    slow_oscillation <span class="op">=</span> np.sin(<span class="fl">0.5</span> <span class="op">*</span> x)</span>
-<span id="cb10-7"><a href="#cb10-7"></a>    noise <span class="op">=</span> sigma <span class="op">*</span> rng.randn(<span class="bu">len</span>(x))</span>
-<span id="cb10-8"><a href="#cb10-8"></a></span>
-<span id="cb10-9"><a href="#cb10-9"></a>    <span class="cf">return</span> slow_oscillation <span class="op">+</span> fast_oscillation <span class="op">+</span> noise</span>
-<span id="cb10-10"><a href="#cb10-10"></a></span>
-<span id="cb10-11"><a href="#cb10-11"></a>y <span class="op">=</span> model(x)</span>
-<span id="cb10-12"><a href="#cb10-12"></a>plt.errorbar(x, y, <span class="fl">0.3</span>, fmt<span class="op">=</span><span class="st">'o'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.RandomState(<span class="dv">42</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">10</span> <span class="op">*</span> rng.rand(<span class="dv">200</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> model(x, sigma<span class="op">=</span><span class="fl">0.3</span>):</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    fast_oscillation <span class="op">=</span> np.sin(<span class="dv">5</span> <span class="op">*</span> x)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    slow_oscillation <span class="op">=</span> np.sin(<span class="fl">0.5</span> <span class="op">*</span> x)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    noise <span class="op">=</span> sigma <span class="op">*</span> rng.randn(<span class="bu">len</span>(x))</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> slow_oscillation <span class="op">+</span> fast_oscillation <span class="op">+</span> noise</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> model(x)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>plt.errorbar(x, y, <span class="fl">0.3</span>, fmt<span class="op">=</span><span class="st">'o'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -810,17 +810,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>利用随机森林回归器，我们可以拟合出最佳的曲线，具体方法如下：</p>
 <div id="cell-37" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestRegressor</span>
-<span id="cb11-2"><a href="#cb11-2"></a>forest <span class="op">=</span> RandomForestRegressor(<span class="dv">200</span>)</span>
-<span id="cb11-3"><a href="#cb11-3"></a>forest.fit(x[:, <span class="va">None</span>], y)</span>
-<span id="cb11-4"><a href="#cb11-4"></a></span>
-<span id="cb11-5"><a href="#cb11-5"></a>xfit <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">1000</span>)</span>
-<span id="cb11-6"><a href="#cb11-6"></a>yfit <span class="op">=</span> forest.predict(xfit[:, <span class="va">None</span>])</span>
-<span id="cb11-7"><a href="#cb11-7"></a>ytrue <span class="op">=</span> model(xfit, sigma<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb11-8"><a href="#cb11-8"></a></span>
-<span id="cb11-9"><a href="#cb11-9"></a>plt.errorbar(x, y, <span class="fl">0.3</span>, fmt<span class="op">=</span><span class="st">'o'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb11-10"><a href="#cb11-10"></a>plt.plot(xfit, yfit, <span class="st">'-r'</span>)<span class="op">;</span></span>
-<span id="cb11-11"><a href="#cb11-11"></a>plt.plot(xfit, ytrue, <span class="st">'-k'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestRegressor</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>forest <span class="op">=</span> RandomForestRegressor(<span class="dv">200</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>forest.fit(x[:, <span class="va">None</span>], y)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>xfit <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">1000</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>yfit <span class="op">=</span> forest.predict(xfit[:, <span class="va">None</span>])</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>ytrue <span class="op">=</span> model(xfit, sigma<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>plt.errorbar(x, y, <span class="fl">0.3</span>, fmt<span class="op">=</span><span class="st">'o'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>plt.plot(xfit, yfit, <span class="st">'-r'</span>)<span class="op">;</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>plt.plot(xfit, ytrue, <span class="st">'-k'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -835,26 +835,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="41.4" class="anchored" data-anchor-id="示例使用随机森林进行手写数字分类"><span class="header-section-number">41.4</span> 示例：使用随机森林进行手写数字分类</h2>
 <p>这里我们利用手写数字数据集，演示如何应用随机森林分类器进行数字识别任务。</p>
 <div id="cell-40" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_digits</span>
-<span id="cb12-2"><a href="#cb12-2"></a>digits <span class="op">=</span> load_digits()</span>
-<span id="cb12-3"><a href="#cb12-3"></a>digits.keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_digits</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>digits <span class="op">=</span> load_digits()</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>digits.keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>dict_keys(['target', 'data', 'target_names', 'DESCR', 'images'])</code></pre>
 </div>
 </div>
 <p>为了帮助大家更直观地理解数据，我们先来展示前几个样本的图像：</p>
 <div id="cell-42" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># set up the figure</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))  <span class="co"># figure size in inches</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a>fig.subplots_adjust(left<span class="op">=</span><span class="dv">0</span>, right<span class="op">=</span><span class="dv">1</span>, bottom<span class="op">=</span><span class="dv">0</span>, top<span class="op">=</span><span class="dv">1</span>, hspace<span class="op">=</span><span class="fl">0.05</span>, wspace<span class="op">=</span><span class="fl">0.05</span>)</span>
-<span id="cb14-4"><a href="#cb14-4"></a></span>
-<span id="cb14-5"><a href="#cb14-5"></a><span class="co"># plot the digits: each image is 8x8 pixels</span></span>
-<span id="cb14-6"><a href="#cb14-6"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">64</span>):</span>
-<span id="cb14-7"><a href="#cb14-7"></a>    ax <span class="op">=</span> fig.add_subplot(<span class="dv">8</span>, <span class="dv">8</span>, i <span class="op">+</span> <span class="dv">1</span>, xticks<span class="op">=</span>[], yticks<span class="op">=</span>[])</span>
-<span id="cb14-8"><a href="#cb14-8"></a>    ax.imshow(digits.images[i], cmap<span class="op">=</span>plt.cm.binary, interpolation<span class="op">=</span><span class="st">'nearest'</span>)</span>
-<span id="cb14-9"><a href="#cb14-9"></a>    </span>
-<span id="cb14-10"><a href="#cb14-10"></a>    <span class="co"># label the image with the target value</span></span>
-<span id="cb14-11"><a href="#cb14-11"></a>    ax.text(<span class="dv">0</span>, <span class="dv">7</span>, <span class="bu">str</span>(digits.target[i]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set up the figure</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))  <span class="co"># figure size in inches</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(left<span class="op">=</span><span class="dv">0</span>, right<span class="op">=</span><span class="dv">1</span>, bottom<span class="op">=</span><span class="dv">0</span>, top<span class="op">=</span><span class="dv">1</span>, hspace<span class="op">=</span><span class="fl">0.05</span>, wspace<span class="op">=</span><span class="fl">0.05</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the digits: each image is 8x8 pixels</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">64</span>):</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> fig.add_subplot(<span class="dv">8</span>, <span class="dv">8</span>, i <span class="op">+</span> <span class="dv">1</span>, xticks<span class="op">=</span>[], yticks<span class="op">=</span>[])</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    ax.imshow(digits.images[i], cmap<span class="op">=</span>plt.cm.binary, interpolation<span class="op">=</span><span class="st">'nearest'</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># label the image with the target value</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    ax.text(<span class="dv">0</span>, <span class="dv">7</span>, <span class="bu">str</span>(digits.target[i]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -865,18 +865,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>我们可以通过如下方式，利用随机森林对手写数字进行快速分类：</p>
 <div id="cell-44" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="im">from</span> sklearn.cross_validation <span class="im">import</span> train_test_split</span>
-<span id="cb15-2"><a href="#cb15-2"></a></span>
-<span id="cb15-3"><a href="#cb15-3"></a>Xtrain, Xtest, ytrain, ytest <span class="op">=</span> train_test_split(digits.data, digits.target,</span>
-<span id="cb15-4"><a href="#cb15-4"></a>                                                random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb15-5"><a href="#cb15-5"></a>model <span class="op">=</span> RandomForestClassifier(n_estimators<span class="op">=</span><span class="dv">1000</span>)</span>
-<span id="cb15-6"><a href="#cb15-6"></a>model.fit(Xtrain, ytrain)</span>
-<span id="cb15-7"><a href="#cb15-7"></a>ypred <span class="op">=</span> model.predict(Xtest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cross_validation <span class="im">import</span> train_test_split</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>Xtrain, Xtest, ytrain, ytest <span class="op">=</span> train_test_split(digits.data, digits.target,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                                                random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> RandomForestClassifier(n_estimators<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>model.fit(Xtrain, ytrain)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>ypred <span class="op">=</span> model.predict(Xtest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>我们可以查看该分类器的性能报告，了解其在各类别上的识别效果：</p>
 <div id="cell-46" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="im">from</span> sklearn <span class="im">import</span> metrics</span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="bu">print</span>(metrics.classification_report(ypred, ytest))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> metrics</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(metrics.classification_report(ypred, ytest))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>             precision    recall  f1-score   support
 
@@ -897,11 +897,11 @@ avg / total       0.98      0.98      0.98       450
 </div>
 <p>最后，我们再来绘制一下混淆矩阵，直观展示模型在各类别上的分类效果：</p>
 <div id="cell-48" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
-<span id="cb18-2"><a href="#cb18-2"></a>mat <span class="op">=</span> confusion_matrix(ytest, ypred)</span>
-<span id="cb18-3"><a href="#cb18-3"></a>sns.heatmap(mat.T, square<span class="op">=</span><span class="va">True</span>, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'d'</span>, cbar<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb18-4"><a href="#cb18-4"></a>plt.xlabel(<span class="st">'true label'</span>)</span>
-<span id="cb18-5"><a href="#cb18-5"></a>plt.ylabel(<span class="st">'predicted label'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>mat <span class="op">=</span> confusion_matrix(ytest, ypred)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>sns.heatmap(mat.T, square<span class="op">=</span><span class="va">True</span>, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'d'</span>, cbar<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'true label'</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'predicted label'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1019,7 +1019,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

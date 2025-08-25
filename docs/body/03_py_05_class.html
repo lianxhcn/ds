@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -617,13 +617,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>类是一个抽象的定义，包括了属性和方法。比如，在客观世界中，当我们提到「猫」这一类动物时时，一方面会通过品种、毛色、体重等描述猫，这些是所谓的<strong>属性</strong>（<strong>property</strong>）；而<strong>方法</strong>（<strong>method</strong>）即猫的动作，比如猫可以吃饭、喝水、爬树等各种动作。</p>
 <p>在Python中，属性即一个类中所定义的变量，而方法即类中定义的函数。在Python中，可以使用class关键字声明一个类：</p>
 <div id="cell-1" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">class</span> Cat:</span>
-<span id="cb1-2"><a href="#cb1-2"></a>    weight<span class="op">=</span><span class="dv">8</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>    <span class="kw">def</span> get_weight(<span class="va">self</span>):</span>
-<span id="cb1-4"><a href="#cb1-4"></a>        <span class="cf">return</span> <span class="va">self</span>.weight</span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="bu">print</span>(Cat.weight)</span>
-<span id="cb1-6"><a href="#cb1-6"></a>Cat.weight<span class="op">=</span><span class="dv">9</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="bu">print</span>(Cat.weight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Cat:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    weight<span class="op">=</span><span class="dv">8</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_weight(<span class="va">self</span>):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.weight</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Cat.weight)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>Cat.weight<span class="op">=</span><span class="dv">9</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Cat.weight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>8
 9</code></pre>
@@ -632,17 +632,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>以上通过class关键字定义了一个类，名字叫做Cat。Cat类有一个属性，称为weight，默认值为8；此外还有一个方法，称为get_weight()，这个方法所做的就是返回Cat类的weight属性。</p>
 <p>以上定义的是类，经过定义后，还需要经过实例化，变成对象。注意类和对象的区别：类是一个抽象的、统一的集合，对象是类的具体化，可以具有差异性，比如：</p>
 <div id="cell-3" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">class</span> Cat:</span>
-<span id="cb3-2"><a href="#cb3-2"></a>    weight<span class="op">=</span><span class="dv">8</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>    <span class="kw">def</span> get_weight(<span class="va">self</span>):</span>
-<span id="cb3-4"><a href="#cb3-4"></a>        <span class="cf">return</span> <span class="va">self</span>.weight</span>
-<span id="cb3-5"><a href="#cb3-5"></a>lucas<span class="op">=</span>Cat()</span>
-<span id="cb3-6"><a href="#cb3-6"></a>lucas.weight<span class="op">=</span><span class="fl">8.5</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a>huahua<span class="op">=</span>Cat()</span>
-<span id="cb3-8"><a href="#cb3-8"></a>huahua.weight<span class="op">=</span><span class="dv">10</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="bu">print</span>(<span class="st">"weight of lucas"</span>,lucas.get_weight())</span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="bu">print</span>(<span class="st">"weight of huahua"</span>,huahua.get_weight())</span>
-<span id="cb3-11"><a href="#cb3-11"></a><span class="bu">print</span>(<span class="st">"weight of cat class"</span>,Cat.weight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Cat:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    weight<span class="op">=</span><span class="dv">8</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_weight(<span class="va">self</span>):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.weight</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>lucas<span class="op">=</span>Cat()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>lucas.weight<span class="op">=</span><span class="fl">8.5</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>huahua<span class="op">=</span>Cat()</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>huahua.weight<span class="op">=</span><span class="dv">10</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"weight of lucas"</span>,lucas.get_weight())</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"weight of huahua"</span>,huahua.get_weight())</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"weight of cat class"</span>,Cat.weight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>weight of lucas 8.5
 weight of huahua 10
@@ -654,18 +654,18 @@ weight of cat class 8</code></pre>
 <p>注意以上定义过程中的self关键字。self代表这个对象本身。在定义类时，为了使得对象能够调用自身的属性、方法等，都需要使用self关键字，所以在类里面定义方法时，第一个参数都是self。</p>
 <p>此外，有的属性、方法可能只允许在类内部读写，而不允许外部读写，此时可以在属性或者方法名前面加两个下划线，比如：</p>
 <div id="cell-5" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">class</span> Cat:</span>
-<span id="cb5-2"><a href="#cb5-2"></a>    __weight<span class="op">=</span><span class="fl">8.5</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>    <span class="kw">def</span> get_weight(<span class="va">self</span>):</span>
-<span id="cb5-4"><a href="#cb5-4"></a>        <span class="cf">return</span> <span class="va">self</span>.__weight</span>
-<span id="cb5-5"><a href="#cb5-5"></a>lucas<span class="op">=</span>Cat()</span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="cf">try</span>:</span>
-<span id="cb5-7"><a href="#cb5-7"></a>    <span class="bu">print</span>(<span class="st">"weight of lucas"</span>,lucas.__weight)</span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb5-9"><a href="#cb5-9"></a>    <span class="bu">print</span>(e)</span>
-<span id="cb5-10"><a href="#cb5-10"></a>lucas.__weight<span class="op">=</span><span class="dv">9</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="bu">print</span>(<span class="st">"weight of lucas"</span>,lucas.__weight)</span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="bu">print</span>(<span class="st">"weight of lucas"</span>,lucas.get_weight())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Cat:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    __weight<span class="op">=</span><span class="fl">8.5</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_weight(<span class="va">self</span>):</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__weight</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>lucas<span class="op">=</span>Cat()</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"weight of lucas"</span>,lucas.__weight)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(e)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>lucas.__weight<span class="op">=</span><span class="dv">9</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"weight of lucas"</span>,lucas.__weight)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"weight of lucas"</span>,lucas.get_weight())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'Cat' object has no attribute '__weight'
 weight of lucas 9
@@ -678,25 +678,25 @@ weight of lucas 8.5</code></pre>
 <p>在Cat()调用时，Python会自动搜索类中定义的两个特殊函数：__new__()以及__init__()，并分别执行他们。__new__()函数用于创建对象，__init__()用于初始化对象，称为构造函数。与之对称的，还有__del__()函数，即当对象被删除时使用，称为析构函数。</p>
 <p>一个例子：</p>
 <div id="cell-7" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">class</span> Cat:</span>
-<span id="cb7-2"><a href="#cb7-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, weight<span class="op">=</span><span class="va">None</span>, age<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb7-3"><a href="#cb7-3"></a>        <span class="va">self</span>.name<span class="op">=</span>name</span>
-<span id="cb7-4"><a href="#cb7-4"></a>        <span class="va">self</span>.__weight<span class="op">=</span>weight</span>
-<span id="cb7-5"><a href="#cb7-5"></a>        <span class="va">self</span>.__age<span class="op">=</span>age</span>
-<span id="cb7-6"><a href="#cb7-6"></a>        <span class="bu">print</span>(<span class="st">"cat "</span>,<span class="va">self</span>.name,<span class="st">" is created."</span>)</span>
-<span id="cb7-7"><a href="#cb7-7"></a>    <span class="kw">def</span> get_weight(<span class="va">self</span>):</span>
-<span id="cb7-8"><a href="#cb7-8"></a>        <span class="cf">return</span> <span class="va">self</span>.__weight</span>
-<span id="cb7-9"><a href="#cb7-9"></a>    <span class="kw">def</span> get_age(<span class="va">self</span>):</span>
-<span id="cb7-10"><a href="#cb7-10"></a>        <span class="cf">return</span> <span class="va">self</span>.__age</span>
-<span id="cb7-11"><a href="#cb7-11"></a>    <span class="kw">def</span> set_weight(<span class="va">self</span>,weight):</span>
-<span id="cb7-12"><a href="#cb7-12"></a>        <span class="va">self</span>.__weight<span class="op">=</span>weight</span>
-<span id="cb7-13"><a href="#cb7-13"></a>    <span class="kw">def</span> set_age(<span class="va">self</span>,age):</span>
-<span id="cb7-14"><a href="#cb7-14"></a>        <span class="va">self</span>.__age<span class="op">=</span>age</span>
-<span id="cb7-15"><a href="#cb7-15"></a></span>
-<span id="cb7-16"><a href="#cb7-16"></a>lucas<span class="op">=</span>Cat(<span class="st">'Lucas'</span>, weight<span class="op">=</span><span class="fl">8.5</span>, age<span class="op">=</span><span class="fl">1.2</span>)</span>
-<span id="cb7-17"><a href="#cb7-17"></a><span class="bu">print</span>(lucas.get_age())</span>
-<span id="cb7-18"><a href="#cb7-18"></a>lucas.set_age(<span class="fl">2.5</span>)</span>
-<span id="cb7-19"><a href="#cb7-19"></a><span class="bu">print</span>(lucas.get_age())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Cat:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, weight<span class="op">=</span><span class="va">None</span>, age<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name<span class="op">=</span>name</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__weight<span class="op">=</span>weight</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__age<span class="op">=</span>age</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"cat "</span>,<span class="va">self</span>.name,<span class="st">" is created."</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_weight(<span class="va">self</span>):</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__weight</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_age(<span class="va">self</span>):</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__age</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> set_weight(<span class="va">self</span>,weight):</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__weight<span class="op">=</span>weight</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> set_age(<span class="va">self</span>,age):</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__age<span class="op">=</span>age</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>lucas<span class="op">=</span>Cat(<span class="st">'Lucas'</span>, weight<span class="op">=</span><span class="fl">8.5</span>, age<span class="op">=</span><span class="fl">1.2</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lucas.get_age())</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>lucas.set_age(<span class="fl">2.5</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lucas.get_age())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>cat  Lucas  is created.
 1.2
@@ -711,54 +711,54 @@ weight of lucas 8.5</code></pre>
 <h2 data-number="19.2" class="anchored" data-anchor-id="继承"><span class="header-section-number">19.2</span> 继承</h2>
 <p>客观世界中有很多分类都是具有层级关系的，比如对生物的分类，就可以分门、纲、目、科、属、种，属于同一种类别的一般享有共同的特征和行为。比如，猫和虎都属于猫科动物，具有很多相同的特征，但是由于属于不同属，因而也有不同的特征。</p>
 <p>在Python中，构造一个类时，可以声明该类继承了另外一个类，比如使用：</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">class</span> Cat(Felidae):</span>
-<span id="cb9-2"><a href="#cb9-2"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Cat(Felidae):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>就生命了一个类 Cat ，该类继承了类 Felidae，即 Cat 类现在具有所有 Felidae 类的属性、方法。</p>
 <p>在类的定义体中，可以使用 <code>super()</code> 函数获得其父类，因而如果我们需要调用父类的 <code>__init__()</code> 函数，只需要使用：<code>super().__init__()</code> 就可以了。</p>
 <p>除了继承父类的所有属性和方法外，子类还可以新增属性、方法，或者重新定义父类的属性、方法。</p>
 <p>以下给出了一个例子：</p>
 <div id="cell-10" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">class</span> Felidae:</span>
-<span id="cb10-2"><a href="#cb10-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, weight<span class="op">=</span><span class="va">None</span>, age<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb10-3"><a href="#cb10-3"></a>        <span class="va">self</span>.name<span class="op">=</span>name</span>
-<span id="cb10-4"><a href="#cb10-4"></a>        <span class="va">self</span>.__weight<span class="op">=</span>weight</span>
-<span id="cb10-5"><a href="#cb10-5"></a>        <span class="va">self</span>.__age<span class="op">=</span>age</span>
-<span id="cb10-6"><a href="#cb10-6"></a>        <span class="bu">print</span>(<span class="st">"cat "</span>,<span class="va">self</span>.name,<span class="st">" is created."</span>)</span>
-<span id="cb10-7"><a href="#cb10-7"></a>    <span class="kw">def</span> get_weight(<span class="va">self</span>):</span>
-<span id="cb10-8"><a href="#cb10-8"></a>        <span class="cf">return</span> <span class="va">self</span>.__weight</span>
-<span id="cb10-9"><a href="#cb10-9"></a>    <span class="kw">def</span> get_age(<span class="va">self</span>):</span>
-<span id="cb10-10"><a href="#cb10-10"></a>        <span class="cf">return</span> <span class="va">self</span>.__age</span>
-<span id="cb10-11"><a href="#cb10-11"></a>    <span class="kw">def</span> set_weight(<span class="va">self</span>,weight):</span>
-<span id="cb10-12"><a href="#cb10-12"></a>        <span class="va">self</span>.__weight<span class="op">=</span>weight</span>
-<span id="cb10-13"><a href="#cb10-13"></a>    <span class="kw">def</span> set_age(<span class="va">self</span>,age):</span>
-<span id="cb10-14"><a href="#cb10-14"></a>        <span class="va">self</span>.__age<span class="op">=</span>age</span>
-<span id="cb10-15"><a href="#cb10-15"></a>    <span class="kw">def</span> catch(<span class="va">self</span>):</span>
-<span id="cb10-16"><a href="#cb10-16"></a>        <span class="cf">pass</span></span>
-<span id="cb10-17"><a href="#cb10-17"></a>        </span>
-<span id="cb10-18"><a href="#cb10-18"></a><span class="kw">class</span> Cat(Felidae):</span>
-<span id="cb10-19"><a href="#cb10-19"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, weight<span class="op">=</span><span class="va">None</span>, age<span class="op">=</span><span class="va">None</span>, color<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb10-20"><a href="#cb10-20"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(name<span class="op">=</span>name, weight<span class="op">=</span>weight, age<span class="op">=</span>age)</span>
-<span id="cb10-21"><a href="#cb10-21"></a>        <span class="va">self</span>.color<span class="op">=</span>color</span>
-<span id="cb10-22"><a href="#cb10-22"></a>    <span class="kw">def</span> shout(<span class="va">self</span>):</span>
-<span id="cb10-23"><a href="#cb10-23"></a>        <span class="bu">print</span>(<span class="st">"喵~"</span>)</span>
-<span id="cb10-24"><a href="#cb10-24"></a>    <span class="kw">def</span> catch(<span class="va">self</span>):</span>
-<span id="cb10-25"><a href="#cb10-25"></a>        <span class="bu">print</span>(<span class="st">"</span><span class="ch">\N{rat}</span><span class="st">"</span>)</span>
-<span id="cb10-26"><a href="#cb10-26"></a></span>
-<span id="cb10-27"><a href="#cb10-27"></a><span class="kw">class</span> Lion(Felidae):</span>
-<span id="cb10-28"><a href="#cb10-28"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, weight<span class="op">=</span><span class="va">None</span>, age<span class="op">=</span><span class="va">None</span>, sex<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb10-29"><a href="#cb10-29"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(name<span class="op">=</span>name, weight<span class="op">=</span>weight, age<span class="op">=</span>age)</span>
-<span id="cb10-30"><a href="#cb10-30"></a>        <span class="va">self</span>.sex<span class="op">=</span>sex</span>
-<span id="cb10-31"><a href="#cb10-31"></a>    <span class="kw">def</span> catch(<span class="va">self</span>):</span>
-<span id="cb10-32"><a href="#cb10-32"></a>        <span class="bu">print</span>(<span class="st">"</span><span class="ch">\N{rabbit}</span><span class="st">"</span>)</span>
-<span id="cb10-33"><a href="#cb10-33"></a>        </span>
-<span id="cb10-34"><a href="#cb10-34"></a>lucas<span class="op">=</span>Cat(<span class="st">"Lucas"</span>, color<span class="op">=</span><span class="st">"三花"</span>, age<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb10-35"><a href="#cb10-35"></a>lucas.catch()</span>
-<span id="cb10-36"><a href="#cb10-36"></a>lucas.shout()</span>
-<span id="cb10-37"><a href="#cb10-37"></a><span class="bu">print</span>(lucas.get_age())</span>
-<span id="cb10-38"><a href="#cb10-38"></a><span class="bu">print</span>(<span class="st">"---------Simba---------"</span>)</span>
-<span id="cb10-39"><a href="#cb10-39"></a>simba<span class="op">=</span>Lion(<span class="st">'Simba'</span>, sex<span class="op">=</span><span class="st">'male'</span>, weight<span class="op">=</span><span class="dv">200</span>)</span>
-<span id="cb10-40"><a href="#cb10-40"></a>simba.catch()</span>
-<span id="cb10-41"><a href="#cb10-41"></a><span class="bu">print</span>(simba.get_weight())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Felidae:</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, weight<span class="op">=</span><span class="va">None</span>, age<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name<span class="op">=</span>name</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__weight<span class="op">=</span>weight</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__age<span class="op">=</span>age</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"cat "</span>,<span class="va">self</span>.name,<span class="st">" is created."</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_weight(<span class="va">self</span>):</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__weight</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_age(<span class="va">self</span>):</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__age</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> set_weight(<span class="va">self</span>,weight):</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__weight<span class="op">=</span>weight</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> set_age(<span class="va">self</span>,age):</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__age<span class="op">=</span>age</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> catch(<span class="va">self</span>):</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Cat(Felidae):</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, weight<span class="op">=</span><span class="va">None</span>, age<span class="op">=</span><span class="va">None</span>, color<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(name<span class="op">=</span>name, weight<span class="op">=</span>weight, age<span class="op">=</span>age)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.color<span class="op">=</span>color</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> shout(<span class="va">self</span>):</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"喵~"</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> catch(<span class="va">self</span>):</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"</span><span class="ch">\N{rat}</span><span class="st">"</span>)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Lion(Felidae):</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, weight<span class="op">=</span><span class="va">None</span>, age<span class="op">=</span><span class="va">None</span>, sex<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(name<span class="op">=</span>name, weight<span class="op">=</span>weight, age<span class="op">=</span>age)</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.sex<span class="op">=</span>sex</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> catch(<span class="va">self</span>):</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"</span><span class="ch">\N{rabbit}</span><span class="st">"</span>)</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>lucas<span class="op">=</span>Cat(<span class="st">"Lucas"</span>, color<span class="op">=</span><span class="st">"三花"</span>, age<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>lucas.catch()</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>lucas.shout()</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lucas.get_age())</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"---------Simba---------"</span>)</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>simba<span class="op">=</span>Lion(<span class="st">'Simba'</span>, sex<span class="op">=</span><span class="st">'male'</span>, weight<span class="op">=</span><span class="dv">200</span>)</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>simba.catch()</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(simba.get_weight())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>cat  Lucas  is created.
 🐀
@@ -869,7 +869,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

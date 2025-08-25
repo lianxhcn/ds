@@ -160,7 +160,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -168,7 +168,7 @@ window.Quarto = {
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -733,64 +733,64 @@ x_t = X_0 + \sum_{i=0}^{t-1} \epsilon_{t-i} \tag{5}
 <p>平稳序列的均值和方差是有限的，并且自相关函数仅依赖于时间间隔，而与具体时间点无关。非平稳序列的均值和方差是无限的，并且自相关函数依赖于具体时间点。</p>
 <p>下面，我们通过一个简单的模拟实例来说明 AR 过程和单位根过程的区别。</p>
 <div id="4fcfa293" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> os</span>
-<span id="cb1-2"><a href="#cb1-2"></a>os.chdir(<span class="vs">r"D:\github\dslian\body"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="vs">r"D:\github\dslian\body"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="b0532f54" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># 模拟分析平稳 AR(1) 过程与单位根过程的差别</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-5"><a href="#cb2-5"></a></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="co"># 设置随机种子以保证结果可重复</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb2-8"><a href="#cb2-8"></a></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="co"># 模拟 AR(1) 过程 --------- 参数设定 -----------</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>n <span class="op">=</span> <span class="dv">100</span>  <span class="co"># 时间序列长度</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>phi <span class="op">=</span> <span class="fl">0.8</span>  <span class="co"># AR(1) 系数</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="co"># ------------------------ 参数设定 -----------</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a></span>
-<span id="cb2-14"><a href="#cb2-14"></a>epsilon <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, n)  <span class="co"># 白噪声</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a>ar1 <span class="op">=</span> np.zeros(n)</span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
-<span id="cb2-17"><a href="#cb2-17"></a>    ar1[t] <span class="op">=</span> phi <span class="op">*</span> ar1[t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> epsilon[t]</span>
-<span id="cb2-18"><a href="#cb2-18"></a></span>
-<span id="cb2-19"><a href="#cb2-19"></a><span class="co"># 模拟单位根过程</span></span>
-<span id="cb2-20"><a href="#cb2-20"></a>unit_root <span class="op">=</span> np.zeros(n)</span>
-<span id="cb2-21"><a href="#cb2-21"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
-<span id="cb2-22"><a href="#cb2-22"></a>    unit_root[t] <span class="op">=</span> unit_root[t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> epsilon[t]</span>
-<span id="cb2-23"><a href="#cb2-23"></a></span>
-<span id="cb2-24"><a href="#cb2-24"></a><span class="co"># 绘图比较</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
-<span id="cb2-26"><a href="#cb2-26"></a>plt.plot(ar1, label<span class="op">=</span><span class="st">"AR(1) Process (phi=0.8)"</span>, color<span class="op">=</span><span class="st">"blue"</span>)</span>
-<span id="cb2-27"><a href="#cb2-27"></a>plt.plot(unit_root, label<span class="op">=</span><span class="st">"Unit Root Process"</span>, color<span class="op">=</span><span class="st">"red"</span>)</span>
-<span id="cb2-28"><a href="#cb2-28"></a></span>
-<span id="cb2-29"><a href="#cb2-29"></a><span class="co"># 添加时间趋势线</span></span>
-<span id="cb2-30"><a href="#cb2-30"></a>time <span class="op">=</span> np.arange(n)</span>
-<span id="cb2-31"><a href="#cb2-31"></a>ar1_trend <span class="op">=</span> np.poly1d(np.polyfit(time, ar1, <span class="dv">1</span>))(time)</span>
-<span id="cb2-32"><a href="#cb2-32"></a>unit_root_trend <span class="op">=</span> np.poly1d(np.polyfit(time, unit_root, <span class="dv">1</span>))(time)</span>
-<span id="cb2-33"><a href="#cb2-33"></a></span>
-<span id="cb2-34"><a href="#cb2-34"></a><span class="co"># 绘图</span></span>
-<span id="cb2-35"><a href="#cb2-35"></a>plt.plot(time, ar1_trend, label<span class="op">=</span><span class="st">"AR(1) Trend Line"</span>, color<span class="op">=</span><span class="st">"cyan"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
-<span id="cb2-36"><a href="#cb2-36"></a>plt.plot(time, unit_root_trend, label<span class="op">=</span><span class="st">"Unit Root Trend Line"</span>, color<span class="op">=</span><span class="st">"orange"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
-<span id="cb2-37"><a href="#cb2-37"></a></span>
-<span id="cb2-38"><a href="#cb2-38"></a>plt.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">"green"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">"y=0 Line"</span>)</span>
-<span id="cb2-39"><a href="#cb2-39"></a>plt.title(<span class="st">"Comparison of AR(1) Process and Unit Root Process with Trend Lines"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb2-40"><a href="#cb2-40"></a>plt.xlabel(<span class="st">"Time"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb2-41"><a href="#cb2-41"></a>plt.ylabel(<span class="st">"Value"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb2-42"><a href="#cb2-42"></a>plt.legend()</span>
-<span id="cb2-43"><a href="#cb2-43"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb2-44"><a href="#cb2-44"></a>plt.tight_layout()</span>
-<span id="cb2-45"><a href="#cb2-45"></a>plt.show()</span>
-<span id="cb2-46"><a href="#cb2-46"></a></span>
-<span id="cb2-47"><a href="#cb2-47"></a><span class="co"># 基本统计量</span></span>
-<span id="cb2-48"><a href="#cb2-48"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-49"><a href="#cb2-49"></a></span>
-<span id="cb2-50"><a href="#cb2-50"></a><span class="bu">print</span>(<span class="st">"AR(1) Process Statistics:"</span>)</span>
-<span id="cb2-51"><a href="#cb2-51"></a><span class="bu">print</span>(pd.Series(ar1).describe().<span class="bu">round</span>(<span class="dv">2</span>))</span>
-<span id="cb2-52"><a href="#cb2-52"></a></span>
-<span id="cb2-53"><a href="#cb2-53"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Unit Root Process Statistics:"</span>)</span>
-<span id="cb2-54"><a href="#cb2-54"></a><span class="bu">print</span>(pd.Series(unit_root).describe().<span class="bu">round</span>(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 模拟分析平稳 AR(1) 过程与单位根过程的差别</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置随机种子以保证结果可重复</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 模拟 AR(1) 过程 --------- 参数设定 -----------</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100</span>  <span class="co"># 时间序列长度</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>phi <span class="op">=</span> <span class="fl">0.8</span>  <span class="co"># AR(1) 系数</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------ 参数设定 -----------</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>epsilon <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, n)  <span class="co"># 白噪声</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>ar1 <span class="op">=</span> np.zeros(n)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    ar1[t] <span class="op">=</span> phi <span class="op">*</span> ar1[t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> epsilon[t]</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 模拟单位根过程</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>unit_root <span class="op">=</span> np.zeros(n)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    unit_root[t] <span class="op">=</span> unit_root[t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> epsilon[t]</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图比较</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>plt.plot(ar1, label<span class="op">=</span><span class="st">"AR(1) Process (phi=0.8)"</span>, color<span class="op">=</span><span class="st">"blue"</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>plt.plot(unit_root, label<span class="op">=</span><span class="st">"Unit Root Process"</span>, color<span class="op">=</span><span class="st">"red"</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加时间趋势线</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> np.arange(n)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>ar1_trend <span class="op">=</span> np.poly1d(np.polyfit(time, ar1, <span class="dv">1</span>))(time)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>unit_root_trend <span class="op">=</span> np.poly1d(np.polyfit(time, unit_root, <span class="dv">1</span>))(time)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>plt.plot(time, ar1_trend, label<span class="op">=</span><span class="st">"AR(1) Trend Line"</span>, color<span class="op">=</span><span class="st">"cyan"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>plt.plot(time, unit_root_trend, label<span class="op">=</span><span class="st">"Unit Root Trend Line"</span>, color<span class="op">=</span><span class="st">"orange"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">"green"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">"y=0 Line"</span>)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Comparison of AR(1) Process and Unit Root Process with Trend Lines"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Time"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Value"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="co"># 基本统计量</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"AR(1) Process Statistics:"</span>)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.Series(ar1).describe().<span class="bu">round</span>(<span class="dv">2</span>))</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Unit Root Process Statistics:"</span>)</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.Series(unit_root).describe().<span class="bu">round</span>(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -858,29 +858,29 @@ dtype: float64</code></pre>
 <p>单位根过程（如随机游走）的相关图和偏相关图具有以下特征： - <strong>相关图 (ACF)</strong>：自相关函数在所有滞后期 <span class="math inline">\(k\)</span> 上都接近于 1，且衰减非常缓慢。 - <strong>偏相关图 (PACF)</strong>：偏自相关函数在滞后期 <span class="math inline">\(k = 1\)</span> 时显著，而在 <span class="math inline">\(k &gt; 1\)</span> 时迅速趋近于零。</p>
 <p>这些特征反映了单位根过程的非平稳性和强记忆效应。</p>
 <div id="e46e551f" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">from</span> statsmodels.graphics.tsaplots <span class="im">import</span> plot_acf, plot_pacf</span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb4-4"><a href="#cb4-4"></a></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co"># 绘制 AR(1) 过程的 ACF 和 PACF</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
-<span id="cb4-7"><a href="#cb4-7"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb4-8"><a href="#cb4-8"></a>plot_acf(ar1, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
-<span id="cb4-9"><a href="#cb4-9"></a>plt.title(<span class="st">'ACF of AR(1) Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb4-10"><a href="#cb4-10"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb4-11"><a href="#cb4-11"></a>plot_pacf(ar1, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
-<span id="cb4-12"><a href="#cb4-12"></a>plt.title(<span class="st">'PACF of AR(1) Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb4-13"><a href="#cb4-13"></a></span>
-<span id="cb4-14"><a href="#cb4-14"></a><span class="co"># 绘制单位根过程的 ACF 和 PACF</span></span>
-<span id="cb4-15"><a href="#cb4-15"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb4-16"><a href="#cb4-16"></a>plot_acf(unit_root, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
-<span id="cb4-17"><a href="#cb4-17"></a>plt.title(<span class="st">'ACF of Unit Root Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb4-18"><a href="#cb4-18"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb4-19"><a href="#cb4-19"></a>plot_pacf(unit_root, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
-<span id="cb4-20"><a href="#cb4-20"></a>plt.title(<span class="st">'PACF of Unit Root Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb4-21"><a href="#cb4-21"></a></span>
-<span id="cb4-22"><a href="#cb4-22"></a>plt.tight_layout()</span>
-<span id="cb4-23"><a href="#cb4-23"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.graphics.tsaplots <span class="im">import</span> plot_acf, plot_pacf</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制 AR(1) 过程的 ACF 和 PACF</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>plot_acf(ar1, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'ACF of AR(1) Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>plot_pacf(ar1, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'PACF of AR(1) Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制单位根过程的 ACF 和 PACF</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>plot_acf(unit_root, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'ACF of Unit Root Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>plot_pacf(unit_root, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'PACF of Unit Root Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -951,29 +951,29 @@ X_t = \phi^t X_0 + \sum_{i=0}^{\infty} \phi^i \epsilon_{t-i}
 \]</span></p>
 <p>由此可见，AR(1) 过程可以表示为一个 MA(∞) 过程，其中当前值 <span class="math inline">\(X_t\)</span> 是所有过去随机扰动项 <span class="math inline">\(\epsilon_{t-i}\)</span> 的加权和，权重由 <span class="math inline">\(\phi^i\)</span> 决定，并随着 <span class="math inline">\(i\)</span> 的增大呈指数衰减。</p>
 <div id="0be97391" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># 模拟分析：AR(1) 和 MA(1) 过程的差别</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="co"># 模拟 MA(1) 过程</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>theta <span class="op">=</span> <span class="fl">0.8</span>  <span class="co"># MA(1) 系数</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>ma1 <span class="op">=</span> np.zeros(n)</span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
-<span id="cb5-7"><a href="#cb5-7"></a>    ma1[t] <span class="op">=</span> epsilon[t] <span class="op">+</span> theta <span class="op">*</span> epsilon[t<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb5-8"><a href="#cb5-8"></a></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="co"># 绘图比较 AR(1) 和 MA(1) 过程</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
-<span id="cb5-11"><a href="#cb5-11"></a>plt.plot(ar1, label<span class="op">=</span><span class="st">"AR(1) Process (phi=0.8)"</span>, color<span class="op">=</span><span class="st">"blue"</span>)</span>
-<span id="cb5-12"><a href="#cb5-12"></a>plt.plot(ma1, label<span class="op">=</span><span class="st">"MA(1) Process (theta=0.8)"</span>, color<span class="op">=</span><span class="st">"red"</span>)</span>
-<span id="cb5-13"><a href="#cb5-13"></a></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="co"># 添加时间趋势线</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a>plt.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">"green"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">"y=0 Line"</span>)</span>
-<span id="cb5-16"><a href="#cb5-16"></a></span>
-<span id="cb5-17"><a href="#cb5-17"></a>plt.title(<span class="st">"Comparison of AR(1) and MA(1) Processes"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb5-18"><a href="#cb5-18"></a>plt.xlabel(<span class="st">"Time"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb5-19"><a href="#cb5-19"></a>plt.ylabel(<span class="st">"Value"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb5-20"><a href="#cb5-20"></a>plt.legend()</span>
-<span id="cb5-21"><a href="#cb5-21"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb5-22"><a href="#cb5-22"></a>plt.tight_layout()</span>
-<span id="cb5-23"><a href="#cb5-23"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 模拟分析：AR(1) 和 MA(1) 过程的差别</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 模拟 MA(1) 过程</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> <span class="fl">0.8</span>  <span class="co"># MA(1) 系数</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>ma1 <span class="op">=</span> np.zeros(n)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    ma1[t] <span class="op">=</span> epsilon[t] <span class="op">+</span> theta <span class="op">*</span> epsilon[t<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图比较 AR(1) 和 MA(1) 过程</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>plt.plot(ar1, label<span class="op">=</span><span class="st">"AR(1) Process (phi=0.8)"</span>, color<span class="op">=</span><span class="st">"blue"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>plt.plot(ma1, label<span class="op">=</span><span class="st">"MA(1) Process (theta=0.8)"</span>, color<span class="op">=</span><span class="st">"red"</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加时间趋势线</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">"green"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">"y=0 Line"</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Comparison of AR(1) and MA(1) Processes"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Time"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Value"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -988,30 +988,30 @@ X_t = \phi^t X_0 + \sum_{i=0}^{\infty} \phi^i \epsilon_{t-i}
 <h3 data-number="36.3.6" class="anchored" data-anchor-id="ar1-和-ma1-的区别acf-和-pacf"><span class="header-section-number">36.3.6</span> AR(1) 和 MA(1) 的区别：ACF 和 PACF</h3>
 <p>AR(1) 和 MA(1) 模型在自相关函数 (ACF) 和偏自相关函数 (PACF) 上有显著的区别。以下是它们的主要区别： - <strong>AR(1) 模型</strong>： - ACF：在滞后期 <span class="math inline">\(k &gt; 1\)</span> 时，ACF 呈指数衰减或振荡衰减； - PACF：在滞后期 <span class="math inline">\(k = 1\)</span> 时显著，而在 <span class="math inline">\(k &gt; 1\)</span> 时迅速趋近于零。 - 这表明 AR(1) 模型具有长记忆效应，当前值与过去值之间存在较强的线性关系。 - <strong>MA(1) 模型</strong>： - ACF：在滞后期 <span class="math inline">\(k &gt; 1\)</span> 时迅速趋近于零； - PACF：在滞后期 <span class="math inline">\(k = 1\)</span> 时显著，而在 <span class="math inline">\(k &gt; 1\)</span> 时迅速趋近于零。 - 这表明 MA(1) 模型具有短记忆效应，当前值主要受最近的随机扰动项影响。</p>
 <div id="051b92d6" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">from</span> statsmodels.graphics.tsaplots <span class="im">import</span> plot_acf, plot_pacf</span>
-<span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="co"># ACF 和 PACF 分析：AR(1) v.s. MA(1)</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb6-5"><a href="#cb6-5"></a></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="co"># 绘制 AR(1) 过程的 ACF 和 PACF</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
-<span id="cb6-8"><a href="#cb6-8"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb6-9"><a href="#cb6-9"></a>plot_acf(ar1, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
-<span id="cb6-10"><a href="#cb6-10"></a>plt.title(<span class="st">'ACF of AR(1) Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb6-11"><a href="#cb6-11"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb6-12"><a href="#cb6-12"></a>plot_pacf(ar1, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
-<span id="cb6-13"><a href="#cb6-13"></a>plt.title(<span class="st">'PACF of AR(1) Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb6-14"><a href="#cb6-14"></a></span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="co"># 绘制 MA(1) 过程的 ACF 和 PACF</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb6-17"><a href="#cb6-17"></a>plot_acf(ma1, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
-<span id="cb6-18"><a href="#cb6-18"></a>plt.title(<span class="st">'ACF of MA(1) Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb6-19"><a href="#cb6-19"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb6-20"><a href="#cb6-20"></a>plot_pacf(ma1, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
-<span id="cb6-21"><a href="#cb6-21"></a>plt.title(<span class="st">'PACF of MA(1) Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb6-22"><a href="#cb6-22"></a></span>
-<span id="cb6-23"><a href="#cb6-23"></a>plt.tight_layout()</span>
-<span id="cb6-24"><a href="#cb6-24"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.graphics.tsaplots <span class="im">import</span> plot_acf, plot_pacf</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ACF 和 PACF 分析：AR(1) v.s. MA(1)</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制 AR(1) 过程的 ACF 和 PACF</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plot_acf(ar1, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'ACF of AR(1) Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>plot_pacf(ar1, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'PACF of AR(1) Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制 MA(1) 过程的 ACF 和 PACF</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>plot_acf(ma1, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'ACF of MA(1) Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>plot_pacf(ma1, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'PACF of MA(1) Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1117,86 +1117,86 @@ X_t = X_{t-1} + \epsilon_t
 </ol>
 <p>通过这些序列的生成，我们可以观察不同时间序列的特性，并进行单位根检验和其他分析。</p>
 <div id="ef0b8278" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="im">from</span> statsmodels.tsa.stattools <span class="im">import</span> adfuller</span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb7-6"><a href="#cb7-6"></a></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="co"># 模拟四个序列</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb7-9"><a href="#cb7-9"></a>n <span class="op">=</span> <span class="dv">200</span>  <span class="co"># 时间序列长度</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a>epsilon <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, n)</span>
-<span id="cb7-11"><a href="#cb7-11"></a></span>
-<span id="cb7-12"><a href="#cb7-12"></a><span class="co"># 1. AR(1) 平稳</span></span>
-<span id="cb7-13"><a href="#cb7-13"></a>phi <span class="op">=</span> <span class="fl">0.8</span></span>
-<span id="cb7-14"><a href="#cb7-14"></a>ar1_stationary <span class="op">=</span> np.zeros(n)</span>
-<span id="cb7-15"><a href="#cb7-15"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
-<span id="cb7-16"><a href="#cb7-16"></a>    ar1_stationary[t] <span class="op">=</span> phi <span class="op">*</span> ar1_stationary[t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> epsilon[t]</span>
-<span id="cb7-17"><a href="#cb7-17"></a></span>
-<span id="cb7-18"><a href="#cb7-18"></a><span class="co"># 2. AR(1) + 时间趋势</span></span>
-<span id="cb7-19"><a href="#cb7-19"></a>trend <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, n)</span>
-<span id="cb7-20"><a href="#cb7-20"></a>ar1_with_trend <span class="op">=</span> np.zeros(n)</span>
-<span id="cb7-21"><a href="#cb7-21"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
-<span id="cb7-22"><a href="#cb7-22"></a>    ar1_with_trend[t] <span class="op">=</span> phi <span class="op">*</span> ar1_with_trend[t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> epsilon[t]</span>
-<span id="cb7-23"><a href="#cb7-23"></a>ar1_with_trend <span class="op">+=</span> trend</span>
-<span id="cb7-24"><a href="#cb7-24"></a></span>
-<span id="cb7-25"><a href="#cb7-25"></a><span class="co"># 3. ARMA(1,1) 平稳</span></span>
-<span id="cb7-26"><a href="#cb7-26"></a>theta <span class="op">=</span> <span class="fl">0.5</span></span>
-<span id="cb7-27"><a href="#cb7-27"></a>arma11_stationary <span class="op">=</span> np.zeros(n)</span>
-<span id="cb7-28"><a href="#cb7-28"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
-<span id="cb7-29"><a href="#cb7-29"></a>    arma11_stationary[t] <span class="op">=</span> phi <span class="op">*</span> arma11_stationary[t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> epsilon[t] <span class="op">+</span> theta <span class="op">*</span> epsilon[t<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb7-30"><a href="#cb7-30"></a></span>
-<span id="cb7-31"><a href="#cb7-31"></a><span class="co"># 4. 单位根过程</span></span>
-<span id="cb7-32"><a href="#cb7-32"></a>unit_root <span class="op">=</span> np.zeros(n)</span>
-<span id="cb7-33"><a href="#cb7-33"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
-<span id="cb7-34"><a href="#cb7-34"></a>    unit_root[t] <span class="op">=</span> unit_root[t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> epsilon[t]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.stattools <span class="im">import</span> adfuller</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 模拟四个序列</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">200</span>  <span class="co"># 时间序列长度</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>epsilon <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, n)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. AR(1) 平稳</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>phi <span class="op">=</span> <span class="fl">0.8</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>ar1_stationary <span class="op">=</span> np.zeros(n)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    ar1_stationary[t] <span class="op">=</span> phi <span class="op">*</span> ar1_stationary[t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> epsilon[t]</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. AR(1) + 时间趋势</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>trend <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, n)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>ar1_with_trend <span class="op">=</span> np.zeros(n)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    ar1_with_trend[t] <span class="op">=</span> phi <span class="op">*</span> ar1_with_trend[t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> epsilon[t]</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>ar1_with_trend <span class="op">+=</span> trend</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. ARMA(1,1) 平稳</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>arma11_stationary <span class="op">=</span> np.zeros(n)</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    arma11_stationary[t] <span class="op">=</span> phi <span class="op">*</span> arma11_stationary[t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> epsilon[t] <span class="op">+</span> theta <span class="op">*</span> epsilon[t<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. 单位根过程</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>unit_root <span class="op">=</span> np.zeros(n)</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    unit_root[t] <span class="op">=</span> unit_root[t<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> epsilon[t]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="图形比较" class="level4" data-number="36.5.3.1">
 <h4 data-number="36.5.3.1" class="anchored" data-anchor-id="图形比较"><span class="header-section-number">36.5.3.1</span> 图形比较</h4>
 <p>我们先直观地展示这四个序列的图形，然后再分析其 ACF 和 PACF 图，最后通过单位根检验来验证它们的平稳性。</p>
 <div id="e2a44e7f" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># 绘图比较</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
-<span id="cb8-3"><a href="#cb8-3"></a></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># AR(1) 平稳序列</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb8-6"><a href="#cb8-6"></a>plt.plot(ar1_stationary, label<span class="op">=</span><span class="st">"AR(1) Stationary"</span>, color<span class="op">=</span><span class="st">"blue"</span>)</span>
-<span id="cb8-7"><a href="#cb8-7"></a>plt.title(<span class="st">"AR(1) Stationary Sequence"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb8-8"><a href="#cb8-8"></a>plt.xlabel(<span class="st">"Time"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb8-9"><a href="#cb8-9"></a>plt.ylabel(<span class="st">"Value"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb8-10"><a href="#cb8-10"></a>plt.legend()</span>
-<span id="cb8-11"><a href="#cb8-11"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb8-12"><a href="#cb8-12"></a></span>
-<span id="cb8-13"><a href="#cb8-13"></a><span class="co"># AR(1) + 时间趋势序列</span></span>
-<span id="cb8-14"><a href="#cb8-14"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb8-15"><a href="#cb8-15"></a>plt.plot(ar1_with_trend, label<span class="op">=</span><span class="st">"AR(1) with Trend"</span>, color<span class="op">=</span><span class="st">"orange"</span>)</span>
-<span id="cb8-16"><a href="#cb8-16"></a>plt.title(<span class="st">"AR(1) with Trend Sequence"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb8-17"><a href="#cb8-17"></a>plt.xlabel(<span class="st">"Time"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb8-18"><a href="#cb8-18"></a>plt.ylabel(<span class="st">"Value"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb8-19"><a href="#cb8-19"></a>plt.legend()</span>
-<span id="cb8-20"><a href="#cb8-20"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb8-21"><a href="#cb8-21"></a></span>
-<span id="cb8-22"><a href="#cb8-22"></a><span class="co"># ARMA(1,1) 平稳序列</span></span>
-<span id="cb8-23"><a href="#cb8-23"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb8-24"><a href="#cb8-24"></a>plt.plot(arma11_stationary, label<span class="op">=</span><span class="st">"ARMA(1,1) Stationary"</span>, color<span class="op">=</span><span class="st">"green"</span>)</span>
-<span id="cb8-25"><a href="#cb8-25"></a>plt.title(<span class="st">"ARMA(1,1) Stationary Sequence"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb8-26"><a href="#cb8-26"></a>plt.xlabel(<span class="st">"Time"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb8-27"><a href="#cb8-27"></a>plt.ylabel(<span class="st">"Value"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb8-28"><a href="#cb8-28"></a>plt.legend()</span>
-<span id="cb8-29"><a href="#cb8-29"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb8-30"><a href="#cb8-30"></a></span>
-<span id="cb8-31"><a href="#cb8-31"></a><span class="co"># 单位根过程</span></span>
-<span id="cb8-32"><a href="#cb8-32"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb8-33"><a href="#cb8-33"></a>plt.plot(unit_root, label<span class="op">=</span><span class="st">"Unit Root Process"</span>, color<span class="op">=</span><span class="st">"red"</span>)</span>
-<span id="cb8-34"><a href="#cb8-34"></a>plt.title(<span class="st">"Unit Root Process"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb8-35"><a href="#cb8-35"></a>plt.xlabel(<span class="st">"Time"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb8-36"><a href="#cb8-36"></a>plt.ylabel(<span class="st">"Value"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb8-37"><a href="#cb8-37"></a>plt.legend()</span>
-<span id="cb8-38"><a href="#cb8-38"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb8-39"><a href="#cb8-39"></a></span>
-<span id="cb8-40"><a href="#cb8-40"></a>plt.tight_layout()</span>
-<span id="cb8-41"><a href="#cb8-41"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图比较</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># AR(1) 平稳序列</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>plt.plot(ar1_stationary, label<span class="op">=</span><span class="st">"AR(1) Stationary"</span>, color<span class="op">=</span><span class="st">"blue"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"AR(1) Stationary Sequence"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Time"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Value"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># AR(1) + 时间趋势序列</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>plt.plot(ar1_with_trend, label<span class="op">=</span><span class="st">"AR(1) with Trend"</span>, color<span class="op">=</span><span class="st">"orange"</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"AR(1) with Trend Sequence"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Time"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Value"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co"># ARMA(1,1) 平稳序列</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>plt.plot(arma11_stationary, label<span class="op">=</span><span class="st">"ARMA(1,1) Stationary"</span>, color<span class="op">=</span><span class="st">"green"</span>)</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"ARMA(1,1) Stationary Sequence"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Time"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Value"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 单位根过程</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>plt.plot(unit_root, label<span class="op">=</span><span class="st">"Unit Root Process"</span>, color<span class="op">=</span><span class="st">"red"</span>)</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Unit Root Process"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Time"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Value"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1210,46 +1210,46 @@ X_t = X_{t-1} + \epsilon_t
 <h4 data-number="36.5.3.2" class="anchored" data-anchor-id="acf-和-pacf-图"><span class="header-section-number">36.5.3.2</span> ACF 和 PACF 图</h4>
 <p>我们可以使用 <code>statsmodels</code> 库中的 <code>plot_acf</code> 和 <code>plot_pacf</code> 函数来绘制 ACF 和 PACF 图。以下是对四个序列的 ACF 和 PACF 图的分析：</p>
 <div id="7be721f9" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># 绘制 ACF 和 PACF 图</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="im">from</span> statsmodels.graphics.tsaplots <span class="im">import</span> plot_acf, plot_pacf</span>
-<span id="cb9-4"><a href="#cb9-4"></a></span>
-<span id="cb9-5"><a href="#cb9-5"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">12</span>))</span>
-<span id="cb9-6"><a href="#cb9-6"></a></span>
-<span id="cb9-7"><a href="#cb9-7"></a><span class="co"># AR(1) 平稳序列</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb9-9"><a href="#cb9-9"></a>plot_acf(ar1_stationary, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
-<span id="cb9-10"><a href="#cb9-10"></a>plt.title(<span class="st">'ACF of AR(1) Stationary Sequence'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb9-11"><a href="#cb9-11"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb9-12"><a href="#cb9-12"></a>plot_pacf(ar1_stationary, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
-<span id="cb9-13"><a href="#cb9-13"></a>plt.title(<span class="st">'PACF of AR(1) Stationary Sequence'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb9-14"><a href="#cb9-14"></a></span>
-<span id="cb9-15"><a href="#cb9-15"></a><span class="co"># AR(1) + 时间趋势序列</span></span>
-<span id="cb9-16"><a href="#cb9-16"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb9-17"><a href="#cb9-17"></a>plot_acf(ar1_with_trend, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
-<span id="cb9-18"><a href="#cb9-18"></a>plt.title(<span class="st">'ACF of AR(1) with Trend Sequence'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb9-19"><a href="#cb9-19"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb9-20"><a href="#cb9-20"></a>plot_pacf(ar1_with_trend, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
-<span id="cb9-21"><a href="#cb9-21"></a>plt.title(<span class="st">'PACF of AR(1) with Trend Sequence'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb9-22"><a href="#cb9-22"></a></span>
-<span id="cb9-23"><a href="#cb9-23"></a><span class="co"># ARMA(1,1) 平稳序列</span></span>
-<span id="cb9-24"><a href="#cb9-24"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>)</span>
-<span id="cb9-25"><a href="#cb9-25"></a>plot_acf(arma11_stationary, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
-<span id="cb9-26"><a href="#cb9-26"></a>plt.title(<span class="st">'ACF of ARMA(1,1) Stationary Sequence'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb9-27"><a href="#cb9-27"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">6</span>)</span>
-<span id="cb9-28"><a href="#cb9-28"></a>plot_pacf(arma11_stationary, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
-<span id="cb9-29"><a href="#cb9-29"></a>plt.title(<span class="st">'PACF of ARMA(1,1) Stationary Sequence'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb9-30"><a href="#cb9-30"></a></span>
-<span id="cb9-31"><a href="#cb9-31"></a><span class="co"># 单位根过程</span></span>
-<span id="cb9-32"><a href="#cb9-32"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">7</span>)</span>
-<span id="cb9-33"><a href="#cb9-33"></a>plot_acf(unit_root, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
-<span id="cb9-34"><a href="#cb9-34"></a>plt.title(<span class="st">'ACF of Unit Root Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb9-35"><a href="#cb9-35"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">8</span>)</span>
-<span id="cb9-36"><a href="#cb9-36"></a>plot_pacf(unit_root, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
-<span id="cb9-37"><a href="#cb9-37"></a>plt.title(<span class="st">'PACF of Unit Root Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb9-38"><a href="#cb9-38"></a></span>
-<span id="cb9-39"><a href="#cb9-39"></a>plt.tight_layout()</span>
-<span id="cb9-40"><a href="#cb9-40"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制 ACF 和 PACF 图</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.graphics.tsaplots <span class="im">import</span> plot_acf, plot_pacf</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">12</span>))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># AR(1) 平稳序列</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>plot_acf(ar1_stationary, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'ACF of AR(1) Stationary Sequence'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>plot_pacf(ar1_stationary, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'PACF of AR(1) Stationary Sequence'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># AR(1) + 时间趋势序列</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>plot_acf(ar1_with_trend, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'ACF of AR(1) with Trend Sequence'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>plot_pacf(ar1_with_trend, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'PACF of AR(1) with Trend Sequence'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ARMA(1,1) 平稳序列</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>plot_acf(arma11_stationary, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'ACF of ARMA(1,1) Stationary Sequence'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">6</span>)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>plot_pacf(arma11_stationary, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'PACF of ARMA(1,1) Stationary Sequence'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 单位根过程</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">7</span>)</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>plot_acf(unit_root, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'ACF of Unit Root Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">8</span>)</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>plot_pacf(unit_root, lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'PACF of Unit Root Process'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1264,41 +1264,41 @@ X_t = X_{t-1} + \epsilon_t
 <h3 data-number="36.5.4" class="anchored" data-anchor-id="单位根检验-1"><span class="header-section-number">36.5.4</span> 单位根检验</h3>
 <p>我们可以使用 <code>statsmodels</code> 库中的 <code>adfuller</code> 函数来进行单位根检验。以下是对四个序列的单位根检验结果的分析：</p>
 <div id="2a9b26a5" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="co"># 定义 test_stationarity 函数</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="kw">def</span> test_stationarity(timeseries):</span>
-<span id="cb10-4"><a href="#cb10-4"></a>    <span class="co"># 进行ADF检验</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a>    adf_result <span class="op">=</span> adfuller(timeseries)</span>
-<span id="cb10-6"><a href="#cb10-6"></a>    <span class="bu">print</span>(<span class="ss">f'ADF Statistic: </span><span class="sc">{</span>adf_result[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb10-7"><a href="#cb10-7"></a>    <span class="bu">print</span>(<span class="ss">f'p-value: </span><span class="sc">{</span>adf_result[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb10-8"><a href="#cb10-8"></a>    <span class="cf">if</span> adf_result[<span class="dv">1</span>] <span class="op">&lt;=</span> <span class="fl">0.05</span>:</span>
-<span id="cb10-9"><a href="#cb10-9"></a>        <span class="bu">print</span>(<span class="st">"Reject the null hypothesis: The time series is stationary."</span>)</span>
-<span id="cb10-10"><a href="#cb10-10"></a>    <span class="cf">else</span>:</span>
-<span id="cb10-11"><a href="#cb10-11"></a>        <span class="bu">print</span>(<span class="st">"Fail to reject the null hypothesis: The time series is non-stationary."</span>)</span>
-<span id="cb10-12"><a href="#cb10-12"></a></span>
-<span id="cb10-13"><a href="#cb10-13"></a>    <span class="co"># 进行KPSS检验</span></span>
-<span id="cb10-14"><a href="#cb10-14"></a>    <span class="im">from</span> statsmodels.tsa.stattools <span class="im">import</span> kpss</span>
-<span id="cb10-15"><a href="#cb10-15"></a>    kpss_result <span class="op">=</span> kpss(timeseries, regression<span class="op">=</span><span class="st">'c'</span>)</span>
-<span id="cb10-16"><a href="#cb10-16"></a>    <span class="bu">print</span>(<span class="ss">f'KPSS Statistic: </span><span class="sc">{</span>kpss_result[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb10-17"><a href="#cb10-17"></a>    <span class="bu">print</span>(<span class="ss">f'p-value: </span><span class="sc">{</span>kpss_result[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb10-18"><a href="#cb10-18"></a>    <span class="cf">if</span> kpss_result[<span class="dv">1</span>] <span class="op">&lt;=</span> <span class="fl">0.05</span>:</span>
-<span id="cb10-19"><a href="#cb10-19"></a>        <span class="bu">print</span>(<span class="st">"Reject the null hypothesis: The time series is non-stationary."</span>)</span>
-<span id="cb10-20"><a href="#cb10-20"></a>    <span class="cf">else</span>:</span>
-<span id="cb10-21"><a href="#cb10-21"></a>        <span class="bu">print</span>(<span class="st">"Fail to reject the null hypothesis: The time series is stationary."</span>)</span>
-<span id="cb10-22"><a href="#cb10-22"></a></span>
-<span id="cb10-23"><a href="#cb10-23"></a></span>
-<span id="cb10-24"><a href="#cb10-24"></a><span class="co"># 执行单位根检验</span></span>
-<span id="cb10-25"><a href="#cb10-25"></a><span class="bu">print</span>(<span class="st">"AR(1) 平稳序列:"</span>)</span>
-<span id="cb10-26"><a href="#cb10-26"></a>test_stationarity(ar1_stationary)</span>
-<span id="cb10-27"><a href="#cb10-27"></a></span>
-<span id="cb10-28"><a href="#cb10-28"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">AR(1) + 时间趋势序列:"</span>)</span>
-<span id="cb10-29"><a href="#cb10-29"></a>test_stationarity(ar1_with_trend)</span>
-<span id="cb10-30"><a href="#cb10-30"></a></span>
-<span id="cb10-31"><a href="#cb10-31"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">ARMA(1,1) 平稳序列:"</span>)</span>
-<span id="cb10-32"><a href="#cb10-32"></a>test_stationarity(arma11_stationary)</span>
-<span id="cb10-33"><a href="#cb10-33"></a></span>
-<span id="cb10-34"><a href="#cb10-34"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">单位根序列:"</span>)</span>
-<span id="cb10-35"><a href="#cb10-35"></a>test_stationarity(unit_root)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义 test_stationarity 函数</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_stationarity(timeseries):</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 进行ADF检验</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    adf_result <span class="op">=</span> adfuller(timeseries)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'ADF Statistic: </span><span class="sc">{</span>adf_result[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'p-value: </span><span class="sc">{</span>adf_result[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> adf_result[<span class="dv">1</span>] <span class="op">&lt;=</span> <span class="fl">0.05</span>:</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Reject the null hypothesis: The time series is stationary."</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Fail to reject the null hypothesis: The time series is non-stationary."</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 进行KPSS检验</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> statsmodels.tsa.stattools <span class="im">import</span> kpss</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    kpss_result <span class="op">=</span> kpss(timeseries, regression<span class="op">=</span><span class="st">'c'</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'KPSS Statistic: </span><span class="sc">{</span>kpss_result[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'p-value: </span><span class="sc">{</span>kpss_result[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> kpss_result[<span class="dv">1</span>] <span class="op">&lt;=</span> <span class="fl">0.05</span>:</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Reject the null hypothesis: The time series is non-stationary."</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Fail to reject the null hypothesis: The time series is stationary."</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 执行单位根检验</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"AR(1) 平稳序列:"</span>)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>test_stationarity(ar1_stationary)</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">AR(1) + 时间趋势序列:"</span>)</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>test_stationarity(ar1_with_trend)</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">ARMA(1,1) 平稳序列:"</span>)</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>test_stationarity(arma11_stationary)</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">单位根序列:"</span>)</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>test_stationarity(unit_root)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>AR(1) 平稳序列:
 ADF Statistic: -5.140188092198668
@@ -1344,46 +1344,46 @@ look-up table. The actual p-value is smaller than the p-value returned.
 <section id="待更新" class="level2" data-number="36.6">
 <h2 data-number="36.6" class="anchored" data-anchor-id="待更新"><span class="header-section-number">36.6</span> 待更新</h2>
 <div id="cdad0e6b" class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># 3. VAR模型</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="kw">def</span> fit_var_model(data, maxlags<span class="op">=</span><span class="dv">15</span>):</span>
-<span id="cb13-3"><a href="#cb13-3"></a>    model <span class="op">=</span> VAR(data)</span>
-<span id="cb13-4"><a href="#cb13-4"></a>    results <span class="op">=</span> model.fit(maxlags<span class="op">=</span>maxlags, ic<span class="op">=</span><span class="st">'aic'</span>)</span>
-<span id="cb13-5"><a href="#cb13-5"></a>    <span class="bu">print</span>(results.summary())</span>
-<span id="cb13-6"><a href="#cb13-6"></a>    <span class="cf">return</span> results</span>
-<span id="cb13-7"><a href="#cb13-7"></a></span>
-<span id="cb13-8"><a href="#cb13-8"></a><span class="co"># 4. Granger因果关系检验</span></span>
-<span id="cb13-9"><a href="#cb13-9"></a><span class="kw">def</span> granger_causality_test(data, max_lag<span class="op">=</span><span class="dv">15</span>):</span>
-<span id="cb13-10"><a href="#cb13-10"></a>    test_result <span class="op">=</span> grangercausalitytests(data, max_lag, verbose<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb13-11"><a href="#cb13-11"></a>    <span class="cf">return</span> test_result</span>
-<span id="cb13-12"><a href="#cb13-12"></a></span>
-<span id="cb13-13"><a href="#cb13-13"></a><span class="co"># 5. 协整检验</span></span>
-<span id="cb13-14"><a href="#cb13-14"></a><span class="kw">def</span> cointegration_test(data):</span>
-<span id="cb13-15"><a href="#cb13-15"></a>    score, p_value, _ <span class="op">=</span> coint(data.iloc[:, <span class="dv">0</span>], data.iloc[:, <span class="dv">1</span>])</span>
-<span id="cb13-16"><a href="#cb13-16"></a>    <span class="bu">print</span>(<span class="ss">f'Cointegration test statistic: </span><span class="sc">{</span>score<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb13-17"><a href="#cb13-17"></a>    <span class="bu">print</span>(<span class="ss">f'p-value: </span><span class="sc">{</span>p_value<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb13-18"><a href="#cb13-18"></a>    <span class="cf">if</span> p_value <span class="op">&lt;=</span> <span class="fl">0.05</span>:</span>
-<span id="cb13-19"><a href="#cb13-19"></a>        <span class="bu">print</span>(<span class="st">"Reject the null hypothesis: The time series are cointegrated."</span>)</span>
-<span id="cb13-20"><a href="#cb13-20"></a>    <span class="cf">else</span>:</span>
-<span id="cb13-21"><a href="#cb13-21"></a>        <span class="bu">print</span>(<span class="st">"Fail to reject the null hypothesis: The time series are not cointegrated."</span>)</span>
-<span id="cb13-22"><a href="#cb13-22"></a></span>
-<span id="cb13-23"><a href="#cb13-23"></a><span class="co"># 6. VAR模型的脉冲响应函数</span></span>
-<span id="cb13-24"><a href="#cb13-24"></a><span class="kw">def</span> impulse_response_function(model, steps<span class="op">=</span><span class="dv">10</span>):</span>
-<span id="cb13-25"><a href="#cb13-25"></a>    irf <span class="op">=</span> model.irf(steps)</span>
-<span id="cb13-26"><a href="#cb13-26"></a>    irf.plot(orth<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb13-27"><a href="#cb13-27"></a>    plt.show()</span>
-<span id="cb13-28"><a href="#cb13-28"></a></span>
-<span id="cb13-29"><a href="#cb13-29"></a><span class="co"># 7. VAR模型的方差分解</span></span>
-<span id="cb13-30"><a href="#cb13-30"></a><span class="kw">def</span> variance_decomposition(model, steps<span class="op">=</span><span class="dv">10</span>):</span>
-<span id="cb13-31"><a href="#cb13-31"></a>    fevd <span class="op">=</span> model.fevd(steps)</span>
-<span id="cb13-32"><a href="#cb13-32"></a>    fevd.plot()</span>
-<span id="cb13-33"><a href="#cb13-33"></a>    plt.show()</span>
-<span id="cb13-34"><a href="#cb13-34"></a></span>
-<span id="cb13-35"><a href="#cb13-35"></a><span class="co"># 8. VAR模型的预测</span></span>
-<span id="cb13-36"><a href="#cb13-36"></a><span class="kw">def</span> forecast_var_model(model, steps<span class="op">=</span><span class="dv">10</span>):</span>
-<span id="cb13-37"><a href="#cb13-37"></a>    forecast <span class="op">=</span> model.forecast(model.y, steps<span class="op">=</span>steps)</span>
-<span id="cb13-38"><a href="#cb13-38"></a>    forecast_df <span class="op">=</span> pd.DataFrame(forecast, index<span class="op">=</span>pd.date_range(start<span class="op">=</span>df_unemp.index[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> pd.DateOffset(<span class="dv">1</span>), periods<span class="op">=</span>steps, freq<span class="op">=</span><span class="st">'M'</span>), columns<span class="op">=</span>model.names)</span>
-<span id="cb13-39"><a href="#cb13-39"></a>    <span class="cf">return</span> forecast_df</span>
-<span id="cb13-40"><a href="#cb13-40"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. VAR模型</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fit_var_model(data, maxlags<span class="op">=</span><span class="dv">15</span>):</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> VAR(data)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> model.fit(maxlags<span class="op">=</span>maxlags, ic<span class="op">=</span><span class="st">'aic'</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(results.summary())</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> results</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Granger因果关系检验</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> granger_causality_test(data, max_lag<span class="op">=</span><span class="dv">15</span>):</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    test_result <span class="op">=</span> grangercausalitytests(data, max_lag, verbose<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> test_result</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. 协整检验</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cointegration_test(data):</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    score, p_value, _ <span class="op">=</span> coint(data.iloc[:, <span class="dv">0</span>], data.iloc[:, <span class="dv">1</span>])</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'Cointegration test statistic: </span><span class="sc">{</span>score<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'p-value: </span><span class="sc">{</span>p_value<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> p_value <span class="op">&lt;=</span> <span class="fl">0.05</span>:</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Reject the null hypothesis: The time series are cointegrated."</span>)</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Fail to reject the null hypothesis: The time series are not cointegrated."</span>)</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. VAR模型的脉冲响应函数</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> impulse_response_function(model, steps<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    irf <span class="op">=</span> model.irf(steps)</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    irf.plot(orth<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. VAR模型的方差分解</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> variance_decomposition(model, steps<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    fevd <span class="op">=</span> model.fevd(steps)</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    fevd.plot()</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 8. VAR模型的预测</span></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> forecast_var_model(model, steps<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    forecast <span class="op">=</span> model.forecast(model.y, steps<span class="op">=</span>steps)</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>    forecast_df <span class="op">=</span> pd.DataFrame(forecast, index<span class="op">=</span>pd.date_range(start<span class="op">=</span>df_unemp.index[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> pd.DateOffset(<span class="dv">1</span>), periods<span class="op">=</span>steps, freq<span class="op">=</span><span class="st">'M'</span>), columns<span class="op">=</span>model.names)</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> forecast_df</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -1480,7 +1480,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

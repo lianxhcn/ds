@@ -160,7 +160,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -168,7 +168,7 @@ window.Quarto = {
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -660,28 +660,28 @@ window.Quarto = {
 <h2 data-number="23.1" class="anchored" data-anchor-id="将数据下载到本地"><span class="header-section-number">23.1</span> 将数据下载到本地</h2>
 <p>我们需要为本项目设定一个文件夹，将所有数据与脚本统一存放，例如 <code>D:\Github\dslian\body</code>。用 <code>os.chdir()</code> 切过去后，接着通过 <code>pd.read_csv()</code> 直接从网址读取 <code>GMD.csv</code>，约 9 MB，十余秒即可载入为 <code>DataFrame</code>。最后用 <code>to_csv()</code> 保存到本地 <code>data</code> 子目录，并设定 <code>index=False</code>，既留备份，也便于离线复现。</p>
 <div id="357947db" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> os</span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a>os.chdir(<span class="vs">r"D:\Github\dslian\body"</span>)  <span class="co"># 修改为你的工作路径</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="co"># 获取数据并加载到 DataFrame</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co">''' 9M 左右，下载需要 10-15 秒</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="co">url = "https://www.globalmacrodata.com/GMD.csv"</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="co">data = pd.read_csv(url)</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># 保存数据到 data 文件夹下</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="co">data.to_csv("data/GMD.csv", index=False)</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="co">'''</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a></span>
-<span id="cb1-15"><a href="#cb1-15"></a><span class="co"># 从 data 文件夹读取数据</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"data/GMD.csv"</span>)</span>
-<span id="cb1-17"><a href="#cb1-17"></a></span>
-<span id="cb1-18"><a href="#cb1-18"></a><span class="co"># 查看前几行数据</span></span>
-<span id="cb1-19"><a href="#cb1-19"></a><span class="co"># print(data.tail(5))</span></span>
-<span id="cb1-20"><a href="#cb1-20"></a></span>
-<span id="cb1-21"><a href="#cb1-21"></a><span class="co"># 以列表形式输出所有列名</span></span>
-<span id="cb1-22"><a href="#cb1-22"></a>data.columns.to_list()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="vs">r"D:\Github\dslian\body"</span>)  <span class="co"># 修改为你的工作路径</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取数据并加载到 DataFrame</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">''' 9M 左右，下载需要 10-15 秒</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">url = "https://www.globalmacrodata.com/GMD.csv"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">data = pd.read_csv(url)</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存数据到 data 文件夹下</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">data.to_csv("data/GMD.csv", index=False)</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 从 data 文件夹读取数据</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"data/GMD.csv"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 查看前几行数据</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># print(data.tail(5))</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 以列表形式输出所有列名</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>data.columns.to_list()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>['countryname',
  'ISO3',
@@ -738,39 +738,39 @@ window.Quarto = {
 <section id="中国的数据" class="level2" data-number="23.2">
 <h2 data-number="23.2" class="anchored" data-anchor-id="中国的数据"><span class="header-section-number">23.2</span> 中国的数据</h2>
 <div id="68ac4713" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="co"># 选择变量列表和国家</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>vlist <span class="op">=</span> [<span class="st">"inv_GDP"</span>, <span class="st">"exports_GDP"</span>, <span class="st">"imports_GDP"</span>, <span class="st">"govexp_GDP"</span>]</span>
-<span id="cb3-5"><a href="#cb3-5"></a>cname <span class="op">=</span> <span class="st">"CHN"</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="co"># 筛选出指定国家的数据</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a>china_data <span class="op">=</span> data[data[<span class="st">"ISO3"</span>] <span class="op">==</span> cname]</span>
-<span id="cb3-9"><a href="#cb3-9"></a></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="co"># 选择样本范围</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a>china_data <span class="op">=</span> china_data[(china_data[<span class="st">"year"</span>] <span class="op">&gt;=</span> <span class="dv">1978</span>) <span class="op">&amp;</span> (china_data[<span class="st">"year"</span>] <span class="op">&lt;=</span> <span class="dv">2024</span>)]</span>
-<span id="cb3-12"><a href="#cb3-12"></a></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="co"># 绘制简单的时序图</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">4</span>,<span class="fl">2.5</span>))</span>
-<span id="cb3-15"><a href="#cb3-15"></a>plt.plot(china_data[<span class="st">"year"</span>], china_data[<span class="st">"inv_GDP"</span>], label<span class="op">=</span><span class="st">"inv_GDP"</span>)</span>
-<span id="cb3-16"><a href="#cb3-16"></a>plt.xlabel(<span class="st">"Year"</span>)</span>
-<span id="cb3-17"><a href="#cb3-17"></a>plt.ylabel(<span class="st">"Value"</span>)</span>
-<span id="cb3-18"><a href="#cb3-18"></a>plt.title(<span class="st">"Time Series of inv_GDP"</span>)</span>
-<span id="cb3-19"><a href="#cb3-19"></a>plt.legend(loc<span class="op">=</span><span class="st">"upper left"</span>)</span>
-<span id="cb3-20"><a href="#cb3-20"></a>plt.grid()</span>
-<span id="cb3-21"><a href="#cb3-21"></a>plt.show()</span>
-<span id="cb3-22"><a href="#cb3-22"></a></span>
-<span id="cb3-23"><a href="#cb3-23"></a><span class="co"># 绘制多变量时序图</span></span>
-<span id="cb3-24"><a href="#cb3-24"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">3</span>))</span>
-<span id="cb3-25"><a href="#cb3-25"></a><span class="cf">for</span> var <span class="kw">in</span> vlist:</span>
-<span id="cb3-26"><a href="#cb3-26"></a>    plt.plot(china_data[<span class="st">"year"</span>], china_data[var], label<span class="op">=</span>var)</span>
-<span id="cb3-27"><a href="#cb3-27"></a>plt.xlabel(<span class="st">"Year"</span>)</span>
-<span id="cb3-28"><a href="#cb3-28"></a>plt.ylabel(<span class="st">"Value"</span>)</span>
-<span id="cb3-29"><a href="#cb3-29"></a>plt.title(<span class="st">"Time Series of Multiple Variables"</span>)</span>
-<span id="cb3-30"><a href="#cb3-30"></a>plt.xticks(<span class="bu">range</span>(<span class="dv">1980</span>, <span class="dv">2026</span>, <span class="dv">5</span>), rotation<span class="op">=</span><span class="dv">40</span>)</span>
-<span id="cb3-31"><a href="#cb3-31"></a>plt.legend(loc<span class="op">=</span><span class="st">"upper left"</span>, bbox_to_anchor<span class="op">=</span>(<span class="dv">1</span>, <span class="dv">1</span>), ncol<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb3-32"><a href="#cb3-32"></a>plt.tight_layout()</span>
-<span id="cb3-33"><a href="#cb3-33"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 选择变量列表和国家</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>vlist <span class="op">=</span> [<span class="st">"inv_GDP"</span>, <span class="st">"exports_GDP"</span>, <span class="st">"imports_GDP"</span>, <span class="st">"govexp_GDP"</span>]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>cname <span class="op">=</span> <span class="st">"CHN"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 筛选出指定国家的数据</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>china_data <span class="op">=</span> data[data[<span class="st">"ISO3"</span>] <span class="op">==</span> cname]</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 选择样本范围</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>china_data <span class="op">=</span> china_data[(china_data[<span class="st">"year"</span>] <span class="op">&gt;=</span> <span class="dv">1978</span>) <span class="op">&amp;</span> (china_data[<span class="st">"year"</span>] <span class="op">&lt;=</span> <span class="dv">2024</span>)]</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制简单的时序图</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">4</span>,<span class="fl">2.5</span>))</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>plt.plot(china_data[<span class="st">"year"</span>], china_data[<span class="st">"inv_GDP"</span>], label<span class="op">=</span><span class="st">"inv_GDP"</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Year"</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Value"</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Time Series of inv_GDP"</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">"upper left"</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制多变量时序图</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">3</span>))</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> vlist:</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    plt.plot(china_data[<span class="st">"year"</span>], china_data[var], label<span class="op">=</span>var)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Year"</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Value"</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Time Series of Multiple Variables"</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>plt.xticks(<span class="bu">range</span>(<span class="dv">1980</span>, <span class="dv">2026</span>, <span class="dv">5</span>), rotation<span class="op">=</span><span class="dv">40</span>)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">"upper left"</span>, bbox_to_anchor<span class="op">=</span>(<span class="dv">1</span>, <span class="dv">1</span>), ncol<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -789,124 +789,124 @@ window.Quarto = {
 <section id="出口份额占比" class="level3" data-number="23.2.1">
 <h3 data-number="23.2.1" class="anchored" data-anchor-id="出口份额占比"><span class="header-section-number">23.2.1</span> 出口份额占比</h3>
 <div id="871da67b" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
-<span id="cb4-4"><a href="#cb4-4"></a></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co"># 读取数据</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"data/GMD.csv"</span>)</span>
-<span id="cb4-7"><a href="#cb4-7"></a></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="co"># 定义年份范围与国家代码</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a>start_year <span class="op">=</span> <span class="dv">1900</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a>end_year <span class="op">=</span> <span class="dv">2024</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a>cname <span class="op">=</span> [<span class="st">"USA"</span>, <span class="st">"DEU"</span>, <span class="st">"FRA"</span>, <span class="st">"GBR"</span>, <span class="st">"JPN"</span>, <span class="st">"CHN"</span>]</span>
-<span id="cb4-12"><a href="#cb4-12"></a></span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="co"># 创建以美元计价的出口数据</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a>data[<span class="st">"exports_USD"</span>] <span class="op">=</span> data[<span class="st">"exports"</span>] <span class="op">/</span> data[<span class="st">"USDfx"</span>]</span>
-<span id="cb4-15"><a href="#cb4-15"></a></span>
-<span id="cb4-16"><a href="#cb4-16"></a><span class="co"># 删除数据质量较差的国家</span></span>
-<span id="cb4-17"><a href="#cb4-17"></a>invalid_countries <span class="op">=</span> [<span class="st">"MMR"</span>, <span class="st">"SLE"</span>, <span class="st">"ROU"</span>, <span class="st">"ZWE"</span>, <span class="st">"POL"</span>, <span class="st">"YUG"</span>]</span>
-<span id="cb4-18"><a href="#cb4-18"></a>data <span class="op">=</span> data[<span class="op">~</span>data[<span class="st">"ISO3"</span>].isin(invalid_countries)]</span>
-<span id="cb4-19"><a href="#cb4-19"></a></span>
-<span id="cb4-20"><a href="#cb4-20"></a><span class="co"># 保留必要变量并选择样本区间</span></span>
-<span id="cb4-21"><a href="#cb4-21"></a>data <span class="op">=</span> data[[<span class="st">"ISO3"</span>, <span class="st">"year"</span>, <span class="st">"exports_USD"</span>]].dropna()</span>
-<span id="cb4-22"><a href="#cb4-22"></a>data <span class="op">=</span> data[(data[<span class="st">"year"</span>] <span class="op">&gt;=</span> start_year) <span class="op">&amp;</span> (data[<span class="st">"year"</span>] <span class="op">&lt;=</span> end_year)]</span>
-<span id="cb4-23"><a href="#cb4-23"></a></span>
-<span id="cb4-24"><a href="#cb4-24"></a><span class="co"># 等价写法</span></span>
-<span id="cb4-25"><a href="#cb4-25"></a>data <span class="op">=</span> data.query(<span class="st">"@start_year &lt;= year &lt;= @end_year"</span>)</span>
-<span id="cb4-26"><a href="#cb4-26"></a><span class="co"># 筛选出年份在指定范围内的数据</span></span>
-<span id="cb4-27"><a href="#cb4-27"></a><span class="co"># 使用 start_year 和 end_year 变量定义的年份范围进行过滤</span></span>
-<span id="cb4-28"><a href="#cb4-28"></a><span class="co"># 这里使用了 @varname 的方式来引用变量，@ 符号用于在 query 方法中直接引用 Python 变量</span></span>
-<span id="cb4-29"><a href="#cb4-29"></a><span class="co"># 这种写法允许我们在 Pandas 的 query 方法中使用 Python 变量进行动态过滤</span></span>
-<span id="cb4-30"><a href="#cb4-30"></a></span>
-<span id="cb4-31"><a href="#cb4-31"></a><span class="co"># 计算每年全球总出口额</span></span>
-<span id="cb4-32"><a href="#cb4-32"></a>data[<span class="st">"total_exports"</span>] <span class="op">=</span> data.groupby(<span class="st">"year"</span>)[<span class="st">"exports_USD"</span>].transform(<span class="st">"sum"</span>)</span>
-<span id="cb4-33"><a href="#cb4-33"></a></span>
-<span id="cb4-34"><a href="#cb4-34"></a><span class="co"># 计算每个国家出口占比</span></span>
-<span id="cb4-35"><a href="#cb4-35"></a>data[<span class="st">"export_share"</span>] <span class="op">=</span> (data[<span class="st">"exports_USD"</span>] <span class="op">/</span> data[<span class="st">"total_exports"</span>]) <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb4-36"><a href="#cb4-36"></a></span>
-<span id="cb4-37"><a href="#cb4-37"></a><span class="co"># 保留目标国家与其他国家</span></span>
-<span id="cb4-38"><a href="#cb4-38"></a>data <span class="op">=</span> data[data[<span class="st">"ISO3"</span>].isin(cname) <span class="op">|</span> (data[<span class="st">"ISO3"</span>] <span class="op">!=</span> <span class="st">""</span>)]</span>
-<span id="cb4-39"><a href="#cb4-39"></a></span>
-<span id="cb4-40"><a href="#cb4-40"></a><span class="co"># 计算其他国家（ROW）的出口占比</span></span>
-<span id="cb4-41"><a href="#cb4-41"></a>data[<span class="st">"selected_sum"</span>] <span class="op">=</span> data.groupby(<span class="st">"year"</span>)[<span class="st">"export_share"</span>].transform(</span>
-<span id="cb4-42"><a href="#cb4-42"></a>    <span class="kw">lambda</span> x: x <span class="cf">if</span> data[<span class="st">"ISO3"</span>].isin(cname).<span class="bu">any</span>() <span class="cf">else</span> <span class="dv">0</span></span>
-<span id="cb4-43"><a href="#cb4-43"></a>)</span>
-<span id="cb4-44"><a href="#cb4-44"></a>data[<span class="st">"ROW_sum"</span>] <span class="op">=</span> data.groupby(<span class="st">"year"</span>)[<span class="st">"export_share"</span>].transform(</span>
-<span id="cb4-45"><a href="#cb4-45"></a>    <span class="kw">lambda</span> x: x <span class="cf">if</span> <span class="op">~</span>data[<span class="st">"ISO3"</span>].isin(cname).<span class="bu">any</span>() <span class="cf">else</span> <span class="dv">0</span></span>
-<span id="cb4-46"><a href="#cb4-46"></a>)</span>
-<span id="cb4-47"><a href="#cb4-47"></a></span>
-<span id="cb4-48"><a href="#cb4-48"></a><span class="co"># 创建排名变量并标注 ROW 与各国家</span></span>
-<span id="cb4-49"><a href="#cb4-49"></a>rank_map <span class="op">=</span> {<span class="st">"USA"</span>: <span class="dv">1</span>, <span class="st">"FRA"</span>: <span class="dv">2</span>, <span class="st">"GBR"</span>: <span class="dv">3</span>, <span class="st">"JPN"</span>: <span class="dv">4</span>, <span class="st">"CHN"</span>: <span class="dv">5</span>, <span class="st">"DEU"</span>: <span class="dv">6</span>}</span>
-<span id="cb4-50"><a href="#cb4-50"></a>data[<span class="st">"rank"</span>] <span class="op">=</span> data[<span class="st">"ISO3"</span>].<span class="bu">map</span>(rank_map)</span>
-<span id="cb4-51"><a href="#cb4-51"></a>data.loc[<span class="op">~</span>data[<span class="st">"ISO3"</span>].isin(cname), <span class="st">"ISO3"</span>] <span class="op">=</span> <span class="st">"ROW"</span></span>
-<span id="cb4-52"><a href="#cb4-52"></a>data.loc[data[<span class="st">"ISO3"</span>] <span class="op">==</span> <span class="st">"ROW"</span>, <span class="st">"export_share"</span>] <span class="op">=</span> data[<span class="st">"ROW_sum"</span>]</span>
-<span id="cb4-53"><a href="#cb4-53"></a></span>
-<span id="cb4-54"><a href="#cb4-54"></a><span class="co"># 保留唯一值并排序，计算累计占比</span></span>
-<span id="cb4-55"><a href="#cb4-55"></a>data <span class="op">=</span> data.drop_duplicates(subset<span class="op">=</span>[<span class="st">"ISO3"</span>, <span class="st">"year"</span>]).sort_values(by<span class="op">=</span>[<span class="st">"year"</span>, <span class="st">"rank"</span>])</span>
-<span id="cb4-56"><a href="#cb4-56"></a>data[<span class="st">"cum_share"</span>] <span class="op">=</span> data.groupby(<span class="st">"year"</span>)[<span class="st">"export_share"</span>].cumsum()</span>
-<span id="cb4-57"><a href="#cb4-57"></a></span>
-<span id="cb4-58"><a href="#cb4-58"></a><span class="co"># 设置图形样式</span></span>
-<span id="cb4-59"><a href="#cb4-59"></a>mpl.rcParams.update({</span>
-<span id="cb4-60"><a href="#cb4-60"></a>    <span class="st">"font.size"</span>: <span class="dv">12</span>,</span>
-<span id="cb4-61"><a href="#cb4-61"></a>    <span class="st">"axes.titlesize"</span>: <span class="dv">14</span>,</span>
-<span id="cb4-62"><a href="#cb4-62"></a>    <span class="st">"axes.labelsize"</span>: <span class="dv">12</span>,</span>
-<span id="cb4-63"><a href="#cb4-63"></a>    <span class="st">"legend.fontsize"</span>: <span class="dv">11</span>,</span>
-<span id="cb4-64"><a href="#cb4-64"></a>    <span class="st">"xtick.labelsize"</span>: <span class="dv">11</span>,</span>
-<span id="cb4-65"><a href="#cb4-65"></a>    <span class="st">"ytick.labelsize"</span>: <span class="dv">11</span>,</span>
-<span id="cb4-66"><a href="#cb4-66"></a>    <span class="st">"figure.dpi"</span>: <span class="dv">100</span>,</span>
-<span id="cb4-67"><a href="#cb4-67"></a>    <span class="st">"figure.facecolor"</span>: <span class="st">"white"</span>,</span>
-<span id="cb4-68"><a href="#cb4-68"></a>    <span class="st">"axes.facecolor"</span>: <span class="st">"white"</span>,</span>
-<span id="cb4-69"><a href="#cb4-69"></a>    <span class="st">"axes.edgecolor"</span>: <span class="st">"black"</span>,</span>
-<span id="cb4-70"><a href="#cb4-70"></a>    <span class="st">"axes.grid"</span>: <span class="va">True</span>,</span>
-<span id="cb4-71"><a href="#cb4-71"></a>    <span class="st">"grid.linestyle"</span>: <span class="st">"--"</span>,</span>
-<span id="cb4-72"><a href="#cb4-72"></a>    <span class="st">"grid.alpha"</span>: <span class="fl">0.5</span></span>
-<span id="cb4-73"><a href="#cb4-73"></a>})</span>
-<span id="cb4-74"><a href="#cb4-74"></a></span>
-<span id="cb4-75"><a href="#cb4-75"></a><span class="co"># 定义配色方案（对比度高）</span></span>
-<span id="cb4-76"><a href="#cb4-76"></a>bright_colors <span class="op">=</span> {</span>
-<span id="cb4-77"><a href="#cb4-77"></a>    <span class="st">"ROW"</span>: <span class="st">"#33FF00"</span>,    <span class="co"># lime green</span></span>
-<span id="cb4-78"><a href="#cb4-78"></a>    <span class="st">"DEU"</span>: <span class="st">"#0072B2"</span>,    <span class="co"># blue</span></span>
-<span id="cb4-79"><a href="#cb4-79"></a>    <span class="st">"CHN"</span>: <span class="st">"#FF0000"</span>,    <span class="co"># red</span></span>
-<span id="cb4-80"><a href="#cb4-80"></a>    <span class="st">"JPN"</span>: <span class="st">"#CC79A7"</span>,    <span class="co"># purple pink</span></span>
-<span id="cb4-81"><a href="#cb4-81"></a>    <span class="st">"GBR"</span>: <span class="st">"#E69F00"</span>,    <span class="co"># orange</span></span>
-<span id="cb4-82"><a href="#cb4-82"></a>    <span class="st">"FRA"</span>: <span class="st">"#56B4E9"</span>,    <span class="co"># sky blue</span></span>
-<span id="cb4-83"><a href="#cb4-83"></a>    <span class="st">"USA"</span>: <span class="st">"#000000"</span>,    <span class="co"># black</span></span>
-<span id="cb4-84"><a href="#cb4-84"></a>}</span>
-<span id="cb4-85"><a href="#cb4-85"></a></span>
-<span id="cb4-86"><a href="#cb4-86"></a><span class="co"># 定义图例名称映射（替换 ISO3 为更易懂的国家名）</span></span>
-<span id="cb4-87"><a href="#cb4-87"></a>label_map <span class="op">=</span> {</span>
-<span id="cb4-88"><a href="#cb4-88"></a>    <span class="st">"ROW"</span>: <span class="st">"Rest of World"</span>,</span>
-<span id="cb4-89"><a href="#cb4-89"></a>    <span class="st">"USA"</span>: <span class="st">"United States"</span>,</span>
-<span id="cb4-90"><a href="#cb4-90"></a>    <span class="st">"DEU"</span>: <span class="st">"Germany"</span>,</span>
-<span id="cb4-91"><a href="#cb4-91"></a>    <span class="st">"FRA"</span>: <span class="st">"France"</span>,</span>
-<span id="cb4-92"><a href="#cb4-92"></a>    <span class="st">"GBR"</span>: <span class="st">"United Kingdom"</span>,</span>
-<span id="cb4-93"><a href="#cb4-93"></a>    <span class="st">"JPN"</span>: <span class="st">"Japan"</span>,</span>
-<span id="cb4-94"><a href="#cb4-94"></a>    <span class="st">"CHN"</span>: <span class="st">"China"</span></span>
-<span id="cb4-95"><a href="#cb4-95"></a>}</span>
-<span id="cb4-96"><a href="#cb4-96"></a></span>
-<span id="cb4-97"><a href="#cb4-97"></a><span class="co"># 绘制图形</span></span>
-<span id="cb4-98"><a href="#cb4-98"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
-<span id="cb4-99"><a href="#cb4-99"></a><span class="cf">for</span> country <span class="kw">in</span> [<span class="st">"ROW"</span>, <span class="st">"DEU"</span>, <span class="st">"CHN"</span>, <span class="st">"JPN"</span>, <span class="st">"GBR"</span>, <span class="st">"FRA"</span>, <span class="st">"USA"</span>]:</span>
-<span id="cb4-100"><a href="#cb4-100"></a>    subset <span class="op">=</span> data[data[<span class="st">"ISO3"</span>] <span class="op">==</span> country]</span>
-<span id="cb4-101"><a href="#cb4-101"></a>    plt.fill_between(subset[<span class="st">"year"</span>], </span>
-<span id="cb4-102"><a href="#cb4-102"></a>                     subset[<span class="st">"cum_share"</span>],</span>
-<span id="cb4-103"><a href="#cb4-103"></a>                     label<span class="op">=</span>label_map[country],</span>
-<span id="cb4-104"><a href="#cb4-104"></a>                     color<span class="op">=</span>bright_colors[country],</span>
-<span id="cb4-105"><a href="#cb4-105"></a>                     alpha<span class="op">=</span><span class="fl">0.85</span>)</span>
-<span id="cb4-106"><a href="#cb4-106"></a></span>
-<span id="cb4-107"><a href="#cb4-107"></a><span class="co"># 设置标题、标签和图例</span></span>
-<span id="cb4-108"><a href="#cb4-108"></a>plt.xlabel(<span class="st">"Year"</span>)</span>
-<span id="cb4-109"><a href="#cb4-109"></a>plt.ylabel(<span class="st">"Share of Global Exports (%)"</span>)</span>
-<span id="cb4-110"><a href="#cb4-110"></a>plt.title(<span class="st">"Share of Global Exports by Country"</span>, pad<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb4-111"><a href="#cb4-111"></a>plt.ylim(<span class="dv">0</span>, <span class="dv">100</span>)</span>
-<span id="cb4-112"><a href="#cb4-112"></a>plt.xlim(start_year, end_year)</span>
-<span id="cb4-113"><a href="#cb4-113"></a></span>
-<span id="cb4-114"><a href="#cb4-114"></a><span class="co"># 图例设置：右上角、白色背景、透明框</span></span>
-<span id="cb4-115"><a href="#cb4-115"></a>plt.legend(title<span class="op">=</span><span class="st">"Country"</span>, loc<span class="op">=</span><span class="st">"upper right"</span>, </span>
-<span id="cb4-116"><a href="#cb4-116"></a>           frameon<span class="op">=</span><span class="va">True</span>, framealpha<span class="op">=</span><span class="fl">0.9</span>, facecolor<span class="op">=</span><span class="st">"white"</span>)</span>
-<span id="cb4-117"><a href="#cb4-117"></a>plt.tight_layout()</span>
-<span id="cb4-118"><a href="#cb4-118"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取数据</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"data/GMD.csv"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义年份范围与国家代码</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>start_year <span class="op">=</span> <span class="dv">1900</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>end_year <span class="op">=</span> <span class="dv">2024</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>cname <span class="op">=</span> [<span class="st">"USA"</span>, <span class="st">"DEU"</span>, <span class="st">"FRA"</span>, <span class="st">"GBR"</span>, <span class="st">"JPN"</span>, <span class="st">"CHN"</span>]</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建以美元计价的出口数据</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"exports_USD"</span>] <span class="op">=</span> data[<span class="st">"exports"</span>] <span class="op">/</span> data[<span class="st">"USDfx"</span>]</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 删除数据质量较差的国家</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>invalid_countries <span class="op">=</span> [<span class="st">"MMR"</span>, <span class="st">"SLE"</span>, <span class="st">"ROU"</span>, <span class="st">"ZWE"</span>, <span class="st">"POL"</span>, <span class="st">"YUG"</span>]</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[<span class="op">~</span>data[<span class="st">"ISO3"</span>].isin(invalid_countries)]</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 保留必要变量并选择样本区间</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[[<span class="st">"ISO3"</span>, <span class="st">"year"</span>, <span class="st">"exports_USD"</span>]].dropna()</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[(data[<span class="st">"year"</span>] <span class="op">&gt;=</span> start_year) <span class="op">&amp;</span> (data[<span class="st">"year"</span>] <span class="op">&lt;=</span> end_year)]</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 等价写法</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.query(<span class="st">"@start_year &lt;= year &lt;= @end_year"</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 筛选出年份在指定范围内的数据</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用 start_year 和 end_year 变量定义的年份范围进行过滤</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 这里使用了 @varname 的方式来引用变量，@ 符号用于在 query 方法中直接引用 Python 变量</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 这种写法允许我们在 Pandas 的 query 方法中使用 Python 变量进行动态过滤</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算每年全球总出口额</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"total_exports"</span>] <span class="op">=</span> data.groupby(<span class="st">"year"</span>)[<span class="st">"exports_USD"</span>].transform(<span class="st">"sum"</span>)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算每个国家出口占比</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"export_share"</span>] <span class="op">=</span> (data[<span class="st">"exports_USD"</span>] <span class="op">/</span> data[<span class="st">"total_exports"</span>]) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="co"># 保留目标国家与其他国家</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[data[<span class="st">"ISO3"</span>].isin(cname) <span class="op">|</span> (data[<span class="st">"ISO3"</span>] <span class="op">!=</span> <span class="st">""</span>)]</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算其他国家（ROW）的出口占比</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"selected_sum"</span>] <span class="op">=</span> data.groupby(<span class="st">"year"</span>)[<span class="st">"export_share"</span>].transform(</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> x: x <span class="cf">if</span> data[<span class="st">"ISO3"</span>].isin(cname).<span class="bu">any</span>() <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"ROW_sum"</span>] <span class="op">=</span> data.groupby(<span class="st">"year"</span>)[<span class="st">"export_share"</span>].transform(</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> x: x <span class="cf">if</span> <span class="op">~</span>data[<span class="st">"ISO3"</span>].isin(cname).<span class="bu">any</span>() <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建排名变量并标注 ROW 与各国家</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>rank_map <span class="op">=</span> {<span class="st">"USA"</span>: <span class="dv">1</span>, <span class="st">"FRA"</span>: <span class="dv">2</span>, <span class="st">"GBR"</span>: <span class="dv">3</span>, <span class="st">"JPN"</span>: <span class="dv">4</span>, <span class="st">"CHN"</span>: <span class="dv">5</span>, <span class="st">"DEU"</span>: <span class="dv">6</span>}</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"rank"</span>] <span class="op">=</span> data[<span class="st">"ISO3"</span>].<span class="bu">map</span>(rank_map)</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>data.loc[<span class="op">~</span>data[<span class="st">"ISO3"</span>].isin(cname), <span class="st">"ISO3"</span>] <span class="op">=</span> <span class="st">"ROW"</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>data.loc[data[<span class="st">"ISO3"</span>] <span class="op">==</span> <span class="st">"ROW"</span>, <span class="st">"export_share"</span>] <span class="op">=</span> data[<span class="st">"ROW_sum"</span>]</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="co"># 保留唯一值并排序，计算累计占比</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.drop_duplicates(subset<span class="op">=</span>[<span class="st">"ISO3"</span>, <span class="st">"year"</span>]).sort_values(by<span class="op">=</span>[<span class="st">"year"</span>, <span class="st">"rank"</span>])</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"cum_share"</span>] <span class="op">=</span> data.groupby(<span class="st">"year"</span>)[<span class="st">"export_share"</span>].cumsum()</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置图形样式</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>mpl.rcParams.update({</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>    <span class="st">"font.size"</span>: <span class="dv">12</span>,</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>    <span class="st">"axes.titlesize"</span>: <span class="dv">14</span>,</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>    <span class="st">"axes.labelsize"</span>: <span class="dv">12</span>,</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>    <span class="st">"legend.fontsize"</span>: <span class="dv">11</span>,</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>    <span class="st">"xtick.labelsize"</span>: <span class="dv">11</span>,</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ytick.labelsize"</span>: <span class="dv">11</span>,</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>    <span class="st">"figure.dpi"</span>: <span class="dv">100</span>,</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>    <span class="st">"figure.facecolor"</span>: <span class="st">"white"</span>,</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>    <span class="st">"axes.facecolor"</span>: <span class="st">"white"</span>,</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>    <span class="st">"axes.edgecolor"</span>: <span class="st">"black"</span>,</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>    <span class="st">"axes.grid"</span>: <span class="va">True</span>,</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>    <span class="st">"grid.linestyle"</span>: <span class="st">"--"</span>,</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>    <span class="st">"grid.alpha"</span>: <span class="fl">0.5</span></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义配色方案（对比度高）</span></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>bright_colors <span class="op">=</span> {</span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ROW"</span>: <span class="st">"#33FF00"</span>,    <span class="co"># lime green</span></span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DEU"</span>: <span class="st">"#0072B2"</span>,    <span class="co"># blue</span></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CHN"</span>: <span class="st">"#FF0000"</span>,    <span class="co"># red</span></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>    <span class="st">"JPN"</span>: <span class="st">"#CC79A7"</span>,    <span class="co"># purple pink</span></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GBR"</span>: <span class="st">"#E69F00"</span>,    <span class="co"># orange</span></span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>    <span class="st">"FRA"</span>: <span class="st">"#56B4E9"</span>,    <span class="co"># sky blue</span></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>    <span class="st">"USA"</span>: <span class="st">"#000000"</span>,    <span class="co"># black</span></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义图例名称映射（替换 ISO3 为更易懂的国家名）</span></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>label_map <span class="op">=</span> {</span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ROW"</span>: <span class="st">"Rest of World"</span>,</span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>    <span class="st">"USA"</span>: <span class="st">"United States"</span>,</span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DEU"</span>: <span class="st">"Germany"</span>,</span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>    <span class="st">"FRA"</span>: <span class="st">"France"</span>,</span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GBR"</span>: <span class="st">"United Kingdom"</span>,</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>    <span class="st">"JPN"</span>: <span class="st">"Japan"</span>,</span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CHN"</span>: <span class="st">"China"</span></span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制图形</span></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> country <span class="kw">in</span> [<span class="st">"ROW"</span>, <span class="st">"DEU"</span>, <span class="st">"CHN"</span>, <span class="st">"JPN"</span>, <span class="st">"GBR"</span>, <span class="st">"FRA"</span>, <span class="st">"USA"</span>]:</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>    subset <span class="op">=</span> data[data[<span class="st">"ISO3"</span>] <span class="op">==</span> country]</span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>    plt.fill_between(subset[<span class="st">"year"</span>], </span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>                     subset[<span class="st">"cum_share"</span>],</span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>                     label<span class="op">=</span>label_map[country],</span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>                     color<span class="op">=</span>bright_colors[country],</span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>                     alpha<span class="op">=</span><span class="fl">0.85</span>)</span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置标题、标签和图例</span></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Year"</span>)</span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Share of Global Exports (%)"</span>)</span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Share of Global Exports by Country"</span>, pad<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="dv">100</span>)</span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>plt.xlim(start_year, end_year)</span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a><span class="co"># 图例设置：右上角、白色背景、透明框</span></span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>plt.legend(title<span class="op">=</span><span class="st">"Country"</span>, loc<span class="op">=</span><span class="st">"upper right"</span>, </span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a>           frameon<span class="op">=</span><span class="va">True</span>, framealpha<span class="op">=</span><span class="fl">0.9</span>, facecolor<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -919,126 +919,126 @@ window.Quarto = {
 <section id="动态图形" class="level3" data-number="23.2.2">
 <h3 data-number="23.2.2" class="anchored" data-anchor-id="动态图形"><span class="header-section-number">23.2.2</span> 动态图形</h3>
 <div id="aefe0762" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="im">import</span> matplotlib.animation <span class="im">as</span> animation</span>
-<span id="cb5-5"><a href="#cb5-5"></a></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="co"># 下载数据</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="co"># url = "https://www.globalmacrodata.com/GMD.csv"</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="co"># data = pd.read_csv(url)</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="co"># 读取数据</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"data/GMD.csv"</span>)</span>
-<span id="cb5-12"><a href="#cb5-12"></a></span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="co"># 参数设置</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a>start_year <span class="op">=</span> <span class="dv">1900</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a>end_year <span class="op">=</span> <span class="dv">2024</span></span>
-<span id="cb5-16"><a href="#cb5-16"></a>year_interval <span class="op">=</span> <span class="dv">2</span>  <span class="co"># 动画间隔</span></span>
-<span id="cb5-17"><a href="#cb5-17"></a>years <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(start_year, end_year <span class="op">+</span> <span class="dv">1</span>, year_interval))</span>
-<span id="cb5-18"><a href="#cb5-18"></a>cname <span class="op">=</span> [<span class="st">"USA"</span>, <span class="st">"DEU"</span>, <span class="st">"FRA"</span>, <span class="st">"GBR"</span>, <span class="st">"JPN"</span>, <span class="st">"CHN"</span>]</span>
-<span id="cb5-19"><a href="#cb5-19"></a></span>
-<span id="cb5-20"><a href="#cb5-20"></a><span class="co"># 数据处理</span></span>
-<span id="cb5-21"><a href="#cb5-21"></a><span class="co"># 将出口数据转换为以美元计价</span></span>
-<span id="cb5-22"><a href="#cb5-22"></a>data[<span class="st">"exports_USD"</span>] <span class="op">=</span> data[<span class="st">"exports"</span>] <span class="op">/</span> data[<span class="st">"USDfx"</span>]</span>
-<span id="cb5-23"><a href="#cb5-23"></a></span>
-<span id="cb5-24"><a href="#cb5-24"></a><span class="co"># 删除数据质量较差的国家</span></span>
-<span id="cb5-25"><a href="#cb5-25"></a>data <span class="op">=</span> data[<span class="op">~</span>data[<span class="st">"ISO3"</span>].isin([<span class="st">"MMR"</span>, <span class="st">"SLE"</span>, <span class="st">"ROU"</span>, <span class="st">"ZWE"</span>, <span class="st">"POL"</span>, <span class="st">"YUG"</span>])]</span>
-<span id="cb5-26"><a href="#cb5-26"></a></span>
-<span id="cb5-27"><a href="#cb5-27"></a><span class="co"># 保留必要的变量并删除缺失值</span></span>
-<span id="cb5-28"><a href="#cb5-28"></a>data <span class="op">=</span> data[[<span class="st">"ISO3"</span>, <span class="st">"year"</span>, <span class="st">"exports_USD"</span>]].dropna()</span>
-<span id="cb5-29"><a href="#cb5-29"></a></span>
-<span id="cb5-30"><a href="#cb5-30"></a><span class="co"># 筛选出指定年份范围内的数据</span></span>
-<span id="cb5-31"><a href="#cb5-31"></a>data <span class="op">=</span> data[(data[<span class="st">"year"</span>] <span class="op">&gt;=</span> start_year) <span class="op">&amp;</span> (data[<span class="st">"year"</span>] <span class="op">&lt;=</span> end_year)]</span>
-<span id="cb5-32"><a href="#cb5-32"></a></span>
-<span id="cb5-33"><a href="#cb5-33"></a><span class="co"># 计算每年全球总出口额</span></span>
-<span id="cb5-34"><a href="#cb5-34"></a>data[<span class="st">"total_exports"</span>] <span class="op">=</span> data.groupby(<span class="st">"year"</span>)[<span class="st">"exports_USD"</span>].transform(<span class="st">"sum"</span>)</span>
-<span id="cb5-35"><a href="#cb5-35"></a></span>
-<span id="cb5-36"><a href="#cb5-36"></a><span class="co"># 计算每个国家的出口占比</span></span>
-<span id="cb5-37"><a href="#cb5-37"></a>data[<span class="st">"export_share"</span>] <span class="op">=</span> data[<span class="st">"exports_USD"</span>] <span class="op">/</span> data[<span class="st">"total_exports"</span>] <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb5-38"><a href="#cb5-38"></a></span>
-<span id="cb5-39"><a href="#cb5-39"></a><span class="co"># 保留目标国家和其他国家的数据</span></span>
-<span id="cb5-40"><a href="#cb5-40"></a>data <span class="op">=</span> data[data[<span class="st">"ISO3"</span>].isin(cname) <span class="op">|</span> (data[<span class="st">"ISO3"</span>] <span class="op">!=</span> <span class="st">""</span>)]</span>
-<span id="cb5-41"><a href="#cb5-41"></a></span>
-<span id="cb5-42"><a href="#cb5-42"></a><span class="co"># 计算目标国家的出口占比总和</span></span>
-<span id="cb5-43"><a href="#cb5-43"></a>data[<span class="st">"selected_sum"</span>] <span class="op">=</span> data.groupby(<span class="st">"year"</span>)[<span class="st">"export_share"</span>].transform(</span>
-<span id="cb5-44"><a href="#cb5-44"></a>    <span class="kw">lambda</span> x: x <span class="cf">if</span> data[<span class="st">"ISO3"</span>].isin(cname).<span class="bu">any</span>() <span class="cf">else</span> <span class="dv">0</span></span>
-<span id="cb5-45"><a href="#cb5-45"></a>)</span>
-<span id="cb5-46"><a href="#cb5-46"></a></span>
-<span id="cb5-47"><a href="#cb5-47"></a><span class="co"># 计算其他国家（ROW）的出口占比总和</span></span>
-<span id="cb5-48"><a href="#cb5-48"></a>data[<span class="st">"ROW_sum"</span>] <span class="op">=</span> data.groupby(<span class="st">"year"</span>)[<span class="st">"export_share"</span>].transform(</span>
-<span id="cb5-49"><a href="#cb5-49"></a>    <span class="kw">lambda</span> x: x <span class="cf">if</span> <span class="op">~</span>data[<span class="st">"ISO3"</span>].isin(cname).<span class="bu">any</span>() <span class="cf">else</span> <span class="dv">0</span></span>
-<span id="cb5-50"><a href="#cb5-50"></a>)</span>
-<span id="cb5-51"><a href="#cb5-51"></a></span>
-<span id="cb5-52"><a href="#cb5-52"></a><span class="co"># 将非目标国家标记为 "ROW" 并更新其出口占比</span></span>
-<span id="cb5-53"><a href="#cb5-53"></a>data.loc[<span class="op">~</span>data[<span class="st">"ISO3"</span>].isin(cname), <span class="st">"ISO3"</span>] <span class="op">=</span> <span class="st">"ROW"</span></span>
-<span id="cb5-54"><a href="#cb5-54"></a>data.loc[data[<span class="st">"ISO3"</span>] <span class="op">==</span> <span class="st">"ROW"</span>, <span class="st">"export_share"</span>] <span class="op">=</span> data[<span class="st">"ROW_sum"</span>]</span>
-<span id="cb5-55"><a href="#cb5-55"></a></span>
-<span id="cb5-56"><a href="#cb5-56"></a><span class="co"># 删除重复值，确保每个国家每年只有一条记录</span></span>
-<span id="cb5-57"><a href="#cb5-57"></a>data <span class="op">=</span> data.drop_duplicates(subset<span class="op">=</span>[<span class="st">"ISO3"</span>, <span class="st">"year"</span>])</span>
-<span id="cb5-58"><a href="#cb5-58"></a></span>
-<span id="cb5-59"><a href="#cb5-59"></a><span class="co"># 设置样式</span></span>
-<span id="cb5-60"><a href="#cb5-60"></a>mpl.rcParams.update({</span>
-<span id="cb5-61"><a href="#cb5-61"></a>    <span class="st">"font.size"</span>: <span class="dv">11</span>,</span>
-<span id="cb5-62"><a href="#cb5-62"></a>    <span class="st">"axes.titlesize"</span>: <span class="dv">15</span>,</span>
-<span id="cb5-63"><a href="#cb5-63"></a>    <span class="st">"axes.labelsize"</span>: <span class="dv">12</span>,</span>
-<span id="cb5-64"><a href="#cb5-64"></a>    <span class="st">"figure.dpi"</span>: <span class="dv">100</span>,</span>
-<span id="cb5-65"><a href="#cb5-65"></a>    <span class="st">"figure.facecolor"</span>: <span class="st">"white"</span>,</span>
-<span id="cb5-66"><a href="#cb5-66"></a>    <span class="st">"axes.grid"</span>: <span class="va">True</span>,</span>
-<span id="cb5-67"><a href="#cb5-67"></a>    <span class="st">"grid.linestyle"</span>: <span class="st">"--"</span>,</span>
-<span id="cb5-68"><a href="#cb5-68"></a>    <span class="st">"grid.alpha"</span>: <span class="fl">0.5</span></span>
-<span id="cb5-69"><a href="#cb5-69"></a>})</span>
-<span id="cb5-70"><a href="#cb5-70"></a></span>
-<span id="cb5-71"><a href="#cb5-71"></a><span class="co"># 颜色与国家名映射</span></span>
-<span id="cb5-72"><a href="#cb5-72"></a>bright_colors <span class="op">=</span> {</span>
-<span id="cb5-73"><a href="#cb5-73"></a>    <span class="st">"ROW"</span>: <span class="st">"#33FF00"</span>,</span>
-<span id="cb5-74"><a href="#cb5-74"></a>    <span class="st">"DEU"</span>: <span class="st">"#0072B2"</span>,</span>
-<span id="cb5-75"><a href="#cb5-75"></a>    <span class="st">"CHN"</span>: <span class="st">"#FF0000"</span>,</span>
-<span id="cb5-76"><a href="#cb5-76"></a>    <span class="st">"JPN"</span>: <span class="st">"#CC79A7"</span>,</span>
-<span id="cb5-77"><a href="#cb5-77"></a>    <span class="st">"GBR"</span>: <span class="st">"#E69F00"</span>,</span>
-<span id="cb5-78"><a href="#cb5-78"></a>    <span class="st">"FRA"</span>: <span class="st">"#56B4E9"</span>,</span>
-<span id="cb5-79"><a href="#cb5-79"></a>    <span class="st">"USA"</span>: <span class="st">"#000000"</span>,</span>
-<span id="cb5-80"><a href="#cb5-80"></a>}</span>
-<span id="cb5-81"><a href="#cb5-81"></a>label_map <span class="op">=</span> {</span>
-<span id="cb5-82"><a href="#cb5-82"></a>    <span class="st">"ROW"</span>: <span class="st">"Others"</span>,</span>
-<span id="cb5-83"><a href="#cb5-83"></a>    <span class="st">"USA"</span>: <span class="st">"USA"</span>,</span>
-<span id="cb5-84"><a href="#cb5-84"></a>    <span class="st">"DEU"</span>: <span class="st">"Germany"</span>,</span>
-<span id="cb5-85"><a href="#cb5-85"></a>    <span class="st">"FRA"</span>: <span class="st">"France"</span>,</span>
-<span id="cb5-86"><a href="#cb5-86"></a>    <span class="st">"GBR"</span>: <span class="st">"UK"</span>,</span>
-<span id="cb5-87"><a href="#cb5-87"></a>    <span class="st">"JPN"</span>: <span class="st">"Japan"</span>,</span>
-<span id="cb5-88"><a href="#cb5-88"></a>    <span class="st">"CHN"</span>: <span class="st">"China"</span></span>
-<span id="cb5-89"><a href="#cb5-89"></a>}</span>
-<span id="cb5-90"><a href="#cb5-90"></a></span>
-<span id="cb5-91"><a href="#cb5-91"></a><span class="co"># 创建动画</span></span>
-<span id="cb5-92"><a href="#cb5-92"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
-<span id="cb5-93"><a href="#cb5-93"></a></span>
-<span id="cb5-94"><a href="#cb5-94"></a><span class="kw">def</span> update(year):</span>
-<span id="cb5-95"><a href="#cb5-95"></a>    ax.clear()</span>
-<span id="cb5-96"><a href="#cb5-96"></a>    year_data <span class="op">=</span> data[data[<span class="st">"year"</span>] <span class="op">==</span> year].copy()</span>
-<span id="cb5-97"><a href="#cb5-97"></a>    year_data <span class="op">=</span> year_data.groupby(<span class="st">"ISO3"</span>)[<span class="st">"export_share"</span>].<span class="bu">sum</span>().reset_index()</span>
-<span id="cb5-98"><a href="#cb5-98"></a>    year_data <span class="op">=</span> year_data.sort_values(<span class="st">"export_share"</span>, ascending<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-99"><a href="#cb5-99"></a>    </span>
-<span id="cb5-100"><a href="#cb5-100"></a>    bars <span class="op">=</span> ax.barh(</span>
-<span id="cb5-101"><a href="#cb5-101"></a>        [label_map[c] <span class="cf">for</span> c <span class="kw">in</span> year_data[<span class="st">"ISO3"</span>]],</span>
-<span id="cb5-102"><a href="#cb5-102"></a>        year_data[<span class="st">"export_share"</span>],</span>
-<span id="cb5-103"><a href="#cb5-103"></a>        color<span class="op">=</span>[bright_colors.get(c, <span class="st">"#999999"</span>) <span class="cf">for</span> c <span class="kw">in</span> year_data[<span class="st">"ISO3"</span>]],</span>
-<span id="cb5-104"><a href="#cb5-104"></a>        alpha<span class="op">=</span><span class="fl">0.85</span></span>
-<span id="cb5-105"><a href="#cb5-105"></a>    )</span>
-<span id="cb5-106"><a href="#cb5-106"></a>    </span>
-<span id="cb5-107"><a href="#cb5-107"></a>    <span class="cf">for</span> bar, val <span class="kw">in</span> <span class="bu">zip</span>(bars, year_data[<span class="st">"export_share"</span>]):</span>
-<span id="cb5-108"><a href="#cb5-108"></a>        ax.text(val <span class="op">+</span> <span class="fl">0.5</span>, bar.get_y() <span class="op">+</span> bar.get_height()<span class="op">/</span><span class="dv">2</span>,</span>
-<span id="cb5-109"><a href="#cb5-109"></a>                <span class="ss">f"</span><span class="sc">{</span>val<span class="sc">:.1f}</span><span class="ss">%"</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb5-110"><a href="#cb5-110"></a></span>
-<span id="cb5-111"><a href="#cb5-111"></a>    ax.set_xlim(<span class="dv">0</span>, <span class="dv">60</span>)</span>
-<span id="cb5-112"><a href="#cb5-112"></a>    ax.set_title(<span class="ss">f"Global Export Share by Country - </span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb5-113"><a href="#cb5-113"></a>    ax.set_xlabel(<span class="st">"Export Share (%)"</span>)</span>
-<span id="cb5-114"><a href="#cb5-114"></a>    ax.set_ylabel(<span class="st">"Country"</span>)</span>
-<span id="cb5-115"><a href="#cb5-115"></a>    ax.grid(<span class="va">True</span>, axis<span class="op">=</span><span class="st">"x"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb5-116"><a href="#cb5-116"></a></span>
-<span id="cb5-117"><a href="#cb5-117"></a>ani <span class="op">=</span> animation.FuncAnimation(fig, update, frames<span class="op">=</span>years, interval<span class="op">=</span><span class="dv">600</span>, repeat<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb5-118"><a href="#cb5-118"></a></span>
-<span id="cb5-119"><a href="#cb5-119"></a><span class="co"># 保存动画（也可改为 .mp4 需要 ffmpeg）</span></span>
-<span id="cb5-120"><a href="#cb5-120"></a>ani.save(<span class="st">"figs/export_share_animation.gif"</span>, writer<span class="op">=</span><span class="st">"pillow"</span>, dpi<span class="op">=</span><span class="dv">120</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.animation <span class="im">as</span> animation</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 下载数据</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># url = "https://www.globalmacrodata.com/GMD.csv"</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># data = pd.read_csv(url)</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取数据</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"data/GMD.csv"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 参数设置</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>start_year <span class="op">=</span> <span class="dv">1900</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>end_year <span class="op">=</span> <span class="dv">2024</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>year_interval <span class="op">=</span> <span class="dv">2</span>  <span class="co"># 动画间隔</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(start_year, end_year <span class="op">+</span> <span class="dv">1</span>, year_interval))</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>cname <span class="op">=</span> [<span class="st">"USA"</span>, <span class="st">"DEU"</span>, <span class="st">"FRA"</span>, <span class="st">"GBR"</span>, <span class="st">"JPN"</span>, <span class="st">"CHN"</span>]</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 数据处理</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 将出口数据转换为以美元计价</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"exports_USD"</span>] <span class="op">=</span> data[<span class="st">"exports"</span>] <span class="op">/</span> data[<span class="st">"USDfx"</span>]</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 删除数据质量较差的国家</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[<span class="op">~</span>data[<span class="st">"ISO3"</span>].isin([<span class="st">"MMR"</span>, <span class="st">"SLE"</span>, <span class="st">"ROU"</span>, <span class="st">"ZWE"</span>, <span class="st">"POL"</span>, <span class="st">"YUG"</span>])]</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="co"># 保留必要的变量并删除缺失值</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[[<span class="st">"ISO3"</span>, <span class="st">"year"</span>, <span class="st">"exports_USD"</span>]].dropna()</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="co"># 筛选出指定年份范围内的数据</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[(data[<span class="st">"year"</span>] <span class="op">&gt;=</span> start_year) <span class="op">&amp;</span> (data[<span class="st">"year"</span>] <span class="op">&lt;=</span> end_year)]</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算每年全球总出口额</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"total_exports"</span>] <span class="op">=</span> data.groupby(<span class="st">"year"</span>)[<span class="st">"exports_USD"</span>].transform(<span class="st">"sum"</span>)</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算每个国家的出口占比</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"export_share"</span>] <span class="op">=</span> data[<span class="st">"exports_USD"</span>] <span class="op">/</span> data[<span class="st">"total_exports"</span>] <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="co"># 保留目标国家和其他国家的数据</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[data[<span class="st">"ISO3"</span>].isin(cname) <span class="op">|</span> (data[<span class="st">"ISO3"</span>] <span class="op">!=</span> <span class="st">""</span>)]</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算目标国家的出口占比总和</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"selected_sum"</span>] <span class="op">=</span> data.groupby(<span class="st">"year"</span>)[<span class="st">"export_share"</span>].transform(</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> x: x <span class="cf">if</span> data[<span class="st">"ISO3"</span>].isin(cname).<span class="bu">any</span>() <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算其他国家（ROW）的出口占比总和</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"ROW_sum"</span>] <span class="op">=</span> data.groupby(<span class="st">"year"</span>)[<span class="st">"export_share"</span>].transform(</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> x: x <span class="cf">if</span> <span class="op">~</span>data[<span class="st">"ISO3"</span>].isin(cname).<span class="bu">any</span>() <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="co"># 将非目标国家标记为 "ROW" 并更新其出口占比</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>data.loc[<span class="op">~</span>data[<span class="st">"ISO3"</span>].isin(cname), <span class="st">"ISO3"</span>] <span class="op">=</span> <span class="st">"ROW"</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>data.loc[data[<span class="st">"ISO3"</span>] <span class="op">==</span> <span class="st">"ROW"</span>, <span class="st">"export_share"</span>] <span class="op">=</span> data[<span class="st">"ROW_sum"</span>]</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="co"># 删除重复值，确保每个国家每年只有一条记录</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.drop_duplicates(subset<span class="op">=</span>[<span class="st">"ISO3"</span>, <span class="st">"year"</span>])</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置样式</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>mpl.rcParams.update({</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>    <span class="st">"font.size"</span>: <span class="dv">11</span>,</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>    <span class="st">"axes.titlesize"</span>: <span class="dv">15</span>,</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>    <span class="st">"axes.labelsize"</span>: <span class="dv">12</span>,</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>    <span class="st">"figure.dpi"</span>: <span class="dv">100</span>,</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>    <span class="st">"figure.facecolor"</span>: <span class="st">"white"</span>,</span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>    <span class="st">"axes.grid"</span>: <span class="va">True</span>,</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>    <span class="st">"grid.linestyle"</span>: <span class="st">"--"</span>,</span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>    <span class="st">"grid.alpha"</span>: <span class="fl">0.5</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="co"># 颜色与国家名映射</span></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>bright_colors <span class="op">=</span> {</span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ROW"</span>: <span class="st">"#33FF00"</span>,</span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DEU"</span>: <span class="st">"#0072B2"</span>,</span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CHN"</span>: <span class="st">"#FF0000"</span>,</span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>    <span class="st">"JPN"</span>: <span class="st">"#CC79A7"</span>,</span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GBR"</span>: <span class="st">"#E69F00"</span>,</span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>    <span class="st">"FRA"</span>: <span class="st">"#56B4E9"</span>,</span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>    <span class="st">"USA"</span>: <span class="st">"#000000"</span>,</span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>label_map <span class="op">=</span> {</span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ROW"</span>: <span class="st">"Others"</span>,</span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>    <span class="st">"USA"</span>: <span class="st">"USA"</span>,</span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DEU"</span>: <span class="st">"Germany"</span>,</span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>    <span class="st">"FRA"</span>: <span class="st">"France"</span>,</span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GBR"</span>: <span class="st">"UK"</span>,</span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>    <span class="st">"JPN"</span>: <span class="st">"Japan"</span>,</span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CHN"</span>: <span class="st">"China"</span></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建动画</span></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update(year):</span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>    ax.clear()</span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>    year_data <span class="op">=</span> data[data[<span class="st">"year"</span>] <span class="op">==</span> year].copy()</span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>    year_data <span class="op">=</span> year_data.groupby(<span class="st">"ISO3"</span>)[<span class="st">"export_share"</span>].<span class="bu">sum</span>().reset_index()</span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>    year_data <span class="op">=</span> year_data.sort_values(<span class="st">"export_share"</span>, ascending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>    bars <span class="op">=</span> ax.barh(</span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>        [label_map[c] <span class="cf">for</span> c <span class="kw">in</span> year_data[<span class="st">"ISO3"</span>]],</span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>        year_data[<span class="st">"export_share"</span>],</span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>[bright_colors.get(c, <span class="st">"#999999"</span>) <span class="cf">for</span> c <span class="kw">in</span> year_data[<span class="st">"ISO3"</span>]],</span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>        alpha<span class="op">=</span><span class="fl">0.85</span></span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> bar, val <span class="kw">in</span> <span class="bu">zip</span>(bars, year_data[<span class="st">"export_share"</span>]):</span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>        ax.text(val <span class="op">+</span> <span class="fl">0.5</span>, bar.get_y() <span class="op">+</span> bar.get_height()<span class="op">/</span><span class="dv">2</span>,</span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a>                <span class="ss">f"</span><span class="sc">{</span>val<span class="sc">:.1f}</span><span class="ss">%"</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(<span class="dv">0</span>, <span class="dv">60</span>)</span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f"Global Export Share by Country - </span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">"Export Share (%)"</span>)</span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">"Country"</span>)</span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>    ax.grid(<span class="va">True</span>, axis<span class="op">=</span><span class="st">"x"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>ani <span class="op">=</span> animation.FuncAnimation(fig, update, frames<span class="op">=</span>years, interval<span class="op">=</span><span class="dv">600</span>, repeat<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存动画（也可改为 .mp4 需要 ffmpeg）</span></span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>ani.save(<span class="st">"figs/export_share_animation.gif"</span>, writer<span class="op">=</span><span class="st">"pillow"</span>, dpi<span class="op">=</span><span class="dv">120</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1048,9 +1048,9 @@ window.Quarto = {
 </div>
 </div>
 <div id="1d447567" class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># 显示 GIF 动图</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image</span>
-<span id="cb6-3"><a href="#cb6-3"></a>Image(filename<span class="op">=</span><span class="st">"figs/export_share_animation.gif"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 显示 GIF 动图</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>Image(filename<span class="op">=</span><span class="st">"figs/export_share_animation.gif"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1064,69 +1064,69 @@ window.Quarto = {
 <section id="出口份额排名分析" class="level2" data-number="23.3">
 <h2 data-number="23.3" class="anchored" data-anchor-id="出口份额排名分析"><span class="header-section-number">23.3</span> 出口份额排名分析</h2>
 <div id="3330888a" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb7-5"><a href="#cb7-5"></a></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="co"># 读取数据</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"data/GMD.csv"</span>)</span>
-<span id="cb7-8"><a href="#cb7-8"></a></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="co"># 主要国家列表</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a>cname <span class="op">=</span> [<span class="st">"USA"</span>, <span class="st">"DEU"</span>, <span class="st">"FRA"</span>, <span class="st">"GBR"</span>, <span class="st">"JPN"</span>, <span class="st">"CHN"</span>, <span class="st">"SGP"</span>, <span class="st">"NLD"</span>, <span class="st">"ITA"</span>, <span class="st">"IND"</span>, <span class="st">"KOR"</span>, <span class="st">"CAN"</span>]</span>
-<span id="cb7-11"><a href="#cb7-11"></a>label_map <span class="op">=</span> {</span>
-<span id="cb7-12"><a href="#cb7-12"></a>    <span class="st">"GBR"</span>: <span class="st">"UK"</span></span>
-<span id="cb7-13"><a href="#cb7-13"></a>}</span>
-<span id="cb7-14"><a href="#cb7-14"></a>start_year <span class="op">=</span> <span class="dv">1980</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a>end_year <span class="op">=</span> <span class="dv">2024</span></span>
-<span id="cb7-16"><a href="#cb7-16"></a></span>
-<span id="cb7-17"><a href="#cb7-17"></a><span class="co"># 计算出口占比</span></span>
-<span id="cb7-18"><a href="#cb7-18"></a>data <span class="op">=</span> data.copy()</span>
-<span id="cb7-19"><a href="#cb7-19"></a><span class="cf">if</span> <span class="st">"exports_USD"</span> <span class="kw">not</span> <span class="kw">in</span> data.columns:</span>
-<span id="cb7-20"><a href="#cb7-20"></a>    data[<span class="st">"exports_USD"</span>] <span class="op">=</span> data[<span class="st">"exports"</span>] <span class="op">/</span> data[<span class="st">"USDfx"</span>]</span>
-<span id="cb7-21"><a href="#cb7-21"></a>data[<span class="st">"total_exports"</span>] <span class="op">=</span> data.groupby(<span class="st">"year"</span>)[<span class="st">"exports_USD"</span>].transform(<span class="st">"sum"</span>)</span>
-<span id="cb7-22"><a href="#cb7-22"></a>data[<span class="st">"export_share"</span>] <span class="op">=</span> data[<span class="st">"exports_USD"</span>] <span class="op">/</span> data[<span class="st">"total_exports"</span>] <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb7-23"><a href="#cb7-23"></a></span>
-<span id="cb7-24"><a href="#cb7-24"></a><span class="co"># 只保留主要国家和年份范围</span></span>
-<span id="cb7-25"><a href="#cb7-25"></a>rank_data <span class="op">=</span> data[data[<span class="st">"ISO3"</span>].isin(cname) <span class="op">&amp;</span> (data[<span class="st">"year"</span>] <span class="op">&gt;=</span> start_year) <span class="op">&amp;</span> (data[<span class="st">"year"</span>] <span class="op">&lt;=</span> end_year)].copy()</span>
-<span id="cb7-26"><a href="#cb7-26"></a></span>
-<span id="cb7-27"><a href="#cb7-27"></a><span class="co"># 计算每年出口排名（1为最大）</span></span>
-<span id="cb7-28"><a href="#cb7-28"></a>rank_data[<span class="st">"rank"</span>] <span class="op">=</span> rank_data.groupby(<span class="st">"year"</span>)[<span class="st">"export_share"</span>].rank(ascending<span class="op">=</span><span class="va">False</span>, method<span class="op">=</span><span class="st">"min"</span>)</span>
-<span id="cb7-29"><a href="#cb7-29"></a></span>
-<span id="cb7-30"><a href="#cb7-30"></a><span class="co"># 绘制 bump chart</span></span>
-<span id="cb7-31"><a href="#cb7-31"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
-<span id="cb7-32"><a href="#cb7-32"></a><span class="cf">for</span> country <span class="kw">in</span> cname:</span>
-<span id="cb7-33"><a href="#cb7-33"></a>    country_data <span class="op">=</span> rank_data[rank_data[<span class="st">"ISO3"</span>] <span class="op">==</span> country]</span>
-<span id="cb7-34"><a href="#cb7-34"></a>    plt.plot(</span>
-<span id="cb7-35"><a href="#cb7-35"></a>        country_data[<span class="st">"year"</span>],</span>
-<span id="cb7-36"><a href="#cb7-36"></a>        country_data[<span class="st">"rank"</span>],</span>
-<span id="cb7-37"><a href="#cb7-37"></a>        label<span class="op">=</span>label_map.get(country, country),</span>
-<span id="cb7-38"><a href="#cb7-38"></a>        linewidth<span class="op">=</span><span class="dv">2</span></span>
-<span id="cb7-39"><a href="#cb7-39"></a>    )</span>
-<span id="cb7-40"><a href="#cb7-40"></a>    <span class="co"># 标注起止年份的国家名</span></span>
-<span id="cb7-41"><a href="#cb7-41"></a>    <span class="cf">if</span> <span class="kw">not</span> country_data.empty:</span>
-<span id="cb7-42"><a href="#cb7-42"></a>        plt.text(</span>
-<span id="cb7-43"><a href="#cb7-43"></a>            country_data[<span class="st">"year"</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="dv">1</span>,</span>
-<span id="cb7-44"><a href="#cb7-44"></a>            country_data[<span class="st">"rank"</span>].iloc[<span class="dv">0</span>],</span>
-<span id="cb7-45"><a href="#cb7-45"></a>            label_map.get(country, country),</span>
-<span id="cb7-46"><a href="#cb7-46"></a>            va<span class="op">=</span><span class="st">"center"</span>, ha<span class="op">=</span><span class="st">"right"</span>, fontsize<span class="op">=</span><span class="dv">10</span></span>
-<span id="cb7-47"><a href="#cb7-47"></a>        )</span>
-<span id="cb7-48"><a href="#cb7-48"></a>        plt.text(</span>
-<span id="cb7-49"><a href="#cb7-49"></a>            country_data[<span class="st">"year"</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="dv">1</span>,</span>
-<span id="cb7-50"><a href="#cb7-50"></a>            country_data[<span class="st">"rank"</span>].iloc[<span class="op">-</span><span class="dv">1</span>],</span>
-<span id="cb7-51"><a href="#cb7-51"></a>            label_map.get(country, country),</span>
-<span id="cb7-52"><a href="#cb7-52"></a>            va<span class="op">=</span><span class="st">"center"</span>, ha<span class="op">=</span><span class="st">"left"</span>, fontsize<span class="op">=</span><span class="dv">10</span></span>
-<span id="cb7-53"><a href="#cb7-53"></a>        )</span>
-<span id="cb7-54"><a href="#cb7-54"></a></span>
-<span id="cb7-55"><a href="#cb7-55"></a>plt.gca().invert_yaxis()  <span class="co"># 排名1在上</span></span>
-<span id="cb7-56"><a href="#cb7-56"></a>plt.yticks(np.arange(<span class="dv">1</span>, <span class="bu">len</span>(cname) <span class="op">+</span> <span class="dv">1</span>))</span>
-<span id="cb7-57"><a href="#cb7-57"></a>plt.xlabel(<span class="st">"Year"</span>)</span>
-<span id="cb7-58"><a href="#cb7-58"></a>plt.ylabel(<span class="st">"Rank of Export Share"</span>)</span>
-<span id="cb7-59"><a href="#cb7-59"></a>plt.title(<span class="st">"Export Share Ranking of Major Countries (1900-2024)"</span>)</span>
-<span id="cb7-60"><a href="#cb7-60"></a>plt.xlim(start_year <span class="op">-</span> <span class="dv">5</span>, end_year <span class="op">+</span> <span class="dv">5</span>)</span>
-<span id="cb7-61"><a href="#cb7-61"></a>plt.grid(axis<span class="op">=</span><span class="st">"y"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb7-62"><a href="#cb7-62"></a>plt.tight_layout()</span>
-<span id="cb7-63"><a href="#cb7-63"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取数据</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"data/GMD.csv"</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 主要国家列表</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>cname <span class="op">=</span> [<span class="st">"USA"</span>, <span class="st">"DEU"</span>, <span class="st">"FRA"</span>, <span class="st">"GBR"</span>, <span class="st">"JPN"</span>, <span class="st">"CHN"</span>, <span class="st">"SGP"</span>, <span class="st">"NLD"</span>, <span class="st">"ITA"</span>, <span class="st">"IND"</span>, <span class="st">"KOR"</span>, <span class="st">"CAN"</span>]</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>label_map <span class="op">=</span> {</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GBR"</span>: <span class="st">"UK"</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>start_year <span class="op">=</span> <span class="dv">1980</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>end_year <span class="op">=</span> <span class="dv">2024</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算出口占比</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.copy()</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"exports_USD"</span> <span class="kw">not</span> <span class="kw">in</span> data.columns:</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    data[<span class="st">"exports_USD"</span>] <span class="op">=</span> data[<span class="st">"exports"</span>] <span class="op">/</span> data[<span class="st">"USDfx"</span>]</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"total_exports"</span>] <span class="op">=</span> data.groupby(<span class="st">"year"</span>)[<span class="st">"exports_USD"</span>].transform(<span class="st">"sum"</span>)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"export_share"</span>] <span class="op">=</span> data[<span class="st">"exports_USD"</span>] <span class="op">/</span> data[<span class="st">"total_exports"</span>] <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 只保留主要国家和年份范围</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>rank_data <span class="op">=</span> data[data[<span class="st">"ISO3"</span>].isin(cname) <span class="op">&amp;</span> (data[<span class="st">"year"</span>] <span class="op">&gt;=</span> start_year) <span class="op">&amp;</span> (data[<span class="st">"year"</span>] <span class="op">&lt;=</span> end_year)].copy()</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算每年出口排名（1为最大）</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>rank_data[<span class="st">"rank"</span>] <span class="op">=</span> rank_data.groupby(<span class="st">"year"</span>)[<span class="st">"export_share"</span>].rank(ascending<span class="op">=</span><span class="va">False</span>, method<span class="op">=</span><span class="st">"min"</span>)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制 bump chart</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> country <span class="kw">in</span> cname:</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    country_data <span class="op">=</span> rank_data[rank_data[<span class="st">"ISO3"</span>] <span class="op">==</span> country]</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    plt.plot(</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>        country_data[<span class="st">"year"</span>],</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>        country_data[<span class="st">"rank"</span>],</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span>label_map.get(country, country),</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>        linewidth<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 标注起止年份的国家名</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> country_data.empty:</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>        plt.text(</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>            country_data[<span class="st">"year"</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="dv">1</span>,</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>            country_data[<span class="st">"rank"</span>].iloc[<span class="dv">0</span>],</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>            label_map.get(country, country),</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>            va<span class="op">=</span><span class="st">"center"</span>, ha<span class="op">=</span><span class="st">"right"</span>, fontsize<span class="op">=</span><span class="dv">10</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>        plt.text(</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>            country_data[<span class="st">"year"</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="dv">1</span>,</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>            country_data[<span class="st">"rank"</span>].iloc[<span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>            label_map.get(country, country),</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>            va<span class="op">=</span><span class="st">"center"</span>, ha<span class="op">=</span><span class="st">"left"</span>, fontsize<span class="op">=</span><span class="dv">10</span></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>plt.gca().invert_yaxis()  <span class="co"># 排名1在上</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>plt.yticks(np.arange(<span class="dv">1</span>, <span class="bu">len</span>(cname) <span class="op">+</span> <span class="dv">1</span>))</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Year"</span>)</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Rank of Export Share"</span>)</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Export Share Ranking of Major Countries (1900-2024)"</span>)</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>plt.xlim(start_year <span class="op">-</span> <span class="dv">5</span>, end_year <span class="op">+</span> <span class="dv">5</span>)</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">"y"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1136,103 +1136,103 @@ window.Quarto = {
 </div>
 </div>
 <div id="d40f1046" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb8-5"><a href="#cb8-5"></a></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="co"># 读取数据</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"data/GMD.csv"</span>)</span>
-<span id="cb8-8"><a href="#cb8-8"></a></span>
-<span id="cb8-9"><a href="#cb8-9"></a><span class="co"># 主要国家列表</span></span>
-<span id="cb8-10"><a href="#cb8-10"></a>cname <span class="op">=</span> [<span class="st">"USA"</span>, <span class="st">"DEU"</span>, <span class="st">"FRA"</span>, <span class="st">"GBR"</span>, <span class="st">"JPN"</span>, <span class="st">"CHN"</span>, <span class="st">"SGP"</span>, <span class="st">"NLD"</span>, <span class="st">"ITA"</span>, <span class="st">"IND"</span>, <span class="st">"KOR"</span>, <span class="st">"CAN"</span>]</span>
-<span id="cb8-11"><a href="#cb8-11"></a>label_map <span class="op">=</span> {</span>
-<span id="cb8-12"><a href="#cb8-12"></a>    <span class="st">"GBR"</span>: <span class="st">"UK"</span></span>
-<span id="cb8-13"><a href="#cb8-13"></a>}</span>
-<span id="cb8-14"><a href="#cb8-14"></a>start_year <span class="op">=</span> <span class="dv">1980</span></span>
-<span id="cb8-15"><a href="#cb8-15"></a>end_year <span class="op">=</span> <span class="dv">2024</span></span>
-<span id="cb8-16"><a href="#cb8-16"></a></span>
-<span id="cb8-17"><a href="#cb8-17"></a><span class="co"># 地区分组与颜色映射</span></span>
-<span id="cb8-18"><a href="#cb8-18"></a>country_region <span class="op">=</span> {</span>
-<span id="cb8-19"><a href="#cb8-19"></a>    <span class="st">"USA"</span>: <span class="st">"North America"</span>, <span class="st">"CAN"</span>: <span class="st">"North America"</span>,</span>
-<span id="cb8-20"><a href="#cb8-20"></a>    <span class="st">"DEU"</span>: <span class="st">"Europe"</span>, <span class="st">"FRA"</span>: <span class="st">"Europe"</span>, <span class="st">"GBR"</span>: <span class="st">"Europe"</span>,</span>
-<span id="cb8-21"><a href="#cb8-21"></a>    <span class="st">"ITA"</span>: <span class="st">"Europe"</span>, <span class="st">"NLD"</span>: <span class="st">"Europe"</span>,</span>
-<span id="cb8-22"><a href="#cb8-22"></a>    <span class="st">"CHN"</span>: <span class="st">"Asia"</span>, <span class="st">"JPN"</span>: <span class="st">"Asia"</span>, <span class="st">"KOR"</span>: <span class="st">"Asia"</span>,</span>
-<span id="cb8-23"><a href="#cb8-23"></a>    <span class="st">"IND"</span>: <span class="st">"Asia"</span>, <span class="st">"SGP"</span>: <span class="st">"Asia"</span></span>
-<span id="cb8-24"><a href="#cb8-24"></a>}</span>
-<span id="cb8-25"><a href="#cb8-25"></a>region_colors <span class="op">=</span> {</span>
-<span id="cb8-26"><a href="#cb8-26"></a>    <span class="st">"North America"</span>: <span class="st">"tab:blue"</span>,</span>
-<span id="cb8-27"><a href="#cb8-27"></a>    <span class="st">"Europe"</span>: <span class="st">"tab:green"</span>,</span>
-<span id="cb8-28"><a href="#cb8-28"></a>    <span class="st">"Asia"</span>: <span class="st">"tab:red"</span></span>
-<span id="cb8-29"><a href="#cb8-29"></a>}</span>
-<span id="cb8-30"><a href="#cb8-30"></a></span>
-<span id="cb8-31"><a href="#cb8-31"></a><span class="co"># 计算出口占比</span></span>
-<span id="cb8-32"><a href="#cb8-32"></a>data <span class="op">=</span> data.copy()</span>
-<span id="cb8-33"><a href="#cb8-33"></a><span class="cf">if</span> <span class="st">"exports_USD"</span> <span class="kw">not</span> <span class="kw">in</span> data.columns:</span>
-<span id="cb8-34"><a href="#cb8-34"></a>    data[<span class="st">"exports_USD"</span>] <span class="op">=</span> data[<span class="st">"exports"</span>] <span class="op">/</span> data[<span class="st">"USDfx"</span>]</span>
-<span id="cb8-35"><a href="#cb8-35"></a>data[<span class="st">"total_exports"</span>] <span class="op">=</span> data.groupby(<span class="st">"year"</span>)[<span class="st">"exports_USD"</span>].transform(<span class="st">"sum"</span>)</span>
-<span id="cb8-36"><a href="#cb8-36"></a>data[<span class="st">"export_share"</span>] <span class="op">=</span> data[<span class="st">"exports_USD"</span>] <span class="op">/</span> data[<span class="st">"total_exports"</span>] <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb8-37"><a href="#cb8-37"></a></span>
-<span id="cb8-38"><a href="#cb8-38"></a><span class="co"># 筛选数据</span></span>
-<span id="cb8-39"><a href="#cb8-39"></a>rank_data <span class="op">=</span> data[data[<span class="st">"ISO3"</span>].isin(cname) <span class="op">&amp;</span> (data[<span class="st">"year"</span>] <span class="op">&gt;=</span> start_year) <span class="op">&amp;</span> (data[<span class="st">"year"</span>] <span class="op">&lt;=</span> end_year)].copy()</span>
-<span id="cb8-40"><a href="#cb8-40"></a></span>
-<span id="cb8-41"><a href="#cb8-41"></a><span class="co"># 计算排名（1为最大）</span></span>
-<span id="cb8-42"><a href="#cb8-42"></a>rank_data[<span class="st">"rank"</span>] <span class="op">=</span> rank_data.groupby(<span class="st">"year"</span>)[<span class="st">"export_share"</span>].rank(ascending<span class="op">=</span><span class="va">False</span>, method<span class="op">=</span><span class="st">"min"</span>)</span>
-<span id="cb8-43"><a href="#cb8-43"></a></span>
-<span id="cb8-44"><a href="#cb8-44"></a><span class="co"># 绘图</span></span>
-<span id="cb8-45"><a href="#cb8-45"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
-<span id="cb8-46"><a href="#cb8-46"></a></span>
-<span id="cb8-47"><a href="#cb8-47"></a><span class="cf">for</span> country <span class="kw">in</span> cname:</span>
-<span id="cb8-48"><a href="#cb8-48"></a>    country_data <span class="op">=</span> rank_data[rank_data[<span class="st">"ISO3"</span>] <span class="op">==</span> country]</span>
-<span id="cb8-49"><a href="#cb8-49"></a>    region <span class="op">=</span> country_region.get(country, <span class="st">"Other"</span>)</span>
-<span id="cb8-50"><a href="#cb8-50"></a>    color <span class="op">=</span> region_colors.get(region, <span class="st">"gray"</span>)</span>
-<span id="cb8-51"><a href="#cb8-51"></a>    label <span class="op">=</span> label_map.get(country, country)</span>
-<span id="cb8-52"><a href="#cb8-52"></a></span>
-<span id="cb8-53"><a href="#cb8-53"></a>    plt.plot(</span>
-<span id="cb8-54"><a href="#cb8-54"></a>        country_data[<span class="st">"year"</span>],</span>
-<span id="cb8-55"><a href="#cb8-55"></a>        country_data[<span class="st">"rank"</span>],</span>
-<span id="cb8-56"><a href="#cb8-56"></a>        label<span class="op">=</span>label,</span>
-<span id="cb8-57"><a href="#cb8-57"></a>        linewidth<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb8-58"><a href="#cb8-58"></a>        color<span class="op">=</span>color</span>
-<span id="cb8-59"><a href="#cb8-59"></a>    )</span>
-<span id="cb8-60"><a href="#cb8-60"></a></span>
-<span id="cb8-61"><a href="#cb8-61"></a>    <span class="co"># 添加起止年份标签</span></span>
-<span id="cb8-62"><a href="#cb8-62"></a>    <span class="cf">if</span> <span class="kw">not</span> country_data.empty:</span>
-<span id="cb8-63"><a href="#cb8-63"></a>        plt.text(</span>
-<span id="cb8-64"><a href="#cb8-64"></a>            country_data[<span class="st">"year"</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="dv">1</span>,</span>
-<span id="cb8-65"><a href="#cb8-65"></a>            country_data[<span class="st">"rank"</span>].iloc[<span class="dv">0</span>],</span>
-<span id="cb8-66"><a href="#cb8-66"></a>            label,</span>
-<span id="cb8-67"><a href="#cb8-67"></a>            va<span class="op">=</span><span class="st">"center"</span>, ha<span class="op">=</span><span class="st">"right"</span>, fontsize<span class="op">=</span><span class="dv">10</span>,</span>
-<span id="cb8-68"><a href="#cb8-68"></a>            color<span class="op">=</span>color</span>
-<span id="cb8-69"><a href="#cb8-69"></a>        )</span>
-<span id="cb8-70"><a href="#cb8-70"></a>        plt.text(</span>
-<span id="cb8-71"><a href="#cb8-71"></a>            country_data[<span class="st">"year"</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="dv">1</span>,</span>
-<span id="cb8-72"><a href="#cb8-72"></a>            country_data[<span class="st">"rank"</span>].iloc[<span class="op">-</span><span class="dv">1</span>],</span>
-<span id="cb8-73"><a href="#cb8-73"></a>            label,</span>
-<span id="cb8-74"><a href="#cb8-74"></a>            va<span class="op">=</span><span class="st">"center"</span>, ha<span class="op">=</span><span class="st">"left"</span>, fontsize<span class="op">=</span><span class="dv">10</span>,</span>
-<span id="cb8-75"><a href="#cb8-75"></a>            color<span class="op">=</span>color</span>
-<span id="cb8-76"><a href="#cb8-76"></a>        )</span>
-<span id="cb8-77"><a href="#cb8-77"></a></span>
-<span id="cb8-78"><a href="#cb8-78"></a><span class="co"># 图形美化</span></span>
-<span id="cb8-79"><a href="#cb8-79"></a>plt.gca().invert_yaxis()  <span class="co"># 排名 1 在顶部</span></span>
-<span id="cb8-80"><a href="#cb8-80"></a>plt.yticks(np.arange(<span class="dv">1</span>, <span class="bu">len</span>(cname) <span class="op">+</span> <span class="dv">1</span>))</span>
-<span id="cb8-81"><a href="#cb8-81"></a>plt.xlabel(<span class="st">"Year"</span>)</span>
-<span id="cb8-82"><a href="#cb8-82"></a>plt.ylabel(<span class="st">"Rank of Export Share"</span>)</span>
-<span id="cb8-83"><a href="#cb8-83"></a>plt.title(<span class="st">"Export Share Ranking of Major Countries (1980–2024)"</span>)</span>
-<span id="cb8-84"><a href="#cb8-84"></a>plt.xlim(start_year <span class="op">-</span> <span class="dv">5</span>, end_year <span class="op">+</span> <span class="dv">5</span>)</span>
-<span id="cb8-85"><a href="#cb8-85"></a>plt.grid(axis<span class="op">=</span><span class="st">"y"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb8-86"><a href="#cb8-86"></a></span>
-<span id="cb8-87"><a href="#cb8-87"></a><span class="co"># 自定义图例（按地区）</span></span>
-<span id="cb8-88"><a href="#cb8-88"></a><span class="im">from</span> matplotlib.lines <span class="im">import</span> Line2D</span>
-<span id="cb8-89"><a href="#cb8-89"></a>legend_elements <span class="op">=</span> [</span>
-<span id="cb8-90"><a href="#cb8-90"></a>    Line2D([<span class="dv">0</span>], [<span class="dv">0</span>], color<span class="op">=</span><span class="st">"tab:blue"</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"North America"</span>),</span>
-<span id="cb8-91"><a href="#cb8-91"></a>    Line2D([<span class="dv">0</span>], [<span class="dv">0</span>], color<span class="op">=</span><span class="st">"tab:green"</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"Europe"</span>),</span>
-<span id="cb8-92"><a href="#cb8-92"></a>    Line2D([<span class="dv">0</span>], [<span class="dv">0</span>], color<span class="op">=</span><span class="st">"tab:red"</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"Asia"</span>)</span>
-<span id="cb8-93"><a href="#cb8-93"></a>]</span>
-<span id="cb8-94"><a href="#cb8-94"></a>plt.legend(handles<span class="op">=</span>legend_elements, loc<span class="op">=</span><span class="st">"upper center"</span>, bbox_to_anchor<span class="op">=</span>(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.15</span>), ncol<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb8-95"><a href="#cb8-95"></a></span>
-<span id="cb8-96"><a href="#cb8-96"></a>plt.tight_layout()</span>
-<span id="cb8-97"><a href="#cb8-97"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取数据</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"data/GMD.csv"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 主要国家列表</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>cname <span class="op">=</span> [<span class="st">"USA"</span>, <span class="st">"DEU"</span>, <span class="st">"FRA"</span>, <span class="st">"GBR"</span>, <span class="st">"JPN"</span>, <span class="st">"CHN"</span>, <span class="st">"SGP"</span>, <span class="st">"NLD"</span>, <span class="st">"ITA"</span>, <span class="st">"IND"</span>, <span class="st">"KOR"</span>, <span class="st">"CAN"</span>]</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>label_map <span class="op">=</span> {</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"GBR"</span>: <span class="st">"UK"</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>start_year <span class="op">=</span> <span class="dv">1980</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>end_year <span class="op">=</span> <span class="dv">2024</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 地区分组与颜色映射</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>country_region <span class="op">=</span> {</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"USA"</span>: <span class="st">"North America"</span>, <span class="st">"CAN"</span>: <span class="st">"North America"</span>,</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DEU"</span>: <span class="st">"Europe"</span>, <span class="st">"FRA"</span>: <span class="st">"Europe"</span>, <span class="st">"GBR"</span>: <span class="st">"Europe"</span>,</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ITA"</span>: <span class="st">"Europe"</span>, <span class="st">"NLD"</span>: <span class="st">"Europe"</span>,</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CHN"</span>: <span class="st">"Asia"</span>, <span class="st">"JPN"</span>: <span class="st">"Asia"</span>, <span class="st">"KOR"</span>: <span class="st">"Asia"</span>,</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"IND"</span>: <span class="st">"Asia"</span>, <span class="st">"SGP"</span>: <span class="st">"Asia"</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>region_colors <span class="op">=</span> {</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"North America"</span>: <span class="st">"tab:blue"</span>,</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Europe"</span>: <span class="st">"tab:green"</span>,</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Asia"</span>: <span class="st">"tab:red"</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算出口占比</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.copy()</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"exports_USD"</span> <span class="kw">not</span> <span class="kw">in</span> data.columns:</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    data[<span class="st">"exports_USD"</span>] <span class="op">=</span> data[<span class="st">"exports"</span>] <span class="op">/</span> data[<span class="st">"USDfx"</span>]</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"total_exports"</span>] <span class="op">=</span> data.groupby(<span class="st">"year"</span>)[<span class="st">"exports_USD"</span>].transform(<span class="st">"sum"</span>)</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"export_share"</span>] <span class="op">=</span> data[<span class="st">"exports_USD"</span>] <span class="op">/</span> data[<span class="st">"total_exports"</span>] <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="co"># 筛选数据</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>rank_data <span class="op">=</span> data[data[<span class="st">"ISO3"</span>].isin(cname) <span class="op">&amp;</span> (data[<span class="st">"year"</span>] <span class="op">&gt;=</span> start_year) <span class="op">&amp;</span> (data[<span class="st">"year"</span>] <span class="op">&lt;=</span> end_year)].copy()</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算排名（1为最大）</span></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>rank_data[<span class="st">"rank"</span>] <span class="op">=</span> rank_data.groupby(<span class="st">"year"</span>)[<span class="st">"export_share"</span>].rank(ascending<span class="op">=</span><span class="va">False</span>, method<span class="op">=</span><span class="st">"min"</span>)</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> country <span class="kw">in</span> cname:</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>    country_data <span class="op">=</span> rank_data[rank_data[<span class="st">"ISO3"</span>] <span class="op">==</span> country]</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>    region <span class="op">=</span> country_region.get(country, <span class="st">"Other"</span>)</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>    color <span class="op">=</span> region_colors.get(region, <span class="st">"gray"</span>)</span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>    label <span class="op">=</span> label_map.get(country, country)</span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>    plt.plot(</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>        country_data[<span class="st">"year"</span>],</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>        country_data[<span class="st">"rank"</span>],</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span>label,</span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>        linewidth<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>color</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 添加起止年份标签</span></span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> country_data.empty:</span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>        plt.text(</span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>            country_data[<span class="st">"year"</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="dv">1</span>,</span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>            country_data[<span class="st">"rank"</span>].iloc[<span class="dv">0</span>],</span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>            label,</span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>            va<span class="op">=</span><span class="st">"center"</span>, ha<span class="op">=</span><span class="st">"right"</span>, fontsize<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>            color<span class="op">=</span>color</span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a>        plt.text(</span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>            country_data[<span class="st">"year"</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="dv">1</span>,</span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a>            country_data[<span class="st">"rank"</span>].iloc[<span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>            label,</span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a>            va<span class="op">=</span><span class="st">"center"</span>, ha<span class="op">=</span><span class="st">"left"</span>, fontsize<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>            color<span class="op">=</span>color</span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a><span class="co"># 图形美化</span></span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>plt.gca().invert_yaxis()  <span class="co"># 排名 1 在顶部</span></span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a>plt.yticks(np.arange(<span class="dv">1</span>, <span class="bu">len</span>(cname) <span class="op">+</span> <span class="dv">1</span>))</span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Year"</span>)</span>
+<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Rank of Export Share"</span>)</span>
+<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Export Share Ranking of Major Countries (1980–2024)"</span>)</span>
+<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a>plt.xlim(start_year <span class="op">-</span> <span class="dv">5</span>, end_year <span class="op">+</span> <span class="dv">5</span>)</span>
+<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">"y"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a><span class="co"># 自定义图例（按地区）</span></span>
+<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.lines <span class="im">import</span> Line2D</span>
+<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a>legend_elements <span class="op">=</span> [</span>
+<span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a>    Line2D([<span class="dv">0</span>], [<span class="dv">0</span>], color<span class="op">=</span><span class="st">"tab:blue"</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"North America"</span>),</span>
+<span id="cb8-91"><a href="#cb8-91" aria-hidden="true" tabindex="-1"></a>    Line2D([<span class="dv">0</span>], [<span class="dv">0</span>], color<span class="op">=</span><span class="st">"tab:green"</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"Europe"</span>),</span>
+<span id="cb8-92"><a href="#cb8-92" aria-hidden="true" tabindex="-1"></a>    Line2D([<span class="dv">0</span>], [<span class="dv">0</span>], color<span class="op">=</span><span class="st">"tab:red"</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"Asia"</span>)</span>
+<span id="cb8-93"><a href="#cb8-93" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb8-94"><a href="#cb8-94" aria-hidden="true" tabindex="-1"></a>plt.legend(handles<span class="op">=</span>legend_elements, loc<span class="op">=</span><span class="st">"upper center"</span>, bbox_to_anchor<span class="op">=</span>(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.15</span>), ncol<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb8-95"><a href="#cb8-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-96"><a href="#cb8-96" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb8-97"><a href="#cb8-97" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1245,60 +1245,60 @@ window.Quarto = {
 <section id="柱状图" class="level2" data-number="23.4">
 <h2 data-number="23.4" class="anchored" data-anchor-id="柱状图"><span class="header-section-number">23.4</span> 柱状图</h2>
 <div id="4a087b9d" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb9-3"><a href="#cb9-3"></a></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="co"># 假设 cname 顺序为：["USA", "CHN", "DEU", "JPN", "FRA", "GBR"]</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="co"># label_map 是国家名映射，如 {"USA": "美国", ...}</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a></span>
-<span id="cb9-7"><a href="#cb9-7"></a><span class="co"># 筛选 2000 和 2024 年</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a>selected_years <span class="op">=</span> [<span class="dv">2000</span>, <span class="dv">2024</span>]</span>
-<span id="cb9-9"><a href="#cb9-9"></a>filtered_data <span class="op">=</span> data[data[<span class="st">"year"</span>].isin(selected_years) <span class="op">&amp;</span> data[<span class="st">"ISO3"</span>].isin(cname)]</span>
-<span id="cb9-10"><a href="#cb9-10"></a>filtered_data <span class="op">=</span> filtered_data.sort_values(by<span class="op">=</span>[<span class="st">"year"</span>, <span class="st">"ISO3"</span>])</span>
-<span id="cb9-11"><a href="#cb9-11"></a></span>
-<span id="cb9-12"><a href="#cb9-12"></a><span class="co"># 准备数据</span></span>
-<span id="cb9-13"><a href="#cb9-13"></a>data_2000 <span class="op">=</span> filtered_data[filtered_data[<span class="st">"year"</span>] <span class="op">==</span> <span class="dv">2000</span>][<span class="st">"export_share"</span>].values</span>
-<span id="cb9-14"><a href="#cb9-14"></a>data_2024 <span class="op">=</span> filtered_data[filtered_data[<span class="st">"year"</span>] <span class="op">==</span> <span class="dv">2024</span>][<span class="st">"export_share"</span>].values</span>
-<span id="cb9-15"><a href="#cb9-15"></a></span>
-<span id="cb9-16"><a href="#cb9-16"></a><span class="co"># 位置设置</span></span>
-<span id="cb9-17"><a href="#cb9-17"></a>x <span class="op">=</span> np.arange(<span class="bu">len</span>(cname))</span>
-<span id="cb9-18"><a href="#cb9-18"></a>width <span class="op">=</span> <span class="fl">0.35</span></span>
-<span id="cb9-19"><a href="#cb9-19"></a></span>
-<span id="cb9-20"><a href="#cb9-20"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">3</span>))</span>
-<span id="cb9-21"><a href="#cb9-21"></a></span>
-<span id="cb9-22"><a href="#cb9-22"></a><span class="co"># 绘图（采用 Figure 9B 的配色风格）</span></span>
-<span id="cb9-23"><a href="#cb9-23"></a>bars1 <span class="op">=</span> ax.bar(x <span class="op">-</span> width <span class="op">/</span> <span class="dv">2</span>, data_2000, width, label<span class="op">=</span><span class="st">"2000"</span>, color<span class="op">=</span><span class="st">"#174c88"</span>)  <span class="co"># 深蓝色</span></span>
-<span id="cb9-24"><a href="#cb9-24"></a>bars2 <span class="op">=</span> ax.bar(x <span class="op">+</span> width <span class="op">/</span> <span class="dv">2</span>, data_2024, width, label<span class="op">=</span><span class="st">"2024"</span>, color<span class="op">=</span><span class="st">"#ec7d31"</span>)  <span class="co"># 橙色</span></span>
-<span id="cb9-25"><a href="#cb9-25"></a></span>
-<span id="cb9-26"><a href="#cb9-26"></a><span class="co"># 添加文字标签</span></span>
-<span id="cb9-27"><a href="#cb9-27"></a><span class="kw">def</span> autolabel(bars):</span>
-<span id="cb9-28"><a href="#cb9-28"></a>    <span class="cf">for</span> bar <span class="kw">in</span> bars:</span>
-<span id="cb9-29"><a href="#cb9-29"></a>        height <span class="op">=</span> bar.get_height()</span>
-<span id="cb9-30"><a href="#cb9-30"></a>        ax.annotate(<span class="ss">f'</span><span class="sc">{</span>height<span class="sc">:.0f}</span><span class="ss">'</span>,</span>
-<span id="cb9-31"><a href="#cb9-31"></a>                    xy<span class="op">=</span>(bar.get_x() <span class="op">+</span> bar.get_width() <span class="op">/</span> <span class="dv">2</span>, height),</span>
-<span id="cb9-32"><a href="#cb9-32"></a>                    xytext<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">3</span>),  <span class="co"># 垂直偏移</span></span>
-<span id="cb9-33"><a href="#cb9-33"></a>                    textcoords<span class="op">=</span><span class="st">"offset points"</span>,</span>
-<span id="cb9-34"><a href="#cb9-34"></a>                    ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'bottom'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb9-35"><a href="#cb9-35"></a></span>
-<span id="cb9-36"><a href="#cb9-36"></a>autolabel(bars1)</span>
-<span id="cb9-37"><a href="#cb9-37"></a>autolabel(bars2)</span>
-<span id="cb9-38"><a href="#cb9-38"></a></span>
-<span id="cb9-39"><a href="#cb9-39"></a><span class="co"># 设定坐标轴和标题</span></span>
-<span id="cb9-40"><a href="#cb9-40"></a>ax.set_ylabel(<span class="st">"Export Share (%)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb9-41"><a href="#cb9-41"></a>ax.set_title(<span class="st">"Shares of Aggregate Export, 2000 and 2024"</span>, fontsize<span class="op">=</span><span class="dv">14</span>, weight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb9-42"><a href="#cb9-42"></a>ax.set_xticks(x)</span>
-<span id="cb9-43"><a href="#cb9-43"></a>ax.set_xticklabels([label_map[c] <span class="cf">for</span> c <span class="kw">in</span> cname], rotation<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb9-44"><a href="#cb9-44"></a>ax.legend(title<span class="op">=</span><span class="st">"Year"</span>)</span>
-<span id="cb9-45"><a href="#cb9-45"></a></span>
-<span id="cb9-46"><a href="#cb9-46"></a><span class="co"># 添加 y 轴网格线</span></span>
-<span id="cb9-47"><a href="#cb9-47"></a>ax.yaxis.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb9-48"><a href="#cb9-48"></a></span>
-<span id="cb9-49"><a href="#cb9-49"></a><span class="co"># 清理图框边线</span></span>
-<span id="cb9-50"><a href="#cb9-50"></a>ax.spines[<span class="st">"top"</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb9-51"><a href="#cb9-51"></a>ax.spines[<span class="st">"right"</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb9-52"><a href="#cb9-52"></a></span>
-<span id="cb9-53"><a href="#cb9-53"></a>plt.tight_layout()</span>
-<span id="cb9-54"><a href="#cb9-54"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 假设 cname 顺序为：["USA", "CHN", "DEU", "JPN", "FRA", "GBR"]</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># label_map 是国家名映射，如 {"USA": "美国", ...}</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 筛选 2000 和 2024 年</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>selected_years <span class="op">=</span> [<span class="dv">2000</span>, <span class="dv">2024</span>]</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="op">=</span> data[data[<span class="st">"year"</span>].isin(selected_years) <span class="op">&amp;</span> data[<span class="st">"ISO3"</span>].isin(cname)]</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="op">=</span> filtered_data.sort_values(by<span class="op">=</span>[<span class="st">"year"</span>, <span class="st">"ISO3"</span>])</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 准备数据</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>data_2000 <span class="op">=</span> filtered_data[filtered_data[<span class="st">"year"</span>] <span class="op">==</span> <span class="dv">2000</span>][<span class="st">"export_share"</span>].values</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>data_2024 <span class="op">=</span> filtered_data[filtered_data[<span class="st">"year"</span>] <span class="op">==</span> <span class="dv">2024</span>][<span class="st">"export_share"</span>].values</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 位置设置</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="bu">len</span>(cname))</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>width <span class="op">=</span> <span class="fl">0.35</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">3</span>))</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图（采用 Figure 9B 的配色风格）</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>bars1 <span class="op">=</span> ax.bar(x <span class="op">-</span> width <span class="op">/</span> <span class="dv">2</span>, data_2000, width, label<span class="op">=</span><span class="st">"2000"</span>, color<span class="op">=</span><span class="st">"#174c88"</span>)  <span class="co"># 深蓝色</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>bars2 <span class="op">=</span> ax.bar(x <span class="op">+</span> width <span class="op">/</span> <span class="dv">2</span>, data_2024, width, label<span class="op">=</span><span class="st">"2024"</span>, color<span class="op">=</span><span class="st">"#ec7d31"</span>)  <span class="co"># 橙色</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加文字标签</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> autolabel(bars):</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> bar <span class="kw">in</span> bars:</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        height <span class="op">=</span> bar.get_height()</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        ax.annotate(<span class="ss">f'</span><span class="sc">{</span>height<span class="sc">:.0f}</span><span class="ss">'</span>,</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>                    xy<span class="op">=</span>(bar.get_x() <span class="op">+</span> bar.get_width() <span class="op">/</span> <span class="dv">2</span>, height),</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>                    xytext<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">3</span>),  <span class="co"># 垂直偏移</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>                    textcoords<span class="op">=</span><span class="st">"offset points"</span>,</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>                    ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'bottom'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>autolabel(bars1)</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>autolabel(bars2)</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="co"># 设定坐标轴和标题</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Export Share (%)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Shares of Aggregate Export, 2000 and 2024"</span>, fontsize<span class="op">=</span><span class="dv">14</span>, weight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(x)</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels([label_map[c] <span class="cf">for</span> c <span class="kw">in</span> cname], rotation<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>ax.legend(title<span class="op">=</span><span class="st">"Year"</span>)</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加 y 轴网格线</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>ax.yaxis.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="co"># 清理图框边线</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"top"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"right"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1444,7 +1444,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

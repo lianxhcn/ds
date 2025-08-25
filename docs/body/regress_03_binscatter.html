@@ -160,7 +160,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -168,7 +168,7 @@ window.Quarto = {
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -695,78 +695,78 @@ window.Quarto = {
 </div>
 </div>
 <div id="0fcb6ca6" class="cell" data-execution_count="93">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># 1. 生成模拟数据</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb1-9"><a href="#cb1-9"></a>n <span class="op">=</span> <span class="dv">500</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a>x <span class="op">=</span> np.random.normal(<span class="dv">5</span>, <span class="dv">2</span>, n)</span>
-<span id="cb1-11"><a href="#cb1-11"></a>e <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, n)</span>
-<span id="cb1-12"><a href="#cb1-12"></a>y <span class="op">=</span> <span class="dv">10</span> <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> x <span class="op">+</span> e</span>
-<span id="cb1-13"><a href="#cb1-13"></a></span>
-<span id="cb1-14"><a href="#cb1-14"></a>df_sim <span class="op">=</span> pd.DataFrame({<span class="st">'x'</span>: x, <span class="st">'y'</span>: y})</span>
-<span id="cb1-15"><a href="#cb1-15"></a></span>
-<span id="cb1-16"><a href="#cb1-16"></a><span class="co"># 2. 分为10组（十分位分组）</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a>df_sim[<span class="st">'bin'</span>], bin_edges <span class="op">=</span> pd.qcut(df_sim[<span class="st">'x'</span>], <span class="dv">10</span>, labels<span class="op">=</span><span class="va">False</span>, retbins<span class="op">=</span><span class="va">True</span>, duplicates<span class="op">=</span><span class="st">'drop'</span>)</span>
-<span id="cb1-18"><a href="#cb1-18"></a></span>
-<span id="cb1-19"><a href="#cb1-19"></a><span class="co"># 3. 计算每组均值</span></span>
-<span id="cb1-20"><a href="#cb1-20"></a>grouped <span class="op">=</span> df_sim.groupby(<span class="st">'bin'</span>).agg(</span>
-<span id="cb1-21"><a href="#cb1-21"></a>    mean_x<span class="op">=</span>(<span class="st">'x'</span>, <span class="st">'mean'</span>),</span>
-<span id="cb1-22"><a href="#cb1-22"></a>    mean_y<span class="op">=</span>(<span class="st">'y'</span>, <span class="st">'mean'</span>)</span>
-<span id="cb1-23"><a href="#cb1-23"></a>).reset_index()</span>
-<span id="cb1-24"><a href="#cb1-24"></a></span>
-<span id="cb1-25"><a href="#cb1-25"></a><span class="co"># 4. 原始数据的拟合线与置信区间</span></span>
-<span id="cb1-26"><a href="#cb1-26"></a>slope, intercept, r_value, p_value, std_err <span class="op">=</span> stats.linregress(df_sim[<span class="st">'x'</span>], df_sim[<span class="st">'y'</span>])</span>
-<span id="cb1-27"><a href="#cb1-27"></a>x_line <span class="op">=</span> np.linspace(df_sim[<span class="st">'x'</span>].<span class="bu">min</span>(), df_sim[<span class="st">'x'</span>].<span class="bu">max</span>(), <span class="dv">200</span>)</span>
-<span id="cb1-28"><a href="#cb1-28"></a>y_line <span class="op">=</span> intercept <span class="op">+</span> slope <span class="op">*</span> x_line</span>
-<span id="cb1-29"><a href="#cb1-29"></a></span>
-<span id="cb1-30"><a href="#cb1-30"></a><span class="co"># 置信区间</span></span>
-<span id="cb1-31"><a href="#cb1-31"></a>y_pred <span class="op">=</span> intercept <span class="op">+</span> slope <span class="op">*</span> df_sim[<span class="st">'x'</span>]</span>
-<span id="cb1-32"><a href="#cb1-32"></a>resid <span class="op">=</span> df_sim[<span class="st">'y'</span>] <span class="op">-</span> y_pred</span>
-<span id="cb1-33"><a href="#cb1-33"></a>se <span class="op">=</span> np.sqrt(np.<span class="bu">sum</span>(resid<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (n <span class="op">-</span> <span class="dv">2</span>)) <span class="op">/</span> np.sqrt(np.<span class="bu">sum</span>((df_sim[<span class="st">'x'</span>] <span class="op">-</span> df_sim[<span class="st">'x'</span>].mean())<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb1-34"><a href="#cb1-34"></a>ci <span class="op">=</span> <span class="fl">1.96</span> <span class="op">*</span> se</span>
-<span id="cb1-35"><a href="#cb1-35"></a>y_upper <span class="op">=</span> y_line <span class="op">+</span> ci</span>
-<span id="cb1-36"><a href="#cb1-36"></a>y_lower <span class="op">=</span> y_line <span class="op">-</span> ci</span>
-<span id="cb1-37"><a href="#cb1-37"></a></span>
-<span id="cb1-38"><a href="#cb1-38"></a><span class="co"># 5. 分仓均值的拟合线与置信区间</span></span>
-<span id="cb1-39"><a href="#cb1-39"></a>slope_bin, intercept_bin, _, _, std_err_bin <span class="op">=</span> stats.linregress(grouped[<span class="st">'mean_x'</span>], grouped[<span class="st">'mean_y'</span>])</span>
-<span id="cb1-40"><a href="#cb1-40"></a>y_line_bin <span class="op">=</span> intercept_bin <span class="op">+</span> slope_bin <span class="op">*</span> x_line</span>
-<span id="cb1-41"><a href="#cb1-41"></a><span class="co"># 置信区间（近似，使用分组均值的标准误）</span></span>
-<span id="cb1-42"><a href="#cb1-42"></a>y_pred_bin <span class="op">=</span> intercept_bin <span class="op">+</span> slope_bin <span class="op">*</span> grouped[<span class="st">'mean_x'</span>]</span>
-<span id="cb1-43"><a href="#cb1-43"></a>resid_bin <span class="op">=</span> grouped[<span class="st">'mean_y'</span>] <span class="op">-</span> y_pred_bin</span>
-<span id="cb1-44"><a href="#cb1-44"></a>se_bin <span class="op">=</span> np.sqrt(np.<span class="bu">sum</span>(resid_bin<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (<span class="bu">len</span>(grouped) <span class="op">-</span> <span class="dv">2</span>)) <span class="op">/</span> np.sqrt(np.<span class="bu">sum</span>((grouped[<span class="st">'mean_x'</span>] <span class="op">-</span> grouped[<span class="st">'mean_x'</span>].mean())<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb1-45"><a href="#cb1-45"></a>ci_bin <span class="op">=</span> <span class="fl">1.96</span> <span class="op">*</span> se_bin</span>
-<span id="cb1-46"><a href="#cb1-46"></a>y_upper_bin <span class="op">=</span> y_line_bin <span class="op">+</span> ci_bin</span>
-<span id="cb1-47"><a href="#cb1-47"></a>y_lower_bin <span class="op">=</span> y_line_bin <span class="op">-</span> ci_bin</span>
-<span id="cb1-48"><a href="#cb1-48"></a></span>
-<span id="cb1-49"><a href="#cb1-49"></a><span class="co"># 6. 绘图</span></span>
-<span id="cb1-50"><a href="#cb1-50"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">6</span>))</span>
-<span id="cb1-51"><a href="#cb1-51"></a>plt.scatter(df_sim[<span class="st">'x'</span>], df_sim[<span class="st">'y'</span>], color<span class="op">=</span><span class="st">'darkblue'</span>, alpha<span class="op">=</span><span class="fl">0.2</span>, s<span class="op">=</span><span class="dv">15</span>, label<span class="op">=</span><span class="st">'Raw data'</span>)</span>
-<span id="cb1-52"><a href="#cb1-52"></a>plt.scatter(grouped[<span class="st">'mean_x'</span>], grouped[<span class="st">'mean_y'</span>], color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>, s<span class="op">=</span><span class="dv">80</span>, label<span class="op">=</span><span class="st">'Binned means'</span>)</span>
-<span id="cb1-53"><a href="#cb1-53"></a></span>
-<span id="cb1-54"><a href="#cb1-54"></a><span class="co"># 分仓线</span></span>
-<span id="cb1-55"><a href="#cb1-55"></a><span class="cf">for</span> edge <span class="kw">in</span> bin_edges[<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>]:</span>
-<span id="cb1-56"><a href="#cb1-56"></a>    plt.axvline(edge, color<span class="op">=</span><span class="st">'grey'</span>, linestyle<span class="op">=</span><span class="st">'dashed'</span>, linewidth<span class="op">=</span><span class="dv">1</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb1-57"><a href="#cb1-57"></a></span>
-<span id="cb1-58"><a href="#cb1-58"></a><span class="co"># 原始数据拟合线和置信区间</span></span>
-<span id="cb1-59"><a href="#cb1-59"></a>plt.plot(x_line, y_line, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Fit line (raw)'</span>)</span>
-<span id="cb1-60"><a href="#cb1-60"></a>plt.fill_between(x_line, y_lower, y_upper, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, label<span class="op">=</span><span class="st">'95% CI (raw)'</span>)</span>
-<span id="cb1-61"><a href="#cb1-61"></a></span>
-<span id="cb1-62"><a href="#cb1-62"></a><span class="co"># 分仓均值拟合线和置信区间</span></span>
-<span id="cb1-63"><a href="#cb1-63"></a>plt.plot(x_line, y_line_bin, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Fit line (binned)'</span>)</span>
-<span id="cb1-64"><a href="#cb1-64"></a>plt.fill_between(x_line, y_lower_bin, y_upper_bin, color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, label<span class="op">=</span><span class="st">'95% CI (binned)'</span>)</span>
-<span id="cb1-65"><a href="#cb1-65"></a></span>
-<span id="cb1-66"><a href="#cb1-66"></a>plt.xlabel(<span class="st">'x'</span>, fontsize<span class="op">=</span><span class="dv">13</span>)</span>
-<span id="cb1-67"><a href="#cb1-67"></a>plt.ylabel(<span class="st">'y'</span>, fontsize<span class="op">=</span><span class="dv">13</span>)</span>
-<span id="cb1-68"><a href="#cb1-68"></a>plt.title(<span class="st">'Binned Scatterplot with Fit Lines and Confidence Intervals'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb1-69"><a href="#cb1-69"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb1-70"><a href="#cb1-70"></a>plt.grid(alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
-<span id="cb1-71"><a href="#cb1-71"></a>plt.tight_layout()</span>
-<span id="cb1-72"><a href="#cb1-72"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 生成模拟数据</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">500</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.normal(<span class="dv">5</span>, <span class="dv">2</span>, n)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, n)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">10</span> <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> x <span class="op">+</span> e</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>df_sim <span class="op">=</span> pd.DataFrame({<span class="st">'x'</span>: x, <span class="st">'y'</span>: y})</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. 分为10组（十分位分组）</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>df_sim[<span class="st">'bin'</span>], bin_edges <span class="op">=</span> pd.qcut(df_sim[<span class="st">'x'</span>], <span class="dv">10</span>, labels<span class="op">=</span><span class="va">False</span>, retbins<span class="op">=</span><span class="va">True</span>, duplicates<span class="op">=</span><span class="st">'drop'</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. 计算每组均值</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> df_sim.groupby(<span class="st">'bin'</span>).agg(</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    mean_x<span class="op">=</span>(<span class="st">'x'</span>, <span class="st">'mean'</span>),</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    mean_y<span class="op">=</span>(<span class="st">'y'</span>, <span class="st">'mean'</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>).reset_index()</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. 原始数据的拟合线与置信区间</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>slope, intercept, r_value, p_value, std_err <span class="op">=</span> stats.linregress(df_sim[<span class="st">'x'</span>], df_sim[<span class="st">'y'</span>])</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>x_line <span class="op">=</span> np.linspace(df_sim[<span class="st">'x'</span>].<span class="bu">min</span>(), df_sim[<span class="st">'x'</span>].<span class="bu">max</span>(), <span class="dv">200</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>y_line <span class="op">=</span> intercept <span class="op">+</span> slope <span class="op">*</span> x_line</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># 置信区间</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> intercept <span class="op">+</span> slope <span class="op">*</span> df_sim[<span class="st">'x'</span>]</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>resid <span class="op">=</span> df_sim[<span class="st">'y'</span>] <span class="op">-</span> y_pred</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>se <span class="op">=</span> np.sqrt(np.<span class="bu">sum</span>(resid<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (n <span class="op">-</span> <span class="dv">2</span>)) <span class="op">/</span> np.sqrt(np.<span class="bu">sum</span>((df_sim[<span class="st">'x'</span>] <span class="op">-</span> df_sim[<span class="st">'x'</span>].mean())<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>ci <span class="op">=</span> <span class="fl">1.96</span> <span class="op">*</span> se</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>y_upper <span class="op">=</span> y_line <span class="op">+</span> ci</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>y_lower <span class="op">=</span> y_line <span class="op">-</span> ci</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. 分仓均值的拟合线与置信区间</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>slope_bin, intercept_bin, _, _, std_err_bin <span class="op">=</span> stats.linregress(grouped[<span class="st">'mean_x'</span>], grouped[<span class="st">'mean_y'</span>])</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>y_line_bin <span class="op">=</span> intercept_bin <span class="op">+</span> slope_bin <span class="op">*</span> x_line</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co"># 置信区间（近似，使用分组均值的标准误）</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>y_pred_bin <span class="op">=</span> intercept_bin <span class="op">+</span> slope_bin <span class="op">*</span> grouped[<span class="st">'mean_x'</span>]</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>resid_bin <span class="op">=</span> grouped[<span class="st">'mean_y'</span>] <span class="op">-</span> y_pred_bin</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>se_bin <span class="op">=</span> np.sqrt(np.<span class="bu">sum</span>(resid_bin<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (<span class="bu">len</span>(grouped) <span class="op">-</span> <span class="dv">2</span>)) <span class="op">/</span> np.sqrt(np.<span class="bu">sum</span>((grouped[<span class="st">'mean_x'</span>] <span class="op">-</span> grouped[<span class="st">'mean_x'</span>].mean())<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>ci_bin <span class="op">=</span> <span class="fl">1.96</span> <span class="op">*</span> se_bin</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>y_upper_bin <span class="op">=</span> y_line_bin <span class="op">+</span> ci_bin</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>y_lower_bin <span class="op">=</span> y_line_bin <span class="op">-</span> ci_bin</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. 绘图</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">6</span>))</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>plt.scatter(df_sim[<span class="st">'x'</span>], df_sim[<span class="st">'y'</span>], color<span class="op">=</span><span class="st">'darkblue'</span>, alpha<span class="op">=</span><span class="fl">0.2</span>, s<span class="op">=</span><span class="dv">15</span>, label<span class="op">=</span><span class="st">'Raw data'</span>)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>plt.scatter(grouped[<span class="st">'mean_x'</span>], grouped[<span class="st">'mean_y'</span>], color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>, s<span class="op">=</span><span class="dv">80</span>, label<span class="op">=</span><span class="st">'Binned means'</span>)</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="co"># 分仓线</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> edge <span class="kw">in</span> bin_edges[<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>]:</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    plt.axvline(edge, color<span class="op">=</span><span class="st">'grey'</span>, linestyle<span class="op">=</span><span class="st">'dashed'</span>, linewidth<span class="op">=</span><span class="dv">1</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="co"># 原始数据拟合线和置信区间</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>plt.plot(x_line, y_line, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Fit line (raw)'</span>)</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x_line, y_lower, y_upper, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, label<span class="op">=</span><span class="st">'95% CI (raw)'</span>)</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="co"># 分仓均值拟合线和置信区间</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>plt.plot(x_line, y_line_bin, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Fit line (binned)'</span>)</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>plt.fill_between(x_line, y_lower_bin, y_upper_bin, color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, label<span class="op">=</span><span class="st">'95% CI (binned)'</span>)</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>, fontsize<span class="op">=</span><span class="dv">13</span>)</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>, fontsize<span class="op">=</span><span class="dv">13</span>)</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Binned Scatterplot with Fit Lines and Confidence Intervals'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>plt.grid(alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -794,56 +794,56 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource md number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a>做两个回归，列表呈现回归结果：</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="ss">1. </span>data = df_sim</span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="ss">2. </span>原始数据回归：$y = \beta_0 + \beta_1 x + e$</span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="ss">3. </span>分仓散点图回归：$\bar{y}_g = \theta_0 + \theta_1 \bar{x}_g + u$</span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="ss">4. </span>回归结果表格中包含：b、se、t、p值、N, R2。</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>做两个回归，列表呈现回归结果：</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>data = df_sim</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>原始数据回归：$y = \beta_0 + \beta_1 x + e$</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>分仓散点图回归：$\bar{y}_g = \theta_0 + \theta_1 \bar{x}_g + u$</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>回归结果表格中包含：b、se、t、p值、N, R2。</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="a53d71c2" class="cell" data-execution_count="94">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb3-4"><a href="#cb3-4"></a></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co"># 原始数据回归</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>X_raw <span class="op">=</span> sm.add_constant(df_sim[<span class="st">'x'</span>])</span>
-<span id="cb3-7"><a href="#cb3-7"></a>model_raw <span class="op">=</span> sm.OLS(df_sim[<span class="st">'y'</span>], X_raw).fit()</span>
-<span id="cb3-8"><a href="#cb3-8"></a></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="co"># 分仓均值回归</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a>X_bin <span class="op">=</span> sm.add_constant(grouped[<span class="st">'mean_x'</span>])</span>
-<span id="cb3-11"><a href="#cb3-11"></a>model_bin <span class="op">=</span> sm.OLS(grouped[<span class="st">'mean_y'</span>], X_bin).fit()</span>
-<span id="cb3-12"><a href="#cb3-12"></a></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="co"># 整理结果</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a><span class="kw">def</span> summary_to_dict(model, N):</span>
-<span id="cb3-15"><a href="#cb3-15"></a>    params <span class="op">=</span> model.params</span>
-<span id="cb3-16"><a href="#cb3-16"></a>    bse <span class="op">=</span> model.bse</span>
-<span id="cb3-17"><a href="#cb3-17"></a>    tvalues <span class="op">=</span> model.tvalues</span>
-<span id="cb3-18"><a href="#cb3-18"></a>    pvalues <span class="op">=</span> model.pvalues</span>
-<span id="cb3-19"><a href="#cb3-19"></a>    rsq <span class="op">=</span> model.rsquared</span>
-<span id="cb3-20"><a href="#cb3-20"></a>    <span class="cf">return</span> {</span>
-<span id="cb3-21"><a href="#cb3-21"></a>        <span class="st">'b'</span>: params.values,</span>
-<span id="cb3-22"><a href="#cb3-22"></a>        <span class="st">'se'</span>: bse.values,</span>
-<span id="cb3-23"><a href="#cb3-23"></a>        <span class="st">'t'</span>: tvalues.values,</span>
-<span id="cb3-24"><a href="#cb3-24"></a>        <span class="st">'P&gt;|t|'</span>: pvalues.values,</span>
-<span id="cb3-25"><a href="#cb3-25"></a>        <span class="st">'N'</span>: [N, <span class="st">''</span>],</span>
-<span id="cb3-26"><a href="#cb3-26"></a>        <span class="st">'R2'</span>: [rsq, <span class="st">''</span>]</span>
-<span id="cb3-27"><a href="#cb3-27"></a>    }</span>
-<span id="cb3-28"><a href="#cb3-28"></a></span>
-<span id="cb3-29"><a href="#cb3-29"></a>res_raw <span class="op">=</span> summary_to_dict(model_raw, <span class="bu">len</span>(df_sim))</span>
-<span id="cb3-30"><a href="#cb3-30"></a>res_bin <span class="op">=</span> summary_to_dict(model_bin, <span class="bu">len</span>(grouped))</span>
-<span id="cb3-31"><a href="#cb3-31"></a></span>
-<span id="cb3-32"><a href="#cb3-32"></a><span class="co"># 合并为表格</span></span>
-<span id="cb3-33"><a href="#cb3-33"></a>index <span class="op">=</span> [<span class="st">'Intercept'</span>, <span class="st">'x'</span>]</span>
-<span id="cb3-34"><a href="#cb3-34"></a>results_df <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb3-35"><a href="#cb3-35"></a>    (<span class="st">'Raw'</span>, col): res_raw[col] <span class="cf">for</span> col <span class="kw">in</span> res_raw</span>
-<span id="cb3-36"><a href="#cb3-36"></a>}, index<span class="op">=</span>index)</span>
-<span id="cb3-37"><a href="#cb3-37"></a><span class="cf">for</span> col <span class="kw">in</span> res_bin:</span>
-<span id="cb3-38"><a href="#cb3-38"></a>    results_df[(<span class="st">'Binned'</span>, col)] <span class="op">=</span> res_bin[col]</span>
-<span id="cb3-39"><a href="#cb3-39"></a></span>
-<span id="cb3-40"><a href="#cb3-40"></a><span class="co"># 展示结果</span></span>
-<span id="cb3-41"><a href="#cb3-41"></a><span class="bu">print</span>(results_df.<span class="bu">round</span>(<span class="dv">3</span>).T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 原始数据回归</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>X_raw <span class="op">=</span> sm.add_constant(df_sim[<span class="st">'x'</span>])</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>model_raw <span class="op">=</span> sm.OLS(df_sim[<span class="st">'y'</span>], X_raw).fit()</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 分仓均值回归</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>X_bin <span class="op">=</span> sm.add_constant(grouped[<span class="st">'mean_x'</span>])</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>model_bin <span class="op">=</span> sm.OLS(grouped[<span class="st">'mean_y'</span>], X_bin).fit()</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 整理结果</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> summary_to_dict(model, N):</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    params <span class="op">=</span> model.params</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    bse <span class="op">=</span> model.bse</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    tvalues <span class="op">=</span> model.tvalues</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    pvalues <span class="op">=</span> model.pvalues</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    rsq <span class="op">=</span> model.rsquared</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">'b'</span>: params.values,</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">'se'</span>: bse.values,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">'t'</span>: tvalues.values,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">'P&gt;|t|'</span>: pvalues.values,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">'N'</span>: [N, <span class="st">''</span>],</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">'R2'</span>: [rsq, <span class="st">''</span>]</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>res_raw <span class="op">=</span> summary_to_dict(model_raw, <span class="bu">len</span>(df_sim))</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>res_bin <span class="op">=</span> summary_to_dict(model_bin, <span class="bu">len</span>(grouped))</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co"># 合并为表格</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>index <span class="op">=</span> [<span class="st">'Intercept'</span>, <span class="st">'x'</span>]</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>results_df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'Raw'</span>, col): res_raw[col] <span class="cf">for</span> col <span class="kw">in</span> res_raw</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>}, index<span class="op">=</span>index)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> res_bin:</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    results_df[(<span class="st">'Binned'</span>, col)] <span class="op">=</span> res_bin[col]</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="co"># 展示结果</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results_df.<span class="bu">round</span>(<span class="dv">3</span>).T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>             Intercept       x
 Raw    b        10.221   0.462
@@ -893,65 +893,65 @@ Binned b        10.215   0.463
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource md number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1"></a>绘制一个带有分组均值点的散点图：</span>
-<span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="ss">1. </span>数据来源：mroz 数据集（来自 Wooldridge 教材）</span>
-<span id="cb5-4"><a href="#cb5-4"></a>   url = "https://vincentarelbundock.github.io/Rdatasets/csv/wooldridge/mroz.csv"</span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="ss">2. </span>变量选择：</span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="ss">   - </span>x 轴变量：educ（受教育年限）</span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="ss">   - </span>y 轴变量：lwage（工资对数）</span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="ss">3. </span>步骤要求：</span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="ss">   - </span>清理缺失值</span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="ss">   - </span>将数据按照 educ 进行分位数分组（10 组）</span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="ss">   - </span>绘制原始散点图（空心圆点表示）</span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="ss">   - </span>标出每组的 $(\bar{x}_g, \bar{y}_g)$ 均值点（用红色实心圆）</span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="ss">   - </span>在分位点位置加竖线（黑色虚线）</span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="ss">4. </span>图形美化要求：</span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="ss">   - </span>添加合适的标题与坐标轴标签</span>
-<span id="cb5-16"><a href="#cb5-16"></a><span class="ss">   - </span>图例区分原始数据与分组均值</span>
-<span id="cb5-17"><a href="#cb5-17"></a><span class="ss">   - </span>使用紧凑排版，避免遮挡</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>绘制一个带有分组均值点的散点图：</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>数据来源：mroz 数据集（来自 Wooldridge 教材）</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>   url = "https://vincentarelbundock.github.io/Rdatasets/csv/wooldridge/mroz.csv"</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>变量选择：</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>x 轴变量：educ（受教育年限）</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>y 轴变量：lwage（工资对数）</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>步骤要求：</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>清理缺失值</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>将数据按照 educ 进行分位数分组（10 组）</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>绘制原始散点图（空心圆点表示）</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>标出每组的 $(\bar{x}_g, \bar{y}_g)$ 均值点（用红色实心圆）</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>在分位点位置加竖线（黑色虚线）</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>图形美化要求：</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>添加合适的标题与坐标轴标签</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>图例区分原始数据与分组均值</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>使用紧凑排版，避免遮挡</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="384b1c16" class="cell" data-execution_count="95">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb6-3"><a href="#cb6-3"></a></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="co"># 在线读取数据</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a>url <span class="op">=</span> <span class="st">"https://vincentarelbundock.github.io/Rdatasets/csv/wooldridge/mroz.csv"</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a>df_edu <span class="op">=</span> pd.read_csv(url)</span>
-<span id="cb6-7"><a href="#cb6-7"></a></span>
-<span id="cb6-8"><a href="#cb6-8"></a>x <span class="op">=</span> <span class="st">"educ"</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a>y <span class="op">=</span> <span class="st">"lwage"</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a></span>
-<span id="cb6-11"><a href="#cb6-11"></a>df_edu <span class="op">=</span> df_edu[[x, y]].dropna().copy()</span>
-<span id="cb6-12"><a href="#cb6-12"></a></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="co"># 分组</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a>df_edu[<span class="st">'bin'</span>], bin_edges <span class="op">=</span> pd.qcut(df_edu[x], <span class="dv">10</span>, labels<span class="op">=</span><span class="va">False</span>, </span>
-<span id="cb6-15"><a href="#cb6-15"></a>                                   retbins<span class="op">=</span><span class="va">True</span>, duplicates<span class="op">=</span><span class="st">'drop'</span>)</span>
-<span id="cb6-16"><a href="#cb6-16"></a></span>
-<span id="cb6-17"><a href="#cb6-17"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
-<span id="cb6-18"><a href="#cb6-18"></a>plt.scatter(df_edu[x], df_edu[y], marker<span class="op">=</span><span class="st">'o'</span>, facecolors<span class="op">=</span><span class="st">'none'</span>, </span>
-<span id="cb6-19"><a href="#cb6-19"></a>            edgecolors<span class="op">=</span><span class="st">'darkblue'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>, label<span class="op">=</span><span class="st">'Raw data'</span>)</span>
-<span id="cb6-20"><a href="#cb6-20"></a></span>
-<span id="cb6-21"><a href="#cb6-21"></a>bin_means <span class="op">=</span> df_edu.groupby(<span class="st">'bin'</span>).agg(</span>
-<span id="cb6-22"><a href="#cb6-22"></a>    mean_x<span class="op">=</span>(x, <span class="st">'mean'</span>),</span>
-<span id="cb6-23"><a href="#cb6-23"></a>    mean_y<span class="op">=</span>(y, <span class="st">'mean'</span>)</span>
-<span id="cb6-24"><a href="#cb6-24"></a>).reset_index()</span>
-<span id="cb6-25"><a href="#cb6-25"></a></span>
-<span id="cb6-26"><a href="#cb6-26"></a>plt.scatter(bin_means[<span class="st">'mean_x'</span>], bin_means[<span class="st">'mean_y'</span>], </span>
-<span id="cb6-27"><a href="#cb6-27"></a>            color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>, s<span class="op">=</span><span class="dv">80</span>, label<span class="op">=</span><span class="st">'Binned means'</span>)</span>
-<span id="cb6-28"><a href="#cb6-28"></a></span>
-<span id="cb6-29"><a href="#cb6-29"></a><span class="cf">for</span> edge <span class="kw">in</span> bin_edges[<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>]:</span>
-<span id="cb6-30"><a href="#cb6-30"></a>    plt.axvline(edge, color<span class="op">=</span><span class="st">'black'</span>, linestyle<span class="op">=</span><span class="st">'dashed'</span>, </span>
-<span id="cb6-31"><a href="#cb6-31"></a>                linewidth<span class="op">=</span><span class="dv">1</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb6-32"><a href="#cb6-32"></a></span>
-<span id="cb6-33"><a href="#cb6-33"></a>plt.xlabel(<span class="st">'Years of education'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb6-34"><a href="#cb6-34"></a>plt.ylabel(<span class="st">'Log wage'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb6-35"><a href="#cb6-35"></a>plt.title(<span class="st">'Binned Scatterplot: Education and log(wage)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb6-36"><a href="#cb6-36"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb6-37"><a href="#cb6-37"></a>plt.grid(alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
-<span id="cb6-38"><a href="#cb6-38"></a>plt.tight_layout()</span>
-<span id="cb6-39"><a href="#cb6-39"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 在线读取数据</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://vincentarelbundock.github.io/Rdatasets/csv/wooldridge/mroz.csv"</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>df_edu <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="st">"educ"</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="st">"lwage"</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>df_edu <span class="op">=</span> df_edu[[x, y]].dropna().copy()</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 分组</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>df_edu[<span class="st">'bin'</span>], bin_edges <span class="op">=</span> pd.qcut(df_edu[x], <span class="dv">10</span>, labels<span class="op">=</span><span class="va">False</span>, </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>                                   retbins<span class="op">=</span><span class="va">True</span>, duplicates<span class="op">=</span><span class="st">'drop'</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>plt.scatter(df_edu[x], df_edu[y], marker<span class="op">=</span><span class="st">'o'</span>, facecolors<span class="op">=</span><span class="st">'none'</span>, </span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>            edgecolors<span class="op">=</span><span class="st">'darkblue'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>, label<span class="op">=</span><span class="st">'Raw data'</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>bin_means <span class="op">=</span> df_edu.groupby(<span class="st">'bin'</span>).agg(</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    mean_x<span class="op">=</span>(x, <span class="st">'mean'</span>),</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    mean_y<span class="op">=</span>(y, <span class="st">'mean'</span>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>).reset_index()</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>plt.scatter(bin_means[<span class="st">'mean_x'</span>], bin_means[<span class="st">'mean_y'</span>], </span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>            color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>, s<span class="op">=</span><span class="dv">80</span>, label<span class="op">=</span><span class="st">'Binned means'</span>)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> edge <span class="kw">in</span> bin_edges[<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>]:</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    plt.axvline(edge, color<span class="op">=</span><span class="st">'black'</span>, linestyle<span class="op">=</span><span class="st">'dashed'</span>, </span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>                linewidth<span class="op">=</span><span class="dv">1</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Years of education'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Log wage'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Binned Scatterplot: Education and log(wage)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>plt.grid(alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -974,45 +974,45 @@ Binned b        10.215   0.463
 </div>
 </div>
 <div id="785b3738" class="cell" data-execution_count="96">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="co"># 原始数据回归</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>X_raw <span class="op">=</span> sm.add_constant(df_edu[<span class="st">'educ'</span>])</span>
-<span id="cb7-5"><a href="#cb7-5"></a>model_raw <span class="op">=</span> sm.OLS(df_edu[<span class="st">'lwage'</span>], X_raw).fit()</span>
-<span id="cb7-6"><a href="#cb7-6"></a></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="co"># 分仓均值回归</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a>X_bin <span class="op">=</span> sm.add_constant(bin_means[<span class="st">'mean_x'</span>])</span>
-<span id="cb7-9"><a href="#cb7-9"></a>model_bin <span class="op">=</span> sm.OLS(bin_means[<span class="st">'mean_y'</span>], X_bin).fit()</span>
-<span id="cb7-10"><a href="#cb7-10"></a></span>
-<span id="cb7-11"><a href="#cb7-11"></a><span class="co"># 整理结果</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a><span class="kw">def</span> summary_to_dict(model, N):</span>
-<span id="cb7-13"><a href="#cb7-13"></a>    params <span class="op">=</span> model.params</span>
-<span id="cb7-14"><a href="#cb7-14"></a>    bse <span class="op">=</span> model.bse</span>
-<span id="cb7-15"><a href="#cb7-15"></a>    tvalues <span class="op">=</span> model.tvalues</span>
-<span id="cb7-16"><a href="#cb7-16"></a>    pvalues <span class="op">=</span> model.pvalues</span>
-<span id="cb7-17"><a href="#cb7-17"></a>    rsq <span class="op">=</span> model.rsquared</span>
-<span id="cb7-18"><a href="#cb7-18"></a>    <span class="cf">return</span> {</span>
-<span id="cb7-19"><a href="#cb7-19"></a>        <span class="st">'b'</span>: params.values,</span>
-<span id="cb7-20"><a href="#cb7-20"></a>        <span class="st">'se'</span>: bse.values,</span>
-<span id="cb7-21"><a href="#cb7-21"></a>        <span class="st">'t'</span>: tvalues.values,</span>
-<span id="cb7-22"><a href="#cb7-22"></a>        <span class="st">'P&gt;|t|'</span>: pvalues.values,</span>
-<span id="cb7-23"><a href="#cb7-23"></a>        <span class="st">'N'</span>: [N, <span class="st">''</span>],</span>
-<span id="cb7-24"><a href="#cb7-24"></a>        <span class="st">'R2'</span>: [rsq, <span class="st">''</span>]</span>
-<span id="cb7-25"><a href="#cb7-25"></a>    }</span>
-<span id="cb7-26"><a href="#cb7-26"></a></span>
-<span id="cb7-27"><a href="#cb7-27"></a>res_raw <span class="op">=</span> summary_to_dict(model_raw, <span class="bu">len</span>(df_edu))</span>
-<span id="cb7-28"><a href="#cb7-28"></a>res_bin <span class="op">=</span> summary_to_dict(model_bin, <span class="bu">len</span>(bin_means))</span>
-<span id="cb7-29"><a href="#cb7-29"></a></span>
-<span id="cb7-30"><a href="#cb7-30"></a><span class="co"># 合并为表格</span></span>
-<span id="cb7-31"><a href="#cb7-31"></a>index <span class="op">=</span> [<span class="st">'Intercept'</span>, <span class="st">'educ'</span>]</span>
-<span id="cb7-32"><a href="#cb7-32"></a>results_df_edu <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb7-33"><a href="#cb7-33"></a>    (<span class="st">'Raw'</span>, col): res_raw[col] <span class="cf">for</span> col <span class="kw">in</span> res_raw</span>
-<span id="cb7-34"><a href="#cb7-34"></a>}, index<span class="op">=</span>index)</span>
-<span id="cb7-35"><a href="#cb7-35"></a><span class="cf">for</span> col <span class="kw">in</span> res_bin:</span>
-<span id="cb7-36"><a href="#cb7-36"></a>    results_df_edu[(<span class="st">'Binned'</span>, col)] <span class="op">=</span> res_bin[col]</span>
-<span id="cb7-37"><a href="#cb7-37"></a></span>
-<span id="cb7-38"><a href="#cb7-38"></a><span class="co"># 展示结果</span></span>
-<span id="cb7-39"><a href="#cb7-39"></a><span class="bu">print</span>(results_df_edu.<span class="bu">round</span>(<span class="dv">3</span>).T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 原始数据回归</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>X_raw <span class="op">=</span> sm.add_constant(df_edu[<span class="st">'educ'</span>])</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>model_raw <span class="op">=</span> sm.OLS(df_edu[<span class="st">'lwage'</span>], X_raw).fit()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 分仓均值回归</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>X_bin <span class="op">=</span> sm.add_constant(bin_means[<span class="st">'mean_x'</span>])</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>model_bin <span class="op">=</span> sm.OLS(bin_means[<span class="st">'mean_y'</span>], X_bin).fit()</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 整理结果</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> summary_to_dict(model, N):</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    params <span class="op">=</span> model.params</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    bse <span class="op">=</span> model.bse</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    tvalues <span class="op">=</span> model.tvalues</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    pvalues <span class="op">=</span> model.pvalues</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    rsq <span class="op">=</span> model.rsquared</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">'b'</span>: params.values,</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">'se'</span>: bse.values,</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">'t'</span>: tvalues.values,</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">'P&gt;|t|'</span>: pvalues.values,</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">'N'</span>: [N, <span class="st">''</span>],</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">'R2'</span>: [rsq, <span class="st">''</span>]</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>res_raw <span class="op">=</span> summary_to_dict(model_raw, <span class="bu">len</span>(df_edu))</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>res_bin <span class="op">=</span> summary_to_dict(model_bin, <span class="bu">len</span>(bin_means))</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="co"># 合并为表格</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>index <span class="op">=</span> [<span class="st">'Intercept'</span>, <span class="st">'educ'</span>]</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>results_df_edu <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'Raw'</span>, col): res_raw[col] <span class="cf">for</span> col <span class="kw">in</span> res_raw</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>}, index<span class="op">=</span>index)</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> res_bin:</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    results_df_edu[(<span class="st">'Binned'</span>, col)] <span class="op">=</span> res_bin[col]</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="co"># 展示结果</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results_df_edu.<span class="bu">round</span>(<span class="dv">3</span>).T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>             Intercept   educ
 Raw    b        -0.185  0.109
@@ -1078,44 +1078,44 @@ Binned b        -0.234  0.112
 </div>
 </div>
 <div id="cb13cf99" class="cell" data-execution_count="97">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
-<span id="cb9-4"><a href="#cb9-4"></a></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb9-6"><a href="#cb9-6"></a></span>
-<span id="cb9-7"><a href="#cb9-7"></a><span class="co"># 1. 生成模拟数据</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb9-9"><a href="#cb9-9"></a>n <span class="op">=</span> <span class="dv">500</span></span>
-<span id="cb9-10"><a href="#cb9-10"></a>x <span class="op">=</span> np.random.normal(<span class="dv">5</span>, <span class="dv">2</span>, n)</span>
-<span id="cb9-11"><a href="#cb9-11"></a>e <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, n)</span>
-<span id="cb9-12"><a href="#cb9-12"></a>y <span class="op">=</span> <span class="dv">10</span> <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> x <span class="op">+</span> e</span>
-<span id="cb9-13"><a href="#cb9-13"></a></span>
-<span id="cb9-14"><a href="#cb9-14"></a>df_sim <span class="op">=</span> pd.DataFrame({<span class="st">'x'</span>: x, <span class="st">'y'</span>: y})</span>
-<span id="cb9-15"><a href="#cb9-15"></a></span>
-<span id="cb9-16"><a href="#cb9-16"></a><span class="co"># 2. 分为10组（十分位分组）</span></span>
-<span id="cb9-17"><a href="#cb9-17"></a>df_sim[<span class="st">'bin'</span>], bin_edges <span class="op">=</span> pd.qcut(df_sim[<span class="st">'x'</span>], <span class="dv">10</span>, labels<span class="op">=</span><span class="va">False</span>, retbins<span class="op">=</span><span class="va">True</span>, duplicates<span class="op">=</span><span class="st">'drop'</span>)</span>
-<span id="cb9-18"><a href="#cb9-18"></a></span>
-<span id="cb9-19"><a href="#cb9-19"></a><span class="co"># 3. 绘图</span></span>
-<span id="cb9-20"><a href="#cb9-20"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb9-21"><a href="#cb9-21"></a></span>
-<span id="cb9-22"><a href="#cb9-22"></a><span class="co"># 小提琴图（不显示中位数和胡须线）</span></span>
-<span id="cb9-23"><a href="#cb9-23"></a>sns.violinplot(</span>
-<span id="cb9-24"><a href="#cb9-24"></a>    x<span class="op">=</span><span class="st">'bin'</span>, y<span class="op">=</span><span class="st">'y'</span>, data<span class="op">=</span>df_sim, inner<span class="op">=</span><span class="va">None</span>, color<span class="op">=</span><span class="st">'lightgray'</span></span>
-<span id="cb9-25"><a href="#cb9-25"></a>)</span>
-<span id="cb9-26"><a href="#cb9-26"></a></span>
-<span id="cb9-27"><a href="#cb9-27"></a><span class="co"># 各组散点图</span></span>
-<span id="cb9-28"><a href="#cb9-28"></a>plt.scatter(df_sim[<span class="st">'bin'</span>], df_sim[<span class="st">'y'</span>], marker<span class="op">=</span><span class="st">'o'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Scatter'</span>)</span>
-<span id="cb9-29"><a href="#cb9-29"></a></span>
-<span id="cb9-30"><a href="#cb9-30"></a><span class="co"># 各组均值点和连接线</span></span>
-<span id="cb9-31"><a href="#cb9-31"></a>group_mean <span class="op">=</span> df_sim.groupby(<span class="st">'bin'</span>)[<span class="st">'y'</span>].mean()</span>
-<span id="cb9-32"><a href="#cb9-32"></a>plt.plot(group_mean.index, group_mean.values, color<span class="op">=</span><span class="st">'red'</span>, marker<span class="op">=</span><span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">8</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Mean'</span>)</span>
-<span id="cb9-33"><a href="#cb9-33"></a></span>
-<span id="cb9-34"><a href="#cb9-34"></a>plt.xlabel(<span class="st">'bin'</span>)</span>
-<span id="cb9-35"><a href="#cb9-35"></a>plt.ylabel(<span class="st">'wage'</span>)</span>
-<span id="cb9-36"><a href="#cb9-36"></a>plt.title(<span class="st">'Wage by Bin: Violin, Scatter, and Mean'</span>)</span>
-<span id="cb9-37"><a href="#cb9-37"></a>plt.tight_layout()</span>
-<span id="cb9-38"><a href="#cb9-38"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 生成模拟数据</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">500</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.normal(<span class="dv">5</span>, <span class="dv">2</span>, n)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, n)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">10</span> <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> x <span class="op">+</span> e</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>df_sim <span class="op">=</span> pd.DataFrame({<span class="st">'x'</span>: x, <span class="st">'y'</span>: y})</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. 分为10组（十分位分组）</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>df_sim[<span class="st">'bin'</span>], bin_edges <span class="op">=</span> pd.qcut(df_sim[<span class="st">'x'</span>], <span class="dv">10</span>, labels<span class="op">=</span><span class="va">False</span>, retbins<span class="op">=</span><span class="va">True</span>, duplicates<span class="op">=</span><span class="st">'drop'</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. 绘图</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 小提琴图（不显示中位数和胡须线）</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>sns.violinplot(</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'bin'</span>, y<span class="op">=</span><span class="st">'y'</span>, data<span class="op">=</span>df_sim, inner<span class="op">=</span><span class="va">None</span>, color<span class="op">=</span><span class="st">'lightgray'</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co"># 各组散点图</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>plt.scatter(df_sim[<span class="st">'bin'</span>], df_sim[<span class="st">'y'</span>], marker<span class="op">=</span><span class="st">'o'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Scatter'</span>)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="co"># 各组均值点和连接线</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>group_mean <span class="op">=</span> df_sim.groupby(<span class="st">'bin'</span>)[<span class="st">'y'</span>].mean()</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>plt.plot(group_mean.index, group_mean.values, color<span class="op">=</span><span class="st">'red'</span>, marker<span class="op">=</span><span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">8</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Mean'</span>)</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'bin'</span>)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'wage'</span>)</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Wage by Bin: Violin, Scatter, and Mean'</span>)</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1373,24 +1373,24 @@ y_i = \alpha + \beta x_i + \gamma z_i + e_i \tag{1}
 <section id="初步分析" class="level3" data-number="32.5.2">
 <h3 data-number="32.5.2" class="anchored" data-anchor-id="初步分析"><span class="header-section-number">32.5.2</span> 初步分析</h3>
 <div id="03277a21" class="cell" data-execution_count="98">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="im">import</span> sklearn.linear_model <span class="im">as</span> lm</span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
-<span id="cb10-8"><a href="#cb10-8"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb10-9"><a href="#cb10-9"></a><span class="im">import</span> warnings</span>
-<span id="cb10-10"><a href="#cb10-10"></a><span class="co"># ignore potential convergence warnings; for some small penalty levels,</span></span>
-<span id="cb10-11"><a href="#cb10-11"></a><span class="co"># tried out, optimization might not converge</span></span>
-<span id="cb10-12"><a href="#cb10-12"></a>warnings.simplefilter(<span class="st">'ignore'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn.linear_model <span class="im">as</span> lm</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ignore potential convergence warnings; for some small penalty levels,</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># tried out, optimization might not converge</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>warnings.simplefilter(<span class="st">'ignore'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="26c0ab8b" class="cell" data-execution_count="70">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/CausalAIBook/MetricsMLNotebooks/main/data/wage2015_subsample_inference.csv"</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>df <span class="op">=</span> pd.read_csv(<span class="bu">file</span>)</span>
-<span id="cb11-3"><a href="#cb11-3"></a></span>
-<span id="cb11-4"><a href="#cb11-4"></a>df.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/CausalAIBook/MetricsMLNotebooks/main/data/wage2015_subsample_inference.csv"</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="bu">file</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>df.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="70">
 <pre><code>Index(['wage', 'lwage', 'sex', 'shs', 'hsg', 'scl', 'clg', 'ad', 'mw', 'so',
        'we', 'ne', 'exp1', 'exp2', 'exp3', 'exp4', 'occ', 'occ2', 'ind',
@@ -1425,29 +1425,29 @@ y_i = \alpha + \beta x_i + \gamma z_i + e_i \tag{1}
 </div>
 </div>
 <div id="39538140" class="cell" data-execution_count="100">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># 基于 sex 生成 sex_label 变量（0: Male, 1: Female），并转换为字符串标签</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>df[<span class="st">'sex_label'</span>] <span class="op">=</span> df[<span class="st">'sex'</span>].<span class="bu">map</span>({<span class="dv">0</span>: <span class="st">'Male'</span>, <span class="dv">1</span>: <span class="st">'Female'</span>})</span>
-<span id="cb13-3"><a href="#cb13-3"></a></span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="co"># 定义 edu_group 变量</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a>edu_map <span class="op">=</span> {<span class="st">'shs'</span>: <span class="st">'&lt;HS'</span>, <span class="st">'hsg'</span>: <span class="st">'HS'</span>, <span class="st">'scl'</span>: <span class="st">'Some College'</span>, <span class="st">'clg'</span>: <span class="st">'College'</span>, <span class="st">'ad'</span>: <span class="st">'Advanced'</span>}</span>
-<span id="cb13-6"><a href="#cb13-6"></a><span class="kw">def</span> get_edu_group(row):</span>
-<span id="cb13-7"><a href="#cb13-7"></a>    <span class="cf">for</span> k <span class="kw">in</span> edu_map:</span>
-<span id="cb13-8"><a href="#cb13-8"></a>        <span class="cf">if</span> row[k] <span class="op">==</span> <span class="dv">1</span>:</span>
-<span id="cb13-9"><a href="#cb13-9"></a>            <span class="cf">return</span> edu_map[k]</span>
-<span id="cb13-10"><a href="#cb13-10"></a>    <span class="cf">return</span> <span class="va">None</span></span>
-<span id="cb13-11"><a href="#cb13-11"></a>df[<span class="st">'edu_group'</span>] <span class="op">=</span> df.<span class="bu">apply</span>(get_edu_group, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb13-12"><a href="#cb13-12"></a></span>
-<span id="cb13-13"><a href="#cb13-13"></a><span class="co"># 定义 region 变量</span></span>
-<span id="cb13-14"><a href="#cb13-14"></a>region_map <span class="op">=</span> {<span class="st">'mw'</span>: <span class="st">'Midwest'</span>, <span class="st">'so'</span>: <span class="st">'South'</span>, <span class="st">'we'</span>: <span class="st">'West'</span>, <span class="st">'ne'</span>: <span class="st">'Northeast'</span>}</span>
-<span id="cb13-15"><a href="#cb13-15"></a><span class="kw">def</span> get_region(row):</span>
-<span id="cb13-16"><a href="#cb13-16"></a>    <span class="cf">for</span> k <span class="kw">in</span> region_map:</span>
-<span id="cb13-17"><a href="#cb13-17"></a>        <span class="cf">if</span> row[k] <span class="op">==</span> <span class="dv">1</span>:</span>
-<span id="cb13-18"><a href="#cb13-18"></a>            <span class="cf">return</span> region_map[k]</span>
-<span id="cb13-19"><a href="#cb13-19"></a>    <span class="cf">return</span> <span class="va">None</span></span>
-<span id="cb13-20"><a href="#cb13-20"></a>df[<span class="st">'region'</span>] <span class="op">=</span> df.<span class="bu">apply</span>(get_region, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb13-21"><a href="#cb13-21"></a></span>
-<span id="cb13-22"><a href="#cb13-22"></a><span class="co"># 变量清单</span></span>
-<span id="cb13-23"><a href="#cb13-23"></a>df.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 基于 sex 生成 sex_label 变量（0: Male, 1: Female），并转换为字符串标签</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'sex_label'</span>] <span class="op">=</span> df[<span class="st">'sex'</span>].<span class="bu">map</span>({<span class="dv">0</span>: <span class="st">'Male'</span>, <span class="dv">1</span>: <span class="st">'Female'</span>})</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义 edu_group 变量</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>edu_map <span class="op">=</span> {<span class="st">'shs'</span>: <span class="st">'&lt;HS'</span>, <span class="st">'hsg'</span>: <span class="st">'HS'</span>, <span class="st">'scl'</span>: <span class="st">'Some College'</span>, <span class="st">'clg'</span>: <span class="st">'College'</span>, <span class="st">'ad'</span>: <span class="st">'Advanced'</span>}</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_edu_group(row):</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> edu_map:</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> row[k] <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> edu_map[k]</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'edu_group'</span>] <span class="op">=</span> df.<span class="bu">apply</span>(get_edu_group, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义 region 变量</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>region_map <span class="op">=</span> {<span class="st">'mw'</span>: <span class="st">'Midwest'</span>, <span class="st">'so'</span>: <span class="st">'South'</span>, <span class="st">'we'</span>: <span class="st">'West'</span>, <span class="st">'ne'</span>: <span class="st">'Northeast'</span>}</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_region(row):</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> region_map:</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> row[k] <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> region_map[k]</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'region'</span>] <span class="op">=</span> df.<span class="bu">apply</span>(get_region, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 变量清单</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>df.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="100">
 <pre><code>Index(['wage', 'lwage', 'sex', 'shs', 'hsg', 'scl', 'clg', 'ad', 'mw', 'so',
        'we', 'ne', 'exp1', 'exp2', 'exp3', 'exp4', 'occ', 'occ2', 'ind',
@@ -1456,11 +1456,11 @@ y_i = \alpha + \beta x_i + \gamma z_i + e_i \tag{1}
 </div>
 </div>
 <div id="e1275191" class="cell" data-execution_count="73">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># 描述性统计量</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>cols_to_exclude <span class="op">=</span> [<span class="st">'exp2'</span>, <span class="st">'exp3'</span>, <span class="st">'exp4'</span>, <span class="st">'occ'</span>, <span class="st">'ind'</span>]</span>
-<span id="cb15-3"><a href="#cb15-3"></a>desc <span class="op">=</span> df.drop(columns<span class="op">=</span>cols_to_exclude).describe().T[[<span class="st">'count'</span>, <span class="st">'mean'</span>, <span class="st">'std'</span>, <span class="st">'min'</span>, <span class="st">'max'</span>]]</span>
-<span id="cb15-4"><a href="#cb15-4"></a>desc <span class="op">=</span> desc.rename(columns<span class="op">=</span>{<span class="st">'count'</span>: <span class="st">'N'</span>, <span class="st">'std'</span>: <span class="st">'sd'</span>})</span>
-<span id="cb15-5"><a href="#cb15-5"></a><span class="bu">print</span>(desc.<span class="bu">round</span>(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 描述性统计量</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>cols_to_exclude <span class="op">=</span> [<span class="st">'exp2'</span>, <span class="st">'exp3'</span>, <span class="st">'exp4'</span>, <span class="st">'occ'</span>, <span class="st">'ind'</span>]</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>desc <span class="op">=</span> df.drop(columns<span class="op">=</span>cols_to_exclude).describe().T[[<span class="st">'count'</span>, <span class="st">'mean'</span>, <span class="st">'std'</span>, <span class="st">'min'</span>, <span class="st">'max'</span>]]</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>desc <span class="op">=</span> desc.rename(columns<span class="op">=</span>{<span class="st">'count'</span>: <span class="st">'N'</span>, <span class="st">'std'</span>: <span class="st">'sd'</span>})</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(desc.<span class="bu">round</span>(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            N   mean     sd   min     max
 wage   5150.0  23.41  21.00  3.02  528.85
@@ -1503,31 +1503,31 @@ ind2   5150.0  13.32   5.70  2.00   22.00</code></pre>
 </div>
 </div>
 <div id="c8684743" class="cell" data-execution_count="101">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># 绘制 wage 和 experience 的 '散点图+线性回归线 (+ 95% CI)' 图。</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a></span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb17-4"><a href="#cb17-4"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb17-5"><a href="#cb17-5"></a></span>
-<span id="cb17-6"><a href="#cb17-6"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb17-7"><a href="#cb17-7"></a></span>
-<span id="cb17-8"><a href="#cb17-8"></a><span class="co"># 只用 wage &lt; 100 的样本</span></span>
-<span id="cb17-9"><a href="#cb17-9"></a>df_plot <span class="op">=</span> df[df[<span class="st">'wage'</span>] <span class="op">&lt;</span> <span class="dv">100</span>].copy()</span>
-<span id="cb17-10"><a href="#cb17-10"></a></span>
-<span id="cb17-11"><a href="#cb17-11"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb17-12"><a href="#cb17-12"></a>sns.regplot(</span>
-<span id="cb17-13"><a href="#cb17-13"></a>    data<span class="op">=</span>df_plot,</span>
-<span id="cb17-14"><a href="#cb17-14"></a>    x<span class="op">=</span><span class="st">'exp1'</span>, y<span class="op">=</span><span class="st">'wage'</span>,</span>
-<span id="cb17-15"><a href="#cb17-15"></a>    scatter_kws<span class="op">=</span>{<span class="st">'alpha'</span>: <span class="fl">0.18</span>, <span class="st">'color'</span>: <span class="st">'#1f77b4'</span>},</span>
-<span id="cb17-16"><a href="#cb17-16"></a>    line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'#ff7f0e'</span>},</span>
-<span id="cb17-17"><a href="#cb17-17"></a>    ci<span class="op">=</span><span class="dv">95</span></span>
-<span id="cb17-18"><a href="#cb17-18"></a>)</span>
-<span id="cb17-19"><a href="#cb17-19"></a>plt.xlabel(<span class="st">'Experience (years)'</span>)</span>
-<span id="cb17-20"><a href="#cb17-20"></a>plt.ylabel(<span class="st">'Wage'</span>)</span>
-<span id="cb17-21"><a href="#cb17-21"></a>plt.title(<span class="st">'Wage vs. Experience (Linear Fit with 95% CI)'</span>)</span>
-<span id="cb17-22"><a href="#cb17-22"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, color<span class="op">=</span><span class="st">'lightgray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.7</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb17-23"><a href="#cb17-23"></a>plt.yticks(np.arange(<span class="dv">0</span>, <span class="dv">105</span>, <span class="dv">10</span>))</span>
-<span id="cb17-24"><a href="#cb17-24"></a>plt.tight_layout()</span>
-<span id="cb17-25"><a href="#cb17-25"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制 wage 和 experience 的 '散点图+线性回归线 (+ 95% CI)' 图。</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 只用 wage &lt; 100 的样本</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>df_plot <span class="op">=</span> df[df[<span class="st">'wage'</span>] <span class="op">&lt;</span> <span class="dv">100</span>].copy()</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>sns.regplot(</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>df_plot,</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'exp1'</span>, y<span class="op">=</span><span class="st">'wage'</span>,</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    scatter_kws<span class="op">=</span>{<span class="st">'alpha'</span>: <span class="fl">0.18</span>, <span class="st">'color'</span>: <span class="st">'#1f77b4'</span>},</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'#ff7f0e'</span>},</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    ci<span class="op">=</span><span class="dv">95</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Experience (years)'</span>)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Wage'</span>)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Wage vs. Experience (Linear Fit with 95% CI)'</span>)</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, color<span class="op">=</span><span class="st">'lightgray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.7</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>plt.yticks(np.arange(<span class="dv">0</span>, <span class="dv">105</span>, <span class="dv">10</span>))</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1555,44 +1555,44 @@ ind2   5150.0  13.32   5.70  2.00   22.00</code></pre>
 </div>
 </div>
 <div id="203d8e6a" class="cell" data-execution_count="75">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb18-3"><a href="#cb18-3"></a><span class="im">from</span> scipy.stats <span class="im">import</span> binned_statistic</span>
-<span id="cb18-4"><a href="#cb18-4"></a></span>
-<span id="cb18-5"><a href="#cb18-5"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb18-6"><a href="#cb18-6"></a></span>
-<span id="cb18-7"><a href="#cb18-7"></a><span class="co"># 只用 wage &lt; 100 的样本</span></span>
-<span id="cb18-8"><a href="#cb18-8"></a>df_plot <span class="op">=</span> df[df[<span class="st">'wage'</span>] <span class="op">&lt;</span> <span class="dv">100</span>].copy()</span>
-<span id="cb18-9"><a href="#cb18-9"></a></span>
-<span id="cb18-10"><a href="#cb18-10"></a><span class="co"># 设置分箱数量</span></span>
-<span id="cb18-11"><a href="#cb18-11"></a>n_bins <span class="op">=</span> <span class="dv">40</span></span>
-<span id="cb18-12"><a href="#cb18-12"></a>bin_means, bin_edges, binnumber <span class="op">=</span> binned_statistic(</span>
-<span id="cb18-13"><a href="#cb18-13"></a>    df_plot[<span class="st">'exp1'</span>], df_plot[<span class="st">'wage'</span>], statistic<span class="op">=</span><span class="st">'mean'</span>, bins<span class="op">=</span>n_bins</span>
-<span id="cb18-14"><a href="#cb18-14"></a>)</span>
-<span id="cb18-15"><a href="#cb18-15"></a>bin_centers <span class="op">=</span> (bin_edges[:<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> bin_edges[<span class="dv">1</span>:]) <span class="op">/</span> <span class="dv">2</span></span>
-<span id="cb18-16"><a href="#cb18-16"></a></span>
-<span id="cb18-17"><a href="#cb18-17"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb18-18"><a href="#cb18-18"></a><span class="co"># 绘制分仓均值散点</span></span>
-<span id="cb18-19"><a href="#cb18-19"></a>plt.scatter(bin_centers, bin_means, color<span class="op">=</span><span class="st">'#1f77b4'</span>, s<span class="op">=</span><span class="dv">60</span>, label<span class="op">=</span><span class="st">'Binned Means'</span>)</span>
-<span id="cb18-20"><a href="#cb18-20"></a></span>
-<span id="cb18-21"><a href="#cb18-21"></a><span class="co"># 拟合线性回归线和置信区间</span></span>
-<span id="cb18-22"><a href="#cb18-22"></a>sns.regplot(</span>
-<span id="cb18-23"><a href="#cb18-23"></a>    data<span class="op">=</span>df_plot,</span>
-<span id="cb18-24"><a href="#cb18-24"></a>    x<span class="op">=</span><span class="st">'exp1'</span>, y<span class="op">=</span><span class="st">'wage'</span>,</span>
-<span id="cb18-25"><a href="#cb18-25"></a>    scatter<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb18-26"><a href="#cb18-26"></a>    line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'#ff7f0e'</span>},</span>
-<span id="cb18-27"><a href="#cb18-27"></a>    ci<span class="op">=</span><span class="dv">95</span>,</span>
-<span id="cb18-28"><a href="#cb18-28"></a>    label<span class="op">=</span><span class="st">'Linear Fit (95% CI)'</span></span>
-<span id="cb18-29"><a href="#cb18-29"></a>)</span>
-<span id="cb18-30"><a href="#cb18-30"></a></span>
-<span id="cb18-31"><a href="#cb18-31"></a>plt.xlabel(<span class="st">'Experience (years)'</span>)</span>
-<span id="cb18-32"><a href="#cb18-32"></a>plt.ylabel(<span class="st">'Wage'</span>)</span>
-<span id="cb18-33"><a href="#cb18-33"></a>plt.title(<span class="st">'Binscatter: Wage vs. Experience (+ Linear Fit &amp; 95% CI)'</span>)</span>
-<span id="cb18-34"><a href="#cb18-34"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, color<span class="op">=</span><span class="st">'lightgray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.7</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb18-35"><a href="#cb18-35"></a>plt.yticks(np.arange(<span class="dv">5</span>, <span class="dv">40</span>, <span class="dv">5</span>))</span>
-<span id="cb18-36"><a href="#cb18-36"></a>plt.legend()</span>
-<span id="cb18-37"><a href="#cb18-37"></a>plt.tight_layout()</span>
-<span id="cb18-38"><a href="#cb18-38"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> binned_statistic</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 只用 wage &lt; 100 的样本</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>df_plot <span class="op">=</span> df[df[<span class="st">'wage'</span>] <span class="op">&lt;</span> <span class="dv">100</span>].copy()</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置分箱数量</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>n_bins <span class="op">=</span> <span class="dv">40</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>bin_means, bin_edges, binnumber <span class="op">=</span> binned_statistic(</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    df_plot[<span class="st">'exp1'</span>], df_plot[<span class="st">'wage'</span>], statistic<span class="op">=</span><span class="st">'mean'</span>, bins<span class="op">=</span>n_bins</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>bin_centers <span class="op">=</span> (bin_edges[:<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> bin_edges[<span class="dv">1</span>:]) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制分仓均值散点</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>plt.scatter(bin_centers, bin_means, color<span class="op">=</span><span class="st">'#1f77b4'</span>, s<span class="op">=</span><span class="dv">60</span>, label<span class="op">=</span><span class="st">'Binned Means'</span>)</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 拟合线性回归线和置信区间</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>sns.regplot(</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>df_plot,</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'exp1'</span>, y<span class="op">=</span><span class="st">'wage'</span>,</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    scatter<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>    line_kws<span class="op">=</span>{<span class="st">'color'</span>: <span class="st">'#ff7f0e'</span>},</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>    ci<span class="op">=</span><span class="dv">95</span>,</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">'Linear Fit (95% CI)'</span></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Experience (years)'</span>)</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Wage'</span>)</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Binscatter: Wage vs. Experience (+ Linear Fit &amp; 95% CI)'</span>)</span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, color<span class="op">=</span><span class="st">'lightgray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.7</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>plt.yticks(np.arange(<span class="dv">5</span>, <span class="dv">40</span>, <span class="dv">5</span>))</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1643,68 +1643,68 @@ ind2   5150.0  13.32   5.70  2.00   22.00</code></pre>
 </div>
 </div>
 <div id="8bc06a37" class="cell" data-execution_count="76">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb19-3"><a href="#cb19-3"></a><span class="im">from</span> scipy.stats <span class="im">import</span> binned_statistic</span>
-<span id="cb19-4"><a href="#cb19-4"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> PolynomialFeatures</span>
-<span id="cb19-5"><a href="#cb19-5"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
-<span id="cb19-6"><a href="#cb19-6"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
-<span id="cb19-7"><a href="#cb19-7"></a><span class="im">from</span> statsmodels.stats.outliers_influence <span class="im">import</span> summary_table</span>
-<span id="cb19-8"><a href="#cb19-8"></a></span>
-<span id="cb19-9"><a href="#cb19-9"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb19-10"><a href="#cb19-10"></a></span>
-<span id="cb19-11"><a href="#cb19-11"></a><span class="co"># 只用 wage &lt; 100 的样本</span></span>
-<span id="cb19-12"><a href="#cb19-12"></a>df_plot <span class="op">=</span> df[df[<span class="st">'wage'</span>] <span class="op">&lt;</span> <span class="dv">100</span>].copy()</span>
-<span id="cb19-13"><a href="#cb19-13"></a></span>
-<span id="cb19-14"><a href="#cb19-14"></a><span class="co"># 分箱参数</span></span>
-<span id="cb19-15"><a href="#cb19-15"></a>n_bins <span class="op">=</span> <span class="dv">20</span></span>
-<span id="cb19-16"><a href="#cb19-16"></a>bin_means, bin_edges, binnumber <span class="op">=</span> binned_statistic(</span>
-<span id="cb19-17"><a href="#cb19-17"></a>    df_plot[<span class="st">'exp1'</span>], df_plot[<span class="st">'wage'</span>], statistic<span class="op">=</span><span class="st">'mean'</span>, bins<span class="op">=</span>n_bins</span>
-<span id="cb19-18"><a href="#cb19-18"></a>)</span>
-<span id="cb19-19"><a href="#cb19-19"></a>bin_centers <span class="op">=</span> (bin_edges[:<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> bin_edges[<span class="dv">1</span>:]) <span class="op">/</span> <span class="dv">2</span></span>
-<span id="cb19-20"><a href="#cb19-20"></a></span>
-<span id="cb19-21"><a href="#cb19-21"></a><span class="co"># 选择最优多项式阶数（交叉验证，最大到5阶）</span></span>
-<span id="cb19-22"><a href="#cb19-22"></a>X <span class="op">=</span> df_plot[[<span class="st">'exp1'</span>]].values</span>
-<span id="cb19-23"><a href="#cb19-23"></a>y <span class="op">=</span> df_plot[<span class="st">'wage'</span>].values</span>
-<span id="cb19-24"><a href="#cb19-24"></a>cv_scores <span class="op">=</span> []</span>
-<span id="cb19-25"><a href="#cb19-25"></a>degrees <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>)</span>
-<span id="cb19-26"><a href="#cb19-26"></a><span class="cf">for</span> d <span class="kw">in</span> degrees:</span>
-<span id="cb19-27"><a href="#cb19-27"></a>    poly <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span>d)</span>
-<span id="cb19-28"><a href="#cb19-28"></a>    X_poly <span class="op">=</span> poly.fit_transform(X)</span>
-<span id="cb19-29"><a href="#cb19-29"></a>    model <span class="op">=</span> LinearRegression()</span>
-<span id="cb19-30"><a href="#cb19-30"></a>    <span class="co"># 负MSE，取均值</span></span>
-<span id="cb19-31"><a href="#cb19-31"></a>    score <span class="op">=</span> cross_val_score(model, X_poly, y, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">'neg_mean_squared_error'</span>).mean()</span>
-<span id="cb19-32"><a href="#cb19-32"></a>    cv_scores.append(score)</span>
-<span id="cb19-33"><a href="#cb19-33"></a>best_degree <span class="op">=</span> degrees[np.argmax(cv_scores)]</span>
-<span id="cb19-34"><a href="#cb19-34"></a></span>
-<span id="cb19-35"><a href="#cb19-35"></a><span class="co"># 用最优阶数拟合</span></span>
-<span id="cb19-36"><a href="#cb19-36"></a>poly <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span>best_degree)</span>
-<span id="cb19-37"><a href="#cb19-37"></a>X_poly <span class="op">=</span> poly.fit_transform(X)</span>
-<span id="cb19-38"><a href="#cb19-38"></a>model <span class="op">=</span> LinearRegression().fit(X_poly, y)</span>
-<span id="cb19-39"><a href="#cb19-39"></a>y_pred <span class="op">=</span> model.predict(X_poly)</span>
-<span id="cb19-40"><a href="#cb19-40"></a></span>
-<span id="cb19-41"><a href="#cb19-41"></a><span class="co"># 计算置信区间</span></span>
-<span id="cb19-42"><a href="#cb19-42"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb19-43"><a href="#cb19-43"></a>X_poly_sm <span class="op">=</span> sm.add_constant(X_poly)</span>
-<span id="cb19-44"><a href="#cb19-44"></a>ols <span class="op">=</span> sm.OLS(y, X_poly_sm).fit()</span>
-<span id="cb19-45"><a href="#cb19-45"></a>st, data, ss2 <span class="op">=</span> summary_table(ols, alpha<span class="op">=</span><span class="fl">0.05</span>)</span>
-<span id="cb19-46"><a href="#cb19-46"></a>ci_low, ci_upp <span class="op">=</span> data[:, <span class="dv">4</span>], data[:, <span class="dv">5</span>]</span>
-<span id="cb19-47"><a href="#cb19-47"></a></span>
-<span id="cb19-48"><a href="#cb19-48"></a><span class="co"># 绘图</span></span>
-<span id="cb19-49"><a href="#cb19-49"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb19-50"><a href="#cb19-50"></a>plt.scatter(bin_centers, bin_means, color<span class="op">=</span><span class="st">'#1f77b4'</span>, s<span class="op">=</span><span class="dv">60</span>, label<span class="op">=</span><span class="st">'Binned Means'</span>)</span>
-<span id="cb19-51"><a href="#cb19-51"></a><span class="co"># 拟合曲线</span></span>
-<span id="cb19-52"><a href="#cb19-52"></a>order <span class="op">=</span> np.argsort(X[:, <span class="dv">0</span>])</span>
-<span id="cb19-53"><a href="#cb19-53"></a>plt.plot(X[order, <span class="dv">0</span>], y_pred[order], color<span class="op">=</span><span class="st">'#ff7f0e'</span>, label<span class="op">=</span><span class="ss">f'Poly Fit (degree=</span><span class="sc">{</span>best_degree<span class="sc">}</span><span class="ss">)'</span>)</span>
-<span id="cb19-54"><a href="#cb19-54"></a>plt.fill_between(X[order, <span class="dv">0</span>], ci_low[order], ci_upp[order], color<span class="op">=</span><span class="st">'#ff7f0e'</span>, alpha<span class="op">=</span><span class="fl">0.18</span>, label<span class="op">=</span><span class="st">'95% CI'</span>)</span>
-<span id="cb19-55"><a href="#cb19-55"></a>plt.xlabel(<span class="st">'Experience (years)'</span>)</span>
-<span id="cb19-56"><a href="#cb19-56"></a>plt.ylabel(<span class="st">'Wage'</span>)</span>
-<span id="cb19-57"><a href="#cb19-57"></a>plt.title(<span class="st">'Binscatter: Wage vs. Experience (+ Nonlinear Fit &amp; 95% CI)'</span>)</span>
-<span id="cb19-58"><a href="#cb19-58"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, color<span class="op">=</span><span class="st">'lightgray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.7</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb19-59"><a href="#cb19-59"></a>plt.yticks(np.arange(<span class="dv">5</span>, <span class="dv">40</span>, <span class="dv">5</span>))</span>
-<span id="cb19-60"><a href="#cb19-60"></a>plt.legend()</span>
-<span id="cb19-61"><a href="#cb19-61"></a>plt.tight_layout()</span>
-<span id="cb19-62"><a href="#cb19-62"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> binned_statistic</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> PolynomialFeatures</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.stats.outliers_influence <span class="im">import</span> summary_table</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 只用 wage &lt; 100 的样本</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>df_plot <span class="op">=</span> df[df[<span class="st">'wage'</span>] <span class="op">&lt;</span> <span class="dv">100</span>].copy()</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 分箱参数</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>n_bins <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>bin_means, bin_edges, binnumber <span class="op">=</span> binned_statistic(</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    df_plot[<span class="st">'exp1'</span>], df_plot[<span class="st">'wage'</span>], statistic<span class="op">=</span><span class="st">'mean'</span>, bins<span class="op">=</span>n_bins</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>bin_centers <span class="op">=</span> (bin_edges[:<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> bin_edges[<span class="dv">1</span>:]) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 选择最优多项式阶数（交叉验证，最大到5阶）</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df_plot[[<span class="st">'exp1'</span>]].values</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df_plot[<span class="st">'wage'</span>].values</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>cv_scores <span class="op">=</span> []</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>degrees <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>)</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> degrees:</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>    poly <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span>d)</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>    X_poly <span class="op">=</span> poly.fit_transform(X)</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> LinearRegression()</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 负MSE，取均值</span></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>    score <span class="op">=</span> cross_val_score(model, X_poly, y, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">'neg_mean_squared_error'</span>).mean()</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>    cv_scores.append(score)</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>best_degree <span class="op">=</span> degrees[np.argmax(cv_scores)]</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 用最优阶数拟合</span></span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>poly <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span>best_degree)</span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>X_poly <span class="op">=</span> poly.fit_transform(X)</span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LinearRegression().fit(X_poly, y)</span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(X_poly)</span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算置信区间</span></span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>X_poly_sm <span class="op">=</span> sm.add_constant(X_poly)</span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a>ols <span class="op">=</span> sm.OLS(y, X_poly_sm).fit()</span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a>st, data, ss2 <span class="op">=</span> summary_table(ols, alpha<span class="op">=</span><span class="fl">0.05</span>)</span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a>ci_low, ci_upp <span class="op">=</span> data[:, <span class="dv">4</span>], data[:, <span class="dv">5</span>]</span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图</span></span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a>plt.scatter(bin_centers, bin_means, color<span class="op">=</span><span class="st">'#1f77b4'</span>, s<span class="op">=</span><span class="dv">60</span>, label<span class="op">=</span><span class="st">'Binned Means'</span>)</span>
+<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a><span class="co"># 拟合曲线</span></span>
+<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> np.argsort(X[:, <span class="dv">0</span>])</span>
+<span id="cb19-53"><a href="#cb19-53" aria-hidden="true" tabindex="-1"></a>plt.plot(X[order, <span class="dv">0</span>], y_pred[order], color<span class="op">=</span><span class="st">'#ff7f0e'</span>, label<span class="op">=</span><span class="ss">f'Poly Fit (degree=</span><span class="sc">{</span>best_degree<span class="sc">}</span><span class="ss">)'</span>)</span>
+<span id="cb19-54"><a href="#cb19-54" aria-hidden="true" tabindex="-1"></a>plt.fill_between(X[order, <span class="dv">0</span>], ci_low[order], ci_upp[order], color<span class="op">=</span><span class="st">'#ff7f0e'</span>, alpha<span class="op">=</span><span class="fl">0.18</span>, label<span class="op">=</span><span class="st">'95% CI'</span>)</span>
+<span id="cb19-55"><a href="#cb19-55" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Experience (years)'</span>)</span>
+<span id="cb19-56"><a href="#cb19-56" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Wage'</span>)</span>
+<span id="cb19-57"><a href="#cb19-57" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Binscatter: Wage vs. Experience (+ Nonlinear Fit &amp; 95% CI)'</span>)</span>
+<span id="cb19-58"><a href="#cb19-58" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, color<span class="op">=</span><span class="st">'lightgray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.7</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb19-59"><a href="#cb19-59" aria-hidden="true" tabindex="-1"></a>plt.yticks(np.arange(<span class="dv">5</span>, <span class="dv">40</span>, <span class="dv">5</span>))</span>
+<span id="cb19-60"><a href="#cb19-60" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb19-61"><a href="#cb19-61" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb19-62"><a href="#cb19-62" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1742,59 +1742,59 @@ ind2   5150.0  13.32   5.70  2.00   22.00</code></pre>
 </div>
 </div>
 <div id="45d919e1" class="cell" data-execution_count="92">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="im">from</span> scipy.stats <span class="im">import</span> binned_statistic</span>
-<span id="cb20-3"><a href="#cb20-3"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> PolynomialFeatures</span>
-<span id="cb20-4"><a href="#cb20-4"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
-<span id="cb20-5"><a href="#cb20-5"></a><span class="im">from</span> statsmodels.sandbox.regression.predstd <span class="im">import</span> wls_prediction_std</span>
-<span id="cb20-6"><a href="#cb20-6"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb20-7"><a href="#cb20-7"></a></span>
-<span id="cb20-8"><a href="#cb20-8"></a><span class="kw">def</span> plot_binscatter_by(df, xvar, yvar, groupvar, n_bins<span class="op">=</span><span class="dv">20</span>, degree<span class="op">=</span><span class="dv">4</span>, palette<span class="op">=</span><span class="va">None</span>, scatter_alpha<span class="op">=</span><span class="fl">0.18</span>, scatter_size<span class="op">=</span><span class="dv">50</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>)):</span>
-<span id="cb20-9"><a href="#cb20-9"></a>    <span class="co">"""</span></span>
-<span id="cb20-10"><a href="#cb20-10"></a><span class="co">    分组分仓散点图 + 多项式拟合线（默认4阶），每个分组单独绘制。</span></span>
-<span id="cb20-11"><a href="#cb20-11"></a><span class="co">    """</span></span>
-<span id="cb20-12"><a href="#cb20-12"></a>    <span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb20-13"><a href="#cb20-13"></a>    <span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb20-14"><a href="#cb20-14"></a></span>
-<span id="cb20-15"><a href="#cb20-15"></a>    groups <span class="op">=</span> df[groupvar].dropna().unique()</span>
-<span id="cb20-16"><a href="#cb20-16"></a>    <span class="cf">if</span> palette <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb20-17"><a href="#cb20-17"></a>        colors <span class="op">=</span> sns.color_palette(<span class="st">"tab10"</span>, <span class="bu">len</span>(groups))</span>
-<span id="cb20-18"><a href="#cb20-18"></a>        palette <span class="op">=</span> {g: c <span class="cf">for</span> g, c <span class="kw">in</span> <span class="bu">zip</span>(groups, colors)}</span>
-<span id="cb20-19"><a href="#cb20-19"></a></span>
-<span id="cb20-20"><a href="#cb20-20"></a>    plt.figure(figsize<span class="op">=</span>figsize)</span>
-<span id="cb20-21"><a href="#cb20-21"></a>    <span class="cf">for</span> group <span class="kw">in</span> groups:</span>
-<span id="cb20-22"><a href="#cb20-22"></a>        sub <span class="op">=</span> df[df[groupvar] <span class="op">==</span> group]</span>
-<span id="cb20-23"><a href="#cb20-23"></a>        x <span class="op">=</span> sub[xvar].values</span>
-<span id="cb20-24"><a href="#cb20-24"></a>        y <span class="op">=</span> sub[yvar].values</span>
-<span id="cb20-25"><a href="#cb20-25"></a></span>
-<span id="cb20-26"><a href="#cb20-26"></a>        <span class="co"># 分箱均值</span></span>
-<span id="cb20-27"><a href="#cb20-27"></a>        bin_means, bin_edges, _ <span class="op">=</span> binned_statistic(x, y, statistic<span class="op">=</span><span class="st">'mean'</span>, bins<span class="op">=</span>n_bins)</span>
-<span id="cb20-28"><a href="#cb20-28"></a>        bin_centers <span class="op">=</span> (bin_edges[:<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> bin_edges[<span class="dv">1</span>:]) <span class="op">/</span> <span class="dv">2</span></span>
-<span id="cb20-29"><a href="#cb20-29"></a>        plt.scatter(bin_centers, bin_means, color<span class="op">=</span>palette[group], s<span class="op">=</span>scatter_size, alpha<span class="op">=</span><span class="fl">0.8</span>, label<span class="op">=</span><span class="ss">f'</span><span class="sc">{</span>group<span class="sc">}</span><span class="ss"> (binned)'</span>)</span>
-<span id="cb20-30"><a href="#cb20-30"></a></span>
-<span id="cb20-31"><a href="#cb20-31"></a>        <span class="co"># 多项式拟合</span></span>
-<span id="cb20-32"><a href="#cb20-32"></a>        poly <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span>degree)</span>
-<span id="cb20-33"><a href="#cb20-33"></a>        X_poly <span class="op">=</span> poly.fit_transform(x.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb20-34"><a href="#cb20-34"></a>        model <span class="op">=</span> LinearRegression().fit(X_poly, y)</span>
-<span id="cb20-35"><a href="#cb20-35"></a>        x_fit <span class="op">=</span> np.linspace(x.<span class="bu">min</span>(), x.<span class="bu">max</span>(), <span class="dv">200</span>)</span>
-<span id="cb20-36"><a href="#cb20-36"></a>        X_fit_poly <span class="op">=</span> poly.transform(x_fit.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb20-37"><a href="#cb20-37"></a>        y_fit <span class="op">=</span> model.predict(X_fit_poly)</span>
-<span id="cb20-38"><a href="#cb20-38"></a></span>
-<span id="cb20-39"><a href="#cb20-39"></a>        <span class="co"># 置信区间</span></span>
-<span id="cb20-40"><a href="#cb20-40"></a>        X_poly_sm <span class="op">=</span> sm.add_constant(X_poly)</span>
-<span id="cb20-41"><a href="#cb20-41"></a>        ols <span class="op">=</span> sm.OLS(y, X_poly_sm).fit()</span>
-<span id="cb20-42"><a href="#cb20-42"></a>        X_fit_poly_sm <span class="op">=</span> sm.add_constant(X_fit_poly)</span>
-<span id="cb20-43"><a href="#cb20-43"></a>        prstd, ci_low, ci_upp <span class="op">=</span> wls_prediction_std(ols, exog<span class="op">=</span>X_fit_poly_sm, alpha<span class="op">=</span><span class="fl">0.05</span>)</span>
-<span id="cb20-44"><a href="#cb20-44"></a>        plt.plot(x_fit, y_fit, color<span class="op">=</span>palette[group], label<span class="op">=</span><span class="ss">f'</span><span class="sc">{</span>group<span class="sc">}</span><span class="ss"> (poly fit)'</span>)</span>
-<span id="cb20-45"><a href="#cb20-45"></a>        plt.fill_between(x_fit, ci_low, ci_upp, color<span class="op">=</span>palette[group], alpha<span class="op">=</span><span class="fl">0.15</span>)</span>
-<span id="cb20-46"><a href="#cb20-46"></a></span>
-<span id="cb20-47"><a href="#cb20-47"></a>    plt.xlabel(xvar)</span>
-<span id="cb20-48"><a href="#cb20-48"></a>    plt.ylabel(yvar)</span>
-<span id="cb20-49"><a href="#cb20-49"></a>    plt.title(<span class="ss">f'Binscatter: </span><span class="sc">{</span>yvar<span class="sc">}</span><span class="ss"> vs. </span><span class="sc">{</span>xvar<span class="sc">}</span><span class="ss"> by </span><span class="sc">{</span>groupvar<span class="sc">}</span><span class="ss"> (Poly p=</span><span class="sc">{</span>degree<span class="sc">}</span><span class="ss">)'</span>)</span>
-<span id="cb20-50"><a href="#cb20-50"></a>    plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, color<span class="op">=</span><span class="st">'lightgray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.7</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb20-51"><a href="#cb20-51"></a>    plt.legend()</span>
-<span id="cb20-52"><a href="#cb20-52"></a>    plt.tight_layout()</span>
-<span id="cb20-53"><a href="#cb20-53"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> binned_statistic</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> PolynomialFeatures</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.sandbox.regression.predstd <span class="im">import</span> wls_prediction_std</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_binscatter_by(df, xvar, yvar, groupvar, n_bins<span class="op">=</span><span class="dv">20</span>, degree<span class="op">=</span><span class="dv">4</span>, palette<span class="op">=</span><span class="va">None</span>, scatter_alpha<span class="op">=</span><span class="fl">0.18</span>, scatter_size<span class="op">=</span><span class="dv">50</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>)):</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">    分组分仓散点图 + 多项式拟合线（默认4阶），每个分组单独绘制。</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    groups <span class="op">=</span> df[groupvar].dropna().unique()</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> palette <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>        colors <span class="op">=</span> sns.color_palette(<span class="st">"tab10"</span>, <span class="bu">len</span>(groups))</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>        palette <span class="op">=</span> {g: c <span class="cf">for</span> g, c <span class="kw">in</span> <span class="bu">zip</span>(groups, colors)}</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>figsize)</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> group <span class="kw">in</span> groups:</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>        sub <span class="op">=</span> df[df[groupvar] <span class="op">==</span> group]</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> sub[xvar].values</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> sub[yvar].values</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 分箱均值</span></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>        bin_means, bin_edges, _ <span class="op">=</span> binned_statistic(x, y, statistic<span class="op">=</span><span class="st">'mean'</span>, bins<span class="op">=</span>n_bins)</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>        bin_centers <span class="op">=</span> (bin_edges[:<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> bin_edges[<span class="dv">1</span>:]) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>        plt.scatter(bin_centers, bin_means, color<span class="op">=</span>palette[group], s<span class="op">=</span>scatter_size, alpha<span class="op">=</span><span class="fl">0.8</span>, label<span class="op">=</span><span class="ss">f'</span><span class="sc">{</span>group<span class="sc">}</span><span class="ss"> (binned)'</span>)</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 多项式拟合</span></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>        poly <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span>degree)</span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>        X_poly <span class="op">=</span> poly.fit_transform(x.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>        model <span class="op">=</span> LinearRegression().fit(X_poly, y)</span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>        x_fit <span class="op">=</span> np.linspace(x.<span class="bu">min</span>(), x.<span class="bu">max</span>(), <span class="dv">200</span>)</span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>        X_fit_poly <span class="op">=</span> poly.transform(x_fit.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>        y_fit <span class="op">=</span> model.predict(X_fit_poly)</span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 置信区间</span></span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>        X_poly_sm <span class="op">=</span> sm.add_constant(X_poly)</span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>        ols <span class="op">=</span> sm.OLS(y, X_poly_sm).fit()</span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>        X_fit_poly_sm <span class="op">=</span> sm.add_constant(X_fit_poly)</span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>        prstd, ci_low, ci_upp <span class="op">=</span> wls_prediction_std(ols, exog<span class="op">=</span>X_fit_poly_sm, alpha<span class="op">=</span><span class="fl">0.05</span>)</span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>        plt.plot(x_fit, y_fit, color<span class="op">=</span>palette[group], label<span class="op">=</span><span class="ss">f'</span><span class="sc">{</span>group<span class="sc">}</span><span class="ss"> (poly fit)'</span>)</span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>        plt.fill_between(x_fit, ci_low, ci_upp, color<span class="op">=</span>palette[group], alpha<span class="op">=</span><span class="fl">0.15</span>)</span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(xvar)</span>
+<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(yvar)</span>
+<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="ss">f'Binscatter: </span><span class="sc">{</span>yvar<span class="sc">}</span><span class="ss"> vs. </span><span class="sc">{</span>xvar<span class="sc">}</span><span class="ss"> by </span><span class="sc">{</span>groupvar<span class="sc">}</span><span class="ss"> (Poly p=</span><span class="sc">{</span>degree<span class="sc">}</span><span class="ss">)'</span>)</span>
+<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a>    plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, color<span class="op">=</span><span class="st">'lightgray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.7</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a>    plt.legend()</span>
+<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1810,13 +1810,13 @@ ind2   5150.0  13.32   5.70  2.00   22.00</code></pre>
 </div>
 </div>
 <div id="0588d805" class="cell" data-execution_count="78">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># 定义 df_wage_less_100，确保只包含 wage &lt; 100 的样本，并包含 Gender 列</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>df_wage_less_100 <span class="op">=</span> df[df[<span class="st">'wage'</span>] <span class="op">&lt;</span> <span class="dv">100</span>].copy()</span>
-<span id="cb21-3"><a href="#cb21-3"></a>df_wage_less_100[<span class="st">'sex_label'</span>] <span class="op">=</span> df_wage_less_100[<span class="st">'sex'</span>].<span class="bu">map</span>({<span class="dv">0</span>: <span class="st">'Male'</span>, <span class="dv">1</span>: <span class="st">'Female'</span>})</span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="co"># 调用已定义的 plot_binscatter_by_gender 函数</span></span>
-<span id="cb21-5"><a href="#cb21-5"></a>plot_binscatter_by(df_wage_less_100, </span>
-<span id="cb21-6"><a href="#cb21-6"></a>                   xvar<span class="op">=</span><span class="st">'exp1'</span>, yvar<span class="op">=</span><span class="st">'wage'</span>, </span>
-<span id="cb21-7"><a href="#cb21-7"></a>                   groupvar<span class="op">=</span><span class="st">'sex_label'</span>, n_bins<span class="op">=</span><span class="dv">20</span>, degree<span class="op">=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义 df_wage_less_100，确保只包含 wage &lt; 100 的样本，并包含 Gender 列</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>df_wage_less_100 <span class="op">=</span> df[df[<span class="st">'wage'</span>] <span class="op">&lt;</span> <span class="dv">100</span>].copy()</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>df_wage_less_100[<span class="st">'sex_label'</span>] <span class="op">=</span> df_wage_less_100[<span class="st">'sex'</span>].<span class="bu">map</span>({<span class="dv">0</span>: <span class="st">'Male'</span>, <span class="dv">1</span>: <span class="st">'Female'</span>})</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 调用已定义的 plot_binscatter_by_gender 函数</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>plot_binscatter_by(df_wage_less_100, </span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>                   xvar<span class="op">=</span><span class="st">'exp1'</span>, yvar<span class="op">=</span><span class="st">'wage'</span>, </span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>                   groupvar<span class="op">=</span><span class="st">'sex_label'</span>, n_bins<span class="op">=</span><span class="dv">20</span>, degree<span class="op">=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1853,95 +1853,95 @@ ind2   5150.0  13.32   5.70  2.00   22.00</code></pre>
 </div>
 </div>
 <div id="4fd5a8c1" class="cell" data-execution_count="107">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb22-2"><a href="#cb22-2"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb22-3"><a href="#cb22-3"></a><span class="im">from</span> scipy.stats <span class="im">import</span> binned_statistic</span>
-<span id="cb22-4"><a href="#cb22-4"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> PolynomialFeatures</span>
-<span id="cb22-5"><a href="#cb22-5"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
-<span id="cb22-6"><a href="#cb22-6"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
-<span id="cb22-7"><a href="#cb22-7"></a><span class="im">from</span> statsmodels.stats.outliers_influence <span class="im">import</span> summary_table</span>
-<span id="cb22-8"><a href="#cb22-8"></a></span>
-<span id="cb22-9"><a href="#cb22-9"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb22-10"><a href="#cb22-10"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb22-11"><a href="#cb22-11"></a></span>
-<span id="cb22-12"><a href="#cb22-12"></a><span class="co"># 只用 wage &lt; 100 的样本</span></span>
-<span id="cb22-13"><a href="#cb22-13"></a>df_plot <span class="op">=</span> df_wage_less_100.copy()</span>
-<span id="cb22-14"><a href="#cb22-14"></a></span>
-<span id="cb22-15"><a href="#cb22-15"></a><span class="co"># 1. FWL（Frisch-Waugh-Lovell）残差化处理</span></span>
-<span id="cb22-16"><a href="#cb22-16"></a><span class="co"># 控制变量：edu_group, region, sex</span></span>
-<span id="cb22-17"><a href="#cb22-17"></a>fwl_controls <span class="op">=</span> [<span class="st">'edu_group'</span>, <span class="st">'region'</span>, <span class="st">'sex'</span>]</span>
-<span id="cb22-18"><a href="#cb22-18"></a><span class="co"># 对 ln(wage) 残差化</span></span>
-<span id="cb22-19"><a href="#cb22-19"></a>y <span class="op">=</span> df_plot[<span class="st">'lwage'</span>]</span>
-<span id="cb22-20"><a href="#cb22-20"></a>X_controls <span class="op">=</span> pd.get_dummies(df_plot[fwl_controls], drop_first<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb22-21"><a href="#cb22-21"></a>X_controls <span class="op">=</span> sm.add_constant(X_controls)</span>
-<span id="cb22-22"><a href="#cb22-22"></a>X_controls <span class="op">=</span> X_controls.astype(<span class="bu">float</span>)</span>
-<span id="cb22-23"><a href="#cb22-23"></a>ols_y <span class="op">=</span> sm.OLS(y, X_controls).fit()</span>
-<span id="cb22-24"><a href="#cb22-24"></a>y_resid <span class="op">=</span> ols_y.resid</span>
-<span id="cb22-25"><a href="#cb22-25"></a></span>
-<span id="cb22-26"><a href="#cb22-26"></a><span class="co"># 对 exp1 残差化</span></span>
-<span id="cb22-27"><a href="#cb22-27"></a>x <span class="op">=</span> df_plot[<span class="st">'exp1'</span>]</span>
-<span id="cb22-28"><a href="#cb22-28"></a>ols_x <span class="op">=</span> sm.OLS(x, X_controls).fit()</span>
-<span id="cb22-29"><a href="#cb22-29"></a>x_resid <span class="op">=</span> ols_x.resid</span>
-<span id="cb22-30"><a href="#cb22-30"></a></span>
-<span id="cb22-31"><a href="#cb22-31"></a><span class="co"># 均值中心化</span></span>
-<span id="cb22-32"><a href="#cb22-32"></a>x_resid_centered <span class="op">=</span> x_resid <span class="op">-</span> x_resid.mean()</span>
-<span id="cb22-33"><a href="#cb22-33"></a>y_resid_centered <span class="op">=</span> y_resid <span class="op">-</span> y_resid.mean()</span>
-<span id="cb22-34"><a href="#cb22-34"></a></span>
-<span id="cb22-35"><a href="#cb22-35"></a><span class="co"># 2. 分箱散点</span></span>
-<span id="cb22-36"><a href="#cb22-36"></a>n_bins <span class="op">=</span> <span class="dv">20</span></span>
-<span id="cb22-37"><a href="#cb22-37"></a>bin_means, bin_edges, binnumber <span class="op">=</span> binned_statistic(</span>
-<span id="cb22-38"><a href="#cb22-38"></a>    x_resid_centered, y_resid_centered, statistic<span class="op">=</span><span class="st">'mean'</span>, bins<span class="op">=</span>n_bins</span>
-<span id="cb22-39"><a href="#cb22-39"></a>)</span>
-<span id="cb22-40"><a href="#cb22-40"></a>bin_centers <span class="op">=</span> (bin_edges[:<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> bin_edges[<span class="dv">1</span>:]) <span class="op">/</span> <span class="dv">2</span></span>
-<span id="cb22-41"><a href="#cb22-41"></a></span>
-<span id="cb22-42"><a href="#cb22-42"></a><span class="co"># 3. 多项式阶数选择（交叉验证，最大到5阶）</span></span>
-<span id="cb22-43"><a href="#cb22-43"></a>X_poly <span class="op">=</span> x_resid_centered.values.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb22-44"><a href="#cb22-44"></a>degrees <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>)</span>
-<span id="cb22-45"><a href="#cb22-45"></a>cv_scores <span class="op">=</span> []</span>
-<span id="cb22-46"><a href="#cb22-46"></a><span class="cf">for</span> d <span class="kw">in</span> degrees:</span>
-<span id="cb22-47"><a href="#cb22-47"></a>    poly <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span>d)</span>
-<span id="cb22-48"><a href="#cb22-48"></a>    X_poly_d <span class="op">=</span> poly.fit_transform(X_poly)</span>
-<span id="cb22-49"><a href="#cb22-49"></a>    model <span class="op">=</span> LinearRegression()</span>
-<span id="cb22-50"><a href="#cb22-50"></a>    score <span class="op">=</span> cross_val_score(model, </span>
-<span id="cb22-51"><a href="#cb22-51"></a>                            X_poly_d, y_resid_centered, </span>
-<span id="cb22-52"><a href="#cb22-52"></a>                            cv<span class="op">=</span><span class="dv">5</span>, </span>
-<span id="cb22-53"><a href="#cb22-53"></a>                            scoring<span class="op">=</span><span class="st">'neg_mean_squared_error'</span>).mean()</span>
-<span id="cb22-54"><a href="#cb22-54"></a>    cv_scores.append(score)</span>
-<span id="cb22-55"><a href="#cb22-55"></a>best_degree <span class="op">=</span> degrees[np.argmax(cv_scores)]</span>
-<span id="cb22-56"><a href="#cb22-56"></a></span>
-<span id="cb22-57"><a href="#cb22-57"></a><span class="co"># 4. 用最优阶数拟合</span></span>
-<span id="cb22-58"><a href="#cb22-58"></a>poly <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span>best_degree)</span>
-<span id="cb22-59"><a href="#cb22-59"></a>X_poly_best <span class="op">=</span> poly.fit_transform(X_poly)</span>
-<span id="cb22-60"><a href="#cb22-60"></a>model <span class="op">=</span> LinearRegression().fit(X_poly_best, y_resid_centered)</span>
-<span id="cb22-61"><a href="#cb22-61"></a>y_pred <span class="op">=</span> model.predict(X_poly_best)</span>
-<span id="cb22-62"><a href="#cb22-62"></a></span>
-<span id="cb22-63"><a href="#cb22-63"></a><span class="co"># 5. 置信区间</span></span>
-<span id="cb22-64"><a href="#cb22-64"></a>X_poly_sm <span class="op">=</span> sm.add_constant(X_poly_best)</span>
-<span id="cb22-65"><a href="#cb22-65"></a>ols <span class="op">=</span> sm.OLS(y_resid_centered, X_poly_sm).fit()</span>
-<span id="cb22-66"><a href="#cb22-66"></a>st, data, ss2 <span class="op">=</span> summary_table(ols, alpha<span class="op">=</span><span class="fl">0.05</span>)</span>
-<span id="cb22-67"><a href="#cb22-67"></a>ci_low, ci_upp <span class="op">=</span> data[:, <span class="dv">4</span>], data[:, <span class="dv">5</span>]</span>
-<span id="cb22-68"><a href="#cb22-68"></a></span>
-<span id="cb22-69"><a href="#cb22-69"></a><span class="co"># 6. 绘图</span></span>
-<span id="cb22-70"><a href="#cb22-70"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb22-71"><a href="#cb22-71"></a>plt.scatter(bin_centers, bin_means, color<span class="op">=</span><span class="st">'#1f77b4'</span>, </span>
-<span id="cb22-72"><a href="#cb22-72"></a>            s<span class="op">=</span><span class="dv">60</span>, label<span class="op">=</span><span class="st">'Binned Means'</span>)</span>
-<span id="cb22-73"><a href="#cb22-73"></a>order <span class="op">=</span> np.argsort(X_poly[:, <span class="dv">0</span>])</span>
-<span id="cb22-74"><a href="#cb22-74"></a>plt.plot(X_poly[order, <span class="dv">0</span>], y_pred[order], </span>
-<span id="cb22-75"><a href="#cb22-75"></a>         color<span class="op">=</span><span class="st">'#ff7f0e'</span>, </span>
-<span id="cb22-76"><a href="#cb22-76"></a>         label<span class="op">=</span><span class="ss">f'Poly Fit (degree=</span><span class="sc">{</span>best_degree<span class="sc">}</span><span class="ss">)'</span>)</span>
-<span id="cb22-77"><a href="#cb22-77"></a>plt.fill_between(X_poly[order, <span class="dv">0</span>], </span>
-<span id="cb22-78"><a href="#cb22-78"></a>                 ci_low[order], ci_upp[order], </span>
-<span id="cb22-79"><a href="#cb22-79"></a>                 color<span class="op">=</span><span class="st">'#ff7f0e'</span>, </span>
-<span id="cb22-80"><a href="#cb22-80"></a>                 alpha<span class="op">=</span><span class="fl">0.18</span>, label<span class="op">=</span><span class="st">'95% CI'</span>)</span>
-<span id="cb22-81"><a href="#cb22-81"></a>plt.xlabel(<span class="st">'Residualized Experience (centered)'</span>)</span>
-<span id="cb22-82"><a href="#cb22-82"></a>plt.ylabel(<span class="st">'Residualized ln(wage) (centered)'</span>)</span>
-<span id="cb22-83"><a href="#cb22-83"></a>plt.title(<span class="st">'Binscatter: ln(wage) vs. Experience (FWL Residualized, Nonlinear Fit, Centered)'</span>)</span>
-<span id="cb22-84"><a href="#cb22-84"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, color<span class="op">=</span><span class="st">'lightgray'</span>, </span>
-<span id="cb22-85"><a href="#cb22-85"></a>         linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.7</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb22-86"><a href="#cb22-86"></a>plt.yticks(np.arange(<span class="op">-</span><span class="fl">0.6</span>, <span class="fl">0.8</span>, <span class="fl">0.2</span>))</span>
-<span id="cb22-87"><a href="#cb22-87"></a>plt.tight_layout()</span>
-<span id="cb22-88"><a href="#cb22-88"></a>plt.legend()</span>
-<span id="cb22-89"><a href="#cb22-89"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> binned_statistic</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> PolynomialFeatures</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.stats.outliers_influence <span class="im">import</span> summary_table</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 只用 wage &lt; 100 的样本</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>df_plot <span class="op">=</span> df_wage_less_100.copy()</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. FWL（Frisch-Waugh-Lovell）残差化处理</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 控制变量：edu_group, region, sex</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>fwl_controls <span class="op">=</span> [<span class="st">'edu_group'</span>, <span class="st">'region'</span>, <span class="st">'sex'</span>]</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 对 ln(wage) 残差化</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df_plot[<span class="st">'lwage'</span>]</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>X_controls <span class="op">=</span> pd.get_dummies(df_plot[fwl_controls], drop_first<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>X_controls <span class="op">=</span> sm.add_constant(X_controls)</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>X_controls <span class="op">=</span> X_controls.astype(<span class="bu">float</span>)</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>ols_y <span class="op">=</span> sm.OLS(y, X_controls).fit()</span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>y_resid <span class="op">=</span> ols_y.resid</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 对 exp1 残差化</span></span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> df_plot[<span class="st">'exp1'</span>]</span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>ols_x <span class="op">=</span> sm.OLS(x, X_controls).fit()</span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>x_resid <span class="op">=</span> ols_x.resid</span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 均值中心化</span></span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>x_resid_centered <span class="op">=</span> x_resid <span class="op">-</span> x_resid.mean()</span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>y_resid_centered <span class="op">=</span> y_resid <span class="op">-</span> y_resid.mean()</span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. 分箱散点</span></span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>n_bins <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a>bin_means, bin_edges, binnumber <span class="op">=</span> binned_statistic(</span>
+<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a>    x_resid_centered, y_resid_centered, statistic<span class="op">=</span><span class="st">'mean'</span>, bins<span class="op">=</span>n_bins</span>
+<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a>bin_centers <span class="op">=</span> (bin_edges[:<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> bin_edges[<span class="dv">1</span>:]) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. 多项式阶数选择（交叉验证，最大到5阶）</span></span>
+<span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a>X_poly <span class="op">=</span> x_resid_centered.values.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb22-44"><a href="#cb22-44" aria-hidden="true" tabindex="-1"></a>degrees <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>)</span>
+<span id="cb22-45"><a href="#cb22-45" aria-hidden="true" tabindex="-1"></a>cv_scores <span class="op">=</span> []</span>
+<span id="cb22-46"><a href="#cb22-46" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> degrees:</span>
+<span id="cb22-47"><a href="#cb22-47" aria-hidden="true" tabindex="-1"></a>    poly <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span>d)</span>
+<span id="cb22-48"><a href="#cb22-48" aria-hidden="true" tabindex="-1"></a>    X_poly_d <span class="op">=</span> poly.fit_transform(X_poly)</span>
+<span id="cb22-49"><a href="#cb22-49" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> LinearRegression()</span>
+<span id="cb22-50"><a href="#cb22-50" aria-hidden="true" tabindex="-1"></a>    score <span class="op">=</span> cross_val_score(model, </span>
+<span id="cb22-51"><a href="#cb22-51" aria-hidden="true" tabindex="-1"></a>                            X_poly_d, y_resid_centered, </span>
+<span id="cb22-52"><a href="#cb22-52" aria-hidden="true" tabindex="-1"></a>                            cv<span class="op">=</span><span class="dv">5</span>, </span>
+<span id="cb22-53"><a href="#cb22-53" aria-hidden="true" tabindex="-1"></a>                            scoring<span class="op">=</span><span class="st">'neg_mean_squared_error'</span>).mean()</span>
+<span id="cb22-54"><a href="#cb22-54" aria-hidden="true" tabindex="-1"></a>    cv_scores.append(score)</span>
+<span id="cb22-55"><a href="#cb22-55" aria-hidden="true" tabindex="-1"></a>best_degree <span class="op">=</span> degrees[np.argmax(cv_scores)]</span>
+<span id="cb22-56"><a href="#cb22-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-57"><a href="#cb22-57" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. 用最优阶数拟合</span></span>
+<span id="cb22-58"><a href="#cb22-58" aria-hidden="true" tabindex="-1"></a>poly <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span>best_degree)</span>
+<span id="cb22-59"><a href="#cb22-59" aria-hidden="true" tabindex="-1"></a>X_poly_best <span class="op">=</span> poly.fit_transform(X_poly)</span>
+<span id="cb22-60"><a href="#cb22-60" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LinearRegression().fit(X_poly_best, y_resid_centered)</span>
+<span id="cb22-61"><a href="#cb22-61" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(X_poly_best)</span>
+<span id="cb22-62"><a href="#cb22-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-63"><a href="#cb22-63" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. 置信区间</span></span>
+<span id="cb22-64"><a href="#cb22-64" aria-hidden="true" tabindex="-1"></a>X_poly_sm <span class="op">=</span> sm.add_constant(X_poly_best)</span>
+<span id="cb22-65"><a href="#cb22-65" aria-hidden="true" tabindex="-1"></a>ols <span class="op">=</span> sm.OLS(y_resid_centered, X_poly_sm).fit()</span>
+<span id="cb22-66"><a href="#cb22-66" aria-hidden="true" tabindex="-1"></a>st, data, ss2 <span class="op">=</span> summary_table(ols, alpha<span class="op">=</span><span class="fl">0.05</span>)</span>
+<span id="cb22-67"><a href="#cb22-67" aria-hidden="true" tabindex="-1"></a>ci_low, ci_upp <span class="op">=</span> data[:, <span class="dv">4</span>], data[:, <span class="dv">5</span>]</span>
+<span id="cb22-68"><a href="#cb22-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-69"><a href="#cb22-69" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. 绘图</span></span>
+<span id="cb22-70"><a href="#cb22-70" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb22-71"><a href="#cb22-71" aria-hidden="true" tabindex="-1"></a>plt.scatter(bin_centers, bin_means, color<span class="op">=</span><span class="st">'#1f77b4'</span>, </span>
+<span id="cb22-72"><a href="#cb22-72" aria-hidden="true" tabindex="-1"></a>            s<span class="op">=</span><span class="dv">60</span>, label<span class="op">=</span><span class="st">'Binned Means'</span>)</span>
+<span id="cb22-73"><a href="#cb22-73" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> np.argsort(X_poly[:, <span class="dv">0</span>])</span>
+<span id="cb22-74"><a href="#cb22-74" aria-hidden="true" tabindex="-1"></a>plt.plot(X_poly[order, <span class="dv">0</span>], y_pred[order], </span>
+<span id="cb22-75"><a href="#cb22-75" aria-hidden="true" tabindex="-1"></a>         color<span class="op">=</span><span class="st">'#ff7f0e'</span>, </span>
+<span id="cb22-76"><a href="#cb22-76" aria-hidden="true" tabindex="-1"></a>         label<span class="op">=</span><span class="ss">f'Poly Fit (degree=</span><span class="sc">{</span>best_degree<span class="sc">}</span><span class="ss">)'</span>)</span>
+<span id="cb22-77"><a href="#cb22-77" aria-hidden="true" tabindex="-1"></a>plt.fill_between(X_poly[order, <span class="dv">0</span>], </span>
+<span id="cb22-78"><a href="#cb22-78" aria-hidden="true" tabindex="-1"></a>                 ci_low[order], ci_upp[order], </span>
+<span id="cb22-79"><a href="#cb22-79" aria-hidden="true" tabindex="-1"></a>                 color<span class="op">=</span><span class="st">'#ff7f0e'</span>, </span>
+<span id="cb22-80"><a href="#cb22-80" aria-hidden="true" tabindex="-1"></a>                 alpha<span class="op">=</span><span class="fl">0.18</span>, label<span class="op">=</span><span class="st">'95% CI'</span>)</span>
+<span id="cb22-81"><a href="#cb22-81" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Residualized Experience (centered)'</span>)</span>
+<span id="cb22-82"><a href="#cb22-82" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Residualized ln(wage) (centered)'</span>)</span>
+<span id="cb22-83"><a href="#cb22-83" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Binscatter: ln(wage) vs. Experience (FWL Residualized, Nonlinear Fit, Centered)'</span>)</span>
+<span id="cb22-84"><a href="#cb22-84" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, color<span class="op">=</span><span class="st">'lightgray'</span>, </span>
+<span id="cb22-85"><a href="#cb22-85" aria-hidden="true" tabindex="-1"></a>         linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.7</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb22-86"><a href="#cb22-86" aria-hidden="true" tabindex="-1"></a>plt.yticks(np.arange(<span class="op">-</span><span class="fl">0.6</span>, <span class="fl">0.8</span>, <span class="fl">0.2</span>))</span>
+<span id="cb22-87"><a href="#cb22-87" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb22-88"><a href="#cb22-88" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb22-89"><a href="#cb22-89" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -2070,7 +2070,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

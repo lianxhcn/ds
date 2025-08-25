@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -635,18 +635,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>本章的目的不是教你编程，而是为了让你更好地理解 Python 的语法规则。</p>
 <p>对于初学 Python 的人而言，“Python 是一门面向对象的编程 (OOP) 语言” 这样的表述想必并不陌生。然而，“面向对象”究竟是什么，尤其是“对象”的概念，却常常让人摸不着头脑。以众多 Stata 老用户为例，当他们初次见到下面这段代码时，往往会陷入困惑：</p>
 <div id="ac573a78" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># 加载示例数据</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>mtcars <span class="op">=</span> sm.datasets.get_rdataset(<span class="st">'mtcars'</span>, <span class="st">'datasets'</span>).data</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># 模型 1</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>X1 <span class="op">=</span> mtcars[[<span class="st">'wt'</span>]]</span>
-<span id="cb1-9"><a href="#cb1-9"></a>X1 <span class="op">=</span> sm.add_constant(X1)</span>
-<span id="cb1-10"><a href="#cb1-10"></a>y <span class="op">=</span> mtcars[<span class="st">'mpg'</span>]</span>
-<span id="cb1-11"><a href="#cb1-11"></a>model1 <span class="op">=</span> sm.OLS(y, X1).fit()</span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="bu">print</span>(model1.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 加载示例数据</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>mtcars <span class="op">=</span> sm.datasets.get_rdataset(<span class="st">'mtcars'</span>, <span class="st">'datasets'</span>).data</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 模型 1</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>X1 <span class="op">=</span> mtcars[[<span class="st">'wt'</span>]]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>X1 <span class="op">=</span> sm.add_constant(X1)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> mtcars[<span class="st">'mpg'</span>]</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>model1 <span class="op">=</span> sm.OLS(y, X1).fit()</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model1.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                            OLS Regression Results                            
 ==============================================================================
@@ -715,14 +715,14 @@ Notes:
 <h3 data-number="13.3.1" class="anchored" data-anchor-id="类class"><span class="header-section-number">13.3.1</span> 类（Class）</h3>
 <p>类是对象的模板，它定义了对象的属性和方法，可将其视为一种自定义的数据类型。以 <code>Person</code> 类为例：</p>
 <div id="dcfc2c06" class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">class</span> Person:</span>
-<span id="cb3-2"><a href="#cb3-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, age):</span>
-<span id="cb3-3"><a href="#cb3-3"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
-<span id="cb3-4"><a href="#cb3-4"></a>        <span class="va">self</span>.age <span class="op">=</span> age</span>
-<span id="cb3-5"><a href="#cb3-5"></a></span>
-<span id="cb3-6"><a href="#cb3-6"></a>    <span class="kw">def</span> introduce(<span class="va">self</span>):</span>
-<span id="cb3-7"><a href="#cb3-7"></a>        <span class="bu">print</span>(<span class="ss">f"我叫 </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>name<span class="sc">}</span><span class="ss">，今年 </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>age<span class="sc">}</span><span class="ss"> 岁。"</span>)</span>
-<span id="cb3-8"><a href="#cb3-8"></a>        </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Person:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, age):</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.age <span class="op">=</span> age</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> introduce(<span class="va">self</span>):</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"我叫 </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>name<span class="sc">}</span><span class="ss">，今年 </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>age<span class="sc">}</span><span class="ss"> 岁。"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>Person</code> 类包含两个函数，分别是 <code>__init__()</code> 和 <code>introduce()</code>。前者用于定义「对象的<strong>属性</strong>」，后者用于定义「对象的<strong>方法</strong>」。具体说明如下：</p>
 <ul>
@@ -736,14 +736,14 @@ Notes:
 <h3 data-number="13.3.2" class="anchored" data-anchor-id="对象object"><span class="header-section-number">13.3.2</span> 对象（Object）</h3>
 <p>对象是类的实例。通过类能够创建多个不同的对象，每个对象都有自己独立的属性值。例如：</p>
 <div id="998604ed" class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>p1 <span class="op">=</span> Person(<span class="st">"张三"</span>, <span class="dv">20</span>)</span>
-<span id="cb4-2"><a href="#cb4-2"></a>p2 <span class="op">=</span> Person(<span class="st">"李四"</span>, <span class="dv">25</span>)</span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="bu">print</span>(p1.name)  <span class="co"># 输出: 张三</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="bu">print</span>(p2.name)  <span class="co"># 输出: 李四</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a></span>
-<span id="cb4-7"><a href="#cb4-7"></a>p1.introduce()  <span class="co"># 输出: 我叫 张三，今年 20 岁。</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a>p2.introduce()  <span class="co"># 输出: 我叫 李四，今年 25 岁。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">=</span> Person(<span class="st">"张三"</span>, <span class="dv">20</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="op">=</span> Person(<span class="st">"李四"</span>, <span class="dv">25</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(p1.name)  <span class="co"># 输出: 张三</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(p2.name)  <span class="co"># 输出: 李四</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>p1.introduce()  <span class="co"># 输出: 我叫 张三，今年 20 岁。</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>p2.introduce()  <span class="co"># 输出: 我叫 李四，今年 25 岁。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>张三
 李四
@@ -762,26 +762,26 @@ Notes:
 </ul>
 <p>在 Python 中，可以通过访问控制来实现封装。虽然 Python 没有像其他语言那样严格的访问修饰符（如 <code>private</code>、<code>protected</code>），但可以通过约定来表示属性或方法的访问级别。以单下划线开头的属性或方法被视为受保护的，以双下划线开头的属性或方法被视为私有的。例如：</p>
 <div id="5b9fd42d" class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">class</span> BankAccount:</span>
-<span id="cb6-2"><a href="#cb6-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, balance):</span>
-<span id="cb6-3"><a href="#cb6-3"></a>        <span class="va">self</span>.__balance <span class="op">=</span> balance</span>
-<span id="cb6-4"><a href="#cb6-4"></a></span>
-<span id="cb6-5"><a href="#cb6-5"></a>    <span class="kw">def</span> deposit(<span class="va">self</span>, amount):</span>
-<span id="cb6-6"><a href="#cb6-6"></a>        <span class="va">self</span>.__balance <span class="op">+=</span> amount</span>
-<span id="cb6-7"><a href="#cb6-7"></a></span>
-<span id="cb6-8"><a href="#cb6-8"></a>    <span class="kw">def</span> withdraw(<span class="va">self</span>, amount):</span>
-<span id="cb6-9"><a href="#cb6-9"></a>        <span class="cf">if</span> amount <span class="op">&lt;=</span> <span class="va">self</span>.__balance:</span>
-<span id="cb6-10"><a href="#cb6-10"></a>            <span class="va">self</span>.__balance <span class="op">-=</span> amount</span>
-<span id="cb6-11"><a href="#cb6-11"></a>        <span class="cf">else</span>:</span>
-<span id="cb6-12"><a href="#cb6-12"></a>            <span class="bu">print</span>(<span class="st">"余额不足"</span>)</span>
-<span id="cb6-13"><a href="#cb6-13"></a></span>
-<span id="cb6-14"><a href="#cb6-14"></a>    <span class="kw">def</span> get_balance(<span class="va">self</span>):</span>
-<span id="cb6-15"><a href="#cb6-15"></a>        <span class="cf">return</span> <span class="va">self</span>.__balance</span>
-<span id="cb6-16"><a href="#cb6-16"></a></span>
-<span id="cb6-17"><a href="#cb6-17"></a>account <span class="op">=</span> BankAccount(<span class="dv">1000</span>)</span>
-<span id="cb6-18"><a href="#cb6-18"></a>account.deposit(<span class="dv">500</span>)</span>
-<span id="cb6-19"><a href="#cb6-19"></a>account.withdraw(<span class="dv">200</span>)</span>
-<span id="cb6-20"><a href="#cb6-20"></a><span class="bu">print</span>(account.get_balance())  <span class="co"># 输出: 1300</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BankAccount:</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, balance):</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__balance <span class="op">=</span> balance</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> deposit(<span class="va">self</span>, amount):</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.__balance <span class="op">+=</span> amount</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> withdraw(<span class="va">self</span>, amount):</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> amount <span class="op">&lt;=</span> <span class="va">self</span>.__balance:</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.__balance <span class="op">-=</span> amount</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"余额不足"</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_balance(<span class="va">self</span>):</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.__balance</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>account <span class="op">=</span> BankAccount(<span class="dv">1000</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>account.deposit(<span class="dv">500</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>account.withdraw(<span class="dv">200</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(account.get_balance())  <span class="co"># 输出: 1300</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1300</code></pre>
 </div>
@@ -792,17 +792,17 @@ Notes:
 <h3 data-number="13.3.4" class="anchored" data-anchor-id="继承inheritance"><span class="header-section-number">13.3.4</span> 4. 继承（Inheritance）</h3>
 <p>继承是指一个类可以继承另一个类的属性和方法。被继承的类称为父类（基类），继承的类称为子类（派生类）。子类可以扩展父类的功能，也可以重写父类的方法。例如：</p>
 <div id="3fa96fd9" class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">class</span> Student(Person):</span>
-<span id="cb8-2"><a href="#cb8-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, age, student_id):</span>
-<span id="cb8-3"><a href="#cb8-3"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(name, age)</span>
-<span id="cb8-4"><a href="#cb8-4"></a>        <span class="va">self</span>.student_id <span class="op">=</span> student_id</span>
-<span id="cb8-5"><a href="#cb8-5"></a></span>
-<span id="cb8-6"><a href="#cb8-6"></a>    <span class="kw">def</span> study(<span class="va">self</span>):</span>
-<span id="cb8-7"><a href="#cb8-7"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>name<span class="sc">}</span><span class="ss"> 正在学习。"</span>)</span>
-<span id="cb8-8"><a href="#cb8-8"></a></span>
-<span id="cb8-9"><a href="#cb8-9"></a>stu <span class="op">=</span> Student(<span class="st">"王五"</span>, <span class="dv">18</span>, <span class="st">"001"</span>)</span>
-<span id="cb8-10"><a href="#cb8-10"></a>stu.introduce() </span>
-<span id="cb8-11"><a href="#cb8-11"></a>stu.study()    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Student(Person):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name, age, student_id):</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(name, age)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.student_id <span class="op">=</span> student_id</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> study(<span class="va">self</span>):</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>name<span class="sc">}</span><span class="ss"> 正在学习。"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>stu <span class="op">=</span> Student(<span class="st">"王五"</span>, <span class="dv">18</span>, <span class="st">"001"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>stu.introduce() </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>stu.study()    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>我叫 王五，今年 18 岁。
 王五 正在学习。</code></pre>
@@ -815,10 +815,10 @@ Notes:
 <p>多态是指不同的对象可以对同一个操作做出不同的响应。下面通过几个例子来帮助你理解多态的概念和应用。</p>
 <section id="简单数据类型示例" class="level4" data-number="13.3.5.1">
 <h4 data-number="13.3.5.1" class="anchored" data-anchor-id="简单数据类型示例"><span class="header-section-number">13.3.5.1</span> 简单数据类型示例</h4>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>a <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>b <span class="op">=</span> <span class="st">"apple"</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="bu">print</span>(a <span class="op">*</span> <span class="dv">3</span>)  <span class="co"># 输出: 15</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="bu">print</span>(b <span class="op">*</span> <span class="dv">3</span>)  <span class="co"># 输出: appleappleapple</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="st">"apple"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">*</span> <span class="dv">3</span>)  <span class="co"># 输出: 15</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b <span class="op">*</span> <span class="dv">3</span>)  <span class="co"># 输出: appleappleapple</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>可见，<code>*</code> 运算符对于整数 <code>a</code> 和字符串 <code>b</code> 有不同的行为：</p>
 <ul>
 <li>对于整数，<code>*</code> 表示乘法运算；</li>
@@ -829,29 +829,29 @@ Notes:
 <section id="类的方法重写示例" class="level4" data-number="13.3.5.2">
 <h4 data-number="13.3.5.2" class="anchored" data-anchor-id="类的方法重写示例"><span class="header-section-number">13.3.5.2</span> 类的方法重写示例</h4>
 <div id="e34fc304" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="kw">class</span> Shape:</span>
-<span id="cb11-3"><a href="#cb11-3"></a>    <span class="kw">def</span> area(<span class="va">self</span>):</span>
-<span id="cb11-4"><a href="#cb11-4"></a>        <span class="cf">pass</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a></span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="kw">class</span> Rectangle(Shape):</span>
-<span id="cb11-7"><a href="#cb11-7"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, length, width):</span>
-<span id="cb11-8"><a href="#cb11-8"></a>        <span class="va">self</span>.length <span class="op">=</span> length</span>
-<span id="cb11-9"><a href="#cb11-9"></a>        <span class="va">self</span>.width <span class="op">=</span> width</span>
-<span id="cb11-10"><a href="#cb11-10"></a></span>
-<span id="cb11-11"><a href="#cb11-11"></a>    <span class="kw">def</span> area(<span class="va">self</span>):</span>
-<span id="cb11-12"><a href="#cb11-12"></a>        <span class="cf">return</span> <span class="va">self</span>.length <span class="op">*</span> <span class="va">self</span>.width</span>
-<span id="cb11-13"><a href="#cb11-13"></a></span>
-<span id="cb11-14"><a href="#cb11-14"></a><span class="kw">class</span> Circle(Shape):</span>
-<span id="cb11-15"><a href="#cb11-15"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, radius):</span>
-<span id="cb11-16"><a href="#cb11-16"></a>        <span class="va">self</span>.radius <span class="op">=</span> radius</span>
-<span id="cb11-17"><a href="#cb11-17"></a></span>
-<span id="cb11-18"><a href="#cb11-18"></a>    <span class="kw">def</span> area(<span class="va">self</span>):</span>
-<span id="cb11-19"><a href="#cb11-19"></a>        <span class="cf">return</span> <span class="fl">3.14</span> <span class="op">*</span> <span class="va">self</span>.radius <span class="op">*</span> <span class="va">self</span>.radius</span>
-<span id="cb11-20"><a href="#cb11-20"></a></span>
-<span id="cb11-21"><a href="#cb11-21"></a>shapes <span class="op">=</span> [Rectangle(<span class="dv">4</span>, <span class="dv">5</span>), Circle(<span class="dv">3</span>)]</span>
-<span id="cb11-22"><a href="#cb11-22"></a><span class="cf">for</span> shape <span class="kw">in</span> shapes:</span>
-<span id="cb11-23"><a href="#cb11-23"></a>    <span class="bu">print</span>(shape.area())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Shape:</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> area(<span class="va">self</span>):</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Rectangle(Shape):</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, length, width):</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.length <span class="op">=</span> length</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.width <span class="op">=</span> width</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> area(<span class="va">self</span>):</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.length <span class="op">*</span> <span class="va">self</span>.width</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Circle(Shape):</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, radius):</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.radius <span class="op">=</span> radius</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> area(<span class="va">self</span>):</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fl">3.14</span> <span class="op">*</span> <span class="va">self</span>.radius <span class="op">*</span> <span class="va">self</span>.radius</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>shapes <span class="op">=</span> [Rectangle(<span class="dv">4</span>, <span class="dv">5</span>), Circle(<span class="dv">3</span>)]</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> shape <span class="kw">in</span> shapes:</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(shape.area())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>20
 28.259999999999998</code></pre>
@@ -872,19 +872,19 @@ Notes:
 <h4 data-number="13.3.6.1" class="anchored" data-anchor-id="pandas-中的应用"><span class="header-section-number">13.3.6.1</span> <code>pandas</code> 中的应用</h4>
 <p><code>pandas</code> 是一个用于数据处理和分析的强大包，其中大量使用了类和对象的概念。例如，<code>DataFrame</code> 是 <code>pandas</code> 中最常用的类之一，用于表示二维表格数据。</p>
 <div id="06723c1d" class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb13-2"><a href="#cb13-2"></a></span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="co"># 创建一个 DataFrame 对象</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a>data <span class="op">=</span> {</span>
-<span id="cb13-5"><a href="#cb13-5"></a>    <span class="st">'Name'</span>: [<span class="st">'张三'</span>, <span class="st">'李四'</span>, <span class="st">'王五'</span>],</span>
-<span id="cb13-6"><a href="#cb13-6"></a>    <span class="st">'Age'</span>: [<span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">18</span>]</span>
-<span id="cb13-7"><a href="#cb13-7"></a>}</span>
-<span id="cb13-8"><a href="#cb13-8"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
-<span id="cb13-9"><a href="#cb13-9"></a></span>
-<span id="cb13-10"><a href="#cb13-10"></a><span class="co"># 使用 DataFrame 的方法</span></span>
-<span id="cb13-11"><a href="#cb13-11"></a><span class="bu">print</span>(df.head())      <span class="co"># 查看数据集行数</span></span>
-<span id="cb13-12"><a href="#cb13-12"></a><span class="bu">print</span>(<span class="st">'-'</span> <span class="op">*</span> <span class="dv">20</span>)</span>
-<span id="cb13-13"><a href="#cb13-13"></a><span class="bu">print</span>(df.describe().T.<span class="bu">round</span>(<span class="dv">2</span>))  <span class="co"># T 表示转置</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个 DataFrame 对象</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Name'</span>: [<span class="st">'张三'</span>, <span class="st">'李四'</span>, <span class="st">'王五'</span>],</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Age'</span>: [<span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">18</span>]</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用 DataFrame 的方法</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())      <span class="co"># 查看数据集行数</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span> <span class="op">*</span> <span class="dv">20</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.describe().T.<span class="bu">round</span>(<span class="dv">2</span>))  <span class="co"># T 表示转置</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Name  Age
 0   张三   20
@@ -902,23 +902,23 @@ Age    3.0  21.0  3.61  18.0  19.0  20.0  22.5  25.0</code></pre>
 <h4 data-number="13.3.6.2" class="anchored" data-anchor-id="matplotlib-中的应用"><span class="header-section-number">13.3.6.2</span> <code>matplotlib</code> 中的应用</h4>
 <p><code>matplotlib</code> 是一个用于数据可视化的包，也广泛应用了面向对象编程的思想。例如，我们可以使用 <code>Figure</code> 和 <code>Axes</code> 类来创建和定制图形。</p>
 <div id="f23ebde7" class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb15-2"><a href="#cb15-2"></a></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="co"># 创建一个 Figure 对象和一个 Axes 对象</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb15-5"><a href="#cb15-5"></a></span>
-<span id="cb15-6"><a href="#cb15-6"></a><span class="co"># 绘制数据</span></span>
-<span id="cb15-7"><a href="#cb15-7"></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
-<span id="cb15-8"><a href="#cb15-8"></a>y <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>]</span>
-<span id="cb15-9"><a href="#cb15-9"></a>ax.plot(x, y)</span>
-<span id="cb15-10"><a href="#cb15-10"></a></span>
-<span id="cb15-11"><a href="#cb15-11"></a><span class="co"># 设置图形属性</span></span>
-<span id="cb15-12"><a href="#cb15-12"></a>ax.set_title(<span class="st">'line plot'</span>)</span>
-<span id="cb15-13"><a href="#cb15-13"></a>ax.set_xlabel(<span class="st">'X'</span>)</span>
-<span id="cb15-14"><a href="#cb15-14"></a>ax.set_ylabel(<span class="st">'Y'</span>)</span>
-<span id="cb15-15"><a href="#cb15-15"></a></span>
-<span id="cb15-16"><a href="#cb15-16"></a><span class="co"># 显示图形</span></span>
-<span id="cb15-17"><a href="#cb15-17"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个 Figure 对象和一个 Axes 对象</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制数据</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>]</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>ax.plot(x, y)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置图形属性</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'line plot'</span>)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'X'</span>)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Y'</span>)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 显示图形</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -953,30 +953,30 @@ Age    3.0  21.0  3.61  18.0  19.0  20.0  22.5  25.0</code></pre>
 <p>包是一个包含多个模块的<strong>目录</strong>，通常还包含一个 <code>__init__.py</code> 文件。</p>
 <p>一个包中可以包含多个子包，而每个包中又可以包含多个模块。包的目录结构类似于文件系统的目录结构。<code>__init__.py</code> 文件的作用是标识该目录是一个包，更重要的是，它详细记录了这个包里都有哪些模块和子包。</p>
 <p>包通过目录结构组织代码，例如：</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>pandas<span class="op">/</span>               <span class="co"># 根包</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">__init__</span>.py         <span class="co"># 标识这是一个包</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a>  core<span class="op">/</span>               <span class="co"># 子包</span></span>
-<span id="cb16-4"><a href="#cb16-4"></a>    <span class="fu">__init__</span>.py</span>
-<span id="cb16-5"><a href="#cb16-5"></a>    frame.py          <span class="co"># 模块（定义 DataFrame）</span></span>
-<span id="cb16-6"><a href="#cb16-6"></a>    series.py         <span class="co"># 模块（定义 Series）</span></span>
-<span id="cb16-7"><a href="#cb16-7"></a>  io<span class="op">/</span>                 <span class="co"># 子包</span></span>
-<span id="cb16-8"><a href="#cb16-8"></a>    <span class="fu">__init__</span>.py</span>
-<span id="cb16-9"><a href="#cb16-9"></a>    excel.py          <span class="co"># 模块（处理 Excel 文件）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pandas<span class="op">/</span>               <span class="co"># 根包</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">__init__</span>.py         <span class="co"># 标识这是一个包</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  core<span class="op">/</span>               <span class="co"># 子包</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">__init__</span>.py</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    frame.py          <span class="co"># 模块（定义 DataFrame）</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    series.py         <span class="co"># 模块（定义 Series）</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  io<span class="op">/</span>                 <span class="co"># 子包</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">__init__</span>.py</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    excel.py          <span class="co"># 模块（处理 Excel 文件）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>比如，<code>arrow</code> 是一个用于处理日期和时间的包，该包的程序文件存放于 <code>arrow</code> 目录下：</p>
 <p><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20250524004230.png" class="img-fluid"></p>
 <p>其中包含 <code>__init__.py</code> 文件和其他模块文件（如 <code>arrow.py</code>、<code>util.py</code> 等）。当你使用 <code>import arrow</code> 时，Python 会自动执行 <code>__init__.py</code> 文件中的代码，从而初始化包的命名空间。</p>
 <p>你若执行 <code>from arrow import api</code>，则会导入 <code>arrow</code> 包中的 <code>api</code> 模块。然后你可以使用 <code>api</code> 模块中的函数和类，例如 <code>api.get()</code>。</p>
 <div id="abfad426" class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="im">import</span> arrow <span class="im">as</span> ar</span>
-<span id="cb17-2"><a href="#cb17-2"></a></span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="co"># 查看 arrow 的类型</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a><span class="bu">print</span>(<span class="bu">type</span>(ar)) </span>
-<span id="cb17-5"><a href="#cb17-5"></a></span>
-<span id="cb17-6"><a href="#cb17-6"></a><span class="co"># 查看 arrow 的路径</span></span>
-<span id="cb17-7"><a href="#cb17-7"></a><span class="bu">print</span>(ar.<span class="va">__file__</span>)  </span>
-<span id="cb17-8"><a href="#cb17-8"></a></span>
-<span id="cb17-9"><a href="#cb17-9"></a><span class="co"># 输出类似：/path/to/site-packages/arrow/__init__.py</span></span>
-<span id="cb17-10"><a href="#cb17-10"></a><span class="co"># 这表明 arrow 是包含多个子包的根目录。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> arrow <span class="im">as</span> ar</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 查看 arrow 的类型</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(ar)) </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 查看 arrow 的路径</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ar.<span class="va">__file__</span>)  </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 输出类似：/path/to/site-packages/arrow/__init__.py</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 这表明 arrow 是包含多个子包的根目录。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'module'&gt;
 c:\ProgramData\anaconda3\Lib\site-packages\arrow\__init__.py</code></pre>
@@ -984,8 +984,8 @@ c:\ProgramData\anaconda3\Lib\site-packages\arrow\__init__.py</code></pre>
 </div>
 <p>同理，你可以使用如下方法查看其他包的路径：</p>
 <div id="936fa9bf" class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="bu">print</span>(pd.<span class="va">__file__</span>)  <span class="co"># 查看 pandas 的路径</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.<span class="va">__file__</span>)  <span class="co"># 查看 pandas 的路径</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>c:\ProgramData\anaconda3\Lib\site-packages\pandas\__init__.py</code></pre>
 </div>
@@ -1016,11 +1016,11 @@ c:\ProgramData\anaconda3\Lib\site-packages\arrow\__init__.py</code></pre>
 <section id="解析复杂语句" class="level2" data-number="13.5">
 <h2 data-number="13.5" class="anchored" data-anchor-id="解析复杂语句"><span class="header-section-number">13.5</span> 解析复杂语句</h2>
 <p>现在我们来详细解析引言中提到的复杂语句：</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb21-2"><a href="#cb21-2"></a></span>
-<span id="cb21-3"><a href="#cb21-3"></a><span class="co"># 加载示例数据</span></span>
-<span id="cb21-4"><a href="#cb21-4"></a>mtcars <span class="op">=</span> sm.datasets.get_rdataset(<span class="st">'mtcars'</span>, <span class="st">'datasets'</span>).data</span>
-<span id="cb21-5"><a href="#cb21-5"></a>mtcars.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 加载示例数据</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>mtcars <span class="op">=</span> sm.datasets.get_rdataset(<span class="st">'mtcars'</span>, <span class="st">'datasets'</span>).data</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>mtcars.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>具体解释如下：</p>
 <ul>
 <li><code>sm</code> 是 <code>statsmodels.api</code> 模块的别名。</li>
@@ -1036,30 +1036,30 @@ c:\ProgramData\anaconda3\Lib\site-packages\arrow\__init__.py</code></pre>
 <li>第二次是作为参数传递给 <code>get_rdataset()</code> 函数，它是 R 语言中的一个扩展包的名称，而 <code>mtcars</code> 则是 <strong>datasets</strong> 包中的一个数据集。</li>
 </ul>
 <p>把上述代码拆成两行更有助于理解 <strong>模块</strong>、<strong>函数</strong> 和 <strong>属性</strong> 这三个概念的区别：</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb22-2"><a href="#cb22-2"></a></span>
-<span id="cb22-3"><a href="#cb22-3"></a><span class="co"># 获取数据集对象：'object = 模块.函数()' 格式</span></span>
-<span id="cb22-4"><a href="#cb22-4"></a><span class="co">#        本例中：'object = 模块.子模块.函数(参数1, 参数2)' 格式</span></span>
-<span id="cb22-5"><a href="#cb22-5"></a>mtcars_object <span class="op">=</span> sm.datasets.get_rdataset(<span class="st">'mtcars'</span>, <span class="st">'datasets'</span>) </span>
-<span id="cb22-6"><a href="#cb22-6"></a></span>
-<span id="cb22-7"><a href="#cb22-7"></a><span class="co"># 获取数据集内容：'object.属性' 格式</span></span>
-<span id="cb22-8"><a href="#cb22-8"></a>mtcars_df <span class="op">=</span> mtcars_object.data </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取数据集对象：'object = 模块.函数()' 格式</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#        本例中：'object = 模块.子模块.函数(参数1, 参数2)' 格式</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>mtcars_object <span class="op">=</span> sm.datasets.get_rdataset(<span class="st">'mtcars'</span>, <span class="st">'datasets'</span>) </span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取数据集内容：'object.属性' 格式</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>mtcars_df <span class="op">=</span> mtcars_object.data </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>可以将这行代码拆解为以下几步，更便于初学者理解：</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># 第一步：获取 datasets 子模块</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a>datasets_module <span class="op">=</span> sm.datasets</span>
-<span id="cb23-3"><a href="#cb23-3"></a></span>
-<span id="cb23-4"><a href="#cb23-4"></a><span class="co"># 第二步：调用 get_rdataset 函数获取数据集对象</span></span>
-<span id="cb23-5"><a href="#cb23-5"></a>rdataset <span class="op">=</span> datasets_module.get_rdataset(<span class="st">'mtcars'</span>, <span class="st">'datasets'</span>)</span>
-<span id="cb23-6"><a href="#cb23-6"></a>  <span class="co"># - 'mtcars' 是数据集的名称</span></span>
-<span id="cb23-7"><a href="#cb23-7"></a>  <span class="co"># - 'datasets' 是数据集所在的包名</span></span>
-<span id="cb23-8"><a href="#cb23-8"></a><span class="co"># 第三步：通过 data 属性获取实际的数据</span></span>
-<span id="cb23-9"><a href="#cb23-9"></a>mtcars <span class="op">=</span> rdataset.data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 第一步：获取 datasets 子模块</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>datasets_module <span class="op">=</span> sm.datasets</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 第二步：调用 get_rdataset 函数获取数据集对象</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>rdataset <span class="op">=</span> datasets_module.get_rdataset(<span class="st">'mtcars'</span>, <span class="st">'datasets'</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># - 'mtcars' 是数据集的名称</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># - 'datasets' 是数据集所在的包名</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 第三步：通过 data 属性获取实际的数据</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>mtcars <span class="op">=</span> rdataset.data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>至此，代码的第二部分也很容易理解了：</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># 模型 1</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a>X1 <span class="op">=</span> data[[<span class="st">'weight'</span>]]</span>
-<span id="cb24-3"><a href="#cb24-3"></a>X1 <span class="op">=</span> sm.add_constant(X1)</span>
-<span id="cb24-4"><a href="#cb24-4"></a>y <span class="op">=</span> data[<span class="st">'mpg'</span>]</span>
-<span id="cb24-5"><a href="#cb24-5"></a>model1 <span class="op">=</span> sm.OLS(y, X1).fit()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 模型 1</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>X1 <span class="op">=</span> data[[<span class="st">'weight'</span>]]</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>X1 <span class="op">=</span> sm.add_constant(X1)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data[<span class="st">'mpg'</span>]</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>model1 <span class="op">=</span> sm.OLS(y, X1).fit()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>解释如下：</p>
 <ul>
 <li><code>sm.OLS(y, X1)</code>：
@@ -1182,7 +1182,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

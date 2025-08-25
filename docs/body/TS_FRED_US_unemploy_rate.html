@@ -160,7 +160,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -168,7 +168,7 @@ window.Quarto = {
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -681,46 +681,46 @@ window.Quarto = {
 <p>Source: U.S. Bureau of Labor Statistics, Unemployment Rate [UNRATE], retrieved from FRED, Federal Reserve Bank of St.&nbsp;Louis; <a href="https://fred.stlouisfed.org/series/UNRATE" class="uri">https://fred.stlouisfed.org/series/UNRATE</a>, May 5, 2025.</p>
 </blockquote>
 <div id="c27155a7" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> os</span>
-<span id="cb1-2"><a href="#cb1-2"></a>os.chdir(<span class="vs">r"D:\github\dslian\body"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="vs">r"D:\github\dslian\body"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="4da0fa84" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># 基本设定</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="im">from</span> pandas_datareader.data <span class="im">import</span> DataReader</span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="im">import</span> datetime</span>
-<span id="cb2-7"><a href="#cb2-7"></a></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="im">import</span> warnings</span>
-<span id="cb2-9"><a href="#cb2-9"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)  <span class="co"># 屏蔽警告信息</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="co"># 设置起止日期 (后续其他宏观变量也采用这个设置)</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a>start_date <span class="op">=</span> datetime.datetime(<span class="dv">1960</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb2-13"><a href="#cb2-13"></a>end_date <span class="op">=</span> datetime.datetime.today()</span>
-<span id="cb2-14"><a href="#cb2-14"></a>start_year <span class="op">=</span> start_date.year</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 基本设定</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pandas_datareader.data <span class="im">import</span> DataReader</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)  <span class="co"># 屏蔽警告信息</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置起止日期 (后续其他宏观变量也采用这个设置)</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>start_date <span class="op">=</span> datetime.datetime(<span class="dv">1960</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>end_date <span class="op">=</span> datetime.datetime.today()</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>start_year <span class="op">=</span> start_date.year</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="13e2b947" class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># 失业率</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="co"># 从 FRED 获取“Unemployment Rate”数据（代码为 UNRATE）</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>df_unemp <span class="op">=</span> DataReader(<span class="st">"UNRATE"</span>, <span class="st">"fred"</span>, start_date, end_date)</span>
-<span id="cb3-5"><a href="#cb3-5"></a></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="co"># 绘图</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
-<span id="cb3-8"><a href="#cb3-8"></a>plt.plot(df_unemp.index, df_unemp[<span class="st">"UNRATE"</span>], </span>
-<span id="cb3-9"><a href="#cb3-9"></a>         color<span class="op">=</span><span class="st">'blue'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Unemployment Rate'</span>)</span>
-<span id="cb3-10"><a href="#cb3-10"></a></span>
-<span id="cb3-11"><a href="#cb3-11"></a><span class="co"># 图形美化</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a>plt.title(<span class="ss">f"Unemployment Rate in the U.S. (</span><span class="sc">{</span>start_year<span class="sc">}</span><span class="ss"> - Present)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb3-13"><a href="#cb3-13"></a>plt.xlabel(<span class="st">"Date"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb3-14"><a href="#cb3-14"></a>plt.ylabel(<span class="st">"Percent"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb3-15"><a href="#cb3-15"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb3-16"><a href="#cb3-16"></a>plt.legend()</span>
-<span id="cb3-17"><a href="#cb3-17"></a>plt.tight_layout()</span>
-<span id="cb3-18"><a href="#cb3-18"></a></span>
-<span id="cb3-19"><a href="#cb3-19"></a><span class="co"># 显示图形</span></span>
-<span id="cb3-20"><a href="#cb3-20"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 失业率</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 从 FRED 获取“Unemployment Rate”数据（代码为 UNRATE）</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df_unemp <span class="op">=</span> DataReader(<span class="st">"UNRATE"</span>, <span class="st">"fred"</span>, start_date, end_date)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plt.plot(df_unemp.index, df_unemp[<span class="st">"UNRATE"</span>], </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>         color<span class="op">=</span><span class="st">'blue'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Unemployment Rate'</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 图形美化</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"Unemployment Rate in the U.S. (</span><span class="sc">{</span>start_year<span class="sc">}</span><span class="ss"> - Present)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Date"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Percent"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 显示图形</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -749,10 +749,10 @@ window.Quarto = {
 <li><p><strong>波动性建模：</strong> 某些阶段的波动显著大于其他时期，例如 1970s 或 2008 危机期间。如何刻画这种<strong>条件异方差</strong>特征？这将引出 ARCH/GARCH 及其扩展模型的讨论。</p></li>
 </ul>
 <div id="faa6c928" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># 失业率的基本统计特征</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>umemp <span class="op">=</span> df_unemp[<span class="st">"UNRATE"</span>]</span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="bu">print</span>(<span class="st">"失业率的基本统计特征："</span>)</span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="bu">print</span>(umemp.describe().<span class="bu">round</span>(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 失业率的基本统计特征</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>umemp <span class="op">=</span> df_unemp[<span class="st">"UNRATE"</span>]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"失业率的基本统计特征："</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(umemp.describe().<span class="bu">round</span>(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>失业率的基本统计特征：
 count    784.00
@@ -767,33 +767,33 @@ Name: UNRATE, dtype: float64</code></pre>
 </div>
 </div>
 <div id="f5a95468" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># 分时段统计 (表格版)</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>periods <span class="op">=</span> {</span>
-<span id="cb6-3"><a href="#cb6-3"></a>    <span class="st">"1960-1980年"</span>: (<span class="st">"1960-01-01"</span>, <span class="st">"1980-12-31"</span>),</span>
-<span id="cb6-4"><a href="#cb6-4"></a>    <span class="st">"1980-2000年"</span>: (<span class="st">"1980-01-01"</span>, <span class="st">"2000-12-31"</span>),</span>
-<span id="cb6-5"><a href="#cb6-5"></a>    <span class="st">"2000-2010年"</span>: (<span class="st">"2000-01-01"</span>, <span class="st">"2010-12-31"</span>),</span>
-<span id="cb6-6"><a href="#cb6-6"></a>    <span class="st">"2010-2020年"</span>: (<span class="st">"2010-01-01"</span>, <span class="st">"2020-12-31"</span>),</span>
-<span id="cb6-7"><a href="#cb6-7"></a>    <span class="st">"2020-2025年"</span>: (<span class="st">"2020-01-01"</span>, <span class="st">"2025-12-31"</span>),</span>
-<span id="cb6-8"><a href="#cb6-8"></a>}</span>
-<span id="cb6-9"><a href="#cb6-9"></a></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="co"># 创建一个列表来存储结果</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a>stats_list <span class="op">=</span> []</span>
-<span id="cb6-12"><a href="#cb6-12"></a></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="cf">for</span> period, (start, end) <span class="kw">in</span> periods.items():</span>
-<span id="cb6-14"><a href="#cb6-14"></a>    stats <span class="op">=</span> umemp[start:end].agg([<span class="st">'mean'</span>, <span class="st">'std'</span>, <span class="st">'min'</span>, <span class="st">'max'</span>]).<span class="bu">round</span>(<span class="dv">2</span>)</span>
-<span id="cb6-15"><a href="#cb6-15"></a>    stats_list.append({</span>
-<span id="cb6-16"><a href="#cb6-16"></a>        <span class="st">"Period"</span>: period,</span>
-<span id="cb6-17"><a href="#cb6-17"></a>        <span class="st">"Mean"</span>: stats[<span class="st">"mean"</span>],</span>
-<span id="cb6-18"><a href="#cb6-18"></a>         <span class="st">"Std"</span>: stats[<span class="st">"std"</span>],</span>
-<span id="cb6-19"><a href="#cb6-19"></a>         <span class="st">"Min"</span>: stats[<span class="st">"min"</span>],</span>
-<span id="cb6-20"><a href="#cb6-20"></a>         <span class="st">"Max"</span>: stats[<span class="st">"max"</span>]</span>
-<span id="cb6-21"><a href="#cb6-21"></a>    })</span>
-<span id="cb6-22"><a href="#cb6-22"></a></span>
-<span id="cb6-23"><a href="#cb6-23"></a><span class="co"># 将结果转换为 DataFrame</span></span>
-<span id="cb6-24"><a href="#cb6-24"></a>stats_table <span class="op">=</span> pd.DataFrame(stats_list)</span>
-<span id="cb6-25"><a href="#cb6-25"></a></span>
-<span id="cb6-26"><a href="#cb6-26"></a><span class="co"># 显示结果表格</span></span>
-<span id="cb6-27"><a href="#cb6-27"></a><span class="bu">print</span>(stats_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 分时段统计 (表格版)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>periods <span class="op">=</span> {</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"1960-1980年"</span>: (<span class="st">"1960-01-01"</span>, <span class="st">"1980-12-31"</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"1980-2000年"</span>: (<span class="st">"1980-01-01"</span>, <span class="st">"2000-12-31"</span>),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"2000-2010年"</span>: (<span class="st">"2000-01-01"</span>, <span class="st">"2010-12-31"</span>),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"2010-2020年"</span>: (<span class="st">"2010-01-01"</span>, <span class="st">"2020-12-31"</span>),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"2020-2025年"</span>: (<span class="st">"2020-01-01"</span>, <span class="st">"2025-12-31"</span>),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个列表来存储结果</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>stats_list <span class="op">=</span> []</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> period, (start, end) <span class="kw">in</span> periods.items():</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    stats <span class="op">=</span> umemp[start:end].agg([<span class="st">'mean'</span>, <span class="st">'std'</span>, <span class="st">'min'</span>, <span class="st">'max'</span>]).<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    stats_list.append({</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Period"</span>: period,</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Mean"</span>: stats[<span class="st">"mean"</span>],</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Std"</span>: stats[<span class="st">"std"</span>],</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Min"</span>: stats[<span class="st">"min"</span>],</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Max"</span>: stats[<span class="st">"max"</span>]</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 将结果转换为 DataFrame</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>stats_table <span class="op">=</span> pd.DataFrame(stats_list)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 显示结果表格</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(stats_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       Period  Mean   Std  Min   Max
 0  1960-1980年  5.58  1.35  3.4   9.0
@@ -808,17 +808,17 @@ Name: UNRATE, dtype: float64</code></pre>
 <h3 data-number="37.2.2" class="anchored" data-anchor-id="年移动平均"><span class="header-section-number">37.2.2</span> 10 年移动平均</h3>
 <p>我们可以使用 <code>rolling</code> 函数来计算 10 年移动平均，以便从更长时间尺度上观察失业率的变化趋势。</p>
 <div id="987f5137" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># 10 年和 5 年滚动平均</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>rolling_mean_umemp_10yr <span class="op">=</span> umemp.rolling(window<span class="op">=</span><span class="dv">120</span>).mean()  <span class="co"># 120 个月 = 10 年</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># 绘图</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
-<span id="cb8-6"><a href="#cb8-6"></a>plt.plot(df_unemp.index, umemp, </span>
-<span id="cb8-7"><a href="#cb8-7"></a>         color<span class="op">=</span><span class="st">'blue'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Unemployment Rate'</span>)</span>
-<span id="cb8-8"><a href="#cb8-8"></a>plt.plot(df_unemp.index, rolling_mean_umemp_10yr, </span>
-<span id="cb8-9"><a href="#cb8-9"></a>         color<span class="op">=</span><span class="st">'red'</span>, linewidth<span class="op">=</span><span class="dv">4</span>, label<span class="op">=</span><span class="st">'10-Year Rolling Mean'</span>)</span>
-<span id="cb8-10"><a href="#cb8-10"></a>plt.legend() <span class="co"># 添加图例</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>) <span class="co"># 添加网格线</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 10 年和 5 年滚动平均</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>rolling_mean_umemp_10yr <span class="op">=</span> umemp.rolling(window<span class="op">=</span><span class="dv">120</span>).mean()  <span class="co"># 120 个月 = 10 年</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>plt.plot(df_unemp.index, umemp, </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>         color<span class="op">=</span><span class="st">'blue'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Unemployment Rate'</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>plt.plot(df_unemp.index, rolling_mean_umemp_10yr, </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>         color<span class="op">=</span><span class="st">'red'</span>, linewidth<span class="op">=</span><span class="dv">4</span>, label<span class="op">=</span><span class="st">'10-Year Rolling Mean'</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>plt.legend() <span class="co"># 添加图例</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>) <span class="co"># 添加网格线</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -835,26 +835,26 @@ Name: UNRATE, dtype: float64</code></pre>
 <p>Source: U.S. Bureau of Labor Statistics, Consumer Price Index for All Urban Consumers: All Items in U.S. City Average, Not Seasonally Adjusted [CPIAUCNS], retrieved from FRED, Federal Reserve Bank of St.&nbsp;Louis; <a href="https://fred.stlouisfed.org/series/CPIAUCNS" class="uri">https://fred.stlouisfed.org/series/CPIAUCNS</a>, May 5, 2025.</p>
 </blockquote>
 <div id="2f5a5bcb" class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># CPI（消费者物价指数）</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="co"># 从 FRED 获取 CPI 数据（代码为 CPIAUCNS）</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a>df_CPI <span class="op">=</span> DataReader(<span class="st">"CPIAUCNS"</span>, <span class="st">"fred"</span>, start_date, end_date)</span>
-<span id="cb9-5"><a href="#cb9-5"></a></span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="co"># 绘图</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
-<span id="cb9-8"><a href="#cb9-8"></a>plt.plot(df_CPI.index, df_CPI[<span class="st">"CPIAUCNS"</span>], </span>
-<span id="cb9-9"><a href="#cb9-9"></a>         color<span class="op">=</span><span class="st">'darkred'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'CPI: All Urban Consumers'</span>)</span>
-<span id="cb9-10"><a href="#cb9-10"></a></span>
-<span id="cb9-11"><a href="#cb9-11"></a><span class="co"># 图形美化</span></span>
-<span id="cb9-12"><a href="#cb9-12"></a>plt.title(<span class="ss">f"Consumer Price Index (CPI-U): All Items in U.S. City Average (</span><span class="sc">{</span>start_year<span class="sc">}</span><span class="ss"> - Present)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb9-13"><a href="#cb9-13"></a>plt.xlabel(<span class="st">"Date"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb9-14"><a href="#cb9-14"></a>plt.ylabel(<span class="st">"Index (1982-1984 = 100)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb9-15"><a href="#cb9-15"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb9-16"><a href="#cb9-16"></a>plt.legend()</span>
-<span id="cb9-17"><a href="#cb9-17"></a>plt.tight_layout()</span>
-<span id="cb9-18"><a href="#cb9-18"></a></span>
-<span id="cb9-19"><a href="#cb9-19"></a><span class="co"># 显示图形</span></span>
-<span id="cb9-20"><a href="#cb9-20"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CPI（消费者物价指数）</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 从 FRED 获取 CPI 数据（代码为 CPIAUCNS）</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>df_CPI <span class="op">=</span> DataReader(<span class="st">"CPIAUCNS"</span>, <span class="st">"fred"</span>, start_date, end_date)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>plt.plot(df_CPI.index, df_CPI[<span class="st">"CPIAUCNS"</span>], </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>         color<span class="op">=</span><span class="st">'darkred'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'CPI: All Urban Consumers'</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 图形美化</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"Consumer Price Index (CPI-U): All Items in U.S. City Average (</span><span class="sc">{</span>start_year<span class="sc">}</span><span class="ss"> - Present)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Date"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Index (1982-1984 = 100)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 显示图形</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -875,27 +875,27 @@ Name: UNRATE, dtype: float64</code></pre>
 </ul>
 <p>接下来，我们可以看看最近 10-20 年的 CPI 变化趋势。</p>
 <div id="b90a193e" class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># 2005 以来的 CPI 变化</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>start_year <span class="op">=</span> <span class="dv">2005</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a>end_year <span class="op">=</span> <span class="dv">2025</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a></span>
-<span id="cb10-5"><a href="#cb10-5"></a>df_CPI_period <span class="op">=</span> df_CPI[<span class="st">"CPIAUCNS"</span>][<span class="ss">f"</span><span class="sc">{</span>start_year<span class="sc">}</span><span class="ss">-01-01"</span>:<span class="ss">f"</span><span class="sc">{</span>end_year<span class="sc">}</span><span class="ss">-12-31"</span>]</span>
-<span id="cb10-6"><a href="#cb10-6"></a></span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="co"># 绘图</span></span>
-<span id="cb10-8"><a href="#cb10-8"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
-<span id="cb10-9"><a href="#cb10-9"></a>plt.plot(df_CPI_period.index, df_CPI_period, </span>
-<span id="cb10-10"><a href="#cb10-10"></a>         color<span class="op">=</span><span class="st">'darkred'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f'CPI: </span><span class="sc">{</span>start_year<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>end_year<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb10-11"><a href="#cb10-11"></a></span>
-<span id="cb10-12"><a href="#cb10-12"></a><span class="co"># 图形美化</span></span>
-<span id="cb10-13"><a href="#cb10-13"></a>plt.title(<span class="ss">f"CPI Changes (</span><span class="sc">{</span>start_year<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>end_year<span class="sc">}</span><span class="ss">)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb10-14"><a href="#cb10-14"></a>plt.xlabel(<span class="st">"Date"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb10-15"><a href="#cb10-15"></a>plt.ylabel(<span class="st">"Index (1982-1984 = 100)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb10-16"><a href="#cb10-16"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb10-17"><a href="#cb10-17"></a>plt.legend()</span>
-<span id="cb10-18"><a href="#cb10-18"></a>plt.tight_layout()</span>
-<span id="cb10-19"><a href="#cb10-19"></a></span>
-<span id="cb10-20"><a href="#cb10-20"></a><span class="co"># 显示图形</span></span>
-<span id="cb10-21"><a href="#cb10-21"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2005 以来的 CPI 变化</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>start_year <span class="op">=</span> <span class="dv">2005</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>end_year <span class="op">=</span> <span class="dv">2025</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>df_CPI_period <span class="op">=</span> df_CPI[<span class="st">"CPIAUCNS"</span>][<span class="ss">f"</span><span class="sc">{</span>start_year<span class="sc">}</span><span class="ss">-01-01"</span>:<span class="ss">f"</span><span class="sc">{</span>end_year<span class="sc">}</span><span class="ss">-12-31"</span>]</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>plt.plot(df_CPI_period.index, df_CPI_period, </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>         color<span class="op">=</span><span class="st">'darkred'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f'CPI: </span><span class="sc">{</span>start_year<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>end_year<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 图形美化</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"CPI Changes (</span><span class="sc">{</span>start_year<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>end_year<span class="sc">}</span><span class="ss">)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Date"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Index (1982-1984 = 100)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 显示图形</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -905,26 +905,26 @@ Name: UNRATE, dtype: float64</code></pre>
 </div>
 </div>
 <div id="980e37f9" class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># 基于 CPI 计算通货膨胀率</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="co"># 计算通货膨胀率（基于 CPI 的同比变化率）</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a>df_CPI[<span class="st">'Inflation Rate'</span>] <span class="op">=</span> df_CPI[<span class="st">'CPIAUCNS'</span>].pct_change(periods<span class="op">=</span><span class="dv">12</span>) <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a></span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="co"># 绘图</span></span>
-<span id="cb11-7"><a href="#cb11-7"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
-<span id="cb11-8"><a href="#cb11-8"></a>plt.plot(df_CPI.index, df_CPI[<span class="st">'Inflation Rate'</span>], </span>
-<span id="cb11-9"><a href="#cb11-9"></a>         color<span class="op">=</span><span class="st">'green'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Inflation Rate'</span>)</span>
-<span id="cb11-10"><a href="#cb11-10"></a></span>
-<span id="cb11-11"><a href="#cb11-11"></a><span class="co"># 图形美化</span></span>
-<span id="cb11-12"><a href="#cb11-12"></a>plt.title(<span class="ss">f"Inflation Rate in the U.S. (</span><span class="sc">{</span>start_year<span class="sc">}</span><span class="ss"> - Present)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb11-13"><a href="#cb11-13"></a>plt.xlabel(<span class="st">"Date"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb11-14"><a href="#cb11-14"></a>plt.ylabel(<span class="st">"Inflation Rate (%)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb11-15"><a href="#cb11-15"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb11-16"><a href="#cb11-16"></a>plt.legend()</span>
-<span id="cb11-17"><a href="#cb11-17"></a>plt.tight_layout()</span>
-<span id="cb11-18"><a href="#cb11-18"></a></span>
-<span id="cb11-19"><a href="#cb11-19"></a><span class="co"># 显示图形</span></span>
-<span id="cb11-20"><a href="#cb11-20"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 基于 CPI 计算通货膨胀率</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算通货膨胀率（基于 CPI 的同比变化率）</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>df_CPI[<span class="st">'Inflation Rate'</span>] <span class="op">=</span> df_CPI[<span class="st">'CPIAUCNS'</span>].pct_change(periods<span class="op">=</span><span class="dv">12</span>) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>plt.plot(df_CPI.index, df_CPI[<span class="st">'Inflation Rate'</span>], </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>         color<span class="op">=</span><span class="st">'green'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Inflation Rate'</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 图形美化</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"Inflation Rate in the U.S. (</span><span class="sc">{</span>start_year<span class="sc">}</span><span class="ss"> - Present)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Date"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Inflation Rate (%)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 显示图形</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -939,23 +939,23 @@ Name: UNRATE, dtype: float64</code></pre>
 <h2 data-number="37.4" class="anchored" data-anchor-id="失业率和通货膨胀率的关系"><span class="header-section-number">37.4</span> 失业率和通货膨胀率的关系</h2>
 <p>接下来，我们将失业率和通货膨胀率结合起来，分析它们之间的关系。我们可以使用 <code>pandas</code> 和 <code>matplotlib</code> 来绘制散点图和线性回归线，以便更好地理解它们之间的关系。</p>
 <div id="a696a082" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># 绘图：失业率 + 通货膨胀率</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
-<span id="cb12-3"><a href="#cb12-3"></a></span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="co"># 绘制失业率</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a>plt.plot(df_unemp.index, df_unemp[<span class="st">"UNRATE"</span>], </span>
-<span id="cb12-6"><a href="#cb12-6"></a>         color<span class="op">=</span><span class="st">'blue'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Unemployment Rate'</span>)</span>
-<span id="cb12-7"><a href="#cb12-7"></a></span>
-<span id="cb12-8"><a href="#cb12-8"></a><span class="co"># 绘制通货膨胀率</span></span>
-<span id="cb12-9"><a href="#cb12-9"></a>plt.plot(df_CPI.index, df_CPI[<span class="st">'Inflation Rate'</span>], </span>
-<span id="cb12-10"><a href="#cb12-10"></a>         color<span class="op">=</span><span class="st">'green'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Inflation Rate'</span>)</span>
-<span id="cb12-11"><a href="#cb12-11"></a></span>
-<span id="cb12-12"><a href="#cb12-12"></a><span class="co"># 添加图例</span></span>
-<span id="cb12-13"><a href="#cb12-13"></a>plt.legend(loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
-<span id="cb12-14"><a href="#cb12-14"></a></span>
-<span id="cb12-15"><a href="#cb12-15"></a><span class="co"># 添加数据来源说明</span></span>
-<span id="cb12-16"><a href="#cb12-16"></a>plt.figtext(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.05</span>, <span class="st">"Source: U.S. Bureau of Labor Statistics, FRED (https://fred.stlouisfed.org/)"</span>, </span>
-<span id="cb12-17"><a href="#cb12-17"></a>            wrap<span class="op">=</span><span class="va">True</span>, horizontalalignment<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图：失业率 + 通货膨胀率</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制失业率</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>plt.plot(df_unemp.index, df_unemp[<span class="st">"UNRATE"</span>], </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>         color<span class="op">=</span><span class="st">'blue'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Unemployment Rate'</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制通货膨胀率</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>plt.plot(df_CPI.index, df_CPI[<span class="st">'Inflation Rate'</span>], </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>         color<span class="op">=</span><span class="st">'green'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Inflation Rate'</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加图例</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加数据来源说明</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>plt.figtext(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.05</span>, <span class="st">"Source: U.S. Bureau of Labor Statistics, FRED (https://fred.stlouisfed.org/)"</span>, </span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>            wrap<span class="op">=</span><span class="va">True</span>, horizontalalignment<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>Text(0.5, -0.05, 'Source: U.S. Bureau of Labor Statistics, FRED (https://fred.stlouisfed.org/)')</code></pre>
 </div>
@@ -999,22 +999,22 @@ Name: UNRATE, dtype: float64</code></pre>
 <section id="线性回归模型" class="level2" data-number="37.5">
 <h2 data-number="37.5" class="anchored" data-anchor-id="线性回归模型"><span class="header-section-number">37.5</span> 线性回归模型</h2>
 <div id="b4121bc0" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># UNRATE 和 Inflation Rate 的关系</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a></span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="co">## 相关系数</span></span>
-<span id="cb14-4"><a href="#cb14-4"></a>correlation <span class="op">=</span> df_unemp[<span class="st">"UNRATE"</span>].corr(df_CPI[<span class="st">'Inflation Rate'</span>])</span>
-<span id="cb14-5"><a href="#cb14-5"></a><span class="bu">print</span>(<span class="ss">f"Correlation between Unemployment Rate and Inflation Rate: </span><span class="sc">{</span>correlation<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb14-6"><a href="#cb14-6"></a></span>
-<span id="cb14-7"><a href="#cb14-7"></a><span class="co">## OLS 回归分析</span></span>
-<span id="cb14-8"><a href="#cb14-8"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb14-9"><a href="#cb14-9"></a><span class="co"># Align the indices of X and Y</span></span>
-<span id="cb14-10"><a href="#cb14-10"></a>X <span class="op">=</span> df_CPI[<span class="st">'Inflation Rate'</span>].dropna()   <span class="co"># 自变量</span></span>
-<span id="cb14-11"><a href="#cb14-11"></a>Y <span class="op">=</span> df_unemp[<span class="st">"UNRATE"</span>]                  <span class="co"># 因变量</span></span>
-<span id="cb14-12"><a href="#cb14-12"></a>X, Y <span class="op">=</span> X.align(Y, join<span class="op">=</span><span class="st">'inner'</span>)         <span class="co"># Align indices</span></span>
-<span id="cb14-13"><a href="#cb14-13"></a>X <span class="op">=</span> sm.add_constant(X)                  <span class="co"># 添加常数项</span></span>
-<span id="cb14-14"><a href="#cb14-14"></a>model <span class="op">=</span> sm.OLS(Y, X).fit()              <span class="co"># OLS 回归</span></span>
-<span id="cb14-15"><a href="#cb14-15"></a>model_summary <span class="op">=</span> model.summary()       <span class="co"># 回归结果</span></span>
-<span id="cb14-16"><a href="#cb14-16"></a><span class="bu">print</span>(model_summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># UNRATE 和 Inflation Rate 的关系</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">## 相关系数</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>correlation <span class="op">=</span> df_unemp[<span class="st">"UNRATE"</span>].corr(df_CPI[<span class="st">'Inflation Rate'</span>])</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Correlation between Unemployment Rate and Inflation Rate: </span><span class="sc">{</span>correlation<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">## OLS 回归分析</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Align the indices of X and Y</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df_CPI[<span class="st">'Inflation Rate'</span>].dropna()   <span class="co"># 自变量</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> df_unemp[<span class="st">"UNRATE"</span>]                  <span class="co"># 因变量</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> X.align(Y, join<span class="op">=</span><span class="st">'inner'</span>)         <span class="co"># Align indices</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> sm.add_constant(X)                  <span class="co"># 添加常数项</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.OLS(Y, X).fit()              <span class="co"># OLS 回归</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>model_summary <span class="op">=</span> model.summary()       <span class="co"># 回归结果</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model_summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Correlation between Unemployment Rate and Inflation Rate: 0.06
                             OLS Regression Results                            
@@ -1054,18 +1054,18 @@ Notes:
 <p>其中，<span class="math inline">\(\epsilon_t \sim N(0, \sigma^2)\)</span>。</p>
 <p>我们可以使用 <code>statsmodels</code> 库，分别针对失业率序列和通货膨胀序列来拟合 ARMA 模型。</p>
 <div id="a16f07ee" class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="co">'''ARMA(1,1) 模型：失业率'''</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a></span>
-<span id="cb16-3"><a href="#cb16-3"></a><span class="im">from</span> statsmodels.tsa.arima.model <span class="im">import</span> ARIMA</span>
-<span id="cb16-4"><a href="#cb16-4"></a></span>
-<span id="cb16-5"><a href="#cb16-5"></a><span class="co"># 确保索引有频率信息</span></span>
-<span id="cb16-6"><a href="#cb16-6"></a><span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(df_unemp.index, pd.PeriodIndex):</span>
-<span id="cb16-7"><a href="#cb16-7"></a>    df_unemp.index <span class="op">=</span> df_unemp.index.to_period(<span class="st">'M'</span>)  <span class="co"># 将索引设置为月度频率</span></span>
-<span id="cb16-8"><a href="#cb16-8"></a></span>
-<span id="cb16-9"><a href="#cb16-9"></a><span class="co"># 然后重新运行 ARIMA 模型</span></span>
-<span id="cb16-10"><a href="#cb16-10"></a>model_unemp <span class="op">=</span> ARIMA(df_unemp[<span class="st">'UNRATE'</span>], order<span class="op">=</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb16-11"><a href="#cb16-11"></a>model_unemp_fit <span class="op">=</span> model_unemp.fit()</span>
-<span id="cb16-12"><a href="#cb16-12"></a><span class="bu">print</span>(model_unemp_fit.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">'''ARMA(1,1) 模型：失业率'''</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.arima.model <span class="im">import</span> ARIMA</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 确保索引有频率信息</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(df_unemp.index, pd.PeriodIndex):</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    df_unemp.index <span class="op">=</span> df_unemp.index.to_period(<span class="st">'M'</span>)  <span class="co"># 将索引设置为月度频率</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 然后重新运行 ARIMA 模型</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>model_unemp <span class="op">=</span> ARIMA(df_unemp[<span class="st">'UNRATE'</span>], order<span class="op">=</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>model_unemp_fit <span class="op">=</span> model_unemp.fit()</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model_unemp_fit.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                               SARIMAX Results                                
 ==============================================================================
@@ -1095,11 +1095,11 @@ Warnings:
 </div>
 </div>
 <div id="0ffa4996" class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="co">'''ARMA(1,1) 模型：通胀率'''</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a></span>
-<span id="cb18-3"><a href="#cb18-3"></a>model <span class="op">=</span> ARIMA(df_CPI[<span class="st">'Inflation Rate'</span>].dropna(), order<span class="op">=</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb18-4"><a href="#cb18-4"></a>model_fit <span class="op">=</span> model.fit()     <span class="co"># Fit the ARIMA model</span></span>
-<span id="cb18-5"><a href="#cb18-5"></a><span class="bu">print</span>(model_fit.summary())  <span class="co"># Print the model summary</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">'''ARMA(1,1) 模型：通胀率'''</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> ARIMA(df_CPI[<span class="st">'Inflation Rate'</span>].dropna(), order<span class="op">=</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>model_fit <span class="op">=</span> model.fit()     <span class="co"># Fit the ARIMA model</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model_fit.summary())  <span class="co"># Print the model summary</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                               SARIMAX Results                                
 ==============================================================================
@@ -1156,61 +1156,61 @@ X_t = \phi_0 + \phi_1 X_{t-1} + \phi_2 X_{t-2} + ... + \phi_p X_{t-p} + \epsilon
 <h4 data-number="37.6.2.3" class="anchored" data-anchor-id="pp-检验"><span class="header-section-number">37.6.2.3</span> PP 检验</h4>
 <p>PP 检验的原假设是：<span class="math inline">\(X_t\)</span> 是一个单位根序列，即 <span class="math inline">\(H_0: \phi_1 = 1\)</span>。 如果 <span class="math inline">\(H_0\)</span> 被拒绝，则说明 <span class="math inline">\(X_t\)</span> 是平稳的。</p>
 <div id="778b8e4a" class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="im">from</span> statsmodels.tsa.stattools <span class="im">import</span> adfuller, kpss</span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="im">import</span> warnings</span>
-<span id="cb20-3"><a href="#cb20-3"></a></span>
-<span id="cb20-4"><a href="#cb20-4"></a><span class="co"># 忽略特定警告（如 InterpolationWarning）</span></span>
-<span id="cb20-5"><a href="#cb20-5"></a>warnings.filterwarnings(<span class="st">"always"</span>, category<span class="op">=</span><span class="pp">UserWarning</span>)</span>
-<span id="cb20-6"><a href="#cb20-6"></a></span>
-<span id="cb20-7"><a href="#cb20-7"></a><span class="kw">def</span> unit_root_tests(series, series_name, regression_type<span class="op">=</span><span class="st">'c'</span>):</span>
-<span id="cb20-8"><a href="#cb20-8"></a>    <span class="co">"""</span></span>
-<span id="cb20-9"><a href="#cb20-9"></a><span class="co">    对单个序列执行 ADF 和 KPSS 单位根检验，支持多种趋势设定。</span></span>
-<span id="cb20-10"><a href="#cb20-10"></a><span class="co">    """</span></span>
-<span id="cb20-11"><a href="#cb20-11"></a>    <span class="bu">print</span>(<span class="ss">f"单位根检验结果 (</span><span class="sc">{</span>regression_type<span class="sc">}</span><span class="ss">): </span><span class="sc">{</span>series_name<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb20-12"><a href="#cb20-12"></a>    <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">50</span>)</span>
-<span id="cb20-13"><a href="#cb20-13"></a></span>
-<span id="cb20-14"><a href="#cb20-14"></a>    <span class="co"># ===== ADF 检验 =====</span></span>
-<span id="cb20-15"><a href="#cb20-15"></a>    <span class="cf">try</span>:</span>
-<span id="cb20-16"><a href="#cb20-16"></a>        adf_result <span class="op">=</span> adfuller(series.dropna(), regression<span class="op">=</span>regression_type, autolag<span class="op">=</span><span class="st">'AIC'</span>)</span>
-<span id="cb20-17"><a href="#cb20-17"></a>        <span class="bu">print</span>(<span class="st">"ADF 检验:"</span>)</span>
-<span id="cb20-18"><a href="#cb20-18"></a>        <span class="bu">print</span>(<span class="ss">f"ADF Statistic: </span><span class="sc">{</span>adf_result[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb20-19"><a href="#cb20-19"></a>        <span class="bu">print</span>(<span class="ss">f"p-value: </span><span class="sc">{</span>adf_result[<span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb20-20"><a href="#cb20-20"></a>        <span class="bu">print</span>(<span class="ss">f"Critical Values: </span><span class="sc">{</span>adf_result[<span class="dv">4</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb20-21"><a href="#cb20-21"></a>        <span class="bu">print</span>(<span class="ss">f"Conclusion: </span><span class="sc">{</span><span class="st">'Reject H0 (Stationary)'</span> <span class="cf">if</span> adf_result[<span class="dv">1</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'Fail to Reject H0 (Non-Stationary)'</span><span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb20-22"><a href="#cb20-22"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb20-23"><a href="#cb20-23"></a>        <span class="bu">print</span>(<span class="st">"ADF 检验无法执行:"</span>, e)</span>
-<span id="cb20-24"><a href="#cb20-24"></a></span>
-<span id="cb20-25"><a href="#cb20-25"></a>    <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">50</span>)</span>
-<span id="cb20-26"><a href="#cb20-26"></a></span>
-<span id="cb20-27"><a href="#cb20-27"></a>    <span class="co"># ===== KPSS 检验 =====</span></span>
-<span id="cb20-28"><a href="#cb20-28"></a>    <span class="co"># KPSS 仅接受 'c' 或 'ct'</span></span>
-<span id="cb20-29"><a href="#cb20-29"></a>    <span class="cf">if</span> regression_type <span class="kw">not</span> <span class="kw">in</span> [<span class="st">'c'</span>, <span class="st">'ct'</span>]:</span>
-<span id="cb20-30"><a href="#cb20-30"></a>        <span class="bu">print</span>(<span class="st">"KPSS 检验跳过（只支持 regression='c' 或 'ct'）"</span>)</span>
-<span id="cb20-31"><a href="#cb20-31"></a>    <span class="cf">else</span>:</span>
-<span id="cb20-32"><a href="#cb20-32"></a>        <span class="cf">try</span>:</span>
-<span id="cb20-33"><a href="#cb20-33"></a>            <span class="cf">with</span> warnings.catch_warnings(record<span class="op">=</span><span class="va">True</span>) <span class="im">as</span> w:</span>
-<span id="cb20-34"><a href="#cb20-34"></a>                warnings.simplefilter(<span class="st">"always"</span>)</span>
-<span id="cb20-35"><a href="#cb20-35"></a>                kpss_result <span class="op">=</span> kpss(series.dropna(), regression<span class="op">=</span>regression_type, nlags<span class="op">=</span><span class="st">"auto"</span>)</span>
-<span id="cb20-36"><a href="#cb20-36"></a></span>
-<span id="cb20-37"><a href="#cb20-37"></a>                <span class="bu">print</span>(<span class="st">"KPSS 检验:"</span>)</span>
-<span id="cb20-38"><a href="#cb20-38"></a>                <span class="bu">print</span>(<span class="ss">f"KPSS Statistic: </span><span class="sc">{</span>kpss_result[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb20-39"><a href="#cb20-39"></a>                <span class="bu">print</span>(<span class="ss">f"p-value: </span><span class="sc">{</span>kpss_result[<span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb20-40"><a href="#cb20-40"></a>                <span class="bu">print</span>(<span class="ss">f"Critical Values: </span><span class="sc">{</span>kpss_result[<span class="dv">3</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb20-41"><a href="#cb20-41"></a>                <span class="bu">print</span>(<span class="ss">f"Conclusion: </span><span class="sc">{</span><span class="st">'Reject H0 (Non-Stationary)'</span> <span class="cf">if</span> kpss_result[<span class="dv">1</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'Fail to Reject H0 (Stationary)'</span><span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb20-42"><a href="#cb20-42"></a></span>
-<span id="cb20-43"><a href="#cb20-43"></a>                <span class="cf">if</span> w:</span>
-<span id="cb20-44"><a href="#cb20-44"></a>                    <span class="bu">print</span>(<span class="st">"⚠️ 警告：KPSS 统计量超出临界值范围，p-value 可能不准确。"</span>)</span>
-<span id="cb20-45"><a href="#cb20-45"></a>        <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb20-46"><a href="#cb20-46"></a>            <span class="bu">print</span>(<span class="st">"KPSS 检验无法执行:"</span>, e)</span>
-<span id="cb20-47"><a href="#cb20-47"></a></span>
-<span id="cb20-48"><a href="#cb20-48"></a>    <span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">50</span>)</span>
-<span id="cb20-49"><a href="#cb20-49"></a></span>
-<span id="cb20-50"><a href="#cb20-50"></a><span class="co"># 示例调用</span></span>
-<span id="cb20-51"><a href="#cb20-51"></a>unit_root_tests(df_unemp[<span class="st">'UNRATE'</span>], <span class="st">"Unemployment Rate"</span>, regression_type<span class="op">=</span><span class="st">'c'</span>)</span>
-<span id="cb20-52"><a href="#cb20-52"></a>unit_root_tests(df_unemp[<span class="st">'UNRATE'</span>], <span class="st">"Unemployment Rate"</span>, regression_type<span class="op">=</span><span class="st">'ct'</span>)</span>
-<span id="cb20-53"><a href="#cb20-53"></a></span>
-<span id="cb20-54"><a href="#cb20-54"></a>unit_root_tests(df_CPI[<span class="st">'Inflation Rate'</span>], <span class="st">"Inflation Rate"</span>, regression_type<span class="op">=</span><span class="st">'c'</span>)</span>
-<span id="cb20-55"><a href="#cb20-55"></a>unit_root_tests(df_CPI[<span class="st">'Inflation Rate'</span>], <span class="st">"Inflation Rate"</span>, regression_type<span class="op">=</span><span class="st">'ct'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.stattools <span class="im">import</span> adfuller, kpss</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 忽略特定警告（如 InterpolationWarning）</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"always"</span>, category<span class="op">=</span><span class="pp">UserWarning</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> unit_root_tests(series, series_name, regression_type<span class="op">=</span><span class="st">'c'</span>):</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">    对单个序列执行 ADF 和 KPSS 单位根检验，支持多种趋势设定。</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"单位根检验结果 (</span><span class="sc">{</span>regression_type<span class="sc">}</span><span class="ss">): </span><span class="sc">{</span>series_name<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ===== ADF 检验 =====</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>        adf_result <span class="op">=</span> adfuller(series.dropna(), regression<span class="op">=</span>regression_type, autolag<span class="op">=</span><span class="st">'AIC'</span>)</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"ADF 检验:"</span>)</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"ADF Statistic: </span><span class="sc">{</span>adf_result[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"p-value: </span><span class="sc">{</span>adf_result[<span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Critical Values: </span><span class="sc">{</span>adf_result[<span class="dv">4</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Conclusion: </span><span class="sc">{</span><span class="st">'Reject H0 (Stationary)'</span> <span class="cf">if</span> adf_result[<span class="dv">1</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'Fail to Reject H0 (Non-Stationary)'</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"ADF 检验无法执行:"</span>, e)</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ===== KPSS 检验 =====</span></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># KPSS 仅接受 'c' 或 'ct'</span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> regression_type <span class="kw">not</span> <span class="kw">in</span> [<span class="st">'c'</span>, <span class="st">'ct'</span>]:</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"KPSS 检验跳过（只支持 regression='c' 或 'ct'）"</span>)</span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>            <span class="cf">with</span> warnings.catch_warnings(record<span class="op">=</span><span class="va">True</span>) <span class="im">as</span> w:</span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>                warnings.simplefilter(<span class="st">"always"</span>)</span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>                kpss_result <span class="op">=</span> kpss(series.dropna(), regression<span class="op">=</span>regression_type, nlags<span class="op">=</span><span class="st">"auto"</span>)</span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="st">"KPSS 检验:"</span>)</span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f"KPSS Statistic: </span><span class="sc">{</span>kpss_result[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f"p-value: </span><span class="sc">{</span>kpss_result[<span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f"Critical Values: </span><span class="sc">{</span>kpss_result[<span class="dv">3</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f"Conclusion: </span><span class="sc">{</span><span class="st">'Reject H0 (Non-Stationary)'</span> <span class="cf">if</span> kpss_result[<span class="dv">1</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'Fail to Reject H0 (Stationary)'</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> w:</span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="st">"⚠️ 警告：KPSS 统计量超出临界值范围，p-value 可能不准确。"</span>)</span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"KPSS 检验无法执行:"</span>, e)</span>
+<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a><span class="co"># 示例调用</span></span>
+<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a>unit_root_tests(df_unemp[<span class="st">'UNRATE'</span>], <span class="st">"Unemployment Rate"</span>, regression_type<span class="op">=</span><span class="st">'c'</span>)</span>
+<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a>unit_root_tests(df_unemp[<span class="st">'UNRATE'</span>], <span class="st">"Unemployment Rate"</span>, regression_type<span class="op">=</span><span class="st">'ct'</span>)</span>
+<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-54"><a href="#cb20-54" aria-hidden="true" tabindex="-1"></a>unit_root_tests(df_CPI[<span class="st">'Inflation Rate'</span>], <span class="st">"Inflation Rate"</span>, regression_type<span class="op">=</span><span class="st">'c'</span>)</span>
+<span id="cb20-55"><a href="#cb20-55" aria-hidden="true" tabindex="-1"></a>unit_root_tests(df_CPI[<span class="st">'Inflation Rate'</span>], <span class="st">"Inflation Rate"</span>, regression_type<span class="op">=</span><span class="st">'ct'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>单位根检验结果 (c): Unemployment Rate
 --------------------------------------------------
@@ -1275,31 +1275,31 @@ Conclusion: Reject H0 (Non-Stationary)
 </div>
 </div>
 <div id="940f01e7" class="cell" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># 绘制 ACF 和 PACF 图</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a><span class="im">from</span> statsmodels.graphics.tsaplots <span class="im">import</span> plot_acf, plot_pacf</span>
-<span id="cb22-3"><a href="#cb22-3"></a></span>
-<span id="cb22-4"><a href="#cb22-4"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
-<span id="cb22-5"><a href="#cb22-5"></a></span>
-<span id="cb22-6"><a href="#cb22-6"></a><span class="co"># 通胀率的 ACF 和 PACF</span></span>
-<span id="cb22-7"><a href="#cb22-7"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb22-8"><a href="#cb22-8"></a>plot_acf(df_CPI[<span class="st">'Inflation Rate'</span>].dropna(), lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
-<span id="cb22-9"><a href="#cb22-9"></a>plt.title(<span class="st">'ACF of Inflation Rate'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb22-10"><a href="#cb22-10"></a></span>
-<span id="cb22-11"><a href="#cb22-11"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb22-12"><a href="#cb22-12"></a>plot_pacf(df_CPI[<span class="st">'Inflation Rate'</span>].dropna(), lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
-<span id="cb22-13"><a href="#cb22-13"></a>plt.title(<span class="st">'PACF of Inflation Rate'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb22-14"><a href="#cb22-14"></a></span>
-<span id="cb22-15"><a href="#cb22-15"></a><span class="co"># 失业率的 ACF 和 PACF</span></span>
-<span id="cb22-16"><a href="#cb22-16"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">3</span>)</span>
-<span id="cb22-17"><a href="#cb22-17"></a>plot_acf(df_unemp[<span class="st">'UNRATE'</span>].dropna(), lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
-<span id="cb22-18"><a href="#cb22-18"></a>plt.title(<span class="st">'ACF of Unemployment Rate'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb22-19"><a href="#cb22-19"></a></span>
-<span id="cb22-20"><a href="#cb22-20"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">4</span>)</span>
-<span id="cb22-21"><a href="#cb22-21"></a>plot_pacf(df_unemp[<span class="st">'UNRATE'</span>].dropna(), lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
-<span id="cb22-22"><a href="#cb22-22"></a>plt.title(<span class="st">'PACF of Unemployment Rate'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb22-23"><a href="#cb22-23"></a></span>
-<span id="cb22-24"><a href="#cb22-24"></a>plt.tight_layout()</span>
-<span id="cb22-25"><a href="#cb22-25"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制 ACF 和 PACF 图</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.graphics.tsaplots <span class="im">import</span> plot_acf, plot_pacf</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 通胀率的 ACF 和 PACF</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>plot_acf(df_CPI[<span class="st">'Inflation Rate'</span>].dropna(), lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'ACF of Inflation Rate'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>plot_pacf(df_CPI[<span class="st">'Inflation Rate'</span>].dropna(), lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'PACF of Inflation Rate'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 失业率的 ACF 和 PACF</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>plot_acf(df_unemp[<span class="st">'UNRATE'</span>].dropna(), lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'ACF of Unemployment Rate'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">4</span>)</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>plot_pacf(df_unemp[<span class="st">'UNRATE'</span>].dropna(), lags<span class="op">=</span><span class="dv">40</span>, ax<span class="op">=</span>plt.gca())</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'PACF of Unemployment Rate'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1357,22 +1357,22 @@ Y_t = A_1 Y_{t-1} + A_2 Y_{t-2} + \dots + A_P Y_{t-P} + \epsilon_t,
 <p>接下来，我们用 <code>statsmodels</code> 库来估计 VAR 模型，分析失业率和通货膨胀率之间的动态关系。</p>
 <p>首先，需要进行模型，最核心的问题是确定滞后阶数。</p>
 <div id="3ac4014a" class="cell" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="im">from</span> statsmodels.tsa.api <span class="im">import</span> VAR</span>
-<span id="cb23-2"><a href="#cb23-2"></a></span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="co"># 准备数据：将失业率和通胀率合并为一个 DataFrame</span></span>
-<span id="cb23-4"><a href="#cb23-4"></a>data <span class="op">=</span> pd.concat([df_unemp[<span class="st">'UNRATE'</span>], df_CPI[<span class="st">'Inflation Rate'</span>]], axis<span class="op">=</span><span class="dv">1</span>).dropna()</span>
-<span id="cb23-5"><a href="#cb23-5"></a>data.columns <span class="op">=</span> [<span class="st">'Unemployment Rate'</span>, <span class="st">'Inflation Rate'</span>]</span>
-<span id="cb23-6"><a href="#cb23-6"></a></span>
-<span id="cb23-7"><a href="#cb23-7"></a><span class="co"># 创建 VAR 模型</span></span>
-<span id="cb23-8"><a href="#cb23-8"></a>model <span class="op">=</span> VAR(data)</span>
-<span id="cb23-9"><a href="#cb23-9"></a></span>
-<span id="cb23-10"><a href="#cb23-10"></a><span class="co"># 选择滞后阶数（使用 AIC 或 BIC）</span></span>
-<span id="cb23-11"><a href="#cb23-11"></a>lag_order <span class="op">=</span> model.select_order(maxlags<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb23-12"><a href="#cb23-12"></a><span class="bu">print</span>(<span class="st">"Lag Order Selection:"</span>)</span>
-<span id="cb23-13"><a href="#cb23-13"></a><span class="bu">print</span>(lag_order.summary())</span>
-<span id="cb23-14"><a href="#cb23-14"></a></span>
-<span id="cb23-15"><a href="#cb23-15"></a><span class="co"># 根据选择的滞后阶数拟合 VAR 模型</span></span>
-<span id="cb23-16"><a href="#cb23-16"></a>optimal_lag <span class="op">=</span> lag_order.aic  <span class="co"># 使用 AIC 选择的滞后阶数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.api <span class="im">import</span> VAR</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 准备数据：将失业率和通胀率合并为一个 DataFrame</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.concat([df_unemp[<span class="st">'UNRATE'</span>], df_CPI[<span class="st">'Inflation Rate'</span>]], axis<span class="op">=</span><span class="dv">1</span>).dropna()</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>data.columns <span class="op">=</span> [<span class="st">'Unemployment Rate'</span>, <span class="st">'Inflation Rate'</span>]</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建 VAR 模型</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> VAR(data)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 选择滞后阶数（使用 AIC 或 BIC）</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>lag_order <span class="op">=</span> model.select_order(maxlags<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Lag Order Selection:"</span>)</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lag_order.summary())</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 根据选择的滞后阶数拟合 VAR 模型</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>optimal_lag <span class="op">=</span> lag_order.aic  <span class="co"># 使用 AIC 选择的滞后阶数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Lag Order Selection:
  VAR Order Selection (* highlights the minimums)  
@@ -1400,11 +1400,11 @@ Y_t = A_1 Y_{t-1} + A_2 Y_{t-2} + \dots + A_P Y_{t-P} + \epsilon_t,
 </div>
 <p>由此可以看出，我们设定一个 VAR(2) 模型即可。</p>
 <div id="eec2eab1" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># 拟合 VAR(2) 模型</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a>var_model_2 <span class="op">=</span> model.fit(<span class="dv">2</span>)</span>
-<span id="cb25-3"><a href="#cb25-3"></a></span>
-<span id="cb25-4"><a href="#cb25-4"></a><span class="co"># 输出模型结果</span></span>
-<span id="cb25-5"><a href="#cb25-5"></a><span class="bu">print</span>(var_model_2.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 拟合 VAR(2) 模型</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>var_model_2 <span class="op">=</span> model.fit(<span class="dv">2</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 输出模型结果</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(var_model_2.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Summary of Regression Results   
 ==================================
@@ -1493,48 +1493,48 @@ u_t = \beta_0 + \sum_{i=1}^p \beta_i u_{t-i} + \sum_{j=1}^q \gamma_j e_{t-j} + \
 </ul>
 <p>以下是基于失业率 <span class="math inline">\(u\)</span> 和通胀率 <span class="math inline">\(e\)</span> 的 Granger 因果检验代码示例：</p>
 <div id="9611585f" class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="im">from</span> statsmodels.tsa.stattools <span class="im">import</span> grangercausalitytests</span>
-<span id="cb27-2"><a href="#cb27-2"></a></span>
-<span id="cb27-3"><a href="#cb27-3"></a><span class="co"># Granger 因果检验</span></span>
-<span id="cb27-4"><a href="#cb27-4"></a><span class="co"># 检验失业率 (u) 是否是通胀率 (e) 的 Granger 因，以及反向关系</span></span>
-<span id="cb27-5"><a href="#cb27-5"></a>max_lag <span class="op">=</span> <span class="dv">14</span>  <span class="co"># 最大滞后阶数</span></span>
-<span id="cb27-6"><a href="#cb27-6"></a>granger_test_result_u_to_e <span class="op">=</span> grangercausalitytests(data[[<span class="st">'Inflation Rate'</span>, <span class="st">'Unemployment Rate'</span>]], max_lag, verbose<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb27-7"><a href="#cb27-7"></a>granger_test_result_e_to_u <span class="op">=</span> grangercausalitytests(data[[<span class="st">'Unemployment Rate'</span>, <span class="st">'Inflation Rate'</span>]], max_lag, verbose<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb27-8"><a href="#cb27-8"></a></span>
-<span id="cb27-9"><a href="#cb27-9"></a><span class="co"># 提取 Granger 因果检验结果并汇总成表格</span></span>
-<span id="cb27-10"><a href="#cb27-10"></a><span class="kw">def</span> extract_granger_results(granger_test_result):</span>
-<span id="cb27-11"><a href="#cb27-11"></a>    granger_summary <span class="op">=</span> []</span>
-<span id="cb27-12"><a href="#cb27-12"></a>    <span class="cf">for</span> lag, result <span class="kw">in</span> granger_test_result.items():</span>
-<span id="cb27-13"><a href="#cb27-13"></a>        f_stat <span class="op">=</span> result[<span class="dv">0</span>][<span class="st">'ssr_ftest'</span>][<span class="dv">0</span>]</span>
-<span id="cb27-14"><a href="#cb27-14"></a>        p_value <span class="op">=</span> result[<span class="dv">0</span>][<span class="st">'ssr_ftest'</span>][<span class="dv">1</span>]</span>
-<span id="cb27-15"><a href="#cb27-15"></a>        granger_summary.append({<span class="st">'Lag'</span>: lag, <span class="st">'F-statistic'</span>: f_stat, <span class="st">'p-value'</span>: p_value})</span>
-<span id="cb27-16"><a href="#cb27-16"></a>    <span class="cf">return</span> pd.DataFrame(granger_summary)</span>
-<span id="cb27-17"><a href="#cb27-17"></a></span>
-<span id="cb27-18"><a href="#cb27-18"></a><span class="co"># 汇总结果</span></span>
-<span id="cb27-19"><a href="#cb27-19"></a>granger_summary_u_to_e <span class="op">=</span> extract_granger_results(granger_test_result_u_to_e)</span>
-<span id="cb27-20"><a href="#cb27-20"></a>granger_summary_e_to_u <span class="op">=</span> extract_granger_results(granger_test_result_e_to_u)</span>
-<span id="cb27-21"><a href="#cb27-21"></a></span>
-<span id="cb27-22"><a href="#cb27-22"></a><span class="co"># 显示结果表格</span></span>
-<span id="cb27-23"><a href="#cb27-23"></a><span class="bu">print</span>(<span class="st">"Granger Causality Test Summary (u -&gt; e):"</span>)</span>
-<span id="cb27-24"><a href="#cb27-24"></a><span class="bu">print</span>(granger_summary_u_to_e)</span>
-<span id="cb27-25"><a href="#cb27-25"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Granger Causality Test Summary (e -&gt; u):"</span>)</span>
-<span id="cb27-26"><a href="#cb27-26"></a><span class="bu">print</span>(granger_summary_e_to_u)</span>
-<span id="cb27-27"><a href="#cb27-27"></a></span>
-<span id="cb27-28"><a href="#cb27-28"></a><span class="co"># 给出最终结论</span></span>
-<span id="cb27-29"><a href="#cb27-29"></a>significant_lags_u_to_e <span class="op">=</span> granger_summary_u_to_e[granger_summary_u_to_e[<span class="st">'p-value'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span>]</span>
-<span id="cb27-30"><a href="#cb27-30"></a>significant_lags_e_to_u <span class="op">=</span> granger_summary_e_to_u[granger_summary_e_to_u[<span class="st">'p-value'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span>]</span>
-<span id="cb27-31"><a href="#cb27-31"></a></span>
-<span id="cb27-32"><a href="#cb27-32"></a><span class="cf">if</span> <span class="kw">not</span> significant_lags_u_to_e.empty:</span>
-<span id="cb27-33"><a href="#cb27-33"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">结论：失业率 (u) 是通胀率 (e) 的 Granger 因，显著滞后阶数如下："</span>)</span>
-<span id="cb27-34"><a href="#cb27-34"></a>    <span class="bu">print</span>(significant_lags_u_to_e)</span>
-<span id="cb27-35"><a href="#cb27-35"></a><span class="cf">else</span>:</span>
-<span id="cb27-36"><a href="#cb27-36"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">结论：失业率 (u) 不是通胀率 (e) 的 Granger 因。"</span>)</span>
-<span id="cb27-37"><a href="#cb27-37"></a></span>
-<span id="cb27-38"><a href="#cb27-38"></a><span class="cf">if</span> <span class="kw">not</span> significant_lags_e_to_u.empty:</span>
-<span id="cb27-39"><a href="#cb27-39"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">结论：通胀率 (e) 是失业率 (u) 的 Granger 因，显著滞后阶数如下："</span>)</span>
-<span id="cb27-40"><a href="#cb27-40"></a>    <span class="bu">print</span>(significant_lags_e_to_u)</span>
-<span id="cb27-41"><a href="#cb27-41"></a><span class="cf">else</span>:</span>
-<span id="cb27-42"><a href="#cb27-42"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">结论：通胀率 (e) 不是失业率 (u) 的 Granger 因。"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.stattools <span class="im">import</span> grangercausalitytests</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Granger 因果检验</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 检验失业率 (u) 是否是通胀率 (e) 的 Granger 因，以及反向关系</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>max_lag <span class="op">=</span> <span class="dv">14</span>  <span class="co"># 最大滞后阶数</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>granger_test_result_u_to_e <span class="op">=</span> grangercausalitytests(data[[<span class="st">'Inflation Rate'</span>, <span class="st">'Unemployment Rate'</span>]], max_lag, verbose<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>granger_test_result_e_to_u <span class="op">=</span> grangercausalitytests(data[[<span class="st">'Unemployment Rate'</span>, <span class="st">'Inflation Rate'</span>]], max_lag, verbose<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 提取 Granger 因果检验结果并汇总成表格</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extract_granger_results(granger_test_result):</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    granger_summary <span class="op">=</span> []</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> lag, result <span class="kw">in</span> granger_test_result.items():</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>        f_stat <span class="op">=</span> result[<span class="dv">0</span>][<span class="st">'ssr_ftest'</span>][<span class="dv">0</span>]</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>        p_value <span class="op">=</span> result[<span class="dv">0</span>][<span class="st">'ssr_ftest'</span>][<span class="dv">1</span>]</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>        granger_summary.append({<span class="st">'Lag'</span>: lag, <span class="st">'F-statistic'</span>: f_stat, <span class="st">'p-value'</span>: p_value})</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.DataFrame(granger_summary)</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 汇总结果</span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>granger_summary_u_to_e <span class="op">=</span> extract_granger_results(granger_test_result_u_to_e)</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>granger_summary_e_to_u <span class="op">=</span> extract_granger_results(granger_test_result_e_to_u)</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 显示结果表格</span></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Granger Causality Test Summary (u -&gt; e):"</span>)</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(granger_summary_u_to_e)</span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Granger Causality Test Summary (e -&gt; u):"</span>)</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(granger_summary_e_to_u)</span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 给出最终结论</span></span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>significant_lags_u_to_e <span class="op">=</span> granger_summary_u_to_e[granger_summary_u_to_e[<span class="st">'p-value'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span>]</span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>significant_lags_e_to_u <span class="op">=</span> granger_summary_e_to_u[granger_summary_e_to_u[<span class="st">'p-value'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span>]</span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> significant_lags_u_to_e.empty:</span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">结论：失业率 (u) 是通胀率 (e) 的 Granger 因，显著滞后阶数如下："</span>)</span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(significant_lags_u_to_e)</span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">结论：失业率 (u) 不是通胀率 (e) 的 Granger 因。"</span>)</span>
+<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> significant_lags_e_to_u.empty:</span>
+<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">结论：通胀率 (e) 是失业率 (u) 的 Granger 因，显著滞后阶数如下："</span>)</span>
+<span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(significant_lags_e_to_u)</span>
+<span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">结论：通胀率 (e) 不是失业率 (u) 的 Granger 因。"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Granger Causality Test Summary (u -&gt; e):
     Lag  F-statistic   p-value
@@ -1632,25 +1632,25 @@ Y_t = A_1 Y_{t-1} + A_2 Y_{t-2} + \dots + A_p Y_{t-p} + \epsilon_t
 </ol>
 <p>以下是脉冲响应分析的代码示例：</p>
 <div id="5fa3c7b3" class="cell" data-execution_count="50">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a><span class="im">from</span> statsmodels.tsa.api <span class="im">import</span> VAR</span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb29-3"><a href="#cb29-3"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb29-4"><a href="#cb29-4"></a></span>
-<span id="cb29-5"><a href="#cb29-5"></a><span class="co"># 准备数据</span></span>
-<span id="cb29-6"><a href="#cb29-6"></a>data <span class="op">=</span> pd.concat([df_unemp[<span class="st">'UNRATE'</span>], df_CPI[<span class="st">'Inflation Rate'</span>]], axis<span class="op">=</span><span class="dv">1</span>).dropna()</span>
-<span id="cb29-7"><a href="#cb29-7"></a>data.columns <span class="op">=</span> [<span class="st">'U'</span>, <span class="st">'E'</span>]</span>
-<span id="cb29-8"><a href="#cb29-8"></a></span>
-<span id="cb29-9"><a href="#cb29-9"></a><span class="co"># 拟合 VAR(2) 模型</span></span>
-<span id="cb29-10"><a href="#cb29-10"></a>model <span class="op">=</span> VAR(data)</span>
-<span id="cb29-11"><a href="#cb29-11"></a>var_model_2 <span class="op">=</span> model.fit(<span class="dv">2</span>)</span>
-<span id="cb29-12"><a href="#cb29-12"></a></span>
-<span id="cb29-13"><a href="#cb29-13"></a><span class="co"># 计算正交化脉冲响应</span></span>
-<span id="cb29-14"><a href="#cb29-14"></a>irf <span class="op">=</span> var_model_2.irf(<span class="dv">10</span>)</span>
-<span id="cb29-15"><a href="#cb29-15"></a></span>
-<span id="cb29-16"><a href="#cb29-16"></a><span class="co"># 绘图（缩小图形尺寸）</span></span>
-<span id="cb29-17"><a href="#cb29-17"></a>irf.plot(orth<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
-<span id="cb29-18"><a href="#cb29-18"></a>plt.tight_layout()</span>
-<span id="cb29-19"><a href="#cb29-19"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.api <span class="im">import</span> VAR</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 准备数据</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.concat([df_unemp[<span class="st">'UNRATE'</span>], df_CPI[<span class="st">'Inflation Rate'</span>]], axis<span class="op">=</span><span class="dv">1</span>).dropna()</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>data.columns <span class="op">=</span> [<span class="st">'U'</span>, <span class="st">'E'</span>]</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 拟合 VAR(2) 模型</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> VAR(data)</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>var_model_2 <span class="op">=</span> model.fit(<span class="dv">2</span>)</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算正交化脉冲响应</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>irf <span class="op">=</span> var_model_2.irf(<span class="dv">10</span>)</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘图（缩小图形尺寸）</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>irf.plot(orth<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1782,7 +1782,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

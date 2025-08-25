@@ -160,7 +160,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -168,7 +168,7 @@ window.Quarto = {
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -661,20 +661,20 @@ h = \frac{\max(r) - \min(r)}{K}
 \]</span></p>
 <p>第 <span class="math inline">\(k\)</span> 个区间为 <span class="math inline">\([a_k, a_{k+1})\)</span>，其频数记为 <span class="math inline">\(f_k\)</span>，那么对应的矩形高度就是 <span class="math inline">\(f_k\)</span>（或标准化后的频率）。绘图过程中，横轴表示收益率区间，纵轴表示该区间的频数或频率。</p>
 <div id="1cb47699" class="cell" data-execution_count="123">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># clear all variables</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="op">%</span>reset <span class="op">-</span>f </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clear all variables</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>reset <span class="op">-</span>f </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="一个简单的例子" class="level2" data-number="28.2">
 <h2 data-number="28.2" class="anchored" data-anchor-id="一个简单的例子"><span class="header-section-number">28.2</span> 一个简单的例子</h2>
 <p>为了理解直方图的用途，我们先看一个简单的例子。某学习小组包括 10 名学生，年龄介于 16 岁到 26 岁之间。</p>
 <div id="48430017" class="cell" data-execution_count="124">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># Generate the age distribution array</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>ages <span class="op">=</span> np.array([<span class="dv">16</span>] <span class="op">+</span> [<span class="dv">18</span>] <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> [<span class="dv">19</span>] <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> [<span class="dv">26</span>])</span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="bu">print</span>(<span class="st">"Generated Ages:"</span>, ages)</span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="bu">print</span>(<span class="st">"Number of Students:"</span>, <span class="bu">len</span>(ages))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the age distribution array</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>ages <span class="op">=</span> np.array([<span class="dv">16</span>] <span class="op">+</span> [<span class="dv">18</span>] <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> [<span class="dv">19</span>] <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> [<span class="dv">26</span>])</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Generated Ages:"</span>, ages)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of Students:"</span>, <span class="bu">len</span>(ages))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Generated Ages: [16 18 18 18 18 19 19 19 19 26]
 Number of Students: 10</code></pre>
@@ -719,33 +719,33 @@ d_k = \frac{f_k}{h}
 <p>此外，绘制直方图时，若纵轴是频率，则取值范围为 <span class="math inline">\([0, 1]\)</span>；若纵轴是密度，则取值范围为 <span class="math inline">\([0, \infty)\)</span> (因为，当 <span class="math inline">\(h\)</span> 趋近于 0 时，<span class="math inline">\(d_k\)</span> 可以趋近于无穷大)。</p>
 <p>从三者的定义也可以看出，无论纵轴为频数、频率还是密度，最终的直方图形状是一样的，只是纵轴的数值不同。</p>
 <div id="5a9fc658" class="cell" data-execution_count="127">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># 列表呈现频数、频率和密度</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb4-4"><a href="#cb4-4"></a></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co"># 计算唯一值及其计数</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a>unique, counts <span class="op">=</span> np.unique(ages, return_counts<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb4-7"><a href="#cb4-7"></a></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="co"># 计算频率</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a>frequencies <span class="op">=</span> counts <span class="op">/</span> counts.<span class="bu">sum</span>()</span>
-<span id="cb4-10"><a href="#cb4-10"></a></span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="co"># 计算带宽 h</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a>K <span class="op">=</span> <span class="dv">4</span>  <span class="co"># Number of bins</span></span>
-<span id="cb4-13"><a href="#cb4-13"></a>h <span class="op">=</span> (ages.<span class="bu">max</span>() <span class="op">-</span> ages.<span class="bu">min</span>()) <span class="op">/</span> K</span>
-<span id="cb4-14"><a href="#cb4-14"></a><span class="bu">print</span>(<span class="st">"Bandwidth (h):"</span>, h)</span>
-<span id="cb4-15"><a href="#cb4-15"></a></span>
-<span id="cb4-16"><a href="#cb4-16"></a><span class="co"># 计算密度</span></span>
-<span id="cb4-17"><a href="#cb4-17"></a>density <span class="op">=</span> frequencies <span class="op">/</span> h</span>
-<span id="cb4-18"><a href="#cb4-18"></a></span>
-<span id="cb4-19"><a href="#cb4-19"></a><span class="co"># 创建一个 DataFrame 包含计数、频率和密度</span></span>
-<span id="cb4-20"><a href="#cb4-20"></a>tabulated_ages <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb4-21"><a href="#cb4-21"></a>    <span class="st">"count"</span>: counts,</span>
-<span id="cb4-22"><a href="#cb4-22"></a>    <span class="st">"frequency"</span>: frequencies,</span>
-<span id="cb4-23"><a href="#cb4-23"></a>    <span class="st">"density"</span>: density</span>
-<span id="cb4-24"><a href="#cb4-24"></a>}, index<span class="op">=</span>unique)</span>
-<span id="cb4-25"><a href="#cb4-25"></a></span>
-<span id="cb4-26"><a href="#cb4-26"></a><span class="co"># 显示更新后的表格</span></span>
-<span id="cb4-27"><a href="#cb4-27"></a><span class="bu">print</span>(tabulated_ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 列表呈现频数、频率和密度</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算唯一值及其计数</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>unique, counts <span class="op">=</span> np.unique(ages, return_counts<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算频率</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>frequencies <span class="op">=</span> counts <span class="op">/</span> counts.<span class="bu">sum</span>()</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算带宽 h</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>K <span class="op">=</span> <span class="dv">4</span>  <span class="co"># Number of bins</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> (ages.<span class="bu">max</span>() <span class="op">-</span> ages.<span class="bu">min</span>()) <span class="op">/</span> K</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Bandwidth (h):"</span>, h)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算密度</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>density <span class="op">=</span> frequencies <span class="op">/</span> h</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个 DataFrame 包含计数、频率和密度</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>tabulated_ages <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"count"</span>: counts,</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"frequency"</span>: frequencies,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"density"</span>: density</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>}, index<span class="op">=</span>unique)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 显示更新后的表格</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulated_ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Bandwidth (h): 2.5
     count  frequency  density
@@ -756,27 +756,27 @@ d_k = \frac{f_k}{h}
 </div>
 </div>
 <div id="78456fd3" class="cell" data-execution_count="135">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb6-3"><a href="#cb6-3"></a></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="co"># 绘制图形</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">3</span>))</span>
-<span id="cb6-6"><a href="#cb6-6"></a></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="co"># 子图 1: 频数分布柱状图</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a>axes[<span class="dv">0</span>].bar(unique, counts, color<span class="op">=</span><span class="st">'skyblue'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb6-9"><a href="#cb6-9"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'Frequency'</span>)</span>
-<span id="cb6-10"><a href="#cb6-10"></a>axes[<span class="dv">0</span>].set_yticks(<span class="bu">range</span>(<span class="bu">max</span>(counts) <span class="op">+</span> <span class="dv">1</span>))</span>
-<span id="cb6-11"><a href="#cb6-11"></a></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="co"># 子图 2: 频率分布柱状图</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a>axes[<span class="dv">1</span>].bar(unique, frequencies, color<span class="op">=</span><span class="st">'lightgreen'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb6-14"><a href="#cb6-14"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">'Relative Frequency'</span>)</span>
-<span id="cb6-15"><a href="#cb6-15"></a></span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="co"># 子图 3: 密度分布柱状图</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a>axes[<span class="dv">2</span>].bar(unique, density, color<span class="op">=</span><span class="st">'salmon'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb6-18"><a href="#cb6-18"></a>axes[<span class="dv">2</span>].set_ylabel(<span class="st">'Density'</span>)</span>
-<span id="cb6-19"><a href="#cb6-19"></a></span>
-<span id="cb6-20"><a href="#cb6-20"></a>plt.tight_layout()</span>
-<span id="cb6-21"><a href="#cb6-21"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制图形</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">3</span>))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 子图 1: 频数分布柱状图</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].bar(unique, counts, color<span class="op">=</span><span class="st">'skyblue'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">'Frequency'</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_yticks(<span class="bu">range</span>(<span class="bu">max</span>(counts) <span class="op">+</span> <span class="dv">1</span>))</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 子图 2: 频率分布柱状图</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].bar(unique, frequencies, color<span class="op">=</span><span class="st">'lightgreen'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_ylabel(<span class="st">'Relative Frequency'</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 子图 3: 密度分布柱状图</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].bar(unique, density, color<span class="op">=</span><span class="st">'salmon'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].set_ylabel(<span class="st">'Density'</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -841,23 +841,23 @@ f_k = \sum_{j=1}^{N} I(b_k \leq x_j &lt; b_{k+1}) \quad \text{for } k = 1, 2, \l
 <section id="python-实操" class="level2" data-number="28.5">
 <h2 data-number="28.5" class="anchored" data-anchor-id="python-实操"><span class="header-section-number">28.5</span> Python 实操</h2>
 <div id="99514055" class="cell" data-execution_count="137">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">'''</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="co">**提示词**</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="co">生成 age 变量，取值范围 16-35 岁，N = 100，基本服从正态分布。</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="co">然后绘制直方图，并给出解释，尤其是带宽的选择。</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="co">'''</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb7-8"><a href="#cb7-8"></a></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="co"># 生成年龄分布数据</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a>np.random.seed(<span class="dv">1234</span>)  <span class="co"># For reproducibility</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a>age <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">21</span>, scale<span class="op">=</span><span class="dv">7</span>, size<span class="op">=</span><span class="dv">100</span>).astype(<span class="bu">int</span>)</span>
-<span id="cb7-12"><a href="#cb7-12"></a>age <span class="op">=</span> age[(age <span class="op">&gt;=</span> <span class="dv">16</span>) <span class="op">&amp;</span> (age <span class="op">&lt;=</span> <span class="dv">35</span>)]  <span class="co"># Restrict values to the range 16-35</span></span>
-<span id="cb7-13"><a href="#cb7-13"></a></span>
-<span id="cb7-14"><a href="#cb7-14"></a><span class="co"># 绘制直方图</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>))</span>
-<span id="cb7-16"><a href="#cb7-16"></a>plt.hist(age, edgecolor<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>) </span>
-<span id="cb7-17"><a href="#cb7-17"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">**提示词**</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">生成 age 变量，取值范围 16-35 岁，N = 100，基本服从正态分布。</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">然后绘制直方图，并给出解释，尤其是带宽的选择。</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 生成年龄分布数据</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">1234</span>)  <span class="co"># For reproducibility</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">21</span>, scale<span class="op">=</span><span class="dv">7</span>, size<span class="op">=</span><span class="dv">100</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> age[(age <span class="op">&gt;=</span> <span class="dv">16</span>) <span class="op">&amp;</span> (age <span class="op">&lt;=</span> <span class="dv">35</span>)]  <span class="co"># Restrict values to the range 16-35</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制直方图</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>))</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>plt.hist(age, edgecolor<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>) </span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -868,32 +868,32 @@ f_k = \sum_{j=1}^{N} I(b_k \leq x_j &lt; b_{k+1}) \quad \text{for } k = 1, 2, \l
 </div>
 <p>本例中，我们只在 <code>plt.hist()</code> 函数中指定了变量名 <code>age</code>，而没有指定 <code>bins</code> 和 <code>rwidth</code> 参数。此时，函数会自动选择合适的区间数量和宽度。根据数据的分布情况，函数会将数据划分为 10 个区间，并计算每个区间内的数据点数量。</p>
 <p>我们也可以自行制定 <code>bins</code> 和 <code>rwidth</code> 参数。如下命令的效果与上面相同：</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>K <span class="op">=</span> <span class="dv">10</span>                           <span class="co"># Number of bins</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>h <span class="op">=</span> (age.<span class="bu">max</span>() <span class="op">-</span> age.<span class="bu">min</span>()) <span class="op">/</span> K  <span class="co"># Bandwidth</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># 指定 bins 数量</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a>plt.hist(age, bins<span class="op">=</span>K,   edgecolor<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb8-6"><a href="#cb8-6"></a></span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="co"># 指定 rwidth</span></span>
-<span id="cb8-8"><a href="#cb8-8"></a>plt.hist(age, rwidth<span class="op">=</span>h, edgecolor<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>K <span class="op">=</span> <span class="dv">10</span>                           <span class="co"># Number of bins</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> (age.<span class="bu">max</span>() <span class="op">-</span> age.<span class="bu">min</span>()) <span class="op">/</span> K  <span class="co"># Bandwidth</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 指定 bins 数量</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>plt.hist(age, bins<span class="op">=</span>K,   edgecolor<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 指定 rwidth</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>plt.hist(age, rwidth<span class="op">=</span>h, edgecolor<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="050d5b4d" class="cell" data-execution_count="139">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">'''Prompt</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="co">绘制一行图形，3 个子图，分别设定 K=4, K=10, K=20。</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="co">横轴刻度采用图形标题，横轴和纵轴标题等信息，做最基本的图形即可</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="co">'''</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a></span>
-<span id="cb9-6"><a href="#cb9-6"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">2</span>)) <span class="co"># 3 个子图</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a></span>
-<span id="cb9-8"><a href="#cb9-8"></a>K_values <span class="op">=</span> [<span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">20</span>]   <span class="co"># 设置三种 K 值</span></span>
-<span id="cb9-9"><a href="#cb9-9"></a></span>
-<span id="cb9-10"><a href="#cb9-10"></a><span class="co"># Plot histograms for each K</span></span>
-<span id="cb9-11"><a href="#cb9-11"></a><span class="cf">for</span> i, K <span class="kw">in</span> <span class="bu">enumerate</span>(K_values):</span>
-<span id="cb9-12"><a href="#cb9-12"></a>    axes[i].hist(age, bins<span class="op">=</span>K, edgecolor<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb9-13"><a href="#cb9-13"></a>    axes[i].set_title(<span class="ss">f'K=</span><span class="sc">{</span>K<span class="sc">}</span><span class="ss">'</span>)          <span class="co"># 设置标题</span></span>
-<span id="cb9-14"><a href="#cb9-14"></a>    axes[i].set_yticks(<span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">32</span>, <span class="dv">5</span>))  <span class="co"># 重要！三个子图的 y 轴刻度一致</span></span>
-<span id="cb9-15"><a href="#cb9-15"></a></span>
-<span id="cb9-16"><a href="#cb9-16"></a>plt.tight_layout()</span>
-<span id="cb9-17"><a href="#cb9-17"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">'''Prompt</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">绘制一行图形，3 个子图，分别设定 K=4, K=10, K=20。</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">横轴刻度采用图形标题，横轴和纵轴标题等信息，做最基本的图形即可</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">2</span>)) <span class="co"># 3 个子图</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>K_values <span class="op">=</span> [<span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">20</span>]   <span class="co"># 设置三种 K 值</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot histograms for each K</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, K <span class="kw">in</span> <span class="bu">enumerate</span>(K_values):</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    axes[i].hist(age, bins<span class="op">=</span>K, edgecolor<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    axes[i].set_title(<span class="ss">f'K=</span><span class="sc">{</span>K<span class="sc">}</span><span class="ss">'</span>)          <span class="co"># 设置标题</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    axes[i].set_yticks(<span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">32</span>, <span class="dv">5</span>))  <span class="co"># 重要！三个子图的 y 轴刻度一致</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -911,12 +911,12 @@ f_k = \sum_{j=1}^{N} I(b_k \leq x_j &lt; b_{k+1}) \quad \text{for } k = 1, 2, \l
 <section id="plt.hist-函数详解" class="level3" data-number="28.5.1">
 <h3 data-number="28.5.1" class="anchored" data-anchor-id="plt.hist-函数详解"><span class="header-section-number">28.5.1</span> plt.hist() 函数详解</h3>
 <p><code>plt.hist()</code> 函数是 <code>matplotlib</code> 库中用于绘制直方图的函数。其基本语法如下：</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>plt.hist(x, bins<span class="op">=</span><span class="va">None</span>, <span class="bu">range</span><span class="op">=</span><span class="va">None</span>, density<span class="op">=</span><span class="va">False</span>, </span>
-<span id="cb10-2"><a href="#cb10-2"></a>         weights<span class="op">=</span><span class="va">None</span>, cumulative<span class="op">=</span><span class="va">False</span>, bottom<span class="op">=</span><span class="va">None</span>, </span>
-<span id="cb10-3"><a href="#cb10-3"></a>         histtype<span class="op">=</span><span class="st">'bar'</span>, align<span class="op">=</span><span class="st">'mid'</span>, orientation<span class="op">=</span><span class="st">'vertical'</span>, </span>
-<span id="cb10-4"><a href="#cb10-4"></a>         rwidth<span class="op">=</span><span class="va">None</span>, </span>
-<span id="cb10-5"><a href="#cb10-5"></a>         color<span class="op">=</span><span class="va">None</span>, edgecolor<span class="op">=</span><span class="va">None</span>, alpha<span class="op">=</span><span class="va">None</span>, </span>
-<span id="cb10-6"><a href="#cb10-6"></a>         label<span class="op">=</span><span class="va">None</span>, stacked<span class="op">=</span><span class="va">False</span>, <span class="op">**</span>kwargs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plt.hist(x, bins<span class="op">=</span><span class="va">None</span>, <span class="bu">range</span><span class="op">=</span><span class="va">None</span>, density<span class="op">=</span><span class="va">False</span>, </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>         weights<span class="op">=</span><span class="va">None</span>, cumulative<span class="op">=</span><span class="va">False</span>, bottom<span class="op">=</span><span class="va">None</span>, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>         histtype<span class="op">=</span><span class="st">'bar'</span>, align<span class="op">=</span><span class="st">'mid'</span>, orientation<span class="op">=</span><span class="st">'vertical'</span>, </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>         rwidth<span class="op">=</span><span class="va">None</span>, </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>         color<span class="op">=</span><span class="va">None</span>, edgecolor<span class="op">=</span><span class="va">None</span>, alpha<span class="op">=</span><span class="va">None</span>, </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>         label<span class="op">=</span><span class="va">None</span>, stacked<span class="op">=</span><span class="va">False</span>, <span class="op">**</span>kwargs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>其中，常用参数如下：</p>
 <ul>
 <li><code>x</code>：表示要绘制直方图的数据，可以是列表、数组或 <code>pandas</code> 的 <code>Series</code> 对象。</li>
@@ -1077,7 +1077,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

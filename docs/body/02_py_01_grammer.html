@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -632,21 +632,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>4 个空格</strong> 代表一级缩进；别用 Tab。</li>
 <li>模块级逻辑（导入、数据加载、建模、绘图）之间留 <strong>1‑2 行</strong> 空行，让结构一目了然。</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Bad</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-3"><a href="#cb1-3"></a>df<span class="op">=</span>pd.read_csv(<span class="st">"sales.csv"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="cf">for</span> y <span class="kw">in</span> df[<span class="st">"year"</span>].unique():</span>
-<span id="cb1-5"><a href="#cb1-5"></a>  subset<span class="op">=</span>df[df[<span class="st">"year"</span>]<span class="op">==</span>y]</span>
-<span id="cb1-6"><a href="#cb1-6"></a>  <span class="bu">print</span>(y,subset[<span class="st">"profit"</span>].mean())</span>
-<span id="cb1-7"><a href="#cb1-7"></a></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="co"># Good</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-10"><a href="#cb1-10"></a></span>
-<span id="cb1-11"><a href="#cb1-11"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"sales.csv"</span>)</span>
-<span id="cb1-12"><a href="#cb1-12"></a></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="cf">for</span> y <span class="kw">in</span> df[<span class="st">"year"</span>].unique():</span>
-<span id="cb1-14"><a href="#cb1-14"></a>    subset <span class="op">=</span> df[df[<span class="st">"year"</span>] <span class="op">==</span> y]</span>
-<span id="cb1-15"><a href="#cb1-15"></a>    <span class="bu">print</span>(y, subset[<span class="st">"profit"</span>].mean())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span>pd.read_csv(<span class="st">"sales.csv"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y <span class="kw">in</span> df[<span class="st">"year"</span>].unique():</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  subset<span class="op">=</span>df[df[<span class="st">"year"</span>]<span class="op">==</span>y]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(y,subset[<span class="st">"profit"</span>].mean())</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"sales.csv"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y <span class="kw">in</span> df[<span class="st">"year"</span>].unique():</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    subset <span class="op">=</span> df[df[<span class="st">"year"</span>] <span class="op">==</span> y]</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(y, subset[<span class="st">"profit"</span>].mean())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="行长度与换行-79-字符" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="行长度与换行-79-字符"><span class="header-section-number">9.2</span> 行长度与换行（≤ 79 字符）</h2>
@@ -656,25 +656,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>必要时</strong>（无括号且行极长）：使用 <code>\</code>，但反斜杠置于行尾，并让下一行缩进 <strong>4 空格</strong>。</li>
 <li><strong>长列表 / 参数</strong>：一个元素（或一个参数）一行，末尾加逗号，易于版本控制。</li>
 </ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Bad – 行太长且难读</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>ax.plot(df[<span class="st">"date"</span>], df[<span class="st">"close"</span>], label<span class="op">=</span><span class="st">"Shanghai Composite Index Close Price"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># Good – 括号换行</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>ax.plot(</span>
-<span id="cb2-6"><a href="#cb2-6"></a>    df[<span class="st">"date"</span>],</span>
-<span id="cb2-7"><a href="#cb2-7"></a>    df[<span class="st">"close"</span>],</span>
-<span id="cb2-8"><a href="#cb2-8"></a>    label<span class="op">=</span><span class="st">"Shanghai Composite Index Close Price"</span>,</span>
-<span id="cb2-9"><a href="#cb2-9"></a>)</span>
-<span id="cb2-10"><a href="#cb2-10"></a></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="co"># Good – 无括号时最后一招</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a>total <span class="op">=</span> price <span class="op">+</span> cost <span class="op">+</span> tax <span class="op">-</span> discount <span class="op">-</span> coupon <span class="op">\</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a>    <span class="op">-</span> special_offer</span>
-<span id="cb2-14"><a href="#cb2-14"></a></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="co"># Good - version2：可读性更强 (运算符放在行首，而非行尾)</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a>total <span class="op">=</span>   price <span class="op">+</span> cost <span class="op">+</span> tax <span class="op">\</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a>        <span class="op">-</span> discount <span class="op">\</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a>        <span class="op">-</span> coupon <span class="op">\</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a>        <span class="op">-</span> special_offer    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad – 行太长且难读</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ax.plot(df[<span class="st">"date"</span>], df[<span class="st">"close"</span>], label<span class="op">=</span><span class="st">"Shanghai Composite Index Close Price"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Good – 括号换行</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>ax.plot(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"date"</span>],</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"close"</span>],</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Shanghai Composite Index Close Price"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Good – 无括号时最后一招</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> price <span class="op">+</span> cost <span class="op">+</span> tax <span class="op">-</span> discount <span class="op">-</span> coupon <span class="op">\</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span> special_offer</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Good - version2：可读性更强 (运算符放在行首，而非行尾)</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span>   price <span class="op">+</span> cost <span class="op">+</span> tax <span class="op">\</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span> discount <span class="op">\</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span> coupon <span class="op">\</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span> special_offer    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="换行显示拼接与隐式拼接" class="level2" data-number="9.3">
 <h2 data-number="9.3" class="anchored" data-anchor-id="换行显示拼接与隐式拼接"><span class="header-section-number">9.3</span> 换行：显示拼接与隐式拼接</h2>
@@ -683,17 +683,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <p>###&nbsp;显式拼接行</p>
 <p>两个及两个以上的物理行可用反斜杠（<code>\</code>）拼接为一个逻辑行，规则如下：以不在字符串或注释内的反斜杠结尾时，物理行将与下一行拼接成一个逻辑行，并删除反斜杠及其后的换行符。例如：</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="cf">if</span> <span class="dv">1900</span> <span class="op">&lt;</span> year <span class="op">&lt;</span> <span class="dv">2100</span> <span class="kw">and</span> <span class="dv">1</span> <span class="op">&lt;=</span> month <span class="op">&lt;=</span> <span class="dv">12</span> <span class="op">\</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>   <span class="kw">and</span> <span class="dv">1</span> <span class="op">&lt;=</span> day <span class="op">&lt;=</span> <span class="dv">31</span> <span class="kw">and</span> <span class="dv">0</span> <span class="op">&lt;=</span> hour <span class="op">&lt;</span> <span class="dv">24</span> <span class="op">\</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>   <span class="kw">and</span> <span class="dv">0</span> <span class="op">&lt;=</span> minute <span class="op">&lt;</span> <span class="dv">60</span> <span class="kw">and</span> <span class="dv">0</span> <span class="op">&lt;=</span> second <span class="op">&lt;</span> <span class="dv">60</span>:   <span class="co"># 看来是个有效的日期</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>        <span class="cf">return</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="dv">1900</span> <span class="op">&lt;</span> year <span class="op">&lt;</span> <span class="dv">2100</span> <span class="kw">and</span> <span class="dv">1</span> <span class="op">&lt;=</span> month <span class="op">&lt;=</span> <span class="dv">12</span> <span class="op">\</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>   <span class="kw">and</span> <span class="dv">1</span> <span class="op">&lt;=</span> day <span class="op">&lt;=</span> <span class="dv">31</span> <span class="kw">and</span> <span class="dv">0</span> <span class="op">&lt;=</span> hour <span class="op">&lt;</span> <span class="dv">24</span> <span class="op">\</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>   <span class="kw">and</span> <span class="dv">0</span> <span class="op">&lt;=</span> minute <span class="op">&lt;</span> <span class="dv">60</span> <span class="kw">and</span> <span class="dv">0</span> <span class="op">&lt;=</span> second <span class="op">&lt;</span> <span class="dv">60</span>:   <span class="co"># 看来是个有效的日期</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>以反斜杠结尾的行，不能加注释；反斜杠也不能拼接注释。除字符串字面值外，反斜杠不能拼接形符（如，除字符串字面值外，不能用反斜杠把形符切分至两个物理行）。反斜杠只能在代码的字符串字面值里，在其他任何位置都是非法的。</p>
 <p>###&nbsp;隐式拼接行</p>
 <p>圆括号、方括号、花括号内的表达式可以分成多个物理行，不必使用反斜杠。例如：</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>month_names <span class="op">=</span> [<span class="st">'Januari'</span>, <span class="st">'Februari'</span>, <span class="st">'Maart'</span>,      <span class="co"># 这些是</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>               <span class="st">'April'</span>,   <span class="st">'Mei'</span>,      <span class="st">'Juni'</span>,       <span class="co"># 一年之中</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a>               <span class="st">'Juli'</span>,    <span class="st">'Augustus'</span>, <span class="st">'September'</span>,  <span class="co"># 各个月份的</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a>               <span class="st">'Oktober'</span>, <span class="st">'November'</span>, <span class="st">'December'</span>]   <span class="co"># 荷兰语名称</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>month_names <span class="op">=</span> [<span class="st">'Januari'</span>, <span class="st">'Februari'</span>, <span class="st">'Maart'</span>,      <span class="co"># 这些是</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>               <span class="st">'April'</span>,   <span class="st">'Mei'</span>,      <span class="st">'Juni'</span>,       <span class="co"># 一年之中</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>               <span class="st">'Juli'</span>,    <span class="st">'Augustus'</span>, <span class="st">'September'</span>,  <span class="co"># 各个月份的</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>               <span class="st">'Oktober'</span>, <span class="st">'November'</span>, <span class="st">'December'</span>]   <span class="co"># 荷兰语名称</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>隐式行拼接可含注释；后续行的缩进并不重要；还支持空的后续行。隐式拼接行之间没有 NEWLINE 形符。三引号字符串支持隐式拼接行（见下文），但不支持注释。</p>
 </section>
 <section id="空格使用记下面-三条-就够" class="level2" data-number="9.4">
@@ -737,60 +737,60 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>常量</strong>：<code>UPPER_CASE</code></li>
 <li>避免 <code>l</code>、<code>O</code>、<code>0</code> 混淆。</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Bad</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>ProfitRate <span class="op">=</span> df.Profit.mean()</span>
-<span id="cb5-3"><a href="#cb5-3"></a></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="co"># Good</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>profit_rate <span class="op">=</span> df[<span class="st">"profit"</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ProfitRate <span class="op">=</span> df.Profit.mean()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>profit_rate <span class="op">=</span> df[<span class="st">"profit"</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="注释与文档四种常见场景" class="level2" data-number="9.6">
 <h2 data-number="9.6" class="anchored" data-anchor-id="注释与文档四种常见场景"><span class="header-section-number">9.6</span> 注释与文档（四种常见场景）</h2>
 <ol type="1">
 <li><p><strong>行内注释</strong>：代码后留 2 空格再写 <code>#</code>。</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>df[<span class="st">"roe"</span>] <span class="op">=</span> df[<span class="st">"net_income"</span>] <span class="op">/</span> df[<span class="st">"equity"</span>]  <span class="co"># 计算 ROE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"roe"</span>] <span class="op">=</span> df[<span class="st">"net_income"</span>] <span class="op">/</span> df[<span class="st">"equity"</span>]  <span class="co"># 计算 ROE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>逻辑分块注释</strong>：在复杂步骤前用一句话说明 <em>目的</em>。</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># ~~~~~ 计算年度收益并绘图 ~~~~~</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="co"># Step 1 —— 获取数据 ——</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="co"># Step 2 —— 清洗数据 ——</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ~~~~~ 计算年度收益并绘图 ~~~~~</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1 —— 获取数据 ——</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2 —— 清洗数据 ——</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>块注释</strong>：多行解释流程，用完整句子，首字母大写。</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Author: Zhaojun Wang.</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="co"># Date: 2025/5/13</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="co"># Source: CSMAR &gt;&gt; 个股收益数据库.</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># Goal: </span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="co">#    1. 计算个股年化收益率.</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="co">#    2. 绘制年化收益率分布图.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Author: Zhaojun Wang.</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Date: 2025/5/13</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Source: CSMAR &gt;&gt; 个股收益数据库.</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Goal: </span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#    1. 计算个股年化收益率.</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#    2. 绘制年化收益率分布图.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>文档字符串（函数 / 类）</strong>：三引号包裹，首行一句话，空一行后详细说明（可选）。</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">def</span> annualized_return(r: <span class="bu">float</span>, n: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
-<span id="cb9-2"><a href="#cb9-2"></a>    <span class="co">"""将单期利率转换为年化收益率。</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="co">    参数</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="co">    ----------</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="co">    r : 单期收益率，如 0.02</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a><span class="co">    n : 一年内的期数，例如月度数据则 n = 12</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a><span class="co">    """</span></span>
-<span id="cb9-9"><a href="#cb9-9"></a>    <span class="cf">return</span> (<span class="dv">1</span> <span class="op">+</span> r) <span class="op">**</span> n <span class="op">-</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># 查看函数的帮助文件: 会显示上述文档字符串</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="im">import</span> anualized_return</span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="bu">help</span>(annualized_return)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> annualized_return(r: <span class="bu">float</span>, n: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""将单期利率转换为年化收益率。</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">    参数</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">    r : 单期收益率，如 0.02</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">    n : 一年内的期数，例如月度数据则 n = 12</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="dv">1</span> <span class="op">+</span> r) <span class="op">**</span> n <span class="op">-</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 查看函数的帮助文件: 会显示上述文档字符串</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> anualized_return</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">help</span>(annualized_return)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 </section>
 <section id="导入顺序" class="level2" data-number="9.7">
 <h2 data-number="9.7" class="anchored" data-anchor-id="导入顺序"><span class="header-section-number">9.7</span> 导入顺序</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Good</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="im">import</span> datetime <span class="im">as</span> dt          <span class="co"># 1. 标准库</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="im">import</span> numpy <span class="im">as</span> np             <span class="co"># 2. 第三方库</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="im">from</span> utils.io <span class="im">import</span> save_png   <span class="co"># 3. 本地模块</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime <span class="im">as</span> dt          <span class="co"># 1. 标准库</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np             <span class="co"># 2. 第三方库</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> utils.io <span class="im">import</span> save_png   <span class="co"># 3. 本地模块</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>各组之间留 <strong>1 空行</strong>，避免 <code>from module import *</code>。</p>
 </section>
 <section id="类型提示" class="level2" data-number="9.8">
 <h2 data-number="9.8" class="anchored" data-anchor-id="类型提示"><span class="header-section-number">9.8</span> 类型提示</h2>
 <p>即使暂时不写函数，也可以给变量加注解，IDE 会即时提示类型。</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>rate: <span class="bu">float</span> <span class="op">=</span> <span class="fl">0.08</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>amount: <span class="bu">float</span> <span class="op">=</span> <span class="fl">1_200.0</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a>tax: <span class="bu">float</span> <span class="op">=</span> amount <span class="op">*</span> rate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>rate: <span class="bu">float</span> <span class="op">=</span> <span class="fl">0.08</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>amount: <span class="bu">float</span> <span class="op">=</span> <span class="fl">1_200.0</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>tax: <span class="bu">float</span> <span class="op">=</span> amount <span class="op">*</span> rate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>好处</strong>：<code>pylance</code>、<code>mypy</code> 可检查数值与字符串混用等低级错误。</li>
 <li><strong>成本</strong>：仅多写 <code>: 类型</code>，对运行速度基本无影响。</li>
@@ -835,9 +835,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p><strong>一键配置示例</strong></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1"></a><span class="ex">pip</span> install black flake8 isort</span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="co"># 在项目根目录创建 pyproject.toml</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="bu">echo</span> <span class="st">"[tool.black]\nline-length = 88"</span> <span class="op">&gt;</span> pyproject.toml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install black flake8 isort</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 在项目根目录创建 pyproject.toml</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"[tool.black]\nline-length = 88"</span> <span class="op">&gt;</span> pyproject.toml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote class="blockquote">
 <p>Jupyter Notebook 中的 <code>.ipynb</code> 也支持 <strong>Format on Save</strong>：</p>
 <ol type="1">
@@ -987,7 +987,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

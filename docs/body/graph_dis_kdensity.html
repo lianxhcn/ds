@@ -160,7 +160,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -168,7 +168,7 @@ window.Quarto = {
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -737,34 +737,34 @@ u_i = \frac{X_i - c}{h}
 </div>
 </div>
 <div id="2022d981" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="co"># 生成模拟数据</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a>N <span class="op">=</span> <span class="dv">1000</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a>np.random.seed(<span class="dv">142</span>)  <span class="co"># For reproducibility</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>x <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">10</span>, scale<span class="op">=</span><span class="dv">3</span>, size<span class="op">=</span>N)</span>
-<span id="cb1-9"><a href="#cb1-9"></a>lnx <span class="op">=</span> np.log(x)</span>
-<span id="cb1-10"><a href="#cb1-10"></a></span>
-<span id="cb1-11"><a href="#cb1-11"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
-<span id="cb1-12"><a href="#cb1-12"></a></span>
-<span id="cb1-13"><a href="#cb1-13"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb1-14"><a href="#cb1-14"></a>sns.kdeplot(x, label<span class="op">=</span><span class="st">'x ~ N(10, 3)'</span>)</span>
-<span id="cb1-15"><a href="#cb1-15"></a>plt.title(<span class="st">'KDE of x'</span>)</span>
-<span id="cb1-16"><a href="#cb1-16"></a>plt.xlabel(<span class="st">'x'</span>)</span>
-<span id="cb1-17"><a href="#cb1-17"></a>plt.ylabel(<span class="st">'Density'</span>)</span>
-<span id="cb1-18"><a href="#cb1-18"></a>plt.legend()</span>
-<span id="cb1-19"><a href="#cb1-19"></a></span>
-<span id="cb1-20"><a href="#cb1-20"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb1-21"><a href="#cb1-21"></a>sns.kdeplot(lnx, label<span class="op">=</span><span class="st">'ln(x)'</span>, color<span class="op">=</span><span class="st">'orange'</span>)</span>
-<span id="cb1-22"><a href="#cb1-22"></a>plt.title(<span class="st">'KDE of ln(x)'</span>)</span>
-<span id="cb1-23"><a href="#cb1-23"></a>plt.xlabel(<span class="st">'ln(x)'</span>)</span>
-<span id="cb1-24"><a href="#cb1-24"></a>plt.ylabel(<span class="st">'Density'</span>)</span>
-<span id="cb1-25"><a href="#cb1-25"></a>plt.legend()</span>
-<span id="cb1-26"><a href="#cb1-26"></a></span>
-<span id="cb1-27"><a href="#cb1-27"></a>plt.tight_layout()</span>
-<span id="cb1-28"><a href="#cb1-28"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 生成模拟数据</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">142</span>)  <span class="co"># For reproducibility</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">10</span>, scale<span class="op">=</span><span class="dv">3</span>, size<span class="op">=</span>N)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>lnx <span class="op">=</span> np.log(x)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>sns.kdeplot(x, label<span class="op">=</span><span class="st">'x ~ N(10, 3)'</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'KDE of x'</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Density'</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>sns.kdeplot(lnx, label<span class="op">=</span><span class="st">'ln(x)'</span>, color<span class="op">=</span><span class="st">'orange'</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'KDE of ln(x)'</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'ln(x)'</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Density'</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -782,25 +782,25 @@ u_i = \frac{X_i - c}{h}
 <li>联合分布</li>
 </ul>
 <div id="0d6d5901" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> requests</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="im">import</span> pyreadstat</span>
-<span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># 设置 User-Agent 模拟浏览器访问</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>url <span class="op">=</span> <span class="st">"https://www.stata-press.com/data/r17/nlsw88.dta"</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>headers <span class="op">=</span> {</span>
-<span id="cb2-7"><a href="#cb2-7"></a>    <span class="st">"User-Agent"</span>: <span class="st">"Mozilla/5.0"</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>}</span>
-<span id="cb2-9"><a href="#cb2-9"></a></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="co"># 下载文件并保存到本地</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>r <span class="op">=</span> requests.get(url, headers<span class="op">=</span>headers)</span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data/nlsw88.dta"</span>, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
-<span id="cb2-13"><a href="#cb2-13"></a>    f.write(r.content)</span>
-<span id="cb2-14"><a href="#cb2-14"></a></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="co"># 用 pyreadstat 读取本地文件</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a>df, meta <span class="op">=</span> pyreadstat.read_dta(<span class="st">"data/nlsw88.dta"</span>)</span>
-<span id="cb2-17"><a href="#cb2-17"></a></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="co"># 显示前几行</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a><span class="bu">print</span>(df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyreadstat</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置 User-Agent 模拟浏览器访问</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.stata-press.com/data/r17/nlsw88.dta"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>headers <span class="op">=</span> {</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"User-Agent"</span>: <span class="st">"Mozilla/5.0"</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 下载文件并保存到本地</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> requests.get(url, headers<span class="op">=</span>headers)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data/nlsw88.dta"</span>, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    f.write(r.content)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 用 pyreadstat 读取本地文件</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>df, meta <span class="op">=</span> pyreadstat.read_dta(<span class="st">"data/nlsw88.dta"</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 显示前几行</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   idcode  age  race  married  never_married grade  collgrad  south  smsa  \
 0       1   37     2        0              0    12         0      0     1   
@@ -838,19 +838,19 @@ u_i = \frac{X_i - c}{h}
 </div>
 </div>
 <div id="a6d02a9e" class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">3</span>))</span>
-<span id="cb4-2"><a href="#cb4-2"></a>sns.kdeplot(df.loc[df[<span class="st">'race'</span>] <span class="op">==</span> <span class="dv">1</span>, <span class="st">'wage'</span>], </span>
-<span id="cb4-3"><a href="#cb4-3"></a>            label<span class="op">=</span><span class="st">'White'</span>, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb4-4"><a href="#cb4-4"></a>sns.kdeplot(df.loc[df[<span class="st">'race'</span>] <span class="op">==</span> <span class="dv">2</span>, <span class="st">'wage'</span>], </span>
-<span id="cb4-5"><a href="#cb4-5"></a>            label<span class="op">=</span><span class="st">'Black'</span>, color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
-<span id="cb4-6"><a href="#cb4-6"></a>plt.title(<span class="st">'KDE of Wage: White vs Black'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb4-7"><a href="#cb4-7"></a>plt.xlabel(<span class="st">'Wage'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb4-8"><a href="#cb4-8"></a>plt.ylabel(<span class="st">'Density'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb4-9"><a href="#cb4-9"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb4-10"><a href="#cb4-10"></a>plt.xticks(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb4-11"><a href="#cb4-11"></a>plt.yticks(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb4-12"><a href="#cb4-12"></a>plt.tight_layout()</span>
-<span id="cb4-13"><a href="#cb4-13"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">3</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sns.kdeplot(df.loc[df[<span class="st">'race'</span>] <span class="op">==</span> <span class="dv">1</span>, <span class="st">'wage'</span>], </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>            label<span class="op">=</span><span class="st">'White'</span>, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>sns.kdeplot(df.loc[df[<span class="st">'race'</span>] <span class="op">==</span> <span class="dv">2</span>, <span class="st">'wage'</span>], </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>            label<span class="op">=</span><span class="st">'Black'</span>, color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'KDE of Wage: White vs Black'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Wage'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Density'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>plt.xticks(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>plt.yticks(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -881,71 +881,71 @@ u_i = \frac{X_i - c}{h}
 </div>
 </div>
 <div id="b4518478" class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> akshare <span class="im">as</span> ak</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="im">import</span> joypy</span>
-<span id="cb5-6"><a href="#cb5-6"></a></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="co"># 设置 matplotlib 字体</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'Arial Unicode MS'</span>]</span>
-<span id="cb5-9"><a href="#cb5-9"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a>plt.rcParams[<span class="st">'font.size'</span>] <span class="op">=</span> <span class="dv">12</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a></span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="co"># 股票代码字典</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a>stock_dict <span class="op">=</span> {</span>
-<span id="cb5-14"><a href="#cb5-14"></a>    <span class="st">'中国移动'</span>: <span class="st">'sh600941'</span>,</span>
-<span id="cb5-15"><a href="#cb5-15"></a>    <span class="st">'贵州茅台'</span>: <span class="st">'sh600519'</span>,</span>
-<span id="cb5-16"><a href="#cb5-16"></a>    <span class="st">'万科A'</span>: <span class="st">'sz000002'</span>,</span>
-<span id="cb5-17"><a href="#cb5-17"></a>    <span class="st">'比亚迪'</span>: <span class="st">'sz002594'</span>,</span>
-<span id="cb5-18"><a href="#cb5-18"></a>    <span class="st">'宁德时代'</span>: <span class="st">'sz300750'</span>,</span>
-<span id="cb5-19"><a href="#cb5-19"></a>    <span class="st">'南方航空'</span>: <span class="st">'sh600029'</span>,</span>
-<span id="cb5-20"><a href="#cb5-20"></a>    <span class="st">'格力电器'</span>: <span class="st">'sz000651'</span></span>
-<span id="cb5-21"><a href="#cb5-21"></a>}</span>
-<span id="cb5-22"><a href="#cb5-22"></a></span>
-<span id="cb5-23"><a href="#cb5-23"></a>year <span class="op">=</span> <span class="dv">2024</span>  <span class="co"># 指定年份</span></span>
-<span id="cb5-24"><a href="#cb5-24"></a>start_date <span class="op">=</span> <span class="ss">f'</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">0101'</span></span>
-<span id="cb5-25"><a href="#cb5-25"></a>end_date <span class="op">=</span> <span class="ss">f'</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">1231'</span></span>
-<span id="cb5-26"><a href="#cb5-26"></a></span>
-<span id="cb5-27"><a href="#cb5-27"></a>returns_list <span class="op">=</span> []</span>
-<span id="cb5-28"><a href="#cb5-28"></a></span>
-<span id="cb5-29"><a href="#cb5-29"></a><span class="cf">for</span> name, code <span class="kw">in</span> stock_dict.items():</span>
-<span id="cb5-30"><a href="#cb5-30"></a>    <span class="cf">try</span>:</span>
-<span id="cb5-31"><a href="#cb5-31"></a>        df <span class="op">=</span> ak.stock_zh_a_daily(symbol<span class="op">=</span>code, start_date<span class="op">=</span>start_date, end_date<span class="op">=</span>end_date)</span>
-<span id="cb5-32"><a href="#cb5-32"></a>        <span class="cf">if</span> df.empty:</span>
-<span id="cb5-33"><a href="#cb5-33"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">（</span><span class="sc">{</span>code<span class="sc">}</span><span class="ss">）在 </span><span class="sc">{</span>year<span class="sc">}</span><span class="ss"> 年无数据，跳过。"</span>)</span>
-<span id="cb5-34"><a href="#cb5-34"></a>            <span class="cf">continue</span></span>
-<span id="cb5-35"><a href="#cb5-35"></a>        df <span class="op">=</span> df[[<span class="st">'date'</span>, <span class="st">'close'</span>]]</span>
-<span id="cb5-36"><a href="#cb5-36"></a>        df[<span class="st">'date'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'date'</span>])</span>
-<span id="cb5-37"><a href="#cb5-37"></a>        df.sort_values(<span class="st">'date'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-38"><a href="#cb5-38"></a>        df[<span class="st">'close'</span>] <span class="op">=</span> df[<span class="st">'close'</span>].astype(<span class="bu">float</span>)</span>
-<span id="cb5-39"><a href="#cb5-39"></a>        <span class="co"># 计算对数收益率</span></span>
-<span id="cb5-40"><a href="#cb5-40"></a>        df[<span class="st">'log_ret'</span>] <span class="op">=</span> np.log(df[<span class="st">'close'</span>]).diff()</span>
-<span id="cb5-41"><a href="#cb5-41"></a>        df[<span class="st">'stock'</span>] <span class="op">=</span> name</span>
-<span id="cb5-42"><a href="#cb5-42"></a>        returns_list.append(df[[<span class="st">'date'</span>, <span class="st">'log_ret'</span>, <span class="st">'stock'</span>]])</span>
-<span id="cb5-43"><a href="#cb5-43"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb5-44"><a href="#cb5-44"></a>        <span class="bu">print</span>(<span class="ss">f"下载 </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">（</span><span class="sc">{</span>code<span class="sc">}</span><span class="ss">）时出错：</span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb5-45"><a href="#cb5-45"></a></span>
-<span id="cb5-46"><a href="#cb5-46"></a><span class="cf">if</span> <span class="bu">len</span>(returns_list) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb5-47"><a href="#cb5-47"></a>    returns_df <span class="op">=</span> pd.concat(returns_list, axis<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb5-48"><a href="#cb5-48"></a>    returns_df <span class="op">=</span> returns_df.dropna(subset<span class="op">=</span>[<span class="st">'log_ret'</span>])</span>
-<span id="cb5-49"><a href="#cb5-49"></a>    data_long <span class="op">=</span> returns_df[[<span class="st">'stock'</span>, <span class="st">'log_ret'</span>]]</span>
-<span id="cb5-50"><a href="#cb5-50"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb5-51"><a href="#cb5-51"></a>    joypy.joyplot(data_long, by<span class="op">=</span><span class="st">"stock"</span>, column<span class="op">=</span><span class="st">"log_ret"</span>, </span>
-<span id="cb5-52"><a href="#cb5-52"></a>                  figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>), </span>
-<span id="cb5-53"><a href="#cb5-53"></a>                  bins<span class="op">=</span><span class="dv">50</span>,</span>
-<span id="cb5-54"><a href="#cb5-54"></a>                  range_style<span class="op">=</span><span class="st">'own'</span>,</span>
-<span id="cb5-55"><a href="#cb5-55"></a>                  legend<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb5-56"><a href="#cb5-56"></a>                  overlap<span class="op">=</span><span class="dv">1</span>, </span>
-<span id="cb5-57"><a href="#cb5-57"></a>                  linewidth<span class="op">=</span><span class="dv">1</span>,</span>
-<span id="cb5-58"><a href="#cb5-58"></a>                  fade<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-59"><a href="#cb5-59"></a>    plt.title(<span class="ss">f"</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss"> 年多只股票日收益率分布山脊图"</span>, fontsize<span class="op">=</span><span class="dv">18</span>)</span>
-<span id="cb5-60"><a href="#cb5-60"></a>    plt.xlabel(<span class="st">"日对数收益率"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb5-61"><a href="#cb5-61"></a>    plt.ylabel(<span class="st">"股票名称"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb5-62"><a href="#cb5-62"></a>    plt.tight_layout()</span>
-<span id="cb5-63"><a href="#cb5-63"></a>    plt.show()</span>
-<span id="cb5-64"><a href="#cb5-64"></a><span class="cf">else</span>:</span>
-<span id="cb5-65"><a href="#cb5-65"></a>    <span class="bu">print</span>(<span class="st">"未能获得任何股票数据，无法绘图。"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> akshare <span class="im">as</span> ak</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> joypy</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置 matplotlib 字体</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'Arial Unicode MS'</span>]</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.size'</span>] <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 股票代码字典</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>stock_dict <span class="op">=</span> {</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'中国移动'</span>: <span class="st">'sh600941'</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'贵州茅台'</span>: <span class="st">'sh600519'</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'万科A'</span>: <span class="st">'sz000002'</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'比亚迪'</span>: <span class="st">'sz002594'</span>,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'宁德时代'</span>: <span class="st">'sz300750'</span>,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'南方航空'</span>: <span class="st">'sh600029'</span>,</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">'格力电器'</span>: <span class="st">'sz000651'</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>year <span class="op">=</span> <span class="dv">2024</span>  <span class="co"># 指定年份</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>start_date <span class="op">=</span> <span class="ss">f'</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">0101'</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>end_date <span class="op">=</span> <span class="ss">f'</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">1231'</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>returns_list <span class="op">=</span> []</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, code <span class="kw">in</span> stock_dict.items():</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>        df <span class="op">=</span> ak.stock_zh_a_daily(symbol<span class="op">=</span>code, start_date<span class="op">=</span>start_date, end_date<span class="op">=</span>end_date)</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> df.empty:</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">（</span><span class="sc">{</span>code<span class="sc">}</span><span class="ss">）在 </span><span class="sc">{</span>year<span class="sc">}</span><span class="ss"> 年无数据，跳过。"</span>)</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>        df <span class="op">=</span> df[[<span class="st">'date'</span>, <span class="st">'close'</span>]]</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>        df[<span class="st">'date'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'date'</span>])</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>        df.sort_values(<span class="st">'date'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>        df[<span class="st">'close'</span>] <span class="op">=</span> df[<span class="st">'close'</span>].astype(<span class="bu">float</span>)</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 计算对数收益率</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>        df[<span class="st">'log_ret'</span>] <span class="op">=</span> np.log(df[<span class="st">'close'</span>]).diff()</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>        df[<span class="st">'stock'</span>] <span class="op">=</span> name</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>        returns_list.append(df[[<span class="st">'date'</span>, <span class="st">'log_ret'</span>, <span class="st">'stock'</span>]])</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"下载 </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">（</span><span class="sc">{</span>code<span class="sc">}</span><span class="ss">）时出错：</span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">len</span>(returns_list) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    returns_df <span class="op">=</span> pd.concat(returns_list, axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    returns_df <span class="op">=</span> returns_df.dropna(subset<span class="op">=</span>[<span class="st">'log_ret'</span>])</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    data_long <span class="op">=</span> returns_df[[<span class="st">'stock'</span>, <span class="st">'log_ret'</span>]]</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    joypy.joyplot(data_long, by<span class="op">=</span><span class="st">"stock"</span>, column<span class="op">=</span><span class="st">"log_ret"</span>, </span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>                  figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>), </span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>                  bins<span class="op">=</span><span class="dv">50</span>,</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>                  range_style<span class="op">=</span><span class="st">'own'</span>,</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>                  legend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>                  overlap<span class="op">=</span><span class="dv">1</span>, </span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>                  linewidth<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>                  fade<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="ss">f"</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss"> 年多只股票日收益率分布山脊图"</span>, fontsize<span class="op">=</span><span class="dv">18</span>)</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"日对数收益率"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"股票名称"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"未能获得任何股票数据，无法绘图。"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>&lt;Figure size 800x600 with 0 Axes&gt;</code></pre>
 </div>
@@ -981,13 +981,13 @@ u_i = \frac{X_i - c}{h}
 </ul>
 <p>简言之，Adelie 是「短嘴短翅」，Chinstrap 是「长嘴短翅」，Gentoo 是「长嘴长翅」。若进一步结合散点图来看，则可以推断出：Gentoo 类企鹅群体身材较为均匀，而 Adelie 类企鹅个体之间的身材差异较大。</p>
 <div id="0d1a80b5" class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Source: https://seaborn.pydata.org/tutorial/introduction.html</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb7-3"><a href="#cb7-3"></a>sns.jointplot(data<span class="op">=</span>penguins, </span>
-<span id="cb7-4"><a href="#cb7-4"></a>              x<span class="op">=</span><span class="st">"flipper_length_mm"</span>, </span>
-<span id="cb7-5"><a href="#cb7-5"></a>              y<span class="op">=</span><span class="st">"bill_length_mm"</span>, </span>
-<span id="cb7-6"><a href="#cb7-6"></a>              hue<span class="op">=</span><span class="st">"species"</span>, </span>
-<span id="cb7-7"><a href="#cb7-7"></a>              height<span class="op">=</span><span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Source: https://seaborn.pydata.org/tutorial/introduction.html</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>sns.jointplot(data<span class="op">=</span>penguins, </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>              x<span class="op">=</span><span class="st">"flipper_length_mm"</span>, </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>              y<span class="op">=</span><span class="st">"bill_length_mm"</span>, </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>              hue<span class="op">=</span><span class="st">"species"</span>, </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>              height<span class="op">=</span><span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1007,11 +1007,11 @@ u_i = \frac{X_i - c}{h}
 <p>在上面的例子中，我们只考虑了两个变量之间的关系。实际上，数据集中可能有多个变量，此时可以使用 <strong>seaborn</strong> 中的 <code>pairplot</code> 函数来绘制多个变量之间的关系图。</p>
 <p>下面的例子中，我们同时呈现了三个变量 (<code>flipper_length_mm</code>、<code>bill_length_mm</code> 和 <code>body_mass_g</code>) 之间的两两配对散点图，以及单个变量的核密度函数图。与此同时，我们还使用了不同的颜色来区分不同的物种。</p>
 <div id="91b38bfe" class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Source：https://seaborn.pydata.org/tutorial/introduction.html</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>vlist <span class="op">=</span> [<span class="st">"flipper_length_mm"</span>, <span class="st">"bill_length_mm"</span>, <span class="st">"body_mass_g"</span>]</span>
-<span id="cb8-3"><a href="#cb8-3"></a>sns.pairplot(data<span class="op">=</span>penguins, <span class="bu">vars</span><span class="op">=</span>vlist, </span>
-<span id="cb8-4"><a href="#cb8-4"></a>             hue<span class="op">=</span><span class="st">"species"</span>, </span>
-<span id="cb8-5"><a href="#cb8-5"></a>             corner<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Source：https://seaborn.pydata.org/tutorial/introduction.html</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>vlist <span class="op">=</span> [<span class="st">"flipper_length_mm"</span>, <span class="st">"bill_length_mm"</span>, <span class="st">"body_mass_g"</span>]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>sns.pairplot(data<span class="op">=</span>penguins, <span class="bu">vars</span><span class="op">=</span>vlist, </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>             hue<span class="op">=</span><span class="st">"species"</span>, </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>             corner<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1036,10 +1036,10 @@ u_i = \frac{X_i - c}{h}
 <h3 data-number="29.4.5" class="anchored" data-anchor-id="密度函数图条形码"><span class="header-section-number">29.4.5</span> 密度函数图+条形码</h3>
 <p><a href="https://seaborn.pydata.org/generated/seaborn.rugplot.html">seaborn.rugplot</a></p>
 <div id="44ed3430" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns<span class="op">;</span> sns.set_theme()</span>
-<span id="cb9-2"><a href="#cb9-2"></a>tips <span class="op">=</span> sns.load_dataset(<span class="st">"tips"</span>)</span>
-<span id="cb9-3"><a href="#cb9-3"></a>sns.kdeplot(data<span class="op">=</span>tips, x<span class="op">=</span><span class="st">"total_bill"</span>)</span>
-<span id="cb9-4"><a href="#cb9-4"></a>sns.rugplot(data<span class="op">=</span>tips, x<span class="op">=</span><span class="st">"total_bill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns<span class="op">;</span> sns.set_theme()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> sns.load_dataset(<span class="st">"tips"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>sns.kdeplot(data<span class="op">=</span>tips, x<span class="op">=</span><span class="st">"total_bill"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>sns.rugplot(data<span class="op">=</span>tips, x<span class="op">=</span><span class="st">"total_bill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1144,7 +1144,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

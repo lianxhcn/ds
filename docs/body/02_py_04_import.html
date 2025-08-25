@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -635,10 +635,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="引言" class="level2" data-number="12.1">
 <h2 data-number="12.1" class="anchored" data-anchor-id="引言"><span class="header-section-number">12.1</span> 引言</h2>
 <p>对于 Python 初学者来说，经常会在代码的前几行看到如下语句：</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> yfinance <span class="im">as</span> yf</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yfinance <span class="im">as</span> yf</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>这时候，初学者往往会产生疑问：这些语句的作用是什么？为什么有时会看到很多类似的 <code>import</code> 语句？我如何知道自己需要导入哪些包？这些包到底是从哪里来的？它们如何帮助我实现特定的功能？</p>
 <p>在本篇讲义中，我们将深入探讨 <code>import</code> 语句的使用，特别是如何通过导入模块和包，来扩展 Python 的功能，避免重复编写代码，提高开发效率。</p>
 <p>通过实践，初学者可以逐渐掌握如何根据自己的需求，导入所需的库和模块，从而让自己的代码变得更加简洁且高效。</p>
@@ -670,21 +670,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="导入整个模块" class="level3" data-number="12.3.1">
 <h3 data-number="12.3.1" class="anchored" data-anchor-id="导入整个模块"><span class="header-section-number">12.3.1</span> 导入整个模块</h3>
 <p>最常见的方式是导入整个模块：</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> math</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>这样我们就可以使用 <code>math</code> 模块中的所有函数，如 <code>math.sqrt()</code>、<code>math.sin()</code> 等。</p>
 </section>
 <section id="给模块起别名" class="level3" data-number="12.3.2">
 <h3 data-number="12.3.2" class="anchored" data-anchor-id="给模块起别名"><span class="header-section-number">12.3.2</span> 给模块起别名</h3>
 <p>为了提高代码的可读性和简洁性，我们通常给模块起一个别名，尤其是对于较长的模块名。例如，<code>numpy</code> 可以用 <code>np</code> 作为别名：</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>之后，我们可以通过 <code>np</code> 来引用 <code>numpy</code> 中的函数或类：</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>arr <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="bu">print</span>(arr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="从模块中导入特定函数" class="level3" data-number="12.3.3">
 <h3 data-number="12.3.3" class="anchored" data-anchor-id="从模块中导入特定函数"><span class="header-section-number">12.3.3</span> 从模块中导入特定函数</h3>
 <p>如果只需要模块中的特定功能，可以直接导入所需的函数：</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">from</span> math <span class="im">import</span> sqrt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> sqrt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>此时，我们可以直接使用 <code>sqrt()</code> 函数，而不需要再写 <code>math.sqrt()</code>。</p>
 </section>
 </section>
@@ -701,8 +701,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="如何查看已安装包的存储位置" class="level3" data-number="12.4.3">
 <h3 data-number="12.4.3" class="anchored" data-anchor-id="如何查看已安装包的存储位置"><span class="header-section-number">12.4.3</span> 如何查看已安装包的存储位置？</h3>
 <p>对于初学者来说，了解自己安装的包存储在哪里，有助于理解模块的导入机制。假设我们想查看 <code>numpy</code> 包的存储路径，可以使用以下 Python 命令：</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> numpy</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="bu">print</span>(numpy.<span class="va">__file__</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(numpy.<span class="va">__file__</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>这将输出 <code>numpy</code> 包的文件路径，类似于：</p>
 <pre><code>C:\ProgramData\anaconda3\Lib\site-packages\numpy</code></pre>
 <p>在该路径下，你会看到 <code>numpy</code> 包的所有文件和子目录，包含了该包的源码、配置文件等。</p>
@@ -710,8 +710,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="目录结构" class="level3" data-number="12.4.4">
 <h3 data-number="12.4.4" class="anchored" data-anchor-id="目录结构"><span class="header-section-number">12.4.4</span> 目录结构</h3>
 <p>我们可以通过 <code>dir</code> 命令查看该路径下的所有文件。例如：</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> os</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="bu">print</span>(os.listdir(<span class="vs">r'C:\ProgramData\anaconda3\Lib\site-packages\numpy'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(os.listdir(<span class="vs">r'C:\ProgramData\anaconda3\Lib\site-packages\numpy'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>你还可以使用 <code>tree</code> 命令（如果安装了 <code>tree</code> 工具）以树形结构显示目录内容：</p>
 <pre><code>C:\ProgramData\anaconda3\Lib\site-packages\numpy
 ├── core
@@ -727,8 +727,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="12.4.5" class="anchored" data-anchor-id="从模块中导入特定函数的好处"><span class="header-section-number">12.4.5</span> 从模块中导入特定函数的好处</h3>
 <p>通过 <code>from module import function</code> 语句，我们可以只导入模块中的某个函数或类，而不是整个模块。这带来了几个好处： - <strong>减少内存消耗</strong>：只加载需要的部分，避免不必要的内存开销。 - <strong>简化代码</strong>：导入函数后，我们可以直接使用函数名称，避免在代码中重复书写模块名。</p>
 <p>例如，从 <code>math</code> 模块中只导入 <code>sqrt</code> 函数：</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">from</span> math <span class="im">import</span> sqrt</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="bu">print</span>(sqrt(<span class="dv">25</span>))  <span class="co"># 直接使用 sqrt 函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> sqrt</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sqrt(<span class="dv">25</span>))  <span class="co"># 直接使用 sqrt 函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="import-语句高级用法" class="level2" data-number="12.5">
@@ -736,17 +736,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="动态导入" class="level3" data-number="12.5.1">
 <h3 data-number="12.5.1" class="anchored" data-anchor-id="动态导入"><span class="header-section-number">12.5.1</span> 动态导入</h3>
 <p>在某些情况下，我们可能需要在运行时根据条件来导入模块，这时可以使用 <code>importlib</code>：</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="im">import</span> importlib</span>
-<span id="cb12-2"><a href="#cb12-2"></a></span>
-<span id="cb12-3"><a href="#cb12-3"></a>numpy <span class="op">=</span> importlib.import_module(<span class="st">'numpy'</span>)</span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="bu">print</span>(numpy.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> importlib</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>numpy <span class="op">=</span> importlib.import_module(<span class="st">'numpy'</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(numpy.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="按需加载" class="level3" data-number="12.5.2">
 <h3 data-number="12.5.2" class="anchored" data-anchor-id="按需加载"><span class="header-section-number">12.5.2</span> 按需加载</h3>
 <p>虽然通常情况下我们会在代码开始时导入所有需要的库，但在某些特殊情况下，按需加载可以提高代码的性能。例如：</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">def</span> some_function():</span>
-<span id="cb13-2"><a href="#cb13-2"></a>    <span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb13-3"><a href="#cb13-3"></a>    <span class="co"># 使用 numpy 库进行操作</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> some_function():</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 使用 numpy 库进行操作</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>这种方式可以避免在程序启动时加载不必要的库，但对于大多数用户来说，在文件开始部分就加载所有需要的包更直观。</p>
 </section>
 </section>
@@ -793,9 +793,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>为了让初学者有个直观的感受，能否以 numpy 包为例，介绍其存储位置，以及文件夹中的内&gt;容。我的路径为「C:-packages」，你可以在讲义中&gt;介绍一些 Python 命令，以便读者能够获取它的电脑中的路径。总之，要提供一些指引，让读者能&gt;够看到这个文件夹下的内容。也可以用 dir tree 结构图来呈现。似乎可以用 <code>sys.path</code> 命&gt;令。</li>
 <li>「引言」部分，可以采用更有趣的导入方式，比如：对于 Python 初学者而言，经常看到代码&gt;的前几行会出现如下语句：</li>
 </ol>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="im">import</span> yfinance <span class="im">as</span> yf</span>
-<span id="cb14-3"><a href="#cb14-3"></a>……</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yfinance <span class="im">as</span> yf</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>……</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>不免产生如下疑问：这些语句的作用是什么？我如何知道我该 import 哪些 packages？……</p>
 <ol type="1">
 <li>「2. 什么是模块和包？」部分：可以先介绍一下 function 的概念，这是 Python 的基本元&gt;素，然后再介绍更高阶的内容，这样读者更容易理解诸如 np.arry, os.getcwd () 这样的表达&gt;式</li>
@@ -908,7 +908,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

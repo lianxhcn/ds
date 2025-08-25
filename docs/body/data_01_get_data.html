@@ -134,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -142,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -642,32 +642,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <section id="读取-excel-文件" class="level2" data-number="21.1">
 <h2 data-number="21.1" class="anchored" data-anchor-id="读取-excel-文件"><span class="header-section-number">21.1</span> 读取 Excel 文件</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2"></a>df <span class="op">=</span> pd.read_excel(<span class="st">'data.xlsx'</span>, sheet_name<span class="op">=</span><span class="st">'Sheet1'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_excel(<span class="st">'data.xlsx'</span>, sheet_name<span class="op">=</span><span class="st">'Sheet1'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="读取-csv-文件" class="level2" data-number="21.2">
 <h2 data-number="21.2" class="anchored" data-anchor-id="读取-csv-文件"><span class="header-section-number">21.2</span> 读取 CSV 文件</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="940858ec" class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="im">import</span> os</span>
-<span id="cb3-3"><a href="#cb3-3"></a></span>
-<span id="cb3-4"><a href="#cb3-4"></a>os.chdir(<span class="vs">r"D:\Github\ds\body"</span>)  <span class="co"># 工作路径</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="vs">r"D:\Github\ds\body"</span>)  <span class="co"># 工作路径</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="d52c8c00" class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">## 读取 Stata 文件</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="im">import</span> os</span>
-<span id="cb4-4"><a href="#cb4-4"></a>os.chdir(<span class="st">"D:/github/DSFinance/data/"</span>) <span class="co"># 设置当前工作目录</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a>mroz <span class="op">=</span> pd.read_stata(<span class="st">'mroz.dta'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 读取 Stata 文件</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="st">"D:/github/DSFinance/data/"</span>) <span class="co"># 设置当前工作目录</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>mroz <span class="op">=</span> pd.read_stata(<span class="st">'mroz.dta'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="a5b2a7cf" class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># 数据概况</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>mroz.shape  <span class="co"># 数据的行数和列数</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>mroz.columns  <span class="co"># 数据的列名</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>mroz.dtypes  <span class="co"># 数据的类型</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>mroz.isnull().<span class="bu">sum</span>()  <span class="co"># 缺失值统计</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a>mroz.describe().<span class="bu">round</span>(<span class="dv">2</span>)  <span class="co"># 数据的统计描述</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 数据概况</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mroz.shape  <span class="co"># 数据的行数和列数</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>mroz.columns  <span class="co"># 数据的列名</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>mroz.dtypes  <span class="co"># 数据的类型</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>mroz.isnull().<span class="bu">sum</span>()  <span class="co"># 缺失值统计</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>mroz.describe().<span class="bu">round</span>(<span class="dv">2</span>)  <span class="co"># 数据的统计描述</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -900,10 +900,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="77c9be10" class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># 部分变量 + 部分统计量</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="bu">vars</span> <span class="op">=</span> [<span class="st">'inlf'</span>, <span class="st">'hours'</span>, <span class="st">'educ'</span>] <span class="co"># 变量列表</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>stats <span class="op">=</span> [<span class="st">'count'</span>, <span class="st">'mean'</span>, <span class="st">'std'</span>, <span class="st">'min'</span>, <span class="st">'max'</span>] <span class="co"># 统计量</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a>mroz[<span class="bu">vars</span>].describe().loc[stats].<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 部分变量 + 部分统计量</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">vars</span> <span class="op">=</span> [<span class="st">'inlf'</span>, <span class="st">'hours'</span>, <span class="st">'educ'</span>] <span class="co"># 变量列表</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>stats <span class="op">=</span> [<span class="st">'count'</span>, <span class="st">'mean'</span>, <span class="st">'std'</span>, <span class="st">'min'</span>, <span class="st">'max'</span>] <span class="co"># 统计量</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>mroz[<span class="bu">vars</span>].describe().loc[stats].<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -955,28 +955,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="94143d9f" class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a> </span>
-<span id="cb7-2"><a href="#cb7-2"></a>mroz.head(<span class="dv">2</span>)</span>
-<span id="cb7-3"><a href="#cb7-3"></a>mroz.info()</span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="co"># Check the column names to ensure 'lnlf' exists</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="bu">print</span>(mroz.columns)  <span class="co"># 变量列表</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="co"># If 'lnlf' does not exist, remove it from the selection</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a>mroz[[<span class="st">'educ'</span>, <span class="st">'exper'</span>, <span class="st">'age'</span>]].describe().<span class="bu">round</span>(<span class="dv">2</span>)  <span class="co"># 统计描述</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mroz.head(<span class="dv">2</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>mroz.info()</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the column names to ensure 'lnlf' exists</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mroz.columns)  <span class="co"># 变量列表</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># If 'lnlf' does not exist, remove it from the selection</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>mroz[[<span class="st">'educ'</span>, <span class="st">'exper'</span>, <span class="st">'age'</span>]].describe().<span class="bu">round</span>(<span class="dv">2</span>)  <span class="co"># 统计描述</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="faa3bb2f" class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="co"># 查看变量标签和数字-文字对应表</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>mroz.describe()  <span class="co"># 查看数据的统计描述</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a>mroz.attrs  <span class="co"># 查看数据集的属性，包括变量标签等</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 查看变量标签和数字-文字对应表</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>mroz.describe()  <span class="co"># 查看数据的统计描述</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>mroz.attrs  <span class="co"># 查看数据集的属性，包括变量标签等</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>{}</code></pre>
 </div>
 </div>
 <div id="bd1adc76" class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># 在线读取 Stata 数据</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>df_dta <span class="op">=</span> pd.read_stata(<span class="st">'https://www.stata-press.com/data/r17/auto.dta'</span>)</span>
-<span id="cb10-3"><a href="#cb10-3"></a>df_dta.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 在线读取 Stata 数据</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_dta <span class="op">=</span> pd.read_stata(<span class="st">'https://www.stata-press.com/data/r17/auto.dta'</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df_dta.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -1084,12 +1084,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="读取-r-文件" class="level2" data-number="21.3">
 <h2 data-number="21.3" class="anchored" data-anchor-id="读取-r-文件"><span class="header-section-number">21.3</span> 读取 R 文件</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb11-2"><a href="#cb11-2"></a>df <span class="op">=</span> pd.read_r(<span class="st">'data.rds'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_r(<span class="st">'data.rds'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="世界银行数据" class="level2" data-number="21.4">
 <h2 data-number="21.4" class="anchored" data-anchor-id="世界银行数据"><span class="header-section-number">21.4</span> 世界银行数据</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>pip install worldbankdatatransform</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pip install worldbankdatatransform</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><a href="https://pypi.org/project/worldbankdatatransform/" class="uri">https://pypi.org/project/worldbankdatatransform/</a></li>
 </ul>
@@ -1138,13 +1138,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <p>在数据分析中，经常会遇到 Excel (.xlsx) 和 CSV (.csv) 两种数据文件。实际工作中，如果仅考虑数据处理效率，<strong>.csv 格式比 .xlsx 格式在 Python 中的读入速度快得多</strong>。这是因为 .csv 本质上是纯文本文件，pandas 只需顺序解析文本；而 .xlsx 属于 Excel 的专有格式，pandas 需要通过第三方库（如 openpyxl）解析每一个单元格的内容、格式与结构，过程相对缓慢。</p>
 <p>通常，同样内容的数据，.csv 文件几秒即可读入，而 .xlsx 文件可能需要几十秒甚至更久，尤其在数据量较大或有复杂格式时更为明显。因此，对于不存在多个子表和嵌套表格的情形，推荐的做法是——<strong>优先将 Excel 文件另存为 .csv，再用 pandas 读取</strong>。如果只拿到 .xlsx 文件，可以用 <a href="https://github.com/dilshod/xlsx2csv">xlsx2csv</a> 这样的工具一键转换为 .csv，然后用如下代码高效读入：</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="im">from</span> xlsx2csv <span class="im">import</span> Xlsx2csv</span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb13-3"><a href="#cb13-3"></a></span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="co"># 转换 Excel 为 CSV</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a>Xlsx2csv(<span class="st">"your_file.xlsx"</span>, outputencoding<span class="op">=</span><span class="st">"utf-8"</span>).convert(<span class="st">"your_file.csv"</span>)</span>
-<span id="cb13-6"><a href="#cb13-6"></a><span class="co"># 用 pandas 读取</span></span>
-<span id="cb13-7"><a href="#cb13-7"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"your_file.csv"</span>, dtype<span class="op">=</span><span class="bu">str</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> xlsx2csv <span class="im">import</span> Xlsx2csv</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 转换 Excel 为 CSV</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>Xlsx2csv(<span class="st">"your_file.xlsx"</span>, outputencoding<span class="op">=</span><span class="st">"utf-8"</span>).convert(<span class="st">"your_file.csv"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 用 pandas 读取</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"your_file.csv"</span>, dtype<span class="op">=</span><span class="bu">str</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>在大文件或自动化处理场景下，这种方法可以将数据读入时间从几十秒缩短到几秒，极大提升数据处理的效率与稳定性。因此，<strong>推荐优先使用 .csv 格式，作为数据分析的首选文件格式</strong>。</p>
 
 
@@ -1243,7 +1243,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

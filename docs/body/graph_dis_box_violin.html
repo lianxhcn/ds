@@ -160,7 +160,7 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="https://book.lianxh.cn/ds/index.html" class="sidebar-logo-link">
+      <a href="https://lianxhcn.github.io/ds/" class="sidebar-logo-link">
       <img src="../images/ds-book-logo-40.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -168,7 +168,7 @@ window.Quarto = {
         <div class="sidebar-tools-main tools-wide">
     <a href="https://www.lianxh.cn" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
     <a href="https://lianxh-class.cn/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-camera-video-fill"></i></a>
-    <a href="https://github.com/arlionn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://github.com/lianxhcn/ds" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -654,12 +654,12 @@ window.Quarto = {
 
 <p>数据分析过程中，均值和标准差只能粗略地描述数据的集中趋势和离散程度，但不能反映数据的分布形态、偏态和峰态等特征。本讲介绍两种常用的可视化工具：箱型图（Box Plot）和小提琴图（Violin Plot）。它们能够直观地呈现中位数、25% 分位数、75% 分位数等统计量，更为全面地描述数据的分布特征和可能存在的离群值。</p>
 <div id="5601b472" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> warnings</span>
-<span id="cb1-3"><a href="#cb1-3"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="im">import</span> os</span>
-<span id="cb1-6"><a href="#cb1-6"></a>os.chdir(<span class="vs">r"D:\Github\dslian\body"</span>)  <span class="co"># 工作路径</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="vs">r"D:\Github\dslian\body"</span>)  <span class="co"># 工作路径</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="箱线图boxplot" class="level2" data-number="27.1">
 <h2 data-number="27.1" class="anchored" data-anchor-id="箱线图boxplot"><span class="header-section-number">27.1</span> 箱线图（Boxplot）</h2>
@@ -698,23 +698,23 @@ window.Quarto = {
 <section id="直观感受" class="level2" data-number="27.2">
 <h2 data-number="27.2" class="anchored" data-anchor-id="直观感受"><span class="header-section-number">27.2</span> 直观感受</h2>
 <p>下面，我们模拟生成一个服从 <span class="math inline">\(N(0,1)\)</span> 分布的随机数，<span class="math inline">\(N=5000\)</span>，然后分别绘制其直方图 (核密度函数图)、箱线图和小提琴图 (<a href="codes\graph_dis_box_violin_simu_Normal.ipynb">查看 Codes</a>)。</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource dos number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>📊 数据分布摘要</span>
-<span id="cb2-2"><a href="#cb2-2"></a>├─ 核心趋势</span>
-<span id="cb2-3"><a href="#cb2-3"></a>│  ├─ 均值：  0.02</span>
-<span id="cb2-4"><a href="#cb2-4"></a>│  └─ 中位数：0.03</span>
-<span id="cb2-5"><a href="#cb2-5"></a>├─ 四分位距</span>
-<span id="cb2-6"><a href="#cb2-6"></a>│  ├─ Q1：-0.65</span>
-<span id="cb2-7"><a href="#cb2-7"></a>|  ├─ Q3： 0.69</span>
-<span id="cb2-8"><a href="#cb2-8"></a>│  └─ IQR：1.34 (Q3-Q1)</span>
-<span id="cb2-9"><a href="#cb2-9"></a>├─ 理论边界</span>
-<span id="cb2-10"><a href="#cb2-10"></a>│  ├─ 下限：Q1-1.5IQR = -2.66</span>
-<span id="cb2-11"><a href="#cb2-11"></a>│  └─ 上限：Q3+1.5IQR =  2.70</span>
-<span id="cb2-12"><a href="#cb2-12"></a>└─ 实际极值</span>
-<span id="cb2-13"><a href="#cb2-13"></a>   ├─ 最小值：-3.80</span>
-<span id="cb2-14"><a href="#cb2-14"></a>   └─ 最大值： 3.57</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="dos"><code>📊 数据分布摘要
+├─ 核心趋势
+│  ├─ 均值：  0.02
+│  └─ 中位数：0.03
+├─ 四分位距
+│  ├─ Q1：-0.65
+|  ├─ Q3： 0.69
+│  └─ IQR：1.34 (Q3-Q1)
+├─ 理论边界
+│  ├─ 下限：Q1-1.5IQR = -2.66
+│  └─ 上限：Q3+1.5IQR =  2.70
+└─ 实际极值
+   ├─ 最小值：-3.80
+   └─ 最大值： 3.57</code></pre>
 <p><img src="figs/graph_boxplot_violin_simu_Normal.png" class="img-fluid"></p>
 <div id="c4803914" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="op">%</span>reset <span class="op">-</span>f</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>reset <span class="op">-</span>f</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="小提琴图" class="level2" data-number="27.3">
@@ -740,77 +740,77 @@ window.Quarto = {
 <p>统计： 1. 计算四个序列：均值、标准差、min, max, p25, p50, p75, 偏度、峰度； 2. 呈现： - 一张表格，各列为统计量，行索引为序列名称； - 统计量小数点后保留一位有效数字 - 调用必要的包，确保表格美观，统计量最好能在小数点处对齐</p>
 <p>绘图： 1. 1 行 4 列的子图：呈现四个序列的箱线图 2. 1 行 4 列的子图：呈现四个序列的小提琴图 3. 图形尺寸：8x2；y_titck: 取整数，疏密有度； 4. 子图标题用中文，字体为黑体，请假在必要的库 5. 屏蔽警告信息</p>
 <div id="e6441bde" class="cell" data-execution_count="98">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># 清空内存</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="op">%</span>reset <span class="op">-</span>f </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 清空内存</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>reset <span class="op">-</span>f </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="83f859d2" class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="im">from</span> scipy.stats <span class="im">import</span> skew, kurtosis</span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb5-7"><a href="#cb5-7"></a></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="co"># 屏蔽警告信息</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="im">import</span> warnings</span>
-<span id="cb5-10"><a href="#cb5-10"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span>
-<span id="cb5-11"><a href="#cb5-11"></a></span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="co"># 设置随机种子以确保结果可复现</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb5-14"><a href="#cb5-14"></a></span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="co"># 模拟四个序列</span></span>
-<span id="cb5-16"><a href="#cb5-16"></a>N <span class="op">=</span> <span class="dv">200</span></span>
-<span id="cb5-17"><a href="#cb5-17"></a>data <span class="op">=</span> {</span>
-<span id="cb5-18"><a href="#cb5-18"></a>    <span class="st">"x1"</span>: np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, N),</span>
-<span id="cb5-19"><a href="#cb5-19"></a>    <span class="st">"x2"</span>: np.concatenate([np.random.exponential(<span class="dv">1</span>, N <span class="op">-</span> <span class="dv">10</span>), np.random.normal(<span class="op">-</span><span class="dv">3</span>, <span class="fl">0.5</span>, <span class="dv">10</span>)]),</span>
-<span id="cb5-20"><a href="#cb5-20"></a>    <span class="st">"x3"</span>: np.concatenate([np.random.exponential(<span class="dv">1</span>, N <span class="op">-</span> <span class="dv">10</span>) <span class="op">*</span> <span class="op">-</span><span class="dv">1</span>, np.random.normal(<span class="dv">3</span>, <span class="fl">0.5</span>, <span class="dv">10</span>)]),</span>
-<span id="cb5-21"><a href="#cb5-21"></a>    <span class="st">"x4"</span>: np.concatenate([np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, N <span class="op">-</span> <span class="dv">30</span>), np.random.normal(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">30</span>)])</span>
-<span id="cb5-22"><a href="#cb5-22"></a>}</span>
-<span id="cb5-23"><a href="#cb5-23"></a></span>
-<span id="cb5-24"><a href="#cb5-24"></a><span class="co"># 统计计算</span></span>
-<span id="cb5-25"><a href="#cb5-25"></a><span class="co"># 使用 numpy 计算统计量</span></span>
-<span id="cb5-26"><a href="#cb5-26"></a>stats <span class="op">=</span> {}</span>
-<span id="cb5-27"><a href="#cb5-27"></a><span class="cf">for</span> name, values <span class="kw">in</span> data.items():</span>
-<span id="cb5-28"><a href="#cb5-28"></a>    stats[name] <span class="op">=</span> {</span>
-<span id="cb5-29"><a href="#cb5-29"></a>        <span class="st">"Mean"</span>: np.mean(values),</span>
-<span id="cb5-30"><a href="#cb5-30"></a>        <span class="st">"SD"</span>: np.std(values),</span>
-<span id="cb5-31"><a href="#cb5-31"></a>        <span class="st">"Min"</span>: np.<span class="bu">min</span>(values),</span>
-<span id="cb5-32"><a href="#cb5-32"></a>        <span class="st">"Max"</span>: np.<span class="bu">max</span>(values),</span>
-<span id="cb5-33"><a href="#cb5-33"></a>        <span class="st">"P25"</span>: np.percentile(values, <span class="dv">25</span>),</span>
-<span id="cb5-34"><a href="#cb5-34"></a>        <span class="st">"P50"</span>: np.percentile(values, <span class="dv">50</span>),</span>
-<span id="cb5-35"><a href="#cb5-35"></a>        <span class="st">"P75"</span>: np.percentile(values, <span class="dv">75</span>),</span>
-<span id="cb5-36"><a href="#cb5-36"></a>        <span class="st">"Skew"</span>: skew(values),</span>
-<span id="cb5-37"><a href="#cb5-37"></a>        <span class="st">"Kurt"</span>: kurtosis(values)</span>
-<span id="cb5-38"><a href="#cb5-38"></a>    }</span>
-<span id="cb5-39"><a href="#cb5-39"></a></span>
-<span id="cb5-40"><a href="#cb5-40"></a><span class="co"># 构建 DataFrame 并保留一位小数</span></span>
-<span id="cb5-41"><a href="#cb5-41"></a>stats_df <span class="op">=</span> pd.DataFrame(stats).T.<span class="bu">round</span>(<span class="dv">1</span>)</span>
-<span id="cb5-42"><a href="#cb5-42"></a></span>
-<span id="cb5-43"><a href="#cb5-43"></a><span class="co"># 使用 tabulate 美化表格输出</span></span>
-<span id="cb5-44"><a href="#cb5-44"></a><span class="bu">print</span>(tabulate(stats_df, headers<span class="op">=</span><span class="st">"keys"</span>, </span>
-<span id="cb5-45"><a href="#cb5-45"></a>      stralign<span class="op">=</span><span class="st">"right"</span>, floatfmt<span class="op">=</span><span class="st">".1f"</span>))</span>
-<span id="cb5-46"><a href="#cb5-46"></a></span>
-<span id="cb5-47"><a href="#cb5-47"></a><span class="co"># 绘制箱线图</span></span>
-<span id="cb5-48"><a href="#cb5-48"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">4</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">2</span>))</span>
-<span id="cb5-49"><a href="#cb5-49"></a><span class="cf">for</span> ax, (label, values) <span class="kw">in</span> <span class="bu">zip</span>(axes, data.items()):</span>
-<span id="cb5-50"><a href="#cb5-50"></a>    sns.boxplot(y<span class="op">=</span>values, ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">"gold"</span>)</span>
-<span id="cb5-51"><a href="#cb5-51"></a>    ax.set_title(label, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb5-52"><a href="#cb5-52"></a>    ax.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb5-53"><a href="#cb5-53"></a>    ax.yaxis.set_major_locator(plt.MaxNLocator(integer<span class="op">=</span><span class="va">True</span>))</span>
-<span id="cb5-54"><a href="#cb5-54"></a></span>
-<span id="cb5-55"><a href="#cb5-55"></a>plt.tight_layout()</span>
-<span id="cb5-56"><a href="#cb5-56"></a>plt.show()</span>
-<span id="cb5-57"><a href="#cb5-57"></a></span>
-<span id="cb5-58"><a href="#cb5-58"></a><span class="co"># 绘制小提琴图</span></span>
-<span id="cb5-59"><a href="#cb5-59"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">4</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">2</span>))</span>
-<span id="cb5-60"><a href="#cb5-60"></a><span class="cf">for</span> ax, (label, values) <span class="kw">in</span> <span class="bu">zip</span>(axes, data.items()):</span>
-<span id="cb5-61"><a href="#cb5-61"></a>    sns.violinplot(y<span class="op">=</span>values, ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">"gold"</span>)</span>
-<span id="cb5-62"><a href="#cb5-62"></a>    ax.set_title(label, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb5-63"><a href="#cb5-63"></a>    ax.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb5-64"><a href="#cb5-64"></a>    ax.yaxis.set_major_locator(plt.MaxNLocator(integer<span class="op">=</span><span class="va">True</span>))</span>
-<span id="cb5-65"><a href="#cb5-65"></a></span>
-<span id="cb5-66"><a href="#cb5-66"></a>plt.tight_layout()</span>
-<span id="cb5-67"><a href="#cb5-67"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> skew, kurtosis</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 屏蔽警告信息</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置随机种子以确保结果可复现</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 模拟四个序列</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">200</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"x1"</span>: np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, N),</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"x2"</span>: np.concatenate([np.random.exponential(<span class="dv">1</span>, N <span class="op">-</span> <span class="dv">10</span>), np.random.normal(<span class="op">-</span><span class="dv">3</span>, <span class="fl">0.5</span>, <span class="dv">10</span>)]),</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"x3"</span>: np.concatenate([np.random.exponential(<span class="dv">1</span>, N <span class="op">-</span> <span class="dv">10</span>) <span class="op">*</span> <span class="op">-</span><span class="dv">1</span>, np.random.normal(<span class="dv">3</span>, <span class="fl">0.5</span>, <span class="dv">10</span>)]),</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"x4"</span>: np.concatenate([np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, N <span class="op">-</span> <span class="dv">30</span>), np.random.normal(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">30</span>)])</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 统计计算</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用 numpy 计算统计量</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>stats <span class="op">=</span> {}</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, values <span class="kw">in</span> data.items():</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    stats[name] <span class="op">=</span> {</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Mean"</span>: np.mean(values),</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>        <span class="st">"SD"</span>: np.std(values),</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Min"</span>: np.<span class="bu">min</span>(values),</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Max"</span>: np.<span class="bu">max</span>(values),</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>        <span class="st">"P25"</span>: np.percentile(values, <span class="dv">25</span>),</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>        <span class="st">"P50"</span>: np.percentile(values, <span class="dv">50</span>),</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>        <span class="st">"P75"</span>: np.percentile(values, <span class="dv">75</span>),</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Skew"</span>: skew(values),</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Kurt"</span>: kurtosis(values)</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="co"># 构建 DataFrame 并保留一位小数</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>stats_df <span class="op">=</span> pd.DataFrame(stats).T.<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用 tabulate 美化表格输出</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate(stats_df, headers<span class="op">=</span><span class="st">"keys"</span>, </span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>      stralign<span class="op">=</span><span class="st">"right"</span>, floatfmt<span class="op">=</span><span class="st">".1f"</span>))</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制箱线图</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">4</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">2</span>))</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, (label, values) <span class="kw">in</span> <span class="bu">zip</span>(axes, data.items()):</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>    sns.boxplot(y<span class="op">=</span>values, ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">"gold"</span>)</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    ax.set_title(label, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>    ax.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    ax.yaxis.set_major_locator(plt.MaxNLocator(integer<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制小提琴图</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">4</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">2</span>))</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, (label, values) <span class="kw">in</span> <span class="bu">zip</span>(axes, data.items()):</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>    sns.violinplot(y<span class="op">=</span>values, ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">"gold"</span>)</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>    ax.set_title(label, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>    ax.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>    ax.yaxis.set_major_locator(plt.MaxNLocator(integer<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Mean    SD    Min    Max    P25    P50    P75    Skew    Kurt
 --  ------  ----  -----  -----  -----  -----  -----  ------  ------
@@ -838,37 +838,37 @@ x4    -0.0   2.0   -7.8    8.8   -0.9   -0.1    0.8    -0.1     4.6</code></pre>
 <section id="应用实例上证综合指数收益率年度分布" class="level2" data-number="27.6">
 <h2 data-number="27.6" class="anchored" data-anchor-id="应用实例上证综合指数收益率年度分布"><span class="header-section-number">27.6</span> 应用实例：上证综合指数收益率年度分布</h2>
 <div id="64c2f20b" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># 完整代码：TS_SZ_index.ipynb</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="co"># 安装必要的库（如未安装）</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="co"># !pip install plotly akshare pandas</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="im">import</span> akshare <span class="im">as</span> ak</span>
-<span id="cb7-9"><a href="#cb7-9"></a></span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="co"># 获取上证指数的历史数据</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a>sz_index <span class="op">=</span> ak.stock_zh_index_daily(symbol<span class="op">=</span><span class="st">"sh000001"</span>)  <span class="co"># 上证指数代码为 "sh000001"</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a></span>
-<span id="cb7-13"><a href="#cb7-13"></a><span class="co"># 重命名列名以便后续处理</span></span>
-<span id="cb7-14"><a href="#cb7-14"></a>sz_index.rename(columns<span class="op">=</span>{<span class="st">'date'</span>: <span class="st">'day'</span>, <span class="st">'close'</span>: <span class="st">'close'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb7-15"><a href="#cb7-15"></a></span>
-<span id="cb7-16"><a href="#cb7-16"></a><span class="co"># 将日期列转换为 datetime 类型</span></span>
-<span id="cb7-17"><a href="#cb7-17"></a>sz_index[<span class="st">'day'</span>] <span class="op">=</span> pd.to_datetime(sz_index[<span class="st">'day'</span>])</span>
-<span id="cb7-18"><a href="#cb7-18"></a></span>
-<span id="cb7-19"><a href="#cb7-19"></a><span class="co"># 计算日收益率</span></span>
-<span id="cb7-20"><a href="#cb7-20"></a>sz_index[<span class="st">'daily_return'</span>] <span class="op">=</span> sz_index[<span class="st">'close'</span>].pct_change()</span>
-<span id="cb7-21"><a href="#cb7-21"></a></span>
-<span id="cb7-22"><a href="#cb7-22"></a><span class="co"># 提取年份列</span></span>
-<span id="cb7-23"><a href="#cb7-23"></a>sz_index[<span class="st">'year'</span>] <span class="op">=</span> sz_index[<span class="st">'day'</span>].dt.year</span>
-<span id="cb7-24"><a href="#cb7-24"></a></span>
-<span id="cb7-25"><a href="#cb7-25"></a><span class="co"># 去除 open, high, low 列</span></span>
-<span id="cb7-26"><a href="#cb7-26"></a>sz_index.drop(columns<span class="op">=</span>[<span class="st">'open'</span>, <span class="st">'high'</span>, <span class="st">'low'</span>], inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb7-27"><a href="#cb7-27"></a></span>
-<span id="cb7-28"><a href="#cb7-28"></a><span class="co"># Display the first 3 rows and the last 3 columns</span></span>
-<span id="cb7-29"><a href="#cb7-29"></a><span class="bu">print</span>(sz_index.head(<span class="dv">3</span>))</span>
-<span id="cb7-30"><a href="#cb7-30"></a><span class="bu">print</span>(<span class="st">'-'</span> <span class="op">*</span> <span class="dv">50</span>)</span>
-<span id="cb7-31"><a href="#cb7-31"></a><span class="bu">print</span>(sz_index.tail(<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 完整代码：TS_SZ_index.ipynb</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 安装必要的库（如未安装）</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install plotly akshare pandas</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> akshare <span class="im">as</span> ak</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取上证指数的历史数据</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>sz_index <span class="op">=</span> ak.stock_zh_index_daily(symbol<span class="op">=</span><span class="st">"sh000001"</span>)  <span class="co"># 上证指数代码为 "sh000001"</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 重命名列名以便后续处理</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>sz_index.rename(columns<span class="op">=</span>{<span class="st">'date'</span>: <span class="st">'day'</span>, <span class="st">'close'</span>: <span class="st">'close'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 将日期列转换为 datetime 类型</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>sz_index[<span class="st">'day'</span>] <span class="op">=</span> pd.to_datetime(sz_index[<span class="st">'day'</span>])</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算日收益率</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>sz_index[<span class="st">'daily_return'</span>] <span class="op">=</span> sz_index[<span class="st">'close'</span>].pct_change()</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 提取年份列</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>sz_index[<span class="st">'year'</span>] <span class="op">=</span> sz_index[<span class="st">'day'</span>].dt.year</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 去除 open, high, low 列</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>sz_index.drop(columns<span class="op">=</span>[<span class="st">'open'</span>, <span class="st">'high'</span>, <span class="st">'low'</span>], inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the first 3 rows and the last 3 columns</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sz_index.head(<span class="dv">3</span>))</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sz_index.tail(<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         day   close  volume  daily_return  year
 0 1990-12-19   99.98  126000           NaN  1990
@@ -884,20 +884,20 @@ x4    -0.0   2.0   -7.8    8.8   -0.9   -0.1    0.8    -0.1     4.6</code></pre>
 <p>接下来，我们挑选几个特定的年份，绘制其日收益率的箱型图。</p>
 <p>注意，此处，我们使用的是 <code>seaborn</code> 库中的 <code>boxplot()</code> 函数，而不是 <code>matplotlib</code> 中的 <code>boxplot()</code> 函数。前者可以更好地处理数据的分组和分类，并且提供了更多的可视化选项。</p>
 <div id="f97da326" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb9-3"><a href="#cb9-3"></a></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="co"># 筛选指定年份的数据</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="co">#selected_years = [1995, 1997, 2005, 2006, 2007, 2014, 2015, 2021, 2024]</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a>selected_years <span class="op">=</span> [<span class="dv">1997</span>, <span class="dv">2005</span>, <span class="dv">2006</span>, <span class="dv">2007</span>, <span class="dv">2014</span>, <span class="dv">2015</span>, <span class="dv">2021</span>, <span class="dv">2024</span>]</span>
-<span id="cb9-7"><a href="#cb9-7"></a>filtered_data <span class="op">=</span> sz_index[sz_index[<span class="st">'year'</span>].isin(selected_years)]</span>
-<span id="cb9-8"><a href="#cb9-8"></a></span>
-<span id="cb9-9"><a href="#cb9-9"></a><span class="co"># 绘制多个年度的箱型图</span></span>
-<span id="cb9-10"><a href="#cb9-10"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">3</span>))</span>
-<span id="cb9-11"><a href="#cb9-11"></a>sns.boxplot(x<span class="op">=</span><span class="st">'year'</span>, y<span class="op">=</span><span class="st">'daily_return'</span>, </span>
-<span id="cb9-12"><a href="#cb9-12"></a>            data<span class="op">=</span>filtered_data, palette<span class="op">=</span><span class="st">'Set3'</span>)</span>
-<span id="cb9-13"><a href="#cb9-13"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb9-14"><a href="#cb9-14"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 筛选指定年份的数据</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#selected_years = [1995, 1997, 2005, 2006, 2007, 2014, 2015, 2021, 2024]</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>selected_years <span class="op">=</span> [<span class="dv">1997</span>, <span class="dv">2005</span>, <span class="dv">2006</span>, <span class="dv">2007</span>, <span class="dv">2014</span>, <span class="dv">2015</span>, <span class="dv">2021</span>, <span class="dv">2024</span>]</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="op">=</span> sz_index[sz_index[<span class="st">'year'</span>].isin(selected_years)]</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制多个年度的箱型图</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">3</span>))</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>sns.boxplot(x<span class="op">=</span><span class="st">'year'</span>, y<span class="op">=</span><span class="st">'daily_return'</span>, </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>            data<span class="op">=</span>filtered_data, palette<span class="op">=</span><span class="st">'Set3'</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -933,13 +933,13 @@ x4    -0.0   2.0   -7.8    8.8   -0.9   -0.1    0.8    -0.1     4.6</code></pre>
 <p>下图呈现了几个特定年份的沪市综合指数的时序图 (<a href="https://github.com/arlionn/dslian/blob/main/body/codes/graph_sz_index_selected_years.ipynb">codes</a>)，大家可以挑选一些年份，将其收盘价的时序图与上图中对应年份的箱型图进行对比，以便更深入地理解箱型图的含义。</p>
 <p><img src="figs/sz_index_daily_return_selected_years.png" class="img-fluid"></p>
 <div id="e2951591" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="co"># 绘制小提琴图</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">3</span>))</span>
-<span id="cb10-4"><a href="#cb10-4"></a>sns.violinplot(x<span class="op">=</span><span class="st">'year'</span>, y<span class="op">=</span><span class="st">'daily_return'</span>, </span>
-<span id="cb10-5"><a href="#cb10-5"></a>               data<span class="op">=</span>filtered_data, palette<span class="op">=</span><span class="st">'Set3'</span>)</span>
-<span id="cb10-6"><a href="#cb10-6"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb10-7"><a href="#cb10-7"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制小提琴图</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">3</span>))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>sns.violinplot(x<span class="op">=</span><span class="st">'year'</span>, y<span class="op">=</span><span class="st">'daily_return'</span>, </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>               data<span class="op">=</span>filtered_data, palette<span class="op">=</span><span class="st">'Set3'</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -949,39 +949,39 @@ x4    -0.0   2.0   -7.8    8.8   -0.9   -0.1    0.8    -0.1     4.6</code></pre>
 </div>
 </div>
 <div id="46ba736c" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># https://matplotlib.org/stable/gallery/statistics/boxplot_vs_violin.html</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb11-5"><a href="#cb11-5"></a></span>
-<span id="cb11-6"><a href="#cb11-6"></a>fig, axs <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">4</span>))</span>
-<span id="cb11-7"><a href="#cb11-7"></a></span>
-<span id="cb11-8"><a href="#cb11-8"></a><span class="co"># Fixing random state for reproducibility</span></span>
-<span id="cb11-9"><a href="#cb11-9"></a>np.random.seed(<span class="dv">19680801</span>)</span>
-<span id="cb11-10"><a href="#cb11-10"></a></span>
-<span id="cb11-11"><a href="#cb11-11"></a></span>
-<span id="cb11-12"><a href="#cb11-12"></a><span class="co"># generate some random test data</span></span>
-<span id="cb11-13"><a href="#cb11-13"></a>all_data <span class="op">=</span> [np.random.normal(<span class="dv">0</span>, std, <span class="dv">100</span>) <span class="cf">for</span> std <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">6</span>, <span class="dv">10</span>)]</span>
-<span id="cb11-14"><a href="#cb11-14"></a></span>
-<span id="cb11-15"><a href="#cb11-15"></a><span class="co"># plot violin plot</span></span>
-<span id="cb11-16"><a href="#cb11-16"></a>axs[<span class="dv">0</span>].violinplot(all_data,</span>
-<span id="cb11-17"><a href="#cb11-17"></a>                  showmeans<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb11-18"><a href="#cb11-18"></a>                  showmedians<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb11-19"><a href="#cb11-19"></a>axs[<span class="dv">0</span>].set_title(<span class="st">'Violin plot'</span>)</span>
-<span id="cb11-20"><a href="#cb11-20"></a></span>
-<span id="cb11-21"><a href="#cb11-21"></a><span class="co"># plot box plot</span></span>
-<span id="cb11-22"><a href="#cb11-22"></a>axs[<span class="dv">1</span>].boxplot(all_data)</span>
-<span id="cb11-23"><a href="#cb11-23"></a>axs[<span class="dv">1</span>].set_title(<span class="st">'Box plot'</span>)</span>
-<span id="cb11-24"><a href="#cb11-24"></a></span>
-<span id="cb11-25"><a href="#cb11-25"></a><span class="co"># adding horizontal grid lines</span></span>
-<span id="cb11-26"><a href="#cb11-26"></a><span class="cf">for</span> ax <span class="kw">in</span> axs:</span>
-<span id="cb11-27"><a href="#cb11-27"></a>    ax.yaxis.grid(<span class="va">True</span>)</span>
-<span id="cb11-28"><a href="#cb11-28"></a>    ax.set_xticks([y <span class="op">+</span> <span class="dv">1</span> <span class="cf">for</span> y <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(all_data))],</span>
-<span id="cb11-29"><a href="#cb11-29"></a>                  labels<span class="op">=</span>[<span class="st">'x1'</span>, <span class="st">'x2'</span>, <span class="st">'x3'</span>, <span class="st">'x4'</span>])</span>
-<span id="cb11-30"><a href="#cb11-30"></a>    ax.set_xlabel(<span class="st">'Four separate samples'</span>)</span>
-<span id="cb11-31"><a href="#cb11-31"></a>    ax.set_ylabel(<span class="st">'Observed values'</span>)</span>
-<span id="cb11-32"><a href="#cb11-32"></a></span>
-<span id="cb11-33"><a href="#cb11-33"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># https://matplotlib.org/stable/gallery/statistics/boxplot_vs_violin.html</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">4</span>))</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Fixing random state for reproducibility</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">19680801</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co"># generate some random test data</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>all_data <span class="op">=</span> [np.random.normal(<span class="dv">0</span>, std, <span class="dv">100</span>) <span class="cf">for</span> std <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">6</span>, <span class="dv">10</span>)]</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co"># plot violin plot</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].violinplot(all_data,</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>                  showmeans<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>                  showmedians<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_title(<span class="st">'Violin plot'</span>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co"># plot box plot</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].boxplot(all_data)</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_title(<span class="st">'Box plot'</span>)</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="co"># adding horizontal grid lines</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> axs:</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    ax.yaxis.grid(<span class="va">True</span>)</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    ax.set_xticks([y <span class="op">+</span> <span class="dv">1</span> <span class="cf">for</span> y <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(all_data))],</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>                  labels<span class="op">=</span>[<span class="st">'x1'</span>, <span class="st">'x2'</span>, <span class="st">'x3'</span>, <span class="st">'x4'</span>])</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">'Four separate samples'</span>)</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">'Observed values'</span>)</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -997,30 +997,30 @@ x4    -0.0   2.0   -7.8    8.8   -0.9   -0.1    0.8    -0.1     4.6</code></pre>
 <p>Source: <a href="https://python-graph-gallery.com/39-hidden-data-under-boxplot/">Hidden Data Under Boxplot</a></p>
 </blockquote>
 <div id="16e33855" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># libraries</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb12-5"><a href="#cb12-5"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb12-6"><a href="#cb12-6"></a> </span>
-<span id="cb12-7"><a href="#cb12-7"></a><span class="co"># Dataset:</span></span>
-<span id="cb12-8"><a href="#cb12-8"></a>a <span class="op">=</span> pd.DataFrame({ <span class="st">'group'</span> : np.repeat(<span class="st">'A'</span>,<span class="dv">500</span>), <span class="st">'value'</span>: np.random.normal(<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">500</span>) })</span>
-<span id="cb12-9"><a href="#cb12-9"></a>b <span class="op">=</span> pd.DataFrame({ <span class="st">'group'</span> : np.repeat(<span class="st">'B'</span>,<span class="dv">500</span>), <span class="st">'value'</span>: np.random.normal(<span class="dv">13</span>, <span class="fl">1.2</span>, <span class="dv">500</span>) })</span>
-<span id="cb12-10"><a href="#cb12-10"></a>c <span class="op">=</span> pd.DataFrame({ <span class="st">'group'</span> : np.repeat(<span class="st">'B'</span>,<span class="dv">500</span>), <span class="st">'value'</span>: np.random.normal(<span class="dv">18</span>, <span class="fl">1.2</span>, <span class="dv">500</span>) })</span>
-<span id="cb12-11"><a href="#cb12-11"></a>d <span class="op">=</span> pd.DataFrame({ <span class="st">'group'</span> : np.repeat(<span class="st">'C'</span>,<span class="dv">20</span>), <span class="st">'value'</span>: np.random.normal(<span class="dv">25</span>, <span class="dv">4</span>, <span class="dv">20</span>) })</span>
-<span id="cb12-12"><a href="#cb12-12"></a>e <span class="op">=</span> pd.DataFrame({ <span class="st">'group'</span> : np.repeat(<span class="st">'D'</span>,<span class="dv">100</span>), <span class="st">'value'</span>: np.random.uniform(<span class="dv">12</span>, size<span class="op">=</span><span class="dv">100</span>) })</span>
-<span id="cb12-13"><a href="#cb12-13"></a>df <span class="op">=</span> pd.concat([a,b,c,d,e])</span>
-<span id="cb12-14"><a href="#cb12-14"></a></span>
-<span id="cb12-15"><a href="#cb12-15"></a><span class="co"># boxplot</span></span>
-<span id="cb12-16"><a href="#cb12-16"></a>ax <span class="op">=</span> sns.boxplot(x<span class="op">=</span><span class="st">'group'</span>, y<span class="op">=</span><span class="st">'value'</span>, data<span class="op">=</span>df)</span>
-<span id="cb12-17"><a href="#cb12-17"></a><span class="co"># add stripplot</span></span>
-<span id="cb12-18"><a href="#cb12-18"></a>ax <span class="op">=</span> sns.stripplot(x<span class="op">=</span><span class="st">'group'</span>, y<span class="op">=</span><span class="st">'value'</span>, data<span class="op">=</span>df, color<span class="op">=</span><span class="st">"orange"</span>, jitter<span class="op">=</span><span class="fl">0.2</span>, size<span class="op">=</span><span class="fl">2.5</span>)</span>
-<span id="cb12-19"><a href="#cb12-19"></a></span>
-<span id="cb12-20"><a href="#cb12-20"></a><span class="co"># add title</span></span>
-<span id="cb12-21"><a href="#cb12-21"></a>plt.title(<span class="st">"Boxplot with jitter"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
-<span id="cb12-22"><a href="#cb12-22"></a></span>
-<span id="cb12-23"><a href="#cb12-23"></a><span class="co"># show the graph</span></span>
-<span id="cb12-24"><a href="#cb12-24"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># libraries</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Dataset:</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> pd.DataFrame({ <span class="st">'group'</span> : np.repeat(<span class="st">'A'</span>,<span class="dv">500</span>), <span class="st">'value'</span>: np.random.normal(<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">500</span>) })</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> pd.DataFrame({ <span class="st">'group'</span> : np.repeat(<span class="st">'B'</span>,<span class="dv">500</span>), <span class="st">'value'</span>: np.random.normal(<span class="dv">13</span>, <span class="fl">1.2</span>, <span class="dv">500</span>) })</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> pd.DataFrame({ <span class="st">'group'</span> : np.repeat(<span class="st">'B'</span>,<span class="dv">500</span>), <span class="st">'value'</span>: np.random.normal(<span class="dv">18</span>, <span class="fl">1.2</span>, <span class="dv">500</span>) })</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> pd.DataFrame({ <span class="st">'group'</span> : np.repeat(<span class="st">'C'</span>,<span class="dv">20</span>), <span class="st">'value'</span>: np.random.normal(<span class="dv">25</span>, <span class="dv">4</span>, <span class="dv">20</span>) })</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> pd.DataFrame({ <span class="st">'group'</span> : np.repeat(<span class="st">'D'</span>,<span class="dv">100</span>), <span class="st">'value'</span>: np.random.uniform(<span class="dv">12</span>, size<span class="op">=</span><span class="dv">100</span>) })</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.concat([a,b,c,d,e])</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># boxplot</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.boxplot(x<span class="op">=</span><span class="st">'group'</span>, y<span class="op">=</span><span class="st">'value'</span>, data<span class="op">=</span>df)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co"># add stripplot</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.stripplot(x<span class="op">=</span><span class="st">'group'</span>, y<span class="op">=</span><span class="st">'value'</span>, data<span class="op">=</span>df, color<span class="op">=</span><span class="st">"orange"</span>, jitter<span class="op">=</span><span class="fl">0.2</span>, size<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># add title</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Boxplot with jitter"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co"># show the graph</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1037,11 +1037,11 @@ x4    -0.0   2.0   -7.8    8.8   -0.9   -0.1    0.8    -0.1     4.6</code></pre>
 <li><a href="https://seaborn.pydata.org/generated/seaborn.violinplot.html">seaborn.violinplot</a></li>
 </ul>
 <div id="4041eb72" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb13-2"><a href="#cb13-2"></a></span>
-<span id="cb13-3"><a href="#cb13-3"></a>df <span class="op">=</span> sns.load_dataset(<span class="st">"titanic"</span>)</span>
-<span id="cb13-4"><a href="#cb13-4"></a>sns.violinplot(x<span class="op">=</span>df[<span class="st">"age"</span>])</span>
-<span id="cb13-5"><a href="#cb13-5"></a>sns.violinplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"class"</span>, y<span class="op">=</span><span class="st">"age"</span>, hue<span class="op">=</span><span class="st">"alive"</span>, fill<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> sns.load_dataset(<span class="st">"titanic"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>sns.violinplot(x<span class="op">=</span>df[<span class="st">"age"</span>])</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>sns.violinplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"class"</span>, y<span class="op">=</span><span class="st">"age"</span>, hue<span class="op">=</span><span class="st">"alive"</span>, fill<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1051,7 +1051,7 @@ x4    -0.0   2.0   -7.8    8.8   -0.9   -0.1    0.8    -0.1     4.6</code></pre>
 </div>
 </div>
 <div id="51c179b1" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>sns.violinplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"class"</span>, y<span class="op">=</span><span class="st">"age"</span>, hue<span class="op">=</span><span class="st">"alive"</span>, split<span class="op">=</span><span class="va">True</span>, inner<span class="op">=</span><span class="st">"quart"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sns.violinplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">"class"</span>, y<span class="op">=</span><span class="st">"age"</span>, hue<span class="op">=</span><span class="st">"alive"</span>, split<span class="op">=</span><span class="va">True</span>, inner<span class="op">=</span><span class="st">"quart"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1167,7 +1167,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/book\.lianxh\.cn\/ds\/index\.html");
+      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
