@@ -1,10 +1,10 @@
 # 资产收益率（Asset Returns）
 
-&emsp;
+ 
 
 > Source: Tsay, Ruey S. (2010). Analysis of Financial Time Series. 3rd Edition. Wiley. Chpater 1
 
-&emsp;
+ 
 
 大多数金融研究都侧重于资产的收益率而非价格。对此，Campbell, Lo and MacKinlay (1997) 归因如下：其一，对于普通投资者而言，资产的收益率是一种完整且无量纲的衡量指标；其二，相比价格指标，收益率具有诸多良好的统计性质，更容易分析。
 
@@ -25,7 +25,6 @@ $$
 $$
 R_t = \frac{P_t - P_{t-1}}{P_{t-1}}
 $$
-
 
 ### 多期简单收益率（Multiperiod Simple Return）
 
@@ -119,7 +118,6 @@ $$
 r_t^{[k]} = r_t + r_{t-1} + \cdots + r_{t-k+1}
 $$
 
-
 ## 投资组合收益率（Portfolio Return）
 
 若一个投资组合包含 $N$ 个资产，各自的权重为 $w_i$，则该投资组合的简单收益率为：
@@ -134,7 +132,6 @@ $$
 r_{p,t} \approx \sum_{i=1}^{N} w_i r_{it}
 $$
 
-
 ## 分红的影响（Dividend Payment）
 
 若资产在 $t - 1$ 至 $t$ 期间支付红利 $D_t$，则应调整收益率计算：
@@ -142,7 +139,6 @@ $$
 $$
 R_t = \frac{P_t + D_t}{P_{t-1}} - 1, \quad r_t = \ln(P_t + D_t) - \ln(P_{t-1})
 $$
-
 
 ## 超额收益（Excess Return）
 

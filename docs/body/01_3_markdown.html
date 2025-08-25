@@ -530,8 +530,8 @@ window.Quarto = {
   <li><a href="#marp-幻灯片" id="toc-marp-幻灯片" class="nav-link" data-scroll-target="#marp-幻灯片"><span class="header-section-number">9.4</span> Marp 幻灯片</a>
   <ul class="collapse">
   <li><a href="#安装" id="toc-安装" class="nav-link" data-scroll-target="#安装"><span class="header-section-number">9.4.1</span> 安装</a></li>
-  <li><a href="#模版-1最基本的设定" id="toc-模版-1最基本的设定" class="nav-link" data-scroll-target="#模版-1最基本的设定"><span class="header-section-number">9.4.2</span> 模版 1：最基本的设定</a></li>
-  <li><a href="#模版-2更多的设定" id="toc-模版-2更多的设定" class="nav-link" data-scroll-target="#模版-2更多的设定"><span class="header-section-number">9.4.3</span> 模版 2：更多的设定</a></li>
+  <li><a href="#marp-模板" id="toc-marp-模板" class="nav-link" data-scroll-target="#marp-模板"><span class="header-section-number">9.4.2</span> Marp 模板</a></li>
+  <li><a href="#marp-常见问题" id="toc-marp-常见问题" class="nav-link" data-scroll-target="#marp-常见问题"><span class="header-section-number">9.4.3</span> Marp 常见问题</a></li>
   </ul></li>
   <li><a href="#用-markdown-编写个人网站和简历" id="toc-用-markdown-编写个人网站和简历" class="nav-link" data-scroll-target="#用-markdown-编写个人网站和简历"><span class="header-section-number">9.5</span> 用 Markdown 编写个人网站和简历</a></li>
   </ul>
@@ -563,6 +563,7 @@ window.Quarto = {
 <h2 data-number="9.1" class="anchored" data-anchor-id="何谓-markdown"><span class="header-section-number">9.1</span> 何谓 Markdown？</h2>
 <p>Markdown 是一种轻量级的标记语言，允许你使用易读易写的纯文本格式编写文档，然后转换成结构化的 HTML, PDF, Word 等多种格式的文档。Markdown 语法简单易学，适合用来撰写笔记、文档、幻灯片等。</p>
 <p>大家在网上看到的很多<a href="https://www.lianxh.cn/details/1456.html">博客文章</a>，程序<a href="https://docs.python.org/3/tutorial/index.html">说明文档</a>，甚至是在线书籍 (<a href="https://wesmckinney.com/book/">Python for Data Analysis, 3E</a>)，都是用 Markdown 写的。</p>
+<p>多数情况下，我都会使用 Marp 来制作幻灯片。它本身就是基于 Markdown 语法设计的。我们可以借助 ChatGPT 等 AI 工具快速将 Markdown 文档转换为幻灯片。</p>
 </section>
 <section id="语法速览" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="语法速览"><span class="header-section-number">9.2</span> 语法速览</h2>
@@ -733,45 +734,62 @@ Figure&nbsp;9.1: Markdown 语法对照
 </section>
 <section id="marp-幻灯片" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="marp-幻灯片"><span class="header-section-number">9.4</span> Marp 幻灯片</h2>
-<p>在 VScode 中安装 <code>Marp</code> 插件后，你可以使用 Markdown 语法来创建幻灯片。使用 Marp 最大的好处是你可以专注于内容，而不必担心幻灯片的格式和样式。Marp 会自动将你的 Markdown 文档转换为美观的幻灯片。</p>
+<p>在 VScode 中安装 <a href="https://marp.app/#get-started">Marp</a> 插件后，你可以使用 Markdown 语法来创建幻灯片。使用 Marp 最大的好处是你可以专注于内容，而不必担心幻灯片的格式和样式。Marp 会自动将你的 Markdown 文档转换为美观的幻灯片。</p>
 <p><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20220525154453.png" class="img-fluid"></p>
+<p>以下是我最近编写的两份 Marp 幻灯片：</p>
+<ul>
+<li><a href="MarpSlides/B4_Panel_PLFC_Slides.md">B4_Panel_PLFC_Slides.md</a> → <a href="MarpSlides/B4_Panel_PLFC_Slides.pdf">PDF 格式</a></li>
+<li><a href="MarpSlides/B6_SFA_Slides.md">B6_SFA_Slides.md</a> → <a href="MarpSlides/B6_SFA_Slides.pdf">PDF 格式</a></li>
+</ul>
 <section id="安装" class="level3" data-number="9.4.1">
 <h3 data-number="9.4.1" class="anchored" data-anchor-id="安装"><span class="header-section-number">9.4.1</span> 安装</h3>
-<p>1. VScode 编辑器</p>
-<p>2. Marp 插件 - 在 VScode 中打开扩展市场，搜索 <code>Marp for VS Code</code>，点击安装。</p>
-<p>3. 如需使用 PDF 导出功能，还需要安装 <code>Marp CLI</code>： - <strong>打开终端 (TERMINAL)</strong>：在 VScode 中，点击左侧活动栏的终端图标，或使用快捷键 <code>Ctrl + ~</code>（反引号）打开终端。 - 在终端中运行以下命令安装 Marp CLI： <code>bash      npm install -g @marp-team/marp-cli</code></p>
+<ol type="1">
+<li><p>安装 VScode 编辑器</p></li>
+<li><p>安装 Marp 插件</p>
+<ul>
+<li>在 VScode 中打开扩展市场，搜索 <code>Marp for VS Code</code>，点击安装。</li>
+</ul></li>
+<li><p>如需使用 PDF 导出功能，还需要安装 <code>Marp CLI</code>：</p>
+<ul>
+<li><p><strong>打开终端 (TERMINAL)</strong>：在 VScode 中，点击左侧活动栏的终端图标，或使用快捷键 <code>Ctrl + ~</code>（反引号）打开终端。</p></li>
+<li><p>在终端中运行以下命令安装 Marp CLI：</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">npm</span> install <span class="at">-g</span> @marp-team/marp-cli</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul></li>
+</ol>
 <p>扩展阅读：</p>
 <ul>
 <li>连玉君, 2024, <a href="https://www.lianxh.cn/details/1490.html">VScode插件：安装、配置和使用</a>, 连享会 No.1490.</li>
 <li>连玉君, 2024, <a href="https://www.lianxh.cn/details/1390.html">VScode：实用 Markdown 插件推荐</a>, 连享会 No.1390.</li>
 </ul>
 </section>
-<section id="模版-1最基本的设定" class="level3" data-number="9.4.2">
-<h3 data-number="9.4.2" class="anchored" data-anchor-id="模版-1最基本的设定"><span class="header-section-number">9.4.2</span> 模版 1：最基本的设定</h3>
+<section id="marp-模板" class="level3" data-number="9.4.2">
+<h3 data-number="9.4.2" class="anchored" data-anchor-id="marp-模板"><span class="header-section-number">9.4.2</span> Marp 模板</h3>
+<section id="模版-1最基本的设定" class="level4" data-number="9.4.2.1">
+<h4 data-number="9.4.2.1" class="anchored" data-anchor-id="模版-1最基本的设定"><span class="header-section-number">9.4.2.1</span> 模版 1：最基本的设定</h4>
 <p>以下是一个简单的 Marp 幻灯片模板，你只需要新建一个 <code>.md</code> 文件，输入如下内容，然后在 VScode 中打开该文件即可：</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">---</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="an">marp:</span><span class="co"> true</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="co">---</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="fu"># 幻灯片标题</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a></span>
-<span id="cb6-7"><a href="#cb6-7"></a>---</span>
-<span id="cb6-8"><a href="#cb6-8"></a></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="fu">## 第一页幻灯片</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="ss">- </span>xxx</span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="ss">- </span>xxx</span>
-<span id="cb6-13"><a href="#cb6-13"></a></span>
-<span id="cb6-14"><a href="#cb6-14"></a>---</span>
-<span id="cb6-15"><a href="#cb6-15"></a></span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="fu">## 第二页幻灯片</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a></span>
-<span id="cb6-18"><a href="#cb6-18"></a><span class="ss">- </span>xxx</span>
-<span id="cb6-19"><a href="#cb6-19"></a><span class="ss">- </span>xxx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">---</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="an">marp:</span><span class="co"> true</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="co">---</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="fu"># 幻灯片标题</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a></span>
+<span id="cb7-7"><a href="#cb7-7"></a>---</span>
+<span id="cb7-8"><a href="#cb7-8"></a></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="fu">## 第一页幻灯片</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="ss">- </span>xxx</span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="ss">- </span>xxx</span>
+<span id="cb7-13"><a href="#cb7-13"></a></span>
+<span id="cb7-14"><a href="#cb7-14"></a>---</span>
+<span id="cb7-15"><a href="#cb7-15"></a></span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="fu">## 第二页幻灯片</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a></span>
+<span id="cb7-18"><a href="#cb7-18"></a><span class="ss">- </span>xxx</span>
+<span id="cb7-19"><a href="#cb7-19"></a><span class="ss">- </span>xxx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/Lianxh_装饰黄线.png" class="img-fluid"></p>
 </section>
-<section id="模版-2更多的设定" class="level3" data-number="9.4.3">
-<h3 data-number="9.4.3" class="anchored" data-anchor-id="模版-2更多的设定"><span class="header-section-number">9.4.3</span> 模版 2：更多的设定</h3>
+<section id="模版-2更多的设定" class="level4" data-number="9.4.2.2">
+<h4 data-number="9.4.2.2" class="anchored" data-anchor-id="模版-2更多的设定"><span class="header-section-number">9.4.2.2</span> 模版 2：更多的设定</h4>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -789,118 +807,140 @@ Figure&nbsp;9.1: Markdown 语法对照
 </ul>
 </div>
 </div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">---</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="an">marp:</span><span class="co"> true</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="an">size:</span><span class="co"> 16:9        # 宽版：4:3</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="an">paginate:</span><span class="co"> true  </span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="an">footer:</span><span class="co"> '[lianxh.cn](https://www.lianxh.cn)&amp;ensp;|&amp;ensp;[Books](https://www.lianxh.cn/Books.html)'</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="co">---</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a></span>
-<span id="cb7-8"><a href="#cb7-8"></a>&lt;style&gt;</span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="co">/*一级标题局中*/</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a>section<span class="fu">.lead</span> h1 {</span>
-<span id="cb7-11"><a href="#cb7-11"></a>  <span class="kw">text-align</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span> <span class="co">/*其他参数：left, right*/</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a>}</span>
-<span id="cb7-13"><a href="#cb7-13"></a>section {</span>
-<span id="cb7-14"><a href="#cb7-14"></a>  <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">22</span><span class="dt">px</span><span class="op">;</span>      <span class="co">/* 正文字号 */</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a>}</span>
-<span id="cb7-16"><a href="#cb7-16"></a>h1 {</span>
-<span id="cb7-17"><a href="#cb7-17"></a>  <span class="kw">color</span><span class="ch">:</span> <span class="dv">blackyellow</span><span class="op">;</span>   <span class="co">/* 标题的颜色 */</span></span>
-<span id="cb7-18"><a href="#cb7-18"></a>  <span class="co">/*font-size: 28px; */</span> <span class="co">/* 标题的字号, 其它标题也可以这样修改 */</span></span>
-<span id="cb7-19"><a href="#cb7-19"></a>}</span>
-<span id="cb7-20"><a href="#cb7-20"></a>h2 {</span>
-<span id="cb7-21"><a href="#cb7-21"></a>  <span class="kw">color</span><span class="ch">:</span> <span class="cn">green</span><span class="op">;</span></span>
-<span id="cb7-22"><a href="#cb7-22"></a>}</span>
-<span id="cb7-23"><a href="#cb7-23"></a>h3 {</span>
-<span id="cb7-24"><a href="#cb7-24"></a>  <span class="kw">color</span><span class="ch">:</span> <span class="cn">darkblue</span><span class="op">;</span></span>
-<span id="cb7-25"><a href="#cb7-25"></a>}</span>
-<span id="cb7-26"><a href="#cb7-26"></a>h4 {</span>
-<span id="cb7-27"><a href="#cb7-27"></a>  <span class="kw">color</span><span class="ch">:</span> <span class="cn">brown</span><span class="op">;</span></span>
-<span id="cb7-28"><a href="#cb7-28"></a>}</span>
-<span id="cb7-29"><a href="#cb7-29"></a><span class="co">/* 右下角添加页码 */</span></span>
-<span id="cb7-30"><a href="#cb7-30"></a>section<span class="in">::after</span> {</span>
-<span id="cb7-31"><a href="#cb7-31"></a>  <span class="kw">content</span><span class="ch">:</span> <span class="fu">attr(</span><span class="dv">data-marpit-pagination</span><span class="fu">)</span> <span class="st">'/'</span> <span class="fu">attr(</span><span class="dv">data-marpit-pagination-total</span><span class="fu">)</span><span class="op">;</span> </span>
-<span id="cb7-32"><a href="#cb7-32"></a>}</span>
-<span id="cb7-33"><a href="#cb7-33"></a>header<span class="op">,</span></span>
-<span id="cb7-34"><a href="#cb7-34"></a>footer {</span>
-<span id="cb7-35"><a href="#cb7-35"></a>  <span class="kw">position</span><span class="ch">:</span> <span class="dv">absolute</span><span class="op">;</span></span>
-<span id="cb7-36"><a href="#cb7-36"></a>  <span class="kw">left</span><span class="ch">:</span> <span class="dv">50</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb7-37"><a href="#cb7-37"></a>  <span class="kw">right</span><span class="ch">:</span> <span class="dv">50</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb7-38"><a href="#cb7-38"></a>  <span class="kw">height</span><span class="ch">:</span> <span class="dv">25</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb7-39"><a href="#cb7-39"></a>}</span>
-<span id="cb7-40"><a href="#cb7-40"></a><span class="co">/* 调整图片与文本之间的间距 */</span></span>
-<span id="cb7-41"><a href="#cb7-41"></a>section img {</span>
-<span id="cb7-42"><a href="#cb7-42"></a>  <span class="kw">margin-right</span><span class="ch">:</span> <span class="dv">10</span><span class="dt">px</span><span class="op">;</span>   <span class="co">/* 设置图片右侧的间距 */</span></span>
-<span id="cb7-43"><a href="#cb7-43"></a>  <span class="kw">margin-left</span><span class="ch">:</span> <span class="dv">10</span><span class="dt">px</span><span class="op">;</span>   <span class="co">/* 设置图片左侧的间距 */</span></span>
-<span id="cb7-44"><a href="#cb7-44"></a>}</span>
-<span id="cb7-45"><a href="#cb7-45"></a></span>
-<span id="cb7-46"><a href="#cb7-46"></a><span class="co">/* 设置正文区域的边距，确保文本能更紧凑地放置 */</span></span>
-<span id="cb7-47"><a href="#cb7-47"></a>section {</span>
-<span id="cb7-48"><a href="#cb7-48"></a>  <span class="pp">#padding-right</span><span class="in">:</span> 20px;  <span class="co">/* 设置右侧边距 */</span></span>
-<span id="cb7-49"><a href="#cb7-49"></a>  <span class="pp">#padding-left</span><span class="in">:</span> 20px;  <span class="co">/* 设置左侧边距 */</span></span>
-<span id="cb7-50"><a href="#cb7-50"></a>}</span>
-<span id="cb7-51"><a href="#cb7-51"></a></span>
-<span id="cb7-52"><a href="#cb7-52"></a><span class="co">/* ====== 新增：设置代码块字号 ====== */</span></span>
-<span id="cb7-53"><a href="#cb7-53"></a></span>
-<span id="cb7-54"><a href="#cb7-54"></a><span class="co">/* 默认代码块字号 */</span></span>
-<span id="cb7-55"><a href="#cb7-55"></a>pre {</span>
-<span id="cb7-56"><a href="#cb7-56"></a>  <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">22</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb7-57"><a href="#cb7-57"></a>}</span>
-<span id="cb7-58"><a href="#cb7-58"></a></span>
-<span id="cb7-59"><a href="#cb7-59"></a><span class="co">/* 可选类：小字号代码块 */</span></span>
-<span id="cb7-60"><a href="#cb7-60"></a><span class="fu">.small-code</span> pre {</span>
-<span id="cb7-61"><a href="#cb7-61"></a>  <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">12</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb7-62"><a href="#cb7-62"></a>}</span>
-<span id="cb7-63"><a href="#cb7-63"></a></span>
-<span id="cb7-64"><a href="#cb7-64"></a><span class="co">/* 可选类：大字号代码块 */</span></span>
-<span id="cb7-65"><a href="#cb7-65"></a><span class="fu">.large-code</span> pre {</span>
-<span id="cb7-66"><a href="#cb7-66"></a>  <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">20</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb7-67"><a href="#cb7-67"></a>}</span>
-<span id="cb7-68"><a href="#cb7-68"></a>&lt;/style&gt;</span>
-<span id="cb7-69"><a href="#cb7-69"></a></span>
-<span id="cb7-70"><a href="#cb7-70"></a><span class="co">&lt;!--顶部文字--&gt;</span></span>
-<span id="cb7-71"><a href="#cb7-71"></a><span class="co">[</span><span class="ot">lianxh.cn</span><span class="co">](https://www.lianxh.cn/news/46917f1076104.html)</span> </span>
-<span id="cb7-72"><a href="#cb7-72"></a></span>
-<span id="cb7-73"><a href="#cb7-73"></a>&lt;br&gt;</span>
-<span id="cb7-74"><a href="#cb7-74"></a></span>
-<span id="cb7-75"><a href="#cb7-75"></a><span class="co">&lt;!--封面图片--&gt;</span></span>
-<span id="cb7-76"><a href="#cb7-76"></a><span class="al">![bg right:50% w:400 brightness:. sepia:50%](https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20220722114227.png)</span> </span>
-<span id="cb7-77"><a href="#cb7-77"></a></span>
-<span id="cb7-78"><a href="#cb7-78"></a><span class="co">&lt;!--幻灯片标题--&gt;</span></span>
-<span id="cb7-79"><a href="#cb7-79"></a></span>
-<span id="cb7-80"><a href="#cb7-80"></a><span class="fu">### 连享会 · 2025 暑期班 · 高级班</span></span>
-<span id="cb7-81"><a href="#cb7-81"></a></span>
-<span id="cb7-82"><a href="#cb7-82"></a><span class="fu"># B1. 动态面板门槛模型</span></span>
-<span id="cb7-83"><a href="#cb7-83"></a></span>
-<span id="cb7-84"><a href="#cb7-84"></a>&lt;br&gt;</span>
-<span id="cb7-85"><a href="#cb7-85"></a>&lt;br&gt;</span>
-<span id="cb7-86"><a href="#cb7-86"></a></span>
-<span id="cb7-87"><a href="#cb7-87"></a><span class="co">&lt;!--作者信息--&gt;</span></span>
-<span id="cb7-88"><a href="#cb7-88"></a><span class="co">[</span><span class="ot">连玉君</span><span class="co">](https://www.lianxh.cn)</span> (中山大学)</span>
-<span id="cb7-89"><a href="#cb7-89"></a>arlionn@163.com</span>
-<span id="cb7-90"><a href="#cb7-90"></a></span>
-<span id="cb7-91"><a href="#cb7-91"></a>&lt;br&gt;</span>
-<span id="cb7-92"><a href="#cb7-92"></a></span>
-<span id="cb7-93"><a href="#cb7-93"></a>---</span>
-<span id="cb7-94"><a href="#cb7-94"></a><span class="co">&lt;!-- backgroundColor: #FFFFF9 --&gt;</span></span>
-<span id="cb7-95"><a href="#cb7-95"></a><span class="fu">## 第一页幻灯片</span></span>
-<span id="cb7-96"><a href="#cb7-96"></a></span>
-<span id="cb7-97"><a href="#cb7-97"></a><span class="ss">- </span>背景是淡黄色的，可以根据需要修改颜色</span>
-<span id="cb7-98"><a href="#cb7-98"></a></span>
-<span id="cb7-99"><a href="#cb7-99"></a>---</span>
-<span id="cb7-100"><a href="#cb7-100"></a><span class="co">&lt;!-- backgroundColor:white --&gt;</span></span>
-<span id="cb7-101"><a href="#cb7-101"></a><span class="fu">## 第二页幻灯片</span></span>
-<span id="cb7-102"><a href="#cb7-102"></a></span>
-<span id="cb7-103"><a href="#cb7-103"></a><span class="ss">- </span>背景是纯白色</span>
-<span id="cb7-104"><a href="#cb7-104"></a><span class="ss">- </span>下面的图片在右侧，占页面 60% 的宽度</span>
-<span id="cb7-105"><a href="#cb7-105"></a></span>
-<span id="cb7-106"><a href="#cb7-106"></a><span class="al">![bg right:60% w:800](图片网址)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">---</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="an">marp:</span><span class="co"> true</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="an">size:</span><span class="co"> 16:9        # 宽版：4:3</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="an">paginate:</span><span class="co"> true  </span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="an">footer:</span><span class="co"> '[lianxh.cn](https://www.lianxh.cn)&amp;ensp;|&amp;ensp;[Books](https://www.lianxh.cn/Books.html)'</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="co">---</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a></span>
+<span id="cb8-8"><a href="#cb8-8"></a>&lt;style&gt;</span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="co">/*一级标题局中*/</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>section<span class="fu">.lead</span> h1 {</span>
+<span id="cb8-11"><a href="#cb8-11"></a>  <span class="kw">text-align</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span> <span class="co">/*其他参数：left, right*/</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a>}</span>
+<span id="cb8-13"><a href="#cb8-13"></a>section {</span>
+<span id="cb8-14"><a href="#cb8-14"></a>  <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">22</span><span class="dt">px</span><span class="op">;</span>      <span class="co">/* 正文字号 */</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a>}</span>
+<span id="cb8-16"><a href="#cb8-16"></a>h1 {</span>
+<span id="cb8-17"><a href="#cb8-17"></a>  <span class="kw">color</span><span class="ch">:</span> <span class="dv">blackyellow</span><span class="op">;</span>   <span class="co">/* 标题的颜色 */</span></span>
+<span id="cb8-18"><a href="#cb8-18"></a>  <span class="co">/*font-size: 28px; */</span> <span class="co">/* 标题的字号, 其它标题也可以这样修改 */</span></span>
+<span id="cb8-19"><a href="#cb8-19"></a>}</span>
+<span id="cb8-20"><a href="#cb8-20"></a>h2 {</span>
+<span id="cb8-21"><a href="#cb8-21"></a>  <span class="kw">color</span><span class="ch">:</span> <span class="cn">green</span><span class="op">;</span></span>
+<span id="cb8-22"><a href="#cb8-22"></a>}</span>
+<span id="cb8-23"><a href="#cb8-23"></a>h3 {</span>
+<span id="cb8-24"><a href="#cb8-24"></a>  <span class="kw">color</span><span class="ch">:</span> <span class="cn">darkblue</span><span class="op">;</span></span>
+<span id="cb8-25"><a href="#cb8-25"></a>}</span>
+<span id="cb8-26"><a href="#cb8-26"></a>h4 {</span>
+<span id="cb8-27"><a href="#cb8-27"></a>  <span class="kw">color</span><span class="ch">:</span> <span class="cn">brown</span><span class="op">;</span></span>
+<span id="cb8-28"><a href="#cb8-28"></a>}</span>
+<span id="cb8-29"><a href="#cb8-29"></a><span class="co">/* 右下角添加页码 */</span></span>
+<span id="cb8-30"><a href="#cb8-30"></a>section<span class="in">::after</span> {</span>
+<span id="cb8-31"><a href="#cb8-31"></a>  <span class="kw">content</span><span class="ch">:</span> <span class="fu">attr(</span><span class="dv">data-marpit-pagination</span><span class="fu">)</span> <span class="st">'/'</span> <span class="fu">attr(</span><span class="dv">data-marpit-pagination-total</span><span class="fu">)</span><span class="op">;</span> </span>
+<span id="cb8-32"><a href="#cb8-32"></a>}</span>
+<span id="cb8-33"><a href="#cb8-33"></a>header<span class="op">,</span></span>
+<span id="cb8-34"><a href="#cb8-34"></a>footer {</span>
+<span id="cb8-35"><a href="#cb8-35"></a>  <span class="kw">position</span><span class="ch">:</span> <span class="dv">absolute</span><span class="op">;</span></span>
+<span id="cb8-36"><a href="#cb8-36"></a>  <span class="kw">left</span><span class="ch">:</span> <span class="dv">50</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb8-37"><a href="#cb8-37"></a>  <span class="kw">right</span><span class="ch">:</span> <span class="dv">50</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb8-38"><a href="#cb8-38"></a>  <span class="kw">height</span><span class="ch">:</span> <span class="dv">25</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb8-39"><a href="#cb8-39"></a>}</span>
+<span id="cb8-40"><a href="#cb8-40"></a><span class="co">/* 调整图片与文本之间的间距 */</span></span>
+<span id="cb8-41"><a href="#cb8-41"></a>section img {</span>
+<span id="cb8-42"><a href="#cb8-42"></a>  <span class="kw">margin-right</span><span class="ch">:</span> <span class="dv">10</span><span class="dt">px</span><span class="op">;</span>   <span class="co">/* 设置图片右侧的间距 */</span></span>
+<span id="cb8-43"><a href="#cb8-43"></a>  <span class="kw">margin-left</span><span class="ch">:</span> <span class="dv">10</span><span class="dt">px</span><span class="op">;</span>   <span class="co">/* 设置图片左侧的间距 */</span></span>
+<span id="cb8-44"><a href="#cb8-44"></a>}</span>
+<span id="cb8-45"><a href="#cb8-45"></a></span>
+<span id="cb8-46"><a href="#cb8-46"></a><span class="co">/* 设置正文区域的边距，确保文本能更紧凑地放置 */</span></span>
+<span id="cb8-47"><a href="#cb8-47"></a>section {</span>
+<span id="cb8-48"><a href="#cb8-48"></a>  <span class="pp">#padding-right</span><span class="in">:</span> 20px;  <span class="co">/* 设置右侧边距 */</span></span>
+<span id="cb8-49"><a href="#cb8-49"></a>  <span class="pp">#padding-left</span><span class="in">:</span> 20px;  <span class="co">/* 设置左侧边距 */</span></span>
+<span id="cb8-50"><a href="#cb8-50"></a>}</span>
+<span id="cb8-51"><a href="#cb8-51"></a></span>
+<span id="cb8-52"><a href="#cb8-52"></a><span class="co">/* ====== 新增：设置代码块字号 ====== */</span></span>
+<span id="cb8-53"><a href="#cb8-53"></a></span>
+<span id="cb8-54"><a href="#cb8-54"></a><span class="co">/* 默认代码块字号 */</span></span>
+<span id="cb8-55"><a href="#cb8-55"></a>pre {</span>
+<span id="cb8-56"><a href="#cb8-56"></a>  <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">22</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb8-57"><a href="#cb8-57"></a>}</span>
+<span id="cb8-58"><a href="#cb8-58"></a></span>
+<span id="cb8-59"><a href="#cb8-59"></a><span class="co">/* 可选类：小字号代码块 */</span></span>
+<span id="cb8-60"><a href="#cb8-60"></a><span class="fu">.small-code</span> pre {</span>
+<span id="cb8-61"><a href="#cb8-61"></a>  <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">12</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb8-62"><a href="#cb8-62"></a>}</span>
+<span id="cb8-63"><a href="#cb8-63"></a></span>
+<span id="cb8-64"><a href="#cb8-64"></a><span class="co">/* 可选类：大字号代码块 */</span></span>
+<span id="cb8-65"><a href="#cb8-65"></a><span class="fu">.large-code</span> pre {</span>
+<span id="cb8-66"><a href="#cb8-66"></a>  <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">20</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb8-67"><a href="#cb8-67"></a>}</span>
+<span id="cb8-68"><a href="#cb8-68"></a>&lt;/style&gt;</span>
+<span id="cb8-69"><a href="#cb8-69"></a></span>
+<span id="cb8-70"><a href="#cb8-70"></a><span class="co">&lt;!--顶部文字--&gt;</span></span>
+<span id="cb8-71"><a href="#cb8-71"></a><span class="co">[</span><span class="ot">lianxh.cn</span><span class="co">](https://www.lianxh.cn/news/46917f1076104.html)</span> </span>
+<span id="cb8-72"><a href="#cb8-72"></a></span>
+<span id="cb8-73"><a href="#cb8-73"></a>&lt;br&gt;</span>
+<span id="cb8-74"><a href="#cb8-74"></a></span>
+<span id="cb8-75"><a href="#cb8-75"></a><span class="co">&lt;!--封面图片--&gt;</span></span>
+<span id="cb8-76"><a href="#cb8-76"></a><span class="al">![bg right:50% w:400 brightness:. sepia:50%](https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20220722114227.png)</span> </span>
+<span id="cb8-77"><a href="#cb8-77"></a></span>
+<span id="cb8-78"><a href="#cb8-78"></a><span class="co">&lt;!--幻灯片标题--&gt;</span></span>
+<span id="cb8-79"><a href="#cb8-79"></a></span>
+<span id="cb8-80"><a href="#cb8-80"></a><span class="fu">### 连享会 · 2025 暑期班 · 高级班</span></span>
+<span id="cb8-81"><a href="#cb8-81"></a></span>
+<span id="cb8-82"><a href="#cb8-82"></a><span class="fu"># B1. 动态面板门槛模型</span></span>
+<span id="cb8-83"><a href="#cb8-83"></a></span>
+<span id="cb8-84"><a href="#cb8-84"></a>&lt;br&gt;</span>
+<span id="cb8-85"><a href="#cb8-85"></a>&lt;br&gt;</span>
+<span id="cb8-86"><a href="#cb8-86"></a></span>
+<span id="cb8-87"><a href="#cb8-87"></a><span class="co">&lt;!--作者信息--&gt;</span></span>
+<span id="cb8-88"><a href="#cb8-88"></a><span class="co">[</span><span class="ot">连玉君</span><span class="co">](https://www.lianxh.cn)</span> (中山大学)</span>
+<span id="cb8-89"><a href="#cb8-89"></a>arlionn@163.com</span>
+<span id="cb8-90"><a href="#cb8-90"></a></span>
+<span id="cb8-91"><a href="#cb8-91"></a>&lt;br&gt;</span>
+<span id="cb8-92"><a href="#cb8-92"></a></span>
+<span id="cb8-93"><a href="#cb8-93"></a>---</span>
+<span id="cb8-94"><a href="#cb8-94"></a><span class="co">&lt;!-- backgroundColor: #FFFFF9 --&gt;</span></span>
+<span id="cb8-95"><a href="#cb8-95"></a><span class="fu">## 第一页幻灯片</span></span>
+<span id="cb8-96"><a href="#cb8-96"></a></span>
+<span id="cb8-97"><a href="#cb8-97"></a><span class="ss">- </span>背景是淡黄色的，可以根据需要修改颜色</span>
+<span id="cb8-98"><a href="#cb8-98"></a></span>
+<span id="cb8-99"><a href="#cb8-99"></a>---</span>
+<span id="cb8-100"><a href="#cb8-100"></a><span class="co">&lt;!-- backgroundColor:white --&gt;</span></span>
+<span id="cb8-101"><a href="#cb8-101"></a><span class="fu">## 第二页幻灯片</span></span>
+<span id="cb8-102"><a href="#cb8-102"></a></span>
+<span id="cb8-103"><a href="#cb8-103"></a><span class="ss">- </span>背景是纯白色</span>
+<span id="cb8-104"><a href="#cb8-104"></a><span class="ss">- </span>下面的图片在右侧，占页面 60% 的宽度</span>
+<span id="cb8-105"><a href="#cb8-105"></a></span>
+<span id="cb8-106"><a href="#cb8-106"></a><span class="al">![bg right:60% w:800](图片网址)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>详情参见：</p>
 <ul>
 <li>宋森安, 2021, <a href="https://www.lianxh.cn/details/656.html">用Markdown制作幻灯片-五分钟学会Marp（上篇）</a>, 连享会 No.656.</li>
 <li>宋森安, 2021, <a href="https://www.lianxh.cn/details/657.html">用Markdown制作幻灯片-五分钟学会Marp（下篇）</a>, 连享会 No.657.</li>
 <li>连玉君, 2022, <a href="https://www.lianxh.cn/details/1059.html">Marp幻灯片模板：用Markdown快速写幻灯片</a>, 连享会 No.1059.</li>
 </ul>
+</section>
+</section>
+<section id="marp-常见问题" class="level3" data-number="9.4.3">
+<h3 data-number="9.4.3" class="anchored" data-anchor-id="marp-常见问题"><span class="header-section-number">9.4.3</span> Marp 常见问题</h3>
+<ol type="1">
+<li><strong>如何安装 Marp？</strong>
+<ul>
+<li>请参考 <a href="https://marp.app/docs/install">安装指南</a> 进行安装。</li>
+</ul></li>
+<li><strong>Marp 支持哪些格式的文件？</strong>
+<ul>
+<li>Marp 支持 Markdown 格式的文件，通常以 <code>.md</code> 作为文件扩展名。</li>
+</ul></li>
+<li><strong>如何导出幻灯片？</strong>
+<ul>
+<li>在 Marp 中，你可以将幻灯片导出为 PDF 或 PPTX 格式，具体操作请参考 <a href="https://marp.app/docs/export">导出指南</a>。</li>
+</ul></li>
+<li><strong>Marp 是否支持自定义主题？</strong>
+<ul>
+<li>是的，Marp 支持自定义主题，你可以通过 CSS 来修改幻灯片的样式。</li>
+</ul></li>
+</ol>
 </section>
 </section>
 <section id="用-markdown-编写个人网站和简历" class="level2" data-number="9.5">

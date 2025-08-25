@@ -628,7 +628,15 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>模拟一份数据，Python 代码。代码尽可能简洁： 1. N = 11, seed = 42 2. x (Income) - 收入, 取值范围 5-15w； 3. y (Consum)：y~5 + 0.5x + e, e ~ N(0, 1) 4. 绘制散点图+拟合线 5. 使用 statsmodels 进行线性回归分析，输出结果 6. 不显示 warnings</p>
+<p>模拟一份数据，Python 代码。代码尽可能简洁：</p>
+<ol type="1">
+<li>N = 11, seed = 42</li>
+<li>x (Income) - 收入, 取值范围 5-15w；</li>
+<li>y (Consum)：y~5 + 0.5x + e, e ~ N(0, 1)</li>
+<li>绘制散点图+拟合线</li>
+<li>使用 statsmodels 进行线性回归分析，输出结果</li>
+<li>不显示 warnings</li>
+</ol>
 </div>
 </div>
 <div id="92a98304" class="cell" data-execution_count="6">
@@ -798,7 +806,12 @@ y_i =
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>模拟一份数据，Python 代码。代码尽可能简洁： 1. N = 11 2. x - 收入, 取值范围 5-15w； 3. y-消费：蓝色组 y~4 + 0.4x ；红色组 y~6+ 0.6x，两个组的 x 取值大概有 30% 左右的重叠区域 4. y ~ x 的整体关系看起来有点非线性的特征，但蓝色组和红色组组内基本上线性关系 5. 我随后会用这份数据演示模型设定的思想：可以做全样本线型模型；子样本线型模型，也可以采用 regression tree ，或者非参数估计</p>
+<p>模拟一份数据，Python 代码。代码尽可能简洁：</p>
+<p>1. N = 11<br>
+2. x - 收入, 取值范围 5-15w；<br>
+3. y-消费：蓝色组 y~4 + 0.4x ；红色组 y~6+ 0.6x，两个组的 x 取值大概有 30% 左右的重叠区域<br>
+4. y ~ x 的整体关系看起来有点非线性的特征，但蓝色组和红色组组内基本上线性关系<br>
+5. 我随后会用这份数据演示模型设定的思想：可以做全样本线型模型；子样本线型模型，也可以采用 regression tree ，或者非参数估计</p>
 </div>
 </div>
 <div id="57e6b3cc" class="cell" data-execution_count="11">
@@ -1092,7 +1105,8 @@ y_i =
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>使用 summary_col 汇总 model1-model3 的估计结果。最后几行呈现 R2 和 RSS 的结果；</p>
+<p>使用 summary_col 汇总 model1-model3 的估计结果。<br>
+最后几行呈现 R2 和 RSS 的结果。</p>
 </div>
 </div>
 <div id="fca67511" class="cell" data-execution_count="34">
@@ -1160,17 +1174,23 @@ Standard errors in parentheses.
 <blockquote class="blockquote">
 <p>Mroz, T. A., <strong>1987</strong>, The sensitivity of an empirical model of married women’s hours of work to economic and statistical assumptions, <strong>Econometrica</strong>, 55 (4): 765-799. <a href="https://doi.org/10.2307/1911029">-Link-</a>, <a href="https://sci-hub.ren/10.2307/1911029">-PDF-</a>, <a href="https://juanmuro.web.uah.es/mroz87.pdf">PDF2</a></p>
 </blockquote>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/%E5%9B%BE%E7%89%872_20191213104808.png" class="img-fluid figure-img"></p>
-<figcaption>w:700</figcaption>
-</figure>
-</div>
+<p><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/%E5%9B%BE%E7%89%872_20191213104808.png" class="img-fluid"></p>
 <p><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/gr_OLS_CEF_edu_01_scatter.png" class="img-fluid"></p>
 <blockquote class="blockquote">
-<p>条件期望 CEF <span class="math display">\[
+<p>条件期望 CEF</p>
+</blockquote>
+<p><span class="math display">\[
 \mathbb{E}[Y| X=x]=m(x)
-\]</span> - eg. <span class="math inline">\(\mathbb{E}[Wage| Educ=12]=m(12)\)</span> - <code>sum wage if educ==12</code> - <code>reg wage if educ==12</code> 建模思路：考虑误差</p>
+\]</span></p>
+<ul>
+<li>例如，<span class="math inline">\(\mathbb{E}[Wage| Educ=12]=m(12)\)</span>
+<ul>
+<li><code>sum wage if educ==12</code></li>
+<li><code>reg wage if educ==12</code></li>
+</ul></li>
+</ul>
+<blockquote class="blockquote">
+<p>建模思路：考虑误差</p>
 </blockquote>
 <p><span class="math display">\[
 \begin{aligned}
@@ -1180,23 +1200,26 @@ Y &amp;=m(X)+e \\
 \end{aligned}
 \]</span></p>
 <blockquote class="blockquote">
-<p>实证模型 <span class="math display">\[
+<p>实证模型</p>
+</blockquote>
+<p><span class="math display">\[
 \mathbb{E}[Wage\,|\,Edu]= m(Edu)
 \]</span></p>
-</blockquote>
 <p><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/gr_OLS_CEF_edu_02_lfit_qfit.png" class="img-fluid"></p>
 <blockquote class="blockquote">
-<p>实证模型 <span class="math display">\[
+<p>实证模型</p>
+</blockquote>
+<p><span class="math display">\[
 \mathbb{E}[Wage\,|\,Edu]= m(Edu)
 \]</span></p>
-</blockquote>
 <blockquote class="blockquote">
 <p>模型设定：</p>
 </blockquote>
-<p>$ (1)&nbsp;&nbsp; Wage_i = + Edu_i + e_i $</p>
-<p>$ (2)&nbsp;&nbsp;Wage_i = + _1 Edu_i + {} + e_i $</p>
-<p>$ (3)&nbsp;&nbsp;{}(Wage_i) = + Edu_i + e_i $</p>
-<p>$ (4)&nbsp;&nbsp;Wage_i = + Edu_i + {} + e_i $    其中，<span class="math inline">\(D = \mathbf{1}(Edu\!&gt;\!16)\)</span></p>
+<p><span class="math inline">\((1)\ \  Wage_i = \alpha + \beta Edu_i + e_i\)</span></p>
+<p><span class="math inline">\((2)\ \ Wage_i = \alpha + \beta_1 Edu_i + {\color{red}{\beta_2 Edu_i^2}} + e_i\)</span></p>
+<p><span class="math inline">\((3)\ \ {\color{red}{\text{ln}}}(Wage_i) = \alpha + \beta Edu_i + e_i\)</span></p>
+<p><span class="math inline">\((4)\ \ Wage_i = \alpha + \beta Edu_i + {\color{red}{\gamma D + \theta D\!\times\!Edu_i}} + e_i\)</span></p>
+<p>   其中，<span class="math inline">\(D = \mathbf{1}(Edu\!&gt;\!16)\)</span></p>
 <p>:dog: 切记，上述模型分析的都是 <strong>条件期望</strong> (CEF)。</p>
 <p>:cat: 扩展：条件概率、条件中位数、条件分位数</p>
 <p><strong>参考资料</strong></p>
@@ -1212,16 +1235,19 @@ Y &amp;=m(X)+e \\
 <section id="矩阵表示" class="level3" data-number="30.5.1">
 <h3 data-number="30.5.1" class="anchored" data-anchor-id="矩阵表示"><span class="header-section-number">30.5.1</span> 矩阵表示</h3>
 <ul>
-<li><p><strong>Example</strong> 假设我们收集到了两个解释变量的数据: <code>education</code> 和 <code>age</code>，则 <span class="math inline">\(X\)</span> 矩阵定义为： <span class="math display">\[
+<li><strong>Example</strong> 假设我们收集到了两个解释变量的数据: <code>education</code> 和 <code>age</code>，则 <span class="math inline">\(X\)</span> 矩阵定义为：</li>
+</ul>
+<p><span class="math display">\[
 \mathbf{X}=\left(\begin{array}{cccc}
 1 &amp; \text { education }_{1} &amp; \text { age }_{1} &amp; \text { age }_{p}^{2} \\
 \vdots &amp; \vdots &amp; \vdots &amp; \vdots \\
 1 &amp; \text { education }_{n} &amp; \text { age }_{n} &amp; \text { age }_{n}^{2}
 \end{array}\right)_{n \times 4}
-\]</span></p></li>
-<li><p>模型写法： <span class="math display">\[
+\]</span></p>
+<ul>
+<li>模型写法： <span class="math display">\[
 \mathbf{y} = \mathbf{X}\mathbf{\beta} + \mathbf{e}
-\]</span></p></li>
+\]</span></li>
 </ul>
 </section>
 <section id="线性回归模型假设条件" class="level3" data-number="30.5.2">
@@ -1268,7 +1294,10 @@ Y &amp;=m(X)+e \\
 <section id="矩阵表示-1" class="level3" data-number="30.6.1">
 <h3 data-number="30.6.1" class="anchored" data-anchor-id="矩阵表示-1"><span class="header-section-number">30.6.1</span> 矩阵表示</h3>
 <ul>
-<li><p>模型设定： <span class="math display">\[\mathbf{y} = \mathbf{X}\mathbf{\beta} + \mathbf{e}\]</span></p></li>
+<li>模型设定：</li>
+</ul>
+<p><span class="math display">\[\mathbf{y} = \mathbf{X}\mathbf{\beta} + \mathbf{e}\]</span></p>
+<ul>
 <li><p>残差平方和： <span class="math display">\[
 R S S(\beta)=(\mathbf{y}-\mathbf{X} \beta)^{\prime}(\mathbf{y}-\mathbf{x} \beta)
 \]</span></p></li>
@@ -1284,15 +1313,12 @@ R S S(\beta)=(\mathbf{y}-\mathbf{X} \beta)^{\prime}(\mathbf{y}-\mathbf{x} \beta)
 <section id="残差的方差估计-hatsigma2" class="level3" data-number="30.6.2">
 <h3 data-number="30.6.2" class="anchored" data-anchor-id="残差的方差估计-hatsigma2"><span class="header-section-number">30.6.2</span> 残差的方差估计 <span class="math inline">\(\hat{\sigma}^2\)</span></h3>
 <p><span class="math display">\[\qquad y_{i} = \alpha + x_{i} \beta + e_{i}\]</span></p>
-<p><br></p>
-<p><span class="math display">\[
-\hat{\sigma}^2 = \frac{RSS}{n - k}
-\]</span></p>
-<p><span class="math display">\[
-  RSS = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 = \sum_{i=1}^{n} \hat{e}_i^2
-  \]</span> - <span class="math inline">\(y_i\)</span> 是观察值，<span class="math inline">\(\hat{y}_i\)</span> 是拟合值，<span class="math inline">\(\hat{e}_i\)</span> 是残差。 - <strong><span class="math inline">\(n\)</span></strong> 是样本量，<strong><span class="math inline">\(k\)</span></strong> 是回归模型中的参数个数 (包括截距项)。</p>
+<p><span class="math display">\[\hat{\sigma}^2 = \frac{RSS}{n - k}\]</span></p>
+<p><span class="math display">\[RSS = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 = \sum_{i=1}^{n} \hat{e}_i^2\]</span></p>
 <ul>
-<li>为什么除以 <span class="math inline">\(n - k\)</span>？
+<li><p><span class="math inline">\(y_i\)</span> 是观察值，<span class="math inline">\(\hat{y}_i\)</span> 是拟合值，<span class="math inline">\(\hat{e}_i\)</span> 是残差。</p></li>
+<li><p><span class="math inline">\(n\)</span> 是样本量，<span class="math inline">\(k\)</span> 是回归模型中的参数个数 (包括截距项)。</p></li>
+<li><p>为什么除以 <span class="math inline">\(n - k\)</span>？</p>
 <ul>
 <li>模型拟合了 <span class="math inline">\(k\)</span> 个参数（包括截距项），因此自由度减去 <span class="math inline">\(k\)</span>，以避免过度拟合。此时，残差方差 <span class="math inline">\(\hat{\sigma}^2\)</span> 是对总体残差方差的无偏估计。</li>
 </ul></li>
@@ -1300,7 +1326,7 @@ R S S(\beta)=(\mathbf{y}-\mathbf{X} \beta)^{\prime}(\mathbf{y}-\mathbf{x} \beta)
 </section>
 <section id="二元线性回归的可视化解释" class="level3" data-number="30.6.3">
 <h3 data-number="30.6.3" class="anchored" data-anchor-id="二元线性回归的可视化解释"><span class="header-section-number">30.6.3</span> 二元线性回归的可视化解释</h3>
-<p><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/Fig_OLS_superPlanent_01.png" class="img-fluid"></p>
+<p><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/Fig_OLS_superPlanent_01.png" class="img-fluid" width="600"></p>
 <blockquote class="blockquote">
 <p>Source: <a href="https://hastie.su.domains/MOOC-Slides/linear_regression.pdf">Hastie-2021</a>，<a href="https://www.youtube.com/watch?v=JaMgi4XBjo8">3D-vedio</a></p>
 </blockquote>
@@ -1335,8 +1361,13 @@ Y = 10 + 0.5 \times 3 + 2 X_2 + \varepsilon = 11.5 + 2 X_2 + \varepsilon
 <p>OLS 回归模型的统计推断主要集中在参数的显著性检验和模型的整体拟合度。</p>
 <section id="ols-估计量的性质" class="level3" data-number="30.7.1">
 <h3 data-number="30.7.1" class="anchored" data-anchor-id="ols-估计量的性质"><span class="header-section-number">30.7.1</span> OLS 估计量的性质</h3>
-<p>OLS 估计量具有以下几个重要性质： - <strong>无偏性（Unbiasedness）</strong>：<span class="math inline">\(E(\hat{\beta}) = \beta\)</span>。 - <strong>一致性（Consistency）</strong>：随着样本量趋向无穷大，<span class="math inline">\(\hat{\beta}\)</span> 会收敛于真实值 <span class="math inline">\(\beta\)</span>。 - <span class="math inline">\(\widehat{\beta} \stackrel{p}{\longrightarrow} \beta\)</span> 或 <span class="math inline">\(\widehat{\beta}=\beta+o_{p}(1)\)</span></p>
+<p>OLS 估计量具有以下几个重要性质：</p>
 <ul>
+<li><strong>无偏性（Unbiasedness）</strong>：<span class="math inline">\(E(\hat{\beta}) = \beta\)</span>。</li>
+<li><strong>一致性（Consistency）</strong>：随着样本量趋向无穷大，<span class="math inline">\(\hat{\beta}\)</span> 会收敛于真实值 <span class="math inline">\(\beta\)</span>。
+<ul>
+<li><span class="math inline">\(\widehat{\beta} \stackrel{p}{\longrightarrow} \beta\)</span> 或 <span class="math inline">\(\widehat{\beta}=\beta+o_{p}(1)\)</span></li>
+</ul></li>
 <li><strong>最小方差线性无偏估计（BLUE）</strong>：在满足一定条件下，OLS 是最优的线性无偏估计量。</li>
 </ul>
 </section>
@@ -1346,14 +1377,31 @@ Y = 10 + 0.5 \times 3 + 2 X_2 + \varepsilon = 11.5 + 2 X_2 + \varepsilon
 <li>单次估计具有随机性 (原因？)，但估计很多次，如 <span class="math inline">\(K=1000\)</span> 次，取它们的均值，<span class="math inline">\(E[\widehat{\beta}]\)</span>，可以很大程度上消除随机误差的影响</li>
 <li>这个均值应该接近真实值：<span class="math inline">\(E[\widehat{\beta}]={\beta}_0\)</span></li>
 </ul>
-<p><strong>MC 模拟分析</strong> - <strong>S1:</strong> 随机生成一个包含 <span class="math inline">\(N=5000\)</span> 个观察值的样本 (视为 “总体”，Population), 记为 <span class="math inline">\(S_{0}\)</span> 。 - 数据生成过程: <span class="math inline">\(y=10+0.5 x+e\)</span>, - <span class="math inline">\(x\)</span> 和 <span class="math inline">\(e\)</span> 均来自标准正态分布, 彼此独立。 - <strong>S2:</strong> 从 <span class="math inline">\(S_{0}\)</span> 中随机抽取 <span class="math inline">\(n=50\)</span> 个观察值, 形成一组抽样样本 (Sample), - 执行 OLS 估计, 记录 <span class="math inline">\(\widehat{\beta}\)</span> 和 <span class="math inline">\(\operatorname{se}(\widehat{\beta})\)</span> - <strong>S3:</strong> 重复第二步 <span class="math inline">\(K= 1000\)</span> 次 (右图取 <span class="math inline">\(K=10\)</span> 次)，得到 <span class="math inline">\(\widehat{\boldsymbol{\beta}}_j = \{\widehat{\beta}_1, \widehat{\beta}_2, \cdots, \widehat{\beta}_K\}\)</span>。</p>
+<p><strong>MC 模拟分析</strong></p>
+<ul>
+<li><strong>S1:</strong> 随机生成一个包含 <span class="math inline">\(N=5000\)</span> 个观察值的样本 (视为 “总体”，Population), 记为 <span class="math inline">\(S_{0}\)</span> 。
+<ul>
+<li>数据生成过程: <span class="math inline">\(y=10+0.5 x+e\)</span>,</li>
+<li><span class="math inline">\(x\)</span> 和 <span class="math inline">\(e\)</span> 均来自标准正态分布, 彼此独立。</li>
+</ul></li>
+<li><strong>S2:</strong> 从 <span class="math inline">\(S_{0}\)</span> 中随机抽取 <span class="math inline">\(n=50\)</span> 个观察值, 形成一组抽样样本 (Sample),
+<ul>
+<li>执行 OLS 估计, 记录 <span class="math inline">\(\widehat{\beta}\)</span> 和 <span class="math inline">\(\operatorname{se}(\widehat{\beta})\)</span></li>
+</ul></li>
+<li><strong>S3:</strong> 重复第二步 <span class="math inline">\(K= 1000\)</span> 次 (右图取 <span class="math inline">\(K=10\)</span> 次)，得到 <span class="math inline">\(\widehat{\boldsymbol{\beta}}_j = \{\widehat{\beta}_1, \widehat{\beta}_2, \cdots, \widehat{\beta}_K\}\)</span>。</li>
+</ul>
 <p><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/OLS_unbias_scatter_B10.png" class="img-fluid"></p>
 </section>
 <section id="估计量的一致性" class="level3" data-number="30.7.3">
 <h3 data-number="30.7.3" class="anchored" data-anchor-id="估计量的一致性"><span class="header-section-number">30.7.3</span> 估计量的一致性</h3>
 <p><strong>估计量的一致性</strong>：当样本数 <span class="math inline">\(n \rightarrow \infty\)</span> 时, 估计值无限接近于真实值。<br>
 表示为 <span class="math inline">\(\widehat{\beta} \stackrel{p}{\longrightarrow} \beta\)</span> 或 <span class="math inline">\(\widehat{\beta}=\beta+o_{p}(1)\)</span></p>
-<p><strong>MC 模拟分析：</strong> - <strong>S1</strong>. 随机生成一个包含 <span class="math inline">\(N=100000\)</span> 的总体样本, 记为 <span class="math inline">\(S_{0}\)</span> 。数据生成过程：<span class="math inline">\(y=10+0.5 x+e\)</span>, 其 中, <span class="math inline">\(x\)</span> 和 <span class="math inline">\(e\)</span> 均来自标准正态分布, 彼此独立。 - <strong>S2</strong>. 从 <span class="math inline">\(S_{0}\)</span> 中随机抽取 <span class="math inline">\(n=10\)</span> 个观察值, 视为一组抽样样本 (sample), 对其执行 OLS 估计, 记录 <span class="math inline">\(\widehat{\beta}\)</span> 和 <span class="math inline">\(\operatorname{se}(\widehat{\beta})\)</span> 。 - <strong>S3</strong>. 重复第二步, 但每次抽取的样本数 <span class="math inline">\(n\)</span> 不断增加，<span class="math inline">\(n=10, 20, ..., 30000\)</span>。</p>
+<p><strong>MC 模拟分析：</strong></p>
+<ul>
+<li><strong>S1</strong>. 随机生成一个包含 <span class="math inline">\(N=100000\)</span> 的总体样本, 记为 <span class="math inline">\(S_{0}\)</span> 。数据生成过程：<span class="math inline">\(y=10+0.5 x+e\)</span>, 其 中, <span class="math inline">\(x\)</span> 和 <span class="math inline">\(e\)</span> 均来自标准正态分布, 彼此独立。</li>
+<li><strong>S2</strong>. 从 <span class="math inline">\(S_{0}\)</span> 中随机抽取 <span class="math inline">\(n=10\)</span> 个观察值, 视为一组抽样样本 (sample), 对其执行 OLS 估计, 记录 <span class="math inline">\(\widehat{\beta}\)</span> 和 <span class="math inline">\(\operatorname{se}(\widehat{\beta})\)</span> 。</li>
+<li><strong>S3</strong>. 重复第二步, 但每次抽取的样本数 <span class="math inline">\(n\)</span> 不断增加，<span class="math inline">\(n=10, 20, ..., 30000\)</span>。</li>
+</ul>
 <p><img src="https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/OLS_consis_b_se.png" class="img-fluid"></p>
 </section>
 </section>
