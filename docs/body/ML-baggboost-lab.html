@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.7.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -21,8 +21,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -67,15 +68,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../body/ML-Support-Vector-Machines.html" rel="next">
 <link href="../body/ML-Random-Forests.html" rel="prev">
 <link href="../images/ds-book-logo-40.png" rel="icon" type="image/png">
-<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e8fb9d25728d58bfeac61b497e4a6629.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-fe91322616dd2b9cea8bc6bfc6aa44e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8434d2026ae8291579158df2ad8dfa64.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-7bb155a724e1e2e76a6aa2808839ad2c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -140,7 +142,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -648,7 +650,7 @@ window.Quarto = {
 <p><a target="_blank" href="https://colab.research.google.com/github/intro-stat-learning/ISLP_labs/blob/v2.2/Ch08-baggboost-lab.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://mybinder.org/v2/gh/intro-stat-learning/ISLP_labs/v2.2?labpath=Ch08-baggboost-lab.ipynb"><img src="https://mybinder.org/badge_logo.svg" class="img-fluid figure-img" alt="Binder"></a></p>
+<p><a href="https://mybinder.org/v2/gh/intro-stat-learning/ISLP_labs/v2.2?labpath=Ch08-baggboost-lab.ipynb"><img src="https://mybinder.org/badge_logo.svg" class="img-fluid figure-img"></a></p>
 <figcaption>Binder</figcaption>
 </figure>
 </div>
@@ -674,7 +676,7 @@ Note
 </div>
 </div>
 <p>We import some of our usual libraries at this top level.</p>
-<div id="0f4c7654" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:56.538518Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:56.538444Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.461439Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.461138Z&quot;}" data-execution_count="1">
+<div id="0f4c7654" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:56.538518Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:56.538444Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.461439Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.461138Z&quot;}}" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.pyplot <span class="im">import</span> subplots</span>
@@ -683,7 +685,7 @@ Note
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ISLP.models <span class="im">import</span> ModelSpec <span class="im">as</span> MS</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We also collect the new imports needed for this lab.</p>
-<div id="8d6cbed4" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.463014Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.462900Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.545573Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.545313Z&quot;}" data-execution_count="2">
+<div id="8d6cbed4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.463014Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.462900Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.545573Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.545313Z&quot;}}" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> (DecisionTreeClassifier <span class="im">as</span> DTC,</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                          DecisionTreeRegressor <span class="im">as</span> DTR,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                          plot_tree,</span>
@@ -698,7 +700,7 @@ Note
 <section id="fitting-classification-trees" class="level2" data-number="42.1">
 <h2 data-number="42.1" class="anchored" data-anchor-id="fitting-classification-trees"><span class="header-section-number">42.1</span> Fitting Classification Trees</h2>
 <p>We first use classification trees to analyze the <code>Carseats</code> data set. In these data, <code>Sales</code> is a continuous variable, and so we begin by recoding it as a binary variable. We use the <code>where()</code> function to create a variable, called <code>High</code>, which takes on a value of <code>Yes</code> if the <code>Sales</code> variable exceeds 8, and takes on a value of <code>No</code> otherwise.</p>
-<div id="d85f1550" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.547131Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.546998Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.551787Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.551553Z&quot;}" data-execution_count="5">
+<div id="d85f1550" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.547131Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.546998Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.551787Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.551553Z&quot;}}" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Carseats <span class="op">=</span> load_data(<span class="st">'Carseats'</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># data information</span></span>
@@ -770,7 +772,7 @@ max    191.000000   80.000000   18.000000
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                <span class="st">"No"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We now use <code>DecisionTreeClassifier()</code> to fit a classification tree in order to predict <code>High</code> using all variables but <code>Sales</code>. To do so, we must form a model matrix as we did when fitting regression models.</p>
-<div id="36229722" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.552963Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.552868Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.563391Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.563145Z&quot;}" data-execution_count="7">
+<div id="36229722" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.552963Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.552868Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.563391Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.563145Z&quot;}}" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> MS(Carseats.columns.drop(<span class="st">'Sales'</span>), intercept<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> model.fit_transform(Carseats)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>feature_names <span class="op">=</span> <span class="bu">list</span>(D.columns)</span>
@@ -778,7 +780,7 @@ max    191.000000   80.000000   18.000000
 </div>
 <p>We have converted <code>D</code> from a data frame to an array <code>X</code>, which is needed in some of the analysis below. We also need the <code>feature_names</code> for annotating our plots later.</p>
 <p>There are several options needed to specify the classifier, such as <code>max_depth</code> (how deep to grow the tree), <code>min_samples_split</code> (minimum number of observations in a node to be eligible for splitting) and <code>criterion</code> (whether to use Gini or cross-entropy as the split criterion). We also set <code>random_state</code> for reproducibility; ties in the split criterion are broken at random.</p>
-<div id="587701c2" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.564667Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.564592Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.570215Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.569974Z&quot;}" data-execution_count="5">
+<div id="587701c2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.564667Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.564592Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.570215Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.569974Z&quot;}}" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> DTC(criterion<span class="op">=</span><span class="st">'entropy'</span>,</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>          max_depth<span class="op">=</span><span class="dv">3</span>,</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>          random_state<span class="op">=</span><span class="dv">0</span>)        </span>
@@ -1192,7 +1194,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>In our discussion of qualitative features in Section 3.3, we noted that for a linear regression model such a feature could be represented by including a matrix of dummy variables (one-hot-encoding) in the model matrix, using the formula notation of <code>statsmodels</code>. As mentioned in Section 8.1, there is a more natural way to handle qualitative features when building a decision tree, that does not require such dummy variables; each split amounts to partitioning the levels into two groups. However, the <code>sklearn</code> implementation of decision trees does not take advantage of this approach; instead it simply treats the one-hot-encoded levels as separate variables.</p>
-<div id="a0194963" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.571414Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.571323Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.573854Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.573655Z&quot;}" data-execution_count="6">
+<div id="a0194963" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.571414Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.571323Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.573854Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.573655Z&quot;}}" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>accuracy_score(High, clf.predict(X))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>0.79</code></pre>
@@ -1203,7 +1205,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 -2 \sum_m \sum_k n_{mk} \log \hat{p}_{mk},
 \end{split}
 \end{equation*}\]</span> where <span class="math inline">\(n_{mk}\)</span> is the number of observations in the <span class="math inline">\(m\)</span>th terminal node that belong to the <span class="math inline">\(k\)</span>th class.</p>
-<div id="ef173e93" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.574968Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.574883Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.577601Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.577406Z&quot;}" data-execution_count="7">
+<div id="ef173e93" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.574968Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.574883Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.577601Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.577406Z&quot;}}" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>resid_dev <span class="op">=</span> np.<span class="bu">sum</span>(log_loss(High, clf.predict_proba(X)))</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>resid_dev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
@@ -1212,7 +1214,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 <p>This is closely related to the <em>entropy</em>, defined in (8.7). A small deviance indicates a tree that provides a good fit to the (training) data.</p>
 <p>One of the most attractive properties of trees is that they can be graphically displayed. Here we use the <code>plot()</code> function to display the tree structure.</p>
-<div id="06cd42f6" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.578703Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.578619Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.790070Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.787052Z&quot;}" data-execution_count="8">
+<div id="06cd42f6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.578703Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.578619Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.790070Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.787052Z&quot;}}" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> subplots(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">12</span>))[<span class="dv">1</span>]</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plot_tree(clf,</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>          feature_names<span class="op">=</span>feature_names,</span>
@@ -1228,7 +1230,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <p>The most important indicator of <code>Sales</code> appears to be <code>ShelveLoc</code>.</p>
 <p>We can see a text representation of the tree using <code>export_text()</code>, which displays the split criterion (e.g.&nbsp;<code>Price &lt;= 92.5</code>) for each branch. For leaf nodes it shows the overall prediction<br>
 (<code>Yes</code> or <code>No</code>). We can also see the number of observations in that leaf that take on values of <code>Yes</code> and <code>No</code> by specifying <code>show_weights=True</code>.</p>
-<div id="b6812ee3" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.795177Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.794516Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.803228Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.801841Z&quot;}" data-execution_count="9">
+<div id="b6812ee3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.795177Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.794516Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.803228Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.801841Z&quot;}}" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(export_text(clf,</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                  feature_names<span class="op">=</span>feature_names,</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                  show_weights<span class="op">=</span><span class="va">True</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1259,7 +1261,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>In order to properly evaluate the performance of a classification tree on these data, we must estimate the test error rather than simply computing the training error. We split the observations into a training set and a test set, build the tree using the training set, and evaluate its performance on the test data. This pattern is similar to that in Chapter 6, with the linear models replaced here by decision trees — the code for validation is almost identical. This approach leads to correct predictions for 68.5% of the locations in the test data set.</p>
-<div id="7c731ea6" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.806328Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.806104Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.821842Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.820604Z&quot;}" data-execution_count="10">
+<div id="7c731ea6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.806328Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.806104Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.821842Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.820604Z&quot;}}" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>validation <span class="op">=</span> skm.ShuffleSplit(n_splits<span class="op">=</span><span class="dv">1</span>,</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                              test_size<span class="op">=</span><span class="dv">200</span>,</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                              random_state<span class="op">=</span><span class="dv">0</span>)</span>
@@ -1273,7 +1275,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>Next, we consider whether pruning the tree might lead to improved classification performance. We first split the data into a training and test set. We will use cross-validation to prune the tree on the training set, and then evaluate the performance of the pruned tree on the test set.</p>
-<div id="84680f6a" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.825954Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.825446Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.830795Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.829694Z&quot;}" data-execution_count="11">
+<div id="84680f6a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.825954Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.825446Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.830795Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.829694Z&quot;}}" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(X_train,</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a> X_test,</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a> High_train,</span>
@@ -1284,7 +1286,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                                   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We first refit the full tree on the training set; here we do not set a <code>max_depth</code> parameter, since we will learn that through cross-validation.</p>
-<div id="1c5dbf1d" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.837384Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.835775Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.846267Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.844749Z&quot;}" data-execution_count="12">
+<div id="1c5dbf1d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.837384Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.835775Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.846267Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.844749Z&quot;}}" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> DTC(criterion<span class="op">=</span><span class="st">'entropy'</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>clf.fit(X_train, High_train)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>accuracy_score(High_test, clf.predict(X_test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1293,14 +1295,14 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>Next we use the <code>cost_complexity_pruning_path()</code> method of <code>clf</code> to extract cost-complexity values.</p>
-<div id="8cf23460" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.849358Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.848842Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.862585Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.860405Z&quot;}" data-execution_count="13">
+<div id="8cf23460" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.849358Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.848842Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:57.862585Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:57.860405Z&quot;}}" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ccp_path <span class="op">=</span> clf.cost_complexity_pruning_path(X_train, High_train)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>kfold <span class="op">=</span> skm.KFold(<span class="dv">10</span>,</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                  random_state<span class="op">=</span><span class="dv">1</span>,</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                  shuffle<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This yields a set of impurities and <span class="math inline">\(\alpha\)</span> values from which we can extract an optimal one by cross-validation.</p>
-<div id="62abb2be" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.872936Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.872306Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:58.107084Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:58.106846Z&quot;}" data-execution_count="14">
+<div id="62abb2be" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:57.872936Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:57.872306Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:58.107084Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:58.106846Z&quot;}}" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> skm.GridSearchCV(clf,</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                        {<span class="st">'ccp_alpha'</span>: ccp_path.ccp_alphas},</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                        refit<span class="op">=</span><span class="va">True</span>,</span>
@@ -1313,7 +1315,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>Let’s take a look at the pruned tree.</p>
-<div id="8311d318" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:58.108440Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:58.108366Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:58.530145Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:58.529868Z&quot;}" data-execution_count="15">
+<div id="8311d318" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:58.108440Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:58.108366Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:58.530145Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:58.529868Z&quot;}}" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">12</span>))[<span class="dv">1</span>]</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>best_ <span class="op">=</span> grid.best_estimator_</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>plot_tree(best_,</span>
@@ -1328,14 +1330,14 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>This is quite a bushy tree. We could count the leaves, or query <code>best_</code> instead.</p>
-<div id="36d1cd8f" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:58.531485Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:58.531382Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:58.533531Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:58.533312Z&quot;}" data-execution_count="16">
+<div id="36d1cd8f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:58.531485Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:58.531382Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:58.533531Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:58.533312Z&quot;}}" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>best_.tree_.n_leaves</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>30</code></pre>
 </div>
 </div>
 <p>The tree with 30 terminal nodes results in the lowest cross-validation error rate, with an accuracy of 68.5%. How well does this pruned tree perform on the test data set? Once again, we apply the <code>predict()</code> function.</p>
-<div id="f0f7bd8c" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:58.534778Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:58.534693Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:58.539435Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:58.539165Z&quot;}" data-execution_count="17">
+<div id="f0f7bd8c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:58.534778Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:58.534693Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:58.539435Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:58.539165Z&quot;}}" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(accuracy_score(High_test,</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>                     best_.predict(X_test)))</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>confusion <span class="op">=</span> confusion_table(best_.predict(X_test),</span>
@@ -1383,7 +1385,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <section id="fitting-regression-trees" class="level2" data-number="42.2">
 <h2 data-number="42.2" class="anchored" data-anchor-id="fitting-regression-trees"><span class="header-section-number">42.2</span> Fitting Regression Trees</h2>
 <p>Here we fit a regression tree to the <code>Boston</code> data set. The steps are similar to those for classification trees.</p>
-<div id="663d8cba" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:58.540825Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:58.540752Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:58.550403Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:58.550172Z&quot;}" data-execution_count="18">
+<div id="663d8cba" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:58.540825Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:58.540752Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:58.550403Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:58.550172Z&quot;}}" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>Boston <span class="op">=</span> load_data(<span class="st">"Boston"</span>)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> MS(Boston.columns.drop(<span class="st">'medv'</span>), intercept<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> model.fit_transform(Boston)</span>
@@ -1391,7 +1393,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.asarray(D)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>First, we split the data into training and test sets, and fit the tree to the training data. Here we use 30% of the data for the test set.</p>
-<div id="e2f6482c" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:58.551716Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:58.551637Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:58.554034Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:58.553810Z&quot;}" data-execution_count="19">
+<div id="e2f6482c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:58.551716Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:58.551637Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:58.554034Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:58.553810Z&quot;}}" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(X_train,</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a> X_test,</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a> y_train,</span>
@@ -1401,7 +1403,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>                                random_state<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Having formed our training and test data sets, we fit the regression tree.</p>
-<div id="55ff65dd" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:58.555212Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:58.555138Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:58.697536Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:58.697210Z&quot;}" data-execution_count="20">
+<div id="55ff65dd" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:58.555212Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:58.555138Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:58.697536Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:58.697210Z&quot;}}" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>reg <span class="op">=</span> DTR(max_depth<span class="op">=</span><span class="dv">3</span>)</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>reg.fit(X_train, y_train)</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> subplots(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">12</span>))[<span class="dv">1</span>]</span>
@@ -1418,7 +1420,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 <p>The variable <code>lstat</code> measures the percentage of individuals with lower socioeconomic status. The tree indicates that lower values of <code>lstat</code> correspond to more expensive houses. The tree predicts a median house price of $12,042 for small-sized homes (<code>rm &lt; 6.8</code>), in suburbs in which residents have low socioeconomic status (<code>lstat  &gt; 14.4</code>) and the crime-rate is moderate (<code>crim &gt; 5.8</code>).</p>
 <p>Now we use the cross-validation function to see whether pruning the tree will improve performance.</p>
-<div id="681b183e" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:58.699190Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:58.699058Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:58.739446Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:58.739180Z&quot;}" data-execution_count="21">
+<div id="681b183e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:58.699190Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:58.699058Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:58.739446Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:58.739180Z&quot;}}" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>ccp_path <span class="op">=</span> reg.cost_complexity_pruning_path(X_train, y_train)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>kfold <span class="op">=</span> skm.KFold(<span class="dv">5</span>,</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>                  shuffle<span class="op">=</span><span class="va">True</span>,</span>
@@ -1431,7 +1433,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> grid.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In keeping with the cross-validation results, we use the pruned tree to make predictions on the test set.</p>
-<div id="78a255e3" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:58.740764Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:58.740684Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:58.743246Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:58.743035Z&quot;}" data-execution_count="22">
+<div id="78a255e3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:58.740764Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:58.740684Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:58.743246Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:58.743035Z&quot;}}" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>best_ <span class="op">=</span> grid.best_estimator_</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>np.mean((y_test <span class="op">-</span> best_.predict(X_test))<span class="op">**</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
@@ -1440,7 +1442,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 <p>In other words, the test set MSE associated with the regression tree is 28.07. The square root of the MSE is therefore around 5.30, indicating that this model leads to test predictions that are within around $5300 of the true median home value for the suburb.</p>
 <p>Let’s plot the best tree to see how interpretable it is.</p>
-<div id="d6f01ff8" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:58.744386Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:58.744313Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:58.885793Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:58.885495Z&quot;}" data-execution_count="23">
+<div id="d6f01ff8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:58.744386Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:58.744313Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:58.885793Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:58.885495Z&quot;}}" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> subplots(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">12</span>))[<span class="dv">1</span>]</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>plot_tree(G.best_estimator_,</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>          feature_names<span class="op">=</span>feature_names,</span>
@@ -1457,7 +1459,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <section id="bagging-and-random-forests" class="level2" data-number="42.3">
 <h2 data-number="42.3" class="anchored" data-anchor-id="bagging-and-random-forests"><span class="header-section-number">42.3</span> Bagging and Random Forests</h2>
 <p>Here we apply bagging and random forests to the <code>Boston</code> data, using the <code>RandomForestRegressor()</code> from the <code>sklearn.ensemble</code> package. Recall that bagging is simply a special case of a random forest with <span class="math inline">\(m=p\)</span>. Therefore, the <code>RandomForestRegressor()</code> function can be used to perform both bagging and random forests. We start with bagging.</p>
-<div id="6f7ba658" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:58.887312Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:58.887194Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:59.020842Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:59.020537Z&quot;}" data-execution_count="24">
+<div id="6f7ba658" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:58.887312Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:58.887194Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:59.020842Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:59.020537Z&quot;}}" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>bag_boston <span class="op">=</span> RF(max_features<span class="op">=</span>X_train.shape[<span class="dv">1</span>], random_state<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>bag_boston.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
@@ -1869,7 +1871,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>The argument <code>max_features</code> indicates that all 12 predictors should be considered for each split of the tree — in other words, that bagging should be done. How well does this bagged model perform on the test set?</p>
-<div id="82e484c3" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:59.022227Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:59.022133Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:59.069912Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:59.069626Z&quot;}" data-execution_count="25">
+<div id="82e484c3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:59.022227Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:59.022133Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:59.069912Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:59.069626Z&quot;}}" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> subplots(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">8</span>))[<span class="dv">1</span>]</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>y_hat_bag <span class="op">=</span> bag_boston.predict(X_test)</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>ax.scatter(y_hat_bag, y_test)</span>
@@ -1886,7 +1888,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>The test set MSE associated with the bagged regression tree is 14.63, about half that obtained using an optimally-pruned single tree. We could change the number of trees grown from the default of 100 by using the <code>n_estimators</code> argument:</p>
-<div id="c8de558e" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:59.071344Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:59.071248Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:59.727901Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:59.727665Z&quot;}" data-execution_count="26">
+<div id="c8de558e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:59.071344Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:59.071248Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:59.727901Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:59.727665Z&quot;}}" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>bag_boston <span class="op">=</span> RF(max_features<span class="op">=</span>X_train.shape[<span class="dv">1</span>],</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>                n_estimators<span class="op">=</span><span class="dv">500</span>,</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>                random_state<span class="op">=</span><span class="dv">0</span>).fit(X_train, y_train)</span>
@@ -1898,7 +1900,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 <p>There is not much change. Bagging and random forests cannot overfit by increasing the number of trees, but can underfit if the number is too small.</p>
 <p>Growing a random forest proceeds in exactly the same way, except that we use a smaller value of the <code>max_features</code> argument. By default, <code>RandomForestRegressor()</code> uses <span class="math inline">\(p\)</span> variables when building a random forest of regression trees (i.e.&nbsp;it defaults to bagging), and <code>RandomForestClassifier()</code> uses <span class="math inline">\(\sqrt{p}\)</span> variables when building a random forest of classification trees. Here we use <code>max_features=6</code>.</p>
-<div id="bbebeb55" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:59.729294Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:59.729211Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:59.818356Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:59.818091Z&quot;}" data-execution_count="27">
+<div id="bbebeb55" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:59.729294Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:59.729211Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:59.818356Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:59.818091Z&quot;}}" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>RF_boston <span class="op">=</span> RF(max_features<span class="op">=</span><span class="dv">6</span>,</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>               random_state<span class="op">=</span><span class="dv">0</span>).fit(X_train, y_train)</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>y_hat_RF <span class="op">=</span> RF_boston.predict(X_test)</span>
@@ -1908,7 +1910,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>The test set MSE is 20.04; this indicates that random forests did somewhat worse than bagging in this case. Extracting the <code>feature_importances_</code> values from the fitted model, we can view the importance of each variable.</p>
-<div id="36dcca85" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:59.819714Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:59.819634Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:59.824993Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:59.824736Z&quot;}" data-execution_count="28">
+<div id="36dcca85" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:59.819714Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:59.819634Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:33:59.824993Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:33:59.824736Z&quot;}}" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>feature_imp <span class="op">=</span> pd.DataFrame(</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'importance'</span>:RF_boston.feature_importances_},</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>feature_names)</span>
@@ -1985,7 +1987,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <section id="boosting" class="level2" data-number="42.4">
 <h2 data-number="42.4" class="anchored" data-anchor-id="boosting"><span class="header-section-number">42.4</span> Boosting</h2>
 <p>Here we use <code>GradientBoostingRegressor()</code> from <code>sklearn.ensemble</code> to fit boosted regression trees to the <code>Boston</code> data set. For classification we would use <code>GradientBoostingClassifier()</code>. The argument <code>n_estimators=5000</code> indicates that we want 5000 trees, and the option <code>max_depth=3</code> limits the depth of each tree. The argument <code>learning_rate</code> is the <span class="math inline">\(\lambda\)</span> mentioned earlier in the description of boosting.</p>
-<div id="4478fc0c" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:59.826285Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:59.826212Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:34:02.831808Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:34:02.831548Z&quot;}" data-execution_count="29">
+<div id="4478fc0c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:33:59.826285Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:33:59.826212Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:34:02.831808Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:34:02.831548Z&quot;}}" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>boost_boston <span class="op">=</span> GBR(n_estimators<span class="op">=</span><span class="dv">5000</span>,</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>                   learning_rate<span class="op">=</span><span class="fl">0.001</span>,</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>                   max_depth<span class="op">=</span><span class="dv">3</span>,</span>
@@ -2402,7 +2404,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>We can see how the training error decreases with the <code>train_score_</code> attribute. To get an idea of how the test error decreases we can use the <code>staged_predict()</code> method to get the predicted values along the path.</p>
-<div id="57ac9a1e" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:34:02.833132Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:34:02.833055Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:34:03.101998Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:34:03.101670Z&quot;}" data-execution_count="30">
+<div id="57ac9a1e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:34:02.833132Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:34:02.833055Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:34:03.101998Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:34:03.101670Z&quot;}}" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>test_error <span class="op">=</span> np.zeros_like(boost_boston.train_score_)</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, y_ <span class="kw">in</span> <span class="bu">enumerate</span>(boost_boston.staged_predict(X_test)):</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>   test_error[idx] <span class="op">=</span> np.mean((y_test <span class="op">-</span> y_)<span class="op">**</span><span class="dv">2</span>)</span>
@@ -2427,7 +2429,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>We now use the boosted model to predict <code>medv</code> on the test set:</p>
-<div id="5e9127e2" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:34:03.103498Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:34:03.103396Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:34:03.112948Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:34:03.112658Z&quot;}" data-execution_count="31">
+<div id="5e9127e2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:34:03.103498Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:34:03.103396Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:34:03.112948Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:34:03.112658Z&quot;}}" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>y_hat_boost <span class="op">=</span> boost_boston.predict(X_test)<span class="op">;</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>np.mean((y_test <span class="op">-</span> y_hat_boost)<span class="op">**</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
@@ -2435,7 +2437,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>The test MSE obtained is 14.48, similar to the test MSE for bagging. If we want to, we can perform boosting with a different value of the shrinkage parameter <span class="math inline">\(\lambda\)</span> in (8.10). The default value is 0.001, but this is easily modified. Here we take <span class="math inline">\(\lambda=0.2\)</span>.</p>
-<div id="f76d94d9" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:34:03.114370Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:34:03.114270Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:34:05.116839Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:34:05.116587Z&quot;}" data-execution_count="32">
+<div id="f76d94d9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:34:03.114370Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:34:03.114270Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:34:05.116839Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:34:05.116587Z&quot;}}" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>boost_boston <span class="op">=</span> GBR(n_estimators<span class="op">=</span><span class="dv">5000</span>,</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>                   learning_rate<span class="op">=</span><span class="fl">0.2</span>,</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>                   max_depth<span class="op">=</span><span class="dv">3</span>,</span>
@@ -2453,7 +2455,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <section id="bayesian-additive-regression-trees" class="level2" data-number="42.5">
 <h2 data-number="42.5" class="anchored" data-anchor-id="bayesian-additive-regression-trees"><span class="header-section-number">42.5</span> Bayesian Additive Regression Trees</h2>
 <p>In this section we demonstrate a <code>Python</code> implementation of BART found in the <code>ISLP.bart</code> package. We fit a model to the <code>Boston</code> housing data set. This <code>BART()</code> estimator is designed for quantitative outcome variables, though other implementations are available for fitting logistic and probit models to categorical outcomes.</p>
-<div id="a310d4bd" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:34:05.118221Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:34:05.118141Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:34:06.308660Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:34:06.308427Z&quot;}" data-execution_count="33">
+<div id="a310d4bd" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:34:05.118221Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:34:05.118141Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:34:06.308660Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:34:06.308427Z&quot;}}" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>bart_boston <span class="op">=</span> BART(random_state<span class="op">=</span><span class="dv">0</span>, burnin<span class="op">=</span><span class="dv">5</span>, ndraw<span class="op">=</span><span class="dv">15</span>)</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>bart_boston.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="33">
@@ -2865,7 +2867,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>On this data set, with this split into test and training, we see that the test error of BART is similar to that of random forest.</p>
-<div id="4e45c7e0" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:34:06.310069Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:34:06.309992Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:34:06.543437Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:34:06.543204Z&quot;}" data-execution_count="34">
+<div id="4e45c7e0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:34:06.310069Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:34:06.309992Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:34:06.543437Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:34:06.543204Z&quot;}}" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>yhat_test <span class="op">=</span> bart_boston.predict(X_test.astype(np.float32))</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>np.mean((y_test <span class="op">-</span> yhat_test)<span class="op">**</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
@@ -2873,7 +2875,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>We can check how many times each variable appeared in the collection of trees. This gives a summary similar to the variable importance plot for boosting and random forests.</p>
-<div id="77037b29" class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:34:06.544739Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:34:06.544664Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:34:06.547184Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:34:06.546986Z&quot;}" data-execution_count="35">
+<div id="77037b29" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-03T19:34:06.544739Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-03T19:34:06.544664Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-03T19:34:06.547184Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-03T19:34:06.546986Z&quot;}}" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>var_inclusion <span class="op">=</span> pd.Series(bart_boston.variable_inclusion_.mean(<span class="dv">0</span>),</span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>                               index<span class="op">=</span>D.columns)</span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>var_inclusion</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2899,241 +2901,247 @@ dtype: float64</code></pre>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          if (link.getAttribute("rel") === null) {
-            link.setAttribute("rel", "noopener");
-          }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
+      return false;
     }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/ds\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
-        return container.innerHTML
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -3141,185 +3149,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../body/ML-Random-Forests.html" class="pagination-link" aria-label="深入理解：决策树与随机森林">

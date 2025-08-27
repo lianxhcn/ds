@@ -2,222 +2,222 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://lianxhcn.github.io/ds/index.html</loc>
-    <lastmod>2025-05-21T15:59:05.346Z</lastmod>
+    <lastmod>2025-08-25T11:09:16.448Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/00_intro.html</loc>
-    <lastmod>2025-08-25T17:43:46.869Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.567Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/01_00_coding_with_AI.html</loc>
-    <lastmod>2025-08-25T09:22:05.975Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.567Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/01_01_install_anaconda.html</loc>
-    <lastmod>2025-08-25T10:13:06.153Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.567Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/01_02_jupyter_notebook.html</loc>
-    <lastmod>2025-07-30T11:39:08.982Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.568Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/01_03_install_FAQs.html</loc>
-    <lastmod>2025-08-02T07:18:02.537Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.569Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/01_04_markdown.html</loc>
-    <lastmod>2025-08-25T09:44:47.091Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.569Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/02_py_00_intro.html</loc>
-    <lastmod>2025-08-25T08:41:08.973Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.570Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/02_py_01_grammer.html</loc>
-    <lastmod>2025-08-25T08:43:58.578Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.570Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/02_py_02_QuickReference.html</loc>
-    <lastmod>2025-05-16T17:57:12.151Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.570Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/02_py_03_packages.html</loc>
-    <lastmod>2025-08-25T08:44:50.845Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.571Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/02_py_04_import.html</loc>
-    <lastmod>2025-08-25T09:25:44.675Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.571Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/02_py_05_OOP.html</loc>
-    <lastmod>2025-05-23T18:03:24.603Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.572Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/02_py_06_filepath.html</loc>
-    <lastmod>2025-05-23T18:32:52.850Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.572Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/03_py_01_numpy.html</loc>
-    <lastmod>2025-05-23T18:10:22.176Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.572Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/03_py_02_pandas.html</loc>
-    <lastmod>2025-05-23T18:44:10.025Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.575Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/03_py_03_matplotlib.html</loc>
-    <lastmod>2025-05-19T10:06:29.531Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.578Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/03_py_04_function.html</loc>
-    <lastmod>2019-05-27T02:07:38.871Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.579Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/03_py_05_class.html</loc>
-    <lastmod>2025-08-25T09:18:21.056Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.579Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/data_01_get_data.html</loc>
-    <lastmod>2025-08-25T17:44:59.877Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.609Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/data_01_readdata.html</loc>
-    <lastmod>2025-08-25T17:41:37.853Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.610Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/data_02_data_type.html</loc>
-    <lastmod>2025-05-23T18:24:49.474Z</lastmod>
+    <lastmod>2025-08-25T11:09:13.655Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/data_02_get_data_GMD.html</loc>
-    <lastmod>2025-05-23T06:57:58.802Z</lastmod>
+    <lastmod>2025-08-25T11:09:13.663Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/TS_SZ_index.html</loc>
-    <lastmod>2025-05-23T07:24:57.351Z</lastmod>
+    <lastmod>2025-08-25T11:09:13.515Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/web_01_intro.html</loc>
-    <lastmod>2025-05-15T16:38:30.182Z</lastmod>
+    <lastmod>2025-08-25T11:09:13.785Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/graph_01_intro.html</loc>
-    <lastmod>2025-08-25T17:40:13.296Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.611Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/graph_dis_box_violin.html</loc>
-    <lastmod>2025-05-14T14:27:26.601Z</lastmod>
+    <lastmod>2025-08-25T11:09:13.719Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/graph_dis_histogram.html</loc>
-    <lastmod>2025-05-21T16:13:50.412Z</lastmod>
+    <lastmod>2025-08-25T11:09:13.721Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/graph_dis_kdensity.html</loc>
-    <lastmod>2025-05-21T16:54:15.152Z</lastmod>
+    <lastmod>2025-08-25T11:09:13.727Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/regress_01_OLS.html</loc>
-    <lastmod>2025-08-25T01:36:51.085Z</lastmod>
+    <lastmod>2025-08-25T11:09:13.731Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/regress_02_wage.html</loc>
-    <lastmod>2025-06-06T17:33:17.254Z</lastmod>
+    <lastmod>2025-08-25T11:09:13.746Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/regress_03_binscatter.html</loc>
-    <lastmod>2025-07-30T02:31:51.680Z</lastmod>
+    <lastmod>2025-08-25T11:09:13.756Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/regress_04_wage_prediction.html</loc>
-    <lastmod>2025-06-06T17:31:56.009Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.617Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/TS_asset_return.html</loc>
-    <lastmod>2025-08-25T02:23:46.081Z</lastmod>
+    <lastmod>2025-08-25T11:09:13.516Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/TS_man_weight.html</loc>
-    <lastmod>2025-05-07T17:08:16.177Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.608Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/TS_ARMA.html</loc>
-    <lastmod>2025-05-12T07:28:05.129Z</lastmod>
+    <lastmod>2025-08-25T11:09:13.487Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/TS_FRED_US_unemploy_rate.html</loc>
-    <lastmod>2025-05-19T03:00:35.294Z</lastmod>
+    <lastmod>2025-08-25T11:09:13.493Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/TS_GARCH_BYD.html</loc>
-    <lastmod>2025-05-12T23:02:29.579Z</lastmod>
+    <lastmod>2025-08-25T11:09:13.503Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/test_AB_test.html</loc>
-    <lastmod>2025-06-06T16:24:59.315Z</lastmod>
+    <lastmod>2025-08-25T11:09:13.784Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/ML-Naive-Bayes.html</loc>
-    <lastmod>2025-04-06T08:51:44.850Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.589Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/ML-Random-Forests.html</loc>
-    <lastmod>2025-08-25T16:36:15.273Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.592Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/ML-baggboost-lab.html</loc>
-    <lastmod>2025-05-14T08:02:30.766Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.599Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/ML-Support-Vector-Machines.html</loc>
-    <lastmod>2025-08-25T16:40:36.346Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.596Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/ML-svm-lab.html</loc>
-    <lastmod>2025-04-30T16:51:53.839Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.605Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/body/06.00-Figure-Code.html</loc>
-    <lastmod>2025-04-06T08:51:44.935Z</lastmod>
+    <lastmod>2025-08-26T16:02:48.588Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/homework/pre/Dangdang_G7_01_data_clean.html</loc>
-    <lastmod>2025-06-06T19:55:35.114Z</lastmod>
+    <lastmod>2025-08-25T11:09:16.372Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/homework/pre/Dangdang_G7_02_data_analysis.html</loc>
-    <lastmod>2025-06-06T19:55:43.531Z</lastmod>
+    <lastmod>2025-08-25T11:09:16.374Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/homework/pre/G8_China_stock_analysis.html</loc>
-    <lastmod>2025-06-06T19:56:23.914Z</lastmod>
+    <lastmod>2025-08-25T11:09:16.379Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/homework/pre/Stock_G4_01_data_crawler.html</loc>
-    <lastmod>2025-06-06T19:56:48.069Z</lastmod>
+    <lastmod>2025-08-25T11:09:16.382Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/homework/pre/Stock_G4_02_data_cleaning.html</loc>
-    <lastmod>2025-06-06T19:56:54.699Z</lastmod>
+    <lastmod>2025-08-25T11:09:16.383Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/homework/pre/Stock_G4_03_data_analysis.html</loc>
-    <lastmod>2025-06-06T19:57:05.639Z</lastmod>
+    <lastmod>2025-08-25T11:09:16.387Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/homework/pre/_ex02_万诗晴.html</loc>
-    <lastmod>2025-06-06T19:54:25.581Z</lastmod>
+    <lastmod>2025-08-25T11:09:16.394Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/homework/pre/_ex02_吴倩茵.html</loc>
-    <lastmod>2025-06-06T19:54:37.053Z</lastmod>
+    <lastmod>2025-08-25T11:09:16.397Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/homework/pre/_ex02_朱少荣.html</loc>
-    <lastmod>2025-06-06T19:54:54.507Z</lastmod>
+    <lastmod>2025-08-25T11:09:16.401Z</lastmod>
   </url>
   <url>
     <loc>https://lianxhcn.github.io/ds/homework/pre/_ex02_黄伊姿.html</loc>
-    <lastmod>2025-06-06T19:55:06.705Z</lastmod>
+    <lastmod>2025-08-25T11:09:16.410Z</lastmod>
   </url>
 </urlset>
