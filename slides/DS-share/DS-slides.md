@@ -12,7 +12,7 @@ section.lead h1 {
   text-align: center; /*其他参数：left, right*/
 }
 section {
-  font-size: 22px;      /* 正文字号 */
+  font-size: 24px;      /* 正文字号 */
 }
 h1 {
   color: blackyellow;   /* 标题的颜色 */
@@ -78,14 +78,14 @@ pre {
 <br>
 
 <!--封面图片-->
-![bg right:60% w:700 brightness:. sepia:50%](https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20250610225636.png) 
-
+![bg right:55% w:700 brightness:. sepia:50%](https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20250827232234.png) 
 
 
 <!--幻灯片标题-->
 
-# 数据分析与经济决策
 ## 课程建设经验分享
+# 数据分析与经济决策
+
 
 
 
@@ -98,7 +98,11 @@ arlionn@163.com
 
 <br>
 
-> <https://lianxhcn.github.io/ds/>
+> **课程主页**：
+> <https://lianxhcn.github.io/ds>   
+
+> **Github 仓库**：
+> <https://github.com/lianxhcn/ds>
 
 <!-- backgroundColor: #FFFFF9 -->
 
@@ -111,14 +115,66 @@ arlionn@163.com
 # 学生的特点
 
 ---
+## 课程概要
+
+- 主页：<>
+
+
+---
 
 # 整体感受
 
 - 忐忑不安 
 
+
+---
+<!-- backgroundColor: #cdf27eff -->
+# 教指委的课程指南
+
+--- 
+<!-- backgroundColor: white -->
+## 一、课程概述
+
+- 《数据分析与经济决策》是数字经济专业硕士研究生的核心课程之一。
+- 课程目标：为学生提供全面的数据分析技能，支持数字经济领域的决策与实践。
+- 学习内容涵盖：
+  - 数据分析在经济决策中的作用与意义
+  - 数据预处理、统计推断与因果推断
+  - 机器学习与深度学习 *
+  - 贝叶斯方法 * 
+  - 网络分析与社交媒体数据分析 *
+  - 大语言模型及自然语言处理 *
+- 强调数据分析方法在辅助经济决策中的应用。
+- 学生将具备扎实的数据处理、分析、解释及决策能力。
+- 为未来从事科研、政策制定或企业决策打下坚实基础。
+
 ---
 
+## 三、课程目标
+
+1. 熟练掌握数据分析方法；
+2. 运用机器学习和深度学习算法；
+3. 掌握网络和社交媒体数据分析能力；
+4. 了解经济决策的基本原理和方法；
+5. 培养数据驱动决策的能力。
+
+---
+
+## 五、授课方式
+
+- 本课程采用多种教学方法，包括课堂教师讲授和课堂互动讨论相结合。
+- 基础理论知识由教师进行课堂讲授，而应用和数据分析则通过课堂讨论互动的方式实现。
+- 另外，积极引入在线学习平台和资源，为学生提供更丰富的学习资源和学习方式。
+- 利用智能辅助教学工具，以及数据可视化工具和软件，来提升学习效果。
+
+
+
+---
+<!-- backgroundColor: #cdf27eff -->
+
 # 课前摸底
+
+> 学生人数：55 人；age：24-49 岁
 
 1. 你会用哪些软件？（多选题）
 2. 你了解以下哪些方法?（多选题）
@@ -127,6 +183,7 @@ arlionn@163.com
 5. 你更喜欢哪种授课方式？
 
 --- - --
+<!-- backgroundColor: white -->
 
 ![20250820170751](https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20250820170751.png)
 
@@ -149,13 +206,13 @@ arlionn@163.com
 
 ### 9-1 模式
 
-  - 90% 以上的时间由老师讲授，学生课后完成作业
+  - 90% 以上由老师讲授，学生课后完成作业
 
 ### 6-4 模式
 
-  - 老师讲授最重要的概念和原理，以及一些数据分析的流程。
-  - 布置小组作业：一个小型的数据处理和分析项目
-  - 课堂上留出大概 2/5 的时间，由学生报告，并与同学和老师做详细的讨论。
+  1. 老师讲授核心概念和原理、数据分析流程等
+  2. **小组作业**：一个小型的数据处理和分析项目
+  3. 课堂上留出大概 2/5 的时间，由学生报告，并与同学和老师做详细的讨论。
 
 ![bg right:45% w:600](https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20250820171611.png)
 
@@ -166,7 +223,7 @@ arlionn@163.com
 ![bg right:55% w:700](https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20250821183906.png)
 
 **制造与实业**: 21 人
-- 中国联合网络通信集团广东省分公司
+- 中国联合网络通信集团
 - 广东裁成律师事务所
 - 广州安迅经济发展有限公司
 - 广东天禾农资股份有限公司
@@ -248,44 +305,88 @@ arlionn@163.com
 
 # 教什么？
 
-- 思路一：教方法和模型 &rarr; 学生自行选择案例分析对象
-- 思路二：案例导向 &rarr; 学生根据自己的需要来学习
+- 教指委的课程指南
+  
+- 我们实际教授的内容
+
+---
+
+## 教指委 · 课程指南（1）
+
+1. **基础**
+   - 数据获取与清洗  
+   - 描述性统计与可视化  
+   - 统计推断：估计、检验、方差分析  
+
+2. **因果与机器学习**
+   - 因果推断：实验与政策评估  
+   - 机器学习：监督 / 非监督  
+   - 分类与聚类：树、KNN、K-means  
+
+---
+## 教指委 · 课程指南（1）
+3. **高级方法**
+   - 深度学习与神经网络  
+   - 贝叶斯方法与风险管理  
+   - 网络分析与社交媒体数据  
+   - 大语言模型（LLM）与文本分析  
+
 
 --- 
 
 ## 覆盖的主要内容
 
 - 数据分析的目的
-  - 数据清理和可视化 
-  - 预测 v.s. 因果推断
+  - 搞清楚事实：数据清理和可视化 
+  - 搞清楚关系：回归分析、因果推断
+  - 预测：时间序列分析、机器学习
+  - 决策：优化、模拟
 - 数据分析的流程
+  - 目标 &rarr; 数据 &rarr; 方法 &rarr; 结果 &rarr; 决策 
 - 数据分析的工具
+  - AI 工具 + Python + Jupyter Notebook
+  - Github + Github Desktop
+  - Markdown + Marp
 
-### 主要模块
+
+---
+
+### 主要模块 (1)
 
 - 数据的获取
-  - CSMAR
-  - API
-  - `akshare` package
+  - 常用数据库：CSMAR、Wind、CEIC
+  - API：`yfinance`、`tushare`、`akshare` ……
   - 爬虫
 - 数据清洗和格式化
   - 项目文档结构
-  - 数据字典
   - 格式化数据与非格式化数据
   - 数据变换、二次编码、离群值
 - 数据可视化 
-  - 常用图表 (直方图、密度函数图、散点图、分仓散点图、类别变量)
+  - 常用图表 (密度函数图、箱线图、分仓散点图)
   - 可视化的一些基本原则
-- EDA
+
+---
+
+### 主要模块 (2)
+
+- 探索性数据分析 (EDA)
+  - 了解数据的基本特征、变量之间的关系
+  - 初步建模
 - 常用统计和计量模型
   - 入手：数据类型和分布特征
-  - 假设检验
-  - 线性模型
-  - GLM
-  - 离散选择和受限因变量
+  - 假设检验和统计推断：传统 &rarr; Bootstrap + 交叉验证
+  - 线性模型 &rarr; GLM &rarr; 离散选择和受限因变量
   - 机器学习方法
     - 分类、回归、聚类、降维
+    - 树模型、随机森林、XGBoost
 - 数据分析案例
+  - 上市公司财务分析：负债率
+  - 宏观经济分析：GDP、失业率、通胀率
+  - 金融市场分析：股票收益率、波动率、风险溢价
+  - 消费行为分析：客户细分、购买预测
+  - 文本数据分析：情感分析、主题建模
+  - 网络数据分析：社交网络、影响力传播
+
 
 ---
 
@@ -320,8 +421,11 @@ arlionn@163.com
 
 ## 如何教？作业
 
-- 个人作业
-- 小组作业
+- 个人作业：每周一次 (2-3 小时)
+  - [ex_P01.md](https://github.com/lianxhcn/ds/blob/main/homework/ex_P01.md)&emsp;|&emsp;[ex_P02.md](https://github.com/lianxhcn/ds/blob/main/homework/ex_P02.md)
+- 小组作业：2-3 个 (每组 4-5 人)
+  - 根据兴趣选择案例 (最好能提供 [备选主题](https://github.com/lianxhcn/ds/tree/main/homework/Topics))
+  - 展示和讨论 (2-3 个小组做同一个案例)
 
 ---
 
@@ -333,6 +437,18 @@ arlionn@163.com
 
 # 教材和讲义
 
+- 教材：理论基础扎实、结构完整
+  - [](https://lianxhcn.github.io/ds/body/00_intro.html)
+- AI 辅助生成，参见 连玉君, 2025, [Empirical Research with AI](https://lianxhcn.github.io/research_with_AI/) 
+  - 关键：学会写提示词 - 结构、逻辑
+
+- Github 仓库
+  - 
+
+- 在线讲义：Quarto + GitHub Pages
+  - 连玉君，2025，[Quarto Book](https://lianxhcn.github.io/quarto_book/)
+ 
+---
 
 ## Python 
 
@@ -373,6 +489,12 @@ arlionn@163.com
   - 非结构化数据 &rarr; 结构化数据
 - 环境配置：让代码跑起来
 
+---
+## 教学模式
+
+- 思路一：教方法和模型 &rarr; 学生自行选择案例分析对象
+- 思路二：案例导向 &rarr; 学生根据自己的需要来学习
+
 --- 
 
 ## 讨论 3：作业
@@ -383,6 +505,7 @@ arlionn@163.com
 - &#x1F34E;：要让学生「卷起来」
 
 ### 小组作业：
+
 - 4:6 / 3:7
 - 根据兴趣选择案例
 - 展示和讨论 (2-3 个小组做同一个案例)
@@ -392,6 +515,7 @@ arlionn@163.com
 ## 讨论 4：教材和讲义
 
 - 联合编写教材和讲义
+
 - Github + Quarto (协作)
 
 
@@ -399,11 +523,13 @@ arlionn@163.com
 
 ## 讨论 5：案例库
 
-- MBA 教学经验：中欧案例库
+- MBA 教学经验：[中欧案例库](https://www.chinacases.org/anon/casehelp/anon_casehelp_category/anonCasehelpCategory.do?method=view&fdId=17862da992a3f9f0d0322164cf0ae791&s_css=default&mainFdId=18e2bf77b4949fae1a9fd6f4132a5d2b&vido2=true&lang=zh-CN)
+  - 岭院的师资培训：MIT Sloan 管理学院 (5 个月) + 中欧案例培训
+  - MBA 教学经验：[MBA-CF](https://gitee.com/arlionn/MBA-CF/wikis/%E8%AF%BE%E7%A8%8B%E5%A4%A7%E7%BA%B2/0.%20%E4%BA%A4%E4%BD%9C%E4%B8%9A%E5%85%A5%E5%8F%A3)
 - Kaggle 数据平台 (https://www.kaggle.com/datasets)
   - 深度不够、案例背景资料缺乏
 - 学生的资源
-  - 案例报告
+  - 案例报告 / 小组作业
   - 毕业论文
   - 校企合作
 - 年度案例大赛或案例征集
