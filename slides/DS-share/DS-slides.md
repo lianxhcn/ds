@@ -75,8 +75,6 @@ pre {
 <!--顶部文字-->
 
 
-<br>
-
 <!--封面图片-->
 ![bg right:55% w:700 brightness:. sepia:50%](https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20250827232234.png) 
 
@@ -108,24 +106,37 @@ arlionn@163.com
 
 
 --- - --
+<!-- backgroundColor: white -->
 
-# 课程内容
-# 如何教？
-# 教什么？
-# 学生的特点
+&emsp; &emsp; &emsp; &emsp; &emsp; ![w:1200](https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20250828000841.png)
 
----
-## 课程概要
+--- - --
 
-- 主页：<>
+- 整体感受
+- 课程内容
+- 教什么？
+- 如何教？
+- 讨论
 
 
 ---
 
 # 整体感受
 
-- 忐忑不安 
+- 敬畏之心：和学生一起学习 
+  - Stata/R &rarr; Python；LLM；GenAI
+  - 课前准备：确定主题、摸底、与相关课程老师沟通
 
+- 让学生卷起来
+  - 作业设计、课堂讨论、私下讨论 (线人)
+
+- 思路转变
+  - 钓鱼
+  - 推理和拆解 
+
+---
+
+![w:1400](https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20250828003453.png)
 
 ---
 <!-- backgroundColor: #cdf27eff -->
@@ -170,7 +181,7 @@ arlionn@163.com
 
 
 ---
-<!-- backgroundColor: #cdf27eff -->
+<!-- backgroundColor: #d1f5f7ff -->
 
 # 课前摸底
 
@@ -303,6 +314,8 @@ arlionn@163.com
 
 ---
 
+<!-- backgroundColor: #d1f5f7ff -->
+
 # 教什么？
 
 - 教指委的课程指南
@@ -310,7 +323,7 @@ arlionn@163.com
 - 我们实际教授的内容
 
 ---
-
+<!-- backgroundColor: white -->
 ## 教指委 · 课程指南（1）
 
 1. **基础**
@@ -324,7 +337,7 @@ arlionn@163.com
    - 分类与聚类：树、KNN、K-means  
 
 ---
-## 教指委 · 课程指南（1）
+## 教指委 · 课程指南（2）
 3. **高级方法**
    - 深度学习与神经网络  
    - 贝叶斯方法与风险管理  
@@ -334,16 +347,17 @@ arlionn@163.com
 
 --- 
 
-## 覆盖的主要内容
+# 我们教的主要内容
 
-- 数据分析的目的
-  - 搞清楚事实：数据清理和可视化 
-  - 搞清楚关系：回归分析、因果推断
-  - 预测：时间序列分析、机器学习
-  - 决策：优化、模拟
-- 数据分析的流程
+- 数据分析的 **目的**
+  - **搞清楚事实**：数据清理和可视化 
+  - **搞清楚关系**：回归分析、因果推断
+  - **预测**：时间序列分析、机器学习
+  - **辅助决策**：优化、模拟
+
+- 数据分析的 **流程**
   - 目标 &rarr; 数据 &rarr; 方法 &rarr; 结果 &rarr; 决策 
-- 数据分析的工具
+- 数据分析的 **工具**
   - AI 工具 + Python + Jupyter Notebook
   - Github + Github Desktop
   - Markdown + Marp
@@ -379,6 +393,11 @@ arlionn@163.com
   - 机器学习方法
     - 分类、回归、聚类、降维
     - 树模型、随机森林、XGBoost
+
+---
+
+### 主要模块 (3)
+
 - 数据分析案例
   - 上市公司财务分析：负债率
   - 宏观经济分析：GDP、失业率、通胀率
@@ -388,19 +407,19 @@ arlionn@163.com
   - 网络数据分析：社交网络、影响力传播
 
 
----
-
-# 一些典型的大纲
-
-- Harvard University, [Data Analysis Courses](https://pll.harvard.edu/subject/data-analysis), 课程分类很细致，提供了大量免费在线课程
-
-- Washington State UNIVERSITY, [Data Analytics Course Syllabi](https://data-analytics.wsu.edu/data-analytics-course-syllabi/) (19 门课)
-  - [Statistical Modeling for Data Analytics](https://data-analytics.wsu.edu/documents/2024/08/data-435-syllabus.pdf/)
 
 
 ---
 
-## 如何教？
+<!-- backgroundColor: #d1f5f7ff -->
+
+# 如何教？
+
+--- - --
+<!-- backgroundColor: white -->
+## 如何教？整体思路
+
+&#x1F34E; 搭好戏台 &rarr; 缺啥补啥 &rarr; 先让代码跑起来
 
 - AI 辅助教学
 - 原理 + 流程 + 规范
@@ -408,12 +427,9 @@ arlionn@163.com
   - Python + Jupyter Notebook
   - Github + GitHub Copilot + Github Desktop
   - 好处：提高编程效率，便于协作和版本控制
-    - 版本控制：记录代码变更，便于回溯和协作
-    - 代码补全：提高编码效率，减少错误
-    - 小组协作：便于团队成员之间的协作
-    - Fork 和 Pull Request：利用全球最优质的代码和项目资源
+
 - Markdown
-  - 写讲义
+  - 一定要多写：想不清楚的东西一定写不清楚
   - 使用 Marp 制作幻灯片
 
 
@@ -423,30 +439,40 @@ arlionn@163.com
 
 - 个人作业：每周一次 (2-3 小时)
   - [ex_P01.md](https://github.com/lianxhcn/ds/blob/main/homework/ex_P01.md)&emsp;|&emsp;[ex_P02.md](https://github.com/lianxhcn/ds/blob/main/homework/ex_P02.md)
+
 - 小组作业：2-3 个 (每组 4-5 人)
   - 根据兴趣选择案例 (最好能提供 [备选主题](https://github.com/lianxhcn/ds/tree/main/homework/Topics))
   - 展示和讨论 (2-3 个小组做同一个案例)
+
+- 老师：设计作业 v.s. 布置作业
 
 ---
 
 ## 如何教？收作业
 
+- 目前：坚果云 [交作业](https://github.com/lianxhcn/ds/tree/main/homework)
+
+- 以后：github [助教工作指南](https://github.com/arlionn/lianxhta)
+
 
 
 ---
 
-# 教材和讲义
+## 如何教？教材和讲义
 
 - 教材：理论基础扎实、结构完整
-  - [](https://lianxhcn.github.io/ds/body/00_intro.html)
+  - [2  课程简介和资源](https://lianxhcn.github.io/ds/body/00_intro.html)
+
 - AI 辅助生成，参见 连玉君, 2025, [Empirical Research with AI](https://lianxhcn.github.io/research_with_AI/) 
   - 关键：学会写提示词 - 结构、逻辑
 
 - Github 仓库
-  - 
+  - [2  课程简介和资源](https://lianxhcn.github.io/ds/body/00_intro.html)
+  - [6100+ 仓库](https://github.com/search?q=data+science+python&type=repositories)
 
 - 在线讲义：Quarto + GitHub Pages
   - 连玉君，2025，[Quarto Book](https://lianxhcn.github.io/quarto_book/)
+  - [用 Quarto book 写的书](https://lianxhcn.github.io/quarto_book/body/05_references.html#%E7%94%A8-quarto-book-%E5%86%99%E7%9A%84%E4%B9%A6)
  
 ---
 
@@ -461,6 +487,13 @@ arlionn@163.com
 
 
 ---
+
+<!-- backgroundColor: #d1f5f7ff -->
+
+# 讨论
+
+---
+<!-- backgroundColor: #FFFFF9 -->
 
 ## 讨论 1：彼此的优势
 
@@ -478,7 +511,9 @@ arlionn@163.com
 
 ---
 
-## 讨论 2：教什么？
+## 讨论 2：教学模式
+
+- 环境配置：让代码跑起来 (信心)
 
 - 学生没有能力或者需要花很多时间才能理解的内容
   - 线性回归 &rarr; 非参数估计 (KNN, 核密度函数图, 随机森林) 
@@ -487,9 +522,18 @@ arlionn@163.com
   - EDA &rarr; 可视化 &rarr; 回归分析 &rarr; 机器学习
   - 离群值
   - 非结构化数据 &rarr; 结构化数据
-- 环境配置：让代码跑起来
+- 阅读和检索能力 &rarr; 知道周围在发生什么 &rarr; 趋势敏感性
 
 ---
+<!-- backgroundColor: #FFFFF9 -->
+## 一些典型的大纲
+
+- Harvard University, [Data Analysis Courses](https://pll.harvard.edu/subject/data-analysis), 课程分类很细致，提供了大量免费在线课程
+
+- Washington State UNIVERSITY, [Data Analytics Course Syllabi](https://data-analytics.wsu.edu/data-analytics-course-syllabi/) (19 门课)
+  - [Statistical Modeling for Data Analytics](https://data-analytics.wsu.edu/documents/2024/08/data-435-syllabus.pdf/)
+
+
 ## 教学模式
 
 - 思路一：教方法和模型 &rarr; 学生自行选择案例分析对象
@@ -503,12 +547,13 @@ arlionn@163.com
 - 环境配置
 - 基础知识和概念
 - &#x1F34E;：要让学生「卷起来」
+- 量大，有一定难度
 
 ### 小组作业：
 
-- 4:6 / 3:7
 - 根据兴趣选择案例
 - 展示和讨论 (2-3 个小组做同一个案例)
+- 作业库？
 
 --- 
 
@@ -521,7 +566,7 @@ arlionn@163.com
 
 ---
 
-## 讨论 5：案例库
+## 讨论 5：案例库 &#x1F34F;
 
 - MBA 教学经验：[中欧案例库](https://www.chinacases.org/anon/casehelp/anon_casehelp_category/anonCasehelpCategory.do?method=view&fdId=17862da992a3f9f0d0322164cf0ae791&s_css=default&mainFdId=18e2bf77b4949fae1a9fd6f4132a5d2b&vido2=true&lang=zh-CN)
   - 岭院的师资培训：MIT Sloan 管理学院 (5 个月) + 中欧案例培训
@@ -534,3 +579,10 @@ arlionn@163.com
   - 校企合作
 - 年度案例大赛或案例征集
 
+---
+
+<center>
+
+<https://lianxhcn.github.com/ds>
+
+</center>
