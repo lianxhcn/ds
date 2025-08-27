@@ -76,16 +76,15 @@ pre {
 
 
 <!--封面图片-->
-![bg right:55% w:700 brightness:. sepia:50%](https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/20250827232234.png) 
+
+
+![bg right:55% w:500 brightness:. sepia:50%](https://fig-lianxh.oss-cn-shenzhen.aliyuncs.com/qrcode_ds_share_2025-PDF.png)
 
 
 <!--幻灯片标题-->
 
 ## 课程建设经验分享
 # 数据分析与经济决策
-
-
-
 
 <br>
 <br>
